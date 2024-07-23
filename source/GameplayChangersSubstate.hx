@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -155,10 +156,10 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-		#if android
-		addVirtualPad(LEFT_FULL, A_B_C);
-		addPadCamera();
-		#end
+                #if android
+                addVirtualPad(LEFT_FULL, A_B_C);
+                addVirtualPadCamera();
+                #end
 	}
 
 	var nextAccept:Int = 5;
@@ -177,11 +178,11 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 		if (controls.BACK) {
 			#if android
-			FlxTransitionableState.skipNextTransOut = true;
+         FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
-			#else
-			close();
-			#end
+         #else
+         close();
+         #end
 			ClientPrefs.saveSettings();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
