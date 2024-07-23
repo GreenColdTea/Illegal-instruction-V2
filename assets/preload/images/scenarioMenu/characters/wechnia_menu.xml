@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="wechnia_menu.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Wechnia_menu0000" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0001" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0002" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0003" x="59" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0004" x="59" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0005" x="59" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0006" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0007" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0008" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0009" x="108" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0010" x="108" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0011" x="108" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0012" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0013" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0014" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0015" x="157" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0016" x="157" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0017" x="157" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0018" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0019" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0020" x="10" y="10" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0021" x="10" y="48" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0022" x="10" y="48" width="49" height="38"/>
+	<SubTexture name="Wechnia_menu0023" x="10" y="48" width="49" height="38"/>
+</TextureAtlas>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chaotixmenu.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="chaotixmenu0000" x="15" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0001" x="15" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0002" x="96" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0003" x="96" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0004" x="177" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0005" x="177" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0006" x="258" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0007" x="258" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0008" x="339" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0009" x="339" y="15" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0010" x="15" y="120" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0011" x="15" y="120" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0012" x="96" y="120" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0013" x="96" y="120" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0014" x="177" y="120" width="80" height="104"/>
+	<SubTexture name="chaotixmenu0015" x="177" y="120" width="80" height="104"/>
+</TextureAtlas>

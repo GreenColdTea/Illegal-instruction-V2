@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="CombiBFCombined.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="CombiBFCombined instance 10000" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10001" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10002" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10003" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10004" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10005" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10006" x="880" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10007" x="1170" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10008" x="1170" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10009" x="1460" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10010" x="1460" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10011" x="1460" y="10" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10012" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10013" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10014" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10015" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10016" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10017" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10018" x="590" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10019" x="880" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10020" x="880" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10021" x="1170" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10022" x="1460" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10023" x="1460" y="420" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10024" x="10" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10025" x="10" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10026" x="10" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10027" x="300" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10028" x="300" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10029" x="300" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10030" x="590" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10031" x="590" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10032" x="590" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10033" x="880" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10034" x="1170" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10035" x="1170" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10036" x="1460" y="830" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10037" x="10" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10038" x="10" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10039" x="300" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10040" x="300" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10041" x="300" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10042" x="590" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10043" x="590" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10044" x="590" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10045" x="880" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10046" x="880" y="1240" width="290" height="410"/>
+	<SubTexture name="CombiBFCombined instance 10047" x="880" y="1240" width="290" height="410"/>
+</TextureAtlas>

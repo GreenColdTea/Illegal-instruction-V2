@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="wechnia.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="wechnia0000" x="15" y="15" width="40" height="39"/>
+	<SubTexture name="wechnia0001" x="56" y="15" width="40" height="39"/>
+</TextureAtlas>

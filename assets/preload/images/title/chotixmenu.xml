@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chotixmenu.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="chotixmenu0000" x="15" y="15" width="166" height="112"/>
+	<SubTexture name="chotixmenu0001" x="15" y="15" width="166" height="112"/>
+	<SubTexture name="chotixmenu0002" x="182" y="15" width="166" height="112"/>
+	<SubTexture name="chotixmenu0003" x="182" y="15" width="166" height="112"/>
+	<SubTexture name="chotixmenu0004" x="15" y="128" width="166" height="112"/>
+	<SubTexture name="chotixmenu0005" x="15" y="128" width="166" height="112"/>
+	<SubTexture name="chotixmenu0006" x="182" y="128" width="166" height="112"/>
+	<SubTexture name="chotixmenu0007" x="182" y="128" width="166" height="112"/>
+	<SubTexture name="chotixmenu0008" x="15" y="241" width="166" height="112"/>
+	<SubTexture name="chotixmenu0009" x="15" y="241" width="166" height="112"/>
+	<SubTexture name="chotixmenu0010" x="182" y="241" width="166" height="112"/>
+	<SubTexture name="chotixmenu0011" x="182" y="241" width="166" height="112"/>
+	<SubTexture name="chotixmenu0012" x="15" y="354" width="166" height="112"/>
+	<SubTexture name="chotixmenu0013" x="15" y="354" width="166" height="112"/>
+	<SubTexture name="chotixmenu0014" x="182" y="354" width="166" height="112"/>
+	<SubTexture name="chotixmenu0015" x="182" y="354" width="166" height="112"/>
+</TextureAtlas>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="CharmyScared.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="CharmyScaredBop instance 10000" x="0" y="0" width="281" height="422" frameX="-3" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10001" x="281" y="0" width="281" height="422" frameX="-3" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10002" x="562" y="0" width="283" height="421" frameX="-1" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10003" x="845" y="0" width="283" height="421" frameX="-1" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10004" x="1128" y="0" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10005" x="1412" y="0" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10006" x="1696" y="0" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10007" x="0" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10008" x="284" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10009" x="568" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10010" x="284" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10011" x="568" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10012" x="284" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10013" x="568" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+	<SubTexture name="CharmyScaredBop instance 10014" x="284" y="422" width="284" height="420" frameX="0" frameY="0" frameWidth="284" frameHeight="422"/>
+</TextureAtlas>

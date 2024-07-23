@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Cuckles Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				195,
+				23
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Cuckles Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				36,
+				-45
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Cuckles down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				3,
+				-32
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Cuckles right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				89,
+				78
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Cuckles up",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Cuckles",
+	"position": [
+		0,
+		150
+	],
+	"healthicon": "wechnia",
+	"flip_x": false,
+	"healthbar_colors": [
+		169,
+		169,
+		169
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 0.8
+}

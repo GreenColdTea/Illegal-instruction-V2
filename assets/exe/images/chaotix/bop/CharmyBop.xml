@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="CharmyBop.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="CharmyBopLeft0000" x="0" y="0" width="392" height="484" frameX="-4" frameY="0" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopLeft0001" x="392" y="0" width="393" height="484" frameX="-4" frameY="0" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopLeft0002" x="785" y="0" width="394" height="483" frameX="-2" frameY="-1" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopLeft0003" x="1179" y="0" width="397" height="483" frameX="0" frameY="-2" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopLeft0004" x="1576" y="0" width="396" height="483" frameX="0" frameY="-2" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopLeft0005" x="0" y="484" width="380" height="483" frameX="-17" frameY="-2" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopLeft0006" x="380" y="484" width="379" height="483" frameX="-17" frameY="-2" frameWidth="397" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0000" x="759" y="484" width="373" height="485" frameX="-1" frameY="0" frameWidth="377" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0001" x="1132" y="484" width="377" height="483" frameX="0" frameY="-1" frameWidth="377" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0002" x="1509" y="484" width="376" height="483" frameX="-1" frameY="-1" frameWidth="377" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0003" x="1132" y="484" width="377" height="483" frameX="0" frameY="-1" frameWidth="377" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0004" x="1509" y="484" width="376" height="483" frameX="-1" frameY="-1" frameWidth="377" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0005" x="0" y="969" width="341" height="483" frameX="0" frameY="-1" frameWidth="377" frameHeight="485"/>
+	<SubTexture name="CharmyBopRight0006" x="341" y="969" width="340" height="483" frameX="-1" frameY="-1" frameWidth="377" frameHeight="485"/>
+</TextureAtlas>

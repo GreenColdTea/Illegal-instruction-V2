@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ashuramenu.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ashuramenu0000" x="15" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0001" x="15" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0002" x="96" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0003" x="96" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0004" x="177" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0005" x="177" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0006" x="258" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0007" x="258" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0008" x="339" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0009" x="339" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0010" x="15" y="127" width="80" height="111"/>
+	<SubTexture name="ashuramenu0011" x="15" y="127" width="80" height="111"/>
+	<SubTexture name="ashuramenu0012" x="15" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0013" x="15" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0014" x="15" y="15" width="80" height="111"/>
+	<SubTexture name="ashuramenu0015" x="15" y="15" width="80" height="111"/>
+</TextureAtlas>

@@ -1,0 +1,26 @@
+{
+	"storyName": "This is My Horizon.",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "ashura",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"wechidna",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"My Horizon",
+			"wech",
+			[
+				206,
+				20,
+				13
+			]
+		]
+
+	],
+	"hideStoryMode": false,
+	"weekName": "Wechidna"
+}

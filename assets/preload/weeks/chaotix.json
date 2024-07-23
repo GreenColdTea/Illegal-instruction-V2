@@ -1,0 +1,25 @@
+{
+	"storyName": "Tails?",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "Duke",
+	"startUnlocked": false,
+	"weekCharacters": [
+		"chaotix",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Vista",
+			"chaotix",
+			[
+				255,
+				120,
+				140
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "Chaotix"
+}

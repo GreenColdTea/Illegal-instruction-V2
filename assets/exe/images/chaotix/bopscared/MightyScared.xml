@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="MightyScared.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="MightyScaredBop instance 10000" x="0" y="0" width="417" height="670" frameX="0" frameY="-13" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10001" x="0" y="0" width="417" height="670" frameX="0" frameY="-13" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10002" x="417" y="0" width="413" height="676" frameX="-2" frameY="-7" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10003" x="417" y="0" width="413" height="676" frameX="-2" frameY="-7" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10004" x="830" y="0" width="409" height="679" frameX="-4" frameY="-4" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10005" x="830" y="0" width="409" height="679" frameX="-4" frameY="-4" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10006" x="1239" y="0" width="407" height="681" frameX="-5" frameY="-2" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10007" x="1239" y="0" width="407" height="681" frameX="-5" frameY="-2" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10008" x="0" y="681" width="407" height="682" frameX="-5" frameY="-1" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10009" x="0" y="681" width="407" height="682" frameX="-5" frameY="-1" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10010" x="407" y="681" width="407" height="683" frameX="-5" frameY="0" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10011" x="407" y="681" width="407" height="683" frameX="-5" frameY="0" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10012" x="407" y="681" width="407" height="683" frameX="-5" frameY="0" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10013" x="407" y="681" width="407" height="683" frameX="-5" frameY="0" frameWidth="417" frameHeight="683"/>
+	<SubTexture name="MightyScaredBop instance 10014" x="407" y="681" width="407" height="683" frameX="-5" frameY="0" frameWidth="417" frameHeight="683"/>
+</TextureAtlas>

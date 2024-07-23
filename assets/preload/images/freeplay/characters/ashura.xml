@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ashura.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ashura0000" x="15" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0001" x="15" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0002" x="41" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0003" x="41" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0004" x="67" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0005" x="67" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0006" x="93" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0007" x="93" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0008" x="119" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0009" x="119" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0010" x="145" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0011" x="145" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0012" x="171" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0013" x="171" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0014" x="15" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0015" x="15" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0016" x="41" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0017" x="41" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0018" x="67" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0019" x="67" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0020" x="93" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0021" x="93" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0022" x="119" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0023" x="119" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0024" x="197" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0025" x="197" y="15" width="25" height="39"/>
+	<SubTexture name="ashura0026" x="15" y="55" width="25" height="39"/>
+	<SubTexture name="ashura0027" x="15" y="55" width="25" height="39"/>
+</TextureAtlas>

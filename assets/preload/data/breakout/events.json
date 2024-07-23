@@ -1,0 +1,79 @@
+{
+	"song": {
+		"speed": 2.6,
+		"stage": "entrance",
+		"player1": "bfiialt",
+		"player2": "duke",
+		"player3": null,
+		"events": [
+			[
+				87115.3846153846,
+				[
+					[
+						"Change Character",
+						"dad",
+						"dukelaugh"
+					],
+					[
+						"Play Animation",
+						"laugh",
+						"dad"
+					]
+				]
+			],
+			[
+				90461.5384615384,
+				[
+					[
+						"Change Scroll Speed",
+						"1.25",
+						"0.1"
+					]
+				]
+			],
+			[
+				91738.1342062193,
+				[
+					[
+						"Change Character",
+						"dad",
+						"dukep2"
+					]
+				]
+			],
+			[
+				151977.495908347,
+				[
+					[
+						"Change Character",
+						"dad",
+						"dukep2midsong"
+					],
+					[
+						"Play Animation",
+						"persist",
+						"dad"
+					]
+				]
+			],
+			[
+				167057.283142389,
+				[
+					[
+						"Change Character",
+						"dad",
+						"dukep2"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": "noteSplashes",
+		"validScore": false,
+		"gfVersion": "gfii",
+		"bpm": 130,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "Breakout"
+	}
+}

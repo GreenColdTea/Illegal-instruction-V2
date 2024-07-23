@@ -1,0 +1,34 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				142,
+				160
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "waterfall",
+			"indices": [],
+			"name": "MIDSONG"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/ashura_midsong",
+	"position": [
+		-70,
+		30
+	],
+	"healthicon": "ashurap1",
+	"flip_x": false,
+	"healthbar_colors": [
+		32,
+		64,
+		192
+	],
+	"camera_position": [
+		-330,
+		-190
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

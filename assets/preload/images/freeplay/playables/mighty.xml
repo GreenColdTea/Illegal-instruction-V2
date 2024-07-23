@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="mighty.png">
+<SubTexture name="mighty0000" x="23" y="0" width="23" height="38" frameX="0" frameY="-1" frameWidth="23" frameHeight="39" />
+<SubTexture name="mighty0001" x="0" y="39" width="23" height="37" frameX="0" frameY="-2" frameWidth="23" frameHeight="39" />
+<SubTexture name="mighty0002" x="0" y="0" width="23" height="39" frameX="0" frameY="0" frameWidth="23" frameHeight="39" />
+<SubTexture name="mighty0003" x="46" y="0" width="23" height="38" frameX="0" frameY="-1" frameWidth="23" frameHeight="39" />
+<SubTexture name="mighty0004" x="69" y="0" width="23" height="38" frameX="0" frameY="-1" frameWidth="23" frameHeight="39" />
+</TextureAtlas>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="EspioScared.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="EspioScaredBop instance 10000" x="0" y="0" width="553" height="494" frameX="0" frameY="-5" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10001" x="0" y="0" width="553" height="494" frameX="0" frameY="-5" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10002" x="553" y="0" width="549" height="496" frameX="-5" frameY="-3" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10003" x="553" y="0" width="549" height="496" frameX="-5" frameY="-3" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10004" x="1102" y="0" width="551" height="495" frameX="-5" frameY="-3" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10005" x="1102" y="0" width="551" height="495" frameX="-5" frameY="-3" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10006" x="0" y="496" width="552" height="496" frameX="-4" frameY="-2" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10007" x="0" y="496" width="552" height="496" frameX="-4" frameY="-2" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10008" x="552" y="496" width="553" height="498" frameX="-3" frameY="0" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10009" x="552" y="496" width="553" height="498" frameX="-3" frameY="0" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10010" x="1105" y="496" width="553" height="497" frameX="-3" frameY="-1" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10011" x="1105" y="496" width="553" height="497" frameX="-3" frameY="-1" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10012" x="1105" y="496" width="553" height="497" frameX="-3" frameY="-1" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10013" x="1105" y="496" width="553" height="497" frameX="-3" frameY="-1" frameWidth="556" frameHeight="499"/>
+	<SubTexture name="EspioScaredBop instance 10014" x="1105" y="496" width="553" height="497" frameX="-3" frameY="-1" frameWidth="556" frameHeight="499"/>
+</TextureAtlas>

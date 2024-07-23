@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="duke_menu.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Duke_confirm0000" x="10" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0001" x="10" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0002" x="10" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0003" x="38" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0004" x="38" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0005" x="38" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0006" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0007" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0008" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0009" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0010" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0011" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0012" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0013" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0014" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0015" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0016" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0017" x="94" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0018" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0019" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0020" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0021" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0022" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0023" x="66" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0024" x="122" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0025" x="122" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0026" x="122" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0027" x="122" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0028" x="122" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0029" x="122" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0030" x="150" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0031" x="150" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_confirm0032" x="150" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0000" x="178" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0001" x="178" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0002" x="178" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0003" x="178" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0004" x="178" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0005" x="178" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0006" x="206" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0007" x="206" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0008" x="206" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0009" x="206" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0010" x="206" y="10" width="28" height="39"/>
+	<SubTexture name="Duke_menu0011" x="206" y="10" width="28" height="39"/>
+</TextureAtlas>

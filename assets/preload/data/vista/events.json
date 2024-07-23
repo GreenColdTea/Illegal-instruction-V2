@@ -1,0 +1,4749 @@
+{
+	"song": {
+		"speed": 2.7,
+		"stage": "vista",
+		"player1": "bfii",
+		"player2": "chaotix",
+		"player3": null,
+		"events": [
+			[
+				55384.6153846154,
+				[
+					[
+						"Change Character",
+						"dad",
+						"chaotixtransform"
+					],
+					[
+						"Play Animation",
+						"transform",
+						"dad"
+					]
+				]
+			],
+			[
+				66754.9390779805,
+				[
+					[
+						"Change Character",
+						"dad",
+						"chaotix-beast-unpixel"
+					]
+				]
+			],
+			[
+				87707.8376287051,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				91620.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				92028.4898026182,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				92517.6202374008,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				92925.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				98142.6202374008,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				102055.663715662,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				102544.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				102952.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				103360.011541749,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				108577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				129446.968063488,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				130751.315889575,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				132055.663715662,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				133360.011541749,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				134664.359367836,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				135968.707193923,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				137273.05502001,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				138577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				139881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				141186.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				142490.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				143794.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				145099.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				146403.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				147707.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				149012.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				150316.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				150805.663715662,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				151294.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				151783.924585227,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				152273.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				152599.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				152925.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				153414.359367836,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				153903.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				154229.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				154881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				155207.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				155533.924585227,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				156023.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				156512.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				157001.315889575,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				157490.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				157816.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				158142.620237401,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				158631.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				159120.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				159610.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				160099.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				160425.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				160751.315889575,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				161240.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				161729.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				162218.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				162707.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				163033.924585227,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				163360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				163849.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				164338.272411314,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				164664.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				165153.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				165561.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				165968.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				166457.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				166946.968063488,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				167273.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				167843.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				168251.315889575,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				168577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				169066.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				169555.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				169963.272411314,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				170533.924585227,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				170778.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				170860.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				170941.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				171023.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				171104.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				171186.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				171675.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				172164.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				172490.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				173142.620237401,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				173387.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				173550.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				173794.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				174283.924585227,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				174691.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				175099.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				175669.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				176077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				176158.924585227,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				176240.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				176403.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				176892.620237401,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				177381.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				177789.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				178360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				178686.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				178767.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				178849.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				179012.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				179501.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				179990.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				180398.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				181620.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				182110.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				182599.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				183006.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				183495.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				183903.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				183985.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				184066.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				184229.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				184718.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				185207.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				185615.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				186104.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				186512.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				186593.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				186675.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				186838.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				187327.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				187816.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				188224.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				188713.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				189039.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				189120.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				189202.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				189283.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				189446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				189936.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				190425.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				190751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				190914.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191240.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191403.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191566.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191729.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191811.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191892.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				191974.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				192626.315889574,
+				[
+					[
+						"Change Character",
+						"dad",
+						"tailsspotted"
+					],
+					[
+						"Play Animation",
+						"spotted",
+						"dad"
+					]
+				]
+			],
+			[
+				199881.750672183,
+				[
+					[
+						"Change Character",
+						"dad",
+						"chaotix-beast-unpixel"
+					]
+				]
+			],
+			[
+				210316.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				211620.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				212925.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				214229.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				215533.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				216838.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				218142.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				219446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				220751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				221077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				221403.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				221729.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				222055.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				222381.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				222707.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				223033.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				223360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				223686.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				224012.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				224338.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				224664.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				224990.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				225316.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				225642.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				225968.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				226294.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				226620.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				226946.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				227273.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				227599.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				227925.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				228251.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				228577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				228903.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				229229.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				229555.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				229881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				230207.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				230533.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				230860.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				231186.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				231512.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				231838.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				232164.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				232490.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				232816.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				233142.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				233468.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				233794.794150443,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				234120.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				234446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				234773.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				235099.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				235425.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				235751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				236077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				236403.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				236729.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				237055.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				237381.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				237707.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				238033.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				238360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				238686.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				239012.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				239338.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				239664.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				239990.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				240316.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				240642.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				240968.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				241294.794150443,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				241620.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				241946.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				242273.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				242599.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				242925.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				243251.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				243577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				243903.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				244229.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				244555.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				244881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				245207.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				245533.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				245860.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				246186.098498269,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				246512.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				246838.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				247164.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				247490.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				247816.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				248142.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				248468.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				248794.794150443,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				249120.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				249446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				249773.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				250099.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				250425.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				250751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				251077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				251403.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				251729.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				252055.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				252381.750672182,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				252707.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				253033.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				253360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				253686.098498269,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				254012.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				254338.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				254664.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				254990.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				255316.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				255642.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				255968.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				256294.794150443,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				256620.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				256946.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				257273.055020008,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				257599.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				257925.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				258251.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				258577.402846095,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				258903.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				259229.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				259555.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				259881.750672182,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				260207.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				260533.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				260860.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				261186.098498269,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				261512.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				261838.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				262164.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				262490.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				262816.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				263142.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				263468.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				263794.794150443,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				264120.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				264446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				264610.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				264936.098498269,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				265588.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				265751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				266077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				266403.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				266729.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				267055.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				267381.750672182,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				267707.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				267870.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				268033.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				268196.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				268360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				268686.098498269,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				269012.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				269175.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				269338.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				269501.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				269664.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				269990.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				270316.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				270642.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				270805.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				271131.750672182,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				271457.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				271783.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				271946.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				272110.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				272273.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				272599.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				272925.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				273251.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				273577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				273903.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274229.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274311.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274392.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274474.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274555.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274637.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				274881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				275207.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				275533.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				275615.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				275696.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				275941.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				276023.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				276104.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				276349.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				276512.185454791,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				276675.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				277164.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				277490.446324356,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				277816.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				278142.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				278468.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				278794.794150443,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				279120.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				279446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				279773.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				280099.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				280425.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				280751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				280832.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				280914.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				281158.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				281240.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				281321.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				281485.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				281648.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				281811.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				281974.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				282381.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				282707.837628704,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				283033.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				283360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				283686.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				283849.14197653,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				284175.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				284501.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				284827.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				284990.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				285153.489802617,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				285316.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				285642.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				285968.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				287273.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				287517.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				287925.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				288251.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				288577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				288985.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				289881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				290370.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				290860.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				291186.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				291675.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				292490.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				292653.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				292816.533280878,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				292979.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				293061.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				293142.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				293468.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				293550.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				293631.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				293794.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				294120.881106965,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				294446.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				294773.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				295099.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				295425.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				295751.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				296077.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				296403.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				296485.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				296566.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				296811.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				296892.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				296974.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				297218.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				297381.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				298360.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				298686.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299012.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299175.228933052,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299338.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299501.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299664.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299827.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				299990.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				300153.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				300316.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				300479.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				300642.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				300805.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				300968.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				301131.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				301294.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				301457.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				301620.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				301702.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				301783.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302028.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302110.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302191.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302436.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302599.141976531,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302762.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				302925.228933053,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				303088.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				303251.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				303414.359367835,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				303577.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				303740.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				303903.489802618,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				304066.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				304229.576759139,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				304392.6202374,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				304555.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				304718.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				304881.750672183,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				305044.794150444,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				305126.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				305207.837628705,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				305370.881106966,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				305533.924585226,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				305696.968063487,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				305860.011541748,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				306023.055020009,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				306186.09849827,
+				[
+					[
+						"Chaotix Health Randomization",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				306512.185454792,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				306838.272411313,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				307001.315889574,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				307327.402846096,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				307490.446324357,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				307816.533280879,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				307979.57675914,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				308305.663715661,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				308468.707193922,
+				[
+					[
+						"Chaotix Health Randomization",
+						"2",
+						""
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": "noteSplashes",
+		"validScore": false,
+		"gfVersion": "gfii",
+		"bpm": 156,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "Vista"
+	}
+}

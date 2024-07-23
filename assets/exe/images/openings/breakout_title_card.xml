@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="breakout_title_card.png">
+<SubTexture name="breakout_title_card0000" x="0" y="0" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0001" x="640" y="0" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0002" x="0" y="480" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0003" x="640" y="480" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0004" x="1280" y="0" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0005" x="1280" y="480" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0006" x="0" y="960" width="640" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0007" x="640" y="960" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0008" x="1184" y="960" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0009" x="0" y="1440" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0010" x="544" y="1440" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0011" x="1088" y="1440" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0012" x="1920" y="0" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0013" x="1920" y="480" width="544" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0014" x="0" y="1920" width="546" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0015" x="546" y="1920" width="560" height="480" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0016" x="1106" y="1920" width="592" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0017" x="1698" y="1920" width="640" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0018" x="2464" y="0" width="640" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0019" x="2464" y="368" width="544" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0020" x="2464" y="736" width="544" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0021" x="2464" y="1104" width="544" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0022" x="2464" y="1472" width="544" height="368" frameX="0" frameY="0" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0023" x="2464" y="1840" width="398" height="116" frameX="0" frameY="-254" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0024" x="2464" y="1956" width="406" height="100" frameX="0" frameY="-262" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0025" x="2464" y="2056" width="432" height="48" frameX="0" frameY="-288" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0026" x="2464" y="2160" width="484" height="10" frameX="0" frameY="-306" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0027" x="2464" y="2104" width="480" height="14" frameX="0" frameY="-304" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0028" x="2464" y="2118" width="472" height="14" frameX="0" frameY="-304" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0029" x="2464" y="2132" width="416" height="14" frameX="0" frameY="-304" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0030" x="2464" y="2146" width="320" height="14" frameX="0" frameY="-304" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0031" x="2862" y="1840" width="160" height="14" frameX="0" frameY="-304" frameWidth="640" frameHeight="480" />
+<SubTexture name="breakout_title_card0032" x="3008" y="368" width="32" height="10" frameX="0" frameY="-306" frameWidth="640" frameHeight="480" />
+</TextureAtlas>

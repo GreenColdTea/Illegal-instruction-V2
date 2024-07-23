@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="KnuxBop.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="KNUXBOP0000" x="0" y="0" width="451" height="655" frameX="-9" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0001" x="0" y="0" width="451" height="655" frameX="-9" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0002" x="451" y="0" width="457" height="659" frameX="-9" frameY="0" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0003" x="451" y="0" width="457" height="659" frameX="-9" frameY="0" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0004" x="908" y="0" width="466" height="657" frameX="-3" frameY="-2" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0005" x="908" y="0" width="466" height="657" frameX="-3" frameY="-2" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0006" x="1374" y="0" width="471" height="655" frameX="-1" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0007" x="1374" y="0" width="471" height="655" frameX="-1" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0008" x="0" y="659" width="472" height="655" frameX="0" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0009" x="0" y="659" width="472" height="655" frameX="0" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0010" x="0" y="659" width="472" height="655" frameX="0" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0011" x="0" y="659" width="472" height="655" frameX="0" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0012" x="0" y="659" width="472" height="655" frameX="0" frameY="-4" frameWidth="472" frameHeight="659"/>
+	<SubTexture name="KNUXBOP0013" x="0" y="659" width="472" height="655" frameX="0" frameY="-4" frameWidth="472" frameHeight="659"/>
+</TextureAtlas>

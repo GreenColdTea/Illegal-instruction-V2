@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="CombiBF.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Combi instance 10000" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10001" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10002" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10003" x="10" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10004" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10005" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10006" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10007" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10008" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="Combi instance 10009" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="Combi instance 10010" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="Combi instance 10011" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="Combi instance 10012" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="Combi instance 10013" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="Combi instance 10014" x="300" y="420" width="290" height="410"/>
+</TextureAtlas>

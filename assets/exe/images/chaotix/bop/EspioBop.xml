@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="EspioBop.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="EspioBop0000" x="0" y="0" width="340" height="655" frameX="0" frameY="-1" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0001" x="0" y="0" width="340" height="655" frameX="0" frameY="-1" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0002" x="340" y="0" width="338" height="656" frameX="-2" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0003" x="340" y="0" width="338" height="656" frameX="-2" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0004" x="678" y="0" width="335" height="656" frameX="-6" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0005" x="678" y="0" width="335" height="656" frameX="-6" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0006" x="1013" y="0" width="336" height="656" frameX="-10" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0007" x="1013" y="0" width="336" height="656" frameX="-10" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0008" x="1349" y="0" width="336" height="656" frameX="-12" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0009" x="1349" y="0" width="336" height="656" frameX="-12" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0010" x="1349" y="0" width="336" height="656" frameX="-12" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0011" x="1349" y="0" width="336" height="656" frameX="-12" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0012" x="1349" y="0" width="336" height="656" frameX="-12" frameY="0" frameWidth="348" frameHeight="656"/>
+	<SubTexture name="EspioBop0013" x="1349" y="0" width="336" height="656" frameX="-12" frameY="0" frameWidth="348" frameHeight="656"/>
+</TextureAtlas>

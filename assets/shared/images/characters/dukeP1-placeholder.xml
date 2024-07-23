@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="dukeP1-placeholder.png">
+<SubTexture name="idle0000" x="0" y="0" width="579" height="1000" frameX="-149" frameY="-451" frameWidth="828" frameHeight="1792" />
+<SubTexture name="left0000" x="579" y="0" width="713" height="730" frameX="0" frameY="0" frameWidth="695" frameHeight="712" />
+<SubTexture name="up0000" x="1292" y="0" width="592" height="721" frameX="0" frameY="0" frameWidth="574" frameHeight="703" />
+<SubTexture name="down0000" x="500" y="1000" width="468" height="697" frameX="0" frameY="0" frameWidth="450" frameHeight="679" />
+<SubTexture name="right0000" x="0" y="1000" width="500" height="714" frameX="0" frameY="0" frameWidth="482" frameHeight="696" />
+</TextureAtlas>

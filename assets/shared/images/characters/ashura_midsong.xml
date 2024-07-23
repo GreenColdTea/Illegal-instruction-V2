@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ashura_midsong.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="MIDSONG0000" x="15" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0001" x="15" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0002" x="831" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0003" x="831" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0004" x="1647" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0005" x="1647" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0006" x="15" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0007" x="15" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0008" x="15" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0009" x="15" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0010" x="2463" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0011" x="3279" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0012" x="3279" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0013" x="4095" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0014" x="4911" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0015" x="4911" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0016" x="4911" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0017" x="4911" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0018" x="4911" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0019" x="4911" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0020" x="5727" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0021" x="6543" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0022" x="7359" y="15" width="815" height="820"/>
+	<SubTexture name="MIDSONG0023" x="15" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0024" x="831" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0025" x="1647" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0026" x="2463" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0027" x="3279" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0028" x="4095" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0029" x="4911" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0030" x="5727" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0031" x="5727" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0032" x="6543" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0033" x="6543" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0034" x="7359" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0035" x="7359" y="836" width="815" height="820"/>
+	<SubTexture name="MIDSONG0036" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0037" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0038" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0039" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0040" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0041" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0042" x="15" y="1657" width="815" height="820"/>
+	<SubTexture name="MIDSONG0043" x="15" y="1657" width="815" height="820"/>
+</TextureAtlas>

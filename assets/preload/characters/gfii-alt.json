@@ -1,0 +1,45 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "danceLeft",
+			"fps": 24,
+			"name": "IHateWhitePeople",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "danceRight",
+			"fps": 24,
+			"name": "IHateWhitePeople",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/IIgirlfriend_2",
+	"position": [
+		20,
+		250
+	],
+	"healthicon": "gf",
+	"flip_x": false,
+	"healthbar_colors": [
+		227,
+		0,
+		61
+	],
+	"camera_position": [
+		-280,
+		50
+	],
+	"sing_duration": 6.1,
+	"scale": 1.4
+}

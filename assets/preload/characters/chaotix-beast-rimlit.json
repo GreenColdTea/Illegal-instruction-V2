@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				240,
+				145
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "BEASTRIGHT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				381,
+				56
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "BEASTDOWN",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				170,
+				440
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "BEASTUP",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				361,
+				244
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "BEASTLEFT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				241,
+				242
+			],
+			"anim": "danceLeft",
+			"fps": 24,
+			"name": "BEASTBOPDOWN",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				250,
+				230
+			],
+			"anim": "danceRight",
+			"fps": 24,
+			"name": "BEASTBOPUP",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/beast-rimlit",
+	"position": [
+		0,
+		100
+	],
+	"healthicon": "beast",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		183,
+		249
+	],
+	"camera_position": [
+		-40,
+		-150
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

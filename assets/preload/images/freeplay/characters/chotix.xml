@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chotix.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="chotix0000" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0001" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0002" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0003" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0004" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0005" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0006" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0007" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0008" x="0" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0009" x="96" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0010" x="192" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0011" x="192" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0012" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0013" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0014" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0015" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0016" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0017" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0018" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0019" x="288" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0020" x="384" y="0" width="96" height="96"/>
+	<SubTexture name="chotix0021" x="0" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0022" x="96" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0023" x="96" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0024" x="192" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0025" x="192" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0026" x="288" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0027" x="288" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0028" x="384" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0029" x="384" y="96" width="96" height="96"/>
+	<SubTexture name="chotix0030" x="0" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0031" x="0" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0032" x="96" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0033" x="96" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0034" x="192" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0035" x="192" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0036" x="288" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0037" x="288" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0038" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0039" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0040" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0041" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0042" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0043" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0044" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0045" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0046" x="384" y="192" width="96" height="96"/>
+	<SubTexture name="chotix0047" x="0" y="288" width="96" height="96"/>
+	<SubTexture name="chotix0048" x="0" y="288" width="96" height="96"/>
+	<SubTexture name="chotix0049" x="96" y="288" width="96" height="96"/>
+	<SubTexture name="chotix0050" x="96" y="288" width="96" height="96"/>
+</TextureAtlas>

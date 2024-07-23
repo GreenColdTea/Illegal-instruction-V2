@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="BFDEATHSHEET.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="BFDEATHCONFIRM0000" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0001" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0002" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0003" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0004" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0005" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0006" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0007" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0008" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0009" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0010" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0011" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0012" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0013" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHCONFIRM0014" x="0" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0000" x="603" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0001" x="603" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0002" x="1206" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0003" x="1206" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0004" x="1809" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0005" x="1809" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0006" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0007" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0008" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0009" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0010" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0011" x="3015" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0012" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0013" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0014" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDEATHLOOP0015" x="2412" y="0" width="603" height="628"/>
+	<SubTexture name="BFDIES0000" x="0" y="628" width="643" height="697" frameX="-19" frameY="0" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0001" x="0" y="628" width="643" height="697" frameX="-19" frameY="0" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0002" x="643" y="628" width="631" height="687" frameX="-24" frameY="-10" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0003" x="643" y="628" width="631" height="687" frameX="-24" frameY="-10" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0004" x="1274" y="628" width="625" height="687" frameX="-30" frameY="-10" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0005" x="1274" y="628" width="625" height="687" frameX="-30" frameY="-10" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0006" x="1899" y="628" width="629" height="687" frameX="-26" frameY="-10" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0007" x="1899" y="628" width="629" height="687" frameX="-26" frameY="-10" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0008" x="2528" y="628" width="543" height="682" frameX="-112" frameY="-15" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0009" x="2528" y="628" width="543" height="682" frameX="-112" frameY="-15" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0010" x="3071" y="628" width="543" height="682" frameX="-112" frameY="-15" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0011" x="0" y="1325" width="543" height="682" frameX="-112" frameY="-15" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0012" x="543" y="1325" width="534" height="628" frameX="-69" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0013" x="1077" y="1325" width="534" height="628" frameX="-69" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0014" x="1611" y="1325" width="534" height="628" frameX="-69" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0015" x="2145" y="1325" width="534" height="628" frameX="-69" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0016" x="2145" y="1325" width="534" height="628" frameX="-69" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0017" x="2679" y="1325" width="602" height="628" frameX="-1" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0018" x="2679" y="1325" width="602" height="628" frameX="-1" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0019" x="3281" y="1325" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0020" x="3281" y="1325" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0021" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0022" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0023" x="603" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0024" x="603" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0025" x="1206" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0026" x="1206" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0027" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0028" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0029" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0030" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0031" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0032" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0033" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0034" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0035" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0036" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0037" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0038" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0039" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0040" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0041" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0042" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0043" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0044" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0045" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0046" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0047" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0048" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0049" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0050" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0051" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0052" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0053" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0054" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0055" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0056" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+	<SubTexture name="BFDIES0057" x="0" y="2007" width="603" height="628" frameX="0" frameY="-72" frameWidth="662" frameHeight="700"/>
+</TextureAtlas>

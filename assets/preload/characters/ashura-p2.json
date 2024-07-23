@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-36,
+				-178
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "idleA",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-25,
+				-188
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "leftA",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-130,
+				-207
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "downA",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-88,
+				-97
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "upA",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-122,
+				-204
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "rightA"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/ashura_p2_assets",
+	"position": [
+		-70,
+		30
+	],
+	"healthicon": "ashurap2",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		255,
+		100
+	],
+	"camera_position": [
+		-50,
+		50
+	],
+	"sing_duration": 6.1,
+	"scale": 0.8
+}

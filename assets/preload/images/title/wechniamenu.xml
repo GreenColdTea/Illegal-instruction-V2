@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="wechniamenu.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="wechniamenu0000" x="10" y="10" width="113" height="100"/>
+	<SubTexture name="wechniamenu0001" x="123" y="10" width="113" height="100"/>
+	<SubTexture name="wechniamenu0002" x="236" y="10" width="113" height="100"/>
+	<SubTexture name="wechniamenu0003" x="349" y="10" width="113" height="100"/>
+	<SubTexture name="wechniamenu0004" x="10" y="110" width="113" height="100"/>
+	<SubTexture name="wechniamenu0005" x="123" y="110" width="113" height="100"/>
+</TextureAtlas>

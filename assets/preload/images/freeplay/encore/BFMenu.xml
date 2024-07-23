@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="BFMenu.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="BF_Idle0000" x="0" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Idle0001" x="0" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Idle0002" x="0" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0000" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0001" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0002" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0003" x="640" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0004" x="640" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0005" x="640" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0006" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0007" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0008" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0009" x="960" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0010" x="960" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0011" x="960" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0012" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0013" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0014" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0015" x="1280" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0016" x="1280" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0017" x="1280" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0018" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0019" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0020" x="320" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0021" x="1600" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0022" x="1600" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Jump0023" x="1600" y="0" width="320" height="305"/>
+	<SubTexture name="BF_Run0000" x="0" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0001" x="0" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0002" x="0" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0003" x="320" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0004" x="320" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0005" x="320" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0006" x="640" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0007" x="640" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0008" x="640" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0009" x="960" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0010" x="960" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Run0011" x="960" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0000" x="1280" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0001" x="1280" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0002" x="1280" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0003" x="1600" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0004" x="1600" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0005" x="1600" y="305" width="320" height="305"/>
+	<SubTexture name="BF_Walk0006" x="0" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0007" x="0" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0008" x="0" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0009" x="320" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0010" x="320" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0011" x="320" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0012" x="640" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0013" x="640" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0014" x="640" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0015" x="960" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0016" x="960" y="610" width="320" height="305"/>
+	<SubTexture name="BF_Walk0017" x="960" y="610" width="320" height="305"/>
+</TextureAtlas>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ashura_menu.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Ashura_menu10000" x="10" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10001" x="10" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10002" x="10" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10003" x="10" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10004" x="10" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10005" x="10" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10006" x="33" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10007" x="33" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10008" x="33" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10009" x="33" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10010" x="33" y="10" width="23" height="38"/>
+	<SubTexture name="Ashura_menu10011" x="33" y="10" width="23" height="38"/>
+</TextureAtlas>

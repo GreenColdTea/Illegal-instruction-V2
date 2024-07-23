@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Mightyidle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				163,
+				8
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Mightyleft",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				-50
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Mightydown",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				60,
+				60
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Mightyup",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				2,
+				16
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Mightyright",
+			"indices": []
+		},
+		{
+			"offsets": [
+				108,
+				7
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "illsave",
+			"loop": false,
+			"name": "illsaveyou"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/mighty",
+	"position": [
+		160,
+		140
+	],
+	"healthicon": "mighty",
+	"flip_x": true,
+	"healthbar_colors": [
+		255,
+		11,
+		0
+	],
+	"camera_position": [
+		110,
+		30
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

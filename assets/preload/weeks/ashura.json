@@ -1,0 +1,26 @@
+{
+	"storyName": "Dripped out",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "wechnia",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"ashura",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Cascade",
+			"ashurap1",
+			[
+				206,
+				20,
+				13
+			]
+		]
+
+	],
+	"hideStoryMode": false,
+	"weekName": "Ashura"
+}

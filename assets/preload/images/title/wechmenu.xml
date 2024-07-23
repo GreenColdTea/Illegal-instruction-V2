@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="wechmenu.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="wechmenu0000" x="0" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0001" x="0" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0002" x="81" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0003" x="81" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0004" x="162" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0005" x="162" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0006" x="243" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0007" x="243" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0008" x="243" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0009" x="243" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0010" x="324" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0011" x="324" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0012" x="405" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0013" x="405" y="0" width="81" height="111"/>
+	<SubTexture name="wechmenu0014" x="0" y="111" width="81" height="111"/>
+	<SubTexture name="wechmenu0015" x="0" y="111" width="81" height="111"/>
+</TextureAtlas>

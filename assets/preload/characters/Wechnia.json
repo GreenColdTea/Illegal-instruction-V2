@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-181,
+				43
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-91,
+				-20
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-237,
+				128
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-369,
+				-10
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				-40,
+				162
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "bruh",
+			"indices": [],
+			"name": "wechnia reaction"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Wechnia_Assets",
+	"position": [
+		-310,
+		210
+	],
+	"healthicon": "wechnia",
+	"flip_x": false,
+	"healthbar_colors": [
+		161,
+		161,
+		161
+	],
+	"camera_position": [
+		50,
+		-50
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

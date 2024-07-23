@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="bf.png">
+<SubTexture name="bf idle0000" x="0" y="0" width="130" height="190" frameX="0" frameY="0" frameWidth="130" frameHeight="190" />
+<SubTexture name="bf other idle0000" x="130" y="0" width="130" height="190" frameX="0" frameY="0" frameWidth="130" frameHeight="190" />
+<SubTexture name="bf other walk0000" x="565" y="370" width="160" height="180" frameX="0" frameY="-5" frameWidth="160" frameHeight="190" />
+<SubTexture name="bf other walk0001" x="260" y="0" width="145" height="190" frameX="0" frameY="0" frameWidth="145" frameHeight="190" />
+<SubTexture name="bf other walk0002" x="405" y="190" width="120" height="185" frameX="0" frameY="-5" frameWidth="120" frameHeight="190" />
+<SubTexture name="bf other walk0003" x="0" y="380" width="160" height="185" frameX="0" frameY="-5" frameWidth="160" frameHeight="190" />
+<SubTexture name="bf other walk0004" x="0" y="190" width="160" height="190" frameX="0" frameY="0" frameWidth="160" frameHeight="190" />
+<SubTexture name="bf other walk0005" x="160" y="380" width="135" height="185" frameX="0" frameY="-5" frameWidth="135" frameHeight="190" />
+<SubTexture name="bf walk0000" x="725" y="0" width="160" height="180" frameX="0" frameY="-5" frameWidth="160" frameHeight="190" />
+<SubTexture name="bf walk0001" x="160" y="190" width="145" height="190" frameX="0" frameY="0" frameWidth="145" frameHeight="190" />
+<SubTexture name="bf walk0002" x="295" y="380" width="120" height="185" frameX="0" frameY="-5" frameWidth="120" frameHeight="190" />
+<SubTexture name="bf walk0003" x="565" y="0" width="160" height="185" frameX="0" frameY="-5" frameWidth="160" frameHeight="190" />
+<SubTexture name="bf walk0004" x="405" y="0" width="160" height="190" frameX="0" frameY="0" frameWidth="160" frameHeight="190" />
+<SubTexture name="bf walk0005" x="565" y="185" width="135" height="185" frameX="0" frameY="-5" frameWidth="135" frameHeight="190" />
+<SubTexture name="bf jump0000" x="135" y="565" width="130" height="130" frameX="0" frameY="0" frameWidth="130" frameHeight="130" />
+<SubTexture name="bf jump0001" x="725" y="180" width="135" height="135" frameX="0" frameY="0" frameWidth="135" frameHeight="135" />
+<SubTexture name="bf jump0002" x="135" y="565" width="130" height="130" frameX="0" frameY="0" frameWidth="130" frameHeight="130" />
+<SubTexture name="bf jump0003" x="725" y="315" width="135" height="135" frameX="0" frameY="0" frameWidth="135" frameHeight="135" />
+<SubTexture name="bf jump0004" x="135" y="565" width="130" height="130" frameX="0" frameY="0" frameWidth="130" frameHeight="130" />
+<SubTexture name="bf jump0005" x="415" y="380" width="135" height="135" frameX="0" frameY="0" frameWidth="135" frameHeight="135" />
+<SubTexture name="bf jump0006" x="135" y="565" width="130" height="130" frameX="0" frameY="0" frameWidth="130" frameHeight="130" />
+<SubTexture name="bf jump0007" x="0" y="565" width="135" height="135" frameX="0" frameY="0" frameWidth="135" frameHeight="135" />
+</TextureAtlas>

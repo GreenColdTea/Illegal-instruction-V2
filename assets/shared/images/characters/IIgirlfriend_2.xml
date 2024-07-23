@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="IIgirlfriend_2.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="IHateWhitePeople instance 10000" x="21" y="21" width="375" height="315" frameX="-31" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10001" x="21" y="21" width="375" height="315" frameX="-31" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10002" x="411" y="21" width="392" height="316" frameX="-14" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10003" x="411" y="21" width="392" height="316" frameX="-14" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10004" x="818" y="21" width="396" height="316" frameX="-9" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10005" x="818" y="21" width="396" height="316" frameX="-9" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10006" x="1229" y="21" width="398" height="315" frameX="-7" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10007" x="1229" y="21" width="398" height="315" frameX="-7" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10008" x="21" y="352" width="393" height="315" frameX="-12" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10009" x="21" y="352" width="393" height="315" frameX="-12" frameY="0" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10010" x="429" y="352" width="390" height="314" frameX="-15" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10011" x="429" y="352" width="390" height="314" frameX="-15" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10012" x="834" y="352" width="389" height="313" frameX="-16" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10013" x="1238" y="352" width="389" height="313" frameX="-16" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10014" x="1642" y="352" width="377" height="313" frameX="-28" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10015" x="1642" y="352" width="377" height="313" frameX="-28" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10016" x="21" y="682" width="375" height="315" frameX="-31" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10017" x="21" y="682" width="375" height="315" frameX="-31" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10018" x="411" y="682" width="400" height="315" frameX="-6" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10019" x="411" y="682" width="400" height="315" frameX="-6" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10020" x="826" y="682" width="403" height="315" frameX="-2" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10021" x="826" y="682" width="403" height="315" frameX="-2" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10022" x="1244" y="682" width="405" height="314" frameX="0" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10023" x="1244" y="682" width="405" height="314" frameX="0" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10024" x="21" y="1012" width="399" height="314" frameX="-6" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10025" x="21" y="1012" width="399" height="314" frameX="-6" frameY="-1" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10026" x="435" y="1012" width="395" height="313" frameX="-10" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10027" x="845" y="1012" width="395" height="313" frameX="-10" frameY="-2" frameWidth="406" frameHeight="316"/>
+	<SubTexture name="IHateWhitePeople instance 10028" x="1255" y="1012" width="392" height="312" frameX="-13" frameY="-3" frameWidth="406" frameHeight="316"/>
+</TextureAtlas>

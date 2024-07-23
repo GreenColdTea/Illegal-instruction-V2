@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="KnuxScared.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="KnuxScaredBop instance 10000" x="0" y="0" width="738" height="689" frameX="-1" frameY="0" frameWidth="746" frameHeight="689"/>
+	<SubTexture name="KnuxScaredBop instance 10001" x="0" y="0" width="738" height="689" frameX="-1" frameY="0" frameWidth="746" frameHeight="689"/>
+	<SubTexture name="KnuxScaredBop instance 10002" x="738" y="0" width="741" height="689" frameX="0" frameY="0" frameWidth="746" frameHeight="689"/>
+	<SubTexture name="KnuxScaredBop instance 10003" x="738" y="0" width="741" height="689" frameX="0" frameY="0" frameWidth="746" frameHeight="689"/>
+	<SubTexture name="KnuxScaredBop instance 10004" x="1479" y="0" width="744" height="689" frameX="0" frameY="0" frameWidth="746" frameHeight="689"/>
+	<SubTexture name="KnuxScaredBop instance 10005" x="1479" y="0" width="744" height="689" frameX="0" frameY="0" frameWidth="746" frameHeight="689"/>
+	<SubTexture name="KnuxScaredBop instance 10006" x="2223" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10007" x="2223" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10008" x="2969" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10009" x="2969" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10010" x="2969" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10011" x="2969" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10012" x="2969" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10013" x="2969" y="0" width="746" height="689"/>
+	<SubTexture name="KnuxScaredBop instance 10014" x="2969" y="0" width="746" height="689"/>
+</TextureAtlas>

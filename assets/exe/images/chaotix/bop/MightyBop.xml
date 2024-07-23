@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="MightyBop.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="MIGHTYBOP0000" x="0" y="0" width="537" height="653" frameX="-3" frameY="-12" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0001" x="0" y="0" width="537" height="653" frameX="-3" frameY="-12" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0002" x="537" y="0" width="499" height="659" frameX="-39" frameY="-6" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0003" x="537" y="0" width="499" height="659" frameX="-39" frameY="-6" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0004" x="1036" y="0" width="484" height="663" frameX="-50" frameY="-2" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0005" x="1036" y="0" width="484" height="663" frameX="-50" frameY="-2" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0006" x="1520" y="0" width="526" height="665" frameX="-7" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0007" x="1520" y="0" width="526" height="665" frameX="-7" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0008" x="0" y="665" width="532" height="665" frameX="0" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0009" x="0" y="665" width="532" height="665" frameX="0" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0010" x="0" y="665" width="532" height="665" frameX="0" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0011" x="0" y="665" width="532" height="665" frameX="0" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0012" x="0" y="665" width="532" height="665" frameX="0" frameY="0" frameWidth="540" frameHeight="665"/>
+	<SubTexture name="MIGHTYBOP0013" x="0" y="665" width="532" height="665" frameX="0" frameY="0" frameWidth="540" frameHeight="665"/>
+</TextureAtlas>

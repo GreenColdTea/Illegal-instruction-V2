@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dukemenu.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="DUKEMENU0000" x="0" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0001" x="0" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0002" x="64" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0003" x="64" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0004" x="128" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0005" x="128" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0006" x="192" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0007" x="192" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0008" x="0" y="96" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0009" x="0" y="96" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0010" x="64" y="96" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0011" x="64" y="96" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0012" x="128" y="96" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0013" x="128" y="96" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0014" x="0" y="0" width="64" height="96"/>
+	<SubTexture name="DUKEMENU0015" x="0" y="0" width="64" height="96"/>
+</TextureAtlas>

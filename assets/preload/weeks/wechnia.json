@@ -1,0 +1,26 @@
+{
+	"storyName": "HELP ME MIGHTY!",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "chotix",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"wechnia",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Color Crash",
+			"wechnia",
+			[
+				206,
+				20,
+				13
+			]
+		]
+
+	],
+	"hideStoryMode": false,
+	"weekName": "Wechnia"
+}

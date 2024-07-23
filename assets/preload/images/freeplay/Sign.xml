@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Sign.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Sign instance 10000" x="10" y="10" width="290" height="90" frameX="0" frameY="0" frameWidth="290" frameHeight="410"/>
+	<SubTexture name="Sign instance 10001" x="10" y="10" width="290" height="90" frameX="0" frameY="0" frameWidth="290" frameHeight="410"/>
+	<SubTexture name="Sign instance 10002" x="10" y="10" width="290" height="90" frameX="0" frameY="0" frameWidth="290" frameHeight="410"/>
+	<SubTexture name="Sign instance 10003" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10004" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10005" x="300" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10006" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10007" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10008" x="590" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10009" x="880" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10010" x="880" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10011" x="880" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10012" x="1170" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10013" x="1170" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10014" x="1170" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10015" x="1460" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10016" x="1460" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10017" x="1460" y="10" width="290" height="410"/>
+	<SubTexture name="Sign instance 10018" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10019" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10020" x="10" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10021" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10022" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10023" x="300" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10024" x="590" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10025" x="590" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10026" x="590" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10027" x="880" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10028" x="880" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10029" x="880" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10030" x="1170" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10031" x="1170" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10032" x="1170" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10033" x="1460" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10034" x="1460" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10035" x="1460" y="420" width="290" height="410"/>
+	<SubTexture name="Sign instance 10036" x="10" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10037" x="10" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10038" x="10" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10039" x="300" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10040" x="300" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10041" x="300" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10042" x="590" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10043" x="590" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10044" x="590" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10045" x="880" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10046" x="880" y="830" width="290" height="410"/>
+	<SubTexture name="Sign instance 10047" x="880" y="830" width="290" height="410"/>
+</TextureAtlas>
