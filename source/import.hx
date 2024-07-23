@@ -1,2 +1,3 @@
 #if !macro
-import Paths;#end
+import Paths;
+#end
