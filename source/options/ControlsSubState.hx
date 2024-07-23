@@ -29,7 +29,7 @@ import Controls;
 using StringTools;
 
 class ControlsSubState extends MusicBeatSubstate {
-	private static var curSelected:Int = 1;
+	private static var curSelected:Int = -1;
 	private static var curAlt:Bool = false;
 
 	private static var defaultKey:String = 'Reset to Default Keys';
@@ -91,17 +91,17 @@ class ControlsSubState extends MusicBeatSubstate {
 				isCentered = true;
 			}
 
-			var optionText:Alphabet = new Alphabet(200, 300, optionShit[i][0], (!isCentered || isDefaultKey));
+			var optionText:Alphabet = new Alphabet(0, (10 * i), optionShit[i][0], (!isCentered || isDefaultKey), false);
 			optionText.isMenuItem = true;
 			if(isCentered) {
 				optionText.screenCenter(X);
-				optionText.y -= 55;
-				optionText.startPosition.y -= 55;
+				optionText.forceX = optionText.x;
+				optionText.yAdd = -55;
+			} else {
+				optionText.forceX = 200;
 			}
-			optionText.changeX = false;
-			optionText.distancePerItem.y = 60;
-			optionText.targetY = i - curSelected;
-			optionText.snapToPosition();
+			optionText.yMult = 60;
+			optionText.targetY = i;
 			grpOptions.add(optionText);
 
 			if(!isCentered) {
@@ -112,9 +112,9 @@ class ControlsSubState extends MusicBeatSubstate {
 		}
 		changeSelection();
 
-		#if android
-		addVirtualPad(LEFT_FULL, A_B);
-		#end
+                #if android
+                addVirtualPad(LEFT_FULL, A_B);
+                #end
 	}
 
 	var leaving:Bool = false;
@@ -133,12 +133,12 @@ class ControlsSubState extends MusicBeatSubstate {
 
 			if (controls.BACK) {
 				ClientPrefs.reloadControls();
-				#if android
-				FlxTransitionableState.skipNextTransOut = true;
-				FlxG.resetState();
-				#else
-				close();
-				#end
+			        #if android
+                 FlxTransitionableState.skipNextTransOut = true;
+			        FlxG.resetState();
+                 #else
+                 close();
+                 #end
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 			}
 
