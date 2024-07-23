@@ -57,6 +57,7 @@ jobs:
           haxelib install flixel-ui
           haxelib install flixel-addons 2.11.0
           haxelib install tjson
+          haxelib install echo-flixel
           haxelib install hxjsonast
           haxelib install hscript
           haxelib install hxCodec 2.6.1
