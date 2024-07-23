@@ -83,9 +83,8 @@ class Main extends Sprite
 	
 		ClientPrefs.loadDefaultKeys();
 		// fuck you, persistent caching stays ON during sex
-		//FlxGraphic.defaultPersist = true;
+		FlxGraphic.defaultPersist = true;
 		// the reason for this is we're going to be handling our own cache smartly
-		//UPD: FUCK THIS SHIT, LMAO!!!
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
