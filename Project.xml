@@ -160,14 +160,12 @@
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 
-   <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
-	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
   <!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
          <section if="android">
          <!--Gradle-->	
-        <config:android gradle-version="7.4.2" gradle-plugin="7.3.1" />		
-          </section>
+           <config:android gradle-version="7.4.2" gradle-plugin="7.3.1" />		
+         </section>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
