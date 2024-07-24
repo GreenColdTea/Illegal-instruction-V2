@@ -134,7 +134,6 @@ class TitleState extends MusicBeatState
 
 		// DEBUG BULLSHIT
 
-		swagShader = new ColorSwap();
 		super.create();
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -189,7 +188,6 @@ class TitleState extends MusicBeatState
 
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
-	var swagShader:ColorSwap = null;
 
 	var floorStuff:FlxSprite;
 	var logoTower:FlxSprite;
@@ -365,12 +363,6 @@ class TitleState extends MusicBeatState
 		{
 			skipIntro();
 		}*/
-
-		if(swagShader != null)
-		{
-			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
-			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
-		}
 
 		super.update(elapsed);
 	}
