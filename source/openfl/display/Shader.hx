@@ -723,6 +723,6 @@ class Shader extends FlxShader
 
 	public function toString():String
 	{
-		return 'FlxRuntimeShader';
+		return 'Shader';
 	}
 }
