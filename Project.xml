@@ -149,7 +149,6 @@
 
         <android permission="android.permission.CAPTURE_AUDIO_OUTPUT"/>
         <android target-sdk-version="30" if="android"/>
-	<android min-sdk-version="26" if="android" />
    
         <haxedef name="HXCPP_CHECK_POINTER"/>
         <haxedef name="HXCPP_STACK_LINE" />
