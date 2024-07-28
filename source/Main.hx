@@ -76,10 +76,6 @@ class Main extends Sprite
 		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 			FileSystem.createDirectory(Generic.returnPath() + 'assets');
 		}
-
-		#if !debug
-		initialState = TitleState;
-		#end
 	
 		ClientPrefs.loadDefaultKeys();
 		// fuck you, persistent caching stays ON during sex
