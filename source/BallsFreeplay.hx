@@ -39,6 +39,7 @@ class BallsFreeplay extends MusicBeatState
         'soulless-endeavors',
         'vista',
         'meltdown',
+        'cascade',
         'my-horizon',
         'color-crash'
     ];
@@ -48,6 +49,7 @@ class BallsFreeplay extends MusicBeatState
         'P2duke',
         'chaotix',
         'chotix',
+        'ashura',
         'wechidna',
         'wechnia'
     ];

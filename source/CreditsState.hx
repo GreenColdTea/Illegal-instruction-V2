@@ -44,6 +44,10 @@ class CreditsState extends MusicBeatState
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
+      #if android
+      addVirtualPad(LEFT_FULL, A_B);
+      #end
+
 		persistentUpdate = true;
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		add(bg);

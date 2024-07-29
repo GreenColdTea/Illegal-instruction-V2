@@ -26,7 +26,7 @@ import haxe.io.Path;
 
 class CollectionRoomState extends MusicBeatState
 {
-    var characterList:Array<String> = ['duke', 'chaotix', 'chotix', 'normalcd', 'curse'];
+    var characterList:Array<String> = ['duke', 'p2-duke', 'chaotix', 'p2-chaotix', 'chotix'];
     var bgShits:FlxTypedGroup<FlxSprite>;
     var characterShit:FlxSprite;
     var charBio:FlxText;
@@ -95,11 +95,14 @@ class CollectionRoomState extends MusicBeatState
             charBio.scale.x = 0.6;
             charBio.scale.y = 0.6;
             add(charBio);
+
+            #if android
+               addVirtualPad(LEFT_FULL, NONE);
+            #end
         }
 
     var movedBack:Bool = false;
     var hitEnter:Bool = false;
-
 
     override function update(elapsed:Float)
         {
@@ -197,35 +200,24 @@ class CollectionRoomState extends MusicBeatState
             {
                 case 'duke':
                     characterShit.x = 150;
-                    characterShit.y = 150;
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 1));
+                    characterShit.y = 200;
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
+                case 'p2-duke':
+                    characterShit.x = 150;
+                    characterShit.y = 200;
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'chaotix':
-                    characterShit.x = 200;
-                    characterShit.y = 180;
-                    charBio.scale.x = 0.6;
-                    charBio.scale.y = 0.6;
-                    charBio.updateHitbox();
-                    charBio.x = 455;
-                    charBio.y = 109;
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 1));
+                    characterShit.x = 150;
+                    characterShit.y = 200;
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
+                case 'p2-chaotix':
+                    characterShit.x = 150;
+                    characterShit.y = 200;
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'chotix':
                     characterShit.x = 150;
-                    characterShit.y = 300;
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 1));
-                case 'normalcd':
-                    characterShit.x = -600;
-                    characterShit.y = -550; 
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
-                case 'curse':
-                    characterShit.x = -160;
-                    characterShit.y = -600;
-                    charBio.scale.x = 0.5;
-                    charBio.scale.y = 0.5;
-                    charBio.updateHitbox();
-                    charBio.x = 410;
-                    charBio.y = 250;
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
+                    characterShit.y = 200;
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
             }
         }
-
 }
