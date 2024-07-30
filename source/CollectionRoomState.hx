@@ -106,7 +106,19 @@ class CollectionRoomState extends MusicBeatState
 
     override function update(elapsed:Float)
         {
-            sprSprite.x += 1;
+            switch (characterList[curSelected])
+            {
+                case 'duke':
+                   sprSprite.x += 1;
+                case 'p2-duke':
+                   sprSprite.x += 1;
+                case 'chaotix':
+                   sprSprite.x += 1;
+                case 'p2-chaotix':
+                   sprSprite.x += 1;
+                default:
+                   sprSprite.x += 1;
+            }
             if (controls.BACK && !movedBack && !hitEnter)
                 {
                     movedBack = true;
@@ -201,28 +213,24 @@ class CollectionRoomState extends MusicBeatState
             switch (characterList[curSelected])
             {
                 case 'duke':
-                    sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -100;
                     charBio.x = -150;
                     characterShit.screenCenter(Y);
                     charBio.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-duke':
-                    sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -375;
                     charBio.x = -200;
                     charBio.screenCenter(Y);
                     characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'chaotix':
-                    sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -150;
                     charBio.x = -100;
                     characterShit.screenCenter(Y);
                     charBio.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-chaotix':
-                    sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -550;
                     charBio.x = -75;
                     charBio.screenCenter(Y);
