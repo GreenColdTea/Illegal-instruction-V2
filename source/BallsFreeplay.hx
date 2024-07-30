@@ -153,6 +153,7 @@ class BallsFreeplay extends MusicBeatState
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 12, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
+	yn.screenCenter();
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
         add(yn);
