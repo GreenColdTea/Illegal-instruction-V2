@@ -88,7 +88,7 @@ class CollectionRoomState extends MusicBeatState
 
             charBio = new FlxText();
             charBio.setFormat(Paths.font("knuckles-chaotix-nova.ttf"), 32, FlxColor.RED, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.RED);
-            charBio.screenCenter();
+            charBio.screenCenter(Y);
             charBio.visible = true;
             charBio.color = FlxColor.YELLOW;
             charBio.borderSize = 1.25;
@@ -214,32 +214,23 @@ class CollectionRoomState extends MusicBeatState
             {
                 case 'duke':
                     characterShit.x = -100;
-                    charBio.x = -150;
                     characterShit.screenCenter(Y);
-                    charBio.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-duke':
                     characterShit.x = -375;
-                    charBio.x = -200;
-                    charBio.screenCenter(Y);
                     characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'chaotix':
                     characterShit.x = -150;
-                    charBio.x = -100;
                     characterShit.screenCenter(Y);
-                    charBio.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-chaotix':
                     characterShit.x = -550;
-                    charBio.x = -75;
-                    charBio.screenCenter(Y);
                     characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.35));
                 case 'chotix':
                     characterShit.x = -75;
                     characterShit.screenCenter(Y);
-                    charBio.screenCenter();
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
             }
         }
