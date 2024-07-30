@@ -301,7 +301,6 @@ class MainMenuState extends MusicBeatState
 				
 		
 			}
-			#if desktop
 			if (FlxG.keys.justPressed.EIGHT)
 				{
 					FlxG.save.data.beatduke = true;
@@ -322,8 +321,6 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			
-
-			#end
 		}
 
 		super.update(elapsed);
