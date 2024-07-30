@@ -330,6 +330,19 @@ class ChartingState extends MusicBeatState
 		UI_box.y = 25;
 		UI_box.scrollFactor.set();
 
+		#if mobile
+		text =
+		"UP/DOWN buttons - Change Conductor's strum time
+		\n Left button or Right button - Go to the previous/next section
+		\nHold Y to move 4x faster
+		\nHold Control and click on an arrow to select it
+		\nZ/C - Zoom in/out
+		\n
+		\nB - Test your chart inside Chart Editor
+		\nA - Play your chart
+		\nQ/E - Decrease/Increase Note Sustain Length
+		\nX - Stop/Resume song";
+		#else
 		text =
 		"W/S or Mouse Wheel - Change Conductor's strum time
 		\nA or Left/D or Right - Go to the previous/next section
@@ -341,6 +354,7 @@ class ChartingState extends MusicBeatState
 		\nEnter - Play your chart
 		\nQ/E - Decrease/Increase Note Sustain Length
 		\nSpace - Stop/Resume song";
+		#end
 
 		var tipTextArray:Array<String> = text.split('\n');
 		for (i in 0...tipTextArray.length) {
@@ -379,8 +393,8 @@ class ChartingState extends MusicBeatState
 		
 		updateGrid();
 
-      #if android
-		addVirtualPad(LEFT_FULL, A_B_X_Y);
+                #if android
+		addVirtualPad(LEFT_FULL, A_B_C_X_Y_Z);
 		#end
 
 		super.create();
