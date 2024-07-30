@@ -169,7 +169,6 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		WeekData.setDirectoryFromWeek(loadedWeeks[0]);
-		var charArray:Array<String> = loadedWeeks[0].weekCharacters;
 
 		difficultySelectors = new FlxGroup();
 
