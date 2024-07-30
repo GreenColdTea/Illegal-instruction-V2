@@ -97,7 +97,7 @@ class CollectionRoomState extends MusicBeatState
             add(charBio);
 
             #if android
-               addVirtualPad(LEFT_FULL, NONE);
+               addVirtualPad(UP_DOWN, NONE);
             #end
         }
 
@@ -166,7 +166,7 @@ class CollectionRoomState extends MusicBeatState
                 });
             
             //god i LOVE TWEENS!!!
-            //i hate you too <3 -jackie
+            //i hate you too <3 -Dusk
         }
 
     function changeCharacter(change:Int = 0)
@@ -199,12 +199,12 @@ class CollectionRoomState extends MusicBeatState
             switch (characterList[curSelected])
             {
                 case 'duke':
-                    characterShit.x = 150;
-                    characterShit.y = 200;
+                    characterShit.x = 100;
+                    characterShit.y = 100;
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'p2-duke':
-                    characterShit.x = 150;
-                    characterShit.y = 200;
+                    characterShit.x = 100;
+                    characterShit.y = 100;
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'chaotix':
                     characterShit.x = 150;
@@ -215,8 +215,8 @@ class CollectionRoomState extends MusicBeatState
                     characterShit.y = 200;
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'chotix':
-                    characterShit.x = 150;
-                    characterShit.y = 200;
+                    characterShit.x = 200;
+                    characterShit.y = 150;
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
             }
         }
