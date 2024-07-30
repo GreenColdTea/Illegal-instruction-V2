@@ -199,23 +199,23 @@ class CollectionRoomState extends MusicBeatState
             switch (characterList[curSelected])
             {
                 case 'duke':
-                    characterShit.x = -10;
-                    characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
-                case 'p2-duke':
                     characterShit.x = -100;
                     characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
+                case 'p2-duke':
+                    characterShit.x = -200;
+                    characterShit.screenCenter(Y);
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
                 case 'chaotix':
-                    characterShit.x = 25;
+                    characterShit.x = -75;
                     characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
                 case 'p2-chaotix':
-                    characterShit.x = -150;
+                    characterShit.x = -300;
                     characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
                 case 'chotix':
-                    characterShit.x = -10;
+                    characterShit.x = -75;
                     characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
             }
