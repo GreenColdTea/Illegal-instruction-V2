@@ -201,8 +201,8 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-      #if android
-			addVirtualPad(UP_DOWN, A_B);
+                #if android
+			addVirtualPad(UP_DOWN, A_B_C);
 		#end
 
 		super.create();
@@ -316,7 +316,7 @@ class MainMenuState extends MusicBeatState
 				{
 					MusicBeatState.switchState(new FreeplayState());
 				}
-			else if (FlxG.keys.anyJustPressed(debugKeys))
+			else if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonC.justPressed #end)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
