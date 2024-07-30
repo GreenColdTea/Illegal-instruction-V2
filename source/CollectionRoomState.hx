@@ -97,7 +97,7 @@ class CollectionRoomState extends MusicBeatState
             add(charBio);
 
             #if android
-               addVirtualPad(UP_DOWN, NONE);
+               addVirtualPad(UP_DOWN, B);
             #end
         }
 
