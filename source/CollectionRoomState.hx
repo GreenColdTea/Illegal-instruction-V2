@@ -65,7 +65,7 @@ class CollectionRoomState extends MusicBeatState
 
             characterShit = new FlxSprite(0, 0).loadGraphic(Paths.image('collection/characters/' + characterList[curSelected]));
             characterShit.antialiasing = ClientPrefs.globalAntialiasing;
-            characterShit.screenCenter();
+            characterShit.screenCenter(Y);
             add(characterShit);
 
             descShit = new FlxSprite(0, 0).loadGraphic(Paths.image('collection/desc/' + characterList[curSelected]));
@@ -199,24 +199,24 @@ class CollectionRoomState extends MusicBeatState
             switch (characterList[curSelected])
             {
                 case 'duke':
-                    characterShit.x = 100;
-                    characterShit.y = 100;
+                    characterShit.x = -10;
+                    characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'p2-duke':
-                    characterShit.x = 100;
-                    characterShit.y = 100;
+                    characterShit.x = -100;
+                    characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'chaotix':
-                    characterShit.x = 150;
-                    characterShit.y = 200;
+                    characterShit.x = 25;
+                    characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'p2-chaotix':
-                    characterShit.x = 150;
-                    characterShit.y = 200;
+                    characterShit.x = -150;
+                    characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
                 case 'chotix':
-                    characterShit.x = 200;
-                    characterShit.y = 150;
+                    characterShit.x = -10;
+                    characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.5));
             }
         }
