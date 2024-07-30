@@ -203,28 +203,28 @@ class CollectionRoomState extends MusicBeatState
                 case 'duke':
                     sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -100;
-                    charText.x = -150;
+                    charBio.x = -150;
                     characterShit.screenCenter(Y);
                     charBio.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-duke':
                     sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -375;
-                    charText.x = -200;
+                    charBio.x = -200;
                     charBio.screenCenter(Y);
                     characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'chaotix':
                     sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -150;
-                    charText.x = -100;
+                    charBio.x = -100;
                     characterShit.screenCenter(Y);
                     charBio.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-chaotix':
                     sprSprite = new FlxBackdrop(1, 0, true, false);
                     characterShit.x = -550;
-                    charText.x = -75;
+                    charBio.x = -75;
                     charBio.screenCenter(Y);
                     characterShit.screenCenter(Y);
                     characterShit.setGraphicSize(Std.int(characterShit.width * 0.35));
