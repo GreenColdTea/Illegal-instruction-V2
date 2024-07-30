@@ -20,7 +20,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
-   public static var controllerMode:Bool = #if android true #else false #end;
+        public static var controllerMode:Bool = #if android true #else false #end;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
@@ -28,7 +28,7 @@ class ClientPrefs {
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
-   public static var hitboxmode:String = 'Classic';  //starting new way to change between hitboxes yay
+        public static var hitboxmode:String = 'Classic';  //starting new way to change between hitboxes yay
 	public static var hitboxalpha:Float = 0.2; //someone request this lol
 	public static var hitsoundVolume:Float = 0;
 	public static var pauseMusic:String = 'Tea Time';
@@ -65,7 +65,7 @@ class ClientPrefs {
 	public static var beatChaotix:Bool = true;
 	public static var beatNormal:Bool = true;
 
-	public static var ducclyMix:Bool = false;
+	public static var ducclyMix:Bool = true;
 	
 	//Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
