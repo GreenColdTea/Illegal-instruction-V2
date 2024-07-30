@@ -98,11 +98,11 @@ class BallsFreeplay extends MusicBeatState
         addVirtualPad(LEFT_FULL, A_B_C);
         #end
 
-        if (FlxG.keys.JustPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && !ClientPrefs.ducclyMix)
+        if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && !ClientPrefs.ducclyMix)
         {
            ClientPrefs.ducclyMix = true;
         }
-        else if (FlxG.keys.JustPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && ClientPrefs.ducclyMix)
+        else if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && ClientPrefs.ducclyMix)
         {
            ClientPrefs.ducclyMix = false;
         }
@@ -265,7 +265,7 @@ class BallsFreeplay extends MusicBeatState
             player.flipX = false;
             isHoldingLeft = false;
             speedMultiplier = 1.0;
-            holdTimer.abort();
+            holdTimer.cancel();
         }
 
         if (controls.UI_RIGHT_P)
@@ -284,7 +284,7 @@ class BallsFreeplay extends MusicBeatState
             player.flipX = true;
             isHoldingRight = false;
             speedMultiplier = 1.0;
-            holdTimer.abort();
+            holdTimer.cancel();
         }
 
         // speed
@@ -306,7 +306,7 @@ class BallsFreeplay extends MusicBeatState
         super.update(elapsed);
     }
 
-    override function switchToBack() 
+    public function switchToBack() 
     {
 	  	FlxG.sound.play(Paths.sound('cancelMenu'));
 	     FlxG.mouse.visible = false;
