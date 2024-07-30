@@ -50,7 +50,7 @@ class CollectionRoomState extends MusicBeatState
 
             for (i in 0...characterList.length)
                 {
-                    sprSprite = new FlxBackdrop(0, 0);
+                    sprSprite = new FlxBackdrop(1, 0, true, false);
                     sprSprite.loadGraphic(Paths.image('collection/bg/' + characterList[i]));
                     sprSprite.ID = i;
                     if (sprSprite.ID != curSelected)
@@ -106,11 +106,13 @@ class CollectionRoomState extends MusicBeatState
 
     override function update(elapsed:Float)
         {
+            sprSprite.x += 1;
             if (controls.BACK && !movedBack && !hitEnter)
                 {
                     movedBack = true;
                     new FlxTimer().start(0.4, function(tmr:FlxTimer)
                         {
+                            FlxG.sound.playMusic(Paths.music('freakyMenu'));
                             MusicBeatState.switchState(new MainMenuState());
                         }); 
                 }
@@ -201,19 +203,19 @@ class CollectionRoomState extends MusicBeatState
                 case 'duke':
                     characterShit.x = -100;
                     characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'p2-duke':
-                    characterShit.x = -200;
-                    characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
-                case 'chaotix':
-                    characterShit.x = -75;
-                    characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
-                case 'p2-chaotix':
                     characterShit.x = -300;
                     characterShit.screenCenter(Y);
-                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.3));
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
+                case 'chaotix':
+                    characterShit.x = -150;
+                    characterShit.screenCenter(Y);
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
+                case 'p2-chaotix':
+                    characterShit.x = -500;
+                    characterShit.screenCenter(Y);
+                    characterShit.setGraphicSize(Std.int(characterShit.width * 0.4));
                 case 'chotix':
                     characterShit.x = -75;
                     characterShit.screenCenter(Y);
