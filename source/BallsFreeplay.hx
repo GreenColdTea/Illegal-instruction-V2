@@ -64,17 +64,17 @@ class BallsFreeplay extends MusicBeatState
         'mighty'
     ];
 
-    var backgroundShits:FlxTypedGroup<FlxSprite>;
-
-    var screenInfo:FlxTypedGroup<FlxSprite>;
-    var screenCharacters:FlxTypedGroup<FlxSprite>;
-
     var player:FlxSprite;
     var isHoldingLeft:Bool = false;
     var isHoldingRight:Bool = false;
     var holdTimer:FlxTimer;
     var speed:Float = 100;
     var speedMultiplier:Float = 1.0;
+	
+    var backgroundShits:FlxTypedGroup<FlxSprite>;
+
+    var screenInfo:FlxTypedGroup<FlxSprite>;
+    var screenCharacters:FlxTypedGroup<FlxSprite>;
 
     public static var numSelect:Int = 0;
 
@@ -82,10 +82,6 @@ class BallsFreeplay extends MusicBeatState
     {
         Paths.clearStoredMemory();
 	Paths.clearUnusedMemory();
-
-	#if android
-	addVirtualPad(LEFT_FULL, A_B);
-	#end
 
         if (ClientPrefs.ducclyMix)
         {
@@ -112,7 +108,7 @@ class BallsFreeplay extends MusicBeatState
         }
 
         transIn = FlxTransitionableState.defaultTransIn;
-	  	transOut = FlxTransitionableState.defaultTransOut;
+	transOut = FlxTransitionableState.defaultTransOut;
 
         FlxG.mouse.visible = true;
 
@@ -125,7 +121,7 @@ class BallsFreeplay extends MusicBeatState
         blackFuck.screenCenter();
         add(blackFuck);
 
-        player = new FlxSprite(0, -30);
+        player = new FlxSprite(100, -75);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -193,8 +189,8 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(3, 3);
-            songPlayable.x -= 155;
+            songPlayable.scale.set(1, 1);
+            songPlayable.x -= 50;
             songPlayable.y -= 70;
             songPlayable.alpha = 0;
             if(i == 0)
@@ -282,7 +278,7 @@ class BallsFreeplay extends MusicBeatState
                 holdTimer.start(1, onHoldComplete);
             }
         }
-        else if (controls.UI_LEFT_R)
+        else if (controls.UI_RIGHT_R)
         {
             player.animation.play('walk');
             player.flipX = true;
@@ -312,11 +308,11 @@ class BallsFreeplay extends MusicBeatState
 
     public function switchToBack() 
     {
-	  	FlxG.sound.play(Paths.sound('cancelMenu'));
-	     FlxG.mouse.visible = false;
+	FlxG.sound.play(Paths.sound('cancelMenu'));
+	FlxG.mouse.visible = false;
         FlxG.sound.playMusic(Paths.music('freakyMenu'));
         MusicBeatState.switchState(new MainMenuState());
- 	}
+    }
 
     function changeSelection(direction:Int)
     {
