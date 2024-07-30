@@ -81,7 +81,11 @@ class BallsFreeplay extends MusicBeatState
     override function create()
     {
         Paths.clearStoredMemory();
-	  	Paths.clearUnusedMemory();
+	Paths.clearUnusedMemory();
+
+	#if android
+	addVirtualPad(LEFT_FULL, A_B);
+	#end
 
         if (ClientPrefs.ducclyMix)
         {
