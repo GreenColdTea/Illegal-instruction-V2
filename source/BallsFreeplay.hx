@@ -128,7 +128,7 @@ class BallsFreeplay extends MusicBeatState
         #if !android
         yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
         #else
-        yn = new FlxText(0, 0, 'PRESS C TO SWITCH FREEPLAY \nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 14, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
