@@ -94,11 +94,11 @@ class BallsFreeplay extends MusicBeatState
             FlxG.sound.music.fadeIn(4, 0, 0.7);
         }
 
-        if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && !ClientPrefs.ducclyMix)
+        if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonC.justPressed #end && !ClientPrefs.ducclyMix)
         {
            ClientPrefs.ducclyMix = true;
         }
-        else if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && ClientPrefs.ducclyMix)
+        else if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonC.justPressed #end && ClientPrefs.ducclyMix)
         {
            ClientPrefs.ducclyMix = false;
         }
