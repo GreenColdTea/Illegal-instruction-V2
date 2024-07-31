@@ -191,13 +191,13 @@ class BallsFreeplay extends MusicBeatState
             songCharacter.ID = i;
             songPlayable.ID = i;
 
-            if(songPortrait.ID == numSelect)
+            if(songPortrait.ID == curSelected)
                 songPortrait.alpha = 1;
 
-            if(songCharacter.ID == numSelect)
+            if(songCharacter.ID == curSelected)
                 songCharacter.alpha = 1;
       
-            if(songPlayable.ID == numSelect)
+            if(songPlayable.ID == curSelected)
                 songPlayable.alpha = 1;
 
             /* 
@@ -237,12 +237,10 @@ class BallsFreeplay extends MusicBeatState
         if (controls.UI_UP_P)
         {
             changeSelection(-1);
-	    changeNumSelect(-1);
         }
         if (controls.UI_DOWN_P)
         {
             changeSelection(1);
-	    changeNumSelect(1);
         }
         if (controls.ACCEPT)
         {
@@ -340,29 +338,7 @@ class BallsFreeplay extends MusicBeatState
         screenCharacters.members[curSelected * 2].alpha = 1;
         screenCharacters.members[curSelected * 2 + 1].alpha = 1;
     }
-
-    function changeNumSelect(numbear:Int)
-    {
-        var newNumIndex:Int = numSelect + numbear;
-        if (newNumIndex < 0) newNumIndex = characters.length - 1;
-        else if (newNumIndex >= characters.length) newNumIndex = 0;
-
-        updateNumSelect(newNumIndex);
-    }
-
-    function updateNumSelect(newNumIndex:Int)
-    {
-        screenInfo.members[numSelect].alpha = 0;
-        screenCharacters.members[numSelect * 2].alpha = 0;
-        screenCharacters.members[numSelect * 2 + 1].alpha = 0;
-
-        numSelect = newNumIndex;
-
-        screenInfo.members[numSelect].alpha = 1;
-        screenCharacters.members[numSelect * 2].alpha = 1;
-        screenCharacters.members[numSelect * 2 + 1].alpha = 1;
-    }
-
+	
     function doTheLoad()
     {
         var songLowercase:String = Paths.formatToSongPath(songs[curSelected]);
