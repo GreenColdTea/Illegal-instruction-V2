@@ -76,7 +76,7 @@ class BallsFreeplay extends MusicBeatState
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
 
-    public static var numSelect:Int = 0;
+    public var numSelect:Int = 0;
 
     override function create()
     {
@@ -93,10 +93,6 @@ class BallsFreeplay extends MusicBeatState
             FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.7);
         }
-
-        #if android
-        addVirtualPad(LEFT_FULL, A_B_C);
-        #end
 
         if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonC.justPressed #end && !ClientPrefs.ducclyMix)
         {
@@ -121,15 +117,6 @@ class BallsFreeplay extends MusicBeatState
         blackFuck.screenCenter();
         add(blackFuck);
 
-        player = new FlxSprite(100, -75);
-        player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
-        player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
-        player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
-        player.animation.addByPrefix('walk', 'BF_Walk', 24, true);
-        player.animation.addByPrefix('run', 'BF_Run', 24, true);
-        player.antialiasing = true;
-        add(player);
-
         holdTimer = new FlxTimer();
 
         backgroundShits = new FlxTypedGroup<FlxSprite>();
@@ -147,12 +134,14 @@ class BallsFreeplay extends MusicBeatState
         var yn:FlxText;
 
         #if !android
-        yn = new FlxText(-100, -600, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
         #else
-        yn = new FlxText(-100, -600, 0, 'PRESS C TO SWITCH FREEPLAY \nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS C TO SWITCH FREEPLAY \nTHEMES');
         #end
-        yn.setFormat(Paths.font("chaotix.ttf"), 12, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        yn.setFormat(Paths.font("chaotix.ttf"), 14, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
+	yn.x -= 100;
+	yn.y -= 600;
 	yn.screenCenter();
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
@@ -190,8 +179,8 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(1, 1);
-            songPlayable.x -= 50;
+            songPlayable.scale.set(0.5, 0.5);
+            songPlayable.x += 75;
             songPlayable.y -= 70;
             songPlayable.alpha = 0;
             if(i == 0)
@@ -224,6 +213,19 @@ class BallsFreeplay extends MusicBeatState
         screen.updateHitbox();
         add(screen);
 
+	player = new FlxSprite(500, -405);
+        player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
+        player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
+        player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
+        player.animation.addByPrefix('walk', 'BF_Walk', 24, true);
+        player.animation.addByPrefix('run', 'BF_Run', 24, true);
+        player.antialiasing = true;
+        add(player);
+
+	#if android
+        addVirtualPad(LEFT_FULL, A_B_C);
+        #end
+
         super.create();
     }
 
@@ -235,10 +237,12 @@ class BallsFreeplay extends MusicBeatState
         if (controls.UI_UP_P)
         {
             changeSelection(-1);
+	    changeNumSelect(-1);
         }
         if (controls.UI_DOWN_P)
         {
             changeSelection(1);
+	    changeNumSelect(1);
         }
         if (controls.ACCEPT)
         {
@@ -337,6 +341,28 @@ class BallsFreeplay extends MusicBeatState
         screenCharacters.members[curSelected * 2 + 1].alpha = 1;
     }
 
+    function changeNumSelect(numbear:Int)
+    {
+        var newNumIndex:Int = numSelect + numbear;
+        if (newNumIndex < 0) newNumIndex = characters.length - 1;
+        else if (newNumIndex >= characters.length) newNumIndex = 0;
+
+        updateNumSelect(newNumIndex);
+    }
+
+    function updateNumSelect(newNumIndex:Int)
+    {
+        screenInfo.members[numSelect].alpha = 0;
+        screenCharacters.members[numSelect * 2].alpha = 0;
+        screenCharacters.members[numSelect * 2 + 1].alpha = 0;
+
+        numSelect = newNumIndex;
+
+        screenInfo.members[numSelect].alpha = 1;
+        screenCharacters.members[numSelect * 2].alpha = 1;
+        screenCharacters.members[numSelect * 2 + 1].alpha = 1;
+    }
+
     function doTheLoad()
     {
         var songLowercase:String = Paths.formatToSongPath(songs[curSelected]);
@@ -351,7 +377,7 @@ class BallsFreeplay extends MusicBeatState
         if (isHoldingLeft || isHoldingRight)
         {
             player.animation.play('run');
-            speedMultiplier = 1.5;
+            speedMultiplier = 1.75;
         }
     }
 }
