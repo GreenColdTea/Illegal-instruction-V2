@@ -94,15 +94,6 @@ class BallsFreeplay extends MusicBeatState
             FlxG.sound.music.fadeIn(4, 0, 0.7);
         }
 
-        if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonC.justPressed #end && !ClientPrefs.ducclyMix)
-        {
-           ClientPrefs.ducclyMix = true;
-        }
-        else if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonC.justPressed #end && ClientPrefs.ducclyMix)
-        {
-           ClientPrefs.ducclyMix = false;
-        }
-
         transIn = FlxTransitionableState.defaultTransIn;
 	transOut = FlxTransitionableState.defaultTransOut;
 
@@ -223,8 +214,17 @@ class BallsFreeplay extends MusicBeatState
         add(player);
 
 	#if android
-        addVirtualPad(LEFT_FULL, A_B_C);
+        addVirtualPad(LEFT_FULL, A_B_X_Y);
         #end
+
+	if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && !ClientPrefs.ducclyMix)
+        {
+           ClientPrefs.ducclyMix = true;
+        }
+        else if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && ClientPrefs.ducclyMix)
+        {
+           ClientPrefs.ducclyMix = false;
+        }
 
         super.create();
     }
