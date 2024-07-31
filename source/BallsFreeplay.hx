@@ -64,12 +64,13 @@ class BallsFreeplay extends MusicBeatState
         'mighty'
     ];
 
-    var player:FlxSprite;
-    var isHoldingLeft:Bool = false;
-    var isHoldingRight:Bool = false;
-    var holdTimer:FlxTimer;
-    var speed:Float = 100;
-    var speedMultiplier:Float = 1.0;
+    //bf settings
+    var player:FlxSprite; //player is FlxSprite
+    var isHoldingLeft:Bool = false; // left button pressed checker
+    var isHoldingRight:Bool = false; // right button pressed checker
+    var holdTimer:FlxTimer; // after this bf start running
+    var speed:Float = 100; // needs for bf's moves
+    var speedMultiplier:Float = 1.0; // bf's default walk speed
 	
     var backgroundShits:FlxTypedGroup<FlxSprite>;
 
@@ -251,7 +252,7 @@ class BallsFreeplay extends MusicBeatState
             switchToBack();
         }
 
-         // buttons
+        // bf's control buttons settinngs
         if (controls.UI_LEFT_P)
         {
             player.flipX = false;
@@ -290,7 +291,7 @@ class BallsFreeplay extends MusicBeatState
             holdTimer.cancel();
         }
 
-        // speed
+        // bf moves
         if (isHoldingLeft)
         {
             player.velocity.x = -speed * speedMultiplier;
@@ -309,6 +310,7 @@ class BallsFreeplay extends MusicBeatState
         super.update(elapsed);
     }
 
+    // go to main menu
     public function switchToBack() 
     {
 	FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -317,6 +319,7 @@ class BallsFreeplay extends MusicBeatState
         MusicBeatState.switchState(new MainMenuState());
     }
 
+    //song selection changing function
     function changeSelection(direction:Int)
     {
         var newIndex:Int = curSelected + direction;
@@ -326,6 +329,7 @@ class BallsFreeplay extends MusicBeatState
         updateSelection(newIndex);
     }
 
+    //selection update
     function updateSelection(newIndex:Int)
     {
         screenInfo.members[curSelected].alpha = 0;
@@ -348,6 +352,7 @@ class BallsFreeplay extends MusicBeatState
         LoadingState.loadAndSwitchState(new PlayState());
     }
 
+    //timer end function
     function onHoldComplete(timer:FlxTimer):Void
     {
         if (isHoldingLeft || isHoldingRight)
