@@ -119,4 +119,4 @@ workflows:
                 haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${BITRISE_BUILD_NUMBER}"
       - deploy-to-bitrise-io@1:
           inputs:
-            - deploy_path: "$BITRISE_APK_PATH"
+            - deploy_path: "/bitrise/src/export/release/android/bin/app/build/outputs/apk/debug/Sonic-debug.apk"
