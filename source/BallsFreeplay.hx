@@ -158,7 +158,7 @@ class BallsFreeplay extends MusicBeatState
             songCharacter.screenCenter();
             songCharacter.scale.set(3, 3);
             songCharacter.x -= 360;
-            songCharacter.y -= 45;
+            songCharacter.y -= 70;
             songCharacter.alpha = 0;
             if(i == 0)
             songCharacter.flipX = true;
@@ -172,7 +172,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.screenCenter();
             songPlayable.scale.set(0.5, 0.5);
             songPlayable.x += 200;
-            songPlayable.y -= 100;
+            songPlayable.y -= 45;
             songPlayable.alpha = 0;
             if(i == 0)
 
