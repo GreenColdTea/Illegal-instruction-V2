@@ -160,6 +160,9 @@ class ClientPrefs {
 		if(FlxG.save.data.middleScroll != null) {
 			middleScroll = FlxG.save.data.middleScroll;
 		}
+		if(FlxG save.data.ducclyMix != null) {
+			ducclyMix = FlxG.save.data.ducclyMix;
+		}
 		if(FlxG.save.data.showFPS != null) {
 			showFPS = FlxG.save.data.showFPS;
 			if(Main.fpsVar != null) {
