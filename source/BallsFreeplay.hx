@@ -151,7 +151,6 @@ class BallsFreeplay extends MusicBeatState
             songCharacter.x -= 360;
             songCharacter.y -= 70;
             songCharacter.alpha = 0;
-            if(i == 0)
 
             screenCharacters.add(songCharacter);
 
@@ -166,7 +165,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.alpha = 0;
             if(i == 0)
 
-            screenPlayables.add(songPlayable);
+            screenCharacters.add(songPlayable);
 
             songPortrait.ID = i;
             songCharacter.ID = i;
@@ -194,7 +193,7 @@ class BallsFreeplay extends MusicBeatState
         screen.updateHitbox();
         add(screen);
 
-	player = new FlxSprite(475, 445);
+	player = new FlxSprite(480, 365);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
