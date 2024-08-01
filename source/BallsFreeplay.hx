@@ -70,6 +70,7 @@ class BallsFreeplay extends MusicBeatState
     var screenCharacters:FlxTypedGroup<FlxSprite>;
 
     //bf settings
+    var player:FlxSprite; //player is FlxSprite
     public var isHoldingLeft:Bool = false; // left button pressed checker
     public var isHoldingRight:Bool = false; // right button pressed checker
     var holdTimer:FlxTimer; // after this bf start running
@@ -202,8 +203,6 @@ class BallsFreeplay extends MusicBeatState
         screen.setGraphicSize(FlxG.width, FlxG.height);
         screen.updateHitbox();
         add(screen);
-
-        var player:FlxSprite; //player is FlxSprite
 
 	player = new FlxSprite(500, -405);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
