@@ -68,6 +68,7 @@ class BallsFreeplay extends MusicBeatState
 
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
+    var screenPlayables:FlxTypedGroup<FlxSprite>;
 
     //bf settings
     var player:FlxSprite; //player is FlxSprite
