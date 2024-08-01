@@ -68,7 +68,6 @@ class BallsFreeplay extends MusicBeatState
 
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
-    var screenPlayables:FlxTypedGroup<FlxSprite>;
 
     //bf settings
     var player:FlxSprite; //player is FlxSprite
@@ -85,12 +84,12 @@ class BallsFreeplay extends MusicBeatState
         Paths.clearStoredMemory();
 	Paths.clearUnusedMemory();
 
-        if (ClientPrefs.ducclyMix)
+        if (ClientPrefs.ducclyMix && #if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end)
         {
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.7);
         }
-        else
+        else if (!ClientPrefs.ducclyMix && #if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end)
         {
             FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.7);
@@ -120,9 +119,6 @@ class BallsFreeplay extends MusicBeatState
 
         screenCharacters = new FlxTypedGroup<FlxSprite>();
 		  add(screenCharacters);
-
-	screenPlayables = new FlxTypedGroup<FlxSprite>();
-		  add(screenPlayables);
 
         var characterText:FlxText;
         var scoreText:FlxText;
@@ -192,7 +188,7 @@ class BallsFreeplay extends MusicBeatState
         screen.updateHitbox();
         add(screen);
 
-	player = new FlxSprite(480, 365);
+	player = new FlxSprite(450, 325);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -208,7 +204,7 @@ class BallsFreeplay extends MusicBeatState
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
-	yn.y += 700;
+	yn.y += 650;
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
         add(yn);
