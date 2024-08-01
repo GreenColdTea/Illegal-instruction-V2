@@ -163,7 +163,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(0.5, 0.5);
-            songPlayable.x += 75;
+            songPlayable.x += 200;
             songPlayable.y -= 70;
             songPlayable.alpha = 0;
             if(i == 0)
