@@ -152,8 +152,6 @@ class BallsFreeplay extends MusicBeatState
             songCharacter.y -= 70;
             songCharacter.alpha = 0;
 
-            screenCharacters.add(songCharacter);
-
             var songPlayable:FlxSprite = new FlxSprite();
             songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/${playables[i]}');
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
@@ -165,6 +163,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.alpha = 0;
             if(i == 0)
 
+	    screenCharacters.add(songCharacter);
             screenCharacters.add(songPlayable);
 
             songPortrait.ID = i;
