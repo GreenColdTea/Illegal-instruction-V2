@@ -126,7 +126,6 @@ class BallsFreeplay extends MusicBeatState
         yn.visible = true;
 	yn.x -= 100;
 	yn.y -= 600;
-	yn.screenCenter();
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
         add(yn);
