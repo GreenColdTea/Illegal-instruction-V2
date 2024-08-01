@@ -227,7 +227,7 @@ class BallsFreeplay extends MusicBeatState
         {
            ClientPrefs.ducclyMix = true;
         }
-        else if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && ClientPrefs.ducclyMix)
+        if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && ClientPrefs.ducclyMix)
         {
            ClientPrefs.ducclyMix = false;
         }
