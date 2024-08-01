@@ -217,15 +217,6 @@ class BallsFreeplay extends MusicBeatState
         addVirtualPad(LEFT_FULL, A_B_X_Y);
         #end
 
-	if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && !ClientPrefs.ducclyMix)
-        {
-           ClientPrefs.ducclyMix = true;
-        }
-        else if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && ClientPrefs.ducclyMix)
-        {
-           ClientPrefs.ducclyMix = false;
-        }
-
         super.create();
     }
 
@@ -234,6 +225,15 @@ class BallsFreeplay extends MusicBeatState
 
     override function update(elapsed:Float)
     {
+        if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && !ClientPrefs.ducclyMix)
+        {
+           ClientPrefs.ducclyMix = true;
+        }
+        else if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && ClientPrefs.ducclyMix)
+        {
+           ClientPrefs.ducclyMix = false;
+        }
+	    
         if (controls.UI_UP_P)
         {
             changeSelection(-1);
