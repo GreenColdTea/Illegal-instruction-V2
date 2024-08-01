@@ -75,7 +75,7 @@ class BallsFreeplay extends MusicBeatState
     public var isHoldingRight:Bool = false; // right button pressed checker
     var holdTimer:FlxTimer; // after this bf start running
     public var speed:Float = 100; // needs for bf's moves
-    public var speedMultiplier:Float = 1.0; // bf's default walk speed
+    public var speedMultiplier:Float = 1.11; // bf's default walk speed
 
     public var numSelect:Int = 0;
 
@@ -268,7 +268,7 @@ class BallsFreeplay extends MusicBeatState
             player.animation.play('walk');
             player.flipX = false;
             isHoldingLeft = false;
-            speedMultiplier = 1.0;
+            speedMultiplier = 1.11;
             holdTimer.cancel();
         }
 
@@ -287,7 +287,7 @@ class BallsFreeplay extends MusicBeatState
             player.animation.play('walk');
             player.flipX = true;
             isHoldingRight = false;
-            speedMultiplier = 1.0;
+            speedMultiplier = 1.11;
             holdTimer.cancel();
         }
 
@@ -335,12 +335,16 @@ class BallsFreeplay extends MusicBeatState
         screenInfo.members[curSelected].alpha = 0;
         screenCharacters.members[curSelected * 2].alpha = 0;
         screenCharacters.members[curSelected * 2 + 1].alpha = 0;
+	screenPlayables.members[curSelected * 2].alpha = 0;
+        screenPlayables.members[curSelected * 2 + 1].alpha = 0;
 
         curSelected = newIndex;
 
         screenInfo.members[curSelected].alpha = 1;
         screenCharacters.members[curSelected * 2].alpha = 1;
         screenCharacters.members[curSelected * 2 + 1].alpha = 1;
+	screenPlayables.members[curSelected * 2].alpha = 0;
+        screenPlayables.members[curSelected * 2 + 1].alpha = 0;
     }
 	
     function doTheLoad()
@@ -358,7 +362,7 @@ class BallsFreeplay extends MusicBeatState
         if (isHoldingLeft || isHoldingRight)
         {
             player.animation.play('run');
-            speedMultiplier = 1.75;
+            speedMultiplier = 2.05;
         }
     }
 }
