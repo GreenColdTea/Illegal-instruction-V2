@@ -125,18 +125,6 @@ class BallsFreeplay extends MusicBeatState
         var proceedText:FlxText;
         var yn:FlxText;
 
-        #if !android
-        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
-        #else
-        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY\nTHEMES');
-        #end
-        yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        yn.visible = true;
-	yn.y += 300;
-        yn.color = FlxColor.WHITE;
-        yn.borderSize = 0.9;
-        add(yn);
-
         for(i in 0...songs.length)
         {
             var songPortrait:FlxSprite = new FlxSprite();
@@ -202,7 +190,7 @@ class BallsFreeplay extends MusicBeatState
         screen.updateHitbox();
         add(screen);
 
-	player = new FlxSprite(500, 405);
+	player = new FlxSprite(475, 445);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -210,6 +198,18 @@ class BallsFreeplay extends MusicBeatState
         player.animation.addByPrefix('run', 'BF_Run', 24, true);
         player.antialiasing = true;
         add(player);
+
+	#if !android
+        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
+        #else
+        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY\nTHEMES');
+        #end
+        yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        yn.visible = true;
+	yn.y += 600;
+        yn.color = FlxColor.WHITE;
+        yn.borderSize = 0.9;
+        add(yn);
 
 	#if android
         addVirtualPad(LEFT_FULL, A_B_X_Y);
