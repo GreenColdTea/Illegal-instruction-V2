@@ -69,12 +69,12 @@ class BallsFreeplay extends MusicBeatState
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
 
-   //bf settings
-   public var isHoldingLeft:Bool = false; // left button pressed checker
-   public var isHoldingRight:Bool = false; // right button pressed checker
-   var holdTimer:FlxTimer; // after this bf start running
-   public var speed:Float = 100; // needs for bf's moves
-   public var speedMultiplier:Float = 1.0; // bf's default walk speed
+    //bf settings
+    public var isHoldingLeft:Bool = false; // left button pressed checker
+    public var isHoldingRight:Bool = false; // right button pressed checker
+    var holdTimer:FlxTimer; // after this bf start running
+    public var speed:Float = 100; // needs for bf's moves
+    public var speedMultiplier:Float = 1.0; // bf's default walk speed
 
     public var numSelect:Int = 0;
 
