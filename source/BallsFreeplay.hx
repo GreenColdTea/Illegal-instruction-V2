@@ -188,7 +188,7 @@ class BallsFreeplay extends MusicBeatState
             //Each song has a background
         }
 
-        var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
+        var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/encore/screen'));
         screen.setGraphicSize(FlxG.width, FlxG.height);
         screen.updateHitbox();
         add(screen);
