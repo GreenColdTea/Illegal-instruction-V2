@@ -69,19 +69,19 @@ class BallsFreeplay extends MusicBeatState
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
 
+   //bf settings
+   public var isHoldingLeft:Bool = false; // left button pressed checker
+   public var isHoldingRight:Bool = false; // right button pressed checker
+   var holdTimer:FlxTimer; // after this bf start running
+   public var speed:Float = 100; // needs for bf's moves
+   public var speedMultiplier:Float = 1.0; // bf's default walk speed
+
     public var numSelect:Int = 0;
 
     override function create()
     {
         Paths.clearStoredMemory();
 	Paths.clearUnusedMemory();
-
-	//bf settings
-	var isHoldingLeft:Bool = false; // left button pressed checker
-        var isHoldingRight:Bool = false; // right button pressed checker
-        var holdTimer:FlxTimer; // after this bf start running
-        var speed:Float = 100; // needs for bf's moves
-        var speedMultiplier:Float = 1.0; // bf's default walk speed
 
         if (ClientPrefs.ducclyMix)
         {
