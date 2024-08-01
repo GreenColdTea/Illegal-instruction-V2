@@ -63,14 +63,6 @@ class BallsFreeplay extends MusicBeatState
         'bf',
         'mighty'
     ];
-
-    //bf settings
-    var player:FlxSprite; //player is FlxSprite
-    var isHoldingLeft:Bool = false; // left button pressed checker
-    var isHoldingRight:Bool = false; // right button pressed checker
-    var holdTimer:FlxTimer; // after this bf start running
-    var speed:Float = 100; // needs for bf's moves
-    var speedMultiplier:Float = 1.0; // bf's default walk speed
 	
     var backgroundShits:FlxTypedGroup<FlxSprite>;
 
@@ -128,7 +120,7 @@ class BallsFreeplay extends MusicBeatState
         #if !android
         yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
         #else
-        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY\nTHEMES');
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 14, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
@@ -204,6 +196,14 @@ class BallsFreeplay extends MusicBeatState
         screen.setGraphicSize(FlxG.width, FlxG.height);
         screen.updateHitbox();
         add(screen);
+
+	//bf settings
+        var player:FlxSprite; //player is FlxSprite
+        var isHoldingLeft:Bool = false; // left button pressed checker
+        var isHoldingRight:Bool = false; // right button pressed checker
+        var holdTimer:FlxTimer; // after this bf start running
+        var speed:Float = 100; // needs for bf's moves
+        var speedMultiplier:Float = 1.0; // bf's default walk speed
 
 	player = new FlxSprite(500, -405);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
