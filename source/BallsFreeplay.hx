@@ -130,10 +130,9 @@ class BallsFreeplay extends MusicBeatState
         #else
         yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY\nTHEMES');
         #end
-        yn.setFormat(Paths.font("chaotix.ttf"), 14, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
-	yn.x -= 100;
-	yn.y -= 600;
+	yn.y += 300;
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
         add(yn);
