@@ -120,6 +120,9 @@ class BallsFreeplay extends MusicBeatState
         screenCharacters = new FlxTypedGroup<FlxSprite>();
 		  add(screenCharacters);
 
+	screenPlayables = new FlxTypedGroup<FlxSprite>();
+		  add(screenPlayables);
+
         var characterText:FlxText;
         var scoreText:FlxText;
         var proceedText:FlxText;
@@ -162,7 +165,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.alpha = 0;
             if(i == 0)
 
-            screenCharacters.add(songPlayable);
+            screenPlayables.add(songPlayable);
 
             songPortrait.ID = i;
             songCharacter.ID = i;
