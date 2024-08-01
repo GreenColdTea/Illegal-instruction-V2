@@ -76,6 +76,13 @@ class BallsFreeplay extends MusicBeatState
         Paths.clearStoredMemory();
 	Paths.clearUnusedMemory();
 
+	//bf settings
+	var isHoldingLeft:Bool = false; // left button pressed checker
+        var isHoldingRight:Bool = false; // right button pressed checker
+        var holdTimer:FlxTimer; // after this bf start running
+        var speed:Float = 100; // needs for bf's moves
+        var speedMultiplier:Float = 1.0; // bf's default walk speed
+
         if (ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
@@ -196,13 +203,7 @@ class BallsFreeplay extends MusicBeatState
         screen.updateHitbox();
         add(screen);
 
-	//bf settings
         var player:FlxSprite; //player is FlxSprite
-        var isHoldingLeft:Bool = false; // left button pressed checker
-        var isHoldingRight:Bool = false; // right button pressed checker
-        var holdTimer:FlxTimer; // after this bf start running
-        var speed:Float = 100; // needs for bf's moves
-        var speedMultiplier:Float = 1.0; // bf's default walk speed
 
 	player = new FlxSprite(500, -405);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
