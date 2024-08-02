@@ -88,6 +88,8 @@ class BallsFreeplay extends MusicBeatState
     var holdTimer:FlxTimer; // after this bf start running
     public var speed:Float = 125; // needs for bf's moves
     public var speedMultiplier:Float = 1.25; // bf's default walk speed
+    public var jumpSpeed:Float = 200; //how fast he can jump
+    public var gravity:Float = 400; //how long he can be in the air
 
     public var numSelect:Int = 0;
 
@@ -223,6 +225,8 @@ class BallsFreeplay extends MusicBeatState
         player.antialiasing = true;
         add(player);
 
+	player.acceleration.y = gravity;
+
 	#if !android
         yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY\nTHEMES');
         #else
@@ -322,6 +326,37 @@ class BallsFreeplay extends MusicBeatState
             speedMultiplier = 1.25;
             holdTimer.cancel();
         }
+
+	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping)
+        {
+	    player.animation.play('jump');
+            player.velocity.y = -jumpSpeed;
+            isJumping = true;
+	}
+
+	//screen barriers
+	if (player.x < 0)
+        {
+            player.x = 0;
+            player.velocity.x = 0;
+        }
+        else if (player.x + player.width > FlxG.width)
+        {
+            player.x = FlxG.width - player.width;
+            player.velocity.x = 0;
+        }
+
+        if (player.y < 0)
+        {
+            player.y = 0;
+            player.velocity.y = 0;
+        }
+        else if (player.y + player.height > FlxG.height)
+        {
+            player.y = FlxG.height - player.height;
+            isJumping = false; // jumping system
+            player.velocity.y = 0;
+	}
 
         // bf moves
         if (isHoldingLeft)
