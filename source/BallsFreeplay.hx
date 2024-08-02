@@ -44,6 +44,16 @@ class BallsFreeplay extends MusicBeatState
         'color-crash'
     ];
 
+    var songtext:Array<String> = [
+        'Breakout',
+        'Hellspawn',
+        'Vista',
+        'Meltdown',
+        'Cascade',
+        'My Horizon',
+        'Color Crash'
+    ];
+
     var characters:Array<String> = [
         'duke',
         'duke',
@@ -74,8 +84,8 @@ class BallsFreeplay extends MusicBeatState
     public var isHoldingLeft:Bool = false; // left button pressed checker
     public var isHoldingRight:Bool = false; // right button pressed checker
     var holdTimer:FlxTimer; // after this bf start running
-    public var speed:Float = 100; // needs for bf's moves
-    public var speedMultiplier:Float = 1.11; // bf's default walk speed
+    public var speed:Float = 125; // needs for bf's moves
+    public var speedMultiplier:Float = 1.25; // bf's default walk speed
 
     public var numSelect:Int = 0;
 
@@ -127,6 +137,14 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.alpha = 0;
             screenInfo.add(songPortrait);
 
+	    characterText = new FlxText(0, 0, '${songtext[i]}');
+	    characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
+	    characterText.x -= 50;
+	    characterText.y -= 50;
+            characterText.color = FlxColor.RED;
+	    characterText.alpha = 0;
+            screenInfo.add(characterText);
+
             var songCharacter:FlxSprite = new FlxSprite();
             songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/${characters[i]}');
             songCharacter.animation.addByPrefix('idle', '${characters[i]}', 24, true);
@@ -146,6 +164,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.x += 300;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
+		
             if(i == 0)
 
 	    screenCharacters.add(songCharacter);
@@ -154,6 +173,7 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.ID = i;
             songCharacter.ID = i;
             songPlayable.ID = i;
+	    characterText.ID = i;
 
             if(songPortrait.ID == curSelected)
                 songPortrait.alpha = 1;
@@ -164,6 +184,9 @@ class BallsFreeplay extends MusicBeatState
             if(songPlayable.ID == curSelected)
                 songPlayable.alpha = 1;
 
+	    if(characterText.ID == curSelected)
+		characterText.alpha = 1;
+
             /* 
             After those make a screen shit for each pixel background all in 1 location and then add
             them to pixelShits
@@ -172,10 +195,17 @@ class BallsFreeplay extends MusicBeatState
             //Each song has a background
         }
 
-        var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/encore/screen'));
+        var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
         screen.setGraphicSize(FlxG.width, FlxG.height);
         screen.updateHitbox();
         add(screen);
+
+	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
+	screenLogo.scale.set(1.1, 1.1);
+	screenLogo.screenCenter(X);
+	screenLogo.updateHitbox();
+	screenLogo.y -= 75;
+	add(screenLogo);
 
 	player = new FlxSprite(450, 325);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
@@ -187,7 +217,7 @@ class BallsFreeplay extends MusicBeatState
         add(player);
 
 	#if !android
-        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY\nTHEMES');
         #else
         yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY\nTHEMES');
         #end
@@ -202,12 +232,12 @@ class BallsFreeplay extends MusicBeatState
         addVirtualPad(LEFT_FULL, A_B_X_Y);
         #end
 
-	if (ClientPrefs.ducclyMix && #if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end)
+	if (ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.7);
         }
-        else if (!ClientPrefs.ducclyMix && #if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end)
+        else if (!ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.7);
@@ -263,7 +293,7 @@ class BallsFreeplay extends MusicBeatState
             player.animation.play('walk');
             player.flipX = false;
             isHoldingLeft = false;
-            speedMultiplier = 1.11;
+            speedMultiplier = 1.25;
             holdTimer.cancel();
         }
 
@@ -282,7 +312,7 @@ class BallsFreeplay extends MusicBeatState
             player.animation.play('walk');
             player.flipX = true;
             isHoldingRight = false;
-            speedMultiplier = 1.11;
+            speedMultiplier = 1.25;
             holdTimer.cancel();
         }
 
