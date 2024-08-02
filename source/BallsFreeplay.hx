@@ -76,6 +76,8 @@ class BallsFreeplay extends MusicBeatState
 	
     var backgroundShits:FlxTypedGroup<FlxSprite>;
 
+    var screenSong:FlxTypedGroup<FlxText>;
+
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
 
@@ -124,6 +126,23 @@ class BallsFreeplay extends MusicBeatState
         var proceedText:FlxText;
         var yn:FlxText;
 
+	for(i in 0...songtext.lenght)
+	{
+	    characterText = new FlxText(0, 0, '${songtext[i]}');
+            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
+	    characterText.x -= 50;
+	    characterText.y -= 50;
+            characterText.color = FlxColor.RED;
+	    characterText.alpha = 0;
+	    if(i == 0)
+            screenSong.add(characterText);
+
+	    characterText.ID = i;
+
+	    if(characterText.ID == curSelected)
+		characterText.alpha = 1;
+	}
+
         for(i in 0...songs.length)
         {
             var songPortrait:FlxSprite = new FlxSprite();
@@ -136,14 +155,6 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.y -= 60;
             songPortrait.alpha = 0;
             screenInfo.add(songPortrait);
-
-	    characterText = new FlxText(0, 0, '${songtext[i]}');
-	    characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-	    characterText.x -= 50;
-	    characterText.y -= 50;
-            characterText.color = FlxColor.RED;
-	    characterText.alpha = 0;
-            screenInfo.add(characterText);
 
             var songCharacter:FlxSprite = new FlxSprite();
             songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/${characters[i]}');
@@ -173,7 +184,6 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.ID = i;
             songCharacter.ID = i;
             songPlayable.ID = i;
-	    characterText.ID = i;
 
             if(songPortrait.ID == curSelected)
                 songPortrait.alpha = 1;
@@ -183,9 +193,6 @@ class BallsFreeplay extends MusicBeatState
       
             if(songPlayable.ID == curSelected)
                 songPlayable.alpha = 1;
-
-	    if(characterText.ID == curSelected)
-		characterText.alpha = 1;
 
             /* 
             After those make a screen shit for each pixel background all in 1 location and then add
@@ -204,7 +211,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(1.1, 1.1);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.y -= 75;
+	screenLogo.y += 5;
 	add(screenLogo);
 
 	player = new FlxSprite(450, 325);
