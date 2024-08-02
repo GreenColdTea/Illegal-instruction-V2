@@ -85,6 +85,7 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite; //player is FlxSprite
     public var isHoldingLeft:Bool = false; // left button pressed checker
     public var isHoldingRight:Bool = false; // right button pressed checker
+    public var isJumping:Bool = false; // jumping checker
     var holdTimer:FlxTimer; // after this bf start running
     public var speed:Float = 125; // needs for bf's moves
     public var speedMultiplier:Float = 1.25; // bf's default walk speed
@@ -128,7 +129,7 @@ class BallsFreeplay extends MusicBeatState
         var proceedText:FlxText;
         var yn:FlxText;
 
-	for(i in 0...songtext.lenght)
+	for(i in 0...songtext.length)
 	{
 	    characterText = new FlxText(0, 0, '${songtext[i]}');
             characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
