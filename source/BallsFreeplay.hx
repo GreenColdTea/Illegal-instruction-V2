@@ -249,6 +249,14 @@ class BallsFreeplay extends MusicBeatState
     var infoScreen:Bool = false;
     var curSelected:Int = 0;
 
+    public function destroyFreeplayVocals() {
+		if(vocals != null) {
+			vocals.stop();
+			vocals.destroy();
+		}
+		vocals = null;
+    }
+
     override function update(elapsed:Float)
     {
         if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && !ClientPrefs.ducclyMix)
@@ -374,6 +382,8 @@ class BallsFreeplay extends MusicBeatState
         PlayState.SONG = Song.loadFromJson(songLowercase + '-hard', songLowercase);
         PlayState.isStoryMode = false;
         PlayState.storyDifficulty = 2;
+	FlxG.sound.music.volume = 0;
+	destroyFreeplayVocals();
         LoadingState.loadAndSwitchState(new PlayState());
     }
 
