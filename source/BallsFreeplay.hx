@@ -118,6 +118,9 @@ class BallsFreeplay extends MusicBeatState
         backgroundShits = new FlxTypedGroup<FlxSprite>();
 		  add(backgroundShits);
 
+	screenSong = new FlxTypedGroup<FlxText>();
+	          add(screenSong);
+
         screenInfo = new FlxTypedGroup<FlxSprite>();
 		  add(screenInfo);
 
