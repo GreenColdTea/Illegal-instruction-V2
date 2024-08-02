@@ -220,7 +220,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.y += 5;
 	add(screenLogo);
 
-	player = new FlxSprite(450, 325);
+	player = new FlxSprite(450, 400);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -331,7 +331,7 @@ class BallsFreeplay extends MusicBeatState
             holdTimer.cancel();
         }
 
-	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping)
+	if (FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end && !isJumping)
         {
 	    player.animation.play('jump');
             player.velocity.y = -jumpSpeed;
@@ -339,9 +339,9 @@ class BallsFreeplay extends MusicBeatState
 	}
 
 	//screen barriers
-	if (player.x < 0)
+	if (player.x < -50)
         {
-            player.x = 0;
+            player.x = -50;
             player.velocity.x = 0;
         }
         else if (player.x + player.width > FlxG.width)
