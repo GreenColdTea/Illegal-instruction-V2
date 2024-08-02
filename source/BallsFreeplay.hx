@@ -331,7 +331,7 @@ class BallsFreeplay extends MusicBeatState
             holdTimer.cancel();
         }
 
-	if (FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end && !isJumping)
+	if (FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end && !isJumping && isOnGround())
         {
 	    player.animation.play('jump');
             player.velocity.y = -jumpSpeed;
@@ -433,5 +433,10 @@ class BallsFreeplay extends MusicBeatState
             player.animation.play('run');
             speedMultiplier = 2.05;
         }
+    }
+    // character is on the ground???
+    function isOnGround():Bool
+    {
+        return player.y + player.height >= FlxG.height - 1;
     }
 }
