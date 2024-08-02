@@ -220,7 +220,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.y += 5;
 	add(screenLogo);
 
-	player = new FlxSprite(450, 400);
+	player = new FlxSprite(450, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
