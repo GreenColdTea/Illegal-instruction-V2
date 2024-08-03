@@ -339,6 +339,8 @@ class BallsFreeplay extends MusicBeatState
 
 	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
+	    player.animation.play('jump');
+	    FlxG.sound.play(Paths.sound('jump'), 0.6);
             player.velocity.y = -jumpSpeed;
             isJumping = true;
 	}
@@ -346,7 +348,7 @@ class BallsFreeplay extends MusicBeatState
 	//screen barriers
 	if (player.x < -75)
         {
-            player.x = -50;
+            player.x = -75;
             player.velocity.x = 0;
         }
         else if (player.x + player.width > FlxG.width + 75)
@@ -378,8 +380,6 @@ class BallsFreeplay extends MusicBeatState
         }
 	else if (!isOnGround())
         {
-	    player.animation.play('jump');
-	    FlxG.sound.play(Paths.sound('jump'), 0.65);
             player.velocity.y += gravity * elapsed;
 	}
         else
