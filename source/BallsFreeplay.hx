@@ -172,15 +172,15 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(0.5, 0.5);
+            songPlayable.scale.set(3, 3);
             songPlayable.x += 325;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 
-	    if (playables[playables.length - 1] == 'mighty') {
-               songCharacter.scale.set(3, 3);
+	    if (playables[3] == 'BFLMAO') {
+               songCharacter.scale.set(0.5, 0.5);
 	    } else {
-		 songCharacter.scale.set(0.5, 0.5);
+		 songCharacter.scale.set(3, 3);
 	    }
 		
             if(i == 0)
