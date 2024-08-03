@@ -80,6 +80,7 @@ class BallsFreeplay extends MusicBeatState
 
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
+    var screenPlayers:FlxTypedGroup<FlxSprite>;
 
     //bf settings
     var player:FlxSprite; //player is FlxSprite
@@ -89,8 +90,8 @@ class BallsFreeplay extends MusicBeatState
     var holdTimer:FlxTimer; // after this bf start running
     public var speed:Float = 125; // needs for bf's moves
     public var speedMultiplier:Float = 1.25; // bf's default walk speed
-    public var jumpSpeed:Float = 200; //how fast he can jump
-    public var gravity:Float = 400; //how long he can be in the air
+    public var jumpSpeed:Float = 225; //how fast he can jump
+    public var gravity:Float = 425; //how long he can be in the air
 
     public var numSelect:Int = 0;
 
@@ -127,27 +128,13 @@ class BallsFreeplay extends MusicBeatState
         screenCharacters = new FlxTypedGroup<FlxSprite>();
 		  add(screenCharacters);
 
+	screenPlayers = new FlxTypedGroup<FlxSprite>();
+	         add(screenPlayers);
+
         var characterText:FlxText;
         var scoreText:FlxText;
         var proceedText:FlxText;
         var yn:FlxText;
-
-	for(i in 0...songtext.length)
-	{
-	    characterText = new FlxText(0, 0, '${songtext[i]}');
-            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-	    characterText.x -= 50;
-	    characterText.y -= 50;
-            characterText.color = FlxColor.RED;
-	    characterText.alpha = 0;
-	    if(i == 0)
-            screenSong.add(characterText);
-
-	    characterText.ID = i;
-
-	    if(characterText.ID == curSelected)
-		characterText.alpha = 1;
-	}
 
         for(i in 0...songs.length)
         {
@@ -161,6 +148,14 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.y -= 60;
             songPortrait.alpha = 0;
             screenInfo.add(songPortrait);
+
+	    characterText = new FlxText(0, 0, '${songtext[i]}');
+            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
+	    characterText.x -= 50;
+	    characterText.y -= 50;
+            characterText.color = FlxColor.RED;
+	    characterText.alpha = 0;
+	    screenSong.add(characterText);
 
             var songCharacter:FlxSprite = new FlxSprite();
             songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/${characters[i]}');
@@ -182,7 +177,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 
-	    if (playables[playables.length - 1] == 'mighty') {
+	    if (playables[playables.length[i]] == 'mighty') {
                songCharacter.scale.set(3, 3);
 	    } else {
 		 songCharacter.scale.set(0.5, 0.5);
@@ -191,11 +186,15 @@ class BallsFreeplay extends MusicBeatState
             if(i == 0)
 
 	    screenCharacters.add(songCharacter);
-            screenCharacters.add(songPlayable);
+            screenPlayers.add(songPlayable);
 
             songPortrait.ID = i;
             songCharacter.ID = i;
             songPlayable.ID = i;
+	    characterText.ID = i;
+
+	    if(characterText.ID == curSelected)
+		characterText.alpha = 1;
 
             if(songPortrait.ID == curSelected)
                 songPortrait.alpha = 1;
@@ -220,11 +219,11 @@ class BallsFreeplay extends MusicBeatState
         add(screen);
 
 	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	screenLogo.scale.set(1.2, 1.2);
+	screenLogo.scale.set(1.25, 1.25);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 15;
-	screenLogo.y += 50;
+	screenLogo.x -= 30;
+	screenLogo.y += 75;
 	add(screenLogo);
 
 	player = new FlxSprite(450, 250);
@@ -338,31 +337,30 @@ class BallsFreeplay extends MusicBeatState
 
 	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
-	    player.animation.play('jump');
             player.velocity.y = -jumpSpeed;
             isJumping = true;
 	}
 
 	//screen barriers
-	if (player.x < -50)
+	if (player.x < -75)
         {
             player.x = -50;
-            player.velocity.x = -50;
+            player.velocity.x = 0;
         }
-        else if (player.x + player.width > FlxG.width)
+        else if (player.x + player.width > FlxG.width + 75)
         {
-            player.x = FlxG.width - player.width + 50;
+            player.x = FlxG.width + 75 - player.width;
             player.velocity.x = 0;
         }
 
-        if (player.y < 50)
+        if (player.y < 0)
         {
-            player.y = 50;
+            player.y = 0;
             player.velocity.y = 0;
         }
-        else if (player.y + player.height > FlxG.height)
+        else if (player.y + player.height > FlxG.height - 50)
         {
-            player.y = FlxG.height - player.height;
+            player.y = FlxG.height - player.height - 50;
             isJumping = false; // jumping system
             player.velocity.y = 0;
 	}
@@ -378,6 +376,7 @@ class BallsFreeplay extends MusicBeatState
         }
 	else if (!isOnGround())
         {
+	    player.animation.play('jump');
             player.velocity.y += gravity * elapsed;
 	}
         else
@@ -414,13 +413,13 @@ class BallsFreeplay extends MusicBeatState
     {
         screenInfo.members[curSelected].alpha = 0;
         screenCharacters.members[curSelected].alpha = 0;
-        //screenCharacters.members[curSelected + 1].alpha = 0;
+        screenPlayers.members[curSelected].alpha = 0;
 	
         curSelected = newIndex;
 
         screenInfo.members[curSelected].alpha = 1;
         screenCharacters.members[curSelected].alpha = 1;
-        //screenCharacters.members[curSelected + 1].alpha = 1;
+        screenPlayers.members[curSelected].alpha = 1;
     }
 	
     function doTheLoad()
