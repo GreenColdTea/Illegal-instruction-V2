@@ -65,12 +65,12 @@ class BallsFreeplay extends MusicBeatState
     ];
  
     var playables:Array<String> = [
-        'bf',
-        'bf',
-        'bf',
-        'bf',
-        'bf',
-        'bf',
+        'bf-pixel',
+        'bf-pixel',
+        'bf-pixel',
+        'BFLMAO',
+        'bf-pixel',
+        'bf-pixel',
         'mighty'
     ];
 	
