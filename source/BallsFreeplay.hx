@@ -172,15 +172,15 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(3, 3);
+            songPlayable.scale.set(4, 4);
             songPlayable.x += 325;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 
 	    if (playables[3] == 'BFLMAO') {
-               songCharacter.scale.set(0.5, 0.5);
+               songPlayables.scale.set(0.5, 0.5);
 	    } else {
-		 songCharacter.scale.set(3, 3);
+		 songPlayables.scale.set(4, 4);
 	    }
 		
             if(i == 0)
@@ -304,16 +304,16 @@ class BallsFreeplay extends MusicBeatState
             player.flipX = false;
             if (!isHoldingLeft)
             {
-                player.animation.play('walk');
                 isHoldingLeft = true;
+		player.animation.play('walk');
                 holdTimer.start(1, onHoldComplete);
             }
         }
         else if (controls.UI_LEFT_R)
         {
-            player.animation.play('walk');
             player.flipX = false;
             isHoldingLeft = false;
+	    player.animation.play('walk');
             speedMultiplier = 1.25;
             holdTimer.cancel();
         }
@@ -323,26 +323,26 @@ class BallsFreeplay extends MusicBeatState
             player.flipX = true;
             if (!isHoldingRight)
             {
-                player.animation.play('walk');
                 isHoldingRight = true;
+		player.animation.play('walk');
                 holdTimer.start(1, onHoldComplete);
             }
         }
         else if (controls.UI_RIGHT_R)
         {
-            player.animation.play('walk');
             player.flipX = true;
             isHoldingRight = false;
+	    player.animation.play('walk');
             speedMultiplier = 1.25;
             holdTimer.cancel();
         }
 
 	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
-	    player.animation.play('jump');
-	    FlxG.sound.play(Paths.sound('jump'), 0.6);
             player.velocity.y = -jumpSpeed;
             isJumping = true;
+	    player.animation.play('jump');
+	    FlxG.sound.play(Paths.sound('jump'), 0.6);
 	}
 
 	//screen barriers
@@ -362,11 +362,16 @@ class BallsFreeplay extends MusicBeatState
             player.y = 0;
             player.velocity.y = 0;
         }
-        else if (player.y + player.height > FlxG.height - 50)
+        else if (player.y + player.height > FlxG.height - 75)
         {
-            player.y = FlxG.height - player.height - 50;
+            player.y = FlxG.height - player.height - 75;
             isJumping = false; // jumping system
             player.velocity.y = 0;
+	}
+
+	if (!isOnGround())
+        {
+            player.velocity.y += gravity * elapsed;
 	}
 
         // bf moves
@@ -378,11 +383,7 @@ class BallsFreeplay extends MusicBeatState
         {
             player.velocity.x = speed * speedMultiplier;
         }
-	else if (!isOnGround())
-        {
-            player.velocity.y += gravity * elapsed;
-	}
-        else
+        else if (isOnGround())
         {
             player.velocity.x = 0;
             player.animation.play('idle');
