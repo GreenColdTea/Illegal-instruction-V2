@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="bf-pixel.png">
+<SubTexture name="bf-pixel_idle0000" x="0" y="0" width="26" height="38" frameX="0" frameY="0" frameWidth="26" frameHeight="38" />
+<SubTexture name="bf-pixel_idle0001" x="0" y="0" width="26" height="38" frameX="0" frameY="0" frameWidth="26" frameHeight="38" />
+<SubTexture name="bf-pixel_idle0002" x="0" y="0" width="26" height="38" frameX="0" frameY="0" frameWidth="26" frameHeight="38" />
+<SubTexture name="bf-pixel_idle0003" x="26" y="0" width="26" height="38" frameX="0" frameY="0" frameWidth="26" frameHeight="38" />
+<SubTexture name="bf-pixel_idle0004" x="26" y="0" width="26" height="38" frameX="0" frameY="0" frameWidth="26" frameHeight="38" />
+<SubTexture name="bf-pixel_idle0005" x="26" y="0" width="26" height="38" frameX="0" frameY="0" frameWidth="26" frameHeight="38" />
+</TextureAtlas>
