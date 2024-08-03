@@ -178,7 +178,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(0.5, 0.5);
-            songPlayable.x += 300;
+            songPlayable.x += 325;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 		
@@ -214,10 +214,11 @@ class BallsFreeplay extends MusicBeatState
         add(screen);
 
 	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	screenLogo.scale.set(1.1, 1.1);
+	screenLogo.scale.set(1.2, 1.2);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.y += 5;
+	screenLogo.x -= 15;
+	screenLogo.y += 50;
 	add(screenLogo);
 
 	player = new FlxSprite(450, 250);
@@ -272,6 +273,12 @@ class BallsFreeplay extends MusicBeatState
         {
            ClientPrefs.ducclyMix = false;
         }
+
+	if (playables[playables.length - 1] == 'mighty') {
+           songCharacter.scale.set(3, 3);
+	} else {
+		songCharacter.scale.set(0.5, 0.5);
+	}
 	    
         if (controls.UI_UP_P)
         {
@@ -336,11 +343,6 @@ class BallsFreeplay extends MusicBeatState
             isJumping = true;
 	}
 
-	if (!isOnGround())
-        {
-            player.velocity.y += gravity * elapsed;
-	}
-
 	//screen barriers
 	if (player.x < -50)
         {
@@ -374,6 +376,10 @@ class BallsFreeplay extends MusicBeatState
         {
             player.velocity.x = speed * speedMultiplier;
         }
+	else if (!isOnGround())
+        {
+            player.velocity.y += gravity * elapsed;
+	}
         else
         {
             player.velocity.x = 0;
