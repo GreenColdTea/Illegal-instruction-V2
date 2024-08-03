@@ -253,11 +253,13 @@ class BallsFreeplay extends MusicBeatState
 
 	if (ClientPrefs.ducclyMix)
         {
+	    FlxG.sound.music.stop();
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.85);
         }
         else if (!ClientPrefs.ducclyMix)
         {
+	    FlxG.sound.music.stop();
             FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
             FlxG.sound.music.fadeIn(4, 0, 0.85);
         }
