@@ -407,14 +407,14 @@ class BallsFreeplay extends MusicBeatState
     function updateSelection(newIndex:Int)
     {
         screenInfo.members[curSelected].alpha = 0;
-        screenCharacters.members[curSelected * 2].alpha = 0;
-        screenCharacters.members[curSelected * 2 + 1].alpha = 0;
+        screenCharacters.members[curSelected].alpha = 0;
+        screenCharacters.members[curSelected + 1].alpha = 0;
 	
         curSelected = newIndex;
 
         screenInfo.members[curSelected].alpha = 1;
-        screenCharacters.members[curSelected * 2].alpha = 1;
-        screenCharacters.members[curSelected * 2 + 1].alpha = 1;
+        screenCharacters.members[curSelected].alpha = 1;
+        screenCharacters.members[curSelected + 1].alpha = 1;
     }
 	
     function doTheLoad()
