@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="BFLMAO.png">
+	<!-- Created using the Spritesheet and XML generator -->
+	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
+	<SubTexture name="BFLMAO0000" x="600" y="768" width="489" height="663" frameX="2" frameY="-4" frameWidth="485" frameHeight="666"/>
+	<SubTexture name="BFLMAO0001" x="1401" y="0" width="604" height="666" frameX="-2" frameY="0" frameWidth="604" frameHeight="665"/>
+	<SubTexture name="BFLMAO0002" x="734" y="0" width="667" height="690" frameX="-2" frameY="2" frameWidth="671" frameHeight="686"/>
+	<SubTexture name="BFLMAO0003" x="0" y="768" width="600" height="667" frameX="0" frameY="2" frameWidth="598" frameHeight="663"/>
+	<SubTexture name="BFLMAO0004" x="0" y="0" width="734" height="768" frameX="2" frameY="2" frameWidth="730" frameHeight="764"/>
+</TextureAtlas>
