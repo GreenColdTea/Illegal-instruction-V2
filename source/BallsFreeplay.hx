@@ -229,8 +229,6 @@ class BallsFreeplay extends MusicBeatState
         player.antialiasing = true;
         add(player);
 
-	player.acceleration.y = gravity;
-
 	#if !android
         yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY\nTHEMES');
         #else
@@ -331,11 +329,16 @@ class BallsFreeplay extends MusicBeatState
             holdTimer.cancel();
         }
 
-	if (FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end && !isJumping && isOnGround())
+	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
 	    player.animation.play('jump');
             player.velocity.y = -jumpSpeed;
             isJumping = true;
+	}
+
+	if (!isOnGround())
+        {
+            player.velocity.y += gravity * elapsed;
 	}
 
 	//screen barriers
