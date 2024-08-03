@@ -69,7 +69,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		FlxG.camera.focusOn(new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y));
 
-      #if android
+                #if android
 		addVirtualPad(NONE, A_B);
 		addVirtualPadCamera();
 		#end
