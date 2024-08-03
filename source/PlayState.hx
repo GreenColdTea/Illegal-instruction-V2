@@ -561,6 +561,7 @@ class PlayState extends MusicBeatState
 			case 'entrance':
 
 				GameOverSubstate.characterName = 'bfii-death';
+			        GameOverSubstate.loopSoundName = 'duke-loop';
 
 				defaultCamZoom = 0.65;
 
@@ -653,6 +654,7 @@ class PlayState extends MusicBeatState
 
 			case 'soulless':
 				GameOverSubstate.characterName = 'bfii-death';
+				GameOverSubstate.loopSoundName = 'duke-loop';
 
 				defaultCamZoom = 0.68;
 
@@ -714,6 +716,9 @@ class PlayState extends MusicBeatState
 
 			case 'vista':
 				// lol
+
+				GameOverSubstate.loopSoundName = 'chaotix-loop';
+				GameOverSubstate.endSoundName = 'chaotix-retry';
 
 				camGlitchShader = new GlitchShaderB();
 				camGlitchShader.iResolution.value = [FlxG.width, FlxG.height];
