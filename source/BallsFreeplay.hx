@@ -10,6 +10,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxObject;
 import flixel.group.FlxSpriteGroup;
+import flixel.group.FlxTextGroup;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
