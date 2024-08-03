@@ -342,17 +342,17 @@ class BallsFreeplay extends MusicBeatState
 	if (player.x < -50)
         {
             player.x = -50;
-            player.velocity.x = 0;
+            player.velocity.x = -50;
         }
         else if (player.x + player.width > FlxG.width)
         {
-            player.x = FlxG.width - player.width;
+            player.x = FlxG.width - player.width + 50;
             player.velocity.x = 0;
         }
 
-        if (player.y < 0)
+        if (player.y < 50)
         {
-            player.y = 0;
+            player.y = 50;
             player.velocity.y = 0;
         }
         else if (player.y + player.height > FlxG.height)
