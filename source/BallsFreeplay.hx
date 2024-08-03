@@ -182,6 +182,12 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.x += 325;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
+
+	    if (playables[playables.length - 1] == 'mighty') {
+               songCharacter.scale.set(3, 3);
+	    } else {
+		 songCharacter.scale.set(0.5, 0.5);
+	    }
 		
             if(i == 0)
 
@@ -274,12 +280,6 @@ class BallsFreeplay extends MusicBeatState
         {
            ClientPrefs.ducclyMix = false;
         }
-
-	if (playables[playables.length - 1] == 'mighty') {
-           songCharacter.scale.set(3, 3);
-	} else {
-		songCharacter.scale.set(0.5, 0.5);
-	}
 	    
         if (controls.UI_UP_P)
         {
@@ -415,13 +415,13 @@ class BallsFreeplay extends MusicBeatState
     {
         screenInfo.members[curSelected].alpha = 0;
         screenCharacters.members[curSelected].alpha = 0;
-        screenCharacters.members[curSelected + 1].alpha = 0;
+        //screenCharacters.members[curSelected + 1].alpha = 0;
 	
         curSelected = newIndex;
 
         screenInfo.members[curSelected].alpha = 1;
         screenCharacters.members[curSelected].alpha = 1;
-        screenCharacters.members[curSelected + 1].alpha = 1;
+        //screenCharacters.members[curSelected + 1].alpha = 1;
     }
 	
     function doTheLoad()
