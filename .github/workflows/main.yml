@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1.2.0
 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@main
@@ -41,7 +41,7 @@ jobs:
         uses: android-actions/setup-android@main
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@v1.2.0
+        uses: krdlab/setup-haxe@v1
         with:
           haxe-version: latest
 
