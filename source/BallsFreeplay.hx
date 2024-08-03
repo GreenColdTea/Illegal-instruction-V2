@@ -254,12 +254,12 @@ class BallsFreeplay extends MusicBeatState
 	if (ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
-            FlxG.sound.music.fadeIn(4, 0, 0.7);
+            FlxG.sound.music.fadeIn(4, 0, 0.85);
         }
         else if (!ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
-            FlxG.sound.music.fadeIn(4, 0, 0.7);
+            FlxG.sound.music.fadeIn(4, 0, 0.85);
         }
 
         super.create();
@@ -377,6 +377,7 @@ class BallsFreeplay extends MusicBeatState
 	else if (!isOnGround())
         {
 	    player.animation.play('jump');
+	    FlxG.sound.play(Paths.sound('jump'), 0.65);
             player.velocity.y += gravity * elapsed;
 	}
         else
