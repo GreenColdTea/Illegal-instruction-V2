@@ -177,7 +177,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 
-	    if (playables[playables.length[i]] == 'mighty') {
+	    if (playables[playables.length - 1] == 'mighty') {
                songCharacter.scale.set(3, 3);
 	    } else {
 		 songCharacter.scale.set(0.5, 0.5);
