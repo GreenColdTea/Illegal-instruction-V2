@@ -209,11 +209,11 @@ class WeekData {
 
 	private static function getWeekFile(path:String):WeekFile {
 		var rawJson:String = null;
-		#if MODS_ALLOWED
+		#if (MODS_ALLOWED && desktop)
 		if(FileSystem.exists(path)) {
 			rawJson = File.getContent(path);
 		}
-		#else
+		#elseif (MODS_ALLOWED && mobile || !MODS_ALLOWED)
 		if(OpenFlAssets.exists(path)) {
 			rawJson = Assets.getText(path);
 		}
