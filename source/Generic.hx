@@ -7,7 +7,7 @@ import android.Permissions;
 import android.os.Environment;
 import android.widget.Toast;
 #end
-import flash.system.System;
+import openfl.system.System;
 import flixel.FlxG;
 import haxe.CallStack.StackItem;
 import haxe.CallStack;
