@@ -49,7 +49,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install openfl 9.1.0
-          haxelib --never install flixel 4.11.0
+          haxelib git flixel https://github.com/MobilePorting/flixel-0.6.3
           haxelib git lime https://github.com/mcagabe19-stuff/lime
           haxelib run lime setup flixel
           haxelib install flixel-tools
@@ -79,7 +79,6 @@ jobs:
           haxelib set openfl 9.1.0
           haxelib set flixel-ui 2.4.0
           haxelib set hscript 2.4.0
-          haxelib set flixel 4.11.0
           haxelib set flixel-addons 2.11.0
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
