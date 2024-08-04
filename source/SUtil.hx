@@ -3,6 +3,7 @@ package;
 #if android
 import android.Tools;
 import android.Permissions;
+import android.callback.CallBack;
 #end
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
@@ -84,6 +85,17 @@ class SUtil
 	public static function gameCrashCheck()
 	{
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+	}
+
+	public static function showPopUp(message:String, title:String):Void
+	{
+		#if android
+		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
+		#elseif (!ios || !iphonesim)
+		lime.app.Application.current.window.alert(message, title);
+		#else
+		trace('$title - $message');
+		#end
 	}
 
 	public static function onCrash(e:UncaughtErrorEvent):Void
