@@ -84,6 +84,7 @@ import vlc.MP4Handler;
 
 #if !flash 
 import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
 #end
 
 using StringTools;
