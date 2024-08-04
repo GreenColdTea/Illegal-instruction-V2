@@ -82,6 +82,10 @@ import vlc.MP4Handler;
 #end
 #end
 
+#if !flash 
+import flixel.addons.display.FlxRuntimeShader;
+#end
+
 using StringTools;
 
 // used to save checkpoint data in songs w/ checkpoints!!
