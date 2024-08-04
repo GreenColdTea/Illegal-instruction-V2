@@ -17,7 +17,6 @@ import flixel.FlxSprite;
 import sys.io.File;
 import sys.FileSystem;
 #end
-import lime.system.System;
 import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
 import haxe.Json;
