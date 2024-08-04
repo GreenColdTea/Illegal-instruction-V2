@@ -103,9 +103,9 @@ class Song
 		#end
 
 		if(rawJson == null) {
-			#if MODS_ALLOWED
+			#if (MODS_ALLOWED && desktop)
 			rawJson = File.getContent(Paths.json(formattedFolder + '/' + formattedSong)).trim();
-			#else
+			#elseif (MODS_ALLOWED && mobile || !MODS_ALLOWED)
 			rawJson = Assets.getText(Paths.json(formattedFolder + '/' + formattedSong)).trim();
 			#end
 		}
