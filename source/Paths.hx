@@ -96,7 +96,7 @@ class Paths
 			}
 		}							   
 		// run the garbage collector for good measure lmfao
-		haxe.Memory.gc()
+		haxe.Memory.gc();
 	}
 
 	// define the locally tracked assets
