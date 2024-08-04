@@ -377,7 +377,11 @@ class BallsFreeplay extends MusicBeatState
         {
             player.velocity.x = speed * speedMultiplier;
         }
-        else if (isOnGround())
+	if (!isOnGround())
+        {
+            player.velocity.y += gravity * elapsed;
+	}
+        else
         {
             player.velocity.x = 0;
             player.animation.play('idle');
