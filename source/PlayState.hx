@@ -1803,6 +1803,7 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
+		#if MODS_ALLOWES
 		if(FileSystem.exists(Paths.modFolders(luaFile))) {
 			luaFile = Paths.modFolders(luaFile);
 			doPush = true;
@@ -1812,6 +1813,12 @@ class PlayState extends MusicBeatState
 				doPush = true;
 			}
 		}
+		#else
+		luaFile = Paths.getPreloadPath(luaFile);
+			if(FileSystem.exists(luaFile)) {
+				doPush = true;
+			}
+		#end
 
 		if(doPush)
 		{
