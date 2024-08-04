@@ -192,7 +192,7 @@ class Paths
 	inline public static function getPreloadPath(file:String = ''):String
         {
         #if (android || ios)
-                return System.applicationStorageDirectory + '/assets/' + file;
+                return lime.system.System.applicationStorageDirectory + '/assets/' + file;
         #else
                 return 'assets/' + file;
         #end
