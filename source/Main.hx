@@ -17,6 +17,8 @@ import flixel.util.FlxSave;
 
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
+import openfl.events.ErrorEvent;
+import openfl.errors.Error;
 import haxe.CallStack;
 import haxe.io.Path;
 import sys.FileSystem;
@@ -25,6 +27,7 @@ import sys.io.Process;
 #end
 
 using StringTools;
+using CoolUtil;
 
 class Main extends Sprite
 {
@@ -117,46 +120,79 @@ class Main extends Sprite
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
+
+		#if cpp
+		untyped __global__.__hxcpp_set_critical_error_handler(onError);
+		#elseif hl
+		hl.Api.setErrorHandler(onError);
+		#end
 	}
 
 	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
-		var errMsg:String = "";
-		var path:String;
-		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
-		var dateNow:String = Date.now().toString();
+		e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
 
-                dateNow = dateNow.replace(" ", "_").replace(":", "'");
-		
-		path = "./crash/" + "Sonic_" + dateNow + ".txt";
-
-		for (stackItem in callStack)
-		{
-			switch (stackItem)
-			{
-				case FilePos(s, file, line, column):
-					errMsg += file + " (line " + line + ")\n";
-				default:
-					Sys.println(stackItem);
+		var m:String = e.error;
+		if (Std.isOfType(e.error, Error)) {
+			var err = cast(e.error, Error);
+			m = '${err.message}';
+		} else if (Std.isOfType(e.error, ErrorEvent)) {
+			var err = cast(e.error, ErrorEvent);
+			m = '${err.text}';
+		}
+		var stack = haxe.CallStack.exceptionStack();
+		var stackLabelArr:Array<String> = [];
+		var stackLabel:String = "";
+		for(e in stack) {
+			switch(e) {
+				case CFunction: stackLabelArr.push("Non-Haxe (C) Function");
+				case Module(c): stackLabelArr.push('Module ${c}');
+				case FilePos(parent, file, line, col):
+					switch(parent) {
+						case Method(cla, func):
+							stackLabelArr.push('${file.replace('.hx', '')}.$func() [line $line]');
+						case _:
+							stackLabelArr.push('${file.replace('.hx', '')} [line $line]');
+					}
+				case LocalFunction(v):
+					stackLabelArr.push('Local Function ${v}');
+				case Method(cl, m):
+					stackLabelArr.push('${cl} - ${m}');
 			}
 		}
+		stackLabel = stackLabelArr.join('\r\n');
+		#if sys
+		try
+		{
+			if (!FileSystem.exists('logs'))
+				FileSystem.createDirectory('logs');
 
-		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/ShadowMario/FNF-PsychEngine\n\n> Crash Handler written by: sqirra-rng";
+			File.saveContent('logs/' + 'Crash - ' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', '$m\n$stackLabel');
+		}
+		catch (e:haxe.Exception)
+			trace('Couldn\'t save error message. (${e.message})');
+		#end
 
-		if (!FileSystem.exists("./crash/"))
-			FileSystem.createDirectory("./crash/");
+		SUtil.showPopUp('$m\n$stackLabel', "Error!");
 
-		File.saveContent(path, errMsg + "\n");
+		#if html5
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
 
-		Sys.println(errMsg);
-		Sys.println("Crash dump saved in " + Path.normalize(path));
+		js.Browser.window.location.reload(true);
+		#else
+		System.exit(1);
+		#end
+	}
+	#end
 
-		Application.current.window.alert(errMsg, "Error!");
-                #if desktop
-		DiscordClient.shutdown();
-	        #end
-		Sys.exit(1);
+	#if (cpp || hl)
+	private static function onError(message:Dynamic):Void
+	{
+		throw Std.string(message);
 	}
 	#end
 
