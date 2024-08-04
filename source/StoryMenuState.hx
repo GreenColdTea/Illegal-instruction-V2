@@ -29,8 +29,8 @@ class StoryMenuState extends MusicBeatState
 		"chaotix",
 		"chotix",
       "ashura",
-		"wechidna",
-		"wechnia"
+		"wechnia",
+		"wechidna"
 	];
 	var scoreText:FlxText;
 
@@ -169,6 +169,7 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		WeekData.setDirectoryFromWeek(loadedWeeks[0]);
+		var charArray:Array<String> = loadedWeeks[0].weekCharacters;
 
 		difficultySelectors = new FlxGroup();
 
@@ -188,7 +189,7 @@ class StoryMenuState extends MusicBeatState
 		changeDifficulty();
 
       #if android
-      addVirtualPad(UP_DOWN, A_B_C);
+      addVirtualPad(UP_DOWN, A_B);
       #end
 
 		super.create();
@@ -236,7 +237,7 @@ class StoryMenuState extends MusicBeatState
 			else if (upP || downP)
 				changeDifficulty();
 
-			if(FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonC.justPressed #end)
+			if(FlxG.keys.justPressed.CONTROL)
 			{
 				persistentUpdate = false;
 				openSubState(new GameplayChangersSubstate());
