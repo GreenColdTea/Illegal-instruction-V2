@@ -178,9 +178,9 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.alpha = 0;
 
 	    if (playables[3] == 'BFLMAO') {
-               songPlayables.scale.set(0.5, 0.5);
+               songPlayable.scale.set(0.5, 0.5);
 	    } else {
-		 songPlayables.scale.set(4, 4);
+		 songPlayable.scale.set(4, 4);
 	    }
 		
             if(i == 0)
