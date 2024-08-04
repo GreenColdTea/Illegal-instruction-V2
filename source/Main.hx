@@ -12,6 +12,8 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import sys.FileSystem;
 import lime.system.System;
+import lime.app.Application;
+import flixel.util.FlxSave;
 
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
@@ -21,6 +23,8 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
 #end
+
+using StringTools;
 
 class Main extends Sprite
 {
