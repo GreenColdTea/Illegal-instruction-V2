@@ -90,7 +90,7 @@ class SUtil
 	public static function showPopUp(message:String, title:String):Void
 	{
 		#if android
-		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
+		Tools.showAlertDialog(title, message, {name: "OK", func: null}, null);
 		#elseif (!ios || !iphonesim)
 		lime.app.Application.current.window.alert(message, title);
 		#else
