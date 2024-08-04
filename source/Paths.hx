@@ -17,7 +17,6 @@ import flixel.FlxSprite;
 import sys.io.File;
 import sys.FileSystem;
 #end
-import lime.system.System;
 import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
 import haxe.Json;
@@ -191,11 +190,11 @@ class Paths
 
 	inline public static function getPreloadPath(file:String = ''):String
         {
-        #if (android || ios)
+        /*#if (android || ios)
                 return lime.system.System.applicationStorageDirectory + '/assets/' + file;
-        #else
+        #else*/
                 return 'assets/' + file;
-        #end
+        //#end
         }
 
 	
