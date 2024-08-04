@@ -70,14 +70,14 @@ class StageData {
 		var rawJson:String = null;
 		var path:String = Paths.getPreloadPath('stages/' + stage + '.json');
 
-		#if MODS_ALLOWED
+		#if (MODS_ALLOWED && desktop)
 		var modPath:String = Paths.modFolders('stages/' + stage + '.json');
 		if(FileSystem.exists(modPath)) {
 			rawJson = File.getContent(modPath);
 		} else if(FileSystem.exists(path)) {
 			rawJson = File.getContent(path);
 		}
-		#else
+		#elseif (MODS_ALLOWED && mobile || !MODS_ALLOWED)
 		if(Assets.exists(path)) {
 			rawJson = Assets.getText(path);
 		}
