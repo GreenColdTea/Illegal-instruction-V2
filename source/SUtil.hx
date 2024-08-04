@@ -13,7 +13,7 @@ import haxe.CallStack;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import openfl.system.System;
+import flash.system.System;
 import lime.system.System as LimeSystem;
 
 /**
