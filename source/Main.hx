@@ -13,6 +13,14 @@ import openfl.display.StageScaleMode;
 import sys.FileSystem;
 import lime.system.System;
 
+#if CRASH_HANDLER
+import openfl.events.UncaughtErrorEvent;
+import haxe.CallStack;
+import haxe.io.Path;
+import sys.FileSystem;
+import sys.io.File;
+import sys.io.Process;
+#end
 
 class Main extends Sprite
 {
@@ -102,6 +110,7 @@ class Main extends Sprite
 		#end
 	}
 
+	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
 		var errMsg:String = "";
