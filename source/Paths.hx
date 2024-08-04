@@ -96,7 +96,12 @@ class Paths
 			}
 		}							   
 		// run the garbage collector for good measure lmfao
-		haxe.Memory.gc();
+		openfl.system.System.gc();
+		#if cpp
+		cpp.NativeGc.enable(true);
+		#elseif hl
+		hl.Gc.enable(true);
+		#end
 	}
 
 	// define the locally tracked assets
