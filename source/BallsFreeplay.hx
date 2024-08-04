@@ -176,12 +176,6 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.x += 325;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
-
-	    if (playables[3] == 'BFLMAO') {
-               songPlayable.scale.set(0.5, 0.5);
-	    } else {
-		 songPlayable.scale.set(4, 4);
-	    }
 		
             if(i == 0)
 
@@ -424,6 +418,12 @@ class BallsFreeplay extends MusicBeatState
         screenInfo.members[curSelected].alpha = 1;
         screenCharacters.members[curSelected].alpha = 1;
         screenPlayers.members[curSelected].alpha = 1;
+
+	if (curSelected == 3 && playables[3] == 'BFLMAO') {
+           screenPlayers.members[curSelected].scale.set(0.5, 0.5);
+        } else {
+              screenPlayers.members[curSelected].scale.set(4, 4);
+        }
     }
 	
     function doTheLoad()
