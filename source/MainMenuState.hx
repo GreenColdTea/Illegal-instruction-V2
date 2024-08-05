@@ -301,21 +301,23 @@ class MainMenuState extends MusicBeatState
 				
 		
 			}
-			if (FlxG.keys.justPressed.EIGHT)
+			#if debug									
+			if (FlxG.keys.justPressed.EIGHT #if android || _virtualpad.buttonX.justPressed #end)
 				{
 					FlxG.save.data.beatduke = true;
 					FlxG.save.data.beatchaotix = true;
 					FlxG.save.data.beatnormal = true;
 				}
-			if (FlxG.keys.justPressed.NINE)
+			if (FlxG.keys.justPressed.NINE #if android || _virtualpad.buttonY.justPressed #end)
 				{
 					MusicBeatState.switchState(new CollectionRoomState());
 				}
-			if (FlxG.keys.justPressed.FIVE)
+			if (FlxG.keys.justPressed.FIVE #if android || _virtualpad.buttonZ.justPressed #end)
 				{
 					MusicBeatState.switchState(new FreeplayState());
 				}
-			else if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonC.justPressed #end)
+			#end	
+			if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonC.justPressed #end)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
