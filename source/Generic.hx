@@ -137,7 +137,6 @@ class Generic {
 		#end
 	        }
 	    }
-	}
 		
 	
 	public static function trace(thing:Dynamic, var_name:String, alert:Bool = false) {
