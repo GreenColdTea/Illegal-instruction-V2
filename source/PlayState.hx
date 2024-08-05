@@ -4925,12 +4925,16 @@ class PlayState extends MusicBeatState
 					case 3280, 3344, 3536, 3600:
 						FlxG.camera.flash(FlxColor.BLACK, 1);
 						defaultCamZoom = 0.6;
-                                        if (ClientPrefs.shaders) {
 					case 3360:
+                                        if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.055;
+                                        }
 					case 3488:
+                                        if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.060;
+					}
 					case 3552:
+                                        if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.075;
                                         }
 					case 3668:
