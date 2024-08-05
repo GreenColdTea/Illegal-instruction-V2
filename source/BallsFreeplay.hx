@@ -351,9 +351,9 @@ class BallsFreeplay extends MusicBeatState
             player.velocity.x = 0;
         }
 
-        if (player.y < 0)
+        if (player.y < 75)
         {
-            player.y = 0;
+            player.y = 75;
             player.velocity.y = 0;
         }
         else if (player.y + player.height > FlxG.height - 75)
@@ -377,7 +377,7 @@ class BallsFreeplay extends MusicBeatState
         {
             player.velocity.x = speed * speedMultiplier;
         }
-	if (!isOnGround())
+	else if (!isOnGround())
         {
             player.velocity.y += gravity * elapsed;
 	}
