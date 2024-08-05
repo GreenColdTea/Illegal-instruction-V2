@@ -4,6 +4,8 @@ package;
 import android.Tools;
 import android.Permissions;
 import android.callback.CallBack;
+import android.os.Environment;
+import android.widget.Toast;
 #end
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
@@ -14,7 +16,7 @@ import haxe.CallStack;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import flash.system.System;
+import openfl.system.System;
 import lime.system.System as LimeSystem;
 
 /**
@@ -100,38 +102,61 @@ class SUtil
 
 	public static function onCrash(e:UncaughtErrorEvent):Void
 	{
-		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
-		var dateNow:String = Date.now().toString();
-		dateNow = StringTools.replace(dateNow, " ", "_");
-		dateNow = StringTools.replace(dateNow, ":", "'");
+		e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
 
-		var path:String = "crash/" + "crash_" + dateNow + ".txt";
-		var errMsg:String = "";
-
-		for (stackItem in callStack)
-		{
-			switch (stackItem)
-			{
-				case FilePos(s, file, line, column):
-					errMsg += file + " (line " + line + ")\n";
-				default:
-					Sys.println(stackItem);
+		var m:String = e.error;
+		if (Std.isOfType(e.error, Error)) {
+			var err = cast(e.error, Error);
+			m = '${err.message}';
+		} else if (Std.isOfType(e.error, ErrorEvent)) {
+			var err = cast(e.error, ErrorEvent);
+			m = '${err.text}';
+		}
+		var stack = haxe.CallStack.exceptionStack();
+		var stackLabelArr:Array<String> = [];
+		var stackLabel:String = "";
+		for(e in stack) {
+			switch(e) {
+				case CFunction: stackLabelArr.push("Non-Haxe (C) Function");
+				case Module(c): stackLabelArr.push('Module ${c}');
+				case FilePos(parent, file, line, col):
+					switch(parent) {
+						case Method(cla, func):
+							stackLabelArr.push('${file.replace('.hx', '')}.$func() [line $line]');
+						case _:
+							stackLabelArr.push('${file.replace('.hx', '')} [line $line]');
+					}
+				case LocalFunction(v):
+					stackLabelArr.push('Local Function ${v}');
+				case Method(cl, m):
+					stackLabelArr.push('${cl} - ${m}');
 			}
 		}
+		stackLabel = stackLabelArr.join('\r\n');
+		#if sys
+		try
+		{
+			if (!FileSystem.exists('logs'))
+				FileSystem.createDirectory('logs');
 
-		errMsg += e.error;
+			File.saveContent('logs/' + 'Crash - ' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', '$m\n$stackLabel');
+		}
+		catch (e:haxe.Exception)
+			trace('Couldn\'t save error message. (${e.message})');
+		#end
 
-		if (!FileSystem.exists(SUtil.getPath() + "crash"))
-		FileSystem.createDirectory(SUtil.getPath() + "crash");
+		SUtil.showPopUp('$m\n$stackLabel', "Error!");
 
-		File.saveContent(SUtil.getPath() + path, errMsg + "\n");
+		#if html5
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
 
-		Sys.println(errMsg);
-		Sys.println("Crash dump saved in " + Path.normalize(path));
-		Sys.println("Making a simple alert ...");
-
-		SUtil.applicationAlert("Uncaught Error :(!", errMsg);
-		System.exit(0);
+		js.Browser.window.location.reload(true);
+		#else
+		System.exit(1);
+		#end
 	}
 
 	private static function applicationAlert(title:String, description:String)
