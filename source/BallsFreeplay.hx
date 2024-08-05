@@ -90,8 +90,8 @@ class BallsFreeplay extends MusicBeatState
     var holdTimer:FlxTimer; // after this bf start running
     public var speed:Float = 125; // needs for bf's moves
     public var speedMultiplier:Float = 1.25; // bf's default walk speed
-    public var jumpSpeed:Float = 225; //how fast he can jump
-    public var gravity:Float = 425; //how long he can be in the air
+    public var jumpSpeed:Float = 275; //how fast he can jump
+    public var gravity:Float = 475; //how long he can be in the air
 
     public var numSelect:Int = 0;
 
@@ -340,25 +340,25 @@ class BallsFreeplay extends MusicBeatState
 	}
 
 	//screen barriers
-	if (player.x < -75)
+	if (player.x < -80)
         {
-            player.x = -75;
+            player.x = -80;
             player.velocity.x = 0;
         }
-        else if (player.x + player.width > FlxG.width + 75)
+        else if (player.x + player.width > FlxG.width + 80)
         {
-            player.x = FlxG.width + 75 - player.width;
+            player.x = FlxG.width + 80 - player.width;
             player.velocity.x = 0;
         }
 
-        if (player.y < 75)
+        if (player.y < 45)
         {
-            player.y = 75;
+            player.y = 45;
             player.velocity.y = 0;
         }
-        else if (player.y + player.height > FlxG.height - 75)
+        else if (player.y + player.height > FlxG.height - 45)
         {
-            player.y = FlxG.height - player.height - 75;
+            player.y = FlxG.height - player.height - 45;
             isJumping = false; // jumping system
             player.velocity.y = 0;
 	}
