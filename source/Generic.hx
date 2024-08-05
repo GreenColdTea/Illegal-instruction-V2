@@ -6,9 +6,6 @@ import sys.FileSystem;
 import android.Permissions;
 import android.os.Environment;
 import android.widget.Toast;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.app.AlertDialog;
 #elseif ios
 import UIKit.UIScrollView;
 import UIKit.UITextView;
@@ -78,70 +75,62 @@ class Generic {
 	 */
 	public static function initCrashHandler() {
             Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(u:UncaughtErrorEvent) {
-            var callStack:Array<StackItem> = CallStack.exceptionStack(true);
-            var errMsg:String = '';
+                e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
 
-            for (stackItem in callStack) {
-              switch (stackItem) {
-                case CFunction:
-                    errMsg += 'a C function\n';
-                case Module(m):
-                    errMsg += 'module ' + m + '\n';
-                case FilePos(s, file, line, column):
-                    errMsg += file + ' (line ' + line + ')\n';
-                case Method(cname, meth):
-                    errMsg += cname == null ? "<unknown>" : cname + '.' + meth + '\n';
-                case LocalFunction(n):
-                    errMsg += 'local function ' + n + '\n';
-               }
-            }
+		var m:String = e.error;
+		if (Std.isOfType(e.error, Error)) {
+			var err = cast(e.error, Error);
+			m = '${err.message}';
+		} else if (Std.isOfType(e.error, ErrorEvent)) {
+			var err = cast(e.error, ErrorEvent);
+			m = '${err.text}';
+		}
+		var stack = haxe.CallStack.exceptionStack();
+		var stackLabelArr:Array<String> = [];
+		var stackLabel:String = "";
+		for(e in stack) {
+			switch(e) {
+				case CFunction: stackLabelArr.push("Non-Haxe (C) Function");
+				case Module(c): stackLabelArr.push('Module ${c}');
+				case FilePos(parent, file, line, col):
+					switch(parent) {
+						case Method(cla, func):
+							stackLabelArr.push('${file.replace('.hx', '')}.$func() [line $line]');
+						case _:
+							stackLabelArr.push('${file.replace('.hx', '')} [line $line]');
+					}
+				case LocalFunction(v):
+					stackLabelArr.push('Local Function ${v}');
+				case Method(cl, m):
+					stackLabelArr.push('${cl} - ${m}');
+			}
+		}
+		stackLabel = stackLabelArr.join('\r\n');
+		#if sys
+		try
+		{
+			if (!FileSystem.exists('logs'))
+				FileSystem.createDirectory('logs');
 
-            errMsg += u.error;
+			File.saveContent('logs/' + 'Crash - ' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', '$m\n$stackLabel');
+		}
+		catch (e:haxe.Exception)
+			trace('Couldn\'t save error message. (${e.message})');
+		#end
 
-            try 
-	    {
-                var lmao:String = returnPath();
-                if (!FileSystem.exists(lmao + 'logs')) {
-                    FileSystem.createDirectory(lmao + 'logs');
-            }
-            File.saveContent(lmao + 'logs/' + Application.current.meta.get('file') + '-' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.log', errMsg + '\n');
-            } catch (e:Dynamic) {
-                Sys.println("Couldn't save the crash dump because:\n" + e);
-            }
+		SUtil.showPopUp('$m\n$stackLabel', "Error!");
 
-            Sys.println(errMsg);
+		#if html5
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
 
-            #if android
-            var scrollView = new ScrollView(Application.current.activity);
-            var textView = new TextView(Application.current.activity);
-            textView.setText(errMsg);
-            scrollView.addView(textView);
-
-            var builder = new AlertDialog.Builder(Application.current.activity);
-            builder.setTitle("Error!")
-                .setView(scrollView)
-                .setPositiveButton("OK", null)
-                .show();
-
-            #elseif ios
-            var scrollView = new UIScrollView();
-            var textView = new UITextView();
-            textView.setText(errMsg);
-            scrollView.addSubview(textView);
-
-            var alert = new UIAlertView();
-            alert.title = "Error!";
-            alert.message = ""; // Оставьте пустым, так как текст будет в textView
-            alert.addSubview(scrollView);
-            alert.addButtonWithTitle("OK");
-            alert.show();
-
-            #else
-            Application.current.window.alert(errMsg, 'Error!');
-            #end
-
-            System.exit(1);
-            });
+		js.Browser.window.location.reload(true);
+		#else
+		System.exit(1);
+		#end
+	      }
         }
 		
 	
