@@ -212,10 +212,10 @@ class ChartingState extends MusicBeatState
 				needsVoices: true,
 				arrowSkin: '',
 				splashSkin: 'noteSplashes',//idk it would crash if i didn't
-				player1: 'bf',
-				player2: 'dad',
+				player1: 'bfiialt',
+				player2: 'duke',
 				player3: null,
-				gfVersion: 'gf',
+				gfVersion: 'gfii-alt',
 				speed: 1,
 				stage: 'stage',
 				validScore: false
