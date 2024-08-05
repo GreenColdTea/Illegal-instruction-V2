@@ -26,6 +26,7 @@ import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxDirectionFlags;
 import lime.utils.Assets;
 import flixel.system.FlxSound;
+import haxe.io.Path;
 import openfl.utils.Assets as OpenFlAssets;
 #if MODS_ALLOWED
 import sys.FileSystem;
@@ -158,8 +159,8 @@ class BallsFreeplay extends MusicBeatState
 	    screenSong.add(characterText);
 
             var songCharacter:FlxSprite = new FlxSprite();
-            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/${characters[i]}');
-            songCharacter.animation.addByPrefix('idle', '${characters[i]}', 24, true);
+            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[i]);
+            songCharacter.animation.addByPrefix('idle', characters[i], 24, true);
             songCharacter.animation.play('idle');
             songCharacter.screenCenter();
             songCharacter.scale.set(3, 3);
@@ -176,16 +177,16 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.x += 336;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
+
+	    songPortrait.ID = i;
+            songCharacter.ID = i;
+            songPlayable.ID = i;
+	    characterText.ID = i;
 		
             if(i == 0)
 
 	    screenCharacters.add(songCharacter);
             screenPlayers.add(songPlayable);
-
-            songPortrait.ID = i;
-            songCharacter.ID = i;
-            songPlayable.ID = i;
-	    characterText.ID = i;
 
 	    if(characterText.ID == curSelected)
 		characterText.alpha = 1;
@@ -418,11 +419,18 @@ class BallsFreeplay extends MusicBeatState
         screenCharacters.members[curSelected].alpha = 1;
         screenPlayers.members[curSelected].alpha = 1;
 
-	if (curSelected == 3 && playables[3] == 'BFLMAO') {
+	if (curSelected == 3 && playables[3] == 'BFLMAO') 
+	{
            screenPlayers.members[curSelected].scale.set(0.5, 0.5);
-        } else {
-              screenPlayers.members[curSelected].scale.set(5, 5);
+        } 
+	else if (curSelected == 6 && playables[6]) 
+	{
+              screenPlayers.members[curSelected].scale.set(3, 3);
         }
+        else
+	{
+	      screenPlayers.members[curSelected].scale.set(5.5, 5.5);
+	}
     }
 	
     function doTheLoad()
