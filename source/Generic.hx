@@ -29,6 +29,7 @@ import flixel.addons.ui.FlxUIButton;
 import flixel.text.FlxText;
 import sys.io.File;
 import flixel.util.FlxColor;
+
 using StringTools;
 
 /**
@@ -125,7 +126,7 @@ class Generic {
 			trace('Couldn\'t save error message. (${e.message})');
 		#end
 
-		showPopUp('$m\n$stackLabel', "Error!");
+		SUtil.showPopUp('$m\n$stackLabel', "Error!");
 
 		#if html5
 		if (FlxG.sound.music != null)
