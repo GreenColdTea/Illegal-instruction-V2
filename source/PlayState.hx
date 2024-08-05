@@ -4697,7 +4697,9 @@ class PlayState extends MusicBeatState
                                         if (ClientPrefs.shaders) {
 						camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
 						camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
+                                        }
 					case 1872:
+                                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.05, barrelDistortion2: -0.05}, 2, {ease: FlxEase.quadInOut});
                                         }
 					case 2000:
@@ -4886,9 +4888,9 @@ class PlayState extends MusicBeatState
 							camGame.setFilters([camGlitchFilter, camFuckFilter]);
 							camHUD.setFilters([camGlitchFilter, camFuckFilter]);
 						}
-                if (ClientPrefs.shaders) {
+                                                if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.01;
-                }
+                                                }
 						FlxTween.tween(camHUD, {alpha: 1}, 0.5);
 						FlxTween.tween(this, {health: 1}, 2);
 						FlxTween.tween(fuckedBG, {alpha: 1}, 2);
@@ -4896,9 +4898,9 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.60;
 						wowZoomin = true;	
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-                if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.02;
-                }
+                                        }
 						finalStretchTrail = new FlxTrail(dad, null, 2, 12, 0.20, 0.05);
 						add(finalStretchTrail);
 					case 2848:
@@ -4906,14 +4908,14 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						holyFuckStopZoomin = true;
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.035;
-               }
+                                        }
 					case 3104:
 						defaultCamZoom = 0.6;
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.045;
-               }
+                                        }
 					case 3264, 3328, 3520, 3584:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						defaultCamZoom = 0.70;
@@ -4923,14 +4925,14 @@ class PlayState extends MusicBeatState
 					case 3280, 3344, 3536, 3600:
 						FlxG.camera.flash(FlxColor.BLACK, 1);
 						defaultCamZoom = 0.6;
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 					case 3360:
 						camFuckShader.amount = 0.055;
 					case 3488:
 						camFuckShader.amount = 0.060;
 					case 3552:
 						camFuckShader.amount = 0.075;
-               }
+                                        }
 					case 3668:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						FlxTween.tween(camGame, {alpha: 0}, 1);
