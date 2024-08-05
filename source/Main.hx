@@ -41,7 +41,7 @@ class Main extends Sprite
 	public static var fpsVar:FPS;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
-   public static var path:String = System.applicationStorageDirectory;
+        public static var path:String = System.applicationStorageDirectory;
 
 	public static function main():Void
 	{
@@ -81,6 +81,7 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
+		#if (openfl <= "9.2.0")
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
@@ -92,6 +93,10 @@ class Main extends Sprite
 			gameWidth = Math.ceil(stageWidth / zoom);
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
+		#else
+		if (zoom == -1)
+			zoom = 1;
+		#end
 
                 Generic.mode = ROOTDATA;
 		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
