@@ -147,7 +147,7 @@ class SUtil
 			trace('Couldn\'t save error message. (${e.message})');
 		#end
 
-		showPopUp('$m\n$stackLabel', "Error!");
+		showPopUp('$m\n$stackLabel', "Uncaught Error!");
 
 		#if html5
 		if (FlxG.sound.music != null)
