@@ -363,11 +363,6 @@ class BallsFreeplay extends MusicBeatState
             player.velocity.y = 0;
 	}
 
-	if (!isOnGround())
-        {
-            player.velocity.y += gravity * elapsed;
-	}
-
         // bf moves
         if (isHoldingLeft)
         {
