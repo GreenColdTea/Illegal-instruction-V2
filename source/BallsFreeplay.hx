@@ -172,8 +172,8 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(5, 5);
-            songPlayable.x += 335.5;
+            songPlayable.scale.set(5.5, 5.5);
+            songPlayable.x += 336;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 		
@@ -333,8 +333,8 @@ class BallsFreeplay extends MusicBeatState
 
 	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
+	    isJumping = true;
             player.velocity.y = -jumpSpeed;
-            isJumping = true;
 	    player.animation.play('jump');
 	    FlxG.sound.play(Paths.sound('jump'), 0.6);
 	}
@@ -376,7 +376,7 @@ class BallsFreeplay extends MusicBeatState
         {
             player.velocity.y += gravity * elapsed;
 	}
-        else
+        else if (!isHoldingLeft || !isHoldingRight || isOnGround() && !isJumping)
         {
             player.velocity.x = 0;
             player.animation.play('idle');
