@@ -6,6 +6,13 @@ import sys.FileSystem;
 import android.Permissions;
 import android.os.Environment;
 import android.widget.Toast;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.app.AlertDialog;
+#elseif ios
+import UIKit.UIScrollView;
+import UIKit.UITextView;
+import UIKit.UIAlertView;
 #end
 import openfl.system.System;
 import flixel.FlxG;
@@ -66,61 +73,77 @@ class Generic {
 	
 	/**
 	 * crash handler (it works only with exceptions thrown by haxe, for example glsl death or fatal signals wouldn't be saved using this)
-     * @author: sqirra-rng
-     * @edit: Saw (M.A. Jigsaw)
+         * @author: sqirra-rng
+         * @edit: Saw (M.A. Jigsaw)
 	 */
-	public static function initCrashHandler()
-	{
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(u:UncaughtErrorEvent)
-		{
-			var callStack:Array<StackItem> = CallStack.exceptionStack(true);
-			var errMsg:String = '';
+	public static function initCrashHandler() {
+            Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(u:UncaughtErrorEvent) {
+            var callStack:Array<StackItem> = CallStack.exceptionStack(true);
+            var errMsg:String = '';
 
-			for (stackItem in callStack)
-			{
-				switch (stackItem)
-				{
-					case CFunction:
-						errMsg += 'a C function\n';
-					case Module(m):
-						errMsg += 'module ' + m + '\n';
-					case FilePos(s, file, line, column):
-						errMsg += file + ' (line ' + line + ')\n';
-					case Method(cname, meth):
-						errMsg += cname == null ? "<unknown>" : cname + '.' + meth + '\n';
-					case LocalFunction(n):
-						errMsg += 'local function ' + n + '\n';
-				}
-			}
+            for (stackItem in callStack) {
+              switch (stackItem) {
+                case CFunction:
+                    errMsg += 'a C function\n';
+                case Module(m):
+                    errMsg += 'module ' + m + '\n';
+                case FilePos(s, file, line, column):
+                    errMsg += file + ' (line ' + line + ')\n';
+                case Method(cname, meth):
+                    errMsg += cname == null ? "<unknown>" : cname + '.' + meth + '\n';
+                case LocalFunction(n):
+                    errMsg += 'local function ' + n + '\n';
+               }
+            }
 
-			errMsg += u.error;
+            errMsg += u.error;
 
-			try
-			{
-				var lmao:String = returnPath();
-					if (!FileSystem.exists(lmao + 'logs')) {
-						FileSystem.createDirectory(lmao + 'logs');
-					}
-				    File.saveContent(lmao
-					+ 'logs/'
-					+ Application.current.meta.get('file')
-					+ '-'
-					+ Date.now().toString().replace(' ', '-').replace(':', "'")
-					+ '.log',
-					errMsg
-					+ '\n');
-			}
-			#if android
-			catch (e:Dynamic)
-			Toast.makeText("Error!\nClouldn't save the crash dump because:\n" + e, Toast.LENGTH_LONG);
-			#end
+            try 
+	    {
+                var lmao:String = returnPath();
+                if (!FileSystem.exists(lmao + 'logs')) {
+                    FileSystem.createDirectory(lmao + 'logs');
+            }
+            File.saveContent(lmao + 'logs/' + Application.current.meta.get('file') + '-' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.log', errMsg + '\n');
+            } catch (e:Dynamic) {
+                Sys.println("Couldn't save the crash dump because:\n" + e);
+            }
 
-			Sys.println(errMsg);
-			Application.current.window.alert(errMsg, 'Error!');
+            Sys.println(errMsg);
 
-			System.exit(1);
-		});
-	}
+            #if android
+            var scrollView = new ScrollView(Application.current.activity);
+            var textView = new TextView(Application.current.activity);
+            textView.setText(errMsg);
+            scrollView.addView(textView);
+
+            var builder = new AlertDialog.Builder(Application.current.activity);
+            builder.setTitle("Error!")
+                .setView(scrollView)
+                .setPositiveButton("OK", null)
+                .show();
+
+            #elseif ios
+            var scrollView = new UIScrollView();
+            var textView = new UITextView();
+            textView.setText(errMsg);
+            scrollView.addSubview(textView);
+
+            var alert = new UIAlertView();
+            alert.title = "Error!";
+            alert.message = ""; // Оставьте пустым, так как текст будет в textView
+            alert.addSubview(scrollView);
+            alert.addButtonWithTitle("OK");
+            alert.show();
+
+            #else
+            Application.current.window.alert(errMsg, 'Error!');
+            #end
+
+            System.exit(1);
+            });
+        }
+		
 	
 	public static function trace(thing:Dynamic, var_name:String, alert:Bool = false) {
 		var dateNow:String = Date.now().toString();
