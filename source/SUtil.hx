@@ -9,6 +9,8 @@ import android.widget.Toast;
 #end
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
+import openfl.events.ErrorEvent;
+import openfl.errors.Error;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.Lib;
 import haxe.CallStack.StackItem;
