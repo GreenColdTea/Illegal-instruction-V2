@@ -79,7 +79,7 @@ class Generic {
          * @edit: Saw (M.A. Jigsaw)
 	 */
 	public static function initCrashHandler() {
-            Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(u:UncaughtErrorEvent) {
+            Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(e:UncaughtErrorEvent) {
                 e.preventDefault();
 		e.stopPropagation();
 		e.stopImmediatePropagation();
