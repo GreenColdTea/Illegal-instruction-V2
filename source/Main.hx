@@ -16,9 +16,6 @@ import lime.app.Application;
 import flixel.util.FlxSave;
 
 #if CRASH_HANDLER
-import lime.ui.AlertDialog;
-import lime.ui.AlertDialogOptions;
-import lime.ui.ScrollView;
 import openfl.events.UncaughtErrorEvent;
 import openfl.events.ErrorEvent;
 import openfl.errors.Error;
