@@ -125,7 +125,7 @@ class Generic {
 			trace('Couldn\'t save error message. (${e.message})');
 		#end
 
-		SUtil.showPopUp('$m\n$stackLabel', "Error!");
+		showPopUp('$m\n$stackLabel', "Error!");
 
 		#if html5
 		if (FlxG.sound.music != null)
@@ -135,7 +135,7 @@ class Generic {
 		#else
 		System.exit(1);
 		#end
-	        }
+	        });
 	    }
 		
 	
