@@ -4629,21 +4629,23 @@ class PlayState extends MusicBeatState
 						camZooming = false;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
 						camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
+	                                }
 					case 784:
+		                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.75, barrelDistortion2: -0.5}, 1.5, {ease: FlxEase.quadInOut});
-               }
+					}
 					case 800:
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0, barrelDistortion2: 0}, 0.35,{
 							ease: FlxEase.quadInOut, onComplete: function(tw:FlxTween)
 							{
 								camGame.setFilters([]);
 								camHUD.setFilters([]);
 							}});
-                  }
+                                         }
 						iShouldKickUrFuckinAss(1);
 						camZooming = true;
 						holyFuckStopZoomin = true;
@@ -4666,18 +4668,18 @@ class PlayState extends MusicBeatState
 						camGame.setFilters([new ShaderFilter(gray.shader)]);
 					case 1736:
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGame.setFilters([barrelDistortionFilter]);
 						camHUD.setFilters([barrelDistortionFilter]);
-               }
+                                        }
 						dad.cameras = [camGame];
 						gray = null;
-               if (ClientPrefs.shaders)
+                                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -1.0, barrelDistortion2: -0.5}, 0.75,
 							{ease: FlxEase.quadInOut});
-               }
+                                        }
 					case 1744:
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0.0, barrelDistortion2: 0.0}, 0.35, {
 							ease: FlxEase.backOut,
 							onComplete: function(tw:FlxTween)
@@ -4686,39 +4688,39 @@ class PlayState extends MusicBeatState
 								camHUD.setFilters([]);
 							}
 						});
-               }
+                                        }
 						camZooming = true;
 						holyFuckStopZoomin = true;
 						camHUD.zoom += 2;
 						FlxTween.tween(camHUD, {alpha: 1}, 1, {ease: FlxEase.cubeInOut});
 					case 1870:
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
 						camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
 					case 1872:
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.05, barrelDistortion2: -0.05}, 2, {ease: FlxEase.quadInOut});
-               }
+                                        }
 					case 2000:
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0.075;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.1, barrelDistortion2: -0.1}, 2, {ease: FlxEase.quadInOut});
-               }
+                                        }
 					case 2128:
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0.1;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.15, barrelDistortion2: -0.15}, 2, {ease: FlxEase.quadInOut});
-               }
+                                        }
 					case 2224:
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0.15;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.20, barrelDistortion2: -0.20}, 2, {ease: FlxEase.quadInOut});
-               }
+                                        }
 					case 2288: 
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
-               if (ClientPrefs.shaders) {
+                                        if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0.0, barrelDistortion2: 0.0}, 2.5, {
 							ease: FlxEase.backOut,
@@ -4728,7 +4730,7 @@ class PlayState extends MusicBeatState
 								camHUD.setFilters([]);
 							}
 						});
-                }
+                                         }
 						holyFuckStopZoomin = false;
 						camZooming = false;
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
@@ -4880,7 +4882,7 @@ class PlayState extends MusicBeatState
 						scoreRandom = true;	
 						camHUD.zoom += 2;
 						FlxG.camera.flash(FlxColor.BLACK, 1);
-						if(ClientPrefs.flashing && ClientPrefs.shaders){
+						if(ClientPrefs.flashing && ClientPrefs.shaders) {
 							camGame.setFilters([camGlitchFilter, camFuckFilter]);
 							camHUD.setFilters([camGlitchFilter, camFuckFilter]);
 						}
@@ -4935,7 +4937,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(camHUD, {alpha: 0}, 1);
 				}			
 			}
-		}
+                }
 
 		if(curStep == lastStepHit) {
 			return;
