@@ -3,8 +3,9 @@ package;
 #if MODS_ALLOWED
 import sys.io.File;
 import sys.FileSystem;
-#end
+#else
 import openfl.utils.Assets;
+#end
 import haxe.Json;
 import haxe.format.JsonParser;
 import Song;
@@ -19,12 +20,6 @@ typedef StageFile = {
 	var boyfriend:Array<Dynamic>;
 	var girlfriend:Array<Dynamic>;
 	var opponent:Array<Dynamic>;
-	var hide_girlfriend:Bool;
-
-	var camera_boyfriend:Array<Float>;
-	var camera_opponent:Array<Float>;
-	var camera_girlfriend:Array<Float>;
-	var camera_speed:Null<Float>;
 }
 
 class StageData {
@@ -69,14 +64,14 @@ class StageData {
 		var rawJson:String = null;
 		var path:String = Paths.getPreloadPath('stages/' + stage + '.json');
 
-		#if (MODS_ALLOWED && desktop)
+		#if MODS_ALLOWED
 		var modPath:String = Paths.modFolders('stages/' + stage + '.json');
 		if(FileSystem.exists(modPath)) {
 			rawJson = File.getContent(modPath);
 		} else if(FileSystem.exists(path)) {
 			rawJson = File.getContent(path);
 		}
-		#elseif (MODS_ALLOWED && mobile || !MODS_ALLOWED)
+		#else
 		if(Assets.exists(path)) {
 			rawJson = Assets.getText(path);
 		}
