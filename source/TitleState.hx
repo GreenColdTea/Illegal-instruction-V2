@@ -35,7 +35,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
-import lime.Assets as LimeAssets;
+import lime.utils.Assets as LimeAssets;
 import haxe.ValueException;
 import openfl.utils.Assets as OpenFlAssets;
 
