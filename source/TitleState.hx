@@ -175,8 +175,15 @@ class TitleState extends MusicBeatState
 			#end
 
 			// da gort check :>
-			if (!Paths.fileExists('images/gort.png', IMAGE))
-				throw new ValueException("why the hell u delete gort..");
+			#if mobile
+                        if (!lime.Assets.exists("assets/images/gort.png")) {
+                            throw new ValueException("why the hell u delete gort..");
+                        }
+                        #else
+                        if (!Paths.fileExists('images/gort.png', IMAGE)) {
+                            throw new ValueException("why the hell u delete gort..");
+                        }
+                        #end
 
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
