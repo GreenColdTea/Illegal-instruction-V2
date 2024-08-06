@@ -225,7 +225,7 @@ class Character extends FlxSprite
 						}
 					}
 				} else {
-					quickAnimAdd('idle', 'BF idle dance');
+					quickAnimAdd('idle', 'idle');
 				}
 				//trace('Loaded file to character ' + curCharacter);
 		}
