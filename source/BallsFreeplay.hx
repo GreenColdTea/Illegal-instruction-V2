@@ -173,8 +173,8 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(5.5, 5.5);
-            songPlayable.x += 336;
+            songPlayable.scale.set(6, 6);
+            songPlayable.x += 360;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
 
@@ -231,9 +231,9 @@ class BallsFreeplay extends MusicBeatState
         add(player);
 
 	#if !android
-        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY\nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
         #else
-        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY\nTHEMES');
+        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
@@ -427,7 +427,7 @@ class BallsFreeplay extends MusicBeatState
         }
         else
 	{
-	      screenPlayers.members[curSelected].scale.set(5.5, 5.5);
+	      screenPlayers.members[curSelected].scale.set(6, 6);
 	}
     }
 	
