@@ -119,6 +119,12 @@ workflows:
           inputs:
             - content: |-
                 haxelib run lime build android --app-version="4.0.0-${BITRISE_BUILD_NUMBER}"
+      - script@1:
+          title: Find APK
+          inputs:
+            - content: |-
+                echo "Looking for APK files..."
+                find $BITRISE_SOURCE_DIR -name "*.apk"
       - deploy-to-bitrise-io@1:
           inputs:
             - notify_user_groups: ""
