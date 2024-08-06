@@ -44,7 +44,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hxcpp 4.2.1 > /dev/null
           haxelib install openfl 9.2.1
-          haxelib git flixel https://github.com/MobilePorting/flixel-0.6.3.git
+          haxelib install flixel 4.11.0
           haxelib install lime 7.9.0
           haxelib run lime setup flixel
           haxelib install flixel-tools
