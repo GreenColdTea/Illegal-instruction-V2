@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import openfl.utils.Assets;
+import openfl.system.System;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
@@ -131,6 +132,8 @@ class CoolUtil
 	public static function browserLoad(site:String) {
 		#if linux
 		Sys.command('/usr/bin/xdg-open', [site]);
+		#elseif mobile
+		openfl.system.System.openURL(site);
 		#else
 		FlxG.openURL(site);
 		#end
