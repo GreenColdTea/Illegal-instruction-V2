@@ -246,19 +246,6 @@ class BallsFreeplay extends MusicBeatState
         addVirtualPad(LEFT_FULL, A_B_X_Y);
         #end
 
-	if (ClientPrefs.ducclyMix)
-        {
-	    FlxG.sound.music.stop();
-            FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
-            FlxG.sound.music.fadeIn(4, 0, 0.85);
-        }
-        else
-        {
-	    FlxG.sound.music.stop();
-            FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
-            FlxG.sound.music.fadeIn(4, 0, 0.85);
-        }
-
         super.create();
     }
 
@@ -267,13 +254,21 @@ class BallsFreeplay extends MusicBeatState
 
     override function update(elapsed:Float)
     {
-        if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && !ClientPrefs.ducclyMix)
+        if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonX.justPressed #end)
         {
-           ClientPrefs.ducclyMix = true;
-        }
-        if (#if !android FlxG.keys.justPressed.THREE #else _virtualpad.buttonX.justPressed #end && ClientPrefs.ducclyMix)
-        {
-           ClientPrefs.ducclyMix = false;
+            ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
+            FlxG.sound.music.stop();
+
+            if (ClientPrefs.ducclyMix)
+            {
+                FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
+		FlxG.sound.music.fadeIn(4, 0, 0.85);
+            }
+            else
+            {
+                FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
+		FlxG.sound.music.fadeIn(4, 0, 0.85);
+            }
         }
 	    
         if (controls.UI_UP_P)
