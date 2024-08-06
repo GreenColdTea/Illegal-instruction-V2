@@ -247,8 +247,8 @@ class TitleState extends MusicBeatState
 
 		logoTower = new FlxSprite();
 		logoTower.loadGraphic(Paths.image('title/logothing'));
-		logoTower.scale.x = 0.8;
-		logoTower.scale.y = 0.8;
+		logoTower.scale.x = 0.69;
+		logoTower.scale.y = 0.69;
 		logoTower.antialiasing = false;
 		logoTower.screenCenter();
 		logoTower.y -= 15;
@@ -288,7 +288,7 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-        FlxG.sound.play(Paths.sound('theShits'), 0, false, null, false, function()
+            FlxG.sound.play(Paths.sound('theShits'), 0, false, null, false, function()
             {
                 skipIntro();
             });
