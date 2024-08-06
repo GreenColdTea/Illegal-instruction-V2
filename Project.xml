@@ -30,10 +30,10 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" allow-high-dpi="true"/>
 
 	<!--Switch-specific-->
-	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
+	<window if="switch" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="true" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -113,6 +113,7 @@
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxcpp-debug-server" if="desktop"/>
+	<haxelib name="echo-flixel"/>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
@@ -120,7 +121,6 @@
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
   
-        <haxelib name="echo-flixel"/>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -166,8 +166,8 @@
         <haxedef name="HXCPP_STACK_LINE" />
         <haxedef name="HXCPP_STACK_TRACE"/>
 
-	<!--Enable this for Nape release builds for a serious peformance improvement-->
-	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
@@ -189,4 +189,5 @@
 	<icon path="art/iconOG.png" />
 
 	<haxedef name='no-deprecation-warnings' />
+	<haxedef name="message.reporting" value="pretty" />
 </project>
