@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: patch-1
+name: main
 
 # Controls when the action will run. 
 on:
@@ -54,7 +54,7 @@ jobs:
           haxelib install hscript 2.4.0
           haxelib git hxCodec https://github.com/MobilePorting/hxCodec-0.6.3.git
           haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp.git
-          haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-legacy
+          haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib git extension-androidtools https://github.com/Edger228/androidtools.git
           haxelib install hxcpp-debug-server
           haxelib install echo
