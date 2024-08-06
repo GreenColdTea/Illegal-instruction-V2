@@ -133,7 +133,7 @@ class CoolUtil
 		#if linux
 		Sys.command('/usr/bin/xdg-open', [site]);
 		#elseif mobile
-		openfl.system.System.openURL(site);
+		lime.system.System.openURL(site);
 		#else
 		FlxG.openURL(site);
 		#end
