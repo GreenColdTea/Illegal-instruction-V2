@@ -121,4 +121,4 @@ workflows:
                 haxelib run lime build android --app-version="4.0.0-${BITRISE_BUILD_NUMBER}"
       - deploy-to-bitrise-io@1:
           inputs:
-            - deploy_path: "/bitrise/src/export/release/android/bin/app/build/outputs/apk/debug/Illegarl-debug.apk"
+            - deploy_path: "/bitrise/src/export/release/android/bin/app/build/outputs/apk/release/*.apk"
