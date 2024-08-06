@@ -28,9 +28,9 @@ class StoryMenuState extends MusicBeatState
 		"duke",
 		"chaotix",
 		"chotix",
-      "ashura",
-		"wechnia",
-		"wechidna"
+                "ashura",
+		"wechidna",
+		"wechnia"
 	];
 	var scoreText:FlxText;
 
