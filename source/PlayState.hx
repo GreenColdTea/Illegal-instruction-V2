@@ -1649,51 +1649,55 @@ class PlayState extends MusicBeatState
 
 		var daSong:String = Paths.formatToSongPath(curSong);
 	
-		switch (daSong)
-		{
-			case  'breakout' | 'soulless-endeavors' | 'long-sky':
-				add(blackFuck);
-				startCircle.loadGraphic(Paths.image('openings/' + daSong + '_title_card', 'exe'));
-				startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
-				startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
-				if (daSong == 'breakout')
-					startCircle.scale.set(2, 1.5);
-				//startCircle.setGraphicSize(Std.int(startCircle.width * 0.6));
-				startCircle.alpha = 0;
-				startCircle.screenCenter();
-				add(startCircle);
+		if (startCircle != null)
+                {
+                    add(blackFuck);
 
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
-				});
+                    startCircle.loadGraphic(Paths.image('openings/' + daSong + '_title_card', 'exe'));
+                    startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
+                    startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
 
-				new FlxTimer().start(2.2, function(tmr:FlxTimer)
-				{
-					FlxTween.tween(blackFuck, {alpha: 0}, 2, {
-						onComplete: function(twn:FlxTween)
-						{
-							remove(blackFuck);
-							blackFuck.destroy();
-							startCircle.animation.play('idle');
-						}
-					});
-					FlxTween.tween(startCircle, {alpha: 1}, 4, {
-						onComplete: function(twn:FlxTween)
-						{
-							remove(startCircle);
-							startCircle.destroy();
-						}
-					});
-				});
-				new FlxTimer().start(0.3, function(tmr:FlxTimer)
-				{
-					startCountdown();
-				});
-				
-			default:
-				startCountdown();
-		}
+                    if (daSong == 'breakout')
+                        startCircle.scale.set(2, 1.5);
+
+                    startCircle.alpha = 0;
+                    startCircle.screenCenter();
+                    add(startCircle);
+
+                    new FlxTimer().start(1, function(tmr:FlxTimer)
+                    {
+                        FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
+                    });
+
+                    new FlxTimer().start(2.2, function(tmr:FlxTimer)
+                    {
+                        FlxTween.tween(blackFuck, {alpha: 0}, 2, {
+                            onComplete: function(twn:FlxTween)
+                            {
+                                remove(blackFuck);
+                                blackFuck.destroy();
+                                startCircle.animation.play('idle');
+                            }
+                        });
+                        FlxTween.tween(startCircle, {alpha: 1}, 4, {
+                            onComplete: function(twn:FlxTween)
+                            {
+                                remove(startCircle);
+                                startCircle.destroy();
+                            }
+                        });
+                    });
+
+                    new FlxTimer().start(0.3, function(tmr:FlxTimer)
+                    {
+                        startCountdown();
+                    });
+                }
+                else
+                {
+                    startCountdown();
+                }
+	
 		
 		RecalculateRating();
 
