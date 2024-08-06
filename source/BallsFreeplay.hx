@@ -397,9 +397,12 @@ class BallsFreeplay extends MusicBeatState
     //song selection changing function
     function changeSelection(direction:Int)
     {
-        var newIndex:Int = curSelected + direction;
-        if (newIndex < 0) newIndex = songs.length - 1;
-        else if (newIndex >= songs.length) newIndex = 0;
+        curSelected += direction;
+        var newIndex:Int = curSelected;
+        if (newIndex < 0) 
+	    newIndex = songs.length - 1;
+        else if (newIndex >= songs.length) 
+	    newIndex = 0;
 
         updateSelection(newIndex);
     }
