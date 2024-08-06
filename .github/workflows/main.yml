@@ -14,6 +14,7 @@ jobs:
   buildAndroid:
     name: buildAndroid
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Checkout
         uses: actions/checkout@v1.2.0
@@ -30,7 +31,6 @@ jobs:
           distribution: 'zulu'
           java-version: 18
       
-
       - name: Setup Android SDK
         uses: android-actions/setup-android@main
 
@@ -42,7 +42,8 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib install openfl 9.1.0
+          haxelib install hxcpp 4.2.1 > /dev/null
+          haxelib install openfl 9.2.1
           haxelib git flixel https://github.com/MobilePorting/flixel-0.6.3.git
           haxelib install lime 7.9.0
           haxelib run lime setup flixel
@@ -50,14 +51,15 @@ jobs:
           haxelib install flixel-ui 2.4.0
           haxelib install flixel-addons 2.11.0
           haxelib install tjson
+          haxelib install newgrounds
           haxelib install hxjsonast
           haxelib install hscript 2.4.0
           haxelib git hxCodec https://github.com/MobilePorting/hxCodec-0.6.3.git
-          haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp.git
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib git extension-androidtools https://github.com/Edger228/androidtools.git
           haxelib install echo
           haxelib install echo-flixel
+          haxelib install hxcpp-debug-server
           haxelib list
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
@@ -73,16 +75,16 @@ jobs:
           haxelib set openfl 9.1.0
           haxelib set flixel-ui 2.4.0
           haxelib set hscript 2.4.0
+          haxelib set hxcpp 4.2.1
           haxelib set flixel-addons 2.11.0
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
-        run: haxelib run lime build android
+        run: haxelib run lime build android --app-version="4.0.0-${{ github.run_id}}"
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
         with:
           name: buildAndroid
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
-          
