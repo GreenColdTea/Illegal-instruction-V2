@@ -35,6 +35,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
+import lime.Assets as LimeAssets;
 import haxe.ValueException;
 import openfl.utils.Assets as OpenFlAssets;
 
@@ -176,7 +177,7 @@ class TitleState extends MusicBeatState
 
 			// da gort check :>
 			#if mobile
-                        if (!lime.Assets.exists("assets/images/gort.png")) {
+                        if (!LimeAssets.exists("assets/images/gort.png")) {
                             throw new ValueException("why the hell u delete gort..");
                         }
                         #else
