@@ -248,11 +248,11 @@ class TitleState extends MusicBeatState
 
 		logoTower = new FlxSprite();
 		logoTower.loadGraphic(Paths.image('title/logothing'));
-		logoTower.scale.x = 0.69;
-		logoTower.scale.y = 0.69;
+		logoTower.scale.x = 0.6;
+		logoTower.scale.y = 0.6;
 		logoTower.antialiasing = false;
 		logoTower.screenCenter();
-		logoTower.y -= 15;
+		logoTower.y -= 42;
 
 		floorStuff = new FlxSprite(0, 0);
 		floorStuff.frames = Paths.getSparrowAtlas('title/floor');
