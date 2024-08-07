@@ -43,7 +43,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hxcpp 4.2.1 > /dev/null
           haxelib install openfl 9.2.1
-          haxelib install flixel 4.11.0
+          haxelib --never install flixel 4.11.0
           haxelib install lime 8.0.1
           haxelib run lime setup flixel
           haxelib install flixel-tools
@@ -81,7 +81,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
-        run: haxelib lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
+        run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
         
       - name: List APK files
         run: ls -R export/release/android/bin/app/build/outputs/apk/debug
