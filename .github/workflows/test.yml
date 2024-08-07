@@ -24,22 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1.2.0
 
-      - name: Setup Android NDK
-        uses: nttld/setup-ndk@main
-        id: setup-ndk
-        with:
-          ndk-version: r21e
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@main
-        with:
-          distribution: 'zulu'
-          java-version: 18
-      
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@main
-
       - name: Setup Haxe
         uses: krdlab/setup-haxe@v1
         with:
@@ -73,8 +57,8 @@ jobs:
         run: |
           haxelib run lime setup -alias -y
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
-          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
-          haxelib run lime config JAVA_HOME $JAVA_HOME
+          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
+          haxelib run lime config JAVA_HOME $JAVA_HOME_17_X64
           haxelib run lime config ANDROID_SETUP true
           haxelib set lime 8.0.1
           haxelib set openfl 9.2.1
@@ -82,8 +66,6 @@ jobs:
           haxelib set hscript 2.4.0
           haxelib set flixel 4.11.0
           haxelib set flixel-addons 2.11.0
-        env:
-          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
         run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
