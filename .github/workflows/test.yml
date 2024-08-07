@@ -46,7 +46,6 @@ jobs:
           haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp.git --quiet
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit --quiet
           haxelib git extension-androidtools https://github.com/Edger228/androidtools.git --quiet
-          haxelib install hxcpp-debug-server --quiet
           haxelib install echo --quiet
           haxelib install echo-flixel --quiet
           haxelib list
