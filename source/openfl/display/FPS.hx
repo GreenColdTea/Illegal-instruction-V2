@@ -47,7 +47,11 @@ class FPS extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
+		#if (openfl <= '9.1.0')
 		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 12, color);
+		#else
+		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 16, color);
+		#end
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS: ";
