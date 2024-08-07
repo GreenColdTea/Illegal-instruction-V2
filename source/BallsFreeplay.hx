@@ -221,7 +221,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.y += 75;
 	add(screenLogo);
 
-	player = new FlxSprite(450, 250);
+	player = new FlxSprite(455, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -269,6 +269,17 @@ class BallsFreeplay extends MusicBeatState
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
             FlxG.sound.music.stop();
+
+	    if (ClientPrefs.ducclyMix)
+            {
+                   FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
+		   FlxG.sound.music.fadeIn(4, 0, 0.85);
+            }
+            else
+            {
+                   FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
+		   FlxG.sound.music.fadeIn(4, 0, 0.85);
+	    }
         }
 	    
         if (controls.UI_UP_P)
@@ -289,7 +300,7 @@ class BallsFreeplay extends MusicBeatState
         }
 
         // bf's control buttons settinngs
-        if (controls.UI_LEFT_P)
+        if (controls.UI_LEFT_P && !controls.UI_RIGHT_P)
         {
             player.flipX = false;
             if (!isHoldingLeft)
@@ -299,7 +310,7 @@ class BallsFreeplay extends MusicBeatState
                 holdTimer.start(1, onHoldComplete);
             }
         }
-        else if (controls.UI_LEFT_R)
+        else if (controls.UI_LEFT_R && !controls.UI_RIGHT_R)
         {
             player.flipX = false;
             isHoldingLeft = false;
@@ -308,7 +319,7 @@ class BallsFreeplay extends MusicBeatState
             holdTimer.cancel();
         }
 
-        if (controls.UI_RIGHT_P)
+        if (controls.UI_RIGHT_P && !controls.UI_LEFT_P)
         {
             player.flipX = true;
             if (!isHoldingRight)
@@ -318,7 +329,7 @@ class BallsFreeplay extends MusicBeatState
                 holdTimer.start(1, onHoldComplete);
             }
         }
-        else if (controls.UI_RIGHT_R)
+        else if (controls.UI_RIGHT_R && !controls.UI_LEFT_R)
         {
             player.flipX = true;
             isHoldingRight = false;
@@ -330,8 +341,6 @@ class BallsFreeplay extends MusicBeatState
 	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
 	    isJumping = true;
-	    isHoldingRight = false;
-	    isHoldingLeft = false;
             player.velocity.y = -jumpSpeed;
 	    player.animation.play('jump');
 	    FlxG.sound.play(Paths.sound('jump'), 0.6);
@@ -379,7 +388,6 @@ class BallsFreeplay extends MusicBeatState
         {
             player.velocity.x = 0;
             player.animation.play('idle');
-
         }
 
         super.update(elapsed);
@@ -451,7 +459,7 @@ class BallsFreeplay extends MusicBeatState
     //timer end function
     function onHoldComplete(timer:FlxTimer):Void
     {
-        if (isHoldingLeft || isHoldingRight)
+        if (isHoldingLeft && !isHoldingRight || isHoldingRight && !isHoldingLeft)
         {
             player.animation.play('run');
             speedMultiplier = 2.05;
