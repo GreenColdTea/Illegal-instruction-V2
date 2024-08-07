@@ -376,15 +376,15 @@ class BallsFreeplay extends MusicBeatState
 	}
 
         // bf moves
-        if (isHoldingLeft)
+        if (isHoldingLeft && !isHoldingRight)
         {
             player.velocity.x = -speed * speedMultiplier;
         }
-        else if (isHoldingRight)
+        else if (isHoldingRight && !isHoldingLeft)
         {
             player.velocity.x = speed * speedMultiplier;
         }
-        else
+        else if (!isHoldingRight || !isHoldingLeft)
         {
             player.velocity.x = 0;
             player.animation.play('idle');
