@@ -5,6 +5,10 @@ import llua.State;
 import llua.Convert;
 #end
 
+#if android
+import android.Hardware;
+#end
+
 import animateatlas.AtlasFrameMaker;
 import flixel.FlxG;
 import flixel.addons.effects.FlxTrail;
@@ -67,8 +71,12 @@ class FunkinLua {
 		var result:Dynamic = LuaL.dofile(lua, script);
 		var resultStr:String = Lua.tostring(lua, result);
 		if(resultStr != null && result != 0) {
-			lime.app.Application.current.window.alert(resultStr, 'Error on .LUA script!');
-			trace('Error on .LUA script! ' + resultStr);
+			trace('Error on lua script! ' + resultStr);
+			#if (windows || android)
+			lime.app.Application.current.window.alert(resultStr, 'Error on lua script!');
+			#else
+			luaTrace('Error loading lua script: "$script"\n' + resultStr, true, false, FlxColor.RED);
+			#end
 			lua = null;
 			return;
 		}
