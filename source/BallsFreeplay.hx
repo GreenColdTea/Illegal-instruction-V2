@@ -423,17 +423,17 @@ class BallsFreeplay extends MusicBeatState
 	if (curSelected == 3 && playables[3] == 'BFLMAO') 
 	{
            screenPlayers.members[curSelected].scale.set(0.5, 0.5);
-	   songPlayable.y -= 60;
+	   screenPlayers.members[curSelected].y -= 60;
         } 
 	else if (curSelected == 6 && playables[6] == 'mighty') 
 	{
               screenPlayers.members[curSelected].scale.set(3, 3);
-	      songPlayable.y -= 70;
+	      screenPlayers.members[curSelected].y -= 70;
         }
         else
 	{
 	      screenPlayers.members[curSelected].scale.set(5.5, 5.5);
-	      songPlayable.y -= 50;
+	      screenPlayers.members[curSelected].y -= 50;
 	}
     }
 	
