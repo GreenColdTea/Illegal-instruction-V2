@@ -81,10 +81,10 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
-        run: haxelib run lime build android -release --app-version="4.0.0-${{ github.run_id}}"
+        run: haxelib lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
         
       - name: List APK files
-        run: ls -R app/build/outputs/apk/
+        run: ls -R export/release/android/bin/app/build/outputs/apk/debug
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
