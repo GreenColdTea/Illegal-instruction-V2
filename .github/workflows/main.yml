@@ -82,6 +82,9 @@ jobs:
 
       - name: Compile
         run: haxelib run lime build android -release --app-version="4.0.0-${{ github.run_id}}"
+        
+      - name: List APK files
+        run: ls -R app/build/outputs/apk/
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
