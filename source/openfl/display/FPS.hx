@@ -49,7 +49,7 @@ class FPS extends TextField
 		mouseEnabled = false;
 		#if (openfl <= '9.1.0')
 		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 12, color);
-		#else
+		#elseif (openfl > '9.1.0')
 		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 16, color);
 		#end
 		autoSize = LEFT;
