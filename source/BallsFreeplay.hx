@@ -106,10 +106,10 @@ class BallsFreeplay extends MusicBeatState
 
         FlxG.mouse.visible = true;
 
-        #if windows
-		  // Updating Discord Rich Presence
-		  DiscordClient.changePresence("Selecting The New World.", null);
-		  #end
+        #if desktop
+        // Updating Discord Rich Presence
+	DiscordClient.changePresence("Selecting The New World.", null);
+	#end
 
         var blackFuck:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
         blackFuck.screenCenter();
@@ -173,7 +173,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
-            songPlayable.scale.set(6, 6);
+            songPlayable.scale.set(5.5, 5.5);
             songPlayable.x += 360;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
@@ -246,6 +246,17 @@ class BallsFreeplay extends MusicBeatState
         addVirtualPad(LEFT_FULL, A_B_X_Y);
         #end
 
+	if (ClientPrefs.ducclyMix)
+        {
+                FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
+		FlxG.sound.music.fadeIn(4, 0, 0.85);
+        }
+        else
+        {
+                FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
+		FlxG.sound.music.fadeIn(4, 0, 0.85);
+	}
+
         super.create();
     }
 
@@ -258,17 +269,6 @@ class BallsFreeplay extends MusicBeatState
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
             FlxG.sound.music.stop();
-
-            if (ClientPrefs.ducclyMix)
-            {
-                FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
-		FlxG.sound.music.fadeIn(4, 0, 0.85);
-            }
-            else
-            {
-                FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
-		FlxG.sound.music.fadeIn(4, 0, 0.85);
-            }
         }
 	    
         if (controls.UI_UP_P)
@@ -423,14 +423,17 @@ class BallsFreeplay extends MusicBeatState
 	if (curSelected == 3 && playables[3] == 'BFLMAO') 
 	{
            screenPlayers.members[curSelected].scale.set(0.5, 0.5);
+	   songPlayable.y -= 60;
         } 
 	else if (curSelected == 6 && playables[6] == 'mighty') 
 	{
               screenPlayers.members[curSelected].scale.set(3, 3);
+	      songPlayable.y -= 70;
         }
         else
 	{
-	      screenPlayers.members[curSelected].scale.set(6, 6);
+	      screenPlayers.members[curSelected].scale.set(5.5, 5.5);
+	      songPlayable.y -= 50;
 	}
     }
 	
