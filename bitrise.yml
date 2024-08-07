@@ -127,4 +127,5 @@ workflows:
                 find $BITRISE_SOURCE_DIR -name "*.apk"
       - deploy-to-bitrise-io@1:
           inputs:
-            - apk_path: "bitrise/src/export/release/android/bin/app/build/outputs/apk/debug/Illegarl-debug.apk"
+            - apk_path: "/bitrise/src/export/release/android/bin/app/build/outputs/apk/debug/Illegarl-debug.apk"
+    
