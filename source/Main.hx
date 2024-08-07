@@ -104,6 +104,8 @@ class Main extends Sprite
 			zoom = 1;
 		#end
 
+		SUtil.getStorageForLogs();
+
                 Generic.mode = ROOTDATA;
 		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 			FileSystem.createDirectory(Generic.returnPath() + 'assets');
