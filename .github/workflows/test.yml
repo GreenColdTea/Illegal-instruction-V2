@@ -22,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1.2.0
+        uses: actions/checkout@main
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@v1
+        uses: krdlab/setup-haxe@v1.2.0
         with:
           haxe-version: 4.2.5
 
@@ -50,8 +50,6 @@ jobs:
           haxelib install echo --quiet
           haxelib install echo-flixel --quiet
           haxelib list
-      - name: Create Version Tag
-        run: echo "${{github.run_id}}" > VERSION
 
       - name: Setup Lime
         run: |
@@ -65,13 +63,13 @@ jobs:
           haxelib set hscript 2.4.0
           haxelib set flixel 4.11.0
           haxelib set flixel-addons 2.11.0
-        #  haxelib set flixel-ui 2.4.0
 
       - name: Compile
-        run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
+        run: haxelib run lime build android
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
         with:
-          name: buildAndroid
-          path: export/release/android/bin/app/build/outputs/apk/debug
+          name: androidBuild
+          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
