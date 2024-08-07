@@ -86,6 +86,22 @@ class SUtil
 		#end
 	}
 
+	public static function getStorageForLogs()
+	{
+		if (!Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE))
+		{
+                        Permissions.requestPermission([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
+			SUtil.applicationAlert('Permissions', 'Storage permissions is necessary for writing error logs.' + 'If you arent accepted, the error log wont be written on your device' + '\n' + 'Press Ok to continue');
+		}
+
+		if (Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE))
+		{
+			if (!FileSystem.exists(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file'))) {
+				FileSystem.createDirectory(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file'));
+			}
+		}
+	}
+
 	public static function gameCrashCheck()
 	{
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
