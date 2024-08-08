@@ -598,11 +598,7 @@ class PlayState extends MusicBeatState
                                 }
 
 				entranceBG = new FlxSprite(-325, -50);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceBG.loadGraphic(Paths.image('entrance/bg', 'exe'));
-		                } else {
-				entranceBG.pixels = OpenFlAssets.getBitmapData(Paths.image('enteance/bg', 'exe'));
-		                }
 				entranceBG.scrollFactor.set(0.6, 1);
 				entranceBG.scale.set(1.1, 1.1);
 				entranceBG.antialiasing = true;
@@ -614,11 +610,7 @@ class PlayState extends MusicBeatState
 				entranceClock.antialiasing = true;
 
 				entranceIdk = new FlxSprite(-355, -50);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceIdk.loadGraphic(Paths.image('entrance/idk', 'exe'));
-		                } else {
-				entranceIdk.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/idk', 'exe'));
-		                }
 				entranceIdk.scrollFactor.set(0.7, 1);
 				entranceIdk.scale.set(1.1, 1.1);
 				entranceIdk.antialiasing = true;
@@ -630,11 +622,7 @@ class PlayState extends MusicBeatState
 				entranceFloor.antialiasing = true;
 
 				entranceOver = new FlxSprite(-325, -125);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceOver.loadGraphic(Paths.image('entrance/over', 'exe'));
-		                } else {
-				entranceOver.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/over', 'exe'));
-		                }
 				entranceOver.scrollFactor.set(1.05, 1);
 				entranceOver.scale.set(1.1, 1.1);
 				entranceOver.antialiasing = true;
@@ -642,33 +630,21 @@ class PlayState extends MusicBeatState
 				//-- haha fuck you im hardcoding the stages!!!!!!!!
 
 				entranceSpookyBG = new FlxSprite(-325, -50);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyBG.loadGraphic(Paths.image('entrance/scary/bg2', 'exe'));
-		                } else {
-				entranceSpookyBG.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/bg2', 'exe'));
-		                }
 				entranceSpookyBG.scrollFactor.set(0.6, 1);
 				entranceSpookyBG.scale.set(1.1, 1.1);
 				entranceSpookyBG.antialiasing = true;
 				entranceSpookyBG.visible = false;
 
 				entranceSpookyClock = new FlxSprite(-450, -50);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyClock.loadGraphic(Paths.image('entrance/scary/clock2', 'exe'));
-		                } else {
-				entranceSpookyClock.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/clock2', 'exe'));
-		                }
 				entranceSpookyClock.scrollFactor.set(0.8, 1);
 				entranceSpookyClock.scale.set(1.1, 1.1);
 				entranceSpookyClock.antialiasing = true;
 				entranceSpookyClock.visible = false;
 
 				entranceSpookyIdk = new FlxSprite(-355, -50);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyIdk.loadGraphic(Paths.image('entrance/scary/idk2', 'exe'));
-		                } else {
-				entranceSpookyIdk.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/idk2', 'exe'));
-		                }
 				entranceSpookyIdk.scrollFactor.set(0.7, 1);
 				entranceSpookyIdk.scale.set(1.1, 1.1);
 				entranceSpookyIdk.antialiasing = true;
@@ -682,11 +658,7 @@ class PlayState extends MusicBeatState
 				entranceSpookyFloor.visible = false;
 
 				entranceSpookyOver = new FlxSprite(-325, -125);
-				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyOver.loadGraphic(Paths.image('entrance/scary/over2', 'exe'));
-		                } else {
-				entranceSpookyOver.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/over2', 'exe'));
-		                }
 				entranceSpookyOver.scrollFactor.set(1.05, 1);
 				entranceSpookyOver.scale.set(1.1, 1.1);
 				entranceSpookyOver.antialiasing = true;
@@ -716,11 +688,7 @@ class PlayState extends MusicBeatState
 				add(soulSky);
 
 				soulBalls = new FlxSprite(-246, -239);
-				if (!ClientPrefs.adaptiveCache) {
 				soulBalls.loadGraphic(Paths.image('soulless/balls', 'exe'));
-				} else {
-				soulBalls.pixels = OpenFlAssets.getBitmapData(Paths.image('soulless/balls', 'exe'));
-				}
 				soulBalls.scrollFactor.set(0.5, 0.5);
 				soulBalls.scale.set(1, 1);
 				soulBalls.antialiasing = true;
@@ -734,22 +702,14 @@ class PlayState extends MusicBeatState
 				add(soulRocks);
 
 				soulKai = new FlxSprite(-366, -239);
-				if (!ClientPrefs.adaptiveCache) {
 				soulKai.loadGraphic(Paths.image('soulless/metal', 'exe'));
-				} else {
-				soulKai.pixels = OpenFlAssets.getBitmapData(Paths.image('soulless/metal', 'exe'));
-				}
 				soulKai.scrollFactor.set(0.9, 0.9);
 				soulKai.scale.set(1, 1);
 				soulKai.antialiasing = true;
 				add(soulKai);
 
 				soulFrontRocks = new FlxSprite(-246, -239);
-				if (!ClientPrefs.adaptiveCache) {
 				soulFrontRocks.loadGraphic(Paths.image('soulless/rocksFront', 'exe'));
-				} else {
-				soulFrontRocks.pixels = OpenFlAssets.getBitmapData(Paths.image('soulless/rocksFront', 'exe'));
-				}
 				soulFrontRocks.scrollFactor.set(1.0, 1.0);
 				soulFrontRocks.scale.set(1.2, 1.2);
 				soulFrontRocks.antialiasing = true;
@@ -804,11 +764,7 @@ class PlayState extends MusicBeatState
 				defaultCamZoom = 0.6;
 
 				vistaBG = new FlxSprite(-450, -250);
-				if (!ClientPrefs.adaptiveCache) {
 				vistaBG.loadGraphic(Paths.image('chaotix/vistaBg', 'exe'));
-		                } else {
-				vistaBG.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaBg', 'exe'));
-		                }
 				vistaBG.scrollFactor.set(0.6, 1);
 				vistaBG.scale.set(1.1, 1.1);
 				vistaBG.antialiasing = true;
@@ -829,22 +785,14 @@ class PlayState extends MusicBeatState
 				add(vistaGrass);
 
 				vistaBush = new FlxSprite(-460, -230);
-				if (!ClientPrefs.adaptiveCache) {
 				vistaBush.loadGraphic(Paths.image('chaotix/vistaBush', 'exe'));
-		                } else {
-				vistaBush.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaBush', 'exe'));
-		                }
-		 		vistaBush.scrollFactor.set(0.9, 1);
+				vistaBush.scrollFactor.set(0.9, 1);
 				vistaBush.scale.set(1.1, 1.1);
 				vistaBush.antialiasing = true;
 				add(vistaBush);
 
 				vistaTree = new FlxSprite(-460, -230);
-				if (!ClientPrefs.adaptiveCache) {
 				vistaTree.loadGraphic(Paths.image('chaotix/vistaTree', 'exe'));
-		                } else {
-				vistaTree.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaTree', 'exe'));
-		                }
 				vistaTree.scrollFactor.set(0.9, 1);
 				vistaTree.scale.set(1.1, 1.1);
 				vistaTree.antialiasing = true;
@@ -925,11 +873,7 @@ class PlayState extends MusicBeatState
 				//fucked mode achieved
 
 				fuckedBG = new FlxSprite(-450, -250);
-				if (!ClientPrefs.adaptiveCache) {
 				fuckedBG.loadGraphic(Paths.image('chaotix/fucked/fuckedBg', 'exe'));
-		                } else {
-				fuckedBG.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/fucked/fuckedBg', 'exe'));
-		                }
 				fuckedBG.scrollFactor.set(0.6, 1);
 				fuckedBG.scale.set(1.1, 1.1);
 				fuckedBG.antialiasing = true;
@@ -950,11 +894,7 @@ class PlayState extends MusicBeatState
 				add(fuckedGrass);
 
 				fuckedTree = new FlxSprite(-460, -220);
-				if (!ClientPrefs.adaptiveCache) {
 				fuckedTree.loadGraphic(Paths.image('chaotix/fucked/fuckedTrees', 'exe'));
-		                } else {
-				fuckedTree.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/fucked/fuckedTrees', 'exe'));
-		                }
 				fuckedTree.scrollFactor.set(1, 1);
 				fuckedTree.scale.set(1.1, 1.1);
 				fuckedTree.antialiasing = true;
@@ -1028,7 +968,6 @@ class PlayState extends MusicBeatState
 				knuxBopFucked.scale.set(0.9, 0.9);
 				knuxBopFucked.antialiasing = true;
 
-
 				fuckedBG.visible = false;
 				fuckedFloor.visible = false;
 				fuckedGrass.visible = false;
@@ -1051,11 +990,8 @@ class PlayState extends MusicBeatState
 					defaultCamZoom = 0.6;
 
 					hellBg = new FlxSprite(-400, 0);
-					if (!ClientPrefs.adaptiveCache) {
 					hellBg.loadGraphic(Paths.image('chaotix/hell', 'exe'));
-					} else {
 					hellBg.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/hell', 'exe'));
-					}
 					hellBg.scrollFactor.set(1, 1);
 					hellBg.scale.set(1.5, 1.5);
 					hellBg.antialiasing = false;
@@ -4863,6 +4799,7 @@ class PlayState extends MusicBeatState
 						boyfriend.y += 60;
 						isPixelStage = false;
 						reloadTheNotesPls();
+				                Paths.clearUnusedMemory();
 					case 1154:
 						theStatic.visible = false;
 
@@ -4963,6 +4900,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(camHUD, {alpha: 1}, 0.5);
 						FlxTween.tween(this, {health: 1}, 2);
 						FlxTween.tween(fuckedBG, {alpha: 1}, 2);
+                                                Paths.clearUnusedMemory();
 					case 2592:
 						defaultCamZoom = 0.60;
 						wowZoomin = true;	
@@ -5213,6 +5151,7 @@ class PlayState extends MusicBeatState
 					entranceFloor.destroy();
 					remove(entranceOver);
 					entranceOver.destroy();
+			                Paths.clearUnusedMemory();
 					//the game is racist its over
 					//this is a joke coming from a mixed dude shut the fuck up twitter.
 				case 2:
