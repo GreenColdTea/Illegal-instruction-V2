@@ -114,12 +114,15 @@ class Main extends Sprite
 
                     var scale:Float = Math.min(scaleX, scaleY);
 
-                    FlxG.camera.scale.set(scale, scale);
+                    FlxG.camera.scaleX = scale;
+                    FlxG.camera.scaleY = scale;
             
-                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth * scale, gameHeight * scale);
+                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
                 }
                 else
                 {
+		    FlxG.camera.scaleX = 1;
+                    FlxG.camera.scaleY = 1;
                     FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
                 }
 
