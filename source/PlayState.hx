@@ -685,7 +685,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyOver.loadGraphic(Paths.image('entrance/scary/over2', 'exe'));
 		                } else {
-				entranceSpookyOver.pixels = new FlxBitmapData('entrance/scary/over2', 'exe'));
+				entranceSpookyOver.pixels = new FlxBitmapData(Paths.image('entrance/scary/over2', 'exe'));
 		                }
 				entranceSpookyOver.scrollFactor.set(1.05, 1);
 				entranceSpookyOver.scale.set(1.1, 1.1);
