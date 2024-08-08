@@ -61,7 +61,6 @@ import flixel.util.FlxSave;
 import Achievements;
 import StageData;
 import FunkinLua;
-import flixel.graphics.FlxBitmapData;
 import DialogueBoxPsych;
 import GlitchShader.GlitchShaderA;
 import GlitchShader.GlitchShaderB;
