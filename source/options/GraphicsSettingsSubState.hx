@@ -64,6 +64,13 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			true); //Default value
 		addOption(option);
 
+		var option:Option = new Option('No Black Screen Borders', //Name
+			'If checked, the game window will without black borders(16:9)', //Description
+			'noBordersScreen', //Save data variable name
+			'bool', //Variable type
+			false); //Default value
+		addOption(option);
+
 		/*var option:Option = new Option('Adaptive Caching',
 			"If checked, it will use your GPU with RAM to cache song assets. \nTurn it on, if you have a good GPU.",
 			'adaptiveCache',
