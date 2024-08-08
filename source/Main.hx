@@ -116,11 +116,11 @@ class Main extends Sprite
 
                     FlxG.camera.scale.set(scale, scale);
             
-                    FlxG.camera.setBounds(0, 0, gameWidth * scale, gameHeight * scale);
+                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth * scale, gameHeight * scale);
                 }
                 else
                 {
-                    FlxG.camera.setBounds(0, 0, gameWidth, gameHeight);
+                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
                 }
 
                 /*var background:FlxSprite = new FlxSprite(0, 0);
