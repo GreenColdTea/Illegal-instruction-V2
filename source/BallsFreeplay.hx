@@ -398,7 +398,6 @@ class BallsFreeplay extends MusicBeatState
     {
 	FlxG.sound.play(Paths.sound('cancelMenu'));
 	FlxG.mouse.visible = false;
-        FlxG.sound.playMusic(Paths.music('freakyMenu'));
         MusicBeatState.switchState(new MainMenuState());
     }
 
