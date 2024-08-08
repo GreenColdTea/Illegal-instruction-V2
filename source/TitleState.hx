@@ -129,6 +129,28 @@ class TitleState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
 		FlxG.keys.preventDefaultKeys = [TAB];
 
+		var gameWidth:Int = 1280;
+		var gameHeight:Int = 720;
+		var screenWidth:Float = FlxG.width;
+                var screenHeight:Float = FlxG.height;
+
+                if (ClientPrefs.noBordersScreen)
+                {
+                    var scaleX:Float = screenWidth / gameWidth;
+                    var scaleY:Float = screenHeight / gameHeight;
+
+                    var scale:Float = Math.min(scaleX, scaleY);
+
+                    FlxG.camera.zoom = scale;
+            
+                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
+                }
+                else
+                {
+		    FlxG.camera.zoom = 1;
+                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
+		}
+
 		PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
