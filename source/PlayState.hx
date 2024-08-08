@@ -840,7 +840,7 @@ class PlayState extends MusicBeatState
 				add(vistaBush);
 
 				vistaTree = new FlxSprite(-460, -230);
-				if (!ClientPrefs.adaptibeCache) {
+				if (!ClientPrefs.adaptiveCache) {
 				vistaTree.loadGraphic(Paths.image('chaotix/vistaTree', 'exe'));
 		                } else {
 				vistaTree.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaTree', 'exe'));
