@@ -15,6 +15,7 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var shaders:Bool = true;
+	public static var adaptiveCache:Bool = false;
 	public static var framerate:Int = 60;
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
@@ -111,6 +112,7 @@ class ClientPrefs {
 		FlxG.save.data.opponentStrums = opponentStrums;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.shaders = shaders;
+		FlxG.save.data.adaptiveCache = adaptiveCache;
 		FlxG.save.data.framerate = framerate;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
@@ -166,6 +168,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.ducclyMix != null) {
 			ducclyMix = FlxG.save.data.ducclyMix;
+		}
+		if(FlxG.save.data.adaptiveCache != null) {
+			adaptiveCache = FlxG.save.data.adaptiveCache;
 		}
 		if(FlxG.save.data.showFPS != null) {
 			showFPS = FlxG.save.data.showFPS;
