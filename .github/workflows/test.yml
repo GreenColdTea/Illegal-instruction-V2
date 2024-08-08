@@ -25,9 +25,9 @@ jobs:
         uses: actions/checkout@main
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@v1.2.0
+        uses: krdlab/setup-haxe@v1
         with:
-          haxe-version: 4.2.5
+          haxe-version: 4.2.0
 
       - name: Install Haxelib
         run: |
@@ -43,8 +43,9 @@ jobs:
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
           haxelib git hxCodec https://github.com/MobilePorting/hxCodec-0.6.3.git --quiet
-          haxelib install hxcpp > /dev/null --quiet
+          haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp.git --quiet
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit --quiet
+          haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
           haxelib git extension-androidtools https://github.com/Edger228/androidtools.git --quiet
           haxelib install echo --quiet
           haxelib install echo-flixel --quiet
