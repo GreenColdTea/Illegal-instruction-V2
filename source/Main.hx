@@ -104,6 +104,37 @@ class Main extends Sprite
 			zoom = 1;
 		#end
 
+                var screenWidth:Float = FlxG.width;
+                var screenHeight:Float = FlxG.height;
+
+                if (ClientPrefs.noBordersScreen)
+                {
+                    var scaleX:Float = screenWidth / gameWidth;
+                    var scaleY:Float = screenHeight / gameHeight;
+
+                    var scale:Float = Math.min(scaleX, scaleY);
+
+                    FlxG.camera.scale.set(scale, scale);
+            
+                    FlxG.camera.setBounds(0, 0, gameWidth * scale, gameHeight * scale);
+                }
+                else
+                {
+                    FlxG.camera.setBounds(0, 0, gameWidth, gameHeight);
+                }
+
+                /*var background:FlxSprite = new FlxSprite(0, 0);
+                background.loadGraphic(yourBackgroundImage);
+                if (ClientPrefs.noBordersScreen)
+                {
+                    background.scale.set(screenWidth / background.width, screenHeight / background.height);
+                }
+                else
+                {
+                    background.scale.set(gameWidth / background.width, gameHeight / background.height);
+                }
+                add(background);*/
+
 		SUtil.getStorageForLogs();
 
                 Generic.mode = ROOTDATA;
