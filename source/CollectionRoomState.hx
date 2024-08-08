@@ -124,7 +124,6 @@ class CollectionRoomState extends MusicBeatState
                     movedBack = true;
                     new FlxTimer().start(0.4, function(tmr:FlxTimer)
                         {
-                            FlxG.sound.playMusic(Paths.music('freakyMenu'));
                             MusicBeatState.switchState(new MainMenuState());
                         }); 
                 }
