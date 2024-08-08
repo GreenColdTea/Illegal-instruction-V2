@@ -45,6 +45,7 @@ import flixel.util.FlxTimer;
 import haxe.Json;
 import lime.utils.Assets;
 import openfl.Lib;
+import openfl.display.BitmapData;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
@@ -585,7 +586,7 @@ class PlayState extends MusicBeatState
 
 				defaultCamZoom = 0.65;
 
-            if (ClientPrefs.shaders) {
+                                if (ClientPrefs.shaders) {
 				camGlitchShader = new GlitchShaderB();
 				camGlitchShader.iResolution.value = [FlxG.width, FlxG.height];
 				camGlitchFilter = new ShaderFilter(camGlitchShader);
@@ -595,13 +596,13 @@ class PlayState extends MusicBeatState
 
 				barrelDistortionShader = new BarrelDistortionShader();
 				barrelDistortionFilter = new ShaderFilter(barrelDistortionShader);
-            }
+                                }
 
 				entranceBG = new FlxSprite(-325, -50);
 				if (!ClientPrefs.adaptiveCache) {
 				entranceBG.loadGraphic(Paths.image('entrance/bg', 'exe'));
 		                } else {
-				entranceBG.pixels = new FlxBitmapData(Paths.image('enteance/bg', 'exe'));
+				entranceBG.pixels = OpenFlAssets.getBitmapData(Paths.image('enteance/bg', 'exe'));
 		                }
 				entranceBG.scrollFactor.set(0.6, 1);
 				entranceBG.scale.set(1.1, 1.1);
@@ -617,7 +618,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceIdk.loadGraphic(Paths.image('entrance/idk', 'exe'));
 		                } else {
-				entranceIdk.pixels = new FlxBitmapData(Paths.image('entrance/idk', 'exe'));
+				entranceIdk.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/idk', 'exe'));
 		                }
 				entranceIdk.scrollFactor.set(0.7, 1);
 				entranceIdk.scale.set(1.1, 1.1);
@@ -633,7 +634,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceOver.loadGraphic(Paths.image('entrance/over', 'exe'));
 		                } else {
-				entranceOver.pixels = new FlxBitmapData(Paths.image('entrance/over', 'exe'));
+				entranceOver.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/over', 'exe'));
 		                }
 				entranceOver.scrollFactor.set(1.05, 1);
 				entranceOver.scale.set(1.1, 1.1);
@@ -645,7 +646,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyBG.loadGraphic(Paths.image('entrance/scary/bg2', 'exe'));
 		                } else {
-				entranceSpookyBG.pixels = new FlxBitmapData(Paths.image('entrance/scary/bg2', 'exe'));
+				entranceSpookyBG.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/bg2', 'exe'));
 		                }
 				entranceSpookyBG.scrollFactor.set(0.6, 1);
 				entranceSpookyBG.scale.set(1.1, 1.1);
@@ -656,7 +657,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyClock.loadGraphic(Paths.image('entrance/scary/clock2', 'exe'));
 		                } else {
-				entranceSpookyClock.pixels = new FlxBitmapData(Paths.image('entrance/scary/clock2', 'exe'));
+				entranceSpookyClock.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/clock2', 'exe'));
 		                }
 				entranceSpookyClock.scrollFactor.set(0.8, 1);
 				entranceSpookyClock.scale.set(1.1, 1.1);
@@ -667,7 +668,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyIdk.loadGraphic(Paths.image('entrance/scary/idk2', 'exe'));
 		                } else {
-				entranceSpookyIdk.pixels = new FlxBitmapData(Paths.image('entrance/scary/idk2', 'exe'));
+				entranceSpookyIdk.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/idk2', 'exe'));
 		                }
 				entranceSpookyIdk.scrollFactor.set(0.7, 1);
 				entranceSpookyIdk.scale.set(1.1, 1.1);
@@ -685,7 +686,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				entranceSpookyOver.loadGraphic(Paths.image('entrance/scary/over2', 'exe'));
 		                } else {
-				entranceSpookyOver.pixels = new FlxBitmapData(Paths.image('entrance/scary/over2', 'exe'));
+				entranceSpookyOver.pixels = OpenFlAssets.getBitmapData(Paths.image('entrance/scary/over2', 'exe'));
 		                }
 				entranceSpookyOver.scrollFactor.set(1.05, 1);
 				entranceSpookyOver.scale.set(1.1, 1.1);
@@ -719,7 +720,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				soulBalls.loadGraphic(Paths.image('soulless/balls', 'exe'));
 				} else {
-				soulBalls.pixels = new FlxBitmapData(Paths.image('soulless/balls', 'exe'));
+				soulBalls.pixels = OpenFlAssets.getBitmapData(Paths.image('soulless/balls', 'exe'));
 				}
 				soulBalls.scrollFactor.set(0.5, 0.5);
 				soulBalls.scale.set(1, 1);
@@ -737,7 +738,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				soulKai.loadGraphic(Paths.image('soulless/metal', 'exe'));
 				} else {
-				soulKai.pixels = new FlxBitmapData(Paths.image('soulless/metal', 'exe'));
+				soulKai.pixels = OpenFlAssets.getBitmapData(Paths.image('soulless/metal', 'exe'));
 				}
 				soulKai.scrollFactor.set(0.9, 0.9);
 				soulKai.scale.set(1, 1);
@@ -748,7 +749,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				soulFrontRocks.loadGraphic(Paths.image('soulless/rocksFront', 'exe'));
 				} else {
-				soulFrontRocks.pixels = new FlxBitmapData(Paths.image('soulless/rocksFront', 'exe'));
+				soulFrontRocks.pixels = OpenFlAssets.getBitmapData(Paths.image('soulless/rocksFront', 'exe'));
 				}
 				soulFrontRocks.scrollFactor.set(1.0, 1.0);
 				soulFrontRocks.scale.set(1.2, 1.2);
@@ -807,7 +808,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				vistaBG.loadGraphic(Paths.image('chaotix/vistaBg', 'exe'));
 		                } else {
-				vistaBG.pixels = new FlxBitmapData(Paths.image('chaotix/vistaBg', 'exe'));
+				vistaBG.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaBg', 'exe'));
 		                }
 				vistaBG.scrollFactor.set(0.6, 1);
 				vistaBG.scale.set(1.1, 1.1);
@@ -832,7 +833,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				vistaBush.loadGraphic(Paths.image('chaotix/vistaBush', 'exe'));
 		                } else {
-				vistaBush.pixels = new FlxBitmapData(Paths.image('chaotix/vistaBush', 'exe'));
+				vistaBush.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaBush', 'exe'));
 		                }
 		 		vistaBush.scrollFactor.set(0.9, 1);
 				vistaBush.scale.set(1.1, 1.1);
@@ -843,7 +844,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptibeCache) {
 				vistaTree.loadGraphic(Paths.image('chaotix/vistaTree', 'exe'));
 		                } else {
-				vistaTree.pixels = new FlxBitmapData(Paths.image('chaotix/vistaTree', 'exe'));
+				vistaTree.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/vistaTree', 'exe'));
 		                }
 				vistaTree.scrollFactor.set(0.9, 1);
 				vistaTree.scale.set(1.1, 1.1);
@@ -928,7 +929,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				fuckedBG.loadGraphic(Paths.image('chaotix/fucked/fuckedBg', 'exe'));
 		                } else {
-				fuckedBG.pixels = new FlxBitmapData(Paths.image('chaotix/fucked/fuckedBg', 'exe'));
+				fuckedBG.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/fucked/fuckedBg', 'exe'));
 		                }
 				fuckedBG.scrollFactor.set(0.6, 1);
 				fuckedBG.scale.set(1.1, 1.1);
@@ -953,7 +954,7 @@ class PlayState extends MusicBeatState
 				if (!ClientPrefs.adaptiveCache) {
 				fuckedTree.loadGraphic(Paths.image('chaotix/fucked/fuckedTrees', 'exe'));
 		                } else {
-				fuckedTree.pixels = new FlxBitmapData(Paths.image('chaotix/fucked/fuckedTrees', 'exe'));
+				fuckedTree.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/fucked/fuckedTrees', 'exe'));
 		                }
 				fuckedTree.scrollFactor.set(1, 1);
 				fuckedTree.scale.set(1.1, 1.1);
@@ -1054,7 +1055,7 @@ class PlayState extends MusicBeatState
 					if (!ClientPrefs.adaptiveCache) {
 					hellBg.loadGraphic(Paths.image('chaotix/hell', 'exe'));
 					} else {
-					hellBg.pixels = new FlxBitmapData(Paths.image('chaotix/hell', 'exe'));
+					hellBg.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/hell', 'exe'));
 					}
 					hellBg.scrollFactor.set(1, 1);
 					hellBg.scale.set(1.5, 1.5);
