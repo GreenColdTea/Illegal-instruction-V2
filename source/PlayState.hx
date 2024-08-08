@@ -991,7 +991,6 @@ class PlayState extends MusicBeatState
 
 					hellBg = new FlxSprite(-400, 0);
 					hellBg.loadGraphic(Paths.image('chaotix/hell', 'exe'));
-					hellBg.pixels = OpenFlAssets.getBitmapData(Paths.image('chaotix/hell', 'exe'));
 					hellBg.scrollFactor.set(1, 1);
 					hellBg.scale.set(1.5, 1.5);
 					hellBg.antialiasing = false;
