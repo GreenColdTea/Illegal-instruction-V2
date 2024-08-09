@@ -116,7 +116,7 @@
 	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
 	<haxelib name="echo-flixel"/>
 	<haxelib name="openfl" />
-	<!--<openfl version="9.2.1" />-->
+	<openfl version="9.2.1" />
 	<lime version="8.0.1" />
 
 	<!-- <haxelib name="markdown" /> -->
