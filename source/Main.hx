@@ -14,6 +14,17 @@ import openfl.display.StageScaleMode;
 import sys.FileSystem;
 import lime.system.System;
 
+#if CRASH_HANDLER
+import openfl.events.UncaughtErrorEvent;
+import openfl.events.ErrorEvent;
+import openfl.errors.Error;
+import haxe.CallStack;
+import haxe.io.Path;
+import sys.FileSystem;
+import sys.io.File;
+import sys.io.Process;
+#end
+
 class Main extends Sprite
 {
     var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
@@ -31,6 +42,11 @@ class Main extends Sprite
     public static function main():Void
     {
         Lib.current.addChild(new Main());
+	#if cpp
+	cpp.NativeGc.enable(true);
+	#elseif hl
+	hl.Gc.enable(true);
+	#end
     }
 
     public function new()
@@ -55,6 +71,12 @@ class Main extends Sprite
         {
             removeEventListener(Event.ADDED_TO_STAGE, init);
         }
+
+	#if cpp
+	untyped __global__.__hxcpp_set_critical_error_handler(onError);
+	#elseif hl
+	hl.Api.setErrorHandler(onError);
+	#end
 
         setupGame();
     }
@@ -87,5 +109,16 @@ class Main extends Sprite
         if(fpsVar != null) {
             fpsVar.visible = ClientPrefs.showFPS;
         }
+    }
+
+    #if (cpp || hl)
+    private static function onError(message:Dynamic):Void
+    {
+	    throw Std.string(message);
+    }
+    #end
+	
+    public function getFPS():Float {
+	    return fpsVar.currentFPS;	
     }
 }
