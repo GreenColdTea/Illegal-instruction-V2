@@ -93,15 +93,6 @@ class Main extends Sprite
         }
     }
 
-    public function update(elapsed:Float):Void
-    {
-        super.update(elapsed);
-
-	if (ClientPrefs.noBordersScreen) {
-            resizeGame();
-	}
-    }
-
     private function resizeGame():Void
     {
         var stageWidth:Int = Lib.current.stage.stageWidth;
