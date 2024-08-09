@@ -104,13 +104,12 @@ class Main extends Sprite
 			zoom = 1;
 		#end
 
-		if (ClientPrefs.noBordersScreen)
-		{
+		if (ClientPrefs.noBordersScreen) {
 		   if (zoom == 1)
-		      zoom = 2
+		      zoom = 2;
 		} else {
 		   if (zoom == 2)
-		      zoom = 1
+		      zoom = 1;
 	        }
 			
                 /*var background:FlxSprite = new FlxSprite(0, 0);
