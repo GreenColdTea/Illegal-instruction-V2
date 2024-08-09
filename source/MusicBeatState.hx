@@ -16,6 +16,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.FlxBasic;
+import lime.app.Application;
 
 #if android
 import flixel.input.actions.FlxActionInput;
@@ -124,7 +125,7 @@ class MusicBeatState extends FlxUIState
 		}
 
 		if (!FileSystem.exists("assets/images/gort.png")) {
-                    SUtil.applicationAlert("Critical Error: Where's my gort YOU FUCKING IDIOT!!!.");
+                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING IDIOT!!!.", "Duke");
                     System.exit(1);
 		}
 		
