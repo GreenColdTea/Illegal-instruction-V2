@@ -88,11 +88,15 @@ class BallsFreeplay extends MusicBeatState
     public var isHoldingLeft:Bool = false; // left button pressed checker
     public var isHoldingRight:Bool = false; // right button pressed checker
     public var isJumping:Bool = false; // jumping checker
-    var holdTimer:FlxTimer; // after this bf start running
+    var holdTimer:FlxTimer = new FlxTimer(); // Timer for how long we're holding movement keys. Because holding keys should be timed like fine wine.
     public var speed:Float = 125; // needs for bf's moves
     public var speedMultiplier:Float = 1.25; // bf's default walk speed
-    public var jumpSpeed:Float = 275; //how fast he can jump
-    public var gravity:Float = 475; //how long he can be in the air
+    var jumpSpeed:Float = -300; // Vertical speed when jumping. Think of it as the character’s "I believe I can fly" moment.
+    var gravity:Float = 600; // How fast we fall. Gravity's way of reminding us that the ground is always waiting.
+    var maxJumpHeight:Float = 200; // Maximum height of our jump. Like reaching for the last slice of pizza.
+    var jumpStartY:Float = 0; // Y position where we started jumping. Because you gotta know where you began your epic leap.
+
+    //I'm alone people, so i decided to add some funni comments
 
     public var numSelect:Int = 0;
 
@@ -263,6 +267,7 @@ class BallsFreeplay extends MusicBeatState
     var infoScreen:Bool = false;
     var curSelected:Int = 0;
 
+    // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
         if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonX.justPressed #end)
@@ -299,96 +304,118 @@ class BallsFreeplay extends MusicBeatState
             switchToBack();
         }
 
-        // bf's control buttons settinngs
-        if (controls.UI_LEFT_P && !controls.UI_RIGHT_P)
-        {
-            player.flipX = false;
-            if (!isHoldingLeft)
-            {
-                isHoldingLeft = true;
-		player.animation.play('walk');
-                holdTimer.start(1, onHoldComplete);
-            }
-        }
-        else if (controls.UI_LEFT_R && !controls.UI_RIGHT_R)
-        {
-            player.flipX = false;
-            isHoldingLeft = false;
-	    player.animation.play('walk');
-            speedMultiplier = 1.25;
-            holdTimer.cancel();
-        }
+       //Handle left and right movement
+       if (controls.UI_LEFT_P && !controls.UI_RIGHT_P)
+       {
+           player.flipX = false; //Facing left. Because left is where the cool kids hang out.
+           if (!isHoldingLeft)
+           {
+               isHoldingLeft = true;
+               holdTimer.start(1, onHoldComplete); //Start the timer. Time to see if you really wanna go left.
+           }
+       }
+       else if (controls.UI_LEFT_R)
+       {
+           isHoldingLeft = false;
+           player.animation.play('walk'); //Play walking animation when the left key is released. Like, “Alright, I’m done here.”
+           holdTimer.cancel(); //Cancel the timer. You’ve officially made your decision. Left no longer has your heart.
+       }
 
         if (controls.UI_RIGHT_P && !controls.UI_LEFT_P)
         {
-            player.flipX = true;
+            player.flipX = true; //Facing right. Right is where the party’s at!
             if (!isHoldingRight)
             {
                 isHoldingRight = true;
-		player.animation.play('walk');
-                holdTimer.start(1, onHoldComplete);
+                holdTimer.start(0.1, onHoldComplete); //Start the timer. Because holding right should come with a timer.
             }
         }
-        else if (controls.UI_RIGHT_R && !controls.UI_LEFT_R)
+        else if (controls.UI_RIGHT_R)
         {
-            player.flipX = true;
-            isHoldingRight = false;
-	    player.animation.play('walk');
-            speedMultiplier = 1.25;
-            holdTimer.cancel();
+           isHoldingRight = false;
+           player.animation.play('walk'); //Play walking animation when the right key is released. “Okay, I’m outta here.”
+           holdTimer.cancel(); //Timer’s over. Right is taking a break.
         }
 
-	if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
+        if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
-	    isJumping = true;
-            player.velocity.y = -jumpSpeed;
-	    player.animation.play('jump');
-	    FlxG.sound.play(Paths.sound('jump'), 0.6);
-	}
-
-	//screen barriers
-	if (player.x < -80)
-        {
-            player.x = -80;
-            player.velocity.x = 0;
-        }
-        else if (player.x + player.width > FlxG.width + 80)
-        {
-            player.x = FlxG.width + 80 - player.width;
-            player.velocity.x = 0;
+            isJumping = true;
+            jumpStartY = player.y; // Record where we started the jump. Like marking the launch pad.
+            player.velocity.y = jumpSpeed; //Apply upward velocity. “Blast off!”
+            player.animation.play('jump'); //Play jump animation. “We’re going to the moon, baby!”
+            FlxG.sound.play(Paths.sound('jump'), 0.62); // Play jump sound. “Jumpin’ Jack Flash!”
         }
 
-	if (!isOnGround())
+        if (isJumping)
         {
-            player.velocity.y += gravity * elapsed;
-	}
+           //Apply gravity while jumping.
+           player.velocity.y += gravity * elapsed;
 
-        if (player.y < 100)
-        {
-            player.y = 100;
-            player.velocity.y = 0;
-        }
-        else if (player.y + player.height > FlxG.height - 100)
-        {
-            player.y = FlxG.height - player.height - 100;
-            isJumping = false; // jumping system
-            player.velocity.y = 0;
-	}
+           //Check if we've reached the max jump height.
+           if (player.y <= jumpStartY - maxJumpHeight)
+           {
+               player.velocity.y = 0; // Stop upward movement. “Houston, we’ve hit the ceiling.”
+           }
 
-        // bf moves
-        if (isHoldingLeft && !isHoldingRight)
-        {
-            player.velocity.x = -speed * speedMultiplier;
-        }
-        else if (isHoldingRight && !isHoldingLeft)
-        {
-            player.velocity.x = speed * speedMultiplier;
-        }
-        else if (!isHoldingRight || !isHoldingLeft)
-        {
-            player.velocity.x = 0;
-            player.animation.play('idle');
-        }
+           //Check if we've hit the ground.
+           if (player.y + player.height >= FlxG.height - 100)
+           {
+               player.y = FlxG.height - player.height - 100; // Keep player grounded. “And touchdown! Welcome back to Earth.”
+               isJumping = false;
+               player.velocity.y = 0; // Stop falling. “Gravity: 1, You: 0.”
+           }
+       }
+
+    	//Screen boundaries
+       if (player.x < -80)
+       {
+           player.x = -80; // Prevent moving off the left edge. “Nope, not today!”
+           player.velocity.x = 0; // Stop horizontal movement. “Left field is off-limits!”
+       }
+       else if (player.x + player.width > FlxG.width + 80)
+       {
+           player.x = FlxG.width + 80 - player.width; // Prevent moving off the right edge. “Right field is closed for business!”
+           player.velocity.x = 0; // Stop horizontal movement. “Right edge, not on my watch!”
+       }
+
+       if (player.y < 100)
+       {
+           player.y = 100; //Prevent moving off the top edge. “Not climbing the sky today!”
+           player.velocity.y = 0; //Stop vertical movement. “Stay grounded, buddy!”
+       }
+       else if (player.y + player.height > FlxG.height - 100)
+       {
+           player.y = FlxG.height - player.height - 100; // Prevent moving off the bottom edge. “No free-fall here!”
+           player.velocity.y = 0; //Stop vertical movement. “Gravity: still winning.”
+       }
+
+
+        // Movement and animation
+       if (isOnGround())
+       {
+           if (isHoldingLeft && !isHoldingRight)
+           {
+               player.velocity.x = -speed * speedMultiplier; // Move left. “Left is the new black.”
+               player.animation.play('run'); // Play running animation. “Like Sonic on a sugar rush!”
+           }
+           else if (isHoldingRight && !isHoldingLeft)
+           {
+               player.velocity.x = speed * speedMultiplier; // Move right. “Right side up and running!”
+               player.animation.play('run'); // Play running animation. “Faster than your Wi-Fi!”
+           }
+           else
+           {
+               player.velocity.x = 0; // Stop horizontal movement. “Chillin’ like a villain.”
+               player.animation.play('idle'); // Play idle animation. “Not moving, just vibin’.”
+           }
+       }
+       else
+       {
+          if (player.velocity.y < 0)
+          {
+              player.animation.play('jump'); // Play jump animation while in the air. “Sky high and still fabulous!”
+          }
+       } 
 
         super.update(elapsed);
     }
@@ -455,18 +482,19 @@ class BallsFreeplay extends MusicBeatState
 	FreeplayState.destroyFreeplayVocals();
     }
 
-    //timer end function
-    function onHoldComplete(timer:FlxTimer):Void
-    {
-        if (isHoldingLeft && !isHoldingRight || isHoldingRight && !isHoldingLeft)
-        {
-            player.animation.play('run');
-            speedMultiplier = 2.05;
-        }
+    // Called when the hold timer completes
+   function onHoldComplete(timer:FlxTimer):Void
+   {
+       if (isHoldingLeft || isHoldingRight)
+       {
+           player.animation.play('run'); // Start running animation if a direction is held. “Running like there’s no tomorrow!”
+           speedMultiplier = 2.05; // Increase speed while running. “Turbo mode: ON!”
+       }
     }
-    // character is on the ground???
-    function isOnGround():Bool
-    {
-        return player.y + player.height >= FlxG.height - 1;
-    }
+
+   // Checks if the player is on the ground
+   function isOnGround():Bool
+   {
+       return player.y + player.height >= FlxG.height - 1; // Simple ground check. “Ground status: definitely grounded.”
+   }
 }
