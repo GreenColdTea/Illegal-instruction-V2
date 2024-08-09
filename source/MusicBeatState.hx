@@ -18,8 +18,6 @@ import flixel.FlxState;
 import flixel.FlxBasic;
 
 #if android
-import lime.app.Application;
-import lime.ui.Toast;
 import flixel.input.actions.FlxActionInput;
 import android.AndroidControls.AndroidControls;
 import android.FlxVirtualPad;
@@ -126,7 +124,7 @@ class MusicBeatState extends FlxUIState
 		}
 
 		if (!FileSystem.exists("assets/images/gort.png")) {
-                    Toast.show("Critical Error: Required file not found.", 5);
+                    SUtil.applicationAlert("Critical Error: Where's my gort YOU FUCKING IDIOT!!!.");
                     System.exit(1);
 		}
 		
