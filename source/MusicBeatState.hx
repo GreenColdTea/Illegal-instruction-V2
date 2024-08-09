@@ -153,11 +153,45 @@ class MusicBeatState extends FlxUIState
 		updateCurStep();
 		updateBeat();
 
-		if (oldStep != curStep && curStep > 0)
+		if (oldStep != curStep && curStep > 0) {
 			stepHit();
+		}
 
-		if(FlxG.save.data != null) FlxG.save.data.fullscreen = FlxG.fullscreen;
+		if(FlxG.save.data != null) { 
+			FlxG.save.data.fullscreen = FlxG.fullscreen;
+		}
 
+                if (ClientPrefs.noBordersScreen) {
+	    
+                    var stageWidth:Int = FlxG.width;
+                    var stageHeight:Int = FlxG.height;
+
+                    var aspectRatio:Float = 16.0 / 9.0;
+
+                    var gameWidth:Int;
+                    var gameHeight:Int;
+
+                    if (stageWidth / stageHeight > aspectRatio)
+                    {
+                        gameHeight = stageHeight;
+                        gameWidth = Std.int(gameHeight * aspectRatio);
+                    }
+                    else
+                    {
+                        gameWidth = stageWidth;
+                        gameHeight = Std.int(gameWidth / aspectRatio);
+                    }
+
+                    var ratioX:Float = stageWidth / gameWidth;
+                    var ratioY:Float = stageHeight / gameHeight;
+                    var zoom = Math.min(ratioX, ratioY);
+
+                    FlxG.resizeGame(gameWidth, gameHeight);
+
+                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
+                    FlxG.camera.zoom = zoom;
+                }
+		
 		super.update(elapsed);
 	}
 
