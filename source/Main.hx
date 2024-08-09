@@ -1,22 +1,31 @@
+package;
+
+import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
+import flixel.FlxGame;
 import flixel.FlxState;
-import flixel.FlxCamera;
-import flixel.FlxSprite;
+import openfl.Assets;
 import openfl.Lib;
+import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
+import sys.FileSystem;
+import lime.system.System;
 
 class Main extends Sprite
 {
-    var gameWidth:Int = 1280;
-    var gameHeight:Int = 720;
-    var initialState:Class<FlxState> = TitleState;
-    var zoom:Float = -1;
-    var framerate:Int = 60;
-    var skipSplash:Bool = true;
-    var startFullscreen:Bool = false;
+    var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
+	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
+	var framerate:Int = 60; // How many frames per second the game should run at.
+	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
+	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
     public static var fpsVar:FPS;
+
+	// You can pretty much ignore everything from here on - your code should go in your states.
+    public static var path:String = System.applicationStorageDirectory;
 
     public static function main():Void
     {
@@ -59,6 +68,16 @@ class Main extends Sprite
         if (ClientPrefs.noBordersScreen) {
             resizeGame();
         }
+
+        Generic.mode = ROOTDATA;
+		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets');
+        }
+
+        ClientPrefs.loadDefaultKeys();
+		// fuck you, persistent caching stays ON during sex
+		FlxGraphic.defaultPersist = true;
+		// the reason for this is we're going to be handling our own cache smartly
 
         addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
