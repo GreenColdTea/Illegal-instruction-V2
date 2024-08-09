@@ -317,7 +317,6 @@ class BallsFreeplay extends MusicBeatState
        else if (controls.UI_LEFT_R)
        {
            isHoldingLeft = false;
-           player.animation.play('walk'); //Play walking animation when the left key is released. Like, “Alright, I’m done here.”
            holdTimer.cancel(); //Cancel the timer. You’ve officially made your decision. Left no longer has your heart.
        }
 
@@ -327,13 +326,12 @@ class BallsFreeplay extends MusicBeatState
             if (!isHoldingRight)
             {
                 isHoldingRight = true;
-                holdTimer.start(0.1, onHoldComplete); //Start the timer. Because holding right should come with a timer.
+                holdTimer.start(1, onHoldComplete); //Start the timer. Because holding right should come with a timer.
             }
         }
         else if (controls.UI_RIGHT_R)
         {
            isHoldingRight = false;
-           player.animation.play('walk'); //Play walking animation when the right key is released. “Okay, I’m outta here.”
            holdTimer.cancel(); //Timer’s over. Right is taking a break.
         }
 
@@ -351,19 +349,19 @@ class BallsFreeplay extends MusicBeatState
            //Apply gravity while jumping.
            player.velocity.y += gravity * elapsed;
 
-           //Check if we've reached the max jump height.
+           // Check if we've reached the max jump height
            if (player.y <= jumpStartY - maxJumpHeight)
            {
-               player.velocity.y = 0; // Stop upward movement. “Houston, we’ve hit the ceiling.”
+               player.velocity.y = 0; // Stop upward movement
            }
 
-           //Check if we've hit the ground.
+           // Check if we've hit the ground
            if (player.y + player.height >= FlxG.height - 100)
            {
-               player.y = FlxG.height - player.height - 100; // Keep player grounded. “And touchdown! Welcome back to Earth.”
+               player.y = FlxG.height - player.height - 100; // Adjust position to stay grounded
                isJumping = false;
-               player.velocity.y = 0; // Stop falling. “Gravity: 1, You: 0.”
-           }
+               player.velocity.y = 0; // Stop falling
+	   }
        }
 
     	//Screen boundaries
@@ -396,12 +394,12 @@ class BallsFreeplay extends MusicBeatState
            if (isHoldingLeft && !isHoldingRight)
            {
                player.velocity.x = -speed * speedMultiplier; // Move left. “Left is the new black.”
-               player.animation.play('run'); // Play running animation. “Like Sonic on a sugar rush!”
+               player.animation.play('walk'); // Play running animation. “Like Sonic on a sugar rush!”
            }
            else if (isHoldingRight && !isHoldingLeft)
            {
                player.velocity.x = speed * speedMultiplier; // Move right. “Right side up and running!”
-               player.animation.play('run'); // Play running animation. “Faster than your Wi-Fi!”
+               player.animation.play('walk'); // Play running animation. “Faster than your Wi-Fi!”
            }
            else
            {
