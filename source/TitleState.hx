@@ -129,28 +129,6 @@ class TitleState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
 		FlxG.keys.preventDefaultKeys = [TAB];
 
-		var gameWidth:Int = 1280;
-		var gameHeight:Int = 720;
-		var screenWidth:Float = FlxG.width;
-                var screenHeight:Float = FlxG.height;
-
-                if (ClientPrefs.noBordersScreen)
-                {
-                    var scaleX:Float = screenWidth / gameWidth;
-                    var scaleY:Float = screenHeight / gameHeight;
-
-                    var scale:Float = Math.min(scaleX, scaleY);
-
-                    FlxG.camera.zoom = scale;
-            
-                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
-                }
-                else
-                {
-		    FlxG.camera.zoom = 1;
-                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
-		}
-
 		PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
@@ -223,6 +201,12 @@ class TitleState extends MusicBeatState
 	var logoTower:FlxSprite;
 	var bgStuff:FlxSprite;
 
+	var dukeMenu:FlxSprite;
+	var chaotixMenu:FlxSprite;
+	var wechMenu:FlxSprite;
+	var ashuraMenu:FlxSprite;
+	var chotixMenu:FlxSprite;
+
 	function startIntro()
 	{
 		if (!initialized)
@@ -282,10 +266,51 @@ class TitleState extends MusicBeatState
 		floorStuff.animation.addByPrefix('lol', "floor", 24, true);
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
+
+		chaotixMenu = new FlxSprite(-50, 25);
+		chaotixMenu.frames = Paths.getSparrowAtlas('title/chaotixmenu');
+		chaotixMenu.antialiasing = false;
+		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 24, true);
+		chaotixMenu.updateHitbox();
+		chaotixMenu.screenCenter();
+
+		wechMenu = new FlxSprite(50, 25);
+		wechMenu.frames = Paths.getSparrowAtlas('title/wechmenu');
+		wechMenu.antialiasing = false;
+		wechMenu.animation.addByPrefix('idle', 'wechmenu', 24, true);
+		wechMenu.updateHitbox();
+		wechMenu.screenCenter();
+
+		dukeMenu = new FlxSprite(0, 50);
+		dukeMenu.frames = Paths.getSparrowAtlas('title/dukemenu');
+		dukeMenu.antialiasing = false;
+		dukeMenu.animation.addByPrefix('idle', 'DUKEMENU', 24, true);
+		dukeMenu.updateHitbox();
+		dukeMenu.screenCenter(X);
+
+		ashuraMenu = new FlxSprite(-100, 50);
+		ashuraMenu.frames = Paths.getSparrowAtlas('title/ashuramenu');
+		ashuraMenu.antialiasing = false;
+		ashuraMenu.animation.addByPrefix('idle', 'ashuramenu', 24, true);
+		ashuraMenu.updateHitbox();
+		ashuraMenu.screenCenter();
+
+		chotixMenu = new FlxSprite(-100, 50);
+		chotixMenu.frames = Paths.getSparrowAtlas('title/chotixmenu');
+		chotixMenu.antialiasing = false;
+		chotixMenu.animation.addByPrefix('idle', 'chotixmenu', 24, true);
+		chotixMenu.updateHitbox();
+		chotixMenu.screenCenter();
 		
 		add(bgStuff);
 		add(floorStuff);
 		add(logoTower);
+
+		add(chaotixMenu);
+		add(wechMenu);
+		add(dukeMenu);
+		add(ashuraMenu);
+		add(chotixMenu);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.screenCenter();
