@@ -115,6 +115,8 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
 	<haxelib name="echo-flixel"/>
+	<haxelib name="openfl" />
+	<lime version="8.0.1" />
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
