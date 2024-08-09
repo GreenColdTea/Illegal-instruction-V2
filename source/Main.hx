@@ -68,10 +68,6 @@ class Main extends Sprite
             zoom = 1;
         }
 
-        if (ClientPrefs.noBordersScreen) {
-            resizeGame();
-        }
-
         Generic.mode = ROOTDATA;
 	if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		FileSystem.createDirectory(Generic.returnPath() + 'assets');
@@ -91,34 +87,5 @@ class Main extends Sprite
         if(fpsVar != null) {
             fpsVar.visible = ClientPrefs.showFPS;
         }
-    }
-
-    private function resizeGame():Void
-    {
-        var stageWidth:Int = Lib.current.stage.stageWidth;
-        var stageHeight:Int = Lib.current.stage.stageHeight;
-
-        var aspectRatio:Float = 16.0 / 9.0;
-
-        if (stageWidth / stageHeight > aspectRatio)
-        {
-            gameHeight = stageHeight;
-            gameWidth = Std.int(gameHeight * aspectRatio);
-        }
-        else
-        {
-            gameWidth = stageWidth;
-            gameHeight = Std.int(gameWidth / aspectRatio);
-        }
-
-        var ratioX:Float = stageWidth / gameWidth;
-        var ratioY:Float = stageHeight / gameHeight;
-        zoom = Math.min(ratioX, ratioY);
-
-        FlxG.resizeGame(gameWidth, gameHeight);
-
-        var camera:FlxCamera = FlxG.camera;
-        camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
-        camera.zoom = zoom;
     }
 }
