@@ -74,8 +74,8 @@ class TitleState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
-
-      #if android
+ 
+                #if android
 		FlxG.android.preventDefaultKeys = [BACK];
 		#end
 
@@ -123,7 +123,7 @@ class TitleState extends MusicBeatState
 		}
 		#end
 
-		FlxG.game.focusLostFramerate = 60;
+		FlxG.game.focusLostFramerate = ClientPrefs.framerate;
 		FlxG.sound.muteKeys = muteKeys;
 		FlxG.sound.volumeDownKeys = volumeDownKeys;
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
