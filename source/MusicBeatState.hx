@@ -18,6 +18,8 @@ import flixel.FlxState;
 import flixel.FlxBasic;
 
 #if android
+import lime.app.Application;
+import lime.ui.Toast;
 import flixel.input.actions.FlxActionInput;
 import android.AndroidControls.AndroidControls;
 import android.FlxVirtualPad;
@@ -123,10 +125,10 @@ class MusicBeatState extends FlxUIState
 			openSubState(new CustomFadeTransition(0.7, true));
 		}
 
-		if(!FileSystem.exists("assets/images/gort.png"))
-			while(true){
-				
-			}
+		if (!FileSystem.exists("assets/images/gort.png")) {
+                    Toast.show("Critical Error: Required file not found.", 5);
+                    System.exit(1);
+		}
 		
 		FlxTransitionableState.skipNextTransOut = false;
 	}
