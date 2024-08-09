@@ -254,8 +254,8 @@ class TitleState extends MusicBeatState
 
 		logoTower = new FlxSprite();
 		logoTower.loadGraphic(Paths.image('title/logothing'));
-		logoTower.scale.x = 0.6;
-		logoTower.scale.y = 0.6;
+		logoTower.scale.x = 0.61;
+		logoTower.scale.y = 0.61;
 		logoTower.antialiasing = false;
 		logoTower.screenCenter();
 		logoTower.y -= 42;
@@ -271,17 +271,23 @@ class TitleState extends MusicBeatState
 		chaotixMenu.frames = Paths.getSparrowAtlas('title/chaotixmenu');
 		chaotixMenu.antialiasing = false;
 		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 24, true);
+		chaotixMenu.scale.x = 2;
+		chaotixMenu.scale.y = 2;
 		chaotixMenu.updateHitbox();
 		chaotixMenu.screenCenter();
 
 		wechMenu = new FlxSprite(50, 25);
 		wechMenu.frames = Paths.getSparrowAtlas('title/wechmenu');
 		wechMenu.antialiasing = false;
+		wechMenu.scale.x = 2;
+		wechMenu.scale.y = 2;
 		wechMenu.animation.addByPrefix('idle', 'wechmenu', 24, true);
 		wechMenu.updateHitbox();
 		wechMenu.screenCenter();
 
 		dukeMenu = new FlxSprite(0, 50);
+		dukeMenu.scale.x = 2;
+		dukeMenu.scale.y = 2;
 		dukeMenu.frames = Paths.getSparrowAtlas('title/dukemenu');
 		dukeMenu.antialiasing = false;
 		dukeMenu.animation.addByPrefix('idle', 'DUKEMENU', 24, true);
@@ -289,6 +295,8 @@ class TitleState extends MusicBeatState
 		dukeMenu.screenCenter(X);
 
 		ashuraMenu = new FlxSprite(-100, 50);
+		ashuraMenu.scale.x = 2;
+		ashuraMenu.scale.y = 2;
 		ashuraMenu.frames = Paths.getSparrowAtlas('title/ashuramenu');
 		ashuraMenu.antialiasing = false;
 		ashuraMenu.animation.addByPrefix('idle', 'ashuramenu', 24, true);
@@ -296,6 +304,8 @@ class TitleState extends MusicBeatState
 		ashuraMenu.screenCenter();
 
 		chotixMenu = new FlxSprite(-100, 50);
+		chotixMenu.scale.x = 2;
+		chotixMenu.scale.y = 2;
 		chotixMenu.frames = Paths.getSparrowAtlas('title/chotixmenu');
 		chotixMenu.antialiasing = false;
 		chotixMenu.animation.addByPrefix('idle', 'chotixmenu', 24, true);
@@ -505,9 +515,14 @@ class TitleState extends MusicBeatState
 		{
 				remove(ngSpr);
 				remove(credGroup);
-				FlxG.camera.flash(FlxColor.WHITE, 4);
+				FlxG.camera.flash(FlxColor.GREEN, 4);
 				floorStuff.animation.play('lol');
-			skippedIntro = true;
+			        chaotixMenu.animation.play('idle');
+			        wechMenu.animation.play('idle');
+			        dukeMenu.animation.play('idle');
+			        ashuraMenu.animation.play('idle');
+			        chotixMenu.animation.play('idle');
+			        skippedIntro = true;
 		}
 	}
 }
