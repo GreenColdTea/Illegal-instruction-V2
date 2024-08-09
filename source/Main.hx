@@ -105,6 +105,9 @@ class Main extends Sprite
 		}
 
 		if (ClientPrefs.noBordersScreen) {
+		    var aspectRatio:Float = 16.0 / 9.0;
+		    var stageWidth:Int = Lib.current.stage.stageWidth;
+                    var stageHeight:Int = Lib.current.stage.stageHeight;
 		    if (stageWidth / stageHeight > aspectRatio)
                     {
                         gameHeight = stageHeight;
@@ -115,14 +118,11 @@ class Main extends Sprite
                         gameWidth = stageWidth;
                         gameHeight = Std.int(gameWidth / aspectRatio);
                     }
-		}
-
+			
                     var ratioX:Float = stageWidth / gameWidth;
                     var ratioY:Float = stageHeight / gameHeight;
-		    var aspectRatio:Float = 16.0 / 9.0;
-		    var stageWidth:Int = Lib.current.stage.stageWidth;
-                    var stageHeight:Int = Lib.current.stage.stageHeight;
                     zoom = Math.min(ratioX, ratioY);
+		}
 	        #end
 			
                 /*var background:FlxSprite = new FlxSprite(0, 0);
