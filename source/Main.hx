@@ -1,178 +1,102 @@
-package;
-
-import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
-import flixel.FlxGame;
 import flixel.FlxState;
-import openfl.Assets;
+import flixel.FlxCamera;
+import flixel.FlxSprite;
 import openfl.Lib;
-import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-import sys.FileSystem;
-import lime.system.System;
-import lime.app.Application;
-import flixel.util.FlxSave;
-
-#if CRASH_HANDLER
-import openfl.events.UncaughtErrorEvent;
-import openfl.events.ErrorEvent;
-import openfl.errors.Error;
-import haxe.CallStack;
-import haxe.io.Path;
-import sys.FileSystem;
-import sys.io.File;
-import sys.io.Process;
-#end
-
-using StringTools;
-using CoolUtil;
 
 class Main extends Sprite
 {
-	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
-	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 60; // How many frames per second the game should run at.
-	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
-	public static var fpsVar:FPS;
+    var gameWidth:Int = 1280;
+    var gameHeight:Int = 720;
+    var initialState:Class<FlxState> = TitleState;
+    var zoom:Float = -1;
+    var framerate:Int = 60;
+    var skipSplash:Bool = true;
+    var startFullscreen:Bool = false;
+    public static var fpsVar:FPS;
 
-	// You can pretty much ignore everything from here on - your code should go in your states.
-        public static var path:String = System.applicationStorageDirectory;
+    public static function main():Void
+    {
+        Lib.current.addChild(new Main());
+    }
 
-	public static function main():Void
-	{
-		Lib.current.addChild(new Main());
-		#if cpp
-		cpp.NativeGc.enable(true);
-		#elseif hl
-		hl.Gc.enable(true);
-		#end
-	}
+    public function new()
+    {
+        super();
 
-	public function new()
-	{
-		super();
+        if (stage != null)
+        {
+            init();
+        }
+        else
+        {
+            addEventListener(Event.ADDED_TO_STAGE, init);
+        }
+    }
 
-                Generic.initCrashHandler();
+    private function init(?E:Event):Void
+    {
+        if (hasEventListener(Event.ADDED_TO_STAGE))
+        {
+            removeEventListener(Event.ADDED_TO_STAGE, init);
+        }
 
-		if (stage != null)
-		{
-			init();
-		}
-		else
-		{
-			addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-	}
+        setupGame();
+    }
 
-	private function init(?E:Event):Void
-	{
-		if (hasEventListener(Event.ADDED_TO_STAGE))
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-		}
+    private function setupGame():Void
+    {
+        var stageWidth:Int = Lib.current.stage.stageWidth;
+        var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		#if cpp
-		untyped __global__.__hxcpp_set_critical_error_handler(onError);
-		#elseif hl
-		hl.Api.setErrorHandler(onError);
-		#end
+        if (zoom == -1 && !ClientPrefs.noBordersScreen) {
+            zoom = 1;
+        }
 
-		setupGame();
-	}
+        if (ClientPrefs.noBordersScreen) {
+            resizeGame();
+        }
 
-	private function setupGame():Void
-	{
-		#if (openfl <= "9.2.0")
-		var stageWidth:Int = Lib.current.stage.stageWidth;
-		var stageHeight:Int = Lib.current.stage.stageHeight;
+        addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
-		if (zoom == -1)
-		{
-			var ratioX:Float = stageWidth / gameWidth;
-			var ratioY:Float = stageHeight / gameHeight;
-			zoom = Math.min(ratioX, ratioY);
-			gameWidth = Math.ceil(stageWidth / zoom);
-			gameHeight = Math.ceil(stageHeight / zoom);
-		}
-		#else
-		if (zoom == -1 && !ClientPrefs.noBordersScreen) {
-			zoom = 1;
-		}
+        fpsVar = new FPS(10, 3, 0xFFFFFF);
+        addChild(fpsVar);
+        Lib.current.stage.align = "tl";
+        Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
+        if(fpsVar != null) {
+            fpsVar.visible = ClientPrefs.showFPS;
+        }
+    }
 
-		if (ClientPrefs.noBordersScreen) {
-		    var aspectRatio:Float = 16.0 / 9.0;
-		    var stageWidth:Int = Lib.current.stage.stageWidth;
-                    var stageHeight:Int = Lib.current.stage.stageHeight;
-		    if (stageWidth / stageHeight > aspectRatio)
-                    {
-                        gameHeight = stageHeight;
-                        gameWidth = Std.int(gameHeight * aspectRatio);
-                    }
-                    else
-                    {
-                        gameWidth = stageWidth;
-                        gameHeight = Std.int(gameWidth / aspectRatio);
-                    }
-			
-                    var ratioX:Float = stageWidth / gameWidth;
-                    var ratioY:Float = stageHeight / gameHeight;
-                    zoom = Math.min(ratioX, ratioY);
-		}
-	        #end
-			
-                /*var background:FlxSprite = new FlxSprite(0, 0);
-                background.loadGraphic(yourBackgroundImage);
-                if (ClientPrefs.noBordersScreen)
-                {
-                    background.scale.set(screenWidth / background.width, screenHeight / background.height);
-                }
-                else
-                {
-                    background.scale.set(gameWidth / background.width, gameHeight / background.height);
-                }
-                add(background);*/
+    private function resizeGame():Void
+    {
+        var stageWidth:Int = Lib.current.stage.stageWidth;
+        var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		SUtil.getStorageForLogs();
+        var aspectRatio:Float = 16.0 / 9.0;
 
-                Generic.mode = ROOTDATA;
-		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets');
-		}
-	
-		ClientPrefs.loadDefaultKeys();
-		// fuck you, persistent caching stays ON during sex
-		FlxGraphic.defaultPersist = true;
-		// the reason for this is we're going to be handling our own cache smartly
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
+        if (stageWidth / stageHeight > aspectRatio)
+        {
+            gameHeight = stageHeight;
+            gameWidth = Std.int(gameHeight * aspectRatio);
+        }
+        else
+        {
+            gameWidth = stageWidth;
+            gameHeight = Std.int(gameWidth / aspectRatio);
+        }
 
-		fpsVar = new FPS(10, 3, 0xFFFFFF);
-		addChild(fpsVar);
-		Lib.current.stage.align = "tl";
-		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		if(fpsVar != null) {
-			fpsVar.visible = ClientPrefs.showFPS;
-		}
+        var ratioX:Float = stageWidth / gameWidth;
+        var ratioY:Float = stageHeight / gameHeight;
+        zoom = Math.min(ratioX, ratioY);
 
-		#if html5
-		FlxG.autoPause = false;
-		FlxG.mouse.visible = false;
-		#end
+        FlxG.resizeGame(gameWidth, gameHeight);
 
-	}
-
-        #if (cpp || hl)
-	private static function onError(message:Dynamic):Void
-	{
-		throw Std.string(message);
-	}
-	#end
-	
-	public function getFPS():Float{
-		return fpsVar.currentFPS;	
-	}
+        var camera:FlxCamera = FlxG.camera;
+        camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
+        camera.zoom = zoom;
+    }
 }
