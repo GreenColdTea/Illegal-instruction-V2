@@ -100,17 +100,28 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 		#else
-		if (zoom == -1)
+		if (zoom == -1 && !ClientPrefs.noBordersScreen) {
 			zoom = 1;
-		#end
+		}
 
 		if (ClientPrefs.noBordersScreen) {
-		   if (zoom == 1)
-		      zoom = 2;
-		} else {
-		   if (zoom == 2)
-		      zoom = 1;
-	        }
+		    if (stageWidth / stageHeight > aspectRatio)
+                    {
+                        gameHeight = stageHeight;
+                        gameWidth = Std.int(gameHeight * aspectRatio);
+                    }
+                    else
+                    {
+                        gameWidth = stageWidth;
+                        gameHeight = Std.int(gameWidth / aspectRatio);
+                    }
+		}
+
+                    var ratioX:Float = stageWidth / gameWidth;
+                    var ratioY:Float = stageHeight / gameHeight;
+		    var aspectRatio:Float = 16.0 / 9.0;
+                    zoom = Math.min(ratioX, ratioY);
+	        #end
 			
                 /*var background:FlxSprite = new FlxSprite(0, 0);
                 background.loadGraphic(yourBackgroundImage);
