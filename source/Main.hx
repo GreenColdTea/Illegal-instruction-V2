@@ -37,6 +37,8 @@ class Main extends Sprite
     {
         super();
 
+	Generic.initCrashHandler();
+
         if (stage != null)
         {
             init();
@@ -89,6 +91,15 @@ class Main extends Sprite
         if(fpsVar != null) {
             fpsVar.visible = ClientPrefs.showFPS;
         }
+    }
+
+    public function update(elapsed:Float):Void
+    {
+        super.update(elapsed);
+
+	if (ClientPrefs.noBordersScreen) {
+            resizeGame();
+	}
     }
 
     private function resizeGame():Void
