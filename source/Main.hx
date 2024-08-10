@@ -25,6 +25,8 @@ import sys.io.File;
 import sys.io.Process;
 #end
 
+using CoolUtil;
+
 class Main extends Sprite
 {
     var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
