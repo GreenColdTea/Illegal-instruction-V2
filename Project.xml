@@ -54,7 +54,7 @@
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
 
 	<!-- DONT ENABLE THIS -->
-	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
+	<!--<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>-->
 	<!-- NOTE: ITS OUTDATED -->
 
 	<!-- <define name="PRELOAD_ALL" /> -->
