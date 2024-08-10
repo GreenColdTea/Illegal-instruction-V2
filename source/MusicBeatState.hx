@@ -17,6 +17,7 @@ import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.FlxBasic;
 import openfl.system.System;
+import openfl.utils.Assets;
 import lime.app.Application;
 
 #if android
@@ -125,10 +126,17 @@ class MusicBeatState extends FlxUIState
 			openSubState(new CustomFadeTransition(0.7, true));
 		}
 
-		if (!FileSystem.exists("assets/images/gort.png")) {
-                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING IDIOT!!!.", "Duke");
+		#if !MODS_ALLOWED
+		if (!Assets.exists("assets/images/gort.png")) {
+                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING BASTARD!!!.", "Duke");
                     System.exit(1);
 		}
+		#else
+		if (!FileSystem.exists("assets/images/gort.png")) {
+                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING BASTARD!!!.", "Duke");
+                    System.exit(1);
+		}
+		#end
 		
 		FlxTransitionableState.skipNextTransOut = false;
 	}
