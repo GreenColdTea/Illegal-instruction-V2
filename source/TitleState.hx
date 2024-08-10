@@ -271,41 +271,50 @@ class TitleState extends MusicBeatState
 		chaotixMenu.frames = Paths.getSparrowAtlas('title/chaotixmenu');
 		chaotixMenu.antialiasing = false;
 		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 24, true);
-		chaotixMenu.scale.x = 2;
-		chaotixMenu.scale.y = 2;
+		chaotixMenu.scale.x = 3;
+		chaotixMenu.scale.y = 3;
+		chatixMenu.x -= 50;
+		chaotixMenu.y += 25;
 		chaotixMenu.updateHitbox();
 		chaotixMenu.screenCenter();
 
-		wechMenu = new FlxSprite(50, 25);
+		wechMenu = new FlxSprite(0, 0);
 		wechMenu.frames = Paths.getSparrowAtlas('title/wechmenu');
 		wechMenu.antialiasing = false;
-		wechMenu.scale.x = 2;
-		wechMenu.scale.y = 2;
+		wechMenu.scale.x = 3;
+		wechMenu.scale.y = 3;
+		wechMenu.x += 50;
+		wechMenu.y += 25;
 		wechMenu.animation.addByPrefix('idle', 'wechmenu', 24, true);
 		wechMenu.updateHitbox();
 		wechMenu.screenCenter();
 
-		dukeMenu = new FlxSprite(0, 50);
-		dukeMenu.scale.x = 2;
-		dukeMenu.scale.y = 2;
+		dukeMenu = new FlxSprite(0, 0);
+		dukeMenu.scale.x = 3;
+		dukeMenu.scale.y = 3;
+		dukeMenu.y += 50;
 		dukeMenu.frames = Paths.getSparrowAtlas('title/dukemenu');
 		dukeMenu.antialiasing = false;
 		dukeMenu.animation.addByPrefix('idle', 'DUKEMENU', 24, true);
 		dukeMenu.updateHitbox();
-		dukeMenu.screenCenter(X);
+		dukeMenu.screenCenter();
 
-		ashuraMenu = new FlxSprite(-100, 50);
-		ashuraMenu.scale.x = 2;
-		ashuraMenu.scale.y = 2;
+		ashuraMenu = new FlxSprite(0, 0);
+		ashuraMenu.scale.x = 3;
+		ashuraMenu.scale.y = 3;
+		ashuraMenu.x -= 100;
+		ashuraMenu.y += 50;
 		ashuraMenu.frames = Paths.getSparrowAtlas('title/ashuramenu');
 		ashuraMenu.antialiasing = false;
 		ashuraMenu.animation.addByPrefix('idle', 'ashuramenu', 24, true);
 		ashuraMenu.updateHitbox();
 		ashuraMenu.screenCenter();
 
-		chotixMenu = new FlxSprite(-100, 50);
-		chotixMenu.scale.x = 2;
-		chotixMenu.scale.y = 2;
+		chotixMenu = new FlxSprite(0, 0);
+		chotixMenu.scale.x = 3;
+		chotixMenu.scale.y = 3;
+		chotixMenu.x += 100;
+		chotixMenu.y += 50;
 		chotixMenu.frames = Paths.getSparrowAtlas('title/chotixmenu');
 		chotixMenu.antialiasing = false;
 		chotixMenu.animation.addByPrefix('idle', 'chotixmenu', 24, true);
@@ -411,7 +420,7 @@ class TitleState extends MusicBeatState
 			{
 				if(titleText != null) titleText.animation.play('press');
 
-				FlxG.camera.flash(FlxColor.WHITE, 1);
+				FlxG.camera.flash(FlxColor.PURPLE, 1);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 				transitioning = true;
@@ -515,7 +524,7 @@ class TitleState extends MusicBeatState
 		{
 				remove(ngSpr);
 				remove(credGroup);
-				FlxG.camera.flash(FlxColor.GREEN, 4);
+				FlxG.camera.flash(FlxColor.PURPLE, 4);
 				floorStuff.animation.play('lol');
 			        chaotixMenu.animation.play('idle');
 			        wechMenu.animation.play('idle');
