@@ -170,11 +170,8 @@
         <haxedef name="HXCPP_STACK_LINE" />
         <haxedef name="HXCPP_STACK_TRACE"/>
 
-	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<!-- I'm tired to install and uninstall build everytime so i decided to add certificate to update instead of uninstall -->
 	<certificate path="II-Key.keystore" password="Illegarl" alias="ii-key" alias-password="Illegarl" if="android" unless="debug" />
-
-	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
-	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 
         <!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
