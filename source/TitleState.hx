@@ -273,7 +273,7 @@ class TitleState extends MusicBeatState
 		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 24, true);
 		chaotixMenu.scale.x = 3;
 		chaotixMenu.scale.y = 3;
-		chatixMenu.x -= 50;
+		chaotixMenu.x -= 50;
 		chaotixMenu.y += 25;
 		chaotixMenu.updateHitbox();
 		chaotixMenu.screenCenter();
