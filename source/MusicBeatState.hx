@@ -176,30 +176,14 @@ class MusicBeatState extends FlxUIState
                     var stageWidth:Int = FlxG.width;
                     var stageHeight:Int = FlxG.height;
 
-                    var aspectRatio:Float = 16.0 / 9.0;
-
-                    var gameWidth:Int;
-                    var gameHeight:Int;
-
-                    if (stageWidth / stageHeight > aspectRatio)
-                    {
-                        gameHeight = stageHeight;
-                        gameWidth = Std.int(gameHeight * aspectRatio);
-                    }
-                    else
-                    {
-                        gameWidth = stageWidth;
-                        gameHeight = Std.int(gameWidth / aspectRatio);
-                    }
-
-                    var ratioX:Float = stageWidth / gameWidth;
-                    var ratioY:Float = stageHeight / gameHeight;
-                    var zoom = Math.min(ratioX, ratioY);
+                    var gameWidth:Int = stageWidth;
+                    var gameHeight:Int = stageHeight;
 
                     FlxG.resizeGame(gameWidth, gameHeight);
 
                     FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
-                    FlxG.camera.zoom = zoom;
+
+                    FlxG.camera.zoom = 1;
                 }
 		
 		super.update(elapsed);
