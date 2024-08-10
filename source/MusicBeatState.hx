@@ -128,12 +128,12 @@ class MusicBeatState extends FlxUIState
 
 		#if !MODS_ALLOWED
 		if (!Assets.exists("assets/images/gort.png")) {
-                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING BASTARD!!!.", "Duke");
+                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING BASTARD!!!", "Duke");
                     System.exit(1);
 		}
 		#else
 		if (!FileSystem.exists("assets/images/gort.png")) {
-                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING BASTARD!!!.", "Duke");
+                    Application.current.window.alert("Critical Error: Where's my gort YOU FUCKING BASTARD!!!", "Duke");
                     System.exit(1);
 		}
 		#end
