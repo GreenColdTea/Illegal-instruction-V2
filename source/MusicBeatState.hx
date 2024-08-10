@@ -16,6 +16,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.FlxBasic;
+import openfl.system.System;
 import lime.app.Application;
 
 #if android
