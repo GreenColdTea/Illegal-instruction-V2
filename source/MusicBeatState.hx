@@ -20,6 +20,7 @@ import openfl.system.System;
 import openfl.utils.Assets;
 import openfl.Lib;
 import openfl.display.StageScaleMode;
+import openfl.display.StageAlign;
 import lime.app.Application;
 
 #if android
