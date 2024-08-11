@@ -88,7 +88,7 @@ class Main extends Sprite
         var stageWidth:Int = Lib.current.stage.stageWidth;
         var stageHeight:Int = Lib.current.stage.stageHeight;
 
-        if (zoom == -1 && !ClientPrefs.noBordersScreen) {
+        if (zoom == -1) {
             zoom = 1;
         }
 
