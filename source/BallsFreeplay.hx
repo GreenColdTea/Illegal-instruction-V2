@@ -363,6 +363,17 @@ class BallsFreeplay extends MusicBeatState
             player.velocity.x = 0;
         }
 
+        if (player.y < 100)
+        {
+            player.y = 100;
+            player.velocity.y = 0;
+        }
+        else if (player.y + player.width > FlxG.width - 100)
+        {
+            player.y = FlxG.width - 100 - player.width;
+            player.velocity.y = 0;
+	}
+
 	if (!isOnGround())
         {
             player.velocity.y += gravity * elapsed;
