@@ -19,6 +19,7 @@ import flixel.FlxBasic;
 import openfl.system.System;
 import openfl.utils.Assets;
 import openfl.Lib;
+import openfl.display.StageScaleMode;
 import lime.app.Application;
 
 #if android
