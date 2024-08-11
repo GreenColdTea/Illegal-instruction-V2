@@ -339,7 +339,7 @@ class BallsFreeplay extends MusicBeatState
             speedMultiplier = 1.0; // Reset speed multiplier
         }
 
-        if (FlxG.keys.pressed.SPACE #if android || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround()))
+        if (FlxG.keys.pressed.SPACE #if android || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
             isJumping = true;
             jumpStartY = player.y; // Record where we started the jump
