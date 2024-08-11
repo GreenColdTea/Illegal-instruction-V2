@@ -175,8 +175,22 @@ class MusicBeatState extends FlxUIState
 		}
 
                 if (ClientPrefs.noBordersScreen) {
-                    Lib.current.stage.align = StageAlign.TOP_LEFT;
-                    Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
+                    var stageWidth:Int = FlxG.stage.stageWidth;
+                    var stageHeight:Int = FlxG.stage.stageHeight;
+
+                    var aspectRatio:Float = stageWidth / stageHeight;
+                    var gameAspectRatio:Float = FlxG.width / FlxG.height;
+
+                    if (aspectRatio > gameAspectRatio) {
+                        FlxG.camera.zoom = stageHeight / FlxG.height;
+                    } else {
+                        FlxG.camera.zoom = stageWidth / FlxG.width;
+                    }
+
+                    FlxG.camera.scroll.x = (FlxG.width * FlxG.camera.zoom - stageWidth) / 2;
+                    FlxG.camera.scroll.y = (FlxG.height * FlxG.camera.zoom - stageHeight) / 2;
+
+                    FlxG.camera.setScrollBoundsRect(0, 0, FlxG.width, FlxG.height);
                 }
 		
 		super.update(elapsed);
