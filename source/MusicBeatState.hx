@@ -175,6 +175,7 @@ class MusicBeatState extends FlxUIState
 		}
 
                 if (ClientPrefs.noBordersScreen) {
+			
                     var stageWidth:Int = FlxG.stage.stageWidth;
                     var stageHeight:Int = FlxG.stage.stageHeight;
 
