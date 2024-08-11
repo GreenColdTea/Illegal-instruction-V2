@@ -304,96 +304,74 @@ class BallsFreeplay extends MusicBeatState
             switchToBack();
         }
 
-        //Handle left and right movement
+        //BF left and right movement
         if (controls.UI_LEFT_P && !controls.UI_RIGHT_P)
         {
-            player.flipX = false; // Facing left
+            player.flipX = false;
             if (!isHoldingLeft)
             {
                 isHoldingLeft = true;
-                holdTimer.start(1, onHoldComplete); // Start the timer
-                player.animation.play('walk'); // Start walking animation
+		player.animation.play('walk');
+                holdTimer.start(1, onHoldComplete);
             }
         }
         else if (controls.UI_LEFT_R)
         {
+            player.flipX = false;
             isHoldingLeft = false;
-            holdTimer.cancel(); // Cancel the timer
-            speedMultiplier = 1.0; // Reset speed multiplier
-        }
+	    player.animation.play('walk');
+            speedMultiplier = 1.25;
+            holdTimer.cancel();
+	}
 
         if (controls.UI_RIGHT_P && !controls.UI_LEFT_P)
         {
-            player.flipX = true; // Facing right
+            player.flipX = true;
             if (!isHoldingRight)
             {
                 isHoldingRight = true;
-                holdTimer.start(1, onHoldComplete); // Start the timer
-                player.animation.play('walk'); // Start walking animation
+		player.animation.play('walk');
+                holdTimer.start(1, onHoldComplete);
             }
         }
         else if (controls.UI_RIGHT_R)
         {
+            player.flipX = true;
             isHoldingRight = false;
-            holdTimer.cancel(); // Cancel the timer
-            speedMultiplier = 1.0; // Reset speed multiplier
-        }
+	    player.animation.play('walk');
+            speedMultiplier = 1.25;
+            holdTimer.cancel();
+	}
 
-        if (FlxG.keys.pressed.SPACE #if android || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
+        if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
-            isJumping = true;
-            jumpStartY = player.y; // Record where we started the jump
-            player.velocity.y = jumpSpeed; // Apply upward velocity
-            player.animation.play('jump'); // Play jump animation
-            FlxG.sound.play(Paths.sound('jump'), 0.6); // Play jump sound
+	    isJumping = true;
+            player.velocity.y = -jumpSpeed;
+	    player.animation.play('jump');
+	    FlxG.sound.play(Paths.sound('jump'), 0.6);
         }
 
-        if (isJumping)
+        //Screen boundaries
+	if (player.x < -80)
+        {
+            player.x = -80;
+            player.velocity.x = 0;
+        }
+        else if (player.x + player.width > FlxG.width + 80)
+        {
+            player.x = FlxG.width + 80 - player.width;
+            player.velocity.x = 0;
+        }
+
+	if (!isOnGround())
         {
             player.velocity.y += gravity * elapsed;
-
-            // Check if we've reached the max jump height
-            if (player.y <= jumpStartY - maxJumpHeight)
-            {
-                player.velocity.y = 0; // Stop upward movement
-            }
-
-            // Check if we've hit the ground
-            if (player.y + player.height >= FlxG.height - 100)
-            {
-                player.y = FlxG.height - player.height - 100; // Adjust position to stay grounded
-                isJumping = false;
-                player.velocity.y = 0; // Stop falling
-            }
-       }
-
-       //Screen boundaries
-       if (player.x < -80)
-       {
-           player.x = -80; // Prevent moving off the left edge. “Nope, not today!”
-           player.velocity.x = 0; // Stop horizontal movement. “Left field is off-limits!”
-       }
-       else if (player.x + player.width > FlxG.width + 80)
-       {
-           player.x = FlxG.width + 80 - player.width; // Prevent moving off the right edge. “Right field is closed for business!”
-           player.velocity.x = 0; // Stop horizontal movement. “Right edge, not on my watch!”
-       }
-
-       if (player.y < 100)
-       {
-           player.y = 100; //Prevent moving off the top edge. “Not climbing the sky today!”
-           player.velocity.y = 0; //Stop vertical movement. “Stay grounded, buddy!”
-       }
-       else if (player.y + player.height > FlxG.height - 100)
-       {
-           player.y = FlxG.height - player.height - 100; // Prevent moving off the bottom edge. “No free-fall here!”
-           player.velocity.y = 0; //Stop vertical movement. “Gravity: still winning.”
-       }
+	}
 
 
         // Movement and animation
-       if (isOnGround())
-       {
+        if (isOnGround())
+        {
            if (isHoldingLeft && !isHoldingRight)
            {
                player.velocity.x = -speed * speedMultiplier; // Move left. “Left is the new black.”
