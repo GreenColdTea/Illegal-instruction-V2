@@ -18,6 +18,7 @@ import flixel.FlxState;
 import flixel.FlxBasic;
 import openfl.system.System;
 import openfl.utils.Assets;
+import openfl.Lib;
 import lime.app.Application;
 
 #if android
@@ -172,18 +173,8 @@ class MusicBeatState extends FlxUIState
 		}
 
                 if (ClientPrefs.noBordersScreen) {
-	    
-                    var stageWidth:Int = FlxG.width;
-                    var stageHeight:Int = FlxG.height;
-
-                    var gameWidth:Int = stageWidth;
-                    var gameHeight:Int = stageHeight;
-
-                    FlxG.resizeGame(gameWidth, gameHeight);
-
-                    FlxG.camera.setScrollBoundsRect(0, 0, gameWidth, gameHeight);
-
-                    FlxG.camera.zoom = 1;
+                    Lib.current.stage.align = StageAlign.TOP_LEFT;
+                    Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
                 }
 		
 		super.update(elapsed);
