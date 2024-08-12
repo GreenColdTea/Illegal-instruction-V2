@@ -18,8 +18,8 @@ class FlxPointer
 
 	static var _cachedPoint:FlxPoint = new FlxPoint();
 
-	public static var Camera = FlxG.camera;
-	public static var point = FlxPoint.get();
+	var camera:FlxCamera? = null;
+	var point = FlxPoint? = null;
 
 	public function new() {}
 
@@ -31,7 +31,7 @@ class FlxPointer
 	 * @param 	point	An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in world space.
 	 */
-	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
+	public function getWorldPosition():FlxPoint
 	{
 		if (Camera == null)
 		{
@@ -55,7 +55,7 @@ class FlxPointer
 	 * @param 	point		An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in screen space.
 	 */
-	public function getScreenPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
+	public function getScreenPosition():FlxPoint
 	{
 		if (Camera == null)
 		{
@@ -80,7 +80,7 @@ class FlxPointer
 	 * @return 	The touch point's location relative to camera's viewport.
 	 */
 	@:access(flixel.FlxCamera)
-	public function getPositionInCameraView(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
+	public function getPositionInCameraView():FlxPoint
 	{
 		if (Camera == null)
 			Camera = FlxG.camera;
@@ -97,7 +97,7 @@ class FlxPointer
 	/**
 	 * Returns a FlxPoint with this input's x and y.
 	 */
-	public function getPosition(?point:FlxPoint):FlxPoint
+	public function getPosition():FlxPoint
 	{
 		if (point == null)
 			point = FlxPoint.get();
@@ -114,7 +114,7 @@ class FlxPointer
 	 * @return 	Whether or not the two objects overlap.
 	 */
 	@:access(flixel.group.FlxTypedGroup.resolveGroup)
-	public function overlaps(ObjectOrGroup:FlxBasic, ?Camera:FlxCamera):Bool
+	public function overlaps(ObjectOrGroup:FlxBasic):Bool
 	{
 		var result:Bool = false;
 
