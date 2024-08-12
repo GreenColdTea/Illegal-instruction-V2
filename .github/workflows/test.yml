@@ -47,8 +47,6 @@ jobs:
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit --quiet
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
           haxelib git extension-androidtools https://github.com/Edger228/androidtools.git --quiet
-          haxelib install echo --quiet
-          haxelib install echo-flixel --quiet
           haxelib list
 
       - name: Setup Lime
