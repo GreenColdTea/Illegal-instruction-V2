@@ -33,9 +33,6 @@ class FlxPointer
 	 */
 	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
         {
-            Camera = FlxG.camera;
-            point = FlxPoint.get();
-		
             getScreenPosition(Camera, _cachedPoint);
 	    point.x = _cachedPoint.x + Camera.scroll.x;
 	    point.y = _cachedPoint.y + Camera.scroll.y;
@@ -53,9 +50,6 @@ class FlxPointer
 	public function getScreenPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
 	{
 		
-		Camera = FlxG.camera;
-		point = FlxPoint.get();
-
 		point.x = (_globalScreenX - Camera.x + 0.5 * Camera.width * (Camera.zoom - Camera.initialZoom)) / Camera.zoom;
 		point.y = (_globalScreenY - Camera.y + 0.5 * Camera.height * (Camera.zoom - Camera.initialZoom)) / Camera.zoom;
 
