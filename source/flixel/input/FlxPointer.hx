@@ -18,6 +18,9 @@ class FlxPointer
 
 	static var _cachedPoint:FlxPoint = new FlxPoint();
 
+	static var Camera = FlxG.camera;
+	static var point = FlxPoint.get();
+
 	public function new() {}
 
 	/**
