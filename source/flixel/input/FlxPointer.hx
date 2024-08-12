@@ -32,15 +32,18 @@ class FlxPointer
 	 * @return 	The touch point's location in world space.
 	 */
 	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
-	{
-		
-		Camera = FlxG.camera;
-		point = FlxPoint.get();
-		getScreenPosition(Camera, _cachedPoint);
-		point.x = _cachedPoint.x + Camera.scroll.x;
-		point.y = _cachedPoint.y + Camera.scroll.y;
-		return point;
-	}
+        {
+            if (Camera == null)
+            {
+                Camera = FlxG.camera;
+            }
+            if (point == null)
+            {
+                point = FlxPoint.get();
+            }
+
+            return Camera.getWorldPositionForPoint(getScreenPosition(Camera));
+        }
 
 	/**
 	 * Fetch the screen position of the pointer on any given camera.
