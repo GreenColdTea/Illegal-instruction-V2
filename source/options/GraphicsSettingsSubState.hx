@@ -129,24 +129,9 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			
 			Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
 			
-                        var gameWidth:Float = 1280; 
-                        var gameHeight:Float = 720;  
+                        FlxG.camera.zoom(1.0);
 
-                        var stageWidth:Float = Lib.current.stage.stageWidth;
-                        var stageHeight:Float = Lib.current.stage.stageHeight;
-
-                        var ratioX:Float = stageWidth / gameWidth;
-                        var ratioY:Float = stageHeight / gameHeight;
-                        var scale:Float = Math.max(ratioX, ratioY);  
-
-			gameWidth = Math.ceil(stageWidth / scale);
-                        gameHeight = Math.ceil(stageHeight / scale);
-
-                        FlxG.camera.setScale(scale, scale);
-
-                        FlxG.camera.scroll.x = (stageWidth - gameWidth * scale) / 2;
-                        FlxG.camera.scroll.y = (stageHeight - gameHeight * scale) / 2;
-                }
+		}
 		else
 		{
 			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
