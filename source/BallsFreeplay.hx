@@ -401,7 +401,7 @@ class BallsFreeplay extends MusicBeatState
        }
        else
        {
-          if (player.velocity.y < 0)
+          if (player.velocity.y < 100)
           {
               player.animation.play('jump'); // Play jump animation while in the air. “Sky high and still fabulous!”
           }
@@ -485,6 +485,6 @@ class BallsFreeplay extends MusicBeatState
    // Checks if the player is on the ground
    function isOnGround():Bool
    {
-       return player.y + player.height >= FlxG.height - 1; // Simple ground check. “Ground status: definitely grounded.”
+       return player.y + player.height + 100 >= FlxG.height - 1; // Simple ground check. “Ground status: definitely grounded.”
    }
 }
