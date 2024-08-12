@@ -173,14 +173,6 @@ class MusicBeatState extends FlxUIState
 		if(FlxG.save.data != null) { 
 			FlxG.save.data.fullscreen = FlxG.fullscreen;
 		}
-
-                if (ClientPrefs.noBordersScreen) {
-			Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
-                }
-		else
-		{
-			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		}
 		
 		super.update(elapsed);
 	}
