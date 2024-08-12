@@ -26,6 +26,7 @@ import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
 import openfl.Lib;
+import openfl.display.StageScaleMode;
 
 using StringTools;
 
@@ -69,6 +70,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'noBordersScreen', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
+		option.onChange = onChangeScreen;
 		addOption(option);
 
 		/*var option:Option = new Option('Adaptive Caching',
@@ -118,6 +120,17 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		{
 			FlxG.drawFramerate = ClientPrefs.framerate;
 			FlxG.updateFramerate = ClientPrefs.framerate;
+		}
+	}
+	
+	function onChangeScreen()
+	{
+		if (ClientPrefs.noBordersScreen) {
+			Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
+                }
+		else
+		{
+			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		}
 	}
 }
