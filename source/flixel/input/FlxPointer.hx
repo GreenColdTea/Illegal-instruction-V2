@@ -31,7 +31,7 @@ class FlxPointer
 	 * @param 	point	An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in world space.
 	 */
-	public function getWorldPosition(Camera:FlxCamera, point:FlxPoint):FlxPoint
+	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
         {
             if (Camera == null)
             {
