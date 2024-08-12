@@ -141,9 +141,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			gameWidth = Math.ceil(stageWidth / scale);
                         gameHeight = Math.ceil(stageHeight / scale);
 
-                        gameWidth = Math.ceil(stageWidth / scale);
-                        gameHeight = Math.ceil(stageHeight / scale);
-
                         FlxG.camera.setScale(scale);
 
                         FlxG.camera.scroll.x = (stageWidth - gameWidth * scale) / 2;
