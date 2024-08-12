@@ -18,9 +18,9 @@ class FlxPointer
 
 	static var _cachedPoint:FlxPoint = new FlxPoint();
 
-	var Camera:Null<FlxCamera>;
-        var point:Null<FlxPoint>;
-	
+	public static var Camera = FlxG.camera;
+	public static var point = FlxPoint.get();
+
 	public function new() {}
 
 	/**
@@ -31,16 +31,11 @@ class FlxPointer
 	 * @param 	point	An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in world space.
 	 */
-	public function getWorldPosition():FlxPoint
+	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
 	{
-		if (Camera == null)
-		{
-			Camera = FlxG.camera;
-		}
-		if (point == null)
-		{
-			point = FlxPoint.get();
-		}
+		
+		Camera = FlxG.camera;
+		point = FlxPoint.get();
 		getScreenPosition(Camera, _cachedPoint);
 		point.x = _cachedPoint.x + Camera.scroll.x;
 		point.y = _cachedPoint.y + Camera.scroll.y;
@@ -55,7 +50,7 @@ class FlxPointer
 	 * @param 	point		An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in screen space.
 	 */
-	public function getScreenPosition():FlxPoint
+	public function getScreenPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
 	{
 		if (Camera == null)
 		{
@@ -80,7 +75,7 @@ class FlxPointer
 	 * @return 	The touch point's location relative to camera's viewport.
 	 */
 	@:access(flixel.FlxCamera)
-	public function getPositionInCameraView():FlxPoint
+	public function getPositionInCameraView(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
 	{
 		if (Camera == null)
 			Camera = FlxG.camera;
@@ -97,7 +92,7 @@ class FlxPointer
 	/**
 	 * Returns a FlxPoint with this input's x and y.
 	 */
-	public function getPosition():FlxPoint
+	public function getPosition(?point:FlxPoint):FlxPoint
 	{
 		if (point == null)
 			point = FlxPoint.get();
@@ -114,7 +109,7 @@ class FlxPointer
 	 * @return 	Whether or not the two objects overlap.
 	 */
 	@:access(flixel.group.FlxTypedGroup.resolveGroup)
-	public function overlaps(ObjectOrGroup:FlxBasic):Bool
+	public function overlaps(ObjectOrGroup:FlxBasic, ?Camera:FlxCamera):Bool
 	{
 		var result:Bool = false;
 
