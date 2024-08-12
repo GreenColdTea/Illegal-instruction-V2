@@ -126,6 +126,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	function onChangeScreen()
 	{
 		if (ClientPrefs.noBordersScreen) {
+			
 			Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
 			
                         var gameWidth:Float = 1280; 
