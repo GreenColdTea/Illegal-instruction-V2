@@ -174,8 +174,7 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 		header = Header;
 		dropPanel = DropPanel;
 
-		if (header == null)
-			header = new FlxUIDropDownHeader();
+		header = new FlxUIDropDownHeader();
 
 		if (dropPanel == null)
 		{
