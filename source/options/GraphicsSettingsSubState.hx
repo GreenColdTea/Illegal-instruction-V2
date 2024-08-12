@@ -126,7 +126,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	function onChangeScreen()
 	{
 		if (ClientPrefs.noBordersScreen) {
-			Lib.current.stage.scaleMode = StageScaleMode.EXACT_ALL;
+			Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
 			
                         var gameWidth:Float = 1280; 
                         var gameHeight:Float = 720;  
@@ -137,6 +137,9 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
                         var ratioX:Float = stageWidth / gameWidth;
                         var ratioY:Float = stageHeight / gameHeight;
                         var scale:Float = Math.max(ratioX, ratioY);  
+
+			gameWidth = Math.ceil(stageWidth / scale);
+                        gameHeight = Math.ceil(stageHeight / scale);
 
                         gameWidth = Math.ceil(stageWidth / scale);
                         gameHeight = Math.ceil(stageHeight / scale);
