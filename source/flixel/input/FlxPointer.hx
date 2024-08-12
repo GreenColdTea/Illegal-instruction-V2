@@ -31,7 +31,7 @@ class FlxPointer
 	 * @param 	point	An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in world space.
 	 */
-	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
+	public function getWorldPosition(Camera:FlxCamera, point:FlxPoint):FlxPoint
         {
             if (Camera == null)
             {
@@ -41,8 +41,11 @@ class FlxPointer
             {
                 point = FlxPoint.get();
             }
-
-            return Camera.getWorldPositionForPoint(getScreenPosition(Camera));
+		
+            getScreenPosition(Camera, _cachedPoint);
+	    point.x = _cachedPoint.x + Camera.scroll.x;
+	    point.y = _cachedPoint.y + Camera.scroll.y;
+	    return point;
         }
 
 	/**
@@ -53,7 +56,7 @@ class FlxPointer
 	 * @param 	point		An existing point object to store the results (if you don't want a new one created).
 	 * @return 	The touch point's location in screen space.
 	 */
-	public function getScreenPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
+	public function getScreenPosition(Camera:FlxCamera, point:FlxPoint):FlxPoint
 	{
 		if (Camera == null)
 		{
