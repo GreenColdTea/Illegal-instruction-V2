@@ -114,9 +114,7 @@
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
-	<haxelib name="hxcpp" />
 	<haxelib name="openfl" />
-	<haxelib name="lime" />
 	<!--<openfl version="9.2.1" />
 	<lime version="8.0.1" />-->
 
