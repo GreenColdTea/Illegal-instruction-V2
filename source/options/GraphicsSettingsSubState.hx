@@ -126,7 +126,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	function onChangeScreen()
 	{
 		if (ClientPrefs.noBordersScreen) {
-			Lib.current.stage.scaleMode = StageScaleMode.EXACT_FIT;
+			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
                         var screenWidth:Int = Lib.current.stage.stageWidth;
                         var screenHeight:Int = Lib.current.stage.stageHeight;
 
