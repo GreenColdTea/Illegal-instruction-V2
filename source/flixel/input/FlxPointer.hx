@@ -18,9 +18,6 @@ class FlxPointer
 
 	static var _cachedPoint:FlxPoint = new FlxPoint();
 
-	public static var Camera = FlxG.camera;
-	public static var point = FlxPoint.get();
-
 	public function new() {}
 
 	/**
@@ -33,13 +30,8 @@ class FlxPointer
 	 */
 	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
         {
-	    if (Camera == null) {
-                        Camera = FlxG.camera;
-                        if (Camera == null) {
-                            FlxG.camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
-                            Camera = FlxG.camera;
-                        }
-		}
+	    FlxG.camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
+            Camera = FlxG.camera;
 	    if (point == null)
 	    {
 			point = FlxPoint.get();
