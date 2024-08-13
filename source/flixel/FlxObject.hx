@@ -906,7 +906,7 @@ class FlxObject extends FlxBasic
 		{
 			return (point.x >= x) && (point.x < x + width) && (point.y >= y) && (point.y < y + height);
 		}
-                Caming = new flixel.FlxCamera();
+                var Caming = new flixel.FlxCamera();
                 Camera = Caming;
 		var xPos:Float = point.x - Camera.scroll.x;
 		var yPos:Float = point.y - Camera.scroll.y;
