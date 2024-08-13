@@ -459,11 +459,6 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
-      
-		#if android
-		addAndroidControls();
-		androidc.visible = false;
-		#end
 
 		// Gameplay settings
 		healthGain = ClientPrefs.getGameplaySetting('healthgain', 1);
@@ -1729,8 +1724,12 @@ class PlayState extends MusicBeatState
 
 		super.create();
 
-		Paths.clearUnusedMemory();
+	        Paths.clearUnusedMemory();
 		CustomFadeTransition.nextCamera = camOther;
+	        #if android
+		addAndroidControls();
+		androidc.visible = false;
+		#end
 	}
 
 
