@@ -33,8 +33,23 @@ class FlxPointer
         {
 	    var screenWidth:Int = Lib.current.stage.stageWidth;
             var screenHeight:Int = Lib.current.stage.stageHeight;
-	    var Caming = new FlxCamera(0, 0, screenWidth, screenHeight);
+	    var gameWidth:Int = 1280;
+            var gameHeight:Int = 720;
+
+            var Caming = new FlxCamera(0, 0, gameWidth, gameHeight);
+		
+            var scaleX:Float = screenWidth / gameWidth;
+            var scaleY:Float = screenHeight / gameHeight;
+            var scale:Float = Math.min(scaleX, scaleY);
+
+            Caming.setScale(scale, scale);
+
+            Caming.width = screenWidth / scale;
+            Caming.height = screenHeight / scale;
+		
+	    FlxG.camera = Caming;
             Camera = Caming;
+		
 	    if (point == null)
 	    {
 			point = FlxPoint.get();
