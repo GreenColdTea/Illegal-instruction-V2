@@ -44,8 +44,8 @@ class FlxPointer
 
             Caming.setScale(scale, scale);
 
-            Caming.width = screenWidth / scale;
-            Caming.height = screenHeight / scale;
+            Caming.width = Std.int(screenWidth / scale);
+            Caming.height = Std.int(screenHeight / scale);
 		
 	    FlxG.camera = Caming;
             Camera = Caming;
