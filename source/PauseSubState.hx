@@ -254,6 +254,8 @@ class PauseSubState extends MusicBeatSubstate
 				case "Leave Charting Mode":
 					restartSong();
 					PlayState.chartingMode = false;
+				case 'Chart Editor':
+					PlayState.instance.openChartEditor();
 				case 'Skip Time':
 					if(curTime < Conductor.songPosition)
 					{
@@ -284,9 +286,9 @@ class PauseSubState extends MusicBeatSubstate
 					if(PlayState.isStoryMode) {
 						MusicBeatState.switchState(new StoryMenuState());
 					} else {
-						MusicBeatState.switchState(new FreeplayState());
+						MusicBeatState.switchState(new BallsFreplay());
 					}
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					//FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 			}
