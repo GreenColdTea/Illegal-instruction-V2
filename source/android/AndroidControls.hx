@@ -77,13 +77,7 @@ class AndroidControls extends FlxSpriteGroup {
 
 		switch (mode){
 			case HITBOX:
-		    if(ClientPrefs.hitboxmode != 'New'){
 				initControler(0);
-		    }else{
-		                initControler(5);
-		    }
-			case KEYBOARD:// nothing
-				
 			case VIRTUALPAD_RIGHT:
 				initControler(1);
 			case VIRTUALPAD_LEFT:
@@ -92,6 +86,7 @@ class AndroidControls extends FlxSpriteGroup {
 				initControler(3);
 			case DUO:
 				initControler(4);
+			case KEYBOARD:// nothing
 		}
 	}
 
