@@ -105,7 +105,7 @@ class AndroidControls extends FlxSpriteGroup {
 				add(vpad);			
 			case 2:
 				vpad = new FlxVirtualPad(LEFT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);	
-				add(vpad)
+				add(vpad);
 			case 3:
 				vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);
 				vpad = config.loadcustom(vpad);
