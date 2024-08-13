@@ -126,16 +126,19 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	function onChangeScreen()
 	{
 		if (ClientPrefs.noBordersScreen) {
+			var scaleX:Float = FlxG.width / 1280;
+
+                        FlxG.camera.setScale(scaleX, 1.0);
+                        FlxG.camera.scroll.x = 0; 
+			FlxG.resizeGame(1280, 720);
+		}
+		else
+		{
 			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
                         var screenWidth:Int = Lib.current.stage.stageWidth;
                         var screenHeight:Int = Lib.current.stage.stageHeight;
 
                         FlxG.resizeGame(screenWidth, screenHeight);
-		}
-		else
-		{
-			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-			FlxG.resizeGame(1280, 720);
 		}
 	}
 }
