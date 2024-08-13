@@ -30,8 +30,8 @@ class FlxPointer
 	 */
 	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
         {
-	    FlxG.camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
-            Camera = FlxG.camera;
+	    Caming = new FlxCamera();
+            Camera = Caming;
 	    if (point == null)
 	    {
 			point = FlxPoint.get();
@@ -54,10 +54,6 @@ class FlxPointer
 	{
 		if (Camera == null) {
                         Camera = FlxG.camera;
-                        if (Camera == null) {
-                            FlxG.camera = new FlxCamera(0, 0, FlxG.width, FlxG.height);
-                            Camera = FlxG.camera;
-                        }
 		}
 		if (point == null)
 		{
