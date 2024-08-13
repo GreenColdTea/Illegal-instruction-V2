@@ -40,6 +40,7 @@ import haxe.ValueException;
 import openfl.utils.Assets as OpenFlAssets;
 
 using StringTools;
+
 class TitleState extends MusicBeatState
 {
 	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
