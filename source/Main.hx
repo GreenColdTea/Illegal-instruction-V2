@@ -85,12 +85,23 @@ class Main extends Sprite
 
     private function setupGame():Void
     {
+	#if (openfl <= '9.2.0')
         var stageWidth:Int = Lib.current.stage.stageWidth;
-        var stageHeight:Int = Lib.current.stage.stageHeight;
+	var stageHeight:Int = Lib.current.stage.stageHeight;
 
+	if (zoom == -1)
+	{
+		var ratioX:Float = stageWidth / gameWidth;
+		var ratioY:Float = stageHeight / gameHeight;
+		zoom = Math.min(ratioX, ratioY);
+		gameWidth = Math.ceil(stageWidth / zoom);
+		gameHeight = Math.ceil(stageHeight / zoom);
+	}
+        #else
         if (zoom == -1) {
             zoom = 1;
         }
+	#end
 
         Generic.mode = ROOTDATA;
 	if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
