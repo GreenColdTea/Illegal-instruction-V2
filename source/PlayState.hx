@@ -3179,7 +3179,7 @@ class PlayState extends MusicBeatState
 		callOnLuas('onUpdatePost', [elapsed]);
 	}
 
-	function openChartEditor()
+	public static function openChartEditor()
 	{
 		persistentUpdate = false;
 		paused = true;
