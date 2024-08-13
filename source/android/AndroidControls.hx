@@ -76,16 +76,16 @@ class AndroidControls extends FlxSpriteGroup {
 		mode = getModeFromNumber(config.getcontrolmode());
 
 		switch (mode){
-			case VIRTUALPAD_RIGHT:
-				initControler(0);
-			case VIRTUALPAD_LEFT:
-				initControler(1);
-			case VIRTUALPAD_CUSTOM:
-				initControler(2);
-			case DUO:
-				initControler(3);
 			case HITBOX:
 		    if(ClientPrefs.hitboxmode != 'New'){
+				initControler(0);
+			case VIRTUALPAD_RIGHT:
+				initControler(1);
+			case VIRTUALPAD_LEFT:
+				initControler(2);
+			case VIRTUALPAD_CUSTOM:
+				initControler(3);
+			case DUO:
 				initControler(4);
 		    }else{
 		    initControler(5);
@@ -97,55 +97,54 @@ class AndroidControls extends FlxSpriteGroup {
 	function initControler(vpadMode:Int) {
 		switch (vpadMode){
 			case 0:
-				vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);	
-				add(vpad);						
+				newhbox = new FlxNewHitbox();
+			        add(newhbox);						
 			case 1:
-				vpad = new FlxVirtualPad(LEFT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);
+				vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);	
 				add(vpad);			
 			case 2:
+				vpad = new FlxVirtualPad(LEFT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);	
+				add(vpad)
+			case 3:
 				vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);
 				vpad = config.loadcustom(vpad);
-				add(vpad);	
-			case 3:
-				vpad = new FlxVirtualPad(DUO, NONE, 0.75, ClientPrefs.globalAntialiasing);
 				add(vpad);		
 			case 4:
-				hbox = new FlxHitbox(0.75, ClientPrefs.globalAntialiasing);
-				add(hbox);
+				vpad = new FlxVirtualPad(DUO, NONE, 0.75, ClientPrefs.globalAntialiasing);
+				add(vpad);
 			case 5:
-			  newhbox = new FlxNewHitbox();
-			  add(newhbox);
+			  
 			default:
-				vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);	
-				add(vpad);					
+				newhbox = new FlxNewHitbox();
+			        add(newhbox);					
 		}
 	}
 
 	public static function getModeFromNumber(modeNum:Int):ControlsGroup {
 		return switch (modeNum){
 			case 0: 
-				VIRTUALPAD_RIGHT;
-			case 1: 
-				VIRTUALPAD_LEFT;
-			case 2: 
-				VIRTUALPAD_CUSTOM;
-			case 3: 
-				DUO;
-			case 4:	
 				HITBOX;
+			case 1: 
+				VIRTUALPAD_RIGHT;
+			case 2: 
+				VIRTUALPAD_LEFT;
+			case 3: 
+				VIRTUALPAD_CUSTOM;
+			case 4:	
+				DUO;
 			case 5: 
 				KEYBOARD;
 			default: 
-				VIRTUALPAD_RIGHT;
+				HITBOX;
 		}
 	}
 }
 
 enum ControlsGroup {
+	HITBOX;
 	VIRTUALPAD_RIGHT;
 	VIRTUALPAD_LEFT;
 	VIRTUALPAD_CUSTOM;
 	DUO;
-	HITBOX;
 	KEYBOARD;
 }
