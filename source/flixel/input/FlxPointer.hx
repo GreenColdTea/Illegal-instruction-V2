@@ -4,6 +4,7 @@ import flixel.FlxCamera;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import flixel.util.FlxStringUtil;
+import openfl.Lib;
 
 class FlxPointer
 {
