@@ -6482,7 +6482,7 @@
 		"gfVersion": "gfii-alt",
 		"player3": null,
 		"splashSkin": "noteSplashes",
-		"song": "Breakout",
+		"song": "breakout",
 		"stage": "entrance",
 		"validScore": true,
 		"arrowSkin": "",
