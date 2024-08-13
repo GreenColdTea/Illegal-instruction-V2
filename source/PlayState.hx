@@ -3757,8 +3757,7 @@ class PlayState extends MusicBeatState
 				if(FlxTransitionableState.skipNextTransIn) {
 					CustomFadeTransition.nextCamera = null;
 				}
-				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				MusicBeatState.switchState(new BallsFreeplay());
 				changedDifficulty = false;
 			}
 			transitioning = true;
