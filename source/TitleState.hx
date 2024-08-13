@@ -267,7 +267,7 @@ class TitleState extends MusicBeatState
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
 
-		chaotixMenu = new FlxSprite(0, 0);
+		chaotixMenu = new FlxSprite();
 		chaotixMenu.frames = Paths.getSparrowAtlas('title/chaotixmenu');
 		chaotixMenu.antialiasing = false;
 		chaotixMenu.screenCenter();
@@ -278,7 +278,7 @@ class TitleState extends MusicBeatState
 		chaotixMenu.y += 25;
 		chaotixMenu.updateHitbox();
 
-		wechMenu = new FlxSprite(0, 0);
+		wechMenu = new FlxSprite();
 		wechMenu.frames = Paths.getSparrowAtlas('title/wechmenu');
 		wechMenu.screenCenter();
 		wechMenu.antialiasing = false;
@@ -289,7 +289,7 @@ class TitleState extends MusicBeatState
 		wechMenu.animation.addByPrefix('idle', 'wechmenu', 24, true);
 		wechMenu.updateHitbox();
 
-		dukeMenu = new FlxSprite(0, 0);
+		dukeMenu = new FlxSprite();
 		dukeMenu.screenCenter();
 		dukeMenu.scale.x = 3;
 		dukeMenu.scale.y = 3;
@@ -300,7 +300,7 @@ class TitleState extends MusicBeatState
 		dukeMenu.animation.addByPrefix('idle', 'DUKEMENU', 24, true);
 		dukeMenu.updateHitbox();
 
-		ashuraMenu = new FlxSprite(0, 0);
+		ashuraMenu = new FlxSprite();
 		ashuraMenu.screenCenter();
 		ashuraMenu.scale.x = 3;
 		ashuraMenu.scale.y = 3;
@@ -311,7 +311,7 @@ class TitleState extends MusicBeatState
 		ashuraMenu.animation.addByPrefix('idle', 'ashuramenu', 24, true);
 		ashuraMenu.updateHitbox();
 
-		chotixMenu = new FlxSprite(0, 0);
+		chotixMenu = new FlxSprite();
 		chotixMenu.screenCenter();
 		chotixMenu.scale.x = 3;
 		chotixMenu.scale.y = 3;
