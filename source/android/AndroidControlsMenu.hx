@@ -158,6 +158,8 @@ class AndroidControlsMenu extends MusicBeatState
 
 		switch (daChoice)
 		{
+				case 'Hitbox':
+					vpad.alpha = 0;
 				case 'Pad-Right':
 					remove(vpad);
 					vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);
@@ -175,8 +177,6 @@ class AndroidControlsMenu extends MusicBeatState
 					remove(vpad);
 					vpad = new FlxVirtualPad(DUO, NONE, 0.75, ClientPrefs.globalAntialiasing);
 					add(vpad);
-				case 'Hitbox':
-					vpad.alpha = 0;
 				case 'Keyboard':
 					remove(vpad);
 					vpad.alpha = 0;
