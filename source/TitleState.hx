@@ -274,7 +274,7 @@ class TitleState extends MusicBeatState
 		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 24, true);
 		chaotixMenu.scale.x = 3;
 		chaotixMenu.scale.y = 3;
-		chaotixMenu.x -= 85;
+		chaotixMenu.x -= 150;
 		chaotixMenu.y += 25;
 		chaotixMenu.updateHitbox();
 
@@ -304,7 +304,7 @@ class TitleState extends MusicBeatState
 		ashuraMenu.screenCenter();
 		ashuraMenu.scale.x = 3;
 		ashuraMenu.scale.y = 3;
-		ashuraMenu.x -= 300;
+		ashuraMenu.x -= 425;
 		ashuraMenu.y += 45;
 		ashuraMenu.frames = Paths.getSparrowAtlas('title/ashuramenu');
 		ashuraMenu.antialiasing = false;
@@ -315,7 +315,7 @@ class TitleState extends MusicBeatState
 		chotixMenu.screenCenter();
 		chotixMenu.scale.x = 3;
 		chotixMenu.scale.y = 3;
-		chotixMenu.x += 10;
+		chotixMenu.x += 65;
 		chotixMenu.y += 35;
 		chotixMenu.frames = Paths.getSparrowAtlas('title/chotixmenu');
 		chotixMenu.antialiasing = false;
