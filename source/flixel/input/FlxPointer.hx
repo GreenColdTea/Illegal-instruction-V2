@@ -31,32 +31,16 @@ class FlxPointer
 	 */
 	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
         {
-	    var screenWidth:Int = Lib.current.stage.stageWidth;
-            var screenHeight:Int = Lib.current.stage.stageHeight;
-	    var gameWidth:Int = 1280;
-            var gameHeight:Int = 720;
-
-            var Caming = new FlxCamera(0, 0, gameWidth, gameHeight);
-		
-            var scaleX:Float = screenWidth / gameWidth;
-            var scaleY:Float = screenHeight / gameHeight;
-            var scale:Float = Math.min(scaleX, scaleY);
-
-            Caming.setScale(scale, scale);
-
-            Caming.width = Std.int(screenWidth / scale);
-            Caming.height = Std.int(screenHeight / scale);
-		
-	    FlxG.camera = Caming;
-            Camera = Caming;
-		
+            if (Camera == null) {
+                    Camera = FlxG.camera;
+	    }
 	    if (point == null)
 	    {
-			point = FlxPoint.get();
+		    point = FlxPoint.get();
 	    }
-            getScreenPosition(Camera, _cachedPoint);
-	    point.x = _cachedPoint.x + Camera.scroll.x;
-	    point.y = _cachedPoint.y + Camera.scroll.y;
+	    point.x = (_globalScreenX - Camera.x + 0.5 * Camera.width * (Camera.zoom - Camera.initialZoom)) / Camera.zoom;
+	    point.y = (_globalScreenY - Camera.y + 0.5 * Camera.height * (Camera.zoom - Camera.initialZoom)) / Camera.zoom;
+
 	    return point;
         }
 
