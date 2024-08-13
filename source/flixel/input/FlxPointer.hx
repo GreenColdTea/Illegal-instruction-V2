@@ -30,7 +30,9 @@ class FlxPointer
 	 */
 	public function getWorldPosition(?Camera:FlxCamera, ?point:FlxPoint):FlxPoint
         {
-	    var Caming = new FlxCamera();
+	    var screenWidth:Int = Lib.current.stage.stageWidth;
+            var screenHeight:Int = Lib.current.stage.stageHeight;
+	    var Caming = new FlxCamera(0, 0, screenWidth, screenHeight);
             Camera = Caming;
 	    if (point == null)
 	    {
