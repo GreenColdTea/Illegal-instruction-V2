@@ -403,7 +403,7 @@ class TitleState extends MusicBeatState
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
-		if (wrchniaMenu != null) 
+		if (wechniaMenu != null) 
                         wechniaMenu.x = 0 + 80 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
