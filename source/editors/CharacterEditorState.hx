@@ -56,7 +56,6 @@ class CharacterEditorState extends MusicBeatState
 	var daAnim:String = 'spooky';
 	var goToPlayState:Bool = true;
 	var camFollow:FlxObject;
-	var whiteFuck:FlxSprite;
 
 	public function new(daAnim:String = 'spooky', goToPlayState:Bool = true)
 	{
@@ -202,10 +201,10 @@ class CharacterEditorState extends MusicBeatState
 		FlxG.mouse.visible = true;
 		reloadCharacterOptions();
 
-      #if android
-		addVirtualPad(LEFT_FULL, FULL);
-		addVirtualPadCamera();
-		#end
+                #if android
+		addVirtualPad(FULL, FULL);
+                addPadCamera();
+                #end
 
 		super.create();
 	}
@@ -267,14 +266,17 @@ class CharacterEditorState extends MusicBeatState
 			bgStreet.updateHitbox();
 			bgTrees.updateHitbox();
 			changeBGbutton.text = "Regular BG";
-		} 
-		else 
-			{
-				whiteFuck = new FlxSprite(-1200,-1200).makeGraphic(FlxG.width * 6, FlxG.height * 6, FlxColor.YELLOW);
-				bgLayer.add(whiteFuck);
-				changeBGbutton.text = "Pixel BG";
-			}
+		} else {
+			var bg:BGSprite = new BGSprite('stageback', -600 + OFFSET_X - playerXDifference, -300, 0.9, 0.9);
+			bgLayer.add(bg);
+
+			var stageFront:BGSprite = new BGSprite('stagefront', -650 + OFFSET_X - playerXDifference, 500, 0.9, 0.9);
+			stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+			stageFront.updateHitbox();
+			bgLayer.add(stageFront);
+			changeBGbutton.text = "Pixel BG";
 		}
+	}
 
 	/*var animationInputText:FlxUIInputText;
 	function addOffsetsUI() {
@@ -517,6 +519,7 @@ class CharacterEditorState extends MusicBeatState
 		tab_group.name = "Character";
 
 		imageInputText = new FlxUIInputText(15, 30, 200, 'characters/BOYFRIEND', 8);
+		imageInputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		var reloadImage:FlxButton = new FlxButton(imageInputText.x + 210, imageInputText.y - 3, "Reload Image", function()
 		{
 			char.imageFile = imageInputText.text;
@@ -538,7 +541,7 @@ class CharacterEditorState extends MusicBeatState
 			});
 
 		healthIconInputText = new FlxUIInputText(15, imageInputText.y + 35, 75, leHealthIcon.getCharacter(), 8);
-
+		healthIconInputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		singDurationStepper = new FlxUINumericStepper(15, healthIconInputText.y + 45, 0.1, 4, 0, 999, 1);
 
 		scaleStepper = new FlxUINumericStepper(15, singDurationStepper.y + 40, 0.1, 1, 0.05, 10, 1);
@@ -617,8 +620,11 @@ class CharacterEditorState extends MusicBeatState
 		tab_group.name = "Animations";
 		
 		animationInputText = new FlxUIInputText(15, 85, 80, '', 8);
+		animationInputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		animationNameInputText = new FlxUIInputText(animationInputText.x, animationInputText.y + 35, 150, '', 8);
+		animationNameInputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		animationIndicesInputText = new FlxUIInputText(animationNameInputText.x, animationNameInputText.y + 40, 250, '', 8);
+		animationIndicesInputText.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		animationNameFramerate = new FlxUINumericStepper(animationInputText.x + 170, animationInputText.y, 1, 24, 0, 240, 0);
 		animationLoopCheckBox = new FlxUICheckBox(animationNameInputText.x + 170, animationNameInputText.y - 1, null, null, "Should it Loop?", 100);
 
@@ -872,7 +878,6 @@ class CharacterEditorState extends MusicBeatState
 		ghostDropDown.selectedLabel = '';
 		reloadGhost();
 	}
-
 	function genBoyOffsets():Void
 	{
 		var daLoop:Int = 0;
@@ -1043,13 +1048,12 @@ class CharacterEditorState extends MusicBeatState
 		ghostChar.setGraphicSize(Std.int(ghostChar.width * char.jsonScale));
 		ghostChar.updateHitbox();
 	}
-
 	function reloadCharacterDropDown() {
 		var charsLoaded:Map<String, Bool> = new Map();
 
 		#if MODS_ALLOWED
 		characterList = [];
-		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), Paths.getPreloadPath('characters/')];
+		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), SUtil.getPath() + Paths.getPreloadPath('characters/')];
 		for (i in 0...directories.length) {
 			var directory:String = directories[i];
 			if(FileSystem.exists(directory)) {
@@ -1138,11 +1142,11 @@ class CharacterEditorState extends MusicBeatState
 				FlxG.camera.zoom = 1;
 			}
 
-			if (FlxG.keys.pressed.E #if android || _virtualpad.buttonX.justPressed #end && FlxG.camera.zoom < 3) {
+			if (FlxG.keys.pressed.E #if android || _virtualpad.buttonX.pressed #end && FlxG.camera.zoom < 3) {
 				FlxG.camera.zoom += elapsed * FlxG.camera.zoom;
 				if(FlxG.camera.zoom > 3) FlxG.camera.zoom = 3;
 			}
-			if (FlxG.keys.pressed.Q #if android || _virtualpad.buttonY.justPressed #end && FlxG.camera.zoom > 0.1) {
+			if (FlxG.keys.pressed.Q #if android || _virtualpad.buttonY.pressed #end && FlxG.camera.zoom > 0.1) {
 				FlxG.camera.zoom -= elapsed * FlxG.camera.zoom;
 				if(FlxG.camera.zoom < 0.1) FlxG.camera.zoom = 0.1;
 			}
@@ -1181,7 +1185,7 @@ class CharacterEditorState extends MusicBeatState
 				if (curAnim >= char.animationsArray.length)
 					curAnim = 0;
 
-				if (FlxG.keys.justPressed.S #if android || _virtualpad.buttonD.justPressed #end || FlxG.keys.justPressed.W || FlxG.keys.justPressed.SPACE)
+				if (FlxG.keys.justPressed.S #if android || _virtualpad.buttonD.justPressed #end || FlxG.keys.justPressed.W #if android || _virtualpad.buttonV.justPressed #end || FlxG.keys.justPressed.SPACE)
 				{
 					char.playAnim(char.animationsArray[curAnim].anim, true);
 					genBoyOffsets();
@@ -1193,7 +1197,7 @@ class CharacterEditorState extends MusicBeatState
 					char.addOffset(char.animationsArray[curAnim].anim, char.animationsArray[curAnim].offsets[0], char.animationsArray[curAnim].offsets[1]);
 					ghostChar.addOffset(char.animationsArray[curAnim].anim, char.animationsArray[curAnim].offsets[0], char.animationsArray[curAnim].offsets[1]);
 					genBoyOffsets();
-				}
+                                }
 
 				var controlArray:Array<Bool> = [
 					FlxG.keys.justPressed.LEFT #if android || _virtualpad.buttonLeft.justPressed #end,
@@ -1204,7 +1208,7 @@ class CharacterEditorState extends MusicBeatState
 				
 				for (i in 0...controlArray.length) {
 					if(controlArray[i]) {
-						var holdShift = FlxG.keys.pressed.SHIFT;
+						var holdShift = FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonB.pressed #end;
 						var multiplier = 1;
 						if (holdShift)
 							multiplier = 10;
@@ -1303,15 +1307,15 @@ class CharacterEditorState extends MusicBeatState
 
 		if (data.length > 0)
 		{
-			#if android
-			SUtil.saveContent(daAnim, ".json", data);
-			#else
+                        #if android
+                        SUtil.saveContent(daAnim, ".json", data);
+                        #else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data, daAnim + ".json");
-			#end
+                        #end
 		}
 	}
 
@@ -1325,3 +1329,4 @@ class CharacterEditorState extends MusicBeatState
 		return text;
 	}
 }
+	
