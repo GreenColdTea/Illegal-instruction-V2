@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 	var mustUpdate:Bool = false;
 	
-	var speedFactor:Float = 1.5;
+	var speedFactor:Float = 2.25;
 	
 	public static var updateVersion:String = '';
 
@@ -275,7 +275,9 @@ class TitleState extends MusicBeatState
 		wechniaMenu = new FlxSprite();
 		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
 		wechniaMenu.antialiasing = false;
-		wechniaMenu.screenCenter(Y);
+		wechniaMenu.screenCenter();
+		wechniaMenu.x += 100;
+		wechniaMenu.y -= 100;
 		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
 		wechniaMenu.scale.x = 3;
 		wechniaMenu.scale.y = 3;
@@ -406,7 +408,7 @@ class TitleState extends MusicBeatState
                 var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
 		
 		if (wechniaMenu != null) 
-                        wechniaMenu.x = 100 + 200 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
+                        wechniaMenu.x = 100 + 350 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
