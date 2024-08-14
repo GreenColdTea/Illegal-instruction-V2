@@ -348,58 +348,58 @@ class CharacterEditorState extends MusicBeatState
 					"fps": 24,
 					"anim": "idle",
 					"indices": [],
-					"name": "Dad idle dance"
+					"name": "idle"
 				},
 				{
 					"offsets": [
-						0,
-						0
+						27,
+						-3
 					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singLEFT",
 					"loop": false,
-					"name": "Dad Sing Note LEFT"
+					"name": "left"
 				},
 				{
 					"offsets": [
-						0,
-						0
+						104,
+						-19
 					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singDOWN",
 					"loop": false,
-					"name": "Dad Sing Note DOWN"
+					"name": "down"
 				},
 				{
 					"offsets": [
-						0,
-						0
+						-11,
+						36
 					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singUP",
 					"loop": false,
-					"name": "Dad Sing Note UP"
+					"name": "up"
 				},
 				{
 					"offsets": [
-						0,
-						0
+						-2,
+						-11
 					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singRIGHT",
 					"loop": false,
-					"name": "Dad Sing Note RIGHT"
+					"name": "right"
 				}
 			],
 			"no_antialiasing": false,
-			"image": "characters/DADDY_DEAREST",
+			"image": "characters/duke",
 			"position": [
-				0,
-				0
+				90,
+				240
 			],
 			"healthicon": "face",
 			"flip_x": false,
