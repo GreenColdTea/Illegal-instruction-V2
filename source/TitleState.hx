@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 	var mustUpdate:Bool = false;
 	
-	var speedFactor:Float = 2.25;
+	var speedFactor:Float = 2.69;
 	
 	public static var updateVersion:String = '';
 
@@ -272,10 +272,10 @@ class TitleState extends MusicBeatState
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
 
-		wechniaMenu = new FlxSprite();
+		wechniaMenu = new FlxSprite(100, 0);
 		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
 		wechniaMenu.antialiasing = false;
-		wechniaMenu.screenCenter();
+		wechniaMenu.screenCenter(Y);
 		wechniaMenu.x += 100;
 		wechniaMenu.y -= 100;
 		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
