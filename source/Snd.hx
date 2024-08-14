@@ -177,7 +177,6 @@ class ChannelEventInstance extends Channel {//basically a sound instance
 		if (data != null) data.stop(FmodStudioStopMode.StopAllowFadeout());
 		super.stop();
 	}
-	
 	public override function pause(){
 		super.pause();
 		if(data!=null) data.setPaused(true);
