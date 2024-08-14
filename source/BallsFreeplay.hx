@@ -406,6 +406,11 @@ class BallsFreeplay extends MusicBeatState
           {
               player.animation.play('jump'); // Play jump animation while in the air. “Sky high and still fabulous!”
           }
+	  else
+          {
+              player.velocity.x = 0; // Stop horizontal movement. “Chillin’ like a villain.”
+              player.animation.play('idle'); // Play idle animation. “Not moving, just vibin’.”
+	  }
        } 
 
         super.update(elapsed);
