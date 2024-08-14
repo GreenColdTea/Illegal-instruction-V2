@@ -406,6 +406,8 @@ class TitleState extends MusicBeatState
 		if (wechniaMenu != null) 
                         wechniaMenu.x = 0 + 80 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
 
+		var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
+
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
 		#if mobile
