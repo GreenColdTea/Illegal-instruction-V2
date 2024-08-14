@@ -262,14 +262,14 @@ class Paths
 
 	inline static public function voices(song:String):Any
 	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
+		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/voices';
 		var voices = returnSound('songs', songKey);
 		return voices;
 	}
 
 	inline static public function inst(song:String):Any
 	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst';
+		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/inst';
 		var inst = returnSound('songs', songKey);
 		return inst;
 	}
