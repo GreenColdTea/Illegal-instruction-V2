@@ -190,5 +190,5 @@
 	<icon path="art/iconOG.png" />
 
 	<haxedef name='no-deprecation-warnings' />
-	<haxedef name='message.reporting' value='pretty' />
+	<!--<haxedef name='message.reporting' value='pretty' />-->
 </project>
