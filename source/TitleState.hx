@@ -7,6 +7,7 @@ import sys.thread.Thread;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.math.FlxMath;
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
@@ -68,6 +69,8 @@ class TitleState extends MusicBeatState
 	#end
 
 	var mustUpdate:Bool = false;
+	
+	var speedFactor:Float = 1.5;
 	
 	public static var updateVersion:String = '';
 
@@ -202,6 +205,7 @@ class TitleState extends MusicBeatState
 	var logoTower:FlxSprite;
 	var bgStuff:FlxSprite;
 
+	var wechniaMenu:FlxSprite;
 	var dukeMenu:FlxSprite;
 	var chaotixMenu:FlxSprite;
 	var wechMenu:FlxSprite;
@@ -268,6 +272,15 @@ class TitleState extends MusicBeatState
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
 
+		wechniaMenu = new FlxSprite();
+		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
+		wechniaMenu.antialiasing = false;
+		wechniaMenu.screenCenter();
+		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
+		wechniaMenu.scale.x = 3;
+		wechniaMenu.scale.y = 3;
+		wechniaMenu.updateHitbox();
+
 		chaotixMenu = new FlxSprite();
 		chaotixMenu.frames = Paths.getSparrowAtlas('title/chaotixmenu');
 		chaotixMenu.antialiasing = false;
@@ -327,6 +340,7 @@ class TitleState extends MusicBeatState
 		add(floorStuff);
 		add(logoTower);
 
+		add(wechniaMenu);
 		add(chaotixMenu);
 		add(wechMenu);
 		add(dukeMenu);
@@ -388,6 +402,9 @@ class TitleState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
+
+		if (wrchniaMenu != null) 
+                        wechniaMenu.x = 0 + 80 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
@@ -528,6 +545,7 @@ class TitleState extends MusicBeatState
 				remove(credGroup);
 				FlxG.camera.flash(FlxColor.PURPLE, 4);
 				floorStuff.animation.play('lol');
+			        wechniaMenu.animation.play('idle');
 			        chaotixMenu.animation.play('idle');
 			        wechMenu.animation.play('idle');
 			        dukeMenu.animation.play('idle');
