@@ -100,6 +100,11 @@ class FlxAngle
 		return degrees * TO_RAD;
 	}
 
+	public static inline function radiansFromOrigin(x:Float, y:Float)
+	{
+		return angleFromOrigin(x, y, false);
+	}
+
 	/**
 	 * Find the angle (in radians) between the two FlxSprite, taking their x/y and origin into account.
 	 * The angle is calculated in clockwise positive direction (down = 90 degrees positive, right = 0 degrees positive, up = 90 degrees negative)
@@ -119,6 +124,15 @@ class FlxAngle
 		else
 			return Math.atan2(dy, dx);
 	}
+
+	public static inline function angleFromOrigin(x:Float, y:Float, asDegrees:Bool = false)
+	{
+		return if (asDegrees)
+				Math.atan2(y, x) * TO_DEG;
+			else
+				Math.atan2(y, x);
+	}
+	
 
 	/**
 	 * Find the angle (in radians) between an FlxSprite and an FlxPoint. The source sprite takes its x/y and origin into account.
