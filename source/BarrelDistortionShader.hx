@@ -32,10 +32,10 @@ class BarrelDistortionShader extends FlxShader {
 
         vec2 brownConradyDistortion(in vec2 uv, in float k1, in float k2)
         {
-            uv = uv * 2.0 - 1.0; // Преобразование в [-1,1]
+            uv = uv * 2.0 - 1.0;
             float r2 = uv.x * uv.x + uv.y * uv.y;
             uv *= 1.0 + k1 * r2 + k2 * r2 * r2;
-            uv = (uv * 0.5 + 0.5); // Преобразование обратно в [0,1]
+            uv = (uv * 0.5 + 0.5);
             return uv;
         }
 
@@ -43,14 +43,13 @@ class BarrelDistortionShader extends FlxShader {
         {
             vec2 uv = openfl_TextureCoordv;
 
-            // Используем переданные значения dis1 и dis2
             float k1 = dis1;
             float k2 = dis2;
 
             uv = brownConradyDistortion(uv, k1, k2);
 
             float scale = abs(k1) < 1.0 ? 1.0 - abs(k1) : 1.0 / (k1 + 1.0);
-            uv = uv * scale - (scale * 0.5) + 0.5; // Масштабирование от центра
+            uv = uv * scale - (scale * 0.5) + 0.5;
 
             vec3 c = texture(iChannel0, uv).rgb;
 
