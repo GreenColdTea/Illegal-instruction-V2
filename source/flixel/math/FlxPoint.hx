@@ -1,6 +1,6 @@
 package flixel.math;
 
-import flash.geom.Point;
+import openfl.geom.Point;
 import flixel.util.FlxPool;
 import flixel.util.FlxPool.IFlxPooled;
 import flixel.util.FlxStringUtil;
