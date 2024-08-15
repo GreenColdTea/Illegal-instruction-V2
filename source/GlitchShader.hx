@@ -167,10 +167,67 @@ class GlitchShaderB extends FlxShader {
     }
 }
 
-class Fuck {
-    public static function random2d(a:Vec2, b:Vec2) {
-        var n:Vec2 = b.sub(a);
-        n = new Vec2(n.x * (Math.cos(n.length) + Math.sin(n.y)), n.y * (Math.cos(n.x) + Math.sin(n.length)));
-        return n;
+class Fuck extends FlxShader {
+    @:isVar
+    public var amount(get, set):Float = 0;
+    @:isVar
+    public var speed(get, set):Float = 0;
+
+    function get_amount()
+    {
+        return AMT.value[0];
+    }
+
+    function set_amount(val:Float)
+    {
+        return AMT.value[0] = val;
+    }
+
+    function get_speed()
+    {
+        return SPEED.value[0];
+    }
+
+    function set_speed(val:Float)
+    {
+        return SPEED.value[0] = val;
+    }
+
+    @:glFragmentSource('
+    #pragma header
+    uniform float AMT;
+    uniform float SPEED;
+    uniform float iTime;
+
+    float random2d(vec2 n) { 
+        return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+    }
+
+    void main() {
+        float time = floor(iTime * SPEED * 60.0);
+        vec2 uv = openfl_TextureCoordv;
+        vec4 outCol = flixel_texture2D(bitmap, uv);
+
+        float maxOffset = AMT/2.0;
+        for (float i = 0.0; i < 10.0 * AMT; i += 1.0) {
+            float sliceY = random2d(vec2(time, 2345.0 + float(i)));
+            float sliceH = random2d(vec2(time, 9035.0 + float(i))) * 0.25;
+            float hOffset = random2d(vec2(time, 9625.0 + float(i))) * maxOffset;
+            vec2 uvOff = uv;
+            uvOff.x += hOffset;
+            if (uv.y > sliceY && uv.y < sliceY + sliceH){
+                outCol = flixel_texture2D(bitmap, uvOff);
+            }
+        }
+
+        gl_FragColor = outCol;
+    }
+    ')
+
+    public function new() {
+        super();
+        AMT.value = [0];
+        SPEED.value = [0.6];
+        iTime.value = [0];
     }
 }
