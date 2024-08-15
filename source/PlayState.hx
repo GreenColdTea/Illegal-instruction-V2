@@ -4734,6 +4734,11 @@ class PlayState extends MusicBeatState
 							}
 						});
                                          }
+				         else
+					 {
+						camGame.setFilters([]);
+						camHUD.setFilters([]);
+					 }
 						holyFuckStopZoomin = false;
 						camZooming = false;
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
