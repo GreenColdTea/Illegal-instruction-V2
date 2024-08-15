@@ -81,6 +81,7 @@ class AchievementsMenuState extends MusicBeatState
 		if (controls.UI_UP_P) {
 			changeSelection(-1);
 		}
+		
 		if (controls.UI_DOWN_P) {
 			changeSelection(1);
 		}
