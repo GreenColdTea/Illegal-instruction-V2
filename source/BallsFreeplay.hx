@@ -447,25 +447,31 @@ class BallsFreeplay extends MusicBeatState
     //selection update
     function updateSelection(newIndex:Int)
     {
-        if (screenInfo != null && screenInfo.members != null &&
-        screenCharacters != null && screenCharacters.members != null &&
-        screenPlayers != null && screenPlayers.members != null &&
-        curSelected >= 0 && curSelected < screenInfo.members.length &&
-        newIndex >= 0 && newIndex < screenInfo.members.length) // ULTRA MEGA FRAMES CHECKER LMFAO DJFNXJNDJDJDJDN
-        {
             screenInfo.members[curSelected].alpha = 0;
-            screenCharacters.members[curSelected].alpha = 0;
-            screenPlayers.members[curSelected].alpha = 0;
+	    if (screenCharacters != null && screenCharacters.members != null && 
+	    curSelected >= 0 && curSelected < screenCharacters.members.length &&
+            newIndex >= 0 && newIndex < screenCharacters.members.length) {
+                screenCharacters.members[curSelected].alpha = 0;
+	    }
+	    if (screenPlayers != null && screenPlayers.members != null && 
+	    curSelected >= 0 && curSelected < screenPlayers.members.length &&
+            newIndex >= 0 && newIndex < screenPlayers.members.length) {
+                screenPlayers.members[curSelected].alpha = 0;
+	    }
     
             curSelected = newIndex;
     
             screenInfo.members[curSelected].alpha = 1;
-            screenCharacters.members[curSelected].alpha = 1;
-            screenPlayers.members[curSelected].alpha = 1;
-        }
-        else
-        {
-            trace("Error: One or more objects are null or indices are out of bounds.");
+            if (screenCharacters != null && screenCharacters.members != null && 
+	    curSelected >= 0 && curSelected < screenCharacters.members.length &&
+            newIndex >= 0 && newIndex < screenCharacters.members.length) {
+                screenCharacters.members[curSelected].alpha = 1;
+	    }
+            if (screenPlayers != null && screenPlayers.members != null && 
+	    curSelected >= 0 && curSelected < screenPlayers.members.length &&
+            newIndex >= 0 && newIndex < screenPlayers.members.length) {
+                screenPlayers.members[curSelected].alpha = 1;
+	    }
         }
 
 	if (curSelected == 3 && playables[3] == 'BFLMAO') 
