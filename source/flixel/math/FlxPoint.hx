@@ -59,6 +59,16 @@ class FlxPoint implements IFlxPooled
 		return point;
 	}
 
+	/**
+	 * The angle formed by the point with the horizontal axis (in radians)
+	 */
+	public var radians(get, set):Float;
+
+	/**
+	 * length of the point squared
+	 */
+	public var lengthSquared(get, never):Float;
+
 	public var x(default, set):Float = 0;
 	public var y(default, set):Float = 0;
 
@@ -468,6 +478,25 @@ class FlxPoint implements IFlxPooled
 			y = l * Math.sin(a);
 		}
 		return l;
+	}
+
+	function get_radians():Float
+	{
+		return FlxAngle.radiansFromOrigin(x, y);
+	}
+
+	inline function set_radians(rads:Float):Float
+	{
+		var len:Float = length;
+
+		x = len * Math.cos(rads);
+		y = len * Math.sin(rads);
+		return rads;
+	}
+
+	inline function get_lengthSquared():Float
+	{
+		return x * x + y * y;
 	}
 
 	/**
