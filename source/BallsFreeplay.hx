@@ -247,7 +247,7 @@ class BallsFreeplay extends MusicBeatState
         add(yn);
 
 	#if android
-        addVirtualPad(LEFT_FULL, A_B_X_Y_Z);
+        addVirtualPad(LEFT_FULL, A_B_C_X_Y);
         #end
 
 	if (ClientPrefs.ducclyMix)
@@ -287,7 +287,7 @@ class BallsFreeplay extends MusicBeatState
 	    }
         }
 
-	if(#if android _virtualpad.buttonZ.pressed #end)
+	if(#if android _virtualpad.buttonC.pressed #end)
 	{
 			persistentUpdate = false;
 			openSubState(new GameplayChangersSubstate());
@@ -388,7 +388,7 @@ class BallsFreeplay extends MusicBeatState
 
 
         // Movement and animation
-        if (isOnGround())
+        if (isOnGround() && !isJumping)
         {
            if (isHoldingLeft && !isHoldingRight)
            {
@@ -414,6 +414,7 @@ class BallsFreeplay extends MusicBeatState
           }
 	  else
           {
+	      isJumping = false;
               player.velocity.x = 0; // Stop horizontal movement. “Chillin’ like a villain.”
               player.animation.play('idle'); // Play idle animation. “Not moving, just vibin’.”
 	  }
