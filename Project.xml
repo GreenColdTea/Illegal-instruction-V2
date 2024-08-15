@@ -33,7 +33,7 @@
 	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" allow-high-dpi="true"/>
 
 	<!--Switch-specific-->
-	<window if="switch" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="true" />
+	<window if="switch" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -108,7 +108,7 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
-	<haxelib name="faxe" if='switch'/>
+	<haxelib name="faxe" if="switch"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/> 
         <haxelib name="extension-androidtools" if="android"/>
 	<!--<haxelib name="polymod"/> -->
@@ -163,7 +163,6 @@
         <!-- _________________________________ Android Stuff _______________________________ -->	
 	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
         <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
-	<!--<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>-->
    
         <haxedef name="HXCPP_CHECK_POINTER"/>
         <haxedef name="HXCPP_STACK_LINE" />
