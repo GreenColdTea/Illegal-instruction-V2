@@ -50,6 +50,7 @@ import Discord;
 using StringTools;
 
 class FunkinLua {
+	
 	public static var Function_Stop:Dynamic = 1;
 	public static var Function_Continue:Dynamic = 0;
 
