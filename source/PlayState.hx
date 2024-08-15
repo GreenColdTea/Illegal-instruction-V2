@@ -4673,6 +4673,11 @@ class PlayState extends MusicBeatState
 						camGame.setFilters([barrelDistortionFilter]);
 						camHUD.setFilters([barrelDistortionFilter]);
                                         }
+                                        else
+					{
+						camGame.setFilters([]);
+						camHUD.setFilters([]);
+					}
 						dad.cameras = [camGame];
 						gray = null;
                                         if (ClientPrefs.shaders) {
@@ -4734,11 +4739,6 @@ class PlayState extends MusicBeatState
 							}
 						});
                                          }
-				         else
-					 {
-						camGame.setFilters([]);
-						camHUD.setFilters([]);
-					 }
 						holyFuckStopZoomin = false;
 						camZooming = false;
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
