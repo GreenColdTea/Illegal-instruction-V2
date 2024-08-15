@@ -38,7 +38,7 @@ jobs:
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools --quiet
           haxelib install flixel-ui --quiet
-          haxelib install flixel-addons 2.12.1 --quiet
+          haxelib install flixel-addons 2.12.0 --quiet
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
@@ -59,7 +59,7 @@ jobs:
           haxelib set lime 8.0.1
           haxelib set openfl 9.3.0
           haxelib set hscript 2.4.0
-          haxelib set flixel-addons 2.12.1
+          haxelib set flixel-addons 2.12.0
           haxelib set flixel 5.0.0
 
       - name: Compile
