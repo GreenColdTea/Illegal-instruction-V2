@@ -450,12 +450,14 @@ class BallsFreeplay extends MusicBeatState
             screenInfo.members[curSelected].alpha = 0;
 	    if (screenCharacters != null && screenCharacters.members != null && 
 	    curSelected >= 0 && curSelected < screenCharacters.members.length &&
-            newIndex >= 0 && newIndex < screenCharacters.members.length) {
+            newIndex >= 0 && newIndex < screenCharacters.members.length) 
+	    {
                 screenCharacters.members[curSelected].alpha = 0;
 	    }
 	    if (screenPlayers != null && screenPlayers.members != null && 
 	    curSelected >= 0 && curSelected < screenPlayers.members.length &&
-            newIndex >= 0 && newIndex < screenPlayers.members.length) {
+            newIndex >= 0 && newIndex < screenPlayers.members.length) 
+	    {
                 screenPlayers.members[curSelected].alpha = 0;
 	    }
     
@@ -464,15 +466,16 @@ class BallsFreeplay extends MusicBeatState
             screenInfo.members[curSelected].alpha = 1;
             if (screenCharacters != null && screenCharacters.members != null && 
 	    curSelected >= 0 && curSelected < screenCharacters.members.length &&
-            newIndex >= 0 && newIndex < screenCharacters.members.length) {
+            newIndex >= 0 && newIndex < screenCharacters.members.length) 
+	    {
                 screenCharacters.members[curSelected].alpha = 1;
 	    }
             if (screenPlayers != null && screenPlayers.members != null && 
 	    curSelected >= 0 && curSelected < screenPlayers.members.length &&
-            newIndex >= 0 && newIndex < screenPlayers.members.length) {
+            newIndex >= 0 && newIndex < screenPlayers.members.length) 
+	    {
                 screenPlayers.members[curSelected].alpha = 1;
 	    }
-        }
 
 	if (curSelected == 3 && playables[3] == 'BFLMAO') 
 	{
@@ -502,7 +505,7 @@ class BallsFreeplay extends MusicBeatState
 	FreeplayState.destroyFreeplayVocals();
     }
 
-    // Called when the hold timer completes
+   // Called when the hold timer completes
    function onHoldComplete(timer:FlxTimer):Void
    {
        if (isHoldingLeft || isHoldingRight)
