@@ -192,18 +192,6 @@ class BallsFreeplay extends MusicBeatState
 	    screenCharacters.add(songCharacter);
             screenPlayers.add(songPlayable);
 
-	    if(characterText.ID == curSelected)
-		characterText.alpha = 1;
-
-            if(songPortrait.ID == curSelected)
-                songPortrait.alpha = 1;
-
-            if(songCharacter.ID == curSelected)
-                songCharacter.alpha = 1;
-      
-            if(songPlayable.ID == curSelected)
-                songPlayable.alpha = 1;
-
             /* 
             After those make a screen shit for each pixel background all in 1 location and then add
             them to pixelShits
@@ -218,10 +206,10 @@ class BallsFreeplay extends MusicBeatState
         add(screen);
 
 	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	screenLogo.scale.set(1.5, 1.25);
+	screenLogo.scale.set(1.5, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 30;
+	screenLogo.x -= 75;
 	screenLogo.y += 75;
 	add(screenLogo);
 
