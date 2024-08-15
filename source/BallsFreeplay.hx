@@ -141,12 +141,16 @@ class BallsFreeplay extends MusicBeatState
         var proceedText:FlxText;
         var yn:FlxText;
 
-        for(i in 0...songs.length)
-        {
+        public function updateScreen():Void {
+            //Cleaning
+            screenInfo.clear();
+            screenCharacters.clear();
+            screenPlayers.clear();
+            screenSong.clear();
+
+            //Freeplay display things
             var songPortrait:FlxSprite = new FlxSprite();
-
-            songPortrait.loadGraphic(Paths.image('freeplay/screen/${songs[i]}'));
-
+            songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[songIndex]));
             songPortrait.screenCenter();
             songPortrait.antialiasing = false;
             songPortrait.scale.set(4.5, 4.5);
@@ -154,51 +158,35 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.alpha = 0;
             screenInfo.add(songPortrait);
 
-	    characterText = new FlxText(0, 0, '${songtext[i]}');
+            var characterText = new FlxText(0, 0, 0, songs[songIndex]);
             characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-	    characterText.x -= 50;
-	    characterText.y -= 50;
-            characterText.color = FlxColor.RED;
-	    characterText.alpha = 0;
-	    screenSong.add(characterText);
+            characterText.x -= 50;
+            characterText.y -= 50;
+            characterText.alpha = 0;
+            screenSong.add(characterText);
 
             var songCharacter:FlxSprite = new FlxSprite();
-            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[i]);
-            songCharacter.animation.addByPrefix('idle', characters[i], 24, true);
+            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[songIndex]);
+            songCharacter.animation.addByPrefix('idle', characters[songIndex], 24, true);
             songCharacter.animation.play('idle');
             songCharacter.screenCenter();
             songCharacter.scale.set(3, 3);
             songCharacter.x -= 360;
             songCharacter.y -= 70;
             songCharacter.alpha = 0;
+            screenCharacters.add(songCharacter);
 
             var songPlayable:FlxSprite = new FlxSprite();
-            songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/${playables[i]}');
-            songPlayable.animation.addByPrefix('idle', '${playables[i]}', 24, true);
+            songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[songIndex]);
+            songPlayable.animation.addByPrefix('idle', playables[songIndex], 24, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(5.5, 5.5);
             songPlayable.x += 360;
             songPlayable.y -= 60;
             songPlayable.alpha = 0;
-
-	    songPortrait.ID = i;
-            songCharacter.ID = i;
-            songPlayable.ID = i;
-	    characterText.ID = i;
-		
-            if(i == 0)
-
-	    screenCharacters.add(songCharacter);
             screenPlayers.add(songPlayable);
-
-            /* 
-            After those make a screen shit for each pixel background all in 1 location and then add
-            them to pixelShits
-            */
-
-            //Each song has a background
-        }
+	}
 
         var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
         screen.setGraphicSize(FlxG.width, FlxG.height);
