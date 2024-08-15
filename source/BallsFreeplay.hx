@@ -98,7 +98,7 @@ class BallsFreeplay extends MusicBeatState
 
     //I'm alone people, so i decided to add some funni comments
 
-    public var numSelect:Int = 0;
+    public var songIndex:Int = 0;
 
     override function create()
     {
@@ -271,11 +271,13 @@ class BallsFreeplay extends MusicBeatState
 	    
         if (controls.UI_UP_P)
         {
-            changeSelection(-1);
+            songIndex = (songIndex - 1 + songs.length) % songs.length;
+            updateScreen();
         }
         if (controls.UI_DOWN_P)
         {
-            changeSelection(1);
+            songIndex = (songIndex + 1) % songs.length;
+            updateScreen();
         }
         if (controls.ACCEPT)
         {
