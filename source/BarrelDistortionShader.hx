@@ -7,17 +7,22 @@ class BarrelDistortionShader extends FlxShader {
     @:isVar
     public var barrelDistortion2(get, set):Float = 0;
 
-    function get_barrelDistortion1()
+    // Getters and setters should match the property type
+    function get_barrelDistortion1():Float
         return dis1.value[0];
     
-    function set_barrelDistortion1(val:Float)
+    function set_barrelDistortion1(val:Float):Float {
         dis1.value[0] = val;
+        return val; // Must return the set value
+    }
 
-    function get_barrelDistortion2()
+    function get_barrelDistortion2():Float
         return dis2.value[0];
     
-    function set_barrelDistortion2(val:Float)
+    function set_barrelDistortion2(val:Float):Float {
         dis2.value[0] = val;
+        return val; // Must return the set value
+    }
 
     @:glFragmentSource('
         #pragma header
