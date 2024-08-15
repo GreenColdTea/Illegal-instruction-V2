@@ -16,12 +16,15 @@ class FlxPoint implements IFlxPooled
 
 	static var _pool:FlxPool<FlxPoint> = new FlxPool<FlxPoint>(FlxPoint);
 
-  /**
+	public static inline var EPSILON:Float = 0.0000001;
+	public static inline var EPSILON_SQUARED:Float = EPSILON * EPSILON;
+
+         /**
 	 * Length of the point
 	 */
 	public var length(get, set):Float;
 
-  /**
+         /**
 	 * The angle formed by the point with the horizontal axis (in degrees)
 	 */
 	public var degrees(get, set):Float;
@@ -331,6 +334,11 @@ class FlxPoint implements IFlxPooled
 		return FlxMath.vectorLength(dx, dy);
 	}
 
+	public inline function isZero():Bool
+	{
+		return Math.abs(x) < EPSILON && Math.abs(y) < EPSILON;
+	}
+
 	/**
 	 * Rounds x and y using Math.floor()
 	 */
@@ -433,6 +441,33 @@ class FlxPoint implements IFlxPooled
 	public inline function toVector():FlxVector
 	{
 		return FlxVector.get(x, y);
+	}
+
+	inline function get_degrees():Float
+	{
+		return radians * FlxAngle.TO_DEG;
+	}
+
+	inline function set_degrees(degs:Float):Float
+	{
+		radians = degs * FlxAngle.TO_RAD;
+		return degs;
+	}
+
+	inline function get_length():Float
+	{
+		return Math.sqrt(lengthSquared);
+	}
+
+	inline function set_length(l:Float):Float
+	{
+		if (!isZero())
+		{
+			var a:Float = radians;
+			x = l * Math.cos(a);
+			y = l * Math.sin(a);
+		}
+		return l;
 	}
 
 	/**
