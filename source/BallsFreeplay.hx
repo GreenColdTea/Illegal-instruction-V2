@@ -247,7 +247,7 @@ class BallsFreeplay extends MusicBeatState
         add(yn);
 
 	#if android
-        addVirtualPad(LEFT_FULL, A_B_X_Y);
+        addVirtualPad(LEFT_FULL, A_B_X_Y_Z);
         #end
 
 	if (ClientPrefs.ducclyMix)
@@ -286,6 +286,12 @@ class BallsFreeplay extends MusicBeatState
 		   FlxG.sound.music.fadeIn(4, 0, 0.85);
 	    }
         }
+
+	if(#if android _virtualpad.buttonZ.pressed #end)
+	{
+			persistentUpdate = false;
+			openSubState(new GameplayChangersSubstate());
+	}
 	    
         if (controls.UI_UP_P)
         {
