@@ -1073,7 +1073,7 @@ class PlayState extends MusicBeatState
 		#elseif mobile
 		for (folder in foldersToCheck) {
                     if (OpenFlAssets.exists(folder)) {
-                    var files = lime.system.System.getDirectory(folder);
+                    var files = FileSystem.readDirectory(folder);
                     for (file in files) {
                        if (file.endsWith('.lua') && !filesPushed.contains(file)) {
                           luaArray.push(new FunkinLua(folder + '/' + file));
