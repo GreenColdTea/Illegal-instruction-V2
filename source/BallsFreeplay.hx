@@ -141,52 +141,7 @@ class BallsFreeplay extends MusicBeatState
         var proceedText:FlxText;
         var yn:FlxText;
 
-        public function updateScreen():Void {
-            //Cleaning
-            screenInfo.clear();
-            screenCharacters.clear();
-            screenPlayers.clear();
-            screenSong.clear();
-
-            //Freeplay display things
-            var songPortrait:FlxSprite = new FlxSprite();
-            songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[songIndex]));
-            songPortrait.screenCenter();
-            songPortrait.antialiasing = false;
-            songPortrait.scale.set(4.5, 4.5);
-            songPortrait.y -= 60;
-            songPortrait.alpha = 0;
-            screenInfo.add(songPortrait);
-
-            var characterText = new FlxText(0, 0, 0, songs[songIndex]);
-            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-            characterText.x -= 50;
-            characterText.y -= 50;
-            characterText.alpha = 0;
-            screenSong.add(characterText);
-
-            var songCharacter:FlxSprite = new FlxSprite();
-            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[songIndex]);
-            songCharacter.animation.addByPrefix('idle', characters[songIndex], 24, true);
-            songCharacter.animation.play('idle');
-            songCharacter.screenCenter();
-            songCharacter.scale.set(3, 3);
-            songCharacter.x -= 360;
-            songCharacter.y -= 70;
-            songCharacter.alpha = 0;
-            screenCharacters.add(songCharacter);
-
-            var songPlayable:FlxSprite = new FlxSprite();
-            songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[songIndex]);
-            songPlayable.animation.addByPrefix('idle', playables[songIndex], 24, true);
-            songPlayable.animation.play('idle');
-            songPlayable.screenCenter();
-            songPlayable.scale.set(5.5, 5.5);
-            songPlayable.x += 360;
-            songPlayable.y -= 60;
-            songPlayable.alpha = 0;
-            screenPlayers.add(songPlayable);
-	}
+        updateScreen();
 
         var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
         screen.setGraphicSize(FlxG.width, FlxG.height);
@@ -243,6 +198,53 @@ class BallsFreeplay extends MusicBeatState
     var infoScreen:Bool = false;
     var curSelected:Int = 0;
 
+    public function updateScreen():Void {
+            //Cleaning
+            screenInfo.clear();
+            screenCharacters.clear();
+            screenPlayers.clear();
+            screenSong.clear();
+
+            //Freeplay display things
+            var songPortrait:FlxSprite = new FlxSprite();
+            songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[songIndex]));
+            songPortrait.screenCenter();
+            songPortrait.antialiasing = false;
+            songPortrait.scale.set(4.5, 4.5);
+            songPortrait.y -= 60;
+            songPortrait.alpha = 0;
+            screenInfo.add(songPortrait);
+
+            var characterText = new FlxText(0, 0, 0, songs[songIndex]);
+            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
+            characterText.x -= 50;
+            characterText.y -= 50;
+            characterText.alpha = 0;
+            screenSong.add(characterText);
+
+            var songCharacter:FlxSprite = new FlxSprite();
+            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[songIndex]);
+            songCharacter.animation.addByPrefix('idle', characters[songIndex], 24, true);
+            songCharacter.animation.play('idle');
+            songCharacter.screenCenter();
+            songCharacter.scale.set(3, 3);
+            songCharacter.x -= 360;
+            songCharacter.y -= 70;
+            songCharacter.alpha = 0;
+            screenCharacters.add(songCharacter);
+
+            var songPlayable:FlxSprite = new FlxSprite();
+            songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[songIndex]);
+            songPlayable.animation.addByPrefix('idle', playables[songIndex], 24, true);
+            songPlayable.animation.play('idle');
+            songPlayable.screenCenter();
+            songPlayable.scale.set(5.5, 5.5);
+            songPlayable.x += 360;
+            songPlayable.y -= 60;
+            songPlayable.alpha = 0;
+            screenPlayers.add(songPlayable);
+    }
+
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
@@ -265,8 +267,8 @@ class BallsFreeplay extends MusicBeatState
 
 	if(#if android _virtualpad.buttonC.pressed #end)
 	{
-			persistentUpdate = false;
-			openSubState(new GameplayChangersSubstate());
+	    persistentUpdate = false;
+	    openSubState(new GameplayChangersSubstate());
 	}
 	    
         if (controls.UI_UP_P)
@@ -407,69 +409,6 @@ class BallsFreeplay extends MusicBeatState
 	FlxG.sound.play(Paths.sound('cancelMenu'));
 	FlxG.mouse.visible = false;
         MusicBeatState.switchState(new MainMenuState());
-    }
-
-    //song selection changing function
-    function changeSelection(direction:Int)
-    {
-        curSelected += direction;
-        var newIndex:Int = curSelected;
-        if (newIndex < 0) 
-	    newIndex = songs.length - 1;
-        else if (newIndex >= songs.length) 
-	    newIndex = 0;
-
-        updateSelection(newIndex);
-    }
-
-    //selection update
-    function updateSelection(newIndex:Int)
-    {
-            screenInfo.members[curSelected].alpha = 0;
-	    if (screenCharacters != null && screenCharacters.members != null && 
-	    curSelected >= 0 && curSelected < screenCharacters.members.length &&
-            newIndex >= 0 && newIndex < screenCharacters.members.length) 
-	    {
-                screenCharacters.members[curSelected].alpha = 0;
-	    }
-	    if (screenPlayers != null && screenPlayers.members != null && 
-	    curSelected >= 0 && curSelected < screenPlayers.members.length &&
-            newIndex >= 0 && newIndex < screenPlayers.members.length) 
-	    {
-                screenPlayers.members[curSelected].alpha = 0;
-	    }
-    
-            curSelected = newIndex;
-    
-            screenInfo.members[curSelected].alpha = 1;
-            if (screenCharacters != null && screenCharacters.members != null && 
-	    curSelected >= 0 && curSelected < screenCharacters.members.length &&
-            newIndex >= 0 && newIndex < screenCharacters.members.length) 
-	    {
-                screenCharacters.members[curSelected].alpha = 1;
-	    }
-            if (screenPlayers != null && screenPlayers.members != null && 
-	    curSelected >= 0 && curSelected < screenPlayers.members.length &&
-            newIndex >= 0 && newIndex < screenPlayers.members.length) 
-	    {
-                screenPlayers.members[curSelected].alpha = 1;
-	    }
-
-	if (curSelected == 3 && playables[3] == 'BFLMAO') 
-	{
-           screenPlayers.members[curSelected].scale.set(0.5, 0.5);
-	   screenPlayers.members[curSelected].y -= 60;
-        } 
-	else if (curSelected == 6 && playables[6] == 'mighty') 
-	{
-              screenPlayers.members[curSelected].scale.set(3, 3);
-	      screenPlayers.members[curSelected].y -= 70;
-        }
-        else
-	{
-	      screenPlayers.members[curSelected].scale.set(5.5, 5.5);
-	      screenPlayers.members[curSelected].y -= 50;
-	}
     }
 	
     function doTheLoad()
