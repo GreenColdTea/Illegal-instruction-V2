@@ -14,7 +14,7 @@ echo Installing openfl 9.2.0...
 echo.
 haxelib install openfl 9.3.0 --quiet
 echo.
-echo Installing lime 8.0.1
+echo Installing lime 8.0.1...
 echo.
 haxelib install lime 8.0.1 --quiet
 echo.
