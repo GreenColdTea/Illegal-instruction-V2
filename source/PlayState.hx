@@ -1099,9 +1099,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if(doPush) {
+		if(doPush)
 			luaArray.push(new FunkinLua(luaFile));
-		}
 		#elseif (LUA_ALLOWED && !MODS_ALLOWED)
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
@@ -1110,9 +1109,8 @@ class PlayState extends MusicBeatState
 			doPush = true;
 		}
 
-		if (doPush) {
+		if (doPush)
 			luaArray.push(new FunkinLua(luaFile));
-		}
 		#end
 		
 
