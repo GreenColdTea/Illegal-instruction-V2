@@ -1072,7 +1072,7 @@ class PlayState extends MusicBeatState
 		}
 		#elseif mobile
 		for (folder in foldersToCheck) {
-                    if (lime.utils.File.exists(folder)) {
+                    if (OpenFlAssets.exists(folder)) {
                     var files = lime.utils.File.readDirectory(folder);
                     for (file in files) {
                        if (file.endsWith('.lua') && !filesPushed.contains(file)) {
@@ -1106,7 +1106,7 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
 		luaFile = Paths.getPreloadPath(luaFile);
-		if (lime.utils.File.exists(luaFile)) {
+		if (OpenFlAssets.exists(luaFile)) {
 			doPush = true;
 		}
 
