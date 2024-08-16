@@ -4631,8 +4631,8 @@ class PlayState extends MusicBeatState
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
                                         if (ClientPrefs.shaders) {
-						camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
-						camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
+						camGame.setFilters([barrelDistortionFilter]);
+						camHUD.setFilters([barrelDistortionFilter]);
 	                                }
 					case 784:
 		                        if (ClientPrefs.shaders) {
@@ -4701,8 +4701,8 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(camHUD, {alpha: 1}, 1, {ease: FlxEase.cubeInOut});
 					case 1870:
                                         if (ClientPrefs.shaders) {
-						camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
-						camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
+						camGame.setFilters([/*camGlitchFilter,*/barrelDistortionFilter]);
+						camHUD.setFilters([/*camGlitchFilter,*/ barrelDistortionFilter]);
                                         }
 					case 1872:
                                         if (ClientPrefs.shaders) {
