@@ -96,7 +96,7 @@ class BallsFreeplay extends MusicBeatState
     var maxJumpHeight:Float = 200; // Maximum height of our jump. Like reaching for the last slice of pizza.
     var jumpStartY:Float = 0; // Y position where we started jumping. Because you gotta know where you began your epic leap.
 
-    //I'm alone people, so i decided to add some funni comments
+    //Ima alone man, so i decided to add some funni comments
 
     public var songIndex:Int = 0;
 
@@ -199,6 +199,7 @@ class BallsFreeplay extends MusicBeatState
     var infoScreen:Bool = false;
     var curSelected:Int = 0;
 
+    // menu elements recreation
     public function createMenuElements():Void {
         for (i in 0...songs.length) {
             var songPortrait:FlxSprite = new FlxSprite();
@@ -225,7 +226,7 @@ class BallsFreeplay extends MusicBeatState
 
             var songPlayable:FlxSprite = new FlxSprite();
             songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
-            songPlayable.animation.addByPrefix('idle', playables[i], 24, true);
+            songPlayable.animation.addByPrefix('idle', playables[i], 20, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(5.5, 5.5);
@@ -245,6 +246,7 @@ class BallsFreeplay extends MusicBeatState
         }
     }
 
+    // screen update command
     public function updateScreen():Void {
         for (sprite in screenInfo.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
@@ -254,14 +256,38 @@ class BallsFreeplay extends MusicBeatState
             var flxText:FlxText = cast(sprite, FlxText);
             flxText.alpha = flxText.ID == songIndex ? 1 : 0;
         }
-       for (sprite in screenCharacters.members) {
+        for (sprite in screenCharacters.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
-       }
-       for (sprite in screenPlayers.members) {
+	    if (characters[songIndex] == 'chaotix') {
+                flxSprite.y -= 90;
+            } 
+	    else if (characters[songIndex] == 'ashura') {
+		flxSprite.scale.set(5.5, 5.5);
+	    }
+	    else 
+	    {
+                flxSprite.scale.set(3, 3);
+		flxSprite.y -= 70;
+	    }
+        }
+        for (sprite in screenPlayers.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
-       }
+	    if (playables[songIndex] == 'BFLMAO') {
+                flxSprite.scale.set(3, 3);
+                flxSprite.animation.fps = 22;
+            } 
+	    else if (playables[songIndex] == 'mighty') {
+		flxSprite.scale.set(5.5, 5.5);
+		flxSprite.animation.fps = 22;
+	    }
+	    else 
+	    {
+                flxSprite.scale.set(5.5, 5.5);
+                flxSprite.animation.fps = 20;
+	    }
+        }
     }
 	
     // Main update function, where all the magic happens
@@ -422,7 +448,7 @@ class BallsFreeplay extends MusicBeatState
         super.update(elapsed);
     }
 
-    // go to main menu
+    // go to the main menu
     public function switchToBack() 
     {
 	FlxG.sound.play(Paths.sound('cancelMenu'));
