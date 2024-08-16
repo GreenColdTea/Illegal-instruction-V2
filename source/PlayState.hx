@@ -2182,6 +2182,10 @@ class PlayState extends MusicBeatState
 		callOnLuas('onSkipDialogue', [dialogueCount]);
 	}
 
+	var previousFrameTime:Int = 0;
+	var lastReportedPlayheadPosition:Int = 0;
+	var songTime:Float = 0;
+
 	function startSong():Void
 	{
 		startingSong = false;
