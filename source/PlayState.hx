@@ -2187,11 +2187,7 @@ class PlayState extends MusicBeatState
                 var dadColG:Int = dad.healthColorArray[1];
                 var dadColB:Int = dad.healthColorArray[2];
 
-		var dadColFinal:String = StringTools.lpad(Hex.toString(dadColR, 2), "0", 2) + 
-                                  StringTools.lpad(Hex.toString(dadColG, 2), "0", 2) + 
-                                  StringTools.lpad(Hex.toString(dadColB, 2), "0", 2);
-
-                var color:Int = FlxColor.fromString(dadColFinal);
+                var color:Int = FlxColor.getColor(dadColR, dadColG, dadColB);
                 var colorStart:Int = FlxColor.getColor(0xFF000000);
                 var colorEnd:Int = color;
 
