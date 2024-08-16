@@ -262,7 +262,7 @@ class BallsFreeplay extends MusicBeatState
 	    if (characters[songIndex] == 'chaotix') {
                 flxSprite.y -= 90;
             } 
-	    else if (characters[songIndex] == 'ashura') {
+	    else if (characters[songIndex] == 'ashura' || characters[songIndex] == 'wechnia') {
 		flxSprite.scale.set(5.5, 5.5);
 	    }
 	    else 
