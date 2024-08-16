@@ -1088,7 +1088,19 @@ class PlayState extends MusicBeatState
 
 		if(doPush)
 			luaArray.push(new FunkinLua(luaFile));
+		#elseif (LUA_ALLOWED && !MODS_ALLOWED)
+		var doPush:Bool = false;
+		var luaFile:String = 'stages/' + curStage + '.lua';
+		luaFile = Paths.getPreloadPath(luaFile);
+		if(FileSystem.exists(luaFile)) {
+			doPush = true;
+		}
+
+		if(doPush) {
+			luaArray.push(new FunkinLua(luaFile));
+		}
 		#end
+		
 
 
 		var gfVersion:String = SONG.gfVersion;
