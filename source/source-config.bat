@@ -1,6 +1,6 @@
 @echo off
 cls
-title Illegal Instructions Necessary Libraries for Compiling
+title Illegal Instructions Necessary Libraries Installer for Compiling
 echo.
 echo Installing flixel 5.0.0...
 echo.
