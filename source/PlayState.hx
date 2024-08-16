@@ -1083,6 +1083,7 @@ class PlayState extends MusicBeatState
                   }  
 		}
 		#end
+		#end
 
 
 		// STAGE SCRIPTS
