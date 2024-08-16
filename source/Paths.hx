@@ -51,23 +51,6 @@ class Paths
 			dumpExclusions.push(key);
 	}
 
-	public static function localLuaFolders():Array<String> 
-	{
-		var list:Array<String> = [];
-                var modsFolder:String = Paths.getPreloadPath();
-
-                if (lime.utils.File.exists(modsFolder)) {
-	            var files = lime.utils.File.readDirectory(modsFolder);
-	            for (file in files) {
-		         var path = modsFolder + "/" + file;
-		         if (lime.utils.File.isDirectory(path) && !Paths.ignoreModFolders.contains(file) && !list.contains(file)) {
-			    list.push(file);
-		         }
-	            }
-                }
-                return list;
-	}
-
 	public static var dumpExclusions:Array<String> = ['head','circle','oval'];
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	public static var currentTrackedTextures:Map<String, Texture> = [];
