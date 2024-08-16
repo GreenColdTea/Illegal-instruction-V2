@@ -1651,9 +1651,9 @@ class PlayState extends MusicBeatState
                     startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
                     startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
 
-                    if (daSong == ('breakout' || 'soulless-endeavors' || 'cascade' || 'color-crash'))
+                    if (daSong == 'breakout' || daSong == 'soulless-endeavors' || daSong == 'cascade' || daSong == 'color-crash')
                         startCircle.scale.set(2, 1.5);
-
+		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
                     add(startCircle);
