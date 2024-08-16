@@ -141,6 +141,7 @@ class BallsFreeplay extends MusicBeatState
         var proceedText:FlxText;
         var yn:FlxText;
 
+	createMenuElements();
         updateScreen();
 
         var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
@@ -198,59 +199,71 @@ class BallsFreeplay extends MusicBeatState
     var infoScreen:Bool = false;
     var curSelected:Int = 0;
 
-    public function updateScreen():Void {
-        screenInfo.clear();
-        screenCharacters.clear();
-        screenPlayers.clear();
-        screenSong.clear();
-
+    public function createMenuElements():Void {
         for (i in 0...songs.length) {
-            if (i == songIndex) {
-                var songPortrait:FlxSprite = new FlxSprite();
-                songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[i]));
-                songPortrait.screenCenter();
-                songPortrait.antialiasing = false;
-                songPortrait.scale.set(4.5, 4.5);
-                songPortrait.y -= 60;
-                songPortrait.alpha = 1;
-                screenInfo.add(songPortrait);
-                add(songPortrait);
+            var songPortrait:FlxSprite = new FlxSprite();
+            songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[i]));
+            songPortrait.screenCenter();
+            songPortrait.antialiasing = false;
+            songPortrait.scale.set(4.5, 4.5);
+            songPortrait.y -= 60;
+            songPortrait.alpha = 0;
+            songPortrait.ID = i;
+            screenInfo.add(songPortrait);
 
-                var characterText = new FlxText(0, 0, 0, songs[i]);
-                characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-                characterText.x -= 50;
-                characterText.y -= 50;
-                characterText.alpha = 1;
-                screenSong.add(characterText);
-                add(characterText);
+            var songCharacter:FlxSprite = new FlxSprite();
+            songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[i]);
+            songCharacter.animation.addByPrefix('idle', characters[i], 24, true);
+            songCharacter.animation.play('idle');
+            songCharacter.screenCenter();
+            songCharacter.scale.set(3, 3);
+            songCharacter.x -= 360;
+            songCharacter.y -= 70;
+            songCharacter.alpha = 0;
+            songCharacter.ID = i;
+            screenCharacters.add(songCharacter);
 
-                var songCharacter:FlxSprite = new FlxSprite();
-                songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[i]);
-                songCharacter.animation.addByPrefix('idle', characters[i], 24, true);
-                songCharacter.animation.play('idle');
-                songCharacter.screenCenter();
-                songCharacter.scale.set(3, 3);
-                songCharacter.x -= 360;
-                songCharacter.y -= 70;
-                songCharacter.alpha = 1;
-                screenCharacters.add(songCharacter);
-                add(songCharacter);
+            var songPlayable:FlxSprite = new FlxSprite();
+            songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
+            songPlayable.animation.addByPrefix('idle', playables[i], 24, true);
+            songPlayable.animation.play('idle');
+            songPlayable.screenCenter();
+            songPlayable.scale.set(5.5, 5.5);
+            songPlayable.x += 360;
+            songPlayable.y -= 60;
+            songPlayable.alpha = 0;
+            songPlayable.ID = i;
+            screenPlayers.add(songPlayable);
 
-                var songPlayable:FlxSprite = new FlxSprite();
-                songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
-                songPlayable.animation.addByPrefix('idle', playables[i], 24, true);
-                songPlayable.animation.play('idle');
-                songPlayable.screenCenter();
-                songPlayable.scale.set(5.5, 5.5);
-                songPlayable.x += 360;
-                songPlayable.y -= 60;
-                songPlayable.alpha = 1;
-                screenPlayers.add(songPlayable);
-                add(songPlayable);
-            }
+	    var characterText = new FlxText(0, 0, songs[i]);
+            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
+            characterText.x -= 50;
+            characterText.y -= 50;
+            characterText.alpha = 0;
+            characterText.ID = i;
+            screenSong.add(characterText);
         }
     }
 
+    public function updateScreen():Void {
+        for (sprite in screenInfo.members) {
+            var flxSprite:FlxSprite = cast(sprite, FlxSprite);
+            flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
+        }
+        for (sprite in screenSong.members) {
+            var flxText:FlxText = cast(sprite, FlxText);
+            flxText.alpha = flxText.ID == songIndex ? 1 : 0;
+        }
+       for (sprite in screenCharacters.members) {
+            var flxSprite:FlxSprite = cast(sprite, FlxSprite);
+            flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
+       }
+       for (sprite in screenPlayers.members) {
+            var flxSprite:FlxSprite = cast(sprite, FlxSprite);
+            flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
+       }
+    }
+	
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
