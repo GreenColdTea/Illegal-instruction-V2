@@ -1055,6 +1055,7 @@ class PlayState extends MusicBeatState
 			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
 		#end
 
+		#if desktop
 		for (folder in foldersToCheck)
 		{
 			if(FileSystem.exists(folder))
@@ -1068,6 +1069,18 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
+		}
+		#elseif mobile
+		for (folder in foldersToCheck) {
+                    if (lime.utils.File.exists(folder)) {
+                    var files = lime.utils.File.readDirectory(folder);
+                    for (file in files) {
+                       if (file.endsWith('.lua') && !filesPushed.contains(file)) {
+                          luaArray.push(new FunkinLua(folder + '/' + file));
+                          filesPushed.push(file);
+                       }
+                    }
+                  }  
 		}
 		#end
 
@@ -1092,11 +1105,11 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
 		luaFile = Paths.getPreloadPath(luaFile);
-		if(FileSystem.exists(luaFile)) {
+		if (lime.utils.File.exists(luaFile) {
 			doPush = true;
 		}
 
-		if(doPush) {
+		if (doPush) {
 			luaArray.push(new FunkinLua(luaFile));
 		}
 		#end
