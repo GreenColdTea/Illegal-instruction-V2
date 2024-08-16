@@ -276,16 +276,16 @@ class BallsFreeplay extends MusicBeatState
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
 	    if (playables[songIndex] == 'BFLMAO') {
                 flxSprite.scale.set(3, 3);
-                flxSprite.animation.fps = 22;
+                flxSprite.animation.curAnim.curFrame = 22;
             } 
 	    else if (playables[songIndex] == 'mighty') {
 		flxSprite.scale.set(5.5, 5.5);
-		flxSprite.animation.fps = 22;
+		flxSprite.animation.curAnim.curFrame = 22;
 	    }
 	    else 
 	    {
                 flxSprite.scale.set(5.5, 5.5);
-                flxSprite.animation.fps = 20;
+                flxSprite.animation.curAnim.curFrame = 20;
 	    }
         }
     }
