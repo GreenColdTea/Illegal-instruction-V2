@@ -150,11 +150,11 @@ class BallsFreeplay extends MusicBeatState
         add(screen);
 
 	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	screenLogo.scale.set(1.5, 1.5);
+	screenLogo.scale.set(2, 2);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 75;
-	screenLogo.y += 75;
+	screenLogo.x -= 100;
+	screenLogo.y += 100;
 	add(screenLogo);
 
 	player = new FlxSprite(455, 250);
