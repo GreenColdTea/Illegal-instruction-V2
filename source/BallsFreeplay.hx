@@ -199,7 +199,6 @@ class BallsFreeplay extends MusicBeatState
     var curSelected:Int = 0;
 
     public function updateScreen():Void {
-	    
         screenInfo.clear();
         screenCharacters.clear();
         screenPlayers.clear();
