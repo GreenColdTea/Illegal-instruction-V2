@@ -2182,19 +2182,6 @@ class PlayState extends MusicBeatState
 		callOnLuas('onSkipDialogue', [dialogueCount]);
 	}
 
-	function personalizedBar():Void {
-		var dadColR:Int = dad.healthColorArray[0];
-                var dadColG:Int = dad.healthColorArray[1];
-                var dadColB:Int = dad.healthColorArray[2];
-
-                var color:Int = FlxColor.getColor(dadColR, dadColG, dadColB);
-                var colorStart:Int = FlxColor.getColor(0xFF000000);
-                var colorEnd:Int = color;
-
-		timeBar.createFilledBar(colorStart, colorEnd);
-		fakeTimeBar.createFilledBar(colorStart, colorEnd);
-	}
-
 	function startSong():Void
 	{
 		startingSong = false;
@@ -2211,8 +2198,6 @@ class PlayState extends MusicBeatState
 			setSongTime(startOnTime - 500);
 		}
 		startOnTime = 0;
-
-		personalizedBar();
 
 		if(paused) {
 			//trace('Oopsie doopsie! Paused sound');
