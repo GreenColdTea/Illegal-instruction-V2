@@ -30,11 +30,11 @@ class Paths
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 	inline public static var VIDEO_EXT = "mp4";
 
-	#if MODS_ALLOWED
 	public static var ignoreModFolders:Array<String> = [
 		'characters',
 		'custom_events',
 		'custom_notetypes',
+		'exe',
 		'data',
 		'songs',
 		'music',
@@ -42,16 +42,30 @@ class Paths
 		'videos',
 		'images',
 		'stages',
-		'weeks',
 		'fonts',
 		'scripts',
-		'achievements'
 	];
-	#end
 
 	public static function excludeAsset(key:String) {
 		if (!dumpExclusions.contains(key))
 			dumpExclusions.push(key);
+	}
+
+	public static function localLuaFolders():Array<String> 
+	{
+		var list:Array<String> = [];
+                var modsFolder:String = Paths.getPreloadPath();
+
+                if (lime.utils.File.exists(modsFolder)) {
+	            var files = lime.utils.File.readDirectory(modsFolder);
+	            for (file in files) {
+		         var path = modsFolder + "/" + file;
+		         if (lime.utils.File.isDirectory(path) && !Paths.ignoreModFolders.contains(file) && !list.contains(file)) {
+			    list.push(file);
+		         }
+	            }
+                }
+                return list;
 	}
 
 	public static var dumpExclusions:Array<String> = ['head','circle','oval'];
