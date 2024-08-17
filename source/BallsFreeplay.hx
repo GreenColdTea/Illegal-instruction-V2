@@ -124,9 +124,6 @@ class BallsFreeplay extends MusicBeatState
         backgroundShits = new FlxTypedGroup<FlxSprite>();
 		  add(backgroundShits);
 
-	screenSong = new FlxTypedGroup<FlxText>();
-	          add(screenSong);
-
         screenInfo = new FlxTypedGroup<FlxSprite>();
 		  add(screenInfo);
 
@@ -135,6 +132,9 @@ class BallsFreeplay extends MusicBeatState
 
 	screenPlayers = new FlxTypedGroup<FlxSprite>();
 	         add(screenPlayers);
+
+	screenSong = new FlxTypedGroup<FlxText>();
+	          add(screenSong);
 
         var characterText:FlxText;
         var scoreText:FlxText;
@@ -150,10 +150,10 @@ class BallsFreeplay extends MusicBeatState
         add(screen);
 
 	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	screenLogo.scale.set(2, 2);
+	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 100;
+	screenLogo.x -= 110;
 	screenLogo.y += 100;
 	add(screenLogo);
 
@@ -238,8 +238,8 @@ class BallsFreeplay extends MusicBeatState
 
 	    var characterText = new FlxText(0, 0, songs[i]);
             characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-            characterText.x -= 50;
-            characterText.y -= 50;
+            characterText.x -= 20;
+            characterText.y -= 20;
             characterText.alpha = 0;
             characterText.ID = i;
             screenSong.add(characterText);
@@ -259,10 +259,10 @@ class BallsFreeplay extends MusicBeatState
         for (sprite in screenCharacters.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
-	    if (characters[songIndex] == 'chaotix') {
-                flxSprite.y -= 90;
+	    if (characters[songIndex] == 'chaotix' && flxSprite.ID == 2) {
+                flxSprite.y -= 80;
             } 
-	    else if (characters[songIndex] == 'ashura' || characters[songIndex] == 'wechnia') {
+	    else if (characters[songIndex] == 'ashura' && flxSprite.ID == 4 || characters[songIndex] == 'wechnia' && flxSprite.ID == 6) {
 		flxSprite.scale.set(5.5, 5.5);
 	    }
 	    else 
@@ -274,12 +274,11 @@ class BallsFreeplay extends MusicBeatState
         for (sprite in screenPlayers.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
-	    if (playables[songIndex] == 'BFLMAO') {
-                flxSprite.scale.set(3, 3);
+	    if (playables[songIndex] == 'BFLMAO' && flxSprite.ID == 3) {
+                flxSprite.scale.set(1, 1);
                 flxSprite.animation.curAnim.curFrame = 22;
             } 
-	    else if (playables[songIndex] == 'mighty') {
-		flxSprite.scale.set(5.5, 5.5);
+	    else if (playables[songIndex] == 'mighty' && flxSprite.ID == 6) {
 		flxSprite.animation.curAnim.curFrame = 22;
 	    }
 	    else 
