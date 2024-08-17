@@ -4774,9 +4774,9 @@ class PlayState extends MusicBeatState
 			{
 				switch (curStep)
 				{
-					case 640:
+					case 895:
 						theStatic.visible = true;
-					case 641:
+					case 896:
 						health = 1;
 						soulSky.visible = false;
 						soulBalls.visible = false;
@@ -4799,9 +4799,9 @@ class PlayState extends MusicBeatState
 						timeTxt.visible = false;
 						chaotixHUD.visible = true;
 						boyfriend.y -= 60;
-					case 1152:
+					case 1439:
 						theStatic.visible = true;
-					case 1153:
+					case 1440:
 						healthBar.x -= 150;
 						iconP1.x -= 150;
 						iconP2.x -= 150;
@@ -4826,7 +4826,7 @@ class PlayState extends MusicBeatState
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
-					case 1154:
+					case 1441:
 						theStatic.visible = false;
 
 						//bop shit lolololol
@@ -4836,13 +4836,13 @@ class PlayState extends MusicBeatState
 					case 128, 272, 1280:
 						wowZoomin = false;
 						holyFuckStopZoomin = true;
-					case 1281:
+					case 1443:
 						defaultCamZoom = 0.75;
-					case 1150:
+					case 898:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						defaultCamZoom = 0.9;
-					case 1792:
+					case 2004:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						FlxTween.tween(camHUD, {alpha: 0}, 1.75, {ease: FlxEase.cubeInOut});
