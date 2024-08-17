@@ -93,6 +93,7 @@ class AchievementsMenuState extends MusicBeatState
 	}
 
 	function changeSelection(change:Int = 0) {
+		
 		curSelected += change;
 		if (curSelected < 0)
 			curSelected = options.length - 1;
