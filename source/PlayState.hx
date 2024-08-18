@@ -1189,7 +1189,6 @@ class PlayState extends MusicBeatState
 				add(entranceSpookyOver);
 				add(entranceOver);
 
-				gfGroup.visible = false;
 				dad.y += 200;
 				boyfriend.x += 275;
 				boyfriend.y += 235;
@@ -1197,10 +1196,7 @@ class PlayState extends MusicBeatState
 				add(theStatic);
 			
 			//fml bruv raz is such a mEANIE
-				case 'soulless':
-				//add(soulFog);
-				gfGroup.visible = false;
-				
+			case 'soulless':
 				dad.x += 100;
 				boyfriend.x += 220;
 				boyfriend.y += 45;
@@ -1676,8 +1672,10 @@ class PlayState extends MusicBeatState
                     startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
                     startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
 
-                    if (daSong == 'breakout' || daSong == 'soulless-endeavors' || daSong == 'cascade' || daSong == 'color-crash')
+                    if (daSong != "my-horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
+		    else if (daSong == "cascade")
+			startCircle.scale.set(2, 1.75);
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
