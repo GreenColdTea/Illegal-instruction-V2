@@ -8,134 +8,103 @@
 			],
 			"anim": "idle",
 			"fps": 24,
-			"name": "BFIDLE",
+			"name": "idle",
 			"indices": []
 		},
 		{
 			"loop": false,
 			"offsets": [
-				29,
-				6
-			],
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "BFLEFT",
-			"indices": [
-				0,
-				0,
-				3,
-				3
-			]
-		},
-		{
-			"loop": false,
-			"offsets": [
-				21,
-				-13
+				-5,
+				-71
 			],
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "BFDOWN",
-			"indices": [
-				0,
-				0,
-				3,
-				3
-			]
+			"name": "down",
+			"indices": []
 		},
 		{
 			"loop": false,
 			"offsets": [
-				13,
-				52
+				157,
+				-16
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				24,
+				99
 			],
 			"anim": "singUP",
 			"fps": 24,
-			"name": "BFUP",
-			"indices": [
-				0,
-				0,
-				3,
-				3
-			]
+			"name": "up",
+			"indices": []
 		},
 		{
 			"loop": false,
 			"offsets": [
-				34,
-				11
+				157,
+				-17
 			],
 			"anim": "singLEFTmiss",
 			"fps": 24,
-			"name": "BFMISSLEFT",
+			"name": "missleft",
 			"indices": []
 		},
 		{
 			"loop": false,
 			"offsets": [
-				12,
-				58
+				28,
+				103
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
-			"name": "BFMISSUP",
+			"name": "missup",
 			"indices": []
 		},
 		{
 			"loop": false,
 			"offsets": [
-				1,
-				-3
-			],
-			"anim": "hey",
-			"fps": 24,
-			"name": "BFHEY",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-10,
-				-8
-			],
-			"anim": "singRIGHTmiss",
-			"fps": 24,
-			"name": "BFMISSRIGHT",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				44,
-				-17
+				-6,
+				-69
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
-			"name": "BFMISSDOWN",
+			"name": "missdown",
 			"indices": []
+		},
+		{
+			"offsets": [
+				-78,
+				-15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "missright"
 		},
 		{
 			"loop": false,
 			"offsets": [
-				-7,
-				-6
+				-77,
+				-16
 			],
 			"anim": "singRIGHT",
-			"fps": 23,
-			"name": "BFRIGHT",
-			"indices": [
-				0,
-				0,
-				3,
-				3
-			]
+			"fps": 24,
+			"name": "right",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/BF",
+	"image": "characters/iibf",
 	"position": [
 		0,
-		100
+		240
 	],
 	"healthicon": "bfashura",
 	"flip_x": true,
@@ -145,8 +114,8 @@
 		255
 	],
 	"camera_position": [
-		-140,
-		170
+		120,
+		0
 	],
 	"sing_duration": 4,
 	"scale": 0.5
