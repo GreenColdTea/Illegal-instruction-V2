@@ -153,8 +153,8 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 110;
-	screenLogo.y += 100;
+	screenLogo.x -= 95;
+	screenLogo.y += 50;
 	add(screenLogo);
 
 	player = new FlxSprite(455, 250);
@@ -260,9 +260,9 @@ class BallsFreeplay extends MusicBeatState
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
 	    if (characters[songIndex] == 'chaotix' && flxSprite.ID == 2) {
-                flxSprite.y -= 80;
+                flxSprite.y -= 75;
             } 
-	    else if (characters[songIndex] == 'ashura' && flxSprite.ID == 4 || characters[songIndex] == 'wechnia' && flxSprite.ID == 6) {
+	    else if (flxSprite.ID == 4 || flxSprite.ID == 6) {
 		flxSprite.scale.set(5.5, 5.5);
 	    }
 	    else 
@@ -274,11 +274,11 @@ class BallsFreeplay extends MusicBeatState
         for (sprite in screenPlayers.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
-	    if (playables[songIndex] == 'BFLMAO' && flxSprite.ID == 3) {
+	    if (flxSprite.ID == 3) {
                 flxSprite.scale.set(1, 1);
                 flxSprite.animation.curAnim.curFrame = 22;
             } 
-	    else if (playables[songIndex] == 'mighty' && flxSprite.ID == 6) {
+	    else if (flxSprite.ID == 6) {
 		flxSprite.animation.curAnim.curFrame = 22;
 	    }
 	    else 
