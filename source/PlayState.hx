@@ -2453,8 +2453,6 @@ class PlayState extends MusicBeatState
 		switch(event.event) {
 			case 'Change Character':
 				var charType:Int = 0;
-				fakeTimeBar.createFilledBar(0xFF000000, dadColor); //for breakout
-				timeBar.createFilledBar(0xFF000000, dadColor);
 				switch(event.value1.toLowerCase()) {
 					case 'gf' | 'girlfriend' | '1':
 						charType = 2;
@@ -4831,9 +4829,8 @@ class PlayState extends MusicBeatState
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
-					case 1441:
+					case 1442:
 						theStatic.visible = false;
-
 						//bop shit lolololol
 					case 64, 256, 639:
 						wowZoomin = true;
