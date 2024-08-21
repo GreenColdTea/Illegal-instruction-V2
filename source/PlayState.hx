@@ -321,7 +321,7 @@ class PlayState extends MusicBeatState
 	var hudStyle:Map<String, String> = [
 		"my-horizon" => "chaotix",
 		"vista" => "chaotix",
-		"Soulless Endeavors" => "chaotix",
+		"soulless-endeavors" => "chaotix",
 		"long-sky" => "chotix"
 	];
 	// for the time counter
@@ -1191,7 +1191,7 @@ class PlayState extends MusicBeatState
 
 				dad.y += 225;
 				gf.x += 175;
-				gf.y += 100;
+				gf.y += 250;
 				boyfriend.x += 275;
 				boyfriend.y += 235;
 				theStatic.visible = false;
@@ -4700,6 +4700,7 @@ class PlayState extends MusicBeatState
 						camGame.setFilters([barrelDistortionFilter]);
 						camHUD.setFilters([barrelDistortionFilter]);
 	                                }
+		                        dad.y += 250;
 					case 784:
 		                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.75, barrelDistortion2: -0.5}, 1.5, {ease: FlxEase.quadInOut});
@@ -4733,6 +4734,7 @@ class PlayState extends MusicBeatState
 						dad.cameras = [camGame2];
 						boyfriend.animation.pause();
 						gray = new GrayscaleShader();
+                                                dad.y += 225;
 						camGame.setFilters([new ShaderFilter(gray.shader)]);
 					case 1736:
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
@@ -4752,6 +4754,7 @@ class PlayState extends MusicBeatState
 							{ease: FlxEase.quadInOut});
                                         }
 					case 1744:
+                                                dad.y += 250;
                                         if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0.0, barrelDistortion2: 0.0}, 0.35, {
 							ease: FlxEase.backOut,
@@ -4812,7 +4815,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			case 'Soulless Endeavors':
+			case 'soulless-endeavors':
 			{
 				switch (curStep)
 				{
