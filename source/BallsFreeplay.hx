@@ -269,6 +269,7 @@ class BallsFreeplay extends MusicBeatState
 	    else if (flxSprite.ID == 6) {
 		flxSprite.x -= 370;
 		flxSprite.y -= 80;
+	    }
 	    else 
 	    {
                 flxSprite.scale.set(3, 3);
