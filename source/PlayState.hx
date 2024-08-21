@@ -2240,6 +2240,16 @@ class PlayState extends MusicBeatState
 			barSongLength = 89000;
 		}
 
+		//time bar personalized with dad health bar
+	        var dadColR = dad.healthColorArray[0];
+                var dadColG = dad.healthColorArray[1];
+                var dadColB = dad.healthColorArray[2];
+
+	        var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+
+	        fakeTimeBar.createFilledBar(0xFF000000, dadColor);
+	        timeBar.createFilledBar(0xFF000000, dadColor);
+
 		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 
@@ -2250,16 +2260,6 @@ class PlayState extends MusicBeatState
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
 	}
-
-	//time bar personalized with dad health bar
-	var dadColR = dad.healthColorArray[0];
-        var dadColG = dad.healthColorArray[1];
-        var dadColB = dad.healthColorArray[2];
-
-	var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
-
-	fakeTimeBar.createFilledBar(0xFF000000, dadColor);
-	timeBar.createFilledBar(0xFF000000, dadColor);
 
 	var debugNum:Int = 0;
 	private var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
