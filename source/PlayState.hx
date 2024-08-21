@@ -1744,7 +1744,7 @@ class PlayState extends MusicBeatState
                     {
                         startCountdown();
                     });  
-			
+		  }
                 }
                 else
                 {
