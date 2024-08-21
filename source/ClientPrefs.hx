@@ -244,7 +244,7 @@ class ClientPrefs {
 		if(FlxG.save.data.scoreZoom != null) {
 			scoreZoom = FlxG.save.data.scoreZoom;
 		}
-      if(FlxG.save.data.controllerMode != null) {
+                if(FlxG.save.data.controllerMode != null) {
 			controllerMode = FlxG.save.data.controllerMode;
 		}
 		if(FlxG.save.data.noReset != null) {
