@@ -1190,6 +1190,8 @@ class PlayState extends MusicBeatState
 				add(entranceOver);
 
 				dad.y += 200;
+				gf.x += 150;
+				gf.y += 50;
 				boyfriend.x += 275;
 				boyfriend.y += 235;
 				theStatic.visible = false;
@@ -1198,6 +1200,8 @@ class PlayState extends MusicBeatState
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
 				dad.x += 100;
+				gf.x += 150;
+				gf.y += 50;
 				boyfriend.x += 220;
 				boyfriend.y += 45;
 
@@ -4679,14 +4683,15 @@ class PlayState extends MusicBeatState
 						iShouldKickUrFuckinAss(1);
 						camZooming = true;
 						holyFuckStopZoomin = true;
+                                                Paths.clearUnusedMemory();
 					case 1056:
-						FlxG.camera.flash(FlxColor.WHITE, 1.5);
+						FlxG.camera.flash(FlxColor.GREEN, 1.5);
 						holyFuckStopZoomin = false;
 						wowZoomin = false;
 					case 1312:
-						FlxG.camera.flash(FlxColor.WHITE, 1.5);
+						FlxG.camera.flash(FlxColor.RED, 1.5);
 					case 1568:
-						FlxG.camera.flash(FlxColor.WHITE, 2);
+						FlxG.camera.flash(FlxColor.RED, 2);
 						FlxTween.tween(camHUD, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});
 						wowZoomin = false;
 						camZooming = false;	
@@ -4738,25 +4743,25 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.05, barrelDistortion2: -0.05}, 2, {ease: FlxEase.quadInOut});
                                         }
 					case 2000:
-						FlxG.camera.flash(FlxColor.WHITE, 1.5);
+						FlxG.camera.flash(FlxColor.GREEN, 1.5);
                                         if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0.075;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.1, barrelDistortion2: -0.1}, 2, {ease: FlxEase.quadInOut});
                                         }
 					case 2128:
-						FlxG.camera.flash(FlxColor.WHITE, 1.5);
+						FlxG.camera.flash(FlxColor.RED, 1.5);
                                         if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0.1;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.15, barrelDistortion2: -0.15}, 2, {ease: FlxEase.quadInOut});
                                         }
 					case 2224:
-						FlxG.camera.flash(FlxColor.WHITE, 1.5);
+						FlxG.camera.flash(FlxColor.GREEN, 1.5);
                                         if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0.15;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.20, barrelDistortion2: -0.20}, 2, {ease: FlxEase.quadInOut});
                                         }
 					case 2288: 
-						FlxG.camera.flash(FlxColor.WHITE, 1.5);
+						FlxG.camera.flash(FlxColor.RED, 1.5);
                                         if (ClientPrefs.shaders) {
 						camGlitchShader.amount = 0;
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0.0, barrelDistortion2: 0.0}, 2.5, {
@@ -4781,6 +4786,7 @@ class PlayState extends MusicBeatState
 					case 894:
 						theStatic.visible = true;
 					case 896:
+				                gfGroup.visible = false;
 						health = 1;
 						soulSky.visible = false;
 						soulBalls.visible = false;
@@ -4806,6 +4812,7 @@ class PlayState extends MusicBeatState
 					case 1439:
 						theStatic.visible = true;
 					case 1441:
+				                gfGroup.visible = true;
 						healthBar.x -= 150;
 						iconP1.x -= 150;
 						iconP2.x -= 150;
