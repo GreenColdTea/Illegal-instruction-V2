@@ -2341,7 +2341,7 @@ class PlayState extends MusicBeatState
 			
 				var pixelStage = isPixelStage;
 
-				if(daStrumTime >= Conductor.stepToSeconds(640) && daStrumTime <= 123000 && SONG.song.toLowerCase()=='soulless-endeavors')
+				if(daStrumTime >= Conductor.stepToSeconds(896) && daStrumTime <= 123000 && SONG.song.toLowerCase()=='soulless-endeavors')
 					isPixelStage = true;
 				var gfNote = (section.gfSection && (songNotes[1]<4));
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
