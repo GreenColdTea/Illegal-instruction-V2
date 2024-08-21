@@ -2252,6 +2252,13 @@ class PlayState extends MusicBeatState
 		callOnLuas('onSongStart', []);
 	}
 
+	//time bar personalized with dad health bar
+	var dadColR = dad.healthColorArray[0];
+        var dadColG = dad.healthColorArray[1];
+        var dadColB = dad.healthColorArray[2];
+
+	var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+
 	var debugNum:Int = 0;
 	private var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
 	private var eventPushedMap:Map<String, Bool> = new Map<String, Bool>();
