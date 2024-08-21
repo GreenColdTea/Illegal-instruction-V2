@@ -276,8 +276,8 @@ class TitleState extends MusicBeatState
 		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
 		wechniaMenu.antialiasing = false;
 		wechniaMenu.screenCenter(Y);
-		wechniaMenu.x += 200;
-		wechniaMenu.y -= 125;
+		wechniaMenu.x += 300;
+		wechniaMenu.y -= 150;
 		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
 		wechniaMenu.scale.x = 3;
 		wechniaMenu.scale.y = 3;
