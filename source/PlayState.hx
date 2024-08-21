@@ -319,9 +319,9 @@ class PlayState extends MusicBeatState
 	var ringsLabel:FlxSprite;
 	var hudDisplays:Map<String, SonicNumberDisplay> = [];
 	var hudStyle:Map<String, String> = [
-		"my-horizon" => "chaotix",
-		"vista" => "chaotix",
-		"soulless-endeavors" => "chaotix",
+		"My Horizon" => "chaotix",
+		"Vista" => "chaotix",
+		"Soulless Endeavors" => "chaotix",
 		"long-sky" => "chotix"
 	];
 	// for the time counter
@@ -4815,7 +4815,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			case 'soulless-endeavors':
+			case 'Soulless Endeavors':
 			{
 				switch (curStep)
 				{
