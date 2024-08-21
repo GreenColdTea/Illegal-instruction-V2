@@ -1263,6 +1263,7 @@ class PlayState extends MusicBeatState
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
 
+		//this time bar for breakout faker part
 		fakeTimeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'fakeSongPercent', 0, 100);
 		fakeTimeBar.scrollFactor.set();
@@ -2451,6 +2452,8 @@ class PlayState extends MusicBeatState
 		switch(event.event) {
 			case 'Change Character':
 				var charType:Int = 0;
+				fakeTimeBar.createFilledBar(0xFF000000, dadColor); //for breakout
+				timeBar.createFilledBar(0xFF000000, dadColor);
 				switch(event.value1.toLowerCase()) {
 					case 'gf' | 'girlfriend' | '1':
 						charType = 2;
@@ -3428,6 +3431,8 @@ class PlayState extends MusicBeatState
 				}
 			case 'Change Character':
 				var charType:Int = 0;
+		                timeBar.createFilledBar(0xFF000000, dadColor);
+		                fakeTimeBar.createFilledBar(0xFF000000, dadColor); //for breakout
 				switch(value1) {
 					case 'gf' | 'girlfriend':
 						charType = 2;
