@@ -3432,8 +3432,6 @@ class PlayState extends MusicBeatState
 				}
 			case 'Change Character':
 				var charType:Int = 0;
-		                timeBar.createFilledBar(0xFF000000, dadColor);
-		                fakeTimeBar.createFilledBar(0xFF000000, dadColor); //for breakout
 				switch(value1) {
 					case 'gf' | 'girlfriend':
 						charType = 2;
@@ -4782,7 +4780,7 @@ class PlayState extends MusicBeatState
 			{
 				switch (curStep)
 				{
-					case 895:
+					case 894:
 						theStatic.visible = true;
 					case 896:
 						health = 1;
@@ -4809,7 +4807,7 @@ class PlayState extends MusicBeatState
 						boyfriend.y -= 60;
 					case 1439:
 						theStatic.visible = true;
-					case 1440:
+					case 1441:
 						healthBar.x -= 150;
 						iconP1.x -= 150;
 						iconP2.x -= 150;
@@ -4829,7 +4827,6 @@ class PlayState extends MusicBeatState
 						soulFrontRocks.visible = true;
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
-						boyfriend.x += 150;
 						boyfriend.y += 60;
 						isPixelStage = false;
 						reloadTheNotesPls();
@@ -4845,11 +4842,11 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						holyFuckStopZoomin = true;
 					case 1443:
-						defaultCamZoom = 0.75;
+						defaultCamZoom = 0.6;
 					case 898:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-						defaultCamZoom = 0.9;
+						defaultCamZoom = 0.8;
 					case 2004:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
