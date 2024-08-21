@@ -4779,7 +4779,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			case 'soulless-endeavors':
+			case 'Soulless Endeavors':
 			{
 				switch (curStep)
 				{
