@@ -1189,9 +1189,9 @@ class PlayState extends MusicBeatState
 				add(entranceSpookyOver);
 				add(entranceOver);
 
-				dad.y += 200;
-				gf.x += 150;
-				gf.y += 50;
+				dad.y += 225;
+				gf.x += 175;
+				gf.y += 100;
 				boyfriend.x += 275;
 				boyfriend.y += 235;
 				theStatic.visible = false;
@@ -4597,7 +4597,7 @@ class PlayState extends MusicBeatState
 	var glitchShaders:Array<GlitchShaderA> = [];
 
 	function glitchKill(spr:FlxSprite,dontKill:Bool=false){
-      if (ClientPrefs.shaders) {
+           if (ClientPrefs.shaders) {
 		var shader = new GlitchShaderA();
 		shader.iResolution.value = [spr.width, spr.height];
 		piss.push(FlxTween.tween(shader, {amount: 1.25}, 2, {
@@ -4613,7 +4613,7 @@ class PlayState extends MusicBeatState
 		}));
 		glitchShaders.push(shader);
 		spr.shader = shader;
-      }
+           }
 	}
 	
 	public static function cancelMusicFadeTween() {
@@ -4685,11 +4685,11 @@ class PlayState extends MusicBeatState
 						holyFuckStopZoomin = true;
                                                 Paths.clearUnusedMemory();
 					case 1056:
-						FlxG.camera.flash(FlxColor.GREEN, 1.5);
+						FlxG.camera.flash(FlxColor.RED, 1.5);
 						holyFuckStopZoomin = false;
 						wowZoomin = false;
 					case 1312:
-						FlxG.camera.flash(FlxColor.RED, 1.5);
+						FlxG.camera.flash(FlxColor.GREEN, 1.5);
 					case 1568:
 						FlxG.camera.flash(FlxColor.RED, 2);
 						FlxTween.tween(camHUD, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});
@@ -5164,7 +5164,7 @@ class PlayState extends MusicBeatState
 			switch (die)
 			{
 				case 1:
-					FlxG.camera.flash(FlxColor.WHITE, 1.5);
+					FlxG.camera.flash(FlxColor.GREEN, 1.5);
 					FlxTween.tween(this, {barSongLength: songLength, health: 1}, 5);
 
 					entranceSpookyBG.visible = true;
