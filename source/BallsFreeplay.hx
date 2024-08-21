@@ -153,8 +153,8 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 95;
-	screenLogo.y += 50;
+	screenLogo.x -= 90;
+	screenLogo.y += 55;
 	add(screenLogo);
 
 	player = new FlxSprite(455, 250);
@@ -207,7 +207,7 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.screenCenter();
             songPortrait.antialiasing = false;
             songPortrait.scale.set(4.5, 4.5);
-            songPortrait.y -= 60;
+            songPortrait.y -= 50;
             songPortrait.alpha = 0;
             songPortrait.ID = i;
             screenInfo.add(songPortrait);
@@ -237,8 +237,8 @@ class BallsFreeplay extends MusicBeatState
             screenPlayers.add(songPlayable);
 
 	    var characterText = new FlxText(0, 0, songs[i]);
-            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, CENTER);
-            characterText.x -= 20;
+            characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, LEFT);
+            characterText.x += 50;
             characterText.y -= 20;
             characterText.alpha = 0;
             characterText.ID = i;
@@ -252,10 +252,6 @@ class BallsFreeplay extends MusicBeatState
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
         }
-        for (sprite in screenSong.members) {
-            var flxText:FlxText = cast(sprite, FlxText);
-            flxText.alpha = flxText.ID == songIndex ? 1 : 0;
-        }
         for (sprite in screenCharacters.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
@@ -268,25 +264,27 @@ class BallsFreeplay extends MusicBeatState
 	    else 
 	    {
                 flxSprite.scale.set(3, 3);
-		flxSprite.y -= 70;
 	    }
         }
         for (sprite in screenPlayers.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
 	    if (flxSprite.ID == 3) {
-                flxSprite.scale.set(1, 1);
-                flxSprite.animation.curAnim.curFrame = 22;
+                flxSprite.scale.set(0.5, 0.5);
+                //flxSprite.animation.curAnim.curFrame = 22;
             } 
 	    else if (flxSprite.ID == 6) {
-		flxSprite.animation.curAnim.curFrame = 22;
+		//flxSprite.animation.curAnim.curFrame = 22;
 	    }
 	    else 
 	    {
                 flxSprite.scale.set(5.5, 5.5);
-                flxSprite.animation.curAnim.curFrame = 20;
 	    }
         }
+	for (sprite in screenSong.members) {
+            var flxText:FlxText = cast(sprite, FlxText);
+            flxText.alpha = flxText.ID == songIndex ? 1 : 0;
+	}
     }
 	
     // Main update function, where all the magic happens
