@@ -153,7 +153,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 90;
+	screenLogo.x -= 85;
 	screenLogo.y += 55;
 	add(screenLogo);
 
@@ -255,12 +255,20 @@ class BallsFreeplay extends MusicBeatState
         for (sprite in screenCharacters.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
-	    if (characters[songIndex] == 'chaotix' && flxSprite.ID == 2) {
+	    if (flxSprite.ID == 2) {
                 flxSprite.y -= 75;
+		flxSprite.x -= 370;
             } 
-	    else if (flxSprite.ID == 4 || flxSprite.ID == 6) {
+	    else if (flxSprite.ID == 3) {
+		flxSprite.y -= 75;
+		flxSprite.xsongCharacter.x -= 360;
+	    }
+	    else if (flxSprite.ID == 4) {
 		flxSprite.scale.set(5.5, 5.5);
 	    }
+	    else if (flxSprite.ID == 6) {
+		flxSprite.x -= 370;
+		flxSprite.y -= 80;
 	    else 
 	    {
                 flxSprite.scale.set(3, 3);
@@ -270,7 +278,7 @@ class BallsFreeplay extends MusicBeatState
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
 	    if (flxSprite.ID == 3) {
-                flxSprite.scale.set(0.5, 0.5);
+                flxSprite.scale.set(0.25, 0.25);
                 //flxSprite.animation.curAnim.curFrame = 22;
             } 
 	    else if (flxSprite.ID == 6) {
