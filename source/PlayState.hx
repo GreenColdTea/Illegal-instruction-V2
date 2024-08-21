@@ -321,7 +321,7 @@ class PlayState extends MusicBeatState
 	var hudStyle:Map<String, String> = [
 		"my-horizon" => "chaotix",
 		"vista" => "chaotix",
-		"soulless-endeavors" => "chaotix",
+		"Soulless Endeavors" => "chaotix",
 		"long-sky" => "chotix"
 	];
 	// for the time counter
@@ -672,7 +672,7 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.characterName = 'bfii-death';
 				GameOverSubstate.loopSoundName = 'duke-loop';
 
-				defaultCamZoom = 0.68;
+				defaultCamZoom = 0.6;
 
 				soulSky = new FlxSprite(-246, -239);
 				soulSky.loadGraphic(Paths.image('soulless/sky', 'exe'));
@@ -1677,13 +1677,14 @@ class PlayState extends MusicBeatState
 
                     if (daSong != "my-horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
-		    else if (daSong == "cascade")
-			startCircle.scale.set(2, 1.75);
+		    else if (daSong == "Cascade")
+			startCircle.scale.set(2, 2);
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
                     add(startCircle);
 
+		  if (daSong != "Cascade") {
                     new FlxTimer().start(1, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
@@ -1712,6 +1713,38 @@ class PlayState extends MusicBeatState
                     {
                         startCountdown();
                     });
+		  }
+		  else
+		  {
+		    new FlxTimer().start(0.69, function(tmr:FlxTimer)
+                    {
+                        FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
+                    });
+
+                    new FlxTimer().start(1.488, function(tmr:FlxTimer)
+                    {
+                        FlxTween.tween(blackFuck, {alpha: 0}, 2, {
+                            onComplete: function(twn:FlxTween)
+                            {
+                                remove(blackFuck);
+                                blackFuck.destroy();
+                                startCircle.animation.play('idle');
+                            }
+                        });
+                        FlxTween.tween(startCircle, {alpha: 1}, 4, {
+                            onComplete: function(twn:FlxTween)
+                            {
+                                remove(startCircle);
+                                startCircle.destroy();
+                            }
+                        });
+                    });
+
+                    new FlxTimer().start(3.1, function(tmr:FlxTimer)
+                    {
+                        startCountdown();
+                    });  
+			
                 }
                 else
                 {
