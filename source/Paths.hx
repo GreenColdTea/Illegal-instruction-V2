@@ -271,7 +271,7 @@ class Paths
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/inst';
 		if (songKey == null) {
-			songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst';
+			songKey = '${song.toLowerCase().replace(' ', '-')}/Inst';
 		}
 		var inst = returnSound('songs', songKey);
 		return inst;
