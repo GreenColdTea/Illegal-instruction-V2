@@ -2294,18 +2294,6 @@ class PlayState extends MusicBeatState
 				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed', 1);
 		}
 
-		if (eventPushed(Change Character)) {
-			//time bar personalized with dad health bar
-	                var dadColR = dad.healthColorArray[0];
-                        var dadColG = dad.healthColorArray[1];
-                        var dadColB = dad.healthColorArray[2];
-
-	                var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
-
-			fakeTimeBar.createFilledBar(0xFF000000, dadColor);
-	                timeBar.createFilledBar(0xFF000000, dadColor);
-		}	
-
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
 
@@ -2714,6 +2702,19 @@ class PlayState extends MusicBeatState
 			camGame2.zoom = camGame.zoom;
 			camGame2.setPosition(camGame.x,camGame.y);
 		}
+
+		if (eventPushed(Change Character)) 
+		{
+			//time bar personalized with dad health bar
+	                var dadColR = dad.healthColorArray[0];
+                        var dadColG = dad.healthColorArray[1];
+                        var dadColB = dad.healthColorArray[2];
+
+	                var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+
+			fakeTimeBar.createFilledBar(0xFF000000, dadColor);
+	                timeBar.createFilledBar(0xFF000000, dadColor);
+		}	
 
 		if (gray != null)
 		gray.update(elapsed/4);
