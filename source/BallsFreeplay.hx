@@ -153,8 +153,8 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 85;
-	screenLogo.y += 55;
+	screenLogo.x -= 85.5;
+	screenLogo.y += 55.5;
 	add(screenLogo);
 
 	player = new FlxSprite(455, 250);
@@ -282,7 +282,7 @@ class BallsFreeplay extends MusicBeatState
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
 	    if (flxSprite.ID == 3) {
-                flxSprite.scale.set(0.25, 0.25);
+                flxSprite.scale.set(0.375, 0.375);
                 //flxSprite.animation.curAnim.curFrame = 22;
             } 
 	    else if (flxSprite.ID == 6) {
