@@ -1188,6 +1188,7 @@ class PlayState extends MusicBeatState
 			case 'vista':
 				gf.x += 150;
 				gf.y += 75;
+				dad.y += 25;
 				boyfriend.y += 80;
 				boyfriend.x += 200;
 				add(amyBop);
