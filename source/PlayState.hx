@@ -2703,7 +2703,7 @@ class PlayState extends MusicBeatState
 			camGame2.setPosition(camGame.x,camGame.y);
 		}
 
-		if (eventPushed(Change Character)) 
+		if (eventPushed) 
 		{
 			//time bar personalized with dad health bar
 	                var dadColR = dad.healthColorArray[0];
