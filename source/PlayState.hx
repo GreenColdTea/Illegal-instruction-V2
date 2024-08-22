@@ -2474,6 +2474,8 @@ class PlayState extends MusicBeatState
 						charType = 2;
 					case 'dad' | 'opponent' | '0':
 						charType = 1;
+						fakeTimeBar.createFilledBar(0xFF000000, dadColor);
+	                                        timeBar.createFilledBar(0xFF000000, dadColor);
 					default:
 						charType = Std.parseInt(event.value1);
 						if(Math.isNaN(charType)) charType = 0;
@@ -3451,6 +3453,8 @@ class PlayState extends MusicBeatState
 						charType = 2;
 					case 'dad' | 'opponent':
 						charType = 1;
+						fakeTimeBar.createFilledBar(0xFF000000, dadColor);
+	                                        timeBar.createFilledBar(0xFF000000, dadColor);
 					default:
 						charType = Std.parseInt(value1);
 						if(Math.isNaN(charType)) charType = 0;
