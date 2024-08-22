@@ -226,7 +226,7 @@ class Paths
 	}
 	
 	inline static public function luaAsset(key:String, ?library:String)
-  {
+        {
 		return getPath('$key.lua', TEXT, library);
 	}
 
@@ -261,7 +261,7 @@ class Paths
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/voices';
 		if (songKey == null) {
-			songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
+			songKey = '${song.toLowerCase().replace(' ', '-')}/Voices';
 		}
 		var voices = returnSound('songs', songKey);
 		return voices;
