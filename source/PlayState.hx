@@ -2144,7 +2144,7 @@ class PlayState extends MusicBeatState
 				}
 
 				notes.forEachAlive(function(note:Note) {
-            if(ClientPrefs.opponentStrums || note.mustPress)
+                                if (ClientPrefs.opponentStrums || note.mustPress)
 					{
 						note.copyAlpha = false;
 						note.alpha = note.multAlpha;
@@ -2261,7 +2261,7 @@ class PlayState extends MusicBeatState
                 var dadColG = dad.healthColorArray[1];
                 var dadColB = dad.healthColorArray[2];
 
-	        var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+	        public var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
 
 	        fakeTimeBar.createFilledBar(0xFF000000, dadColor);
 	        timeBar.createFilledBar(0xFF000000, dadColor);
