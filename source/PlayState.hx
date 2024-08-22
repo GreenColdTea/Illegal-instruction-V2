@@ -319,9 +319,9 @@ class PlayState extends MusicBeatState
 	var ringsLabel:FlxSprite;
 	var hudDisplays:Map<String, SonicNumberDisplay> = [];
 	var hudStyle:Map<String, String> = [
-		"My Horizon" => "chaotix",
-		"Vista" => "chaotix",
-		"Soulless Endeavors" => "chaotix",
+		"my-horizon" => "chaotix",
+		"vista" => "chaotix",
+		"soulless-endeavors" => "chaotix",
 		"long-sky" => "chotix"
 	];
 	// for the time counter
@@ -1102,17 +1102,6 @@ class PlayState extends MusicBeatState
 
 		if(doPush)
 			luaArray.push(new FunkinLua(luaFile));
-		#elseif (LUA_ALLOWED && !MODS_ALLOWED)
-		var doPush:Bool = false;
-		var luaFile:String = 'stages/' + curStage + '.lua';
-		luaFile = Paths.getPreloadPath(luaFile);
-		if (OpenFlAssets.exists(luaFile)) {
-			doPush = true;
-		}
-
-		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
-		#end
 		
 
 
@@ -1199,10 +1188,10 @@ class PlayState extends MusicBeatState
 			
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
-				dad.x += 100;
-				gf.x += 150;
+				dad.x += 75;
+				gf.x += 450;
 				gf.y += 50;
-				boyfriend.x += 220;
+				boyfriend.x += 225;
 				boyfriend.y += 45;
 
 				dadGroup.visible = true;
@@ -1217,6 +1206,7 @@ class PlayState extends MusicBeatState
 				boyfriend.x += 200;
 				add(amyBop);
 				add(knuxBopFucked);
+				
 			case 'chotix':
 				gf.y -= 50;
 				//dad.setPosition(-500, 350);
@@ -1677,14 +1667,16 @@ class PlayState extends MusicBeatState
 
                     if (daSong != "my-horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
-		    else if (daSong == "Cascade")
+		    else if (daSong == "cascade")
 			startCircle.scale.set(2, 2);
+		    else if (daSong == "my-horizon")
+                        startCircle.scale.set(1, 1);
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
                     add(startCircle);
 
-		  if (daSong != "Cascade") {
+		  if (daSong != "cascade") {
                     new FlxTimer().start(1, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
@@ -4369,6 +4361,7 @@ class PlayState extends MusicBeatState
 			vocals.volume = 0;
 		}
 	}
+
 	function opponentNoteHit(note:Note):Void
 	{
 		if (Paths.formatToSongPath(SONG.song) != 'tutorial')
@@ -4700,7 +4693,6 @@ class PlayState extends MusicBeatState
 						camGame.setFilters([barrelDistortionFilter]);
 						camHUD.setFilters([barrelDistortionFilter]);
 	                                }
-		                        dad.y += 250;
 					case 784:
 		                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.75, barrelDistortion2: -0.5}, 1.5, {ease: FlxEase.quadInOut});
@@ -4733,8 +4725,8 @@ class PlayState extends MusicBeatState
 						// :> 4axion was here!!!gdsjsgjsdjsdggs
 						dad.cameras = [camGame2];
 						boyfriend.animation.pause();
+                                                gf.animation.pause();
 						gray = new GrayscaleShader();
-                                                dad.y += 225;
 						camGame.setFilters([new ShaderFilter(gray.shader)]);
 					case 1736:
 						FlxG.camera.flash(FlxColor.WHITE, 1.5);
@@ -4754,7 +4746,6 @@ class PlayState extends MusicBeatState
 							{ease: FlxEase.quadInOut});
                                         }
 					case 1744:
-                                                dad.y += 250;
                                         if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0.0, barrelDistortion2: 0.0}, 0.35, {
 							ease: FlxEase.backOut,
@@ -4815,11 +4806,11 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			case 'Soulless Endeavors':
+			case 'soulless-endeavors':
 			{
 				switch (curStep)
 				{
-					case 894:
+					case 895:
 						theStatic.visible = true;
 					case 896:
 				                gfGroup.visible = false;
@@ -4975,7 +4966,7 @@ class PlayState extends MusicBeatState
 					case 2592:
 						defaultCamZoom = 0.60;
 						wowZoomin = true;	
-						FlxG.camera.flash(FlxColor.WHITE, 1);
+						FlxG.camera.flash(FlxColor.PURPLE, 1);
                                         if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.02;
                                         }
@@ -4985,7 +4976,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.65;
 						wowZoomin = false;
 						holyFuckStopZoomin = true;
-						FlxG.camera.flash(FlxColor.WHITE, 1);
+						FlxG.camera.flash(FlxColor.PINK, 1);
                                         if (ClientPrefs.shaders) {
 						camFuckShader.amount = 0.035;
                                         }
@@ -4995,10 +4986,10 @@ class PlayState extends MusicBeatState
 						camFuckShader.amount = 0.045;
                                         }
 					case 3264, 3328, 3520, 3584:
-						FlxG.camera.flash(FlxColor.WHITE, 1);
+						FlxG.camera.flash(FlxColor.PURPLE, 1);
 						defaultCamZoom = 0.70;
 					case 3269, 3333, 3525, 3589: 
-						FlxG.camera.flash(FlxColor.WHITE, 1);
+						FlxG.camera.flash(FlxColor.PINK, 1);
 						defaultCamZoom = 0.80;
 					case 3280, 3344, 3536, 3600:
 						FlxG.camera.flash(FlxColor.BLACK, 1);
@@ -5016,7 +5007,7 @@ class PlayState extends MusicBeatState
 						camFuckShader.amount = 0.075;
                                         }
 					case 3668:
-						FlxG.camera.flash(FlxColor.WHITE, 1);
+						FlxG.camera.flash(FlxColor.PURPLE, 1);
 						FlxTween.tween(camGame, {alpha: 0}, 1);
 						FlxTween.tween(camHUD, {alpha: 0}, 1);
 				}			
