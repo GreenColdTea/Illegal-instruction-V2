@@ -153,7 +153,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 85.5;
+	screenLogo.x -= 87.5;
 	screenLogo.y += 55.5;
 	add(screenLogo);
 
