@@ -469,11 +469,12 @@ class BallsFreeplay extends MusicBeatState
     {
         var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
         PlayState.SONG = Song.loadFromJson(songLowercase + '-hard', songLowercase);
+	FlxG.mouse.visible = false;
         PlayState.isStoryMode = false;
         PlayState.storyDifficulty = 2;
-        LoadingState.loadAndSwitchState(new PlayState());
 	FlxG.sound.music.volume = 0;
 	FreeplayState.destroyFreeplayVocals();
+	LoadingState.loadAndSwitchState(new PlayState());
     }
 
    // Called when the hold timer completes
