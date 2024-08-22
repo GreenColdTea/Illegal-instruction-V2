@@ -1,1 +1,6 @@
 stage
+entrance
+soulless
+vista
+horizon
+wechnia
