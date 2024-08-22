@@ -2293,7 +2293,7 @@ class PlayState extends MusicBeatState
 				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed', 1);
 		}
 
-		if (event.event == 'Change Character') {
+		if (eventPushed(Change Character)) {
 			//time bar personalized with dad health bar
 	                var dadColR = dad.healthColorArray[0];
                         var dadColG = dad.healthColorArray[1];
