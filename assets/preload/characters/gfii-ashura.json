@@ -1,66 +1,33 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "danceLeft",
-			"indices": [],
-			"name": "GFIDLE"
+			"fps": 24,
+			"name": "IHateWhitePeople",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "danceRight",
-			"indices": [],
-			"name": "GFIDLE"
-		},
-		{
-			"offsets": [
-				-3,
-				1
-			],
-			"loop": false,
 			"fps": 24,
-			"anim": "cheer",
-			"indices": [],
-			"name": "GFCHEER"
-		},
-		{
-			"offsets": [
-				0,
-				-5
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "sad",
-			"indices": [],
-			"name": "GFSAD"
-		},
-		{
-			"offsets": [
-				-15,
-				1
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "scared",
-			"indices": [],
-			"name": "GFSCARED"
+			"name": "IHateWhitePeople",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/GF",
+	"image": "characters/IIgirlfriend_2",
 	"position": [
-		-50,
-		120
+		20,
+		250
 	],
 	"healthicon": "gf",
 	"flip_x": false,
@@ -70,8 +37,8 @@
 		61
 	],
 	"camera_position": [
-		-120,
-		140
+		-280,
+		50
 	],
 	"sing_duration": 6.1,
 	"scale": 0.5
