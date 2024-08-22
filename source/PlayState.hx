@@ -2224,13 +2224,6 @@ class PlayState extends MusicBeatState
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
 
-	//time bar personalized with dad health bar
-	var dadColR = dad.healthColorArray[0];
-        var dadColG = dad.healthColorArray[1];
-        var dadColB = dad.healthColorArray[2];
-
-	public var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
-
 	function startSong():Void
 	{
 		startingSong = false;
@@ -2263,6 +2256,13 @@ class PlayState extends MusicBeatState
 			barSongLength = 89000;
 		}
 
+                //time bar personalized with dad health bar
+	        var dadColR = dad.healthColorArray[0];
+                var dadColG = dad.healthColorArray[1];
+                var dadColB = dad.healthColorArray[2];
+
+	        var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+		
 	        fakeTimeBar.createFilledBar(0xFF000000, dadColor);
 	        timeBar.createFilledBar(0xFF000000, dadColor);
 
@@ -2292,6 +2292,18 @@ class PlayState extends MusicBeatState
 			case "constant":
 				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed', 1);
 		}
+
+		if (event.event == 'Change Character') {
+			//time bar personalized with dad health bar
+	                var dadColR = dad.healthColorArray[0];
+                        var dadColG = dad.healthColorArray[1];
+                        var dadColB = dad.healthColorArray[2];
+
+	                var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+
+			fakeTimeBar.createFilledBar(0xFF000000, dadColor);
+	                timeBar.createFilledBar(0xFF000000, dadColor);
+		}	
 
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
@@ -2474,8 +2486,6 @@ class PlayState extends MusicBeatState
 						charType = 2;
 					case 'dad' | 'opponent' | '0':
 						charType = 1;
-						fakeTimeBar.createFilledBar(0xFF000000, dadColor);
-	                                        timeBar.createFilledBar(0xFF000000, dadColor);
 					default:
 						charType = Std.parseInt(event.value1);
 						if(Math.isNaN(charType)) charType = 0;
@@ -3453,8 +3463,6 @@ class PlayState extends MusicBeatState
 						charType = 2;
 					case 'dad' | 'opponent':
 						charType = 1;
-						fakeTimeBar.createFilledBar(0xFF000000, dadColor);
-	                                        timeBar.createFilledBar(0xFF000000, dadColor);
 					default:
 						charType = Std.parseInt(value1);
 						if(Math.isNaN(charType)) charType = 0;
