@@ -260,6 +260,9 @@ class Paths
 	inline static public function voices(song:String):Any
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/voices';
+		if (songKey == null) {
+			songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
+		}
 		var voices = returnSound('songs', songKey);
 		return voices;
 	}
@@ -267,6 +270,9 @@ class Paths
 	inline static public function inst(song:String):Any
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/inst';
+		if (songKey == null) {
+			songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst';
+		}
 		var inst = returnSound('songs', songKey);
 		return inst;
 	}
