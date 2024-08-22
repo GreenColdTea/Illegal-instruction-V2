@@ -1201,7 +1201,7 @@ class PlayState extends MusicBeatState
 
 			case 'vista':
 				gf.x += 150;
-				gf.y += 50;
+				gf.y += 75;
 				boyfriend.y += 80;
 				boyfriend.x += 200;
 				add(amyBop);
@@ -1209,6 +1209,7 @@ class PlayState extends MusicBeatState
 				
 			case 'chotix':
 				gf.y -= 50;
+				dad.x -= 25;
 				//dad.setPosition(-500, 350);
 		}
 
@@ -1668,9 +1669,9 @@ class PlayState extends MusicBeatState
                     if (daSong != "my-horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
 		    else if (daSong == "cascade")
-			startCircle.scale.set(2, 2);
+			startCircle.scale.set(2, 2.25);
 		    else if (daSong == "my-horizon")
-                        startCircle.scale.set(1, 1);
+                        startCircle.scale.set(0.5, 0.5);
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
@@ -1708,12 +1709,12 @@ class PlayState extends MusicBeatState
 		  }
 		  else
 		  {
-		    new FlxTimer().start(0.69, function(tmr:FlxTimer)
+		    new FlxTimer().start(0.25, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
                     });
 
-                    new FlxTimer().start(1.488, function(tmr:FlxTimer)
+                    new FlxTimer().start(0.75, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(blackFuck, {alpha: 0}, 2, {
                             onComplete: function(twn:FlxTween)
@@ -1732,7 +1733,7 @@ class PlayState extends MusicBeatState
                         });
                     });
 
-                    new FlxTimer().start(3.1, function(tmr:FlxTimer)
+                    new FlxTimer().start(2.75, function(tmr:FlxTimer)
                     {
                         startCountdown();
                     });  
