@@ -760,42 +760,42 @@ class PlayState extends MusicBeatState
 				vistaBG = new FlxSprite(-450, -250);
 				vistaBG.loadGraphic(Paths.image('chaotix/vistaBg', 'exe'));
 				vistaBG.scrollFactor.set(0.6, 1);
-				vistaBG.scale.set(1.1, 1.1);
+				vistaBG.scale.set(1.25, 1.25);
 				vistaBG.antialiasing = true;
 				add(vistaBG);
 
 				vistaFloor = new FlxSprite(-460, -230);
 				vistaFloor.loadGraphic(Paths.image('chaotix/vistaFloor', 'exe'));
 				vistaFloor.scrollFactor.set(1, 1);
-				vistaFloor.scale.set(1.1, 1.1);
+				vistaFloor.scale.set(1.25, 1.25);
 				vistaFloor.antialiasing = true;
 				add(vistaFloor);
 
 				vistaGrass = new FlxSprite(-460, -230);
 				vistaGrass.loadGraphic(Paths.image('chaotix/vistaGrass', 'exe'));
 				vistaGrass.scrollFactor.set(1, 1);
-				vistaGrass.scale.set(1.1, 1.1);
+				vistaGrass.scale.set(1.25, 1.25);
 				vistaGrass.antialiasing = true;
 				add(vistaGrass);
 
 				vistaBush = new FlxSprite(-460, -230);
 				vistaBush.loadGraphic(Paths.image('chaotix/vistaBush', 'exe'));
 				vistaBush.scrollFactor.set(0.9, 1);
-				vistaBush.scale.set(1.1, 1.1);
+				vistaBush.scale.set(1.25, 1.25);
 				vistaBush.antialiasing = true;
 				add(vistaBush);
 
 				vistaTree = new FlxSprite(-460, -230);
 				vistaTree.loadGraphic(Paths.image('chaotix/vistaTree', 'exe'));
 				vistaTree.scrollFactor.set(0.9, 1);
-				vistaTree.scale.set(1.1, 1.1);
+				vistaTree.scale.set(1.25, 1.25);
 				vistaTree.antialiasing = true;
 				add(vistaTree);
 
 				vistaFlower = new FlxSprite(-460, -230);
 				vistaFlower.loadGraphic(Paths.image('chaotix/vistaFlower', 'exe'));
 				vistaFlower.scrollFactor.set(0.9, 1);
-				vistaFlower.scale.set(1.1, 1.1);
+				vistaFlower.scale.set(1.25, 1.25);
 				vistaFlower.antialiasing = true;
 				add(vistaFlower);
 
@@ -869,49 +869,49 @@ class PlayState extends MusicBeatState
 				fuckedBG = new FlxSprite(-450, -250);
 				fuckedBG.loadGraphic(Paths.image('chaotix/fucked/fuckedBg', 'exe'));
 				fuckedBG.scrollFactor.set(0.6, 1);
-				fuckedBG.scale.set(1.1, 1.1);
+				fuckedBG.scale.set(1.25, 1.25);
 				fuckedBG.antialiasing = true;
 				add(fuckedBG);
 
 				fuckedFloor = new FlxSprite(-460, -250);
 				fuckedFloor.loadGraphic(Paths.image('chaotix/fucked/fuckedFloor', 'exe'));
 				fuckedFloor.scrollFactor.set(1, 1);
-				fuckedFloor.scale.set(1.2, 1.2);
+				fuckedFloor.scale.set(1.35, 1.35);
 				fuckedFloor.antialiasing = true;
 				add(fuckedFloor);
 
 				fuckedGrass = new FlxSprite(-550, -220);
 				fuckedGrass.loadGraphic(Paths.image('chaotix/fucked/fuckedGrass', 'exe'));
 				fuckedGrass.scrollFactor.set(1, 1);
-				fuckedGrass.scale.set(1.2, 1.2);
+				fuckedGrass.scale.set(1.35, 1.35);
 				fuckedGrass.antialiasing = true;
 				add(fuckedGrass);
 
 				fuckedTree = new FlxSprite(-460, -220);
 				fuckedTree.loadGraphic(Paths.image('chaotix/fucked/fuckedTrees', 'exe'));
 				fuckedTree.scrollFactor.set(1, 1);
-				fuckedTree.scale.set(1.1, 1.1);
+				fuckedTree.scale.set(1.25, 1.25);
 				fuckedTree.antialiasing = true;
 				add(fuckedTree);
 
 				fuckedBush = new FlxSprite(-460, -220);
 				fuckedBush.loadGraphic(Paths.image('chaotix/fucked/fuckedBush', 'exe'));
 				fuckedBush.scrollFactor.set(1, 1);
-				fuckedBush.scale.set(1.1, 1.1);
+				fuckedBush.scale.set(1.25, 1.25);
 				fuckedBush.antialiasing = true;
 				add(fuckedBush);
 
 				fuckedFlower = new FlxSprite(-460, -220);
 				fuckedFlower.loadGraphic(Paths.image('chaotix/fucked/fuckedFlower', 'exe'));
 				fuckedFlower.scrollFactor.set(1, 1);
-				fuckedFlower.scale.set(1.1, 1.1);
+				fuckedFlower.scale.set(1.25, 1.25);
 				fuckedFlower.antialiasing = true;
 				add(fuckedFlower);
 
 				fuckedTails = new FlxSprite(-460, -230);
 				fuckedTails.loadGraphic(Paths.image('chaotix/fucked/fuckedTails', 'exe'));
 				fuckedTails.scrollFactor.set(0.9, 1);
-				fuckedTails.scale.set(1.1, 1.1);
+				fuckedTails.scale.set(1.25, 1.25);
 				fuckedTails.antialiasing = true;
 				add(fuckedTails);
 
@@ -2224,6 +2224,13 @@ class PlayState extends MusicBeatState
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
 
+	//time bar personalized with dad health bar
+	var dadColR = dad.healthColorArray[0];
+        var dadColG = dad.healthColorArray[1];
+        var dadColB = dad.healthColorArray[2];
+
+	public var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
+
 	function startSong():Void
 	{
 		startingSong = false;
@@ -2255,13 +2262,6 @@ class PlayState extends MusicBeatState
 		{
 			barSongLength = 89000;
 		}
-
-		//time bar personalized with dad health bar
-	        var dadColR = dad.healthColorArray[0];
-                var dadColG = dad.healthColorArray[1];
-                var dadColB = dad.healthColorArray[2];
-
-	        public var dadColor = (0xFF << 24) | (dadColR << 16) | (dadColG << 8) | dadColB;
 
 	        fakeTimeBar.createFilledBar(0xFF000000, dadColor);
 	        timeBar.createFilledBar(0xFF000000, dadColor);
