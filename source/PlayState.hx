@@ -1055,7 +1055,6 @@ class PlayState extends MusicBeatState
 			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
 		#end
 
-		#if desktop
 		for (folder in foldersToCheck)
 		{
 			if(FileSystem.exists(folder))
@@ -1070,19 +1069,6 @@ class PlayState extends MusicBeatState
 				}
 			}
 		}
-		#elseif mobile
-		for (folder in foldersToCheck) {
-                    if (OpenFlAssets.exists(folder)) {
-                    var files = FileSystem.readDirectory(folder);
-                    for (file in files) {
-                       if (file.endsWith('.lua') && !filesPushed.contains(file)) {
-                          luaArray.push(new FunkinLua(folder + '/' + file));
-                          filesPushed.push(file);
-                       }
-                    }
-                  }  
-		}
-		#end
 		#end
 
 
