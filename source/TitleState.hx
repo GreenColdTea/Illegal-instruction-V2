@@ -272,7 +272,7 @@ class TitleState extends MusicBeatState
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
 
-		wechniaMenu = new FlxSprite(200, 0);
+		wechniaMenu = new FlxSprite(300, 0);
 		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
 		wechniaMenu.antialiasing = false;
 		wechniaMenu.screenCenter(Y);
