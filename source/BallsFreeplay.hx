@@ -178,6 +178,9 @@ class BallsFreeplay extends MusicBeatState
         yn.borderSize = 0.9;
         add(yn);
 
+	CoolUtil.precacheMusic('freeplayThemeDuccly');
+	CoolUtil.precacheMusic('freeplayTheme');
+
 	#if android
         addVirtualPad(LEFT_FULL, A_B_C_X_Y);
         #end
