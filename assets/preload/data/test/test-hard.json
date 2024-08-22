@@ -1,7 +1,7 @@
 {
 	"song": {
-		"player1": "bfii",
-		"player2": "bfii",
+		"player1": "bfiialt",
+		"player2": "dukep1-placeholder",
 		"events": [
 			[
 				90461.5384615384,
@@ -6876,11 +6876,11 @@
 				"mustHitSection": true
 			}
 		],
-		"gfVersion": "gfii",
+		"gfVersion": "gfii-alt",
 		"player3": null,
 		"splashSkin": "noteSplashes",
 		"song": "Test",
-		"stage": "test",
+		"stage": "entrance",
 		"validScore": true,
 		"arrowSkin": "",
 		"needsVoices": true,
