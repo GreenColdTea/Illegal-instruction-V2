@@ -25,6 +25,10 @@ import sys.io.File;
 import sys.io.Process;
 #end
 
+#if mobile
+import android.MobileScaleMode;
+#end
+
 using CoolUtil;
 
 class Main extends Sprite
