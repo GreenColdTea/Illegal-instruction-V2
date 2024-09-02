@@ -70,7 +70,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'noBordersScreen', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
-		option.onChange = onChangeScreen;
+		option.onChange = () -> FlxG.scaleMode = new MobileScaleMode();
 		addOption(option);
 
 		/*var option:Option = new Option('Adaptive Caching',
@@ -120,25 +120,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		{
 			FlxG.drawFramerate = ClientPrefs.framerate;
 			FlxG.updateFramerate = ClientPrefs.framerate;
-		}
-	}
-	
-	function onChangeScreen()
-	{
-		if (ClientPrefs.noBordersScreen) {
-			var scaleX:Float = FlxG.width / 1280;
-
-                        FlxG.camera.setScale(scaleX, 1.0);
-                        FlxG.camera.scroll.x = 0; 
-			FlxG.resizeGame(1280, 720);
-		}
-		else
-		{
-			Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-                        var screenWidth:Int = Lib.current.stage.stageWidth;
-                        var screenHeight:Int = Lib.current.stage.stageHeight;
-
-                        FlxG.resizeGame(screenWidth, screenHeight);
 		}
 	}
 }
