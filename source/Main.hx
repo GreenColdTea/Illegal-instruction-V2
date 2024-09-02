@@ -150,6 +150,13 @@ class Main extends Sprite
 	#end
     }
 
+    private static function resetSpriteCache(sprite:Sprite):Void {
+		@:privateAccess {
+		        sprite.__cacheBitmap = null;
+			sprite.__cacheBitmapData = null;
+		}
+    }
+
     #if (cpp || hl)
     private static function onError(message:Dynamic):Void
     {
