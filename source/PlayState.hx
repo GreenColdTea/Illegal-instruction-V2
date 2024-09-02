@@ -2466,6 +2466,8 @@ class PlayState extends MusicBeatState
 		generatedMusic = true;
 	}
 
+	public var eventOccurred:Bool = false;
+
 	function eventPushed(event:EventNote) {
 		switch(event.event) {
 			case 'Change Character':
@@ -2482,6 +2484,7 @@ class PlayState extends MusicBeatState
 
 				var newCharacter:String = event.value2;
 				addCharacterToList(newCharacter, charType);
+				eventOccurred = true;
 		}
 
 		if(!eventPushedMap.exists(event.event)) {
@@ -2703,7 +2706,7 @@ class PlayState extends MusicBeatState
 			camGame2.setPosition(camGame.x,camGame.y);
 		}
 
-		if (eventPushed) 
+		if (eventOccurred) 
 		{
 			//time bar personalized with dad health bar
 	                var dadColR = dad.healthColorArray[0];
@@ -2714,6 +2717,8 @@ class PlayState extends MusicBeatState
 
 			fakeTimeBar.createFilledBar(0xFF000000, dadColor);
 	                timeBar.createFilledBar(0xFF000000, dadColor);
+
+			eventOccurred = false;
 		}	
 
 		if (gray != null)
