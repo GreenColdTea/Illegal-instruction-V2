@@ -112,4 +112,10 @@ class FPS extends TextField
 
 		cacheCount = currentCount;
 	}
+	
+	public inline function positionFPS(X:Float, Y:Float, ?scale:Float = 1){
+		scaleX = scaleY = #if android (scale > 1 ? scale : 1) #else (scale < 1 ? scale : 1) #end;
+		x = FlxG.game.x + X;
+		y = FlxG.game.y + Y;
+	}
 }
