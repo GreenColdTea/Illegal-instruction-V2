@@ -68,6 +68,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			true); //Default value
 		addOption(option);
 
+		#if mobile
 		var option:Option = new Option('No Black Screen Borders', //Name
 			'If checked, the game window will without black borders(16:9)', //Description
 			'noBordersScreen', //Save data variable name
@@ -75,6 +76,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			false); //Default value
 		option.onChange = () -> FlxG.scaleMode = new MobileScaleMode();
 		addOption(option);
+		#end
 
 		/*var option:Option = new Option('Adaptive Caching',
 			"If checked, it will use your GPU with RAM to cache song assets. \nTurn it on, if you have a good GPU.",
