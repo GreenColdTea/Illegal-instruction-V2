@@ -27,6 +27,9 @@ import flixel.graphics.FlxGraphic;
 import Controls;
 import openfl.Lib;
 import openfl.display.StageScaleMode;
+#if mobile
+import android.MobileScaleMode;
+#end
 
 using StringTools;
 
