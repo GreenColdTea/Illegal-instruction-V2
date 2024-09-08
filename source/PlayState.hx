@@ -4719,7 +4719,7 @@ class PlayState extends MusicBeatState
 							}});
                                          }
 						iShouldKickUrFuckinAss(1);
-                                                PauseSubState.helloMotherFucker(dukep2)
+                                                PauseSubState.helloMotherFucker(dukep2);
 						camZooming = true;
 						holyFuckStopZoomin = true;
                                                 Paths.clearUnusedMemory();
