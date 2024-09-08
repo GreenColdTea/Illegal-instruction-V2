@@ -81,9 +81,8 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        pauseArt = new FlxSprite(-100, 0);
+	        pauseArt = new FlxSprite(50, 0);
 	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
-	        pauseArt.alpha = 0;
 		pauseArt.scale.set(1.1, 1.1);
 	        pauseArt.antialiasing = true;
 	        pauseArt.updateHitbox();
@@ -129,6 +128,7 @@ class PauseSubState extends MusicBeatSubstate
 		chartingText.visible = PlayState.chartingMode;
 		add(chartingText);
 
+	        pauseArt.alpha = 0;
 		blueballedTxt.alpha = 0;
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
