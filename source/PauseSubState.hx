@@ -27,6 +27,7 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
 	var skipTimeText:FlxText;
+	var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
@@ -80,7 +81,7 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        var pauseArt:FlxSprite = new FlxSprite(-100, 0);
+	        pauseArt = new FlxSprite(-100, 0);
 	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
 	        pauseArt.alpha = 0;
 		pauseArt.scale.set(1.1, 1.1);
