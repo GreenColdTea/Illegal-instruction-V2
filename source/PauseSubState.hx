@@ -88,7 +88,7 @@ class PauseSubState extends MusicBeatSubstate
 	        pauseArt.updateHitbox();
 	        pauseArt.screenCenter(Y);
 	        pauseArt.y += 25;
-	        add(PauseArt);
+	        add(pauseArt);
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
@@ -161,7 +161,7 @@ class PauseSubState extends MusicBeatSubstate
 		#end
 	}
 
-        function helloMotherFucker(hi:String)
+        public static function helloMotherFucker(hi:String)
 	{
 		switch(hi) 
 		{
