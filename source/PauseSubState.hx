@@ -82,6 +82,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	        var pauseArt:FlxSprite = new FlxSprite(-100, 0);
 	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
+	        pauseArt.alpha = 0;
 		pauseArt.scale.set(1.1, 1.1);
 	        pauseArt.antialiasing = true;
 	        pauseArt.updateHitbox();
@@ -136,6 +137,7 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.x = FlxG.width - (blueballedTxt.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
+	        FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
