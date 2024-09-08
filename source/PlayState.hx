@@ -581,6 +581,8 @@ class PlayState extends MusicBeatState
 
 				defaultCamZoom = 0.65;
 
+				PauseSubState.helloMotherFucker(dukep1);
+
                                 if (ClientPrefs.shaders) {
 				camGlitchShader = new GlitchShaderB();
 				camGlitchShader.iResolution.value = [FlxG.width, FlxG.height];
@@ -675,6 +677,8 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.loopSoundName = 'duke-loop';
 
 				defaultCamZoom = 0.6;
+
+				PauseSubState.helloMotherFucker(dukep2);
 
 				soulSky = new FlxSprite(-246, -239);
 				soulSky.loadGraphic(Paths.image('soulless/sky', 'exe'));
@@ -4715,6 +4719,7 @@ class PlayState extends MusicBeatState
 							}});
                                          }
 						iShouldKickUrFuckinAss(1);
+                                                PauseSubState.helloMotherFucker(dukep2)
 						camZooming = true;
 						holyFuckStopZoomin = true;
                                                 Paths.clearUnusedMemory();
