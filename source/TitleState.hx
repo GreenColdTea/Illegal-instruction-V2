@@ -272,11 +272,11 @@ class TitleState extends MusicBeatState
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
 
-		wechniaMenu = new FlxSprite(300, 0);
+		wechniaMenu = new FlxSprite(400, 0);
 		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
 		wechniaMenu.antialiasing = false;
 		wechniaMenu.screenCenter(Y);
-		wechniaMenu.x += 300;
+		wechniaMenu.x += 400;
 		wechniaMenu.y -= 150;
 		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
 		wechniaMenu.scale.x = 3;
@@ -408,7 +408,7 @@ class TitleState extends MusicBeatState
                 var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
 		
 		if (wechniaMenu != null) 
-                        wechniaMenu.x = 300 + 500 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
+                        wechniaMenu.x = 400 + 500 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
