@@ -27,7 +27,7 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
 	var skipTimeText:FlxText;
-	var pauseArt:FlxSprite;
+	static var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
@@ -162,7 +162,7 @@ class PauseSubState extends MusicBeatSubstate
 		#end
 	}
 
-        public function helloMotherFucker(hi:String)
+        public static function helloMotherFucker(hi:String)
 	{
 		switch(hi) 
 		{
