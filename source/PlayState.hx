@@ -320,9 +320,11 @@ class PlayState extends MusicBeatState
 	var hudDisplays:Map<String, SonicNumberDisplay> = [];
 	var hudStyle:Map<String, String> = [
 		"my-horizon" => "chaotix",
+		"our-horizon" => "chaotix",
 		"vista" => "chaotix",
 		"soulless-endeavors" => "chaotix",
-		"long-sky" => "chotix"
+		"long-sky" => "chotix",
+		"meltdown" => "chotix"
 	];
 	// for the time counter
 	var hudMinute:SonicNumber;
