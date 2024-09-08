@@ -81,7 +81,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(bg);
 
 	        var pauseArt:FlxSprite = new FlxSprite(-100, 0);
-	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared');
+	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
 		pauseArt.scale.set(1.1, 1.1);
 	        pauseArt.antialiasing = true;
 	        pauseArt.updateHitbox();
