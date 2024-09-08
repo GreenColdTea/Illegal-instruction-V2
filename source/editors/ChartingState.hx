@@ -89,7 +89,8 @@ class ChartingState extends MusicBeatState
 		['Chaotix Health Randomization',"Value 1: Randomize the health. (Vista Only)\nValue 2: Used near the ending, not \nhealth randomization."],
 		["Final Frontier Sections", "Value 1: Duke Section of Final Frontier.\nValue 2: Soul Section of Final Frontier."],
 		["FF Static", "Value 1: Put 1 in to use for statics, Only for Final Frontier! \nValue 2: Reset the Static."],
-		['glitch']
+		['glitch'],
+		["Lyrics", "Lyrics!!!\nValue 1: Text and optionally, colour\n(To specify colour, seperate it by a --)\nValue 2: Duration, in seconds.\nDuration defaults to text length multiplied by 0.5"]
 	];
 
 	var _file:FileReference;
