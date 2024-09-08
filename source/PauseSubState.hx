@@ -162,7 +162,7 @@ class PauseSubState extends MusicBeatSubstate
 		#end
 	}
 
-        public static function helloMotherFucker(hi:String)
+        public function helloMotherFucker(hi:String)
 	{
 		switch(hi) 
 		{
