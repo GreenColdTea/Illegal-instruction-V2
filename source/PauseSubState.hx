@@ -80,6 +80,15 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
+	        var pauseArt:FlxSprite = new FlxSprite(-100, 0);
+	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared');
+		pauseArt.scale.set(1.1, 1.1);
+	        pauseArt.antialiasing = true;
+	        pauseArt.updateHitbox();
+	        pauseArt.screenCenter(Y);
+	        pauseArt.y += 25;
+	        add(PauseArt);
+
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
@@ -150,6 +159,33 @@ class PauseSubState extends MusicBeatSubstate
 		#end
 	}
 
+        function helloMotherFucker(hi:String)
+	{
+		switch(hi) 
+		{
+		      case 'dukep1':
+				pauseArt.loadGraphic(Paths.image('Renders/dukep1', 'shared');
+		      case 'dukep2':
+				pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared');
+		      case 'wechnia':
+				pauseArt.loadGraphic(Paths.image('Renders/wechnia', 'shared');
+		      case 'chaotix':
+			        pauseArt.loadGraphic(Paths.image('Renders/Chaotix', 'shared');
+		      case 'chaotixp1':
+				pauseArt.loadGraphic(Paths.image('Renders/chaotix-p1', 'shared');
+		      case 'chaotixp2':
+			        pauseArt.loadGraphic(Paths.image('Renders/chaotix-p2', 'shared');
+		      case 'wech':
+				pauseArt.loadGraphic(Paths.image('Renders/Wech', 'shared');
+		      case 'wech-beast':
+			        pauseArt.loadGraphic(Paths.image('Renders/Wechp2', 'shared');
+		      case 'chotix':
+				pauseArt.loadGraphic(Paths.image('Renders/chotix', 'shared');
+		      default:
+			        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared');
+		}
+	}
+			 
 	var holdTime:Float = 0;
 	override function update(elapsed:Float)
 	{
