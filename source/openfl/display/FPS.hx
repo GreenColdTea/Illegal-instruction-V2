@@ -51,7 +51,7 @@ class FPS extends TextField
 		#if (openfl <= '9.1.0')
 		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 12, color);
 		#elseif (openfl > '9.1.0')
-		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 16, color);
+		defaultTextFormat = new TextFormat(openfl.utils.Assets.getFont("assets/fonts/chaotix.ttf").fontName, 14, color);
 		#end
 		autoSize = LEFT;
 		multiline = true;
