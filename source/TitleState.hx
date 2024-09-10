@@ -131,7 +131,9 @@ class TitleState extends MusicBeatState
 		FlxG.sound.muteKeys = muteKeys;
 		FlxG.sound.volumeDownKeys = volumeDownKeys;
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
+		#if !android
 		FlxG.keys.preventDefaultKeys = [TAB];
+		#end
 
 		PlayerSettings.init();
 
