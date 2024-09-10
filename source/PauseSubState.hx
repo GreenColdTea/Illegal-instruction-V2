@@ -81,14 +81,7 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        pauseArt = new FlxSprite(50, 0);
-	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
-		pauseArt.scale.set(1.1, 1.1);
-	        pauseArt.antialiasing = true;
-	        pauseArt.updateHitbox();
-	        pauseArt.screenCenter(Y);
-	        pauseArt.y += 25;
-	        add(pauseArt);
+	        helloMotherFucker();
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
@@ -164,6 +157,15 @@ class PauseSubState extends MusicBeatSubstate
 
         public static function helloMotherFucker(hi:String)
 	{
+                pauseArt = new FlxSprite(50, 0);
+	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
+		pauseArt.scale.set(1.1, 1.1);
+	        pauseArt.antialiasing = true;
+	        pauseArt.updateHitbox();
+	        pauseArt.screenCenter(Y);
+	        pauseArt.y += 25;
+	        add(pauseArt);
+		
 		switch(hi) 
 		{
 		      case 'dukep1':
