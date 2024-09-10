@@ -107,6 +107,8 @@ class Main extends Sprite
         }
 	#end
 
+	ClientPrefs.loadPrefs();
+
         Generic.mode = ROOTDATA;
 	if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		FileSystem.createDirectory(Generic.returnPath() + 'assets');
