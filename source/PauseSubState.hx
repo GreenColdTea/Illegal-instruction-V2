@@ -173,34 +173,24 @@ class PauseSubState extends MusicBeatSubstate
 		{
 		      case 'dukep1':
 				pauseArt.loadGraphic(Paths.image('Renders/dukep1', 'shared'));
-				break;
 		      case 'dukep2':
 				pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared'));
-				break;
 		      case 'wechnia':
 				pauseArt.loadGraphic(Paths.image('Renders/wechnia', 'shared'));
-				break;
 		      case 'chaotix':
 			        pauseArt.loadGraphic(Paths.image('Renders/Chaotix', 'shared'));
-				break;
 		      case 'chaotixp1':
 				pauseArt.loadGraphic(Paths.image('Renders/chaotix-p1', 'shared'));
-				break;
 		      case 'chaotixp2':
 			        pauseArt.loadGraphic(Paths.image('Renders/chaotix-p2', 'shared'));
-				break;
 		      case 'wech':
 				pauseArt.loadGraphic(Paths.image('Renders/Wech', 'shared'));
-				break;
 		      case 'wech-beast':
 			        pauseArt.loadGraphic(Paths.image('Renders/Wechp2', 'shared'));
-				break;
 		      case 'chotix':
 				pauseArt.loadGraphic(Paths.image('Renders/chotix', 'shared'));
-				break;
 		      default:
 			        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
-				break;
 		}
 	}
 			 
