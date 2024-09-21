@@ -678,7 +678,7 @@ class PlayState extends MusicBeatState
 
 				defaultCamZoom = 0.6;
 
-				PauseSubState.hello = PauseSubstate.helloMotherFucker('dukep2');
+				PauseSubState.hello = PauseSubState.helloMotherFucker('dukep2');
 
 				soulSky = new FlxSprite(-246, -239);
 				soulSky.loadGraphic(Paths.image('soulless/sky', 'exe'));
