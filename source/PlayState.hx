@@ -581,7 +581,7 @@ class PlayState extends MusicBeatState
 
 				defaultCamZoom = 0.65;
 
-				PauseSubState.hello = PauseSubState.helloMotherFucker('dukep1');
+				PauseSubState.helloMotherFucker('dukep1');
 
                                 if (ClientPrefs.shaders) {
 				camGlitchShader = new GlitchShaderB();
@@ -678,7 +678,7 @@ class PlayState extends MusicBeatState
 
 				defaultCamZoom = 0.6;
 
-				PauseSubState.hello = PauseSubState.helloMotherFucker('dukep2');
+				PauseSubState.helloMotherFucker('dukep2');
 
 				soulSky = new FlxSprite(-246, -239);
 				soulSky.loadGraphic(Paths.image('soulless/sky', 'exe'));
