@@ -160,7 +160,6 @@ class PauseSubState extends MusicBeatSubstate
         public static function helloMotherFucker(hi:String):FlxSprite
 	{
                 pauseArt = new FlxSprite(50, 0);
-	        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
 		pauseArt.scale.set(1.1, 1.1);
 	        pauseArt.antialiasing = true;
 	        pauseArt.updateHitbox();
