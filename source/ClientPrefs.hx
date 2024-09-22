@@ -159,6 +159,7 @@ class ClientPrefs {
 		save.data.customControls = keyBinds;
 		save.flush();
 		FlxG.log.add("Settings saved!");
+		trace("Settings saved!");
 	}
 
 	public static function loadPrefs() {
