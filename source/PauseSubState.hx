@@ -82,9 +82,9 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        var renderDistance:Float = 500;
-		pauseArt = new FlxSprite(renderDistance * -1, 25);
-	        pauseArt.scale.set(0.5, 0.5);
+	        var renderDistance:Float = 100;
+		pauseArt = new FlxSprite(renderDistance * -1, -50);
+	        pauseArt.scale.set(0.25, 0.25);
 		pauseArt.loadGraphic(Paths.image('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0], 'shared'));
 		pauseArt.scrollFactor.set();
 		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
@@ -167,6 +167,9 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
+
+		if (PlayState.SONG.player2 == "dukep2" && curSong != "soulless-endeavors")
+			pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared'));
 
 		super.update(elapsed);
 		updateSkipTextStuff();
