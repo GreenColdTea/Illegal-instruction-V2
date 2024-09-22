@@ -90,7 +90,7 @@ class SUtil
 	{
 		if (!Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE))
 		{
-                        Permissions.requestPermission([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
+                        FlxG.requestPermission("android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE");
 			SUtil.applicationAlert('Permissions', 'Storage permissions is necessary for writing error logs.' + 'If you arent accepted, the error log wont be written on your device' + '\n' + 'Press Ok to continue');
 		}
 
