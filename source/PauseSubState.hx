@@ -28,7 +28,7 @@ class PauseSubState extends MusicBeatSubstate
 	var practiceText:FlxText;
 	var skipTimeText:FlxText;
 	var hello:FlxSprite;
-	var pauseArt:FlxSprite;
+	static var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
