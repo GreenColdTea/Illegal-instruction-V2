@@ -171,25 +171,25 @@ class PauseSubState extends MusicBeatSubstate
 		switch(hi) 
 		{
 		      case 'dukep1':
-				pauseArt.loadGraphic(Paths.getPath('Renders/dukep1', 'shared'));
+				pauseArt.loadGraphic(Paths.image('Renders/dukep1', 'shared'));
 		      case 'dukep2':
-				pauseArt.loadGraphic(Paths.getPath('Renders/dukep2', 'shared'));
+				pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared'));
 		      case 'wechnia':
 				pauseArt.loadGraphic(Paths.image('Renders/wechnia', 'shared'));
 		      case 'chaotix':
-			        pauseArt.loadGraphic(Paths.getPath('Renders/Chaotix', 'shared'));
+			        pauseArt.loadGraphic(Paths.image('Renders/Chaotix', 'shared'));
 		      case 'chaotixp1':
-				pauseArt.loadGraphic(Paths.getPath('Renders/chaotix-p1', 'shared'));
+				pauseArt.loadGraphic(Paths.image('Renders/chaotix-p1', 'shared'));
 		      case 'chaotixp2':
-			        pauseArt.loadGraphic(Paths.getPath('Renders/chaotix-p2', 'shared'));
+			        pauseArt.loadGraphic(Paths.image('Renders/chaotix-p2', 'shared'));
 		      case 'wech':
-				pauseArt.loadGraphic(Paths.getPath('Renders/Wech', 'shared'));
+				pauseArt.loadGraphic(Paths.image('Renders/Wech', 'shared'));
 		      case 'wech-beast':
-			        pauseArt.loadGraphic(Paths.getPath('Renders/Wechp2', 'shared'));
+			        pauseArt.loadGraphic(Paths.image('Renders/Wechp2', 'shared'));
 		      case 'chotix':
-				pauseArt.loadGraphic(Paths.getPath('Renders/chotix', 'shared'));
+				pauseArt.loadGraphic(Paths.image('Renders/chotix', 'shared'));
 		      default:
-			        pauseArt.loadGraphic(Paths.getPath('Renders/placeholder', 'shared'));
+			        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
 		}
 	}
 			 
