@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 	var mustUpdate:Bool = false;
 	
-	var speedFactor:Float = 3.5;
+	var wechniaFactor:Float = 4.69;
 	
 	public static var updateVersion:String = '';
 
@@ -412,7 +412,7 @@ class TitleState extends MusicBeatState
                 var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
 		
 		if (wechniaMenu != null) 
-                        wechniaMenu.x = 500 + 500 * FlxMath.fastCos((currentBeat / speedFactor) * Math.PI);
+                        wechniaMenu.x = 500 + 450 * FlxMath.fastCos((currentBeat / wechniaSpeed) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
