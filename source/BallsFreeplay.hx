@@ -420,39 +420,42 @@ class BallsFreeplay extends MusicBeatState
             player.velocity.y += gravity * elapsed;
 	}
 
-
         // Movement and animation
-        if (isOnGround() && !isJumping)
+        if (isOnGround())
         {
-           if (isHoldingLeft && !isHoldingRight)
-           {
-               player.velocity.x = -speed * speedMultiplier; // Move left. “Left is the new black.”
-               player.animation.play('walk'); // Play running animation. “Like Sonic on a sugar rush!”
-           }
-           else if (isHoldingRight && !isHoldingLeft)
-           {
-               player.velocity.x = speed * speedMultiplier; // Move right. “Right side up and running!”
-               player.animation.play('walk'); // Play running animation. “Faster than your Wi-Fi!”
-           }
-           else
-           {
-               player.velocity.x = 0; // Stop horizontal movement. “Chillin’ like a villain.”
-               player.animation.play('idle'); // Play idle animation. “Not moving, just vibin’.”
-           }
-       }
-       else
-       {
-          if (player.velocity.y < 100)
-          {
-              player.animation.play('jump'); // Play jump animation while in the air. “Sky high and still fabulous!”
-          }
-	  else
-          {
-	      isJumping = false;
-              player.velocity.x = 0; // Stop horizontal movement. “Chillin’ like a villain.”
-              player.animation.play('idle'); // Play idle animation. “Not moving, just vibin’.”
-	  }
-       } 
+            isJumping = false;
+            player.velocity.y = 0;
+
+            if (isHoldingLeft && !isHoldingRight)
+            {
+                player.velocity.x = -speed * speedMultiplier;
+                player.animation.play('walk');
+            }
+            else if (isHoldingRight && !isHoldingLeft)
+            {
+                player.velocity.x = speed * speedMultiplier;
+                player.animation.play('walk');
+            }
+            else
+            {
+                player.velocity.x = 0;
+                player.animation.play('idle');
+            }
+        }
+        else
+        {
+            isJumping = true;
+
+            if (player.velocity.y < 0)
+            {
+                player.animation.play('jump');
+            }
+            else
+            {
+                player.velocity.x = 0;
+                player.animation.play('idle');
+            }
+        }
 
         super.update(elapsed);
     }
