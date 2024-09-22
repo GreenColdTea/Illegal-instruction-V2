@@ -7,6 +7,7 @@ import android.callback.CallBack;
 import android.os.Environment;
 import android.widget.Toast;
 #end
+import flixel.FlxG;
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import openfl.events.ErrorEvent;
