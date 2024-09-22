@@ -14,6 +14,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.util.FlxStringUtil;
+import openfl.utils.Assets as OpenFlAssets;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -27,8 +28,7 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
 	var skipTimeText:FlxText;
-	var hello:FlxSprite;
-	static var pauseArt:FlxSprite;
+	var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
@@ -82,8 +82,13 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        hello = helloMotherFucker('dukep1');
-                add(hello);
+	        var renderDistance:Float = 1000;
+		pauseArt = new FlxSprite(renderDistance * -1, 0);
+		pauseArt.loadGraphic(Paths.image('Renders/' + PlayState.SONG.song.toLowerCase() + PlayState.instance.pausePortraitPrefix[0], 'shared'));
+		pauseArt.scrollFactor.set();
+		if (!OpenFlAssets(Paths.getPath('Renders/' + PlayState.SONG.song.toLowerCase()+ '/left' + PlayState.instance.pausePortraitPrefix[0] + '.png', IMAGE))) add(pausePortraitLeft);
+		pauseArt.x = renderDistance * -1;
+		pauseArt.alpha = 0;
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
@@ -155,42 +160,6 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		addVirtualPadCamera();
 		#end
-	}
-
-        public static function helloMotherFucker(hi:String):FlxSprite
-	{
-                pauseArt = new FlxSprite(50, 0);
-		pauseArt.scale.set(1.1, 1.1);
-	        pauseArt.antialiasing = true;
-	        pauseArt.updateHitbox();
-	        pauseArt.screenCenter(Y);
-	        pauseArt.y += 25;
-
-		return pauseArt;
-		
-		switch(hi) 
-		{
-		      case 'dukep1':
-				pauseArt.loadGraphic(Paths.image('Renders/dukep1', 'shared'));
-		      case 'dukep2':
-				pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared'));
-		      case 'wechnia':
-				pauseArt.loadGraphic(Paths.image('Renders/wechnia', 'shared'));
-		      case 'chaotix':
-			        pauseArt.loadGraphic(Paths.image('Renders/Chaotix', 'shared'));
-		      case 'chaotixp1':
-				pauseArt.loadGraphic(Paths.image('Renders/chaotix-p1', 'shared'));
-		      case 'chaotixp2':
-			        pauseArt.loadGraphic(Paths.image('Renders/chaotix-p2', 'shared'));
-		      case 'wech':
-				pauseArt.loadGraphic(Paths.image('Renders/Wech', 'shared'));
-		      case 'wech-beast':
-			        pauseArt.loadGraphic(Paths.image('Renders/Wechp2', 'shared'));
-		      case 'chotix':
-				pauseArt.loadGraphic(Paths.image('Renders/chotix', 'shared'));
-		      default:
-			        pauseArt.loadGraphic(Paths.image('Renders/placeholder', 'shared'));
-		}
 	}
 			 
 	var holdTime:Float = 0;
