@@ -4808,7 +4808,7 @@ class PlayState extends MusicBeatState
 							}});
                                          }
 						iShouldKickUrFuckinAss(1);
-                                                PauseSubState.hello = PauseSubState.helloMotherFucker('dukep2');
+                                                PauseSubState.helloMotherFucker('dukep2');
 						camZooming = true;
 						holyFuckStopZoomin = true;
                                                 Paths.clearUnusedMemory();
