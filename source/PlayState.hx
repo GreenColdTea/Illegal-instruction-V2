@@ -237,6 +237,12 @@ class PlayState extends MusicBeatState
 	public static var changedDifficulty:Bool = false;
 	public static var chartingMode:Bool = false;
 
+	//shader things
+	public var shaderUpdates:Array<Float->Void> = [];
+        public var camGameShaders:Array<ShaderEffect> = [];
+        public var camHUDShaders:Array<ShaderEffect> = [];
+        public var camOtherShaders:Array<ShaderEffect> = [];
+
 	//Gameplay settings
 	public var healthGain:Float = 1;
 	public var healthLoss:Float = 1;
