@@ -168,7 +168,7 @@ class PauseSubState extends MusicBeatSubstate
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
 
-		if (PlayState.SONG.player2 == "dukep2" && curSong != "soulless-endeavors")
+		if (pauseArt != null && PlayState.SONG.player2 == "dukep2" && PlayState.SONG.song.toLowerCase() != "soulless-endeavors")
 			pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared'));
 
 		super.update(elapsed);
