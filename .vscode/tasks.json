@@ -14,6 +14,22 @@
 			"label": "lime: test windows -debug",
 			"group": {
 				"kind": "build",
+				"isDefault": false
+			}
+		},
+		{
+			"type": "lime",
+			"command": "test",
+			"targetConfiguration": "Android / Debug",
+			"problemMatcher": [
+				"$haxe-absolute",
+				"$haxe",
+				"$haxe-error",
+				"$haxe-trace"
+			],
+			"label": "lime: test android -debug",
+			"group": {
+				"kind": "build",
 				"isDefault": true
 			}
 		}
