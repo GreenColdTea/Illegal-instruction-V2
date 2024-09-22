@@ -210,6 +210,7 @@ class FunkinLua {
 			if(FileSystem.exists(cervix)) {
 				doPush = true;
 			}
+			#end
 
 			if(doPush)
 			{
