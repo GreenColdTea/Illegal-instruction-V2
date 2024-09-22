@@ -1184,9 +1184,9 @@ class PlayState extends MusicBeatState
 			
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
-				dad.x += 75;
-				gf.x += 450;
-				gf.y += 50;
+				dad.x += 50;
+				gf.x += 550;
+				gf.y += 75;
 				boyfriend.x += 225;
 				boyfriend.y += 45;
 
@@ -4787,6 +4787,7 @@ class PlayState extends MusicBeatState
 				{
 					case 736:
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
+		                                dad.y += 25;
 						camZooming = false;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
@@ -4807,6 +4808,7 @@ class PlayState extends MusicBeatState
 								camHUD.setFilters([]);
 							}});
                                          }
+                                                dad.y += 35;
 						iShouldKickUrFuckinAss(1);
 						camZooming = true;
 						holyFuckStopZoomin = true;
@@ -4826,7 +4828,7 @@ class PlayState extends MusicBeatState
 						// :> 4axion was here!!!gdsjsgjsdjsdggs
 						dad.cameras = [camGame2];
 						boyfriend.animation.pause();
-                                                defaultCamZoom = 0.8;
+                                                defaultCamZoom = 0.9;
                                                 gf.animation.pause();
 						gray = new GrayscaleShader();
 						camGame.setFilters([new ShaderFilter(gray.shader)]);
