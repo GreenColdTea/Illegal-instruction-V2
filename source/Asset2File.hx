@@ -10,7 +10,6 @@ import sys.io.File;
 class Asset2File
 {
 	static var path:String = lime.system.System.applicationStorageDirectory;
-
 	public static function getPath(id:String, ?ext:String = "")
 	{
 		#if android
