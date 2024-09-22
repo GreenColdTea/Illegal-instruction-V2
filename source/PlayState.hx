@@ -1640,7 +1640,7 @@ class PlayState extends MusicBeatState
 
 		for (folder in foldersToCheck)
 		{
-			if(FileSystem.exists(folder))
+		        if(FileSystem.exists(folder))
 			{
 				for (file in FileSystem.readDirectory(folder))
 				{
@@ -1743,9 +1743,8 @@ class PlayState extends MusicBeatState
                     startCountdown();
                 }
 	
-		
 		RecalculateRating();
-
+	
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
 		if(ClientPrefs.hitsoundVolume > 0) CoolUtil.precacheSound('hitsound');
 		CoolUtil.precacheSound('missnote1');
@@ -1785,6 +1784,87 @@ class PlayState extends MusicBeatState
 
 	var newIcon:String;
 
+        public function addShaderToCamera(cam:String,effect:ShaderEffect) {
+	      switch(cam.toLowerCase()) {
+	            case 'camhud' | 'hud':
+		          camHUDShaders.push(effect);
+			  var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
+			  for(i in camHUDShaders) {
+			        newCamEffects.push(new ShaderFilter(i.shader));
+			  }
+			  camHUD.setFilters(newCamEffects);
+		    case 'camother' | 'other':
+			  camOtherShaders.push(effect);
+		          var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
+			  for(i in camOtherShaders) {
+			        newCamEffects.push(new ShaderFilter(i.shader));
+			  }
+			  camOther.setFilters(newCamEffects);
+		    case 'camgame' | 'game':
+			  camGameShaders.push(effect);
+			  var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
+			  for(i in camGameShaders) {
+			        newCamEffects.push(new ShaderFilter(i.shader));
+			  }
+			  camGame.setFilters(newCamEffects);
+		    default:
+			  if (modchartSprites.exists(cam)) {
+				Reflect.setProperty(modchartSprites.get(cam),"shader",effect.shader);
+			  } else if (modchartTexts.exists(cam)) {
+				Reflect.setProperty(modchartTexts.get(cam),"shader",effect.shader);
+			  } else {
+				var OBJ = Reflect.getProperty(PlayState.instance,cam);
+				Reflect.setProperty(OBJ,"shader", effect.shader);
+			  }	
+		 }
+	}
+
+        public function removeShaderFromCamera(cam:String,effect:ShaderEffect) {
+		          switch(cam.toLowerCase()) {
+		                  case 'camhud' | 'hud': 
+                                            camHUDShaders.remove(effect);
+                                            var newCamEffects:Array<BitmapFilter>=[];
+                                            for(i in camHUDShaders){
+                                                    newCamEffects.push(new ShaderFilter(i.shader));
+                                            }
+                                   camHUD.setFilters(newCamEffects);
+			           case 'camother' | 'other': 
+				            camOtherShaders.remove(effect);
+				            var newCamEffects:Array<BitmapFilter>=[];
+				            for(i in camOtherShaders){
+				                   newCamEffects.push(new ShaderFilter(i.shader));
+				            }
+				            camOther.setFilters(newCamEffects);
+			           default: 
+				            camGameShaders.remove(effect);
+				            var newCamEffects:Array<BitmapFilter>=[];
+				            for(i in camGameShaders){
+				                    newCamEffects.push(new ShaderFilter(i.shader));
+				            }
+				            camGame.setFilters(newCamEffects);
+		              }
+		
+	  
+	}
+
+        public function clearShaderFromCamera(cam:String){
+		             switch(cam.toLowerCase()) {
+			           case 'camhud' | 'hud': 
+				           camHUDShaders = [];
+				           var newCamEffects:Array<BitmapFilter>=[];
+				           camHUD.setFilters(newCamEffects);
+			           case 'camother' | 'other': 
+				           camOtherShaders = [];
+				           var newCamEffects:Array<BitmapFilter>=[];
+				           camOther.setFilters(newCamEffects);
+			           default: 
+				           camGameShaders = [];
+				           var newCamEffects:Array<BitmapFilter>=[];
+				           camGame.setFilters(newCamEffects);
+		             }
+		
+	  
+	}
 
 	function set_songSpeed(value:Float):Float
 	{
