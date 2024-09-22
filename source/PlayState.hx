@@ -1,7 +1,6 @@
 package;
 
 import GlitchShader.Fuck;
-import openfl.filters.ShaderFilter;
 import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
@@ -50,7 +49,7 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
 import openfl.utils.Assets as OpenFlAssets;
-import openfl.filters.ShaderFilter;
+import openfl.display.Shader;
 import editors.ChartingState;
 import editors.CharacterEditorState;
 import flixel.group.FlxSpriteGroup;
@@ -64,6 +63,7 @@ import FunkinLua;
 import DialogueBoxPsych;
 import GlitchShader.GlitchShaderA;
 import GlitchShader.GlitchShaderB;
+import Shaders;
 import shaders.*;
 #if sys
 import sys.FileSystem;
