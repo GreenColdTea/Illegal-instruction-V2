@@ -78,6 +78,8 @@ class Main extends Sprite
             removeEventListener(Event.ADDED_TO_STAGE, init);
         }
 
+	SUtil.getStorageForLogs();
+
 	#if cpp
 	untyped __global__.__hxcpp_set_critical_error_handler(onError);
 	#elseif hl
