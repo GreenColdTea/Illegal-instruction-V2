@@ -83,7 +83,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(bg);
 
 	        var renderDistance:Float = 500;
-		pauseArt = new FlxSprite(renderDistance * -1, 0);
+		pauseArt = new FlxSprite(renderDistance * -1, 25);
 	        pauseArt.scale.set(0.5, 0.5);
 		pauseArt.loadGraphic(Paths.image('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0], 'shared'));
 		pauseArt.scrollFactor.set();
