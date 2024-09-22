@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 	var mustUpdate:Bool = false;
 	
-	var wechniaFactor:Float = 4.69;
+	var wechniaSpeed:Float = 4.69;
 	
 	public static var updateVersion:String = '';
 
