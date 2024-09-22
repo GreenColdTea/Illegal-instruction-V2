@@ -181,6 +181,8 @@ class PlayState extends MusicBeatState
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 
+	public var pauseRenderPrefix:Array<String> = ['', ''];
+
 	public var vocals:FlxSound;
 	
 	public var dadGhostTween:FlxTween = null;
