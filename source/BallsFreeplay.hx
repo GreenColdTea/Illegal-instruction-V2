@@ -351,7 +351,6 @@ class BallsFreeplay extends MusicBeatState
             if (!isHoldingLeft)
             {
                 isHoldingLeft = true;
-		player.animation.play('walk');
                 holdTimer.start(1, onHoldComplete);
             }
         }
@@ -359,18 +358,16 @@ class BallsFreeplay extends MusicBeatState
         {
             player.flipX = false;
             isHoldingLeft = false;
-	    player.animation.play('walk');
             speedMultiplier = 1.25;
             holdTimer.cancel();
-	}
+        }
 
         if (controls.UI_RIGHT_P && !controls.UI_LEFT_P)
         {
-            player.flipX = true;
+	    player.flipX = true;
             if (!isHoldingRight)
             {
                 isHoldingRight = true;
-		player.animation.play('walk');
                 holdTimer.start(1, onHoldComplete);
             }
         }
@@ -378,10 +375,9 @@ class BallsFreeplay extends MusicBeatState
         {
             player.flipX = true;
             isHoldingRight = false;
-	    player.animation.play('walk');
             speedMultiplier = 1.25;
             holdTimer.cancel();
-	}
+        }
 
         if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
         {
@@ -390,7 +386,7 @@ class BallsFreeplay extends MusicBeatState
 	    player.animation.play('jump');
 	    FlxG.sound.play(Paths.sound('jump'), 0.6);
         }
-
+        
         //Screen boundaries
 	if (player.x < -80)
         {
