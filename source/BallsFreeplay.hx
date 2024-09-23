@@ -493,12 +493,17 @@ class BallsFreeplay extends MusicBeatState
    // Called when the hold timer completes
    function onHoldComplete(timer:FlxTimer):Void
    {
-       if (isHoldingLeft || isHoldingRight)
+       if (isHoldingLeft && !isHoldingRight)
        {
-           player.animation.play('run'); // Start running animation if a direction is held. “Running like there’s no tomorrow!”
-           speedMultiplier = 2.05; // Increase speed while running. “Turbo mode: ON!”
+           player.animation.play('run');
+           speedMultiplier = 2.05;
        }
-    }
+       else if (isHoldingRight && !isHoldingLeft)
+       {
+           player.animation.play('run');
+           speedMultiplier = 2.05;
+       }
+   }
 
    // Checks if the player is on the ground
    function isOnGround():Bool
