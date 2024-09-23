@@ -508,6 +508,6 @@ class BallsFreeplay extends MusicBeatState
    // Checks if the player is on the ground
    function isOnGround():Bool
    {
-       return player.y + player.height >= FlxG.height - 100; // Simple ground check. “Ground status: definitely grounded.”
+       return player.y + player.height >= FlxG.height - 1; // Simple ground check. “Ground status: definitely grounded.”
    }
 }
