@@ -89,6 +89,7 @@ class PauseSubState extends MusicBeatSubstate
 		pauseArt.scrollFactor.set();
 		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
 		pauseArt.x = renderDistance * -1;
+	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
