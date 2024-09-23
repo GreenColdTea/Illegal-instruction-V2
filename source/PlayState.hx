@@ -4925,7 +4925,7 @@ class PlayState extends MusicBeatState
 					case 736:
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
 						camZooming = false;
-		                        case 742:
+		                        case 747:
 		                                dad.y += 40;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
@@ -5055,7 +5055,7 @@ class PlayState extends MusicBeatState
 				{
 					case 895:
 						theStatic.visible = true;
-					case 896:
+					case 898:
 				                gfGroup.visible = false;
 						health = 1;
 						soulSky.visible = false;
@@ -5078,10 +5078,11 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = false;
 						timeTxt.visible = false;
 						chaotixHUD.visible = true;
-						boyfriend.y -= 60;
+						boyfriend.y -= 70;
+				                boyfriend.x -= 25;
 					case 1439:
 						theStatic.visible = true;
-					case 1441:
+					case 1442:
 				                gfGroup.visible = true;
 						healthBar.x -= 150;
 						iconP1.x -= 150;
@@ -5093,6 +5094,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = !ClientPrefs.hideHud;
 						timeTxt.visible = !ClientPrefs.hideHud;
 						chaotixHUD.visible = false;
+				                songNameHUD.x += 50;
 
 						health = 1;
 						soulSky.visible = true;
@@ -5103,6 +5105,7 @@ class PlayState extends MusicBeatState
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
 						boyfriend.y += 1;
+				                boyfriend.x += 50;
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
