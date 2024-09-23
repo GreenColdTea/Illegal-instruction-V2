@@ -42,6 +42,7 @@ class MusicVisualizerState extends MusicBeatState {
         logo.loadGraphic(Paths.image("logo"));
         logo.scale.set(1, 1);
         logo.setGraphicSize(150, 150);
+	logo.screenCenter(X);
         logo.updateHitbox();
         add(logo);
 
@@ -50,31 +51,41 @@ class MusicVisualizerState extends MusicBeatState {
         entranceBG.loadGraphic(Paths.image('entrance/bg', 'exe'));
 	entranceBG.scrollFactor.set();
 	entranceBG.scale.set(1.1, 1.1);
+	entranceBG.screenCenter();
 	entranceBG.antialiasing = true;
+	add(entranceBG);
 
 	entranceClock = new FlxSprite(-450, -50);
 	entranceClock.loadGraphic(Paths.image('entrance/clock', 'exe'));
 	entranceClock.scrollFactor.set();
+	entranceClock.screenCenter();
 	entranceClock.scale.set(1.1, 1.1);
 	entranceClock.antialiasing = true;
+	add(entranceClock);
 
 	entranceIdk = new FlxSprite(-355, -50);
 	entranceIdk.loadGraphic(Paths.image('entrance/idk', 'exe'));
 	entranceIdk.scrollFactor.set();
+	entranceIdk.screenCenter();
 	entranceIdk.scale.set(1.1, 1.1);
 	entranceIdk.antialiasing = true;
+	add(entranceIdk);
 
 	entranceFloor = new FlxSprite(-375, -50);
 	entranceFloor.loadGraphic(Paths.image('entrance/floor', 'exe'));
 	entranceFloor.scrollFactor.set();
 	entranceFloor.scale.set(1.1, 1.1);
+	entranceFloor.screenCenter();
 	entranceFloor.antialiasing = true;
+	add(entranceFloor);
 
 	entranceOver = new FlxSprite(-325, -125);
 	entranceOver.loadGraphic(Paths.image('entrance/over', 'exe'));
 	entranceOver.scrollFactor.set();
+	entranceOver.screenCenter();
 	entranceOver.scale.set(1.1, 1.1);
 	entranceOver.antialiasing = true;
+	add(entranceOver);
 
         // Track name
         trackNameText = new FlxText(0, 10, FlxG.width, musicList[currentTrack].name);
@@ -90,7 +101,9 @@ class MusicVisualizerState extends MusicBeatState {
             add(bar);
             bars.push(bar);
         }
+	#if android
 	addVirtualPad(LEFT_RIGHT, A_B);
+	#end
     }
 
     // Track loading
@@ -112,7 +125,7 @@ class MusicVisualizerState extends MusicBeatState {
         var scaleFactor:Float = musicII.amplitude * 5; //amplitude increase by volume 
         logo.scale.set(1 + scaleFactor, 1 + scaleFactor);
 
-        // amplitude heights
+        // bars heights
         for (i in 0...bars.length) {
             var bar = bars[i];
             bar.scale.y = musicII.amplitude * 100;
@@ -134,7 +147,7 @@ class MusicVisualizerState extends MusicBeatState {
         }
 
         // Song pause/resume
-        if (FlxG.keys.justPressed.ENTER) {
+        if (controls.ACCEPT) {
             if (isPlaying) {
                 musicII.pause();
             } else {
