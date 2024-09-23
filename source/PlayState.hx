@@ -3163,7 +3163,7 @@ class PlayState extends MusicBeatState
 		var iconOffset:Int = 26;
 
 
-		songNameHUD.text = SONG.song;
+		songNameHUD.text = SONG.song.replace("-", " ");
 
 		if (health > 2)
 			health = 2;
