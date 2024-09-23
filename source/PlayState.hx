@@ -1800,12 +1800,12 @@ class PlayState extends MusicBeatState
                     startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
                     startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
 
-                    if (daSong != "My Horizon" || daSong != "cascade")
+                    if (daSong != "my-horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
 		    else if (daSong == "cascade")
-			startCircle.scale.set(2, 2.25);
-		    else if (daSong == "My Horizon")
-                        startCircle.scale.set(0.5, 0.5);
+			startCircle.scale.set(2, 2.3);
+		    else if (daSong == "my-horizon")
+                        startCircle.scale.set(1, 1);
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
@@ -1843,12 +1843,12 @@ class PlayState extends MusicBeatState
 		  }
 		  else
 		  {
-		    new FlxTimer().start(0.25, function(tmr:FlxTimer)
+		    new FlxTimer().start(0.1, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
                     });
 
-                    new FlxTimer().start(0.7, function(tmr:FlxTimer)
+                    new FlxTimer().start(0.3, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(blackFuck, {alpha: 0}, 2, {
                             onComplete: function(twn:FlxTween)
@@ -1867,7 +1867,7 @@ class PlayState extends MusicBeatState
                         });
                     });
 
-                    new FlxTimer().start(3.15, function(tmr:FlxTimer)
+                    new FlxTimer().start(3.35, function(tmr:FlxTimer)
                     {
                         startCountdown();
                     });  
