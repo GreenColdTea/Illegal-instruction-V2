@@ -6,9 +6,9 @@ import flixel.FlxG;
 import flixel.FlxSound;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.ui.FlxBar;
 
 class MusicVisualizerState extends MusicBeatState {
-	
     var musicII:FlxSound;
     var logo:FlxSprite;
     var entranceBG:FlxSprite;
@@ -20,24 +20,25 @@ class MusicVisualizerState extends MusicBeatState {
     var currentTrack:Int = 0;
     var isPlaying:Bool = false;
     var trackNameText:FlxText;
-    var bars:Array<FlxSprite>;
-    var numBars:Int = 10; // bars amount
+    var bars:Array<FlxSprite>; // array of bars for the visualizer
+    var numBars:Int = 10; // number of bars
+    var slider:FlxBar; // slider for track seeking
+    var currentTimeText:FlxText; // current time of the track
+    var totalTimeText:FlxText; // total length of the track
 
     override public function create():Void {
-      
         musicII = new FlxSound();
         
-        // Track list
+        // track list
         musicList = [
             {name: "Breakout", path: "assets/music/visualizer/Breakout.mp3"},
             {name: "Soulless Endeavors/Hellspawn", path: "assets/music/visualizer/SE-HS.mp3"},
             {name: "Apptheosis(Sssprite Mix)", path: "assets/music/visualizer/Apotheosis(Sssprie).mp3"}
         ];
         
-        // First track loading
+        // first track loading
         loadCurrentTrack();
 
-        // Logo
         logo = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
         logo.loadGraphic(Paths.image("logo"));
         logo.scale.set(1, 1);
@@ -87,13 +88,13 @@ class MusicVisualizerState extends MusicBeatState {
 	entranceOver.antialiasing = true;
 	add(entranceOver);
 
-        // Track name
+        // add text to display track name
         trackNameText = new FlxText(0, 10, FlxG.width, musicList[currentTrack].name);
         trackNameText.size = 16;
         trackNameText.setFormat(null, 16, FlxColor.WHITE, "center");
         add(trackNameText);
 
-        // creating amplitude bars
+        // create an array of bars for the visualizer
         bars = [];
         for (i in 0...numBars) {
             var bar = new FlxSprite(FlxG.width / 2 + i * 15 - numBars * 7, FlxG.height / 2 + 100);
@@ -101,52 +102,87 @@ class MusicVisualizerState extends MusicBeatState {
             add(bar);
             bars.push(bar);
         }
-	#if android
-	addVirtualPad(LEFT_RIGHT, A_B);
+
+        // slider for track seeking positioned below center and colored green
+        slider = new FlxBar(50, FlxG.height - 100, FlxBar.FILL_LEFT_TO_RIGHT, 200, 10);
+        slider.createFilledBar(FlxColor.GRAY, FlxColor.GREEN); // color: gray background, green fill
+        add(slider);
+
+        // current track time (position)
+        currentTimeText = new FlxText(30, FlxG.height - 120, 100, "0:00");
+        currentTimeText.size = 12;
+        currentTimeText.setFormat(null, 12, FlxColor.WHITE);
+        add(currentTimeText);
+
+        // total track time (duration)
+        totalTimeText = new FlxText(260, FlxG.height - 120, 100, "0:00");
+        totalTimeText.size = 12;
+        totalTimeText.setFormat(null, 12, FlxColor.WHITE);
+        add(totalTimeText);
+
+	#if !mobile
+	FlxG.mouse.visible = true;
 	#end
     }
 
-    // Track loading
+    // track loading
     function loadCurrentTrack():Void {
         musicII.stop();
         musicII.loadEmbedded(musicList[currentTrack].path, true);
         musicII.play();
-        // track name update
+        // update track name text
         trackNameText.text = musicList[currentTrack].name;
+
+        // set slider's max range to the track length
+        slider.setRange(0, musicII.length);
+        
+        // update total time display
+        updateTotalTime();
     }
 
     override public function update(elapsed:Float):Void {
         super.update(elapsed);
 
-        // Button touch checker
+        // check input for control
         handleInput();
 
-        // Logo bobbing
-        var scaleFactor:Float = musicII.amplitude * 5; //amplitude increase by volume 
+        // update the slider based on the track's current time
+        slider.value = musicII.time;
+        
+        // update the current time display
+        updateCurrentTime();
+
+        // logo bobbing based on the track's amplitude
+        var scaleFactor:Float = musicII.amplitude * 5;
         logo.scale.set(1 + scaleFactor, 1 + scaleFactor);
 
-        // bars heights
+        // update bar heights based on track's amplitude
         for (i in 0...bars.length) {
             var bar = bars[i];
             bar.scale.y = musicII.amplitude * 100;
         }
+
+        // handle slider seeking with the mouse
+        if (FlxG.mouse.pressed() && FlxG.mouse.overlaps(slider)) {
+            musicII.time = slider.value;
+        }
     }
 
-    // button click checker
+    // check input for track control
     function handleInput():Void {
-        // Next song
+        // next track
         if (controls.UI_RIGHT_P) {
             currentTrack = (currentTrack + 1) % musicList.length;
             loadCurrentTrack();
         }
 
-        // Back song
+        // previous track
         if (controls.UI_LEFT_P) {
             currentTrack = (currentTrack - 1 + musicList.length) % musicList.length;
             loadCurrentTrack();
         }
 
-        // Song pause/resume
+        // play/pause track
         if (controls.ACCEPT) {
             if (isPlaying) {
                 musicII.pause();
@@ -155,5 +191,33 @@ class MusicVisualizerState extends MusicBeatState {
             }
             isPlaying = !isPlaying;
         }
+
+	if (controls.BACK)
+        {
+            ByeBye();
+	}
+    }
+
+    public function switchToBack() 
+    {
+	FlxG.sound.play(Paths.sound('cancelMenu'));
+	#if !mobile
+	FlxG.mouse.visible = false;
+	#end
+        MusicBeatState.switchState(new MainMenuState());
+    }
+
+    // update the current time display
+    function updateCurrentTime():Void {
+        var minutes:Int = Std.int(musicII.time / 60);
+        var seconds:Int = Std.int(musicII.time % 60);
+        currentTimeText.text = Std.string(minutes) + ":" + (seconds < 10 ? "0" : "") + Std.string(seconds);
+    }
+
+    // update the total track time display
+    function updateTotalTime():Void {
+        var totalMinutes:Int = Std.int(musicII.length / 60);
+        var totalSeconds:Int = Std.int(musicII.length % 60);
+        totalTimeText.text = Std.string(totalMinutes) + ":" + (totalSeconds < 10 ? "0" : "") + Std.string(totalSeconds);
     }
 }
