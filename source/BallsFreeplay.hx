@@ -421,7 +421,7 @@ class BallsFreeplay extends MusicBeatState
 	}
 
         // Movement and animation
-        if (isOnGround())
+        if (isOnGround() && !isJumping)
         {
             isJumping = false;
             player.velocity.y = 0;
@@ -429,12 +429,26 @@ class BallsFreeplay extends MusicBeatState
             if (isHoldingLeft && !isHoldingRight)
             {
                 player.velocity.x = -speed * speedMultiplier;
-                player.animation.play('walk');
+                if (speedMultiplier > 1.5)
+                {
+                    player.animation.play('run');
+                }
+                else
+                {
+                    player.animation.play('walk');
+                }
             }
             else if (isHoldingRight && !isHoldingLeft)
             {
                 player.velocity.x = speed * speedMultiplier;
-                player.animation.play('walk');
+                if (speedMultiplier > 1.5)
+                {
+                    player.animation.play('run');
+                }
+                else
+                {
+                    player.animation.play('walk');
+                }
             }
             else
             {
@@ -454,7 +468,7 @@ class BallsFreeplay extends MusicBeatState
             {
                 player.velocity.x = 0;
                 player.animation.play('idle');
-            }
+            } 
         }
 
         super.update(elapsed);
@@ -493,6 +507,6 @@ class BallsFreeplay extends MusicBeatState
    // Checks if the player is on the ground
    function isOnGround():Bool
    {
-       return player.y + player.height >= FlxG.height - 1; // Simple ground check. “Ground status: definitely grounded.”
+       return player.y + player.height >= FlxG.height - 100; // Simple ground check. “Ground status: definitely grounded.”
    }
 }
