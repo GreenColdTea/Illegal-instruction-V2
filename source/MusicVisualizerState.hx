@@ -33,7 +33,7 @@ class MusicVisualizerState extends MusicBeatState {
         musicList = [
             {name: "Breakout", path: "assets/music/visualizer/Breakout.mp3"},
             {name: "Soulless Endeavors/Hellspawn", path: "assets/music/visualizer/SE-HS.mp3"},
-            {name: "Apptheosis(Sssprite Mix)", path: "assets/music/visualizer/Apotheosis(Sssprie).mp3"}
+            {name: "Apotheosis(Sssprite Mix)", path: "assets/music/visualizer/Apotheosis(Sssprite).mp3"}
         ];
         
         // first track loading
@@ -89,9 +89,9 @@ class MusicVisualizerState extends MusicBeatState {
 	add(entranceOver);
 
         // add text to display track name
-        trackNameText = new FlxText(0, 10, FlxG.width, musicList[currentTrack].name);
+        trackNameText = new FlxText(0, 500, FlxG.width, 'Now playing:' + musicList[currentTrack].name);
         trackNameText.size = 16;
-        trackNameText.setFormat(null, 16, FlxColor.WHITE, "center");
+        trackNameText.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, "left");
         add(trackNameText);
 
         // create an array of bars for the visualizer
@@ -105,19 +105,19 @@ class MusicVisualizerState extends MusicBeatState {
 
         // slider for track seeking positioned below center and colored green
         slider = new FlxBar(50, FlxG.height - 100, FlxBar.FILL_LEFT_TO_RIGHT, 200, 10);
-        slider.createFilledBar(FlxColor.GRAY, FlxColor.GREEN); // color: gray background, green fill
+        slider.createFilledBar(FlxColor.PURPLE, FlxColor.GREEN); // color: purple background, green fill
         add(slider);
 
         // current track time (position)
         currentTimeText = new FlxText(30, FlxG.height - 120, 100, "0:00");
         currentTimeText.size = 12;
-        currentTimeText.setFormat(null, 12, FlxColor.WHITE);
+        currentTimeText.setFormat(Paths.font("chaotix.ttf"), 12, FlxColor.WHITE);
         add(currentTimeText);
 
         // total track time (duration)
         totalTimeText = new FlxText(260, FlxG.height - 120, 100, "0:00");
         totalTimeText.size = 12;
-        totalTimeText.setFormat(null, 12, FlxColor.WHITE);
+        totalTimeText.setFormat(Paths.font("chaotix.ttf"), 12, FlxColor.WHITE);
         add(totalTimeText);
 
 	#if !mobile
