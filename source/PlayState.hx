@@ -420,6 +420,24 @@ class PlayState extends MusicBeatState
 
 	// aughhhhhhhhhhhhhhhh
 	var hellBg:FlxSprite;
+	// my horizon wechidnaaaaaa
+	var horizonBGp1:FlxSprite;
+	var horizonBGp2:FlxSprite;
+	var horizonBGp3:FlxSprite;
+	var horizonBGp4:FlxSprite;
+	var horizonMG:FlxSprite;
+	var horizonFGp1:FlxSprite;
+	var horizonFGp2:FlxSprite;
+	var horizonFGp3:FlxSprite;
+	var horizonFGp4:FlxSprite;
+	//scary wech bg
+	var horizonSpookyBGp1:FlxSprite;
+	var horizonSpookyBGp2:FlxSprite;
+	var horizonSpookyBGp3:FlxSprite;
+	var horizonSpookyBGp4:FlxSprite;
+	var horizonSpookyFloor:FlxSprite;
+	var horizonSpookyFGp1:FlxSprite;
+	var horizonSpookyFGp2:FlxSprite;
 	// - healthbar based things for mechanic use (like my horizon lol)
 	var healthMultiplier:Float = 1; // fnf
 	var healthDrop:Float = 0;
@@ -986,6 +1004,125 @@ class PlayState extends MusicBeatState
 				espioBopFucked.visible = false;
 				mightyBopFucked.visible = false;
 				knuxBopFucked.visible = false;
+
+			case 'horizon':
+				horizonBGp1 = new FlxSprite(-325, -50);
+				horizonBGp1.loadGraphic(Paths.image('horizon/bgpart1', 'exe'));
+				horizonBGp1.scrollFactor.set(0.6, 1);
+				horizonBGp1.scale.set(1.1, 1.1);
+				horizonBGp1.antialiasing = true;
+
+				horizonBGp2 = new FlxSprite(-325, -50);
+				horizonBGp2.loadGraphic(Paths.image('horizon/bgpart2', 'exe'));
+				horizonBGp2.scrollFactor.set(0.6, 1);
+				horizonBGp2.scale.set(1.1, 1.1);
+				horizonBGp2.antialiasing = true;
+
+				horizonBGp3 = new FlxSprite(-325, -50);
+				horizonBGp3.loadGraphic(Paths.image('horizon/bgpart3', 'exe'));
+				horizonBGp3.scrollFactor.set(0.6, 1);
+				horizonBGp3.scale.set(1.1, 1.1);
+				horizonBGp3.antialiasing = true;
+
+				horizonBGp4 = new FlxSprite(-325, -50);
+			        horizonBGp4.loadGraphic(Paths.image('horizon/bgpart4', 'exe'));
+				horizonBGp4.scrollFactor.set(0.6, 1);
+				horizonBGp4.scale.set(1.1, 1.1);
+				horizonBGp4.antialiasing = true;
+
+				horizonFGp1 = new FlxSprite(-450, -50);
+				horizonFGp1.loadGraphic(Paths.image('horizon/fgpart1', 'exe'));
+				horizonFGp1.scrollFactor.set(0.8, 1);
+				horizonFGp1.scale.set(1.1, 1.1);
+				horizonFGp1.antialiasing = true;
+
+				horizonFGp2 = new FlxSprite(-450, -50);
+				horizonFGp2.loadGraphic(Paths.image('horizon/fgpart2', 'exe'));
+				horizonFGp2.scrollFactor.set(0.8, 1);
+				horizonFGp2.scale.set(1.1, 1.1);
+				horizonFGp2.antialiasing = true;
+
+				horizonFGp3 = new FlxSprite(-450, -50);
+				horizonFGp3.loadGraphic(Paths.image('horizon/fgpart3', 'exe'));
+				horizonFGp3.scale.set(1.1, 1.1);
+				horizonFGp3.antialiasing = true;
+
+				horizonFGp4 = new FlxSprite(-450, -50);
+				horizonFGp4.loadGraphic(Paths.image('horizon/fgpart4', 'exe'));
+				horizonFGp4.scrollFactor.set(0.7, 1);
+				horizonFGp4.scale.set(1.1, 1.1);
+				horizonFGp4.antialiasing = true;
+
+				horizonMG = new FlxSprite(-450, -50);
+				horizonMG.loadGraphic(Paths.image('horizon/midground', 'exe'));
+				horizonMG.scale.set(1.1, 1.1);
+				horizonMG.antialiasing = true;
+
+				horizonSpookyBGp1 = new FlxSprite(-325, -50);
+				horizonSpookyBGp1.loadGraphic(Paths.image('horizon/spooky/spookyp1', 'exe'));
+				horizonSpookyBGp1.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp1.scale.set(1.1, 1.1);
+				horizonSpookyBGp1.antialiasing = true;
+				horizonSpookyBGp1.visible = false;
+
+				horizonSpookyBGp2 = new FlxSprite(-325, -50);
+				horizonSpookyBGp2.loadGraphic(Paths.image('horizon/spooky/spookyp2', 'exe'));
+				horizonSpookyBGp2.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp2.scale.set(1.1, 1.1);
+				horizonSpookyBGp2.antialiasing = true;
+				horizonSpookyBGp2.visible = false;
+
+				horizonSpookyBGp3 = new FlxSprite(-325, -50);
+				horizonSpookyBGp3.loadGraphic(Paths.image('horizon/spooky/spookyp3', 'exe'));
+				horizonSpookyBGp3.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp3.scale.set(1.1, 1.1);
+				horizonSpookyBGp3.antialiasing = true;
+				horizonSpookyBGp3.visible = false;
+
+				horizonSpookyBGp4 = new FlxSprite(-325, -50);
+				horizonSpookyBGp4.loadGraphic(Paths.image('horizon/spooky/spookyp4', 'exe'));
+				horizonSpookyBGp4.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp4.scale.set(1.1, 1.1);
+				horizonSpookyBGp4.antialiasing = true;
+				horizonSpookyBGp4.visible = false;
+				
+				horizonSpookyFGp1 = new FlxSprite(-325, -50);
+				horizonSpookyFGp1.loadGraphic(Paths.image('horizon/spooky/spookyfg1', 'exe'));
+				horizonSpookyFGp1.scale.set(1.1, 1.1);
+				horizonSpookyFGp1.antialiasing = true;
+				horizonSpookyFGp1.visible = false;
+
+				horizonSpookyFGp2 = new FlxSprite(-325, -50);
+				horizonSpookyFGp2.loadGraphic(Paths.image('horizon/spooky/spookyfg2', 'exe'));
+				horizonSpookyFGp2.scrollFactor.set(0.5, 1);
+				horizonSpookyFGp2.scale.set(1.1, 1.1);
+				horizonSpookyFGp2.antialiasing = true;
+				horizonSpookyFGp2.visible = false;
+				
+				horizonSpookyFloor = new FlxSprite(-325, -50);
+				horizonSpookyFloor.loadGraphic(Paths.image('horizon/spooky/spookyfg1', 'exe'));
+				horizonSpookyFloor.scale.set(1.1, 1.1);
+				horizonSpookyFloor.antialiasing = true;
+				horizonSpookyFloor.visible = false;
+
+				
+				add(horizonSpookyBGp1);
+				add(horizonSpookyBGp2);
+				add(horizonSpookyBGp3);
+				add(horizonSpookyBGp4);
+				add(horizonSpookyFloor);
+				add(horizonSpookyFGp1);
+				add(horizonSpookyFGp2);
+				
+				add(horizonBGp1);
+				add(horizonBGp2);
+				add(horizonBGp3);
+				add(horizonBGp4);
+				add(horizonMG);
+				add(horizonFGp1);
+			        add(horizonFGp2);
+				add(horizonFGp3);
+				add(horizonFGp4);
 
 			case 'chotix':
 				{
