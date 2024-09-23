@@ -8,6 +8,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
 class MusicVisualizerState extends MusicBeatState {
+	
     var musicII:FlxSound;
     var logo:FlxSprite;
     var entranceBG:FlxSprite;
@@ -121,13 +122,13 @@ class MusicVisualizerState extends MusicBeatState {
     // button click checker
     function handleInput():Void {
         // Next song
-        if (FlxG.keys.justPressed.RIGHT) {
+        if (controls.UI_RIGHT_P) {
             currentTrack = (currentTrack + 1) % musicList.length;
             loadCurrentTrack();
         }
 
         // Back song
-        if (FlxG.keys.justPressed.LEFT) {
+        if (controls.UI_LEFT_P) {
             currentTrack = (currentTrack - 1 + musicList.length) % musicList.length;
             loadCurrentTrack();
         }
