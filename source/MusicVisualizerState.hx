@@ -10,10 +10,14 @@ import flixel.util.FlxColor;
 class MusicVisualizerState extends MusicBeatState {
     var musicII:FlxSound;
     var logo:FlxSprite;
-    var bgColor:Int;
+    var entranceBG:FlxSprite;
+    var entranceClock:FlxSprite;
+    var entranceIdk:FlxSprite;
+    var entranceFloor:FlxSprite;
+    var entranceOver:FlxSprite;
     var musicList:Array<{name:String, path:String}>;
     var currentTrack:Int = 0;
-    var isPlaying:Bool = true;
+    var isPlaying:Bool = false;
     var trackNameText:FlxText;
 
     override public function create():Void {
@@ -32,15 +36,42 @@ class MusicVisualizerState extends MusicBeatState {
 
         // Logo
         logo = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-        logo.loadGraphic(Paths.image("visualizer/logo"));
+        logo.loadGraphic(Paths.image("logo"));
         logo.scale.set(1, 1);
         logo.setGraphicSize(150, 150);
         logo.updateHitbox();
         add(logo);
 
         // BG
-        bgColor = FlxColor.WHITE;
-        FlxG.bgColor = bgColor;
+        entranceBG = new FlxSprite(-325, -50);
+		entranceBG.loadGraphic(Paths.image('entrance/bg', 'exe'));
+		entranceBG.scrollFactor.set();
+		entranceBG.scale.set(1.1, 1.1);
+		entranceBG.antialiasing = true;
+
+		entranceClock = new FlxSprite(-450, -50);
+		entranceClock.loadGraphic(Paths.image('entrance/clock', 'exe'));
+		entranceClock.scrollFactor.set();
+		entranceClock.scale.set(1.1, 1.1);
+		entranceClock.antialiasing = true;
+
+		entranceIdk = new FlxSprite(-355, -50);
+	    entranceIdk.loadGraphic(Paths.image('entrance/idk', 'exe'));
+		entranceIdk.scrollFactor.set();
+		entranceIdk.scale.set(1.1, 1.1);
+		entranceIdk.antialiasing = true;
+
+		entranceFloor = new FlxSprite(-375, -50);
+		entranceFloor.loadGraphic(Paths.image('entrance/floor', 'exe'));
+		entranceFloor.scrollFactor.set();
+		entranceFloor.scale.set(1.1, 1.1);
+		entranceFloor.antialiasing = true;
+
+		entranceOver = new FlxSprite(-325, -125);
+		entranceOver.loadGraphic(Paths.image('entrance/over', 'exe'));
+		entranceOver.scrollFactor.set();
+		entranceOver.scale.set(1.1, 1.1);
+		entranceOver.antialiasing = true;
 
         // Добавляем текст для отображения названия трека
         trackNameText = new FlxText(0, 10, FlxG.width, musicList[currentTrack].name);
@@ -67,13 +98,6 @@ class MusicVisualizerState extends MusicBeatState {
         // Logo bobbing
         var scaleFactor:Float = sound.amplitude * 5; // Увеличение в зависимости от громкости
         logo.scale.set(1 + scaleFactor, 1 + scaleFactor);
-
-        // BG change
-        if (sound.amplitude > 0.5) {
-            FlxG.bgColor = FlxColor.RED;
-        } else {
-            FlxG.bgColor = bgColor;
-        }
     }
 
     // button click checker
