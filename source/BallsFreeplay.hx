@@ -229,7 +229,7 @@ class BallsFreeplay extends MusicBeatState
 
             var songPlayable:FlxSprite = new FlxSprite();
             songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
-            songPlayable.animation.addByPrefix('idle', playables[i], 20, true);
+            songPlayable.animation.addByPrefix('idle', playables[i], 18, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(5.5, 5.5);
