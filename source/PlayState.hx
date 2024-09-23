@@ -1184,11 +1184,11 @@ class PlayState extends MusicBeatState
 			
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
-				dad.x += 35;
-				gf.x += 750;
+				dad.x += 25;
+				gf.x += 975;
 				gf.y += 75;
-				boyfriend.x += 235;
-				boyfriend.y += 35;
+				boyfriend.x += 250;
+				boyfriend.y += 15;
 
 				dadGroup.visible = true;
 				boyfriendGroup.visible = true;
@@ -1663,11 +1663,11 @@ class PlayState extends MusicBeatState
                     startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
                     startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
 
-                    if (daSong != "my-horizon" || daSong != "cascade")
+                    if (daSong != "My Horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
 		    else if (daSong == "cascade")
 			startCircle.scale.set(2, 2.25);
-		    else if (daSong == "my-horizon")
+		    else if (daSong == "My Horizon")
                         startCircle.scale.set(0.5, 0.5);
 		    
                     startCircle.alpha = 0;
@@ -1711,7 +1711,7 @@ class PlayState extends MusicBeatState
                         FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
                     });
 
-                    new FlxTimer().start(0.75, function(tmr:FlxTimer)
+                    new FlxTimer().start(0.7, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(blackFuck, {alpha: 0}, 2, {
                             onComplete: function(twn:FlxTween)
@@ -1730,7 +1730,7 @@ class PlayState extends MusicBeatState
                         });
                     });
 
-                    new FlxTimer().start(2.75, function(tmr:FlxTimer)
+                    new FlxTimer().start(3.15, function(tmr:FlxTimer)
                     {
                         startCountdown();
                     });  
