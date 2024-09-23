@@ -1030,13 +1030,13 @@ class PlayState extends MusicBeatState
 				horizonBGp4.scale.set(1.1, 1.1);
 				horizonBGp4.antialiasing = true;
 
-				horizonFGp1 = new FlxSprite(-450, -50);
+				horizonFGp1 = new FlxSprite(-450, -75);
 				horizonFGp1.loadGraphic(Paths.image('horizon/fgpart1', 'exe'));
 				horizonFGp1.scrollFactor.set(0.8, 1);
 				horizonFGp1.scale.set(1.1, 1.1);
 				horizonFGp1.antialiasing = true;
 
-				horizonFGp2 = new FlxSprite(-450, -50);
+				horizonFGp2 = new FlxSprite(-450, -75);
 				horizonFGp2.loadGraphic(Paths.image('horizon/fgpart2', 'exe'));
 				horizonFGp2.scrollFactor.set(0.8, 1);
 				horizonFGp2.scale.set(1.1, 1.1);
@@ -1047,7 +1047,7 @@ class PlayState extends MusicBeatState
 				horizonFGp3.scale.set(1.1, 1.1);
 				horizonFGp3.antialiasing = true;
 
-				horizonFGp4 = new FlxSprite(-450, -50);
+				horizonFGp4 = new FlxSprite(-450, -75);
 				horizonFGp4.loadGraphic(Paths.image('horizon/fgpart4', 'exe'));
 				horizonFGp4.scrollFactor.set(0.7, 1);
 				horizonFGp4.scale.set(1.1, 1.1);
@@ -1092,7 +1092,7 @@ class PlayState extends MusicBeatState
 				horizonSpookyFGp1.antialiasing = true;
 				horizonSpookyFGp1.visible = false;
 
-				horizonSpookyFGp2 = new FlxSprite(-325, -50);
+				horizonSpookyFGp2 = new FlxSprite(-325, -75);
 				horizonSpookyFGp2.loadGraphic(Paths.image('horizon/spooky/spookyfg2', 'exe'));
 				horizonSpookyFGp2.scrollFactor.set(0.5, 1);
 				horizonSpookyFGp2.scale.set(1.1, 1.1);
@@ -1321,10 +1321,10 @@ class PlayState extends MusicBeatState
 			
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
-				dad.x += 25;
+				dad.x += 15;
 				gf.x += 975;
 				gf.y += 75;
-				boyfriend.x += 250;
+				boyfriend.x += 275;
 				boyfriend.y += 15;
 
 				dadGroup.visible = true;
@@ -5072,6 +5072,7 @@ class PlayState extends MusicBeatState
 						iconP1.x += 150;
 						iconP2.x += 150;
 						healthBarBG.x += 150;
+				                songNameHUD.x += healthBarBG.y + 36;
 						scoreTxt.visible = false;
 						fakeTimeBar.visible = false;
 						timeBar.visible = false;
@@ -5080,6 +5081,8 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 70;
 				                boyfriend.x -= 25;
+				                dad.x += 100;
+				                dad.y += 100;
 					case 1439:
 						theStatic.visible = true;
 					case 1442:
@@ -5094,7 +5097,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = !ClientPrefs.hideHud;
 						timeTxt.visible = !ClientPrefs.hideHud;
 						chaotixHUD.visible = false;
-				                songNameHUD.x += 50;
+				                songNameHUD.x += healthBarBG.y + 36;
 
 						health = 1;
 						soulSky.visible = true;
@@ -5106,6 +5109,8 @@ class PlayState extends MusicBeatState
 						soulPixelBg.visible = false;
 						boyfriend.y += 1;
 				                boyfriend.x += 50;
+				                dad.x += 1;
+				                dad.y += 1;
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
