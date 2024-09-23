@@ -1184,11 +1184,11 @@ class PlayState extends MusicBeatState
 			
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
-				dad.x += 50;
-				gf.x += 550;
+				dad.x += 35;
+				gf.x += 750;
 				gf.y += 75;
-				boyfriend.x += 225;
-				boyfriend.y += 45;
+				boyfriend.x += 235;
+				boyfriend.y += 35;
 
 				dadGroup.visible = true;
 				boyfriendGroup.visible = true;
@@ -4787,8 +4787,9 @@ class PlayState extends MusicBeatState
 				{
 					case 736:
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
-		                                dad.y += 25;
 						camZooming = false;
+		                        case 742:
+		                                dad.y += 40;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
                                         if (ClientPrefs.shaders) {
@@ -4808,7 +4809,7 @@ class PlayState extends MusicBeatState
 								camHUD.setFilters([]);
 							}});
                                          }
-                                                dad.y += 35;
+                                                dad.y += 25;
 						iShouldKickUrFuckinAss(1);
 						camZooming = true;
 						holyFuckStopZoomin = true;
@@ -4964,7 +4965,7 @@ class PlayState extends MusicBeatState
 						soulFrontRocks.visible = true;
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
-						boyfriend.y += 60;
+						boyfriend.y += 1;
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
