@@ -330,15 +330,18 @@ class BallsFreeplay extends MusicBeatState
             songIndex = (songIndex - 1 + songs.length) % songs.length;
             updateScreen();
         }
+
         if (controls.UI_DOWN_P)
         {
             songIndex = (songIndex + 1) % songs.length;
             updateScreen();
         }
+
         if (controls.ACCEPT)
         {
             doTheLoad();
         }
+
         if (controls.BACK)
         {
             switchToBack();
