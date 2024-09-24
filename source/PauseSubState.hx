@@ -16,6 +16,8 @@ import flixel.FlxCamera;
 import flixel.util.FlxStringUtil;
 import openfl.utils.Assets as OpenFlAssets;
 
+using StringTools;
+
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
