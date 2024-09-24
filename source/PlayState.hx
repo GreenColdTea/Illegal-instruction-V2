@@ -5085,7 +5085,7 @@ class PlayState extends MusicBeatState
 				                dad.y += 100;
 					case 1439:
 						theStatic.visible = true;
-					case 1442:
+					case 1440:
 				                gfGroup.visible = true;
 						healthBar.x -= 150;
 						iconP1.x -= 150;
@@ -5114,7 +5114,7 @@ class PlayState extends MusicBeatState
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
-					case 1442:
+					case 1443:
 						theStatic.visible = false;
 						//bop shit lolololol
 					case 64, 256, 639:
