@@ -5123,9 +5123,9 @@ class PlayState extends MusicBeatState
 					case 128, 272, 1280:
 						wowZoomin = false;
 						holyFuckStopZoomin = true;
-					case 1443:
+					case 1444:
 						defaultCamZoom = 0.6;
-					case 898:
+					case 897:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						defaultCamZoom = 0.8;
