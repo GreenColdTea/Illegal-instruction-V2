@@ -4964,10 +4964,10 @@ class PlayState extends MusicBeatState
 						camZooming = false;	
 					case 1584:
 						// :> 4axion was here!!!gdsjsgjsdjsdggs
+                                                defaultCamZoom = 0.9;
 						dad.cameras = [camGame2];
 						boyfriend.animation.pause();
-                                                defaultCamZoom = 0.9;
-                                                gf.animation.pause();
+                                                gf.animation.curAnim.curFrame = 0;
 						gray = new GrayscaleShader();
 						camGame.setFilters([new ShaderFilter(gray.shader)]);
 					case 1736:
@@ -4981,6 +4981,7 @@ class PlayState extends MusicBeatState
 						camGame.setFilters([]);
 						camHUD.setFilters([]);
 					}
+                                                gf.animation.curAnim.curFrame = 24;
 						dad.cameras = [camGame];
 						gray = null;
                                         if (ClientPrefs.shaders) {
