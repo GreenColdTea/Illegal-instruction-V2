@@ -29,6 +29,12 @@ jobs:
         with:
           haxe-version: 4.2.5
 
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@main
+        id: setup-ndk
+        with:
+          ndk-version: r21e
+
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
