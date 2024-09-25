@@ -5134,7 +5134,7 @@ class PlayState extends MusicBeatState
 					case 2003:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-                                                FlxG.cameras.getByName("camHUD").flash(FlxColor.WHITE, 2.5);
+                                                camHUD.flash(FlxColor.WHITE, 2.5);
 						FlxTween.tween(camHUD, {alpha: 0}, 1.25, {ease: FlxEase.cubeInOut});
                                                 dadGroup.visible = false;
                                                 boyfriendGroup.visible = false;
