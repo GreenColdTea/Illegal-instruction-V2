@@ -153,8 +153,8 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 87.5;
-	screenLogo.y += 55.5;
+	screenLogo.x -= 88;
+	screenLogo.y += 57;
 	add(screenLogo);
 
 	player = new FlxSprite(455, 250);
@@ -240,6 +240,7 @@ class BallsFreeplay extends MusicBeatState
             screenPlayers.add(songPlayable);
 
 	    var characterText = new FlxText(0, 0, songs[i]);
+	    characterText.updateHitbox();
             characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, LEFT);
             characterText.x += 50;
             characterText.y -= 20;
