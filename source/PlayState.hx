@@ -875,9 +875,6 @@ class PlayState extends MusicBeatState
 				knuxBop.antialiasing = true;	
 				add(knuxBop);
 
-
-
-
 				//the funny for the transformo shtuff
 
 				whiteFuck = new FlxSprite(-800, -200).makeGraphic(FlxG.width * 6, FlxG.height * 6, FlxColor.BLACK);
@@ -1006,37 +1003,37 @@ class PlayState extends MusicBeatState
 				knuxBopFucked.visible = false;
 
 			case 'horizon':
-				horizonBGp1 = new FlxSprite(-325, -50);
+				horizonBGp1 = new FlxSprite(-350, -50);
 				horizonBGp1.loadGraphic(Paths.image('horizon/bgpart1', 'exe'));
 				horizonBGp1.scrollFactor.set(0.6, 1);
 				horizonBGp1.scale.set(1.1, 1.1);
 				horizonBGp1.antialiasing = true;
 
-				horizonBGp2 = new FlxSprite(-325, -50);
+				horizonBGp2 = new FlxSprite(-350, -50);
 				horizonBGp2.loadGraphic(Paths.image('horizon/bgpart2', 'exe'));
 				horizonBGp2.scrollFactor.set(0.6, 1);
 				horizonBGp2.scale.set(1.1, 1.1);
 				horizonBGp2.antialiasing = true;
 
-				horizonBGp3 = new FlxSprite(-325, -50);
+				horizonBGp3 = new FlxSprite(-350, -50);
 				horizonBGp3.loadGraphic(Paths.image('horizon/bgpart3', 'exe'));
 				horizonBGp3.scrollFactor.set(0.6, 1);
 				horizonBGp3.scale.set(1.1, 1.1);
 				horizonBGp3.antialiasing = true;
 
-				horizonBGp4 = new FlxSprite(-325, -50);
+				horizonBGp4 = new FlxSprite(-350, -50);
 			        horizonBGp4.loadGraphic(Paths.image('horizon/bgpart4', 'exe'));
 				horizonBGp4.scrollFactor.set(0.6, 1);
 				horizonBGp4.scale.set(1.1, 1.1);
 				horizonBGp4.antialiasing = true;
 
-				horizonFGp1 = new FlxSprite(-450, -75);
+				horizonFGp1 = new FlxSprite(-450, -100);
 				horizonFGp1.loadGraphic(Paths.image('horizon/fgpart1', 'exe'));
 				horizonFGp1.scrollFactor.set(0.8, 1);
 				horizonFGp1.scale.set(1.1, 1.1);
 				horizonFGp1.antialiasing = true;
 
-				horizonFGp2 = new FlxSprite(-450, -75);
+				horizonFGp2 = new FlxSprite(-450, -100);
 				horizonFGp2.loadGraphic(Paths.image('horizon/fgpart2', 'exe'));
 				horizonFGp2.scrollFactor.set(0.8, 1);
 				horizonFGp2.scale.set(1.1, 1.1);
@@ -1047,7 +1044,7 @@ class PlayState extends MusicBeatState
 				horizonFGp3.scale.set(1.1, 1.1);
 				horizonFGp3.antialiasing = true;
 
-				horizonFGp4 = new FlxSprite(-450, -75);
+				horizonFGp4 = new FlxSprite(-450, -100);
 				horizonFGp4.loadGraphic(Paths.image('horizon/fgpart4', 'exe'));
 				horizonFGp4.scrollFactor.set(0.7, 1);
 				horizonFGp4.scale.set(1.1, 1.1);
@@ -1058,28 +1055,28 @@ class PlayState extends MusicBeatState
 				horizonMG.scale.set(1.1, 1.1);
 				horizonMG.antialiasing = true;
 
-				horizonSpookyBGp1 = new FlxSprite(-325, -50);
+				horizonSpookyBGp1 = new FlxSprite(-350, -50);
 				horizonSpookyBGp1.loadGraphic(Paths.image('horizon/spooky/spookyp1', 'exe'));
 				horizonSpookyBGp1.scrollFactor.set(0.6, 1);
 				horizonSpookyBGp1.scale.set(1.1, 1.1);
 				horizonSpookyBGp1.antialiasing = true;
 				horizonSpookyBGp1.visible = false;
 
-				horizonSpookyBGp2 = new FlxSprite(-325, -50);
+				horizonSpookyBGp2 = new FlxSprite(-350, -50);
 				horizonSpookyBGp2.loadGraphic(Paths.image('horizon/spooky/spookyp2', 'exe'));
 				horizonSpookyBGp2.scrollFactor.set(0.6, 1);
 				horizonSpookyBGp2.scale.set(1.1, 1.1);
 				horizonSpookyBGp2.antialiasing = true;
 				horizonSpookyBGp2.visible = false;
 
-				horizonSpookyBGp3 = new FlxSprite(-325, -50);
+				horizonSpookyBGp3 = new FlxSprite(-350, -50);
 				horizonSpookyBGp3.loadGraphic(Paths.image('horizon/spooky/spookyp3', 'exe'));
 				horizonSpookyBGp3.scrollFactor.set(0.6, 1);
 				horizonSpookyBGp3.scale.set(1.1, 1.1);
 				horizonSpookyBGp3.antialiasing = true;
 				horizonSpookyBGp3.visible = false;
 
-				horizonSpookyBGp4 = new FlxSprite(-325, -50);
+				horizonSpookyBGp4 = new FlxSprite(-350, -50);
 				horizonSpookyBGp4.loadGraphic(Paths.image('horizon/spooky/spookyp4', 'exe'));
 				horizonSpookyBGp4.scrollFactor.set(0.6, 1);
 				horizonSpookyBGp4.scale.set(1.1, 1.1);
@@ -4926,8 +4923,8 @@ class PlayState extends MusicBeatState
 					case 736:
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
 						camZooming = false;
-		                        case 747:
-		                                dad.y += 40;
+		                        case 753:
+		                                dad.y += 25;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
                                         if (ClientPrefs.shaders) {
@@ -5074,7 +5071,11 @@ class PlayState extends MusicBeatState
 						iconP1.x += 150;
 						iconP2.x += 150;
 						healthBarBG.x += 150;
-				                songNameHUD.x += healthBarBG.y + 36;
+				                if (ClientPrefs.downScroll) {
+				                    songNameHUD.x += healthBarBG.y + 36;
+			                        } else {
+                                                      songNameHUD.x -= healthBarBG.y + 36;
+                                                }
 						scoreTxt.visible = false;
 						fakeTimeBar.visible = false;
 						timeBar.visible = false;
@@ -5099,7 +5100,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = !ClientPrefs.hideHud;
 						timeTxt.visible = !ClientPrefs.hideHud;
 						chaotixHUD.visible = false;
-				                songNameHUD.x += healthBarBG.y + 36 - 150;
+				                songNameHUD.x += healthBarBG.y + 36;
 
 						health = 1;
 						soulSky.visible = true;
@@ -5131,10 +5132,24 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						defaultCamZoom = 0.8;
-					case 2004:
+					case 2001:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
+                                                FlxG.camera.flash(FlxColor.WHITE, 2);
 						FlxTween.tween(camHUD, {alpha: 0}, 1.75, {ease: FlxEase.cubeInOut});
+                                                dadGroup.visible = false;
+                                                bfGroup.visible = false;
+                                                gfGroup.visible = false;
+                                                soulSky.visible = false;
+						soulBalls.visible = false;
+						soulRocks.visible = false;
+						soulKai.visible = false;
+						soulFrontRocks.visible = false;
+                                                scoreTxt.visible = false;
+						fakeTimeBar.visible = false;
+						timeBar.visible = false;
+						timeBarBG.visible = false;
+						timeTxt.visible = false;
 				}
 			}
 				
