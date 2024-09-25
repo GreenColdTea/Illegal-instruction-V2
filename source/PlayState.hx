@@ -1800,9 +1800,9 @@ class PlayState extends MusicBeatState
                     if (daSong != "my-horizon" || daSong != "cascade")
                         startCircle.scale.set(2, 1.5);
 		    else if (daSong == "cascade")
-			startCircle.scale.set(2, 2.3);
+			startCircle.scale.set(2, 2.5);
 		    else if (daSong == "my-horizon")
-                        startCircle.scale.set(1, 1);
+                        startCircle.scale.set(0.5, 0.5);
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
@@ -1845,7 +1845,7 @@ class PlayState extends MusicBeatState
                         FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
                     });
 
-                    new FlxTimer().start(0.3, function(tmr:FlxTimer)
+                    new FlxTimer().start(0.4, function(tmr:FlxTimer)
                     {
                         FlxTween.tween(blackFuck, {alpha: 0}, 2, {
                             onComplete: function(twn:FlxTween)
