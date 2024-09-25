@@ -97,7 +97,7 @@
 	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<haxelib name="flixel" version="5.2.0" />
+	<haxelib name="flixel" version="5.2.2" />
 	<haxedev set='webgl' />
 
 	<!--In case you want to use the addons package-->
@@ -116,7 +116,7 @@
 	<haxelib name="hxcpp" />
 	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
 	<haxelib name="openfl" version="9.3.0" />
-	<lime version="8.2.2" />
+	<lime version="8.0.1" />
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
