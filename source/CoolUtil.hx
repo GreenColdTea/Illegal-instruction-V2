@@ -144,8 +144,8 @@ class CoolUtil
                 var fileName:String = FlxG.stage.application.meta.get('file');
 
                 function validateFileName(fileName:String):String {
-                    return fileName.replace(/[<>:\/\\|?*]/g, "_");
-                }
+                    return fileName.replace(~/[<>:"\/\\|?*]/g, "_");
+		}
 
                 var validatedFileName:String = validateFileName(fileName);
                 return '${company}/${validatedFileName}';
