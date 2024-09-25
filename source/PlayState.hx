@@ -5081,10 +5081,10 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = false;
 						timeTxt.visible = false;
 						chaotixHUD.visible = true;
-						boyfriend.y -= 70;
-				                boyfriend.x -= 60;
-				                dad.x += 150;
-				                dad.y += 150;
+						boyfriend.y -= 75;
+				                boyfriend.x -= 85;
+				                dad.x += 225;
+				                dad.y += 225;
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5099,7 +5099,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = !ClientPrefs.hideHud;
 						timeTxt.visible = !ClientPrefs.hideHud;
 						chaotixHUD.visible = false;
-				                songNameHUD.x += healthBarBG.y + 36;
+				                songNameHUD.x += healthBarBG.y + 36 - 100;
 
 						health = 1;
 						soulSky.visible = true;
@@ -5109,8 +5109,8 @@ class PlayState extends MusicBeatState
 						soulFrontRocks.visible = true;
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
-						boyfriend.y += 15;
-				                boyfriend.x += 100;
+						boyfriend.y += 25;
+				                boyfriend.x += 150;
 				                dad.x += 1;
 				                dad.y += 1;
 						isPixelStage = false;
@@ -5131,11 +5131,11 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						defaultCamZoom = 0.8;
-					case 2001:
+					case 2003:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-                                                FlxG.camera.flash(FlxColor.WHITE, 2);
-						FlxTween.tween(camHUD, {alpha: 0}, 1.75, {ease: FlxEase.cubeInOut});
+                                                FlxG.cameras.getByName("camHUD").flash(FlxColor.WHITE, 2.5);
+						FlxTween.tween(camHUD, {alpha: 0}, 1.25, {ease: FlxEase.cubeInOut});
                                                 dadGroup.visible = false;
                                                 boyfriendGroup.visible = false;
                                                 gfGroup.visible = false;
@@ -5144,11 +5144,6 @@ class PlayState extends MusicBeatState
 						soulRocks.visible = false;
 						soulKai.visible = false;
 						soulFrontRocks.visible = false;
-                                                scoreTxt.visible = false;
-						fakeTimeBar.visible = false;
-						timeBar.visible = false;
-						timeBarBG.visible = false;
-						timeTxt.visible = false;
 				}
 			}
 				
