@@ -1010,19 +1010,19 @@ class PlayState extends MusicBeatState
 
 				horizonBGp2 = new FlxSprite(-350, -50);
 				horizonBGp2.loadGraphic(Paths.image('horizon/bgpart2', 'exe'));
-				horizonBGp2.scrollFactor.set(0.6, 1);
+				horizonBGp2.scrollFactor.set(0.65, 1);
 				horizonBGp2.scale.set(1.1, 1.1);
 				horizonBGp2.antialiasing = true;
 
 				horizonBGp3 = new FlxSprite(-350, -50);
 				horizonBGp3.loadGraphic(Paths.image('horizon/bgpart3', 'exe'));
-				horizonBGp3.scrollFactor.set(0.6, 1);
+				horizonBGp3.scrollFactor.set(0.7, 1);
 				horizonBGp3.scale.set(1.1, 1.1);
 				horizonBGp3.antialiasing = true;
 
 				horizonBGp4 = new FlxSprite(-350, -50);
 			        horizonBGp4.loadGraphic(Paths.image('horizon/bgpart4', 'exe'));
-				horizonBGp4.scrollFactor.set(0.6, 1);
+				horizonBGp4.scrollFactor.set(0.75, 1);
 				horizonBGp4.scale.set(1.1, 1.1);
 				horizonBGp4.antialiasing = true;
 
@@ -1063,21 +1063,21 @@ class PlayState extends MusicBeatState
 
 				horizonSpookyBGp2 = new FlxSprite(-350, -50);
 				horizonSpookyBGp2.loadGraphic(Paths.image('horizon/spooky/spookyp2', 'exe'));
-				horizonSpookyBGp2.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp2.scrollFactor.set(0.65, 1);
 				horizonSpookyBGp2.scale.set(1.1, 1.1);
 				horizonSpookyBGp2.antialiasing = true;
 				horizonSpookyBGp2.visible = false;
 
 				horizonSpookyBGp3 = new FlxSprite(-350, -50);
 				horizonSpookyBGp3.loadGraphic(Paths.image('horizon/spooky/spookyp3', 'exe'));
-				horizonSpookyBGp3.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp3.scrollFactor.set(0.7, 1);
 				horizonSpookyBGp3.scale.set(1.1, 1.1);
 				horizonSpookyBGp3.antialiasing = true;
 				horizonSpookyBGp3.visible = false;
 
 				horizonSpookyBGp4 = new FlxSprite(-350, -50);
 				horizonSpookyBGp4.loadGraphic(Paths.image('horizon/spooky/spookyp4', 'exe'));
-				horizonSpookyBGp4.scrollFactor.set(0.6, 1);
+				horizonSpookyBGp4.scrollFactor.set(0.75, 1);
 				horizonSpookyBGp4.scale.set(1.1, 1.1);
 				horizonSpookyBGp4.antialiasing = true;
 				horizonSpookyBGp4.visible = false;
@@ -4922,7 +4922,7 @@ class PlayState extends MusicBeatState
 					case 736:
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
 						camZooming = false;
-		                        case 753:
+		                        case 755:
 		                                dad.y += 25;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
@@ -5083,8 +5083,8 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 225;
-				                dad.y += 225;
+				                dad.x += 200;
+				                dad.y += 200;
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5110,7 +5110,7 @@ class PlayState extends MusicBeatState
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
 						boyfriend.y += 25;
-				                boyfriend.x += 150;
+				                boyfriend.x += 175;
 				                dad.x += 1;
 				                dad.y += 1;
 						isPixelStage = false;
@@ -5134,16 +5134,16 @@ class PlayState extends MusicBeatState
 					case 2003:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-                                                camHUD.flash(FlxColor.WHITE, 2.5);
-						FlxTween.tween(camHUD, {alpha: 0}, 1.25, {ease: FlxEase.cubeInOut});
-                                                dadGroup.visible = false;
-                                                boyfriendGroup.visible = false;
-                                                gfGroup.visible = false;
-                                                soulSky.visible = false;
-						soulBalls.visible = false;
-						soulRocks.visible = false;
-						soulKai.visible = false;
-						soulFrontRocks.visible = false;
+                                                camHUD.flash(FlxColor.WHITE, 2.75);
+						FlxTween.tween(camHUD, {alpha: 0}, 0.75, {ease: FlxEase.cubeInOut});
+                                                dadGroup.alpha = 0;
+                                                boyfriendGroup.alpha = 0;
+                                                gfGroup.alpha = 0;
+                                                soulSky.alpha = 0;
+						soulBalls.alpha = 0;
+						soulRocks.alpha = 0;
+						soulKai.alpha = 0;
+						soulFrontRocks.alpha = 0;
 				}
 			}
 				
