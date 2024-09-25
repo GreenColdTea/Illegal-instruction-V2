@@ -5137,7 +5137,7 @@ class PlayState extends MusicBeatState
                                                 FlxG.camera.flash(FlxColor.WHITE, 2);
 						FlxTween.tween(camHUD, {alpha: 0}, 1.75, {ease: FlxEase.cubeInOut});
                                                 dadGroup.visible = false;
-                                                boyfriendfGroup.visible = false;
+                                                boyfriendGroup.visible = false;
                                                 gfGroup.visible = false;
                                                 soulSky.visible = false;
 						soulBalls.visible = false;
