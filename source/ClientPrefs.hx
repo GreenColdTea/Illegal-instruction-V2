@@ -155,7 +155,7 @@ class ClientPrefs {
 		FlxG.save.flush();
 
 		var save:FlxSave = new FlxSave();
-		save.bind('controls_v3', CoolUtil.getSavePath()); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
+		save.bind('controls_v3', 'Harbinger'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
 		save.data.customControls = keyBinds;
 		save.flush();
 		FlxG.log.add("Settings saved!");
@@ -299,7 +299,7 @@ class ClientPrefs {
 		}
 
 		var save:FlxSave = new FlxSave();
-		save.bind('controls_v3', CoolUtil.getSavePath());
+		save.bind('controls_v2', 'Harbinger');
 		if(save != null && save.data.customControls != null) {
 			var loadedControls:Map<String, Array<FlxKey>> = save.data.customControls;
 			for (control => keys in loadedControls) {
