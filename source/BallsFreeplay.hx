@@ -96,9 +96,10 @@ class BallsFreeplay extends MusicBeatState
     var maxJumpHeight:Float = 200; // Maximum height of our jump. Like reaching for the last slice of pizza.
     var jumpStartY:Float = 0; // Y position where we started jumping. Because you gotta know where you began your epic leap.
 
-    //Ima alone man, so i decided to add some funni comments
+    // Ima alone man, so i decided to add some funni comments
 
     public var songIndex:Int = 0;
+    static var lastSongIndex:Int = 0; // To keep the last selected song index
 
     override function create()
     {
@@ -195,6 +196,8 @@ class BallsFreeplay extends MusicBeatState
                 FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
 		FlxG.sound.music.fadeIn(4, 0, 0.85);
 	}
+
+	songIndex = lastSongIndex;
 
         super.create();
     }
@@ -341,6 +344,7 @@ class BallsFreeplay extends MusicBeatState
         if (controls.ACCEPT)
         {
             doTheLoad();
+	    lastSongIndex = songIndex;
         }
 
         if (controls.BACK)
