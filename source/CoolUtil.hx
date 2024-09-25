@@ -139,15 +139,4 @@ class CoolUtil
 		FlxG.openURL(site);
 		#end
 	}
-	inline public static function getSavePath():String {
-                final company:String = FlxG.stage.application.meta.get('company');
-                var fileName:String = FlxG.stage.application.meta.get('file');
-
-                function validateFileName(fileName:String):String {
-                    return fileName.replace(~/[<>:"\/\\|?*]/g, "_");
-		}
-
-                var validatedFileName:String = validateFileName(fileName);
-                return '${company}/${validatedFileName}';
-        }
 }
