@@ -140,9 +140,14 @@ class CoolUtil
 		#end
 	}
 	inline public static function getSavePath():String {
-		final company:String = FlxG.stage.application.meta.get('company');
-		// #if (flixel < "5.0.0") return company; #else
-		return '${company}/${flixel.util.FlxSave.validate(FlxG.stage.application.meta.get('file'))}';
-		// #end
-	}
+                final company:String = FlxG.stage.application.meta.get('company');
+                var fileName:String = FlxG.stage.application.meta.get('file');
+
+                function validateFileName(fileName:String):String {
+                    return fileName.replace(/[<>:\/\\|?*]/g, "_");
+                }
+
+                var validatedFileName:String = validateFileName(fileName);
+                return '${company}/${validatedFileName}';
+        }
 }
