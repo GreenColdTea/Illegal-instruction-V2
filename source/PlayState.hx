@@ -1589,6 +1589,7 @@ class PlayState extends MusicBeatState
 		trace(curSong.toLowerCase());
 		if(hudStyle.exists(curSong.toLowerCase())){
 			chaotixHUD = new FlxSpriteGroup(33, 0);
+			songNameHUD.visible = !ClientPrefs.hideHud;
 			var labels:Array<String> = [
 				"score",
 				"time",
@@ -5081,9 +5082,9 @@ class PlayState extends MusicBeatState
 						timeTxt.visible = false;
 						chaotixHUD.visible = true;
 						boyfriend.y -= 70;
-				                boyfriend.x -= 25;
-				                dad.x += 100;
-				                dad.y += 100;
+				                boyfriend.x -= 60;
+				                dad.x += 150;
+				                dad.y += 150;
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5098,7 +5099,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = !ClientPrefs.hideHud;
 						timeTxt.visible = !ClientPrefs.hideHud;
 						chaotixHUD.visible = false;
-				                songNameHUD.x += healthBarBG.y + 36;
+				                songNameHUD.x += healthBarBG.y + 36 - 150;
 
 						health = 1;
 						soulSky.visible = true;
@@ -5108,8 +5109,8 @@ class PlayState extends MusicBeatState
 						soulFrontRocks.visible = true;
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
-						boyfriend.y += 1;
-				                boyfriend.x += 50;
+						boyfriend.y += 15;
+				                boyfriend.x += 100;
 				                dad.x += 1;
 				                dad.y += 1;
 						isPixelStage = false;
