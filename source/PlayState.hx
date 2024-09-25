@@ -5083,8 +5083,8 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 200;
-				                dad.y += 200;
+				                dad.x += 210;
+				                dad.y += 210;
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5099,7 +5099,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = !ClientPrefs.hideHud;
 						timeTxt.visible = !ClientPrefs.hideHud;
 						chaotixHUD.visible = false;
-				                songNameHUD.x += healthBarBG.y + 36 - 100;
+				                songNameHUD.x -= healthBarBG.y + 36;
 
 						health = 1;
 						soulSky.visible = true;
@@ -5134,8 +5134,9 @@ class PlayState extends MusicBeatState
 					case 2003:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-                                                camHUD.flash(FlxColor.WHITE, 2.75);
-						FlxTween.tween(camHUD, {alpha: 0}, 0.75, {ease: FlxEase.cubeInOut});
+                                                camHUD.flash(FlxColor.WHITE, 3);
+						//FlxTween.tween(camHUD, {alpha: 0}, 0.75, {ease: FlxEase.cubeInOut});
+                                                camHUD.alpha = 0;
                                                 dadGroup.alpha = 0;
                                                 boyfriendGroup.alpha = 0;
                                                 gfGroup.alpha = 0;
