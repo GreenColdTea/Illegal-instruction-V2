@@ -5073,7 +5073,7 @@ class PlayState extends MusicBeatState
 				                if (ClientPrefs.downScroll) {
 				                    songNameHUD.x += healthBarBG.y + 36;
 			                        } else {
-                                                      songNameHUD.x -= healthBarBG.y + 36;
+                                                      songNameHUD.x -= healthBarBG.y + 36 - 125;
                                                 }
 						scoreTxt.visible = false;
 						fakeTimeBar.visible = false;
@@ -5131,7 +5131,7 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						defaultCamZoom = 0.8;
-					case 2003:
+					case 2004:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
                                                 camHUD.flash(FlxColor.WHITE, 3);
