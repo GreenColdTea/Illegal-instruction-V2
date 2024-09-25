@@ -76,7 +76,7 @@ jobs:
           haxelib set flixel 5.0.0
 
       - name: Compile
-        run: haxelib run lime build android
+        run: haxelib run lime build android --no-daemon
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
