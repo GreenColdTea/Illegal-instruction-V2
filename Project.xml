@@ -116,7 +116,7 @@
 	<haxelib name="hxcpp" />
 	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
 	<haxelib name="openfl" version="9.3.0" />
-	<lime version="8.0.1" />
+	<lime version="8.2.2" />
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
