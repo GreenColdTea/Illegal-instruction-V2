@@ -21,6 +21,13 @@ jobs:
     name: buildAndroid
     runs-on: ubuntu-latest
     steps:
+      - name: Increase swap memory
+        run: |
+          sudo dd if=/dev/zero of=/swapfile bs=128M count=64
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo chmod 600 /swapfile
+    
       - name: Checkout
         uses: actions/checkout@v2
 
