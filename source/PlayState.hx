@@ -345,9 +345,8 @@ class PlayState extends MusicBeatState
 	var whiteFuck:FlxSprite;
 	var whiteFuckDos:FlxSprite;
 	var redFuck:FlxSprite;
+	
 	// chaotix shit
-	// I AM WECHINDAAAAAAAAAA
-
 	var vistaBG:FlxSprite;
 	var vistaFloor:FlxSprite;
 	var vistaGrass:FlxSprite;
@@ -420,7 +419,7 @@ class PlayState extends MusicBeatState
 
 	// aughhhhhhhhhhhhhhhh
 	var hellBg:FlxSprite;
-	// my horizon wechidnaaaaaa
+	// I AM WECHINDAAAAAAAAAA
 	var horizonBGp1:FlxSprite;
 	var horizonBGp2:FlxSprite;
 	var horizonBGp3:FlxSprite;
