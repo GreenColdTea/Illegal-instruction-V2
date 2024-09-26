@@ -1020,7 +1020,7 @@ class PlayState extends MusicBeatState
 				horizonBGp3.scale.set(1.1, 1.1);
 				horizonBGp3.antialiasing = true;
 
-				horizonBGp4 = new FlxSprite(-350, -50);
+				horizonBGp4 = new FlxSprite(-375, -50);
 			        horizonBGp4.loadGraphic(Paths.image('horizon/bgpart4', 'exe'));
 				horizonBGp4.scrollFactor.set(0.75, 1);
 				horizonBGp4.scale.set(1.1, 1.1);
@@ -5083,8 +5083,8 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 210;
-				                dad.y += 210;
+				                dad.x += 250;
+				                dad.y += 250;
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5109,8 +5109,8 @@ class PlayState extends MusicBeatState
 						soulFrontRocks.visible = true;
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
-						boyfriend.y += 25;
-				                boyfriend.x += 175;
+						boyfriend.y += 50;
+				                boyfriend.x += 200;
 				                dad.x += 1;
 				                dad.y += 1;
 						isPixelStage = false;
@@ -5131,10 +5131,10 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
 						defaultCamZoom = 0.8;
-					case 2004:
+					case 2005:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-                                                camHUD.flash(FlxColor.WHITE, 3);
+                                                FlxG.camera.flash(FlxColor.WHITE, 3.5);
 						//FlxTween.tween(camHUD, {alpha: 0}, 0.75, {ease: FlxEase.cubeInOut});
                                                 camHUD.alpha = 0;
                                                 dadGroup.alpha = 0;
