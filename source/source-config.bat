@@ -2,9 +2,9 @@
 cls
 title Illegal Instructions Necessary Libraries Installer for Compiling
 echo.
-echo Setting flixel 5.0.0...
+echo Setting flixel 5.2.2...
 echo.
-haxelib set flixel 5.0.0 --quiet
+haxelib set flixel 5.2.2 --quiet
 echo.
 echo Setting flixel-addons 2.12.0...
 echo.
