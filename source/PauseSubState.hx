@@ -93,6 +93,9 @@ class PauseSubState extends MusicBeatSubstate
 		pauseArt.x = renderDistance * -1;
 	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
+	        if (PlayState.SONG.player2 == 'duke')
+		pauseArt.x = renderDistance * -1 + 100;
+	        pauseArt.y -= 525;
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += Std.string(PlayState.SONG.song).replace("-", " ");
