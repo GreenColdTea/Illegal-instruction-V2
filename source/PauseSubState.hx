@@ -93,9 +93,13 @@ class PauseSubState extends MusicBeatSubstate
 		pauseArt.x = renderDistance * -1;
 	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
-	        if (PlayState.SONG.player2 == 'duke')
+	        if (PlayState.SONG.player2 == 'duke') {
 		pauseArt.x = renderDistance * -1 + 100;
 	        pauseArt.y -= 525;
+		}
+	        else if (PlayState.SONG.player2 == 'chaotix' || PlayState.SONG.player2 == 'chaotix-rimlit') {
+	        pauseArt.y -= 400;
+		}
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += Std.string(PlayState.SONG.song).replace("-", " ");
