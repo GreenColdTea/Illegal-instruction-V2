@@ -5543,7 +5543,7 @@ class PlayState extends MusicBeatState
 		                bfSEFeet.alpha = 1;
 
                                 bfSEFeet.x = boyfriend.x + (boyfriend.width / 2) - (bfSEFeet.width / 2);
-                                bfSEFeet.y = boyfrien.y + boyfriend.height - bfSEFeet.height;
+                                bfSEFeet.y = boyfriend.y + boyfriend.height - bfSEFeet.height;
 			 case 0:
 				bfSEFeet.alpha = 0;
 		}
