@@ -344,6 +344,10 @@ class BallsFreeplay extends MusicBeatState
         if (controls.ACCEPT)
         {
             doTheLoad();
+	    characterText.ID = songIndex;
+	    songPlayable.ID = songIndex;
+	    songCharacter.ID = songIndex;
+	    songPortrait.ID = songIndex;
 	    lastSongIndex = songIndex;
         }
 
