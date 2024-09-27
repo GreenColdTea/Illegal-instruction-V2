@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-350,
+				-196
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "SEboyFriend Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-350,
+				-196
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "SEboyFriend Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-342,
+				-196
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "SEboyFriend Right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-357,
+				-196
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "SEboyFriend Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-350,
+				-196
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "SEboyFriend Up",
+			"indices": []
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/SEboyFriend",
+	"position": [
+		-560,
+		560
+	],
+	"healthicon": "bf-chaotix",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		140,
+		255
+	],
+	"camera_position": [
+		-400,
+		-90
+	],
+	"sing_duration": 4,
+	"scale": 6.79999999999999
+}

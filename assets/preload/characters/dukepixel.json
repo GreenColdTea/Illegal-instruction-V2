@@ -3,76 +3,76 @@
 		{
 			"offsets": [
 				0,
-				0
+				7
 			],
 			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "Left"
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "Down"
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "Up"
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Right"
-		},
-		{
-			"offsets": [
-				-1,
-				0
-			],
-			"loop": false,
-			"fps": 24,
+			"fps": 7,
 			"anim": "idle",
 			"indices": [],
-			"name": "Idle"
+			"name": "duke-pixel idle"
+		},
+		{
+			"offsets": [
+				40,
+				8
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "duke-pixel left"
+		},
+		{
+			"offsets": [
+				0,
+				7
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "duke-pixel down"
+		},
+		{
+			"offsets": [
+				-25,
+				7
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "duke-pixel right"
+		},
+		{
+			"offsets": [
+				30,
+				7
+			],
+			"loop": false,
+			"fps": 12,
+			"anim": "singUP",
+			"indices": [],
+			"name": "duke-pixel up"
 		}
 	],
 	"no_antialiasing": true,
-	"image": "characters/SoullessEndeavoursGaming",
+	"image": "characters/duke-pixel",
 	"position": [
-		0,
-		-80
+		210,
+		-5
 	],
 	"healthicon": "duke-pixel",
 	"flip_x": false,
 	"healthbar_colors": [
-		214,
-		25,
-		82
+		176,
+		28,
+		0
 	],
 	"camera_position": [
-		-760,
-		-610
+		-1270,
+		-660
 	],
 	"sing_duration": 6.1,
-	"scale": 4.95
+	"scale": 5.00000000000001
 }
