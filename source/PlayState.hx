@@ -736,6 +736,17 @@ class PlayState extends MusicBeatState
 				soulFrontRocks.antialiasing = true;
 				add(soulFrontRocks);
 
+				//bf pixel feet
+				bfSEFeet = new FlxSprite(300, 150);
+				bfSEFeet.frames = Paths.getSparrowAtlas('soulless/SEbfFeet', 'exe');
+				bfSEFeet.animation.addByPrefix('idle', 'SEbfFeet Run', 24, true);
+				bfSEFeet.animation.play('idle');
+				bfSEFeet.scrollFactor.set(1, 1);
+				bfSEFeet.antialiasing = false;
+				bfSEFeet.scale.set(6.79, 6.79);
+				bfSEFeet.alpha = 0;
+				add(bfSEFeet);
+
 				//the actual bg
 				soulPixelBgBg = new FlxSprite(300, 150);
 				soulPixelBgBg.loadGraphic(Paths.image('soulless/pixelbg', 'exe'));
@@ -5085,6 +5096,7 @@ class PlayState extends MusicBeatState
 				                boyfriend.x -= 85;
 				                dad.x += 250;
 				                dad.y += 250;
+                                                bfFeetAppear(1)
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5113,6 +5125,7 @@ class PlayState extends MusicBeatState
 				                boyfriend.x += 200;
 				                dad.x += 1;
 				                dad.y += 1;
+                                                bfFeetAppear(0)
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
@@ -5520,6 +5533,20 @@ class PlayState extends MusicBeatState
 					fuckedTails.visible = true;
 			}
 		}
+			
+	function bfFeetAppear(hello:Int) 
+        {
+		switch (hello)
+		{
+		         case 1:	
+		                bfSEFeet.alpha = 1;
+
+                                bfSEFeet.x = boyfriend.x + (boyfriend.width / 2) - (bfSEFeet.width / 2);
+                                bfSEFeet.y = boyfrien.y + boyfriend.height - bfSEFeet.height;
+			 case 0:
+				bfSEFeet.alpha = 0;
+		}
+	}
 
 
 	function staticEvent()
