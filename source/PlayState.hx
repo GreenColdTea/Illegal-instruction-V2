@@ -417,6 +417,7 @@ class PlayState extends MusicBeatState
 	var soulPixelBg:FlxSprite;
 	var soulPixelBgBg:FlxSprite;
 	//final frontier
+	
 
 	// aughhhhhhhhhhhhhhhh
 	var hellBg:FlxSprite;
