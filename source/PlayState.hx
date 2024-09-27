@@ -5096,7 +5096,7 @@ class PlayState extends MusicBeatState
 				                boyfriend.x -= 85;
 				                dad.x += 250;
 				                dad.y += 250;
-                                                bfFeetAppear(1)
+                                                bfFeetAppear(1);
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
@@ -5125,7 +5125,7 @@ class PlayState extends MusicBeatState
 				                boyfriend.x += 200;
 				                dad.x += 1;
 				                dad.y += 1;
-                                                bfFeetAppear(0)
+                                                bfFeetAppear(0);
 						isPixelStage = false;
 						reloadTheNotesPls();
 				                Paths.clearUnusedMemory();
