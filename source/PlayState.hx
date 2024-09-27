@@ -745,7 +745,7 @@ class PlayState extends MusicBeatState
 				bfSEFeet.animation.play('idle');
 				bfSEFeet.scrollFactor.set(1, 1);
 				bfSEFeet.antialiasing = false;
-				bfSEFeet.scale.set(6.79, 6.79);
+				bfSEFeet.scale.set(8, 8);
 				bfSEFeet.visible = false;
 				add(bfSEFeet);
 
@@ -5097,8 +5097,8 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 200;
-				                dad.y += 200;
+				                dad.x += 150;
+				                dad.y += 150;
                                                 bfFeetAppear(1);
 					case 1439:
 						theStatic.visible = true;
