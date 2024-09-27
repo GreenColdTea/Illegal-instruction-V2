@@ -208,7 +208,7 @@ class BallsFreeplay extends MusicBeatState
     // menu elements recreation
     public function createMenuElements():Void {
         for (i in 0...songs.length) {
-            public var songPortrait:FlxSprite = new FlxSprite();
+            var songPortrait:FlxSprite = new FlxSprite();
             songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[i]));
             songPortrait.screenCenter();
             songPortrait.antialiasing = false;
@@ -218,7 +218,7 @@ class BallsFreeplay extends MusicBeatState
             songPortrait.ID = i;
             screenInfo.add(songPortrait);
 
-            public var songCharacter:FlxSprite = new FlxSprite();
+            var songCharacter:FlxSprite = new FlxSprite();
             songCharacter.frames = Paths.getSparrowAtlas('freeplay/characters/' + characters[i]);
             songCharacter.animation.addByPrefix('idle', characters[i], 24, true);
             songCharacter.animation.play('idle');
@@ -230,7 +230,7 @@ class BallsFreeplay extends MusicBeatState
             songCharacter.ID = i;
             screenCharacters.add(songCharacter);
 
-            public var songPlayable:FlxSprite = new FlxSprite();
+            var songPlayable:FlxSprite = new FlxSprite();
             songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
             songPlayable.animation.addByPrefix('idle', playables[i], 18, true);
             songPlayable.animation.play('idle');
@@ -242,7 +242,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.ID = i;
             screenPlayers.add(songPlayable);
 
-	    public var characterText = new FlxText(0, 0, songs[i]);
+	    var characterText = new FlxText(0, 0, songs[i]);
 	    characterText.updateHitbox();
             characterText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.RED, LEFT);
             characterText.x += 50;
@@ -344,11 +344,8 @@ class BallsFreeplay extends MusicBeatState
         if (controls.ACCEPT)
         {
             doTheLoad();
-	    characterText.ID = songIndex;
-	    songPlayable.ID = songIndex;
-	    songCharacter.ID = songIndex;
-	    songPortrait.ID = songIndex;
 	    lastSongIndex = songIndex;
+	    updateScreen();
         }
 
         if (controls.BACK)
