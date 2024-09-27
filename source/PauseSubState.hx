@@ -95,10 +95,10 @@ class PauseSubState extends MusicBeatSubstate
 		pauseArt.alpha = 0;
 	        if (PlayState.SONG.player2 == 'duke') {
 		pauseArt.x = renderDistance * -1 + 100;
-	        pauseArt.y -= 525;
+	        pauseArt.y -= 425;
 		}
 	        else if (PlayState.SONG.player2 == 'chaotix' || PlayState.SONG.player2 == 'chaotix-rimlit') {
-	        pauseArt.y -= 400;
+	        pauseArt.y -= 500;
 		}
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
