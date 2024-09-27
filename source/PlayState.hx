@@ -410,6 +410,7 @@ class PlayState extends MusicBeatState
 	var soulSky:FlxSprite;
 	var soulBalls:FlxSprite; 
 	//Hahahaha its balls, get it
+	var bfSEFeet:FlxSprite;
 	var soulRocks:FlxSprite;
 	var soulKai:FlxSprite;
 	var soulFrontRocks:FlxSprite;
