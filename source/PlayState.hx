@@ -738,14 +738,14 @@ class PlayState extends MusicBeatState
 				add(soulFrontRocks);
 
 				//bf pixel feet
-				bfSEFeet = new FlxSprite(300, 150);
+				bfSEFeet = new FlxSprite();
 				bfSEFeet.frames = Paths.getSparrowAtlas('soulless/SEbfFeet', 'exe');
 				bfSEFeet.animation.addByPrefix('idle', 'SEbfFeet Run', 24, true);
 				bfSEFeet.animation.play('idle');
 				bfSEFeet.scrollFactor.set(1, 1);
 				bfSEFeet.antialiasing = false;
 				bfSEFeet.scale.set(6.79, 6.79);
-				bfSEFeet.alpha = 0;
+				bfSEFeet.visible = false;
 				add(bfSEFeet);
 
 				//the actual bg
@@ -5085,8 +5085,9 @@ class PlayState extends MusicBeatState
 				                if (ClientPrefs.downScroll) {
 				                    songNameHUD.x += healthBarBG.y + 36;
 			                        } else {
-                                                      songNameHUD.x -= healthBarBG.y + 36 - 125;
+                                                      songNameHUD.x -= healthBarBG.y + 36 + 125;
                                                 }
+
 						scoreTxt.visible = false;
 						fakeTimeBar.visible = false;
 						timeBar.visible = false;
@@ -5095,8 +5096,8 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 250;
-				                dad.y += 250;
+				                dad.x += 200;
+				                dad.y += 200;
                                                 bfFeetAppear(1);
 					case 1439:
 						theStatic.visible = true;
@@ -5540,12 +5541,12 @@ class PlayState extends MusicBeatState
 		switch (hello)
 		{
 		         case 1:	
-		                bfSEFeet.alpha = 1;
+		                bfSEFeet.visible = true;
 
                                 bfSEFeet.x = boyfriend.x + (boyfriend.width / 2) - (bfSEFeet.width / 2);
                                 bfSEFeet.y = boyfriend.y + boyfriend.height - bfSEFeet.height;
 			 case 0:
-				bfSEFeet.alpha = 0;
+				bfSEFeet.visible = false;
 		}
 	}
 
