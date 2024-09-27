@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="SEbfFeet.png">
+<SubTexture name="SEbfFeet Run0000" x="0" y="0" width="16" height="8" frameX="0" frameY="0" frameWidth="17" frameHeight="8" />
+<SubTexture name="SEbfFeet Run0001" x="0" y="8" width="16" height="8" frameX="-1" frameY="0" frameWidth="17" frameHeight="8" />
+<SubTexture name="SEbfFeet Run0002" x="16" y="0" width="16" height="8" frameX="-1" frameY="0" frameWidth="17" frameHeight="8" />
+<SubTexture name="SEbfFeet Run0003" x="16" y="8" width="16" height="8" frameX="0" frameY="0" frameWidth="17" frameHeight="8" />
+</TextureAtlas>
