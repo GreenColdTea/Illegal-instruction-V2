@@ -1016,6 +1016,23 @@ class PlayState extends MusicBeatState
 				mightyBopFucked.visible = false;
 				knuxBopFucked.visible = false;
 
+			case 'emerald':
+				var ehzBG:FlxSprite = new FlxSprite();
+				ehzBG.loadGraphic(Paths.image('emerald/ehzback', 'exe');
+				ehzBG.screenCenter();
+				ehzBG.scrollFactor.set(0.8, 1);
+				ehzBG.scale.set(1.25, 1.25);
+				ehzBG.antialiasing = true;
+				add(ehzBG);
+
+				var ehzGround:FlxSprite = new FlxSprite();
+				ehzGround.frames = Paths.getSparrowAtlas('emerald/EHZGROUND', 'exe');
+				ehzGround.animation.addByPrefix('waterfall', 'EHZGROUND', 24, true);
+				ehzGround.scale.set(1.1, 1.1);
+				ehzGround.antialiasing = true;
+				ehzGround.screenCenter();
+				add(ehzGround);
+
 			case 'horizon':
 				horizonBGp1 = new FlxSprite(-350, -50);
 				horizonBGp1.loadGraphic(Paths.image('horizon/bgpart1', 'exe'));
@@ -1811,13 +1828,14 @@ class PlayState extends MusicBeatState
                     startCircle.loadGraphic(Paths.image('openings/' + daSong + '_title_card', 'exe'));
                     startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
                     startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
-
-                    if (daSong != "my-horizon" || daSong != "cascade")
-                        startCircle.scale.set(2, 1.5);
-		    else if (daSong == "cascade")
-			startCircle.scale.set(2, 2.5);
-		    else if (daSong == "my-horizon")
-                        startCircle.scale.set(0.5, 0.5);
+                    startCircle.scale.set(2, 1.5);
+			
+		    if (SONG.song.toLowerCase() == 'cascade') {
+			startCircle.scale.set(2, 1.75);
+		    }
+		    else if (SONG.song.toLowerCase() == 'my-horizon') {
+                        startCircle.scale.set(1, 1);
+		    }
 		    
                     startCircle.alpha = 0;
                     startCircle.screenCenter();
@@ -1879,7 +1897,7 @@ class PlayState extends MusicBeatState
                         });
                     });
 
-                    new FlxTimer().start(3.35, function(tmr:FlxTimer)
+                    new FlxTimer().start(3.4, function(tmr:FlxTimer)
                     {
                         startCountdown();
                     });  
