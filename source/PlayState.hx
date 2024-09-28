@@ -5086,7 +5086,7 @@ class PlayState extends MusicBeatState
 				                if (ClientPrefs.downScroll) {
 				                    songNameHUD.x += healthBarBG.y + 36;
 			                        } else {
-                                                      songNameHUD.x -= healthBarBG.y + 36 + 125;
+                                                      songNameHUD.x -= healthBarBG.y + 36 - 225;
                                                 }
 
 						scoreTxt.visible = false;
@@ -5097,7 +5097,7 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 150;
+				                dad.x += 100;
 				                dad.y += 150;
                                                 bfFeetAppear(1);
 					case 1439:
