@@ -39,6 +39,7 @@ class MusicVisualizerState extends MusicBeatState {
         // first track loading
         loadCurrentTrack();
 
+	// logo
         logo = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
         logo.loadGraphic(Paths.image("logo"));
         logo.scale.set(1, 1);
