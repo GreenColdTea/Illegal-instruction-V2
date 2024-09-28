@@ -1018,7 +1018,7 @@ class PlayState extends MusicBeatState
 
 			case 'emerald':
 				var ehzBG:FlxSprite = new FlxSprite();
-				ehzBG.loadGraphic(Paths.image('emerald/ehzback', 'exe');
+				ehzBG.loadGraphic(Paths.image('emerald/ehzback', 'exe'));
 				ehzBG.screenCenter();
 				ehzBG.scrollFactor.set(0.8, 1);
 				ehzBG.scale.set(1.25, 1.25);
