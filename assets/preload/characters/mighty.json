@@ -1,77 +1,88 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
-				0,
-				0
+				-177,
+				-36
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "Mightyidle",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				163,
-				8
-			],
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Mightyleft",
-			"indices": []
+			"indices": [],
+			"name": "Mightyleft"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				10,
-				-50
+				-281,
+				-88
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Mightydown",
-			"indices": []
+			"indices": [],
+			"name": "Mightydown"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				60,
-				60
+				-269,
+				12
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
+			"indices": [],
+			"name": "Mightyup"
+		},
+		{
+			"offsets": [
+				-288,
+				-32
+			],
+			"loop": false,
+			"fps": 23,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Mightyright"
+		},
+		{
+			"loop": true,
+			"offsets": [
+				-230,
+				-32
+			],
+			"anim": "play",
 			"fps": 24,
-			"name": "Mightyup",
+			"name": "illsaveyou",
 			"indices": []
 		},
 		{
 			"loop": false,
 			"offsets": [
-				2,
-				16
+				-332,
+				-41
 			],
-			"anim": "singRIGHT",
+			"anim": "play2",
 			"fps": 24,
-			"name": "Mightyright",
+			"name": "knuckles",
 			"indices": []
 		},
 		{
 			"offsets": [
-				108,
-				7
+				-325,
+				-40
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "illsave",
+			"anim": "idle",
 			"loop": false,
-			"name": "illsaveyou"
+			"name": "Mightyidle"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/mighty",
 	"position": [
-		160,
-		140
+		300,
+		510
 	],
 	"healthicon": "mighty",
 	"flip_x": true,
@@ -81,9 +92,9 @@
 		0
 	],
 	"camera_position": [
-		110,
-		30
+		-260,
+		-30
 	],
-	"sing_duration": 6.1,
-	"scale": 1.1
+	"sing_duration": 4,
+	"scale": 1
 }
