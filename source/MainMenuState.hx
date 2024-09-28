@@ -325,8 +325,13 @@ class MainMenuState extends MusicBeatState
 				{
 					MusicBeatState.switchState(new FreeplayState());
 				}
-			#end	
-			if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonC.justPressed #end)
+			#end
+			if (FlxG.keys.justPressed.ONE #if mobile || _virtualpad.buttonC.justPressed #end)
+			{
+				selectedSomethin = true;
+				MusicBeatState.switchState(new MusicVisualizerState());
+			}
+			if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonE.justPressed #end)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
