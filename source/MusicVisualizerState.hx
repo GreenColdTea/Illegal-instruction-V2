@@ -163,7 +163,7 @@ class MusicVisualizerState extends MusicBeatState {
         }
 
         // handle slider seeking with the mouse
-        if (FlxG.mouse.pressed() && FlxG.mouse.overlaps(slider)) {
+        if (FlxG.mouse.pressed && FlxG.mouse.overlaps(slider)) {
             musicII.time = slider.value;
         }
     }
