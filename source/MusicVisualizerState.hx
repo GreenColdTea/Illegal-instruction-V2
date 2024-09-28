@@ -39,15 +39,6 @@ class MusicVisualizerState extends MusicBeatState {
         // first track loading
         loadCurrentTrack();
 
-	// logo
-        logo = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-        logo.loadGraphic(Paths.image("logo"));
-        logo.scale.set(1, 1);
-        logo.setGraphicSize(150, 150);
-	logo.screenCenter(X);
-        logo.updateHitbox();
-        add(logo);
-
         // BG
         entranceBG = new FlxSprite(-325, -50);
         entranceBG.loadGraphic(Paths.image('entrance/bg', 'exe'));
@@ -90,10 +81,20 @@ class MusicVisualizerState extends MusicBeatState {
 	add(entranceOver);
 
         // add text to display track name
-        trackNameText = new FlxText(0, 500, FlxG.width, 'Now playing:' + musicList[currentTrack].name);
+        trackNameText = new FlxText(0, 500, FlxG.width, 'Now playing: ' + musicList[currentTrack].name);
         trackNameText.size = 16;
+	trackNameText.text = 'Now playing: ' + musicList[currentTrack].name;
         trackNameText.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, "left");
         add(trackNameText);
+
+	// logo
+        logo = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
+        logo.loadGraphic(Paths.image("logo"));
+        logo.scale.set(1, 1);
+        logo.setGraphicSize(150, 150);
+	logo.screenCenter(X);
+        logo.updateHitbox();
+        add(logo);
 
         // create an array of bars for the visualizer
         bars = [];
@@ -132,7 +133,7 @@ class MusicVisualizerState extends MusicBeatState {
         musicII.loadEmbedded(musicList[currentTrack].path, true);
         musicII.play();
         // update track name text
-        trackNameText.text = musicList[currentTrack].name;
+        trackNameText.text = 'Now playing: ' + musicList[currentTrack].name;
 
         // set slider's max range to the track length
         slider.setRange(0, musicII.length);
