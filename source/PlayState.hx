@@ -1020,14 +1020,15 @@ class PlayState extends MusicBeatState
 				var ehzBG:FlxSprite = new FlxSprite();
 				ehzBG.loadGraphic(Paths.image('emerald/ehzback', 'exe'));
 				ehzBG.screenCenter();
-				ehzBG.scrollFactor.set(0.8, 1);
+				ehzBG.y -= 50
+				ehzBG.scrollFactor.set(0.7, 1);
 				ehzBG.scale.set(1.25, 1.25);
 				ehzBG.antialiasing = true;
 				add(ehzBG);
 
 				var ehzGround:FlxSprite = new FlxSprite();
 				ehzGround.frames = Paths.getSparrowAtlas('emerald/EHZGROUND', 'exe');
-				ehzGround.animation.addByPrefix('waterfall', 'EHZGROUND', 24, true);
+				ehzGround.animation.addByPrefix('waterfall', 'EHZGROUND ', 24, true);
 				ehzGround.scale.set(1.1, 1.1);
 				ehzGround.antialiasing = true;
 				ehzGround.screenCenter();
