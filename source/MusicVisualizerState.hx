@@ -104,8 +104,8 @@ class MusicVisualizerState extends MusicBeatState {
         }
 
         // slider for track seeking positioned below center and colored green
-        slider = new FlxBar(50, FlxG.height - 100, FlxBar.FILL_LEFT_TO_RIGHT, 200, 10);
-        slider.createFilledBar(FlxColor.PURPLE, FlxColor.GREEN); // color: purple background, green fill
+        slider = new FlxBar(50, FlxG.height - 100, 1, 200, 10);
+        slider.createFilledBar(FlxColor.PURPLE, FlxColor.GREEN);
         add(slider);
 
         // current track time (position)
@@ -198,7 +198,7 @@ class MusicVisualizerState extends MusicBeatState {
 	}
     }
 
-    public function switchToBack() 
+    public function ByeBye() 
     {
 	FlxG.sound.play(Paths.sound('cancelMenu'));
 	#if !mobile
