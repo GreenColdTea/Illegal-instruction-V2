@@ -3,7 +3,7 @@ package;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxG;
-import flixel.FlxSound;
+import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.ui.FlxBar;
