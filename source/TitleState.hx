@@ -551,7 +551,7 @@ class TitleState extends MusicBeatState
 		{
 				remove(ngSpr);
 				remove(credGroup);
-				FlxG.camera.flash(FlxColor.PURPLE, 4);
+				FlxG.camera.flash(FlxColor.PURPLE, 3.99);
 				floorStuff.animation.play('lol');
 			        wechniaMenu.animation.play('idle');
 			        chaotixMenu.animation.play('idle');
