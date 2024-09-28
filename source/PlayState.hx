@@ -745,6 +745,7 @@ class PlayState extends MusicBeatState
 				bfSEFeet.frames = Paths.getSparrowAtlas('soulless/SEbfFeet', 'exe');
 				bfSEFeet.animation.addByPrefix('idle', 'SEbfFeet Run', 24, true);
 				bfSEFeet.animation.play('idle');
+				bfSEFeet.screenCenter();
 				bfSEFeet.scrollFactor.set(1, 1);
 				bfSEFeet.antialiasing = false;
 				bfSEFeet.scale.set(8, 8);
@@ -5124,8 +5125,8 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = false;
 						timeTxt.visible = false;
 						chaotixHUD.visible = true;
-						boyfriend.y -= 75;
-				                boyfriend.x -= 85;
+						boyfriend.y -= 100;
+				                boyfriend.x -= 125;
                                                 dad.x -= 75;
 				                dad.y += 150;
                                                 bfFeetAppear(1);
