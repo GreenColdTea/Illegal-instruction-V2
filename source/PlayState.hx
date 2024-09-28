@@ -1017,10 +1017,17 @@ class PlayState extends MusicBeatState
 				knuxBopFucked.visible = false;
 
 			case 'emerald':
+                                var ehzSkyFull:FlxSprite = new FlxSprite();
+				ehzSkyFull.loadGraphic(Paths.image('emerald/blue', 'exe'));
+				ehzSkyFull.screenCenter();
+				ehzSkyFull.y -= 100;
+				ehzSkyFull.scale.set(2.5, 2.5);
+				ehzSkyFull.antialiasing = true;
+				add(ehzSkyFull);
+				
 				var ehzBG:FlxSprite = new FlxSprite();
 				ehzBG.loadGraphic(Paths.image('emerald/ehzback', 'exe'));
 				ehzBG.screenCenter();
-				ehzBG.y -= 100;
 				ehzBG.scrollFactor.set(0.7, 1);
 				ehzBG.scale.set(1.3, 1.3);
 				ehzBG.antialiasing = true;
