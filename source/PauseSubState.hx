@@ -95,7 +95,7 @@ class PauseSubState extends MusicBeatSubstate
 		pauseArt.alpha = 0;
 	        if (PlayState.SONG.player2 == 'duke') {
 		pauseArt.x = renderDistance * -1 + 150;
-	        pauseArt.y += 125;
+	        pauseArt.y += 200;
 		}
 	        else if (PlayState.SONG.player2 == 'chaotix' || PlayState.SONG.player2 == 'chaotix-rimlit') {
 		pauseArt.x = renderDistance * -1 - 50;
