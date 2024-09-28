@@ -1029,6 +1029,7 @@ class PlayState extends MusicBeatState
 				var ehzGround:FlxSprite = new FlxSprite();
 				ehzGround.frames = Paths.getSparrowAtlas('emerald/EHZGROUND', 'exe');
 				ehzGround.animation.addByPrefix('waterfall', 'EHZGROUND', 24, true);
+				ehzGround.animation.play('waterfall');
 				ehzGround.scale.set(1.75, 1.75);
 				ehzGround.antialiasing = true;
 				ehzGround.screenCenter();
@@ -5107,7 +5108,7 @@ class PlayState extends MusicBeatState
 				                if (ClientPrefs.downScroll) {
 				                    songNameHUD.x += healthBarBG.y + 36;
 			                        } else {
-                                                      songNameHUD.x -= healthBarBG.y + 36 - 325;
+                                                      songNameHUD.x -= healthBarBG.y + 36 - 375;
                                                 }
 
 						scoreTxt.visible = false;
@@ -5118,7 +5119,6 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 75;
 				                boyfriend.x -= 85;
-				                dad.x += 50;
 				                dad.y += 150;
                                                 bfFeetAppear(1);
 					case 1439:
@@ -5171,7 +5171,7 @@ class PlayState extends MusicBeatState
 					case 2005:
 						wowZoomin = false;
 						holyFuckStopZoomin = false;
-                                                FlxG.camera.flash(FlxColor.WHITE, 3.5);
+                                                FlxG.camera.flash(FlxColor.WHITE, 3.35);
 						//FlxTween.tween(camHUD, {alpha: 0}, 0.75, {ease: FlxEase.cubeInOut});
                                                 camHUD.alpha = 0;
                                                 dadGroup.alpha = 0;
