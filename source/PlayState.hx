@@ -1020,7 +1020,7 @@ class PlayState extends MusicBeatState
 				var ehzBG:FlxSprite = new FlxSprite();
 				ehzBG.loadGraphic(Paths.image('emerald/ehzback', 'exe'));
 				ehzBG.screenCenter();
-				ehzBG.y -= 50
+				ehzBG.y -= 50;
 				ehzBG.scrollFactor.set(0.7, 1);
 				ehzBG.scale.set(1.25, 1.25);
 				ehzBG.antialiasing = true;
