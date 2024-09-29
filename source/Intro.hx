@@ -61,7 +61,7 @@ class Intro extends MusicBeatState
 	{
 	    if (touch.justPressed)
 	    {
-                MusicBeatState.switchState(new TitleState());
+                LoadingState.loadAndSwitchState(new TitleState());
 	    }
         }
 	#end
