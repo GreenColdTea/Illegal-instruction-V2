@@ -51,6 +51,9 @@ class Intro extends MusicBeatState
             MusicBeatState.switchState(new TitleState());
         }
         video.playVideo(Paths.video('II_Intro'));
+	#if android
+	addVirtualPad(NONE, NONE);
+	#end
     }
     override public function update(elapsed:Float)
     {
