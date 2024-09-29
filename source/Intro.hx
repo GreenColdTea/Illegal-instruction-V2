@@ -13,8 +13,8 @@ class Intro extends MusicBeatState
 {
     override public function create()
     {
-		FlxG.mouse.visible = false;
-		FlxG.sound.volume = 10;
+	FlxG.mouse.visible = false;
+	FlxG.sound.volume = 10;
 
         FlxG.sound.muteKeys = [];
         FlxG.sound.volumeDownKeys = [];
