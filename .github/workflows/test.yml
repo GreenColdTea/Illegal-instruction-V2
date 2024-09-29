@@ -47,7 +47,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install openfl 9.3.4 --quiet --silent
           haxelib --never install flixel 5.2.2 --quiet --silent
-          haxelib install lime 8.0.1 --quiet --silent
+          haxelib install lime 8.1.3 --quiet --silent
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools --quiet
           haxelib install flixel-ui --quiet
@@ -69,7 +69,7 @@ jobs:
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME_17_X64
           haxelib run lime config ANDROID_SETUP true
-          haxelib set lime 8.0.1
+          haxelib set lime 8.1.3
           haxelib set openfl 9.3.4
           haxelib set hscript 2.4.0
           haxelib set flixel-addons 2.12.0
