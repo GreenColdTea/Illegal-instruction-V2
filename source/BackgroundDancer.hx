@@ -21,7 +21,6 @@ class BackgroundDancer extends FlxSprite
 	public function dance():Void
 	{
 		danceDir = !danceDir;
-
 		if (danceDir)
 			animation.play('danceRight', true);
 		else
