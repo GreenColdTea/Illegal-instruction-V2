@@ -28,7 +28,7 @@
 				-342,
 				-196
 			],
-			"anim": "singRIGHT",
+			"anim": "singLEFT",
 			"fps": 24,
 			"name": "SEboyFriend Right",
 			"indices": []
@@ -39,7 +39,7 @@
 				-357,
 				-196
 			],
-			"anim": "singLEFT",
+			"anim": "singRIGHT",
 			"fps": 24,
 			"name": "SEboyFriend Left",
 			"indices": []
