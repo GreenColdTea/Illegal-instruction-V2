@@ -5130,7 +5130,7 @@ class PlayState extends MusicBeatState
 						chaotixHUD.visible = true;
 						boyfriend.y -= 115;
 				                boyfriend.x -= 150;
-                                                dad.x -= 25;
+                                                dad.x -= 20;
 				                dad.y += 150;
                                                 bfFeetAppear(1);
 					case 1439:
