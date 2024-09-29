@@ -34,10 +34,15 @@ class Intro extends MusicBeatState
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
-        
-        if (FlxG.touches.justPressed)
-        {
-            MusicBeatState.switchState(new TitleState());
+
+	#if mobile
+        for (touch in FlxG.touches.list)
+	{
+	    if (touch.justPressed)
+	    {
+                MusicBeatState.switchState(new TitleState());
+	    }
         }
+	#end
     }
 }
