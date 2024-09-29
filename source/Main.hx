@@ -45,6 +45,10 @@ class Main extends Sprite
     // You can pretty much ignore everything from here on - your code should go in your states.
     public static var path:String = System.applicationStorageDirectory;
 
+    static final videva:Array<String> = [
+           "II_Intro"
+    ];
+
     public static function main():Void
     {
         Lib.current.addChild(new Main());
@@ -115,6 +119,13 @@ class Main extends Sprite
 	if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		FileSystem.createDirectory(Generic.returnPath() + 'assets');
         }
+	if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
+		FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
+	}
+
+	for (video in videva) {
+		Generic.copyContent(Paths._video(video), Paths._video(video));
+	}
 
         ClientPrefs.loadDefaultKeys();
 	// fuck you, persistent caching stays ON during sex
