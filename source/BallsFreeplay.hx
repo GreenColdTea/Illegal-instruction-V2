@@ -154,8 +154,8 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.scale.set(2, 1.5);
 	screenLogo.screenCenter(X);
 	screenLogo.updateHitbox();
-	screenLogo.x -= 88;
-	screenLogo.y += 57;
+	screenLogo.x -= 90;
+	screenLogo.y += 60;
 	add(screenLogo);
 
 	player = new FlxSprite(455, 250);
@@ -255,6 +255,7 @@ class BallsFreeplay extends MusicBeatState
 
     // screen update command
     public function updateScreen():Void {
+	lastSongIndex = songIndex;
         for (sprite in screenInfo.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
