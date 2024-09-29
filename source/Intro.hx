@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
 import flixel.system.FlxSound;
 import hxcodec.VideoHandler;
+
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
