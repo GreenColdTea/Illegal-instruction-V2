@@ -11,7 +11,7 @@
 				"$haxe-error",
 				"$haxe-trace"
 			],
-			"label": "lime: test windows -debug",
+			"label": "lime: test windows -debug -D hxcpp_msvc_custom=1",
 			"group": {
 				"kind": "build",
 				"isDefault": false

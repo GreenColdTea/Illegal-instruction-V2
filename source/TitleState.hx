@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 	var mustUpdate:Bool = false;
 	
-	var wechniaSpeed:Float = 4.69;
+	var wechniaSpeed:Float = 5.25;
 	
 	public static var updateVersion:String = '';
 
@@ -276,15 +276,15 @@ class TitleState extends MusicBeatState
 		floorStuff.updateHitbox();
 		floorStuff.screenCenter();
 
-		wechniaMenu = new FlxSprite(500, 0);
+		wechniaMenu = new FlxSprite(525, 0);
 		wechniaMenu.frames = Paths.getSparrowAtlas('title/wechniamenu');
 		wechniaMenu.antialiasing = false;
 		wechniaMenu.screenCenter(Y);
-		wechniaMenu.x += 500;
+		wechniaMenu.x += 525;
 		wechniaMenu.y -= 150;
 		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
-		wechniaMenu.scale.x = 3;
-		wechniaMenu.scale.y = 3;
+		wechniaMenu.scale.x = 3.25;
+		wechniaMenu.scale.y = 3.25;
 		wechniaMenu.updateHitbox();
 
 		chaotixMenu = new FlxSprite();
@@ -292,8 +292,8 @@ class TitleState extends MusicBeatState
 		chaotixMenu.antialiasing = false;
 		chaotixMenu.screenCenter();
 		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 25, true);
-		chaotixMenu.scale.x = 3;
-		chaotixMenu.scale.y = 3;
+		chaotixMenu.scale.x = 3.25;
+		chaotixMenu.scale.y = 3.25;
 		chaotixMenu.x -= 250;
 		chaotixMenu.y += 25;
 		chaotixMenu.updateHitbox();
@@ -302,8 +302,8 @@ class TitleState extends MusicBeatState
 		wechMenu.frames = Paths.getSparrowAtlas('title/wechmenu');
 		wechMenu.screenCenter();
 		wechMenu.antialiasing = false;
-		wechMenu.scale.x = 3;
-		wechMenu.scale.y = 3;
+		wechMenu.scale.x = 3.25;
+		wechMenu.scale.y = 3.25;
 		wechMenu.x += 80;
 		wechMenu.y += 25;
 		wechMenu.animation.addByPrefix('idle', 'wechmenu', 25, true);
@@ -311,8 +311,8 @@ class TitleState extends MusicBeatState
 
 		dukeMenu = new FlxSprite();
 		dukeMenu.screenCenter();
-		dukeMenu.scale.x = 3;
-		dukeMenu.scale.y = 3;
+		dukeMenu.scale.x = 3.25;
+		dukeMenu.scale.y = 3.25;
 		dukeMenu.x -= 75;
 		dukeMenu.y += 50;
 		dukeMenu.frames = Paths.getSparrowAtlas('title/dukemenu');
@@ -322,10 +322,10 @@ class TitleState extends MusicBeatState
 
 		ashuraMenu = new FlxSprite();
 		ashuraMenu.screenCenter();
-		ashuraMenu.scale.x = 3;
-		ashuraMenu.scale.y = 3;
+		ashuraMenu.scale.x = 3.25;
+		ashuraMenu.scale.y = 3.25;
 		ashuraMenu.x -= 475;
-		ashuraMenu.y += 45;
+		ashuraMenu.y += 35;
 		ashuraMenu.frames = Paths.getSparrowAtlas('title/ashuramenu');
 		ashuraMenu.antialiasing = false;
 		ashuraMenu.animation.addByPrefix('idle', 'ashuramenu', 25, true);
@@ -412,7 +412,7 @@ class TitleState extends MusicBeatState
                 var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
 		
 		if (wechniaMenu != null) 
-                        wechniaMenu.x = 500 + 450 * FlxMath.fastCos((currentBeat / wechniaSpeed) * Math.PI);
+                        wechniaMenu.x = 450 + 350 * FlxMath.fastCos((currentBeat / wechniaSpeed) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 

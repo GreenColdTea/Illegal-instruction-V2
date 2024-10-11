@@ -23,7 +23,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty' #if mobile, 'Debug Mode' #end, 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song' #if mobile, 'Debug Mode' #end, 'Exit to menu'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
@@ -40,14 +40,16 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
-		if(CoolUtil.difficulties.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
+		//if(CoolUtil.difficulties.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
 
 		if(PlayState.chartingMode
 			#if debug
 			|| true
 			#end)
 		{
-			menuItemsOG.insert(2, 'Leave Charting Mode');
+			#if !debug
+			menuItemsOG.insert(2, 'Leave Debug Mode');
+			#end
 			
 			var num:Int = 0;
 			if(!PlayState.instance.startingSong)
@@ -84,22 +86,31 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        var renderDistance:Float = -75;
+	    var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
-	        pauseArt.scale.set(0.4, 0.4);
+	    pauseArt.scale.set(0.4, 0.4);
 		pauseArt.loadGraphic(Paths.image('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0], 'shared'));
 		pauseArt.scrollFactor.set();
 		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
-		pauseArt.x = renderDistance * -1;
+		    pauseArt.x = renderDistance * -1;
 	        pauseArt.antialiasing = true;
-		pauseArt.alpha = 0;
-	        if (PlayState.SONG.player2 == 'duke') {
-		pauseArt.x = renderDistance * -1 + 150;
-	        pauseArt.y += 200;
+		    pauseArt.alpha = 0;
+	    if (PlayState.SONG.player2 == 'duke') {
+		    pauseArt.x += 215;
+	        pauseArt.y -= 125;
 		}
-	        else if (PlayState.SONG.player2 == 'chaotix' || PlayState.SONG.player2 == 'chaotix-rimlit') {
-		pauseArt.x = renderDistance * -1 - 50;
-	        pauseArt.y += 200;
+	    else if (PlayState.SONG.player2 == 'chaotix' || PlayState.SONG.player2 == 'chaotix-rimlit') {
+		    pauseArt.x -= 175;
+	        pauseArt.y += 35;
+		}
+		else if (PlayState.SONG.player2 == "chotix") {
+			pauseArt.scale.set(0.5, 0.5);
+			pauseArt.x += 350;
+			pauseArt.y += 270;
+		}
+		else if (PlayState.SONG.player2 == "Wechnia") {
+			pauseArt.x += 250;
+	        pauseArt.y += 35;
 		}
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
@@ -114,14 +125,13 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('chaotix.ttf'), 32);
 		levelDifficulty.updateHitbox();
-		add(levelDifficulty);
 
-		var blueballedTxt:FlxText = new FlxText(20, 15 + 64, 0, "", 32);
-		blueballedTxt.text = "Blueballed: " + PlayState.deathCounter;
+		var blueballedTxt:FlxText = new FlxText(20, 15 + 48, 0, "", 32);
+		blueballedTxt.text = "Defeats: " + PlayState.deathCounter;
 		blueballedTxt.scrollFactor.set();
-		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
+		blueballedTxt.setFormat(Paths.font('chaotix.ttf'), 32);
 		blueballedTxt.updateHitbox();
-		//add(blueballedTxt);
+		add(blueballedTxt);
 
 		practiceText = new FlxText(20, 15 + 101, 0, "PRACTICE MODE", 32);
 		practiceText.scrollFactor.set();
@@ -137,7 +147,11 @@ class PauseSubState extends MusicBeatSubstate
 		chartingText.x = FlxG.width - (chartingText.width + 20);
 		chartingText.y = FlxG.height - (chartingText.height + 20);
 		chartingText.updateHitbox();
+		#if !debug
 		chartingText.visible = PlayState.chartingMode;
+		#else
+		chartingText.visible = true;
+		#end	
 		add(chartingText);
 
 		blueballedTxt.alpha = 0;
@@ -149,7 +163,7 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.x = FlxG.width - (blueballedTxt.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
-	        FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
+	    FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
@@ -268,9 +282,6 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				case "Resume":
 					close();
-				case 'Change Difficulty':
-					menuItems = difficultyChoices;
-					regenMenu();
 				case 'Toggle Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;

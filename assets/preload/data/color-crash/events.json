@@ -1,0 +1,129 @@
+{
+	"song": {
+		"speed": 2.8,
+		"stage": "wechnia",
+		"player1": "mighty",
+		"player2": "Wechnia",
+		"player3": null,
+		"events": [
+			[
+				2200,
+				[
+					[
+						"Play Animation",
+						"play2",
+						"bf"
+					]
+				]
+			],
+			[
+				5900,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				5950,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6000,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6050,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6100,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6150,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6200,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6250,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				6300,
+				[
+					[
+						"Play Animation",
+						"bruh",
+						"dad"
+					]
+				]
+			],
+			[
+				108800,
+				[
+					[
+						"Play Animation",
+						"play",
+						"bf"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": "noteSplashes",
+		"validScore": false,
+		"gfVersion": "gfii",
+		"bpm": 150,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "Color Crash"
+	}
+}

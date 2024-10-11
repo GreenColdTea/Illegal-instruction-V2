@@ -1,40 +1,40 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "firstDeath",
+			"loop": false,
 			"fps": 23,
-			"name": "BFDIES",
-			"indices": []
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "BFDIES"
 		},
 		{
-			"loop": true,
 			"offsets": [
 				0,
-				-72
+				-64
 			],
-			"anim": "deathLoop",
+			"loop": true,
 			"fps": 23,
-			"name": "BFDEATHLOOP",
-			"indices": []
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "BFDEATHLOOP"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-71
 			],
-			"anim": "deathConfirm",
+			"loop": false,
 			"fps": 23,
-			"name": "BFDEATHCONFIRM",
-			"indices": []
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "BFDEATHCONFIRM"
 		}
 	],
-	"no_antialiasing": false,
+	"no_antialiasing": true,
 	"image": "characters/BFDEATHSHEET",
 	"position": [
 		0,

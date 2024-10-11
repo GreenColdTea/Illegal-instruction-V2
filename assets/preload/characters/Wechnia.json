@@ -60,7 +60,7 @@
 				-40,
 				162
 			],
-			"loop": false,
+			"loop": true,
 			"fps": 24,
 			"anim": "bruh",
 			"indices": [],

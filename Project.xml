@@ -45,10 +45,10 @@
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
 	<define name="MODS_ALLOWED" if="desktop" />
-	<define name="LUA_ALLOWED" if="desktop || mobile" />
+	<define name="LUA_ALLOWED" if="desktop" />
 	<define name="ACHIEVEMENTS_ALLOWED" if="officialBuild" />
 	<define name="VIDEOS_ALLOWED" if="web || windows || mobile" unless="32bits"/>
-        <define name="CRASH_HANDLER" if="desktop release || android" />
+    <define name="CRASH_HANDLER" if="desktop || android" />
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
@@ -81,7 +81,7 @@
 	<assets path="assets/songs"         library="songs"         exclude="*.mp3" unless="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.mp3" unless="web"/>
-  <assets path="assets/exe"        library="exe"        exclude="*.mp3" unless="web"/>
+    <assets path="assets/exe"        library="exe"        exclude="*.mp3" unless="web"/>
 	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
@@ -110,11 +110,11 @@
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="faxe" if="switch"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/> 
-        <haxelib name="extension-androidtools" if="android"/>
+    <haxelib name="extension-androidtools" if="android"/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxcpp" />
-	<!--<haxelib name="hxcpp-debug-server" if="desktop"/>-->
+	<haxelib name="hxcpp-debug-server" if="desktop"/>
 	<haxelib name="openfl" version="9.3.0" />
 	<lime version="8.0.1" />
 
@@ -161,13 +161,14 @@
         <android target-sdk-version="29" if="android"/>
 
         <!-- _________________________________ Android Stuff _______________________________ -->	
-	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
+	    <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
         <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
-	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>
+	    <config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>
    
         <haxedef name="HXCPP_CHECK_POINTER"/>
         <haxedef name="HXCPP_STACK_LINE" />
         <haxedef name="HXCPP_STACK_TRACE"/>
+		<!--<haxedef name="HXCPP_MSVC_CUSTOM"/>-->
 
 	<!-- I'm tired to install and uninstall build everytime so i decided to add certificate to update instead of uninstall -->
 	<certificate path="II-Key.keystore" password="Illegarl" alias="ii-key" alias-password="Illegarl" if="android" unless="debug" />

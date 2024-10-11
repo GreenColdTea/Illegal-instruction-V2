@@ -144,7 +144,7 @@ class MusicBeatState extends FlxUIState
 		FlxTransitionableState.skipNextTransOut = false;
 	}
 	
-	#if (VIDEOS_ALLOWED && windows)
+	/*#if (VIDEOS_ALLOWED && windows)
 	override public function onFocus():Void
 	{
 		FlxVideo.onFocus();
@@ -156,7 +156,7 @@ class MusicBeatState extends FlxUIState
 		FlxVideo.onFocusLost();
 		super.onFocusLost();
 	}
-	#end
+	#end*/
 
 	override function update(elapsed:Float)
 	{

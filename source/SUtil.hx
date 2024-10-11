@@ -87,11 +87,12 @@ class SUtil
 		#end
 	}
 
+	#if android
 	public static function getStorageForLogs()
 	{
 		if (!Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE))
 		{
-                        Permissions.requestPermission([Permissions.WRITE_EXTERNAL_STORAGE, Permissions.READ_EXTERNAL_STORAGE]);
+            Permissions.requestPermission([Permissions.WRITE_EXTERNAL_STORAGE, Permissions.READ_EXTERNAL_STORAGE]);
 			SUtil.applicationAlert('Permissions', 'Storage permissions is necessary for writing error logs.' + 'If you arent accepted, the error log wont be written on your device' + '\n' + 'Press Ok to continue');
 		}
 
@@ -102,6 +103,7 @@ class SUtil
 			}
 		}
 	}
+	#end
 
 	public static function gameCrashCheck()
 	{

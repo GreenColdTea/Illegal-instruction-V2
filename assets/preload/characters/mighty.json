@@ -45,7 +45,7 @@
 			"name": "Mightyright"
 		},
 		{
-			"loop": true,
+			"loop": false,
 			"offsets": [
 				-230,
 				-32

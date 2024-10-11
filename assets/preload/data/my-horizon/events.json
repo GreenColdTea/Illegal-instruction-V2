@@ -1,0 +1,34 @@
+{
+	"song": {
+		"speed": 2.8,
+		"stage": "horizon",
+		"player1": "bfiiwech",
+		"player2": "wechidnaMH",
+		"player3": null,
+		"events": [
+			[
+				129142.857142857,
+				[
+					[
+						"Change Character",
+						"bf",
+						"wechMH"
+					],
+					[
+						"Change Character",
+						"bf",
+						"bfwechp2"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": "noteSplashes",
+		"validScore": false,
+		"gfVersion": "gfii",
+		"bpm": 105,
+		"arrowSkin": "",
+		"needsVoices": false,
+		"song": "My-Horizon"
+	}
+}

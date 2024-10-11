@@ -9,7 +9,6 @@ import openfl.Lib;
 
 class StaticShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV and https://www.shadertoy.com/view/Ms23DR and https://www.shadertoy.com/view/MsXGD4 and https://www.shadertoy.com/view/Xtccz4
 {
-
   @:glFragmentSource('
   #pragma header
 
@@ -148,8 +147,6 @@ vec4 baseColor = flixel_texture2D(bitmap,uv);
 gl_FragColor = mix(vec4(color,1.0), baseColor, alpha) * baseColor.a;
 }
 }
-
-
     ')
   public function new()
   {

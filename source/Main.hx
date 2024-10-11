@@ -113,9 +113,7 @@ class Main extends Sprite
         }
 	#end
 
-	//ClientPrefs.loadPrefs();
-
-        Generic.mode = ROOTDATA;
+    Generic.mode = ROOTDATA;
 	if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		FileSystem.createDirectory(Generic.returnPath() + 'assets');
         }
@@ -129,9 +127,7 @@ class Main extends Sprite
 
         ClientPrefs.loadDefaultKeys();
 	// fuck you, persistent caching stays ON during sex
-	#if !mobile
 	FlxGraphic.defaultPersist = true;
-	#end
 	// the reason for this is we're going to be handling our own cache smartly
 
         addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
@@ -169,7 +165,7 @@ class Main extends Sprite
 
     private static function resetSpriteCache(sprite:Sprite):Void {
 		@:privateAccess {
-		        sprite.__cacheBitmap = null;
+		    sprite.__cacheBitmap = null;
 			sprite.__cacheBitmapData = null;
 		}
     }
