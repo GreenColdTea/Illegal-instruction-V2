@@ -1,5 +1,4 @@
 package;
-
 import flixel.system.FlxAssets.FlxShader;
 
 class GlitchShaderA extends FlxShader {

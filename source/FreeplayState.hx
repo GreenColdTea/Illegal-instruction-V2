@@ -66,6 +66,7 @@ class FreeplayState extends MusicBeatState
 		
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
+		PlayState.isFreeplay = true;
 		WeekData.reloadWeekFiles(false);
 
 		#if desktop
@@ -387,6 +388,7 @@ class FreeplayState extends MusicBeatState
 
 			PlayState.SONG = Song.loadFromJson(poop, songLowercase);
 			PlayState.isStoryMode = false;
+			PlayState.isFreeplay = true;
 			PlayState.storyDifficulty = curDifficulty;
 
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());

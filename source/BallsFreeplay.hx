@@ -91,11 +91,9 @@ class BallsFreeplay extends MusicBeatState
     public var isJumping:Bool = false; // jumping checker
     var holdTimer:FlxTimer = new FlxTimer(); // Timer for how long we're holding movement keys. Because holding keys should be timed like fine wine.
     public var speed:Float = 125; // needs for bf's moves
-    public var speedMultiplier:Float = 1.25; // bf's default walk speed
+    public var speedMultiplier:Float = 1.35; // bf's default walk speed
     var jumpSpeed:Float = -300; // Vertical speed when jumping. Think of it as the character’s "I believe I can fly" moment.
     var gravity:Float = 600; // How fast we fall. Gravity's way of reminding us that the ground is always waiting.
-    var maxJumpHeight:Float = 200; // Maximum height of our jump. Like reaching for the last slice of pizza.
-    var jumpStartY:Float = 0; // Y position where we started jumping. Because you gotta know where you began your epic leap.
 
     // Ima alone man, so i decided to add some funni comments
 
@@ -160,7 +158,7 @@ class BallsFreeplay extends MusicBeatState
 	screenLogo.y += 61;
 	add(screenLogo);
 
-    scoreText = new FlxText(925, 75, 0, "SCORE: \n49324858", 36);
+    scoreText = new FlxText(925, 65, 0, "SCORE: \n49324858", 36);
     scoreText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.RED, CENTER);
     add(scoreText);
 
@@ -180,7 +178,7 @@ class BallsFreeplay extends MusicBeatState
     #end
     yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     yn.visible = true;
-	yn.y += 650;
+	yn.y += 675;
     yn.color = FlxColor.WHITE;
     yn.borderSize = 0.9;
     add(yn);
@@ -258,16 +256,20 @@ class BallsFreeplay extends MusicBeatState
 
             var songPlayable:FlxSprite = new FlxSprite();
             songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
-            songPlayable.animation.addByPrefix('idle', playables[i], 14, true);
+            songPlayable.animation.addByPrefix('idle', playables[i], 13, true);
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(5.5, 5.5);
-            songPlayable.x += 360;
+            songPlayable.x += 365;
             songPlayable.y -= 50;
             songPlayable.alpha = 0;
             songPlayable.ID = i;
             if (songPlayable.ID == 6) {
                 songPlayable.y -= 2.5;
+            }
+            else if (songPlayable.ID == 3) {
+                //songPlayable.x += 5;
+                songPlayable.y -= 20;
             }
             screenPlayers.add(songPlayable);
 
@@ -305,8 +307,8 @@ class BallsFreeplay extends MusicBeatState
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
 	        if (flxSprite.ID == 3) {
-                flxSprite.scale.set(0.375, 0.375);
-                //flxSprite.animation.curAnim.curFrame = 22;
+                flxSprite.scale.set(0.35, 0.35);
+                
             }
         }
 	    for (sprite in screenSong.members) {
@@ -360,7 +362,7 @@ class BallsFreeplay extends MusicBeatState
             updateScreen();
         }
 
-        if (controls.ACCEPT)
+        if (FlxG.keys.justPressed.ENTER #if mobile || controls.ACCEPT #end)
         {
             doTheLoad();
 	        lastSongIndex = songIndex;
@@ -384,9 +386,8 @@ class BallsFreeplay extends MusicBeatState
         }
         else if (controls.UI_LEFT_R)
         {
-            player.flipX = false;
             isHoldingLeft = false;
-            speedMultiplier = 1.25;
+            speedMultiplier = 1.35;
             holdTimer.cancel();
         }
 
@@ -401,98 +402,68 @@ class BallsFreeplay extends MusicBeatState
         }
         else if (controls.UI_RIGHT_R)
         {
-            player.flipX = true;
             isHoldingRight = false;
-            speedMultiplier = 1.25;
+            speedMultiplier = 1.35;
             holdTimer.cancel();
         }
 
-        if (FlxG.keys.pressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end && !isJumping && isOnGround())
+        if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.pressed #end) && !isJumping && isOnGround())
         {
+            player.animation.play('jump');
+            FlxG.sound.play(Paths.sound('jump'), 0.7);
 	        isJumping = true;
-            player.velocity.y = -jumpSpeed;
-	        player.animation.play('jump');
-	        FlxG.sound.play(Paths.sound('jump'), 0.6);
+            player.velocity.y = jumpSpeed;
+        }
+
+        if (!isOnGround()) {
+            player.velocity.y += gravity * elapsed;
+        } else {
+            isJumping = false;
+            player.velocity.y = 0;
         }
         
         //Screen boundaries
-	    if (player.x < -80)
-        {
+	    if (player.x < -80) {
             player.x = -80;
             player.velocity.x = 0;
-        }
-        else if (player.x + player.width > FlxG.width + 80)
-        {
+        } else if (player.x + player.width > FlxG.width + 80) {
             player.x = FlxG.width + 80 - player.width;
             player.velocity.x = 0;
         }
-
-        if (player.y < 100)
-        {
+        
+        if (player.y < 100) {
             player.y = 100;
-	        isJumping = false;
             player.velocity.y = 0;
         }
-        else if (player.y + player.width > FlxG.width - 100)
-        {
-            player.y = FlxG.width - 100 - player.width;
+
+        // BF Movement and animation
+        if (isOnGround() && !isJumping) {
             player.velocity.y = 0;
-	    }
-
-	    if (!isOnGround())
-        {
-            player.velocity.y += gravity * elapsed;
-	    }
-
-        // Movement and animation
-        if (isOnGround() && !isJumping)
-        {
-            isJumping = false;
-            player.velocity.y = 0;
-
-            if (isHoldingLeft && !isHoldingRight)
-            {
+            player.animation.play("idle");
+            if (isHoldingLeft && !isHoldingRight) {
                 player.velocity.x = -speed * speedMultiplier;
-                if (speedMultiplier > 1.5)
-                {
+                if (speedMultiplier > 1.5) {
                     player.animation.play('run');
-                }
-                else
+                } 
+                else 
                 {
                     player.animation.play('walk');
                 }
-            }
-            else if (isHoldingRight && !isHoldingLeft)
-            {
+            } else if (isHoldingRight && !isHoldingLeft) {
                 player.velocity.x = speed * speedMultiplier;
-                if (speedMultiplier > 1.5)
-                {
+                if (speedMultiplier > 1.5) {
                     player.animation.play('run');
-                }
-                else
+                } 
+                else 
                 {
                     player.animation.play('walk');
                 }
-            }
-            else
+            } 
+            else 
             {
-                player.velocity.x = 0;
-                player.animation.play('idle');
-            }
-        }
-        else
-        {
-            isJumping = true;
-
-            if (player.velocity.y < 0)
-            {
+                player.velocity.y -= gravity * elapsed;
                 player.animation.play('jump');
             }
-            else
-            {
-                player.velocity.x = 0;
-                player.animation.play('idle');
-            } 
         }
 
         super.update(elapsed);
@@ -512,6 +483,7 @@ class BallsFreeplay extends MusicBeatState
         PlayState.SONG = Song.loadFromJson(songLowercase + '-hard', songLowercase);
 	    FlxG.mouse.visible = false;
         PlayState.isStoryMode = false;
+        PlayState.isFreeplay = true;
         PlayState.storyDifficulty = 2;
 	    FlxG.sound.music.volume = 0;
 	    FreeplayState.destroyFreeplayVocals();
@@ -524,18 +496,19 @@ class BallsFreeplay extends MusicBeatState
        if (isHoldingLeft && !isHoldingRight)
        {
            player.animation.play('run');
-           speedMultiplier = 2.05;
+           speedMultiplier = 2.25;
        }
        else if (isHoldingRight && !isHoldingLeft)
        {
            player.animation.play('run');
-           speedMultiplier = 2.05;
+           speedMultiplier = 2.25;
        }
    }
 
    // Checks if the player is on the ground
    function isOnGround():Bool
    {
-       return player.y + player.height >= FlxG.height - 1; // Simple ground check. “Ground status: definitely grounded.”
+        var groundLevel = FlxG.height - player.height - 100;
+        return player.y >= groundLevel; // Simple ground check. “Ground status: definitely grounded.”
    }
 }

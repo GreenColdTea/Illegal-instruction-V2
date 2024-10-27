@@ -11,8 +11,8 @@ class StrumNote extends FlxSprite
 	private var colorSwap:ColorSwap;
 	public var resetAnim:Float = 0;
 	private var noteData:Int = 0;
-	public var direction:Float = 90;//plan on doing scroll directions soon -bb
-	public var downScroll:Bool = false;//plan on doing scroll directions soon -bb
+	public var direction:Float = 90; //plan on doing scroll directions soon -bb
+	public var downScroll:Bool = false; //plan on doing scroll directions soon -bb
 	public var sustainReduce:Bool = true;
 	
 	private var player:Int;
@@ -44,9 +44,9 @@ class StrumNote extends FlxSprite
 	public function reloadNote()
 	{
 		var lastAnim:String = null;
-		if(animation.curAnim != null) lastAnim = animation.curAnim.name;
+		if (animation.curAnim != null) lastAnim = animation.curAnim.name;
 
-		if(PlayState.isPixelStage)
+		if (PlayState.isPixelStage)
 		{
 			loadGraphic(Paths.image('pixelUI/' + texture));
 			width = width / 4;

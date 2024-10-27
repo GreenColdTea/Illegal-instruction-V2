@@ -54,7 +54,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'bool',
 			true);
 		option.showBoyfriend = true;
-		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
+		option.onChange = onChangeAntiAliasing;
 		addOption(option);
 
 		var option:Option = new Option('Shaders', //Name
@@ -62,7 +62,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'If unchecked, disables shaders.\nIt\'s used for some visual effects, and also CPU intensive for weaker PCs.', //Description
 			#elseif mobile
 			"If unchecked, disables shaders.\nIt\'s used for some visual effects, and also CPU intensive for weaker Phone's.",
-		        #end
+		    #end
 			'shaders', //Save data variable name
 			'bool', //Variable type
 			true); //Default value
@@ -94,7 +94,11 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		option.minValue = 60;
+		#if mobile
 		option.maxValue = 144;
+		#else
+		option.maxValue = 360;
+		#end
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
 		#end

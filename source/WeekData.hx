@@ -8,7 +8,7 @@ import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
 import haxe.format.JsonParser;
-import openfl.utils.AssetType; // Убедитесь, что импорт AssetType корректен
+import openfl.utils.AssetType;
 
 using StringTools;
 
@@ -94,7 +94,7 @@ class WeekData {
 
     public static function createWeekFile():WeekFile {
         return {
-            songs: [["Breakout", "duke", [146, 113, 253]], ["soulles-Endeavours", "duke2", [146, 113, 253]]],
+            songs: [["breakout", "duke", [146, 113, 253]], ["soulless-endeavours", "duke2", [146, 113, 253]]],
             weekCharacters: ['dad', 'bf', 'gf'],
             weekBackground: 'stage',
             weekBefore: 'tutorial',

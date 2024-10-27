@@ -83,12 +83,12 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		PlayState.instance.callOnLuas('onUpdate', [elapsed]);
 
-		if (controls.ACCEPT)
+		if (controls.ACCEPT && !controls.BACK)
 		{
 			endBullshit();
 		}
 
-		if (controls.BACK)
+		if (controls.BACK && !controls.ACCEPT)
 		{
 			FlxG.sound.music.stop();
 			PlayState.deathCounter = 0;
@@ -96,8 +96,10 @@ class GameOverSubstate extends MusicBeatSubstate
 
 			if (PlayState.isStoryMode)
 				MusicBeatState.switchState(new StoryMenuState());
-			else
+			else if (PlayState.isFreeplay)
 				MusicBeatState.switchState(new BallsFreeplay());
+			else 
+				MusicBeatState.switchState(new LegacyRoomState());
 
 			//FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);

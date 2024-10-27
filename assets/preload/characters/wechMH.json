@@ -3,7 +3,7 @@
 		{
 			"offsets": [
 				-131,
-				-399
+				-348
 			],
 			"loop": false,
 			"fps": 24,
@@ -13,8 +13,8 @@
 		},
 		{
 			"offsets": [
-				61,
-				312
+				32,
+				279
 			],
 			"loop": false,
 			"fps": 24,
@@ -35,8 +35,8 @@
 		},
 		{
 			"offsets": [
-				-40,
-				46
+				-424,
+				10
 			],
 			"loop": false,
 			"fps": 23,
@@ -46,8 +46,8 @@
 		},
 		{
 			"offsets": [
-				315,
-				-64
+				397,
+				-26
 			],
 			"loop": false,
 			"fps": 24,
@@ -62,7 +62,7 @@
 		-450,
 		-180
 	],
-	"healthicon": "wechp2",
+	"healthicon": "wechbeast",
 	"flip_x": false,
 	"healthbar_colors": [
 		136,
@@ -74,5 +74,5 @@
 		70
 	],
 	"sing_duration": 4,
-	"scale": 1.9
+	"scale": 1.8
 }

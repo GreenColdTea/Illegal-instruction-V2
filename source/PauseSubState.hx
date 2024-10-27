@@ -30,6 +30,7 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
 	var skipTimeText:FlxText;
+	var levelDifficulty:FlxText;
 	var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
@@ -120,7 +121,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
-		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
+		levelDifficulty = new FlxText(20, 15 + 32, 0, "", 32);
 		levelDifficulty.text += CoolUtil.difficultyString();
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('chaotix.ttf'), 32);
@@ -323,8 +324,10 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.seenCutscene = false;
 					if(PlayState.isStoryMode) {
 						MusicBeatState.switchState(new StoryMenuState());
-					} else {
+					} else if (PlayState.isFreeplay) {
 						MusicBeatState.switchState(new BallsFreeplay());
+					} else {
+						MusicBeatState.switchState(new LegacyRoomState());
 					}
 					//FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;

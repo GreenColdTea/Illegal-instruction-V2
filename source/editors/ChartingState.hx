@@ -61,6 +61,7 @@ class ChartingState extends MusicBeatState
 		'Alt Animation',
 		'Hey!',
 		'Hurt Note',
+		'Hex Note',
 		'GF Sing',
 		'No Animation'
 	];
@@ -90,7 +91,8 @@ class ChartingState extends MusicBeatState
 		["Final Frontier Sections", "Value 1: Duke Section of Final Frontier.\nValue 2: Soul Section of Final Frontier."],
 		["FF Static", "Value 1: Put 1 in to use for statics, Only for Final Frontier! \nValue 2: Reset the Static."],
 		['glitch'],
-		["Lyrics", "Lyrics!!!\nValue 1: Text and optionally, colour\n(To specify colour, seperate it by a --)\nValue 2: Duration, in seconds.\nDuration defaults to text length multiplied by 0.5"]
+		["Lyrics", "Lyrics!!!\nValue 1: Text and optionally, colour\n(To specify colour, seperate it by a --)\nValue 2: Duration, in seconds.\nDuration defaults to text length multiplied by 0.5"],
+		["Note Skin Change(OPPT)", "Value 1: The Noteskin's name\nValue 2: The Noteskin's Splashes\nIf blank will do nothing LOL"]
 	];
 
 	var _file:FileReference;
@@ -209,7 +211,7 @@ class ChartingState extends MusicBeatState
 				song: 'Test',
 				notes: [],
 				events: [],
-				bpm: 150.0,
+				bpm: 130.0,
 				needsVoices: true,
 				arrowSkin: '',
 				splashSkin: 'noteSplashes',//idk it would crash if i didn't
@@ -217,7 +219,7 @@ class ChartingState extends MusicBeatState
 				player2: 'duke',
 				player3: null,
 				gfVersion: 'gfii-alt',
-				speed: 1,
+				speed: 2.6,
 				stage: 'stage',
 				validScore: false
 			};
@@ -2231,18 +2233,19 @@ class ChartingState extends MusicBeatState
 	{
 		var healthIconP1:String = loadHealthIconFromCharacter(_song.player1);
 		var healthIconP2:String = loadHealthIconFromCharacter(_song.player2);
+		var healthIconGF:String = loadHealthIconFromCharacter(_song.gfVersion);
 
 		if (_song.notes[curSection].mustHitSection)
 		{
 			leftIcon.changeIcon(healthIconP1);
 			rightIcon.changeIcon(healthIconP2);
-			if (_song.notes[curSection].gfSection) leftIcon.changeIcon('gf');
+			if (_song.notes[curSection].gfSection) leftIcon.changeIcon(healthIconGF);
 		}
 		else
 		{
 			leftIcon.changeIcon(healthIconP2);
 			rightIcon.changeIcon(healthIconP1);
-			if (_song.notes[curSection].gfSection) leftIcon.changeIcon('gf');
+			if (_song.notes[curSection].gfSection) leftIcon.changeIcon(healthIconGF);
 		}
 	}
 
@@ -2754,15 +2757,15 @@ class ChartingState extends MusicBeatState
 
 		if ((data != null) && (data.length > 0))
 		{
-                        #if android
-                        SUtil.saveContent(Paths.formatToSongPath(_song.song), ".json", data.trim());
-                        #else
+            #if mobile
+            SUtil.saveContent(Paths.formatToSongPath(_song.song), ".json", data.trim());
+            #else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data.trim(), Paths.formatToSongPath(_song.song) + ".json");
-                        #end
+            #end
 		}
 	}
 	
@@ -2799,15 +2802,15 @@ class ChartingState extends MusicBeatState
 
 		if ((data != null) && (data.length > 0))
 		{
-                        #if android
-                        SUtil.saveContent("events", ".json", data.trim());
-                        #else
+            #if android
+            SUtil.saveContent("events", ".json", data.trim());
+            #else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
 			_file.save(data.trim(), "events.json");
-                        #end
+            #end
 		}
 	}
 

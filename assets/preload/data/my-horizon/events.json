@@ -7,17 +7,59 @@
 		"player3": null,
 		"events": [
 			[
-				129142.857142857,
+				0,
+				[
+					[
+						"Add Camera Zoom",
+						"0.025",
+						""
+					]
+				]
+			],
+			[
+				571.428571428571,
+				[
+					[
+						"Add Camera Zoom",
+						"0.025",
+						""
+					]
+				]
+			],
+			[
+				1142.85714285714,
+				[
+					[
+						"Add Camera Zoom",
+						"0.025",
+						""
+					]
+				]
+			],
+			[
+				1714.28571428571,
+				[
+					[
+						"Add Camera Zoom",
+						"0.025",
+						""
+					]
+				],
+				null,
+				"No Animation"
+			],
+			[
+				125197.756788666,
 				[
 					[
 						"Change Character",
 						"bf",
-						"wechMH"
+						"bfwechp2"
 					],
 					[
 						"Change Character",
-						"bf",
-						"bfwechp2"
+						"dad",
+						"wechMH"
 					]
 				]
 			]
@@ -25,7 +67,7 @@
 		"notes": [],
 		"splashSkin": "noteSplashes",
 		"validScore": false,
-		"gfVersion": "gfii",
+		"gfVersion": "gfii-alt",
 		"bpm": 105,
 		"arrowSkin": "",
 		"needsVoices": false,

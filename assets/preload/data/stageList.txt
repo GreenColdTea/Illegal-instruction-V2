@@ -1,6 +1,15 @@
 stage
 entrance
+entrance-legacy
 soulless
+soulless-legacy
+frontier-legacy
 vista
+chotix
+chotix-legacy
 horizon
+horizon-legacy
 wechnia
+founded
+curse
+

@@ -1,0 +1,64 @@
+{
+	"song": {
+		"speed": 2.8,
+		"stage": "horizon-legacy",
+		"player1": "chaotix_bf-legacy",
+		"player2": "chaotix_faker-legacy",
+		"player3": null,
+		"events": [
+			[
+				95700.0386056989,
+				[
+					[
+						"Change Character",
+						"dad",
+						"chaotix-legacy"
+					],
+					[
+						"Change Character",
+						"bf",
+						"bf-holding-gf"
+					]
+				]
+			],
+			[
+				224161.577067237,
+				[
+					[
+						"Change Character",
+						"bf",
+						"chaotix_bf-legacy"
+					],
+					[
+						"Change Character",
+						"dad",
+						"beast_chaotix-legacy"
+					]
+				]
+			],
+			[
+				273392.346298006,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bf-holding-gf"
+					],
+					[
+						"Change Character",
+						"dad",
+						"chaotix-legacy"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "chaotix_gf-legacy",
+		"bpm": 156,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "Our-Horizon-Legacy"
+	}
+}

@@ -28,6 +28,7 @@ class StoryMenuState extends MusicBeatState
     var scoreText:FlxText;
 
     private static var lastDifficultyName:String = '';
+
     var characters = [
         "duke",
         "chaotix",
@@ -36,6 +37,7 @@ class StoryMenuState extends MusicBeatState
         "wechidna",
         "ashura"
     ];
+
     var curDifficulty:Int = 2;
     var text:FlxSprite;
 
@@ -44,6 +46,8 @@ class StoryMenuState extends MusicBeatState
     private static var curWeek:Int = 0;
 
     var txtTracklist:FlxText;
+
+    var char = null;
 
     var grpWeekText:FlxTypedGroup<ListSprite>;
     var specialAnim:Bool = false;
@@ -69,7 +73,7 @@ class StoryMenuState extends MusicBeatState
         persistentUpdate = persistentDraw = true;
 
         scoreText = new FlxText(900, 10, 0, "SCORE: 49324858", 36);
-        scoreText.setFormat(Paths.font("chaotix.ttf"), 32);
+        scoreText.setFormat(Paths.font("chaotix.ttf"), 32, RIGHT);
 
         var rankText:FlxText = new FlxText(0, 10);
         rankText.text = 'RANK: GREAT';
@@ -126,7 +130,7 @@ class StoryMenuState extends MusicBeatState
 
         #if desktop
         // Updating Discord Rich Presence
-        DiscordClient.changePresence("In the Menus", null);
+        DiscordClient.changePresence("Select the Player", null);
         #end
 
         var num:Int = 0;
@@ -141,15 +145,12 @@ class StoryMenuState extends MusicBeatState
                 #end
                 WeekData.setDirectoryFromWeek(weekFile);
                 weekThing = new ListSprite(0, 0);
-                var char = weekFile.weekCharacters[0];
+                char = weekFile.weekCharacters[0];
                 var animChar = char.substring(0, 1).toUpperCase() + char.substr(1);
                 weekThing.frames = Paths.getSparrowAtlas('scenarioMenu/characters/${char.toLowerCase()}_menu');
-                weekThing.animation.addByPrefix("idle", animChar + "_menu", 16, true);
-                if(char == 'duke' || char == 'wechidna')
-                {
-                    weekThing.animation.addByPrefix("confirm", animChar + "_confirm", 24, true);
-                }
-                weekThing.animation.play("idle");
+                weekThing.animation.addByPrefix("idle", animChar + "_menu", 16);
+                weekThing.animation.addByPrefix("confirm", animChar + "_confirm", 24);
+                weekThing.animation.play("idle", true);
                 weekThing.scale.set(4, 4);
                 weekThing.targetY = i;
                 grpWeekText.add(weekThing);
@@ -268,13 +269,10 @@ class StoryMenuState extends MusicBeatState
                     if (!stopspamming)
                     {
                         FlxG.sound.play(Paths.sound('confirmMenu'));
-                        grpWeekText.forEach(function(spr:FlxSprite)
+                        if (curWeek == 0 || curWeek == 4 || curWeek == 5) 
                         {
-                            if (curWeek == 0 || curWeek == 4)
-                            {
-                                weekThing.animation.play("confirm");
-                            }
-                        });
+                            weekThing.animation.play("confirm");
+                        }
                         stopspamming = true;
                     }
         

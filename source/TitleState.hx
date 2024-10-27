@@ -314,7 +314,7 @@ class TitleState extends MusicBeatState
 		dukeMenu.scale.x = 3.25;
 		dukeMenu.scale.y = 3.25;
 		dukeMenu.x -= 75;
-		dukeMenu.y += 50;
+		dukeMenu.y += 25;
 		dukeMenu.frames = Paths.getSparrowAtlas('title/dukemenu');
 		dukeMenu.antialiasing = false;
 		dukeMenu.animation.addByPrefix('idle', 'DUKEMENU', 25, true);

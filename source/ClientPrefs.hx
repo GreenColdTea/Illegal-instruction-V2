@@ -11,6 +11,7 @@ class ClientPrefs {
 	public static var middleScroll:Bool = false;
 	public static var showFPS:Bool = true;
 	public static var flashing:Bool = true;
+	public static var vSync:Bool = false;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
@@ -23,7 +24,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
-        public static var controllerMode:Bool = #if android true #else false #end;
+    public static var controllerMode:Bool = #if android true #else false #end;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
@@ -32,10 +33,10 @@ class ClientPrefs {
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
-        public static var hitboxmode:String = 'Classic';  //starting new way to change between hitboxes yay
+    public static var hitboxmode:String = 'Classic';  //starting new way to change between hitboxes yay
 	public static var hitboxalpha:Float = 0.2; //someone request this lol
 	public static var hitsoundVolume:Float = 0;
-	public static var pauseMusic:String = 'Tea Time';
+	public static var pauseMusic:String = 'Chaotix Break';
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -115,6 +116,7 @@ class ClientPrefs {
 		FlxG.save.data.shaders = shaders;
 		FlxG.save.data.adaptiveCache = adaptiveCache;
 		FlxG.save.data.noBordersScreen = noBordersScreen;
+		FlxG.save.data.vSync = vSync;
 		FlxG.save.data.framerate = framerate;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
@@ -174,6 +176,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.adaptiveCache != null) {
 			adaptiveCache = FlxG.save.data.adaptiveCache;
+		}
+		if(FlxG.save.data.adaptiveCache != null) {
+			vSync = FlxG.save.data.vSync;
 		}
 		if(FlxG.save.data.noBordersScreen != null) {
 			noBordersScreen = FlxG.save.data.noBordersScreen;

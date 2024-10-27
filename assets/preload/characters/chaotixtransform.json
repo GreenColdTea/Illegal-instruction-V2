@@ -1,22 +1,22 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "transform",
+			"loop": false,
 			"fps": 24,
-			"name": "ChaotixTransform",
-			"indices": []
+			"anim": "transform",
+			"indices": [],
+			"name": "ChaotixTransform"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/transform",
 	"position": [
 		-70,
-		-110
+		-100
 	],
 	"healthicon": "chaotix",
 	"flip_x": false,

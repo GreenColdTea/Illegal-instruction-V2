@@ -210,8 +210,8 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-                #if android
-			addVirtualPad(UP_DOWN, A_B_C);
+        #if android
+		addVirtualPad(UP_DOWN, A_B_C);
 		#end
 
 		super.create();
@@ -273,7 +273,7 @@ class MainMenuState extends MusicBeatState
 							{
 							
 								selectedSomethin = true;
-								FlxG.sound.play(Paths.sound('confirmMenu'));
+								FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 								if (curSelected != spr.ID)
 								{
 									FlxTween.tween(spr, {alpha: 0}, 0.4, {
@@ -328,8 +328,7 @@ class MainMenuState extends MusicBeatState
 			#end
 			if (FlxG.keys.justPressed.ONE #if mobile || _virtualpad.buttonC.justPressed #end)
 			{
-				selectedSomethin = true;
-				MusicBeatState.switchState(new MusicVisualizerState());
+				MusicBeatState.switchState(new LegacyRoomState());
 			}
 			if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonE.justPressed #end)
 			{

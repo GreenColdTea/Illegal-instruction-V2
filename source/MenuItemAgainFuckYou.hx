@@ -27,9 +27,8 @@ class MenuItemAgainFuckYou extends FlxSprite
 {
     public var newX:Float = 0;
 
-    public function new(x:Float, y:Float, yeah:String){
+    public function new(x:Float, y:Float){
         super(x, y);
-        loadGraphic(Paths.image(yeah));
         antialiasing = ClientPrefs.globalAntialiasing;
     }
 
