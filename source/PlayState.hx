@@ -1527,7 +1527,7 @@ class PlayState extends MusicBeatState
 				horizonFGp1.scale.set(1.5, 1.5);
 				horizonFGp1.antialiasing = true;
 
-				horizonFGp2 = new FlxSprite(-450, -100);
+				horizonFGp2 = new FlxSprite(-450, -85);
 				horizonFGp2.loadGraphic(Paths.image('horizon/fgpart2', 'exe'));
 				horizonFGp2.scrollFactor.set(0.8, 1);
 				horizonFGp2.scale.set(1.5, 1.5);
@@ -1556,7 +1556,7 @@ class PlayState extends MusicBeatState
 				horizonSpookyBGp1.antialiasing = true;
 				horizonSpookyBGp1.alpha = 0;
 
-				horizonSpookyBGp2 = new FlxSprite(300, 75);
+				horizonSpookyBGp2 = new FlxSprite(150, 50);
 				horizonSpookyBGp2.loadGraphic(Paths.image('horizon/spooky/spookyp2', 'exe'));
 				horizonSpookyBGp2.scrollFactor.set(0.65, 1);
 				horizonSpookyBGp2.scale.set(1.5, 1.5);
@@ -1577,13 +1577,13 @@ class PlayState extends MusicBeatState
 				horizonSpookyBGp4.antialiasing = true;
 				horizonSpookyBGp4.alpha = 0;
 				
-				horizonSpookyFGp1 = new FlxSprite(270, 300);
+				horizonSpookyFGp1 = new FlxSprite(275, 275);
 				horizonSpookyFGp1.loadGraphic(Paths.image('horizon/spooky/spookyfg1', 'exe'));
-				horizonSpookyFGp1.scale.set(2.5, 2.5);
+				horizonSpookyFGp1.scale.set(1.525, 1.525);
 				horizonSpookyFGp1.antialiasing = true;
 				horizonSpookyFGp1.alpha = 0;
 
-				horizonSpookyFGp2 = new FlxSprite(-600, -125);
+				horizonSpookyFGp2 = new FlxSprite(-500, -150);
 				horizonSpookyFGp2.loadGraphic(Paths.image('horizon/spooky/spookyfg2', 'exe'));
 				horizonSpookyFGp2.scrollFactor.set(0.5, 1);
 				horizonSpookyFGp2.scale.set(1.5, 1.5);
@@ -2198,7 +2198,9 @@ class PlayState extends MusicBeatState
 
 				defaultZoomin = false;
 
-				camHUD.alpha = 0;
+				if (SONG.song.toLowerCase() == "color-crash") {
+				    camHUD.alpha = 0;
+				}
 
 			case "horizon":
 			    add(horizonFGp1);
@@ -2209,7 +2211,9 @@ class PlayState extends MusicBeatState
 				add(horizonSpookyFGp1);
 				add(horizonSpookyFGp2);
 
-				camHUD.alpha = 0;
+				if (SONG.song.toLowerCase() == "my-horizon") {
+				    camHUD.alpha = 0;
+				}
 
 			case 'horizon-legacy':
 				boyfriend.y += 68;
@@ -6481,6 +6485,12 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(horizonFGp3, {alpha: 0}, 1, {ease: FlxEase.linear});
 					FlxTween.tween(horizonFGp4, {alpha: 0}, 1, {ease: FlxEase.linear});
 					FlxTween.tween(horizonMG, {alpha: 0}, 1, {ease: FlxEase.linear});
+
+				case 1000:
+					dad.x += 300;
+					dad.y += 65;
+					boyfriend.x -= 250;
+					boyfriend.y += 85;
 
 				case 1024:
 					FlxTween.tween(this, {health: 1}, 3.75);
