@@ -826,8 +826,8 @@ class PlayState extends MusicBeatState
 				defaultCamZoom = 0.75;
 
 				if (ClientPrefs.shaders) {
-				barrelDistortionShader = new BarrelDistortionShader();
-				barrelDistortionFilter = new ShaderFilter(barrelDistortionShader);
+				    barrelDistortionShader = new BarrelDistortionShader();
+				    barrelDistortionFilter = new ShaderFilter(barrelDistortionShader);
 				}
 
 				entranceBGLegacy = new FlxSprite(-300, -300);
@@ -916,7 +916,6 @@ class PlayState extends MusicBeatState
 				bfSEFeet.antialiasing = false;
 				bfSEFeet.scale.set(8, 8);
 				bfSEFeet.visible = false;
-				add(bfSEFeet);
 
 				//the actual bg
 				soulPixelBgBg = new FlxSprite(300, 150);
@@ -937,6 +936,8 @@ class PlayState extends MusicBeatState
 				soulPixelBg.scale.set(4, 4);
 				soulPixelBg.visible = false;
 				add(soulPixelBg);
+
+				add(bfSEFeet);
 
 			case "soulless-legacy":
 
@@ -4189,6 +4190,10 @@ class PlayState extends MusicBeatState
 
 
 		songNameHUD.text = SONG.song.replace("-", " ");
+        if (SONG.song.endsWith("Legacy")) {
+            songNameHUD.text = songNameHUD.text.replace(" Legacy", "\nLegacy");
+        }
+
 
 		if (health > 2)
 			health = 2;
@@ -6274,6 +6279,7 @@ class PlayState extends MusicBeatState
 				        boyfriend.x -= 150;
                         dad.x -= 32.5;
 				        dad.y += 150;
+						bfFeetAppear(1);
 					case 1439:
 						theStatic.visible = true;
 					case 1440:

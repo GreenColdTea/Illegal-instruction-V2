@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 	var mustUpdate:Bool = false;
 	
-	var wechniaSpeed:Float = 5.25;
+	var wechniaSpeed:Float = 5.5;
 	
 	public static var updateVersion:String = '';
 
@@ -79,7 +79,7 @@ class TitleState extends MusicBeatState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
  
-                #if android
+        #if android
 		FlxG.android.preventDefaultKeys = [BACK];
 		#end
 
@@ -281,10 +281,11 @@ class TitleState extends MusicBeatState
 		wechniaMenu.antialiasing = false;
 		wechniaMenu.screenCenter(Y);
 		wechniaMenu.x += 525;
-		wechniaMenu.y -= 150;
+		wechniaMenu.y -= 175;
 		wechniaMenu.animation.addByPrefix('idle', 'wechniamenu', 24, true);
-		wechniaMenu.scale.x = 3.25;
-		wechniaMenu.scale.y = 3.25;
+		wechniaMenu.scale.x = 3.5;
+		wechniaMenu.scale.y = 3.5;
+		wechniaMenu.alpha = 0.9;
 		wechniaMenu.updateHitbox();
 
 		chaotixMenu = new FlxSprite();
@@ -292,29 +293,29 @@ class TitleState extends MusicBeatState
 		chaotixMenu.antialiasing = false;
 		chaotixMenu.screenCenter();
 		chaotixMenu.animation.addByPrefix('idle', 'chaotixmenu', 25, true);
-		chaotixMenu.scale.x = 3.25;
-		chaotixMenu.scale.y = 3.25;
+		chaotixMenu.scale.x = 3.5;
+		chaotixMenu.scale.y = 3.5;
 		chaotixMenu.x -= 250;
-		chaotixMenu.y += 25;
+		chaotixMenu.y += 15;
 		chaotixMenu.updateHitbox();
 
 		wechMenu = new FlxSprite();
 		wechMenu.frames = Paths.getSparrowAtlas('title/wechmenu');
 		wechMenu.screenCenter();
 		wechMenu.antialiasing = false;
-		wechMenu.scale.x = 3.25;
-		wechMenu.scale.y = 3.25;
+		wechMenu.scale.x = 3.5;
+		wechMenu.scale.y = 3.5;
 		wechMenu.x += 80;
-		wechMenu.y += 25;
+		wechMenu.y += 5;
 		wechMenu.animation.addByPrefix('idle', 'wechmenu', 25, true);
 		wechMenu.updateHitbox();
 
 		dukeMenu = new FlxSprite();
 		dukeMenu.screenCenter();
-		dukeMenu.scale.x = 3.25;
-		dukeMenu.scale.y = 3.25;
+		dukeMenu.scale.x = 3.5;
+		dukeMenu.scale.y = 3.5;
 		dukeMenu.x -= 75;
-		dukeMenu.y += 25;
+		dukeMenu.y += 15;
 		dukeMenu.frames = Paths.getSparrowAtlas('title/dukemenu');
 		dukeMenu.antialiasing = false;
 		dukeMenu.animation.addByPrefix('idle', 'DUKEMENU', 25, true);
@@ -322,10 +323,10 @@ class TitleState extends MusicBeatState
 
 		ashuraMenu = new FlxSprite();
 		ashuraMenu.screenCenter();
-		ashuraMenu.scale.x = 3.25;
-		ashuraMenu.scale.y = 3.25;
+		ashuraMenu.scale.x = 3.5;
+		ashuraMenu.scale.y = 3.5;
 		ashuraMenu.x -= 475;
-		ashuraMenu.y += 35;
+		ashuraMenu.y += 7.5;
 		ashuraMenu.frames = Paths.getSparrowAtlas('title/ashuramenu');
 		ashuraMenu.antialiasing = false;
 		ashuraMenu.animation.addByPrefix('idle', 'ashuramenu', 25, true);
@@ -333,10 +334,10 @@ class TitleState extends MusicBeatState
 
 		chotixMenu = new FlxSprite();
 		chotixMenu.screenCenter();
-		chotixMenu.scale.x = 3;
-		chotixMenu.scale.y = 3;
+		chotixMenu.scale.x = 3.1;
+		chotixMenu.scale.y = 3.1;
 		chotixMenu.x += 135;
-		chotixMenu.y += 35;
+		chotixMenu.y += 15;
 		chotixMenu.frames = Paths.getSparrowAtlas('title/chotixmenu');
 		chotixMenu.antialiasing = false;
 		chotixMenu.animation.addByPrefix('idle', 'chotixmenu', 24, true);
@@ -352,6 +353,8 @@ class TitleState extends MusicBeatState
 		add(dukeMenu);
 		add(ashuraMenu);
 		add(chotixMenu);
+
+		changeAlpha(wechniaMenu);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.screenCenter();
@@ -385,6 +388,27 @@ class TitleState extends MusicBeatState
 		// credGroup.add(credTextShit);
 	}
 
+	var alphaTween:FlxTween;
+
+    function changeAlpha(animName:Dynamic) {
+        if (alphaTween != null) {
+            alphaTween.cancel();
+        }
+  
+        alphaTween = FlxTween.tween(animName, {alpha: 0.425}, 1, {
+            ease: FlxEase.quadInOut,
+            onComplete: function(_) {
+                alphaTween = FlxTween.tween(animName, {alpha: 0.9}, 1.175, {
+                    ease: FlxEase.quadInOut,
+                    onComplete: function(_) {
+                        changeAlpha(animName);
+                    }
+                });
+            }
+        });
+    }
+
+
 	function getIntroTextShit():Array<Array<String>>
 	{
 		var fullText:String = Assets.getText(Paths.txt('introText'));
@@ -409,10 +433,10 @@ class TitleState extends MusicBeatState
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
-                var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
+        var currentBeat = (Conductor.songPosition / 1000) * (Conductor.bpm / 60); // i forgor about it
 		
 		if (wechniaMenu != null) 
-                        wechniaMenu.x = 450 + 350 * FlxMath.fastCos((currentBeat / wechniaSpeed) * Math.PI);
+            wechniaMenu.x = 450 + 350 * FlxMath.fastCos((currentBeat / wechniaSpeed) * Math.PI);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
@@ -553,13 +577,13 @@ class TitleState extends MusicBeatState
 				remove(credGroup);
 				FlxG.camera.flash(FlxColor.PURPLE, 3.99);
 				floorStuff.animation.play('lol');
-			        wechniaMenu.animation.play('idle');
-			        chaotixMenu.animation.play('idle');
-			        wechMenu.animation.play('idle');
-			        dukeMenu.animation.play('idle');
-			        ashuraMenu.animation.play('idle');
-			        chotixMenu.animation.play('idle');
-			        skippedIntro = true;
+			    wechniaMenu.animation.play('idle');
+			    chaotixMenu.animation.play('idle');
+			    wechMenu.animation.play('idle');
+			    dukeMenu.animation.play('idle');
+			    ashuraMenu.animation.play('idle');
+			    chotixMenu.animation.play('idle');
+			    skippedIntro = true;
 		}
 	}
 }

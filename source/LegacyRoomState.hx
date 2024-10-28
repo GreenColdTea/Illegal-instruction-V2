@@ -118,6 +118,7 @@ class LegacyRoomState extends MusicBeatState
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
 	  	var space = FlxG.keys.justPressed.SPACE;
+        var back = controls.BACK;
 
         selectorSprite.update(elapsed);
 
@@ -125,7 +126,7 @@ class LegacyRoomState extends MusicBeatState
             changeSelection(1);
         if(controls.UI_LEFT_P && !broStopScrolling)
             changeSelection(-1);
-        if(accepted){
+        if(accepted) {
             var save:FlxSave = new FlxSave();
             if (save.bind("songSelection")) {
                 save.data.curSelected = curSelected;
@@ -146,7 +147,7 @@ class LegacyRoomState extends MusicBeatState
                     LoadingState.loadAndSwitchState(new PlayState());
                 });
         }
-        if (controls.BACK && !accepted)
+        if (controls.BACK && !broStopScrolling)
             {
                 FlxG.sound.play(Paths.sound('cancelMenu'));
                 MusicBeatState.switchState(new MainMenuState());
