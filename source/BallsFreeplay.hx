@@ -78,12 +78,20 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite;
     var floor:FlxSprite;
     var speed:Float = 105;
-    var maxSpeed:Float = 375;
+    var maxSpeed:Float = 385;
     var acceleration:Float = 300;
     var deceleration:Float = 37.5;
     var velocityX:Float = 0;
     var jumpTimer:FlxTimer;
     var canJump:Bool = true;
+
+    var slidingText:FlxText;
+    var textBG:FlxSprite;
+    var nowPlayingText:FlxText;
+    var isTextVisible:Bool = false;
+    var isAnimating:Bool = false;
+    var textTargetX:Float;
+    var hideTimer:FlxTimer;
 
     public var songIndex:Int = 0;
     static var lastSongIndex:Int = 0; // To keep the last selected song index
@@ -124,35 +132,34 @@ class BallsFreeplay extends MusicBeatState
 	    screenSong = new FlxTypedGroup<FlxText>();
 	    add(screenSong);
 
-    var characterText:FlxText;
-    var proceedText:FlxText;
-    var yn:FlxText;
+        var characterText:FlxText;
+        var yn:FlxText;
 
-	createMenuElements();
-    updateScreen();
+	    createMenuElements();
+        updateScreen();
 
-    var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
-    screen.setGraphicSize(FlxG.width, FlxG.height);
-    screen.updateHitbox();
-    add(screen);
+        var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
+        screen.setGraphicSize(FlxG.width, FlxG.height);
+        screen.updateHitbox();
+        add(screen);
 
-	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	screenLogo.scale.set(2, 1.75);
-	screenLogo.screenCenter(X);
-	screenLogo.updateHitbox();
-	screenLogo.x -= 92.5;
-	screenLogo.y += 61;
-	add(screenLogo);
+	    var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
+	    screenLogo.scale.set(2, 1.75);
+	    screenLogo.screenCenter(X);
+	    screenLogo.updateHitbox();
+	    screenLogo.x -= 92.5;
+	    screenLogo.y += 61;
+	    add(screenLogo);
 
-    scoreText = new FlxText(925, 65, 0, "SCORE: \n49324858", 36);
-    scoreText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.RED, CENTER);
-    add(scoreText);
+        scoreText = new FlxText(925, 65, 0, "SCORE:\n49324858", 36);
+        scoreText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.RED, "center");
+        add(scoreText);
 
-    floor = new FlxSprite(0, FlxG.height - 110);
-    floor.makeGraphic(FlxG.width, 110, FlxColor.BLUE);
-    floor.immovable = true;
-    floor.visible = false;
-    add(floor);
+        floor = new FlxSprite(0, FlxG.height - 110);
+        floor.makeGraphic(FlxG.width, 110, FlxColor.BLUE);
+        floor.immovable = true;
+        floor.visible = false;
+        add(floor);
 
 	player = new FlxSprite(455, 250);
     player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
@@ -163,11 +170,11 @@ class BallsFreeplay extends MusicBeatState
     player.animation.play("idle");
     player.antialiasing = true;
     player.acceleration.y = 500;
-    player.maxVelocity.y = 200;
+    player.maxVelocity.y = 350;
     player.drag.x = 400;
 
-    jumpTimer = new FlxTimer();
-    add(player);
+        jumpTimer = new FlxTimer();
+        add(player);
 
 	#if !android
     yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
@@ -181,16 +188,33 @@ class BallsFreeplay extends MusicBeatState
     yn.borderSize = 0.9;
     add(yn);
 
-    FlxG.sound.load(Paths.sound('jump'));
+        textBG = new FlxSprite(FlxG.width, 0);
+        textBG.makeGraphic(400, 125, FlxColor.BLACK);
+        textBG.alpha = 0.5;
+        add(textBG);
 
-	CoolUtil.precacheMusic('freeplayThemeDuccly');
-	CoolUtil.precacheMusic('freeplayTheme');
+        nowPlayingText = new FlxText(textBG.x, textBG.y + 5, textBG.width, "Now Playing:");
+        nowPlayingText.setFormat(Paths.font("pixel.otf"), 30, FlxColor.WHITE, "left");
+        add(nowPlayingText);
 
-	#if android
-    addVirtualPad(LEFT_FULL, A_B_C_X_Y);
-    #end
+        slidingText = new FlxText(textBG.x, textBG.y + 50, textBG.width);
+        slidingText.setFormat(Paths.font("pixel.otf"), 17, FlxColor.WHITE, "left");
+        add(slidingText);
 
-	if (ClientPrefs.ducclyMix)
+        hideTimer = new FlxTimer();
+
+        textTargetX = FlxG.width - textBG.width - 10;
+
+        FlxG.sound.load(Paths.sound('jump'));
+
+	    CoolUtil.precacheMusic('freeplayThemeDuccly');
+	    CoolUtil.precacheMusic('freeplayTheme');
+
+	    #if android
+        addVirtualPad(LEFT_FULL, A_B_C_X_Y);
+        #end
+
+	    if (ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
 		    FlxG.sound.music.fadeIn(4, 0, 0.85);
@@ -201,7 +225,7 @@ class BallsFreeplay extends MusicBeatState
 		    FlxG.sound.music.fadeIn(4, 0, 0.85);
 	    }
 
-	songIndex = lastSongIndex;
+	    songIndex = lastSongIndex;
 
         super.create();
     }
@@ -260,7 +284,7 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.animation.play('idle');
             songPlayable.screenCenter();
             songPlayable.scale.set(5.5, 5.5);
-            songPlayable.x += 365;
+            songPlayable.x += 375;
             songPlayable.y -= 50;
             songPlayable.alpha = 0;
             songPlayable.ID = i;
@@ -268,7 +292,7 @@ class BallsFreeplay extends MusicBeatState
                 songPlayable.y -= 2.5;
             }
             else if (songPlayable.ID == 3) {
-                //songPlayable.x += 5;
+                songPlayable.x -= 10;
                 songPlayable.y -= 20;
             }
             screenPlayers.add(songPlayable);
@@ -276,7 +300,7 @@ class BallsFreeplay extends MusicBeatState
 	        var characterText = new FlxText(0, 0, songs[i].replace("-", " \n").toUpperCase());
 	        characterText.updateHitbox();
             characterText.screenCenter();
-            characterText.setFormat(Paths.font("pixel.otf"), 35, FlxColor.RED, CENTER);
+            characterText.setFormat(Paths.font("pixel.otf"), 35, FlxColor.RED, "center");
             characterText.x -= 475;
             characterText.y -= 280;
             characterText.alpha = 0;
@@ -297,6 +321,7 @@ class BallsFreeplay extends MusicBeatState
         for (sprite in screenCharacters.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
+            flxSprite.animation.play("idle", true);
             if (flxSprite.ID == 4 || flxSprite.ID == 6) {
                 flxSprite.scale.set(5.5, 5.5);
             }
@@ -304,6 +329,7 @@ class BallsFreeplay extends MusicBeatState
         for (sprite in screenPlayers.members) {
             var flxSprite:FlxSprite = cast(sprite, FlxSprite);
             flxSprite.alpha = flxSprite.ID == songIndex ? 1 : 0;
+            flxSprite.animation.play("idle", true);
 	        if (flxSprite.ID == 3) {
                 flxSprite.scale.set(0.35, 0.35);
                 
@@ -318,20 +344,24 @@ class BallsFreeplay extends MusicBeatState
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
-        if (FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonX.justPressed #end)
+        if ((FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonX.justPressed #end) && !isAnimating)
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
             FlxG.sound.music.stop();
+
+            toggleText();
 
 	        if (ClientPrefs.ducclyMix)
             {
                 FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
 		        FlxG.sound.music.fadeIn(4, 0, 0.85);
+                slidingText.text = "Choose Your Destiny - Duccly";
             }
             else
             {
                 FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
 		        FlxG.sound.music.fadeIn(4, 0, 0.85);
+                slidingText.text = "Choose Your Destiny - HarbingerBeats" + "\n" + "(Chaotix Mix)";
 	        }
         }
 
@@ -343,6 +373,15 @@ class BallsFreeplay extends MusicBeatState
         scoreText.text = "SCORE:" + "\n" + lerpScore;
 
         FlxG.collide(player, floor);
+
+        if (isTextVisible) {
+            textBG.x = FlxMath.lerp(textBG.x, textTargetX, 3.275 * elapsed);
+        } else {
+            textBG.x = FlxMath.lerp(textBG.x, FlxG.width, 4.975 * elapsed);
+        }
+
+        nowPlayingText.x = textBG.x;
+        slidingText.x = textBG.x;
 
 	    if(FlxG.keys.pressed.CONTROL #if android || _virtualpad.buttonC.pressed #end)
 	    {
@@ -375,12 +414,12 @@ class BallsFreeplay extends MusicBeatState
         }
 
         if (player.isTouching(FlxObject.FLOOR)) {
-            if (FlxG.keys.pressed.LEFT && !FlxG.keys.pressed.RIGHT) {
+            if (controls.UI_LEFT && !controls.UI_RIGHT) {
                 velocityX = Math.max(velocityX - acceleration * elapsed, -maxSpeed);
                 player.flipX = false;
                 playMovementAnimation();
                 //trace("Moving left, velocityX: " + velocityX);
-            } else if (FlxG.keys.pressed.RIGHT && !FlxG.keys.pressed.LEFT) {
+            } else if (controls.UI_RIGHT && !controls.UI_LEFT) {
                 velocityX = Math.min(velocityX + acceleration * elapsed, maxSpeed);
                 player.flipX = true;
                 playMovementAnimation();
@@ -412,7 +451,7 @@ class BallsFreeplay extends MusicBeatState
         }
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump && player.isTouching(FlxObject.FLOOR)) {
-            player.velocity.y = -550;
+            player.velocity.y -= floor.y + 250;
             FlxG.sound.play(Paths.sound('jump'), 0.7);
             player.animation.play("jump");
             canJump = false;
@@ -457,5 +496,16 @@ class BallsFreeplay extends MusicBeatState
         } else {
             player.animation.play("idle");
         }
+    }
+
+    function toggleText() {
+        isTextVisible = true;
+        isAnimating = true;
+
+        hideTimer.cancel();
+        hideTimer.start(2.75, function(timer:FlxTimer) {
+            isTextVisible = false;
+            isAnimating = false;
+        });
     }
 }

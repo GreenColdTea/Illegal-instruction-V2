@@ -73,7 +73,7 @@ class StoryMenuState extends MusicBeatState
         persistentUpdate = persistentDraw = true;
 
         scoreText = new FlxText(900, 10, 0, "SCORE: 49324858", 36);
-        scoreText.setFormat(Paths.font("chaotix.ttf"), 32, RIGHT);
+        scoreText.setFormat(Paths.font("chaotix.ttf"), 32, "right");
 
         var rankText:FlxText = new FlxText(0, 10);
         rankText.text = 'RANK: GREAT';
