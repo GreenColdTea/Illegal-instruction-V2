@@ -8,7 +8,6 @@ import sys.FileSystem;
 #end
 import openfl.utils.Assets;
 import haxe.Json;
-import haxe.format.JsonParser;
 
 typedef MenuCharacterFile = {
 	var image:String;
@@ -23,16 +22,15 @@ class MenuCharacter extends FlxSprite
 {
 	public var character:String;
 	public var hasConfirmAnimation:Bool = false;
-	private static var DEFAULT_CHARACTER:String = 'bf';
+	private static var DEFAULT_CHARACTER:String = 'duke_menu';
 
-	public function new(x:Float, character:String = 'bf')
+	public function new(x:Float, character:String = 'duke_menu', ?idleAnim:String = "IdleAnim", ?confirmAnim:String = "ConfirmAnim")
 	{
 		super(x);
-
-		changeCharacter(character);
+		changeCharacter(character, idleAnim, confirmAnim);
 	}
 
-	public function changeCharacter(?character:String = 'bf') {
+	public function changeCharacter(?character:String = 'duke_menu', ?idleAnim:String, ?confirmAnim:String) {
 		if(character == null) character = '';
 		if(character == this.character) return;
 
@@ -50,7 +48,7 @@ class MenuCharacter extends FlxSprite
 				visible = false;
 				dontPlayAnim = true;
 			default:
-				var characterPath:String = 'images/menucharacters/' + character + '.json';
+				var characterPath:String = 'images/scenarioMenu/characters/' + character + '.png';
 				var rawJson = null;
 
 				#if MODS_ALLOWED
@@ -60,37 +58,29 @@ class MenuCharacter extends FlxSprite
 				}
 
 				if(!FileSystem.exists(path)) {
-					path = Paths.getPreloadPath('images/menucharacters/' + DEFAULT_CHARACTER + '.json');
+					path = Paths.getPreloadPath('images/scenarioMenu/characters/' + DEFAULT_CHARACTER + '.png');
 				}
 				rawJson = File.getContent(path);
 
 				#else
 				var path:String = Paths.getPreloadPath(characterPath);
 				if(!Assets.exists(path)) {
-					path = Paths.getPreloadPath('images/menucharacters/' + DEFAULT_CHARACTER + '.json');
+					path = Paths.getPreloadPath('images/scenarioMenu/characters/' + DEFAULT_CHARACTER + '.png');
 				}
 				rawJson = Assets.getText(path);
 				#end
 				
-				var charFile:MenuCharacterFile = cast Json.parse(rawJson);
-				frames = Paths.getSparrowAtlas('menucharacters/' + charFile.image);
-				animation.addByPrefix('idle', charFile.idle_anim, 24);
+				frames = Paths.getSparrowAtlas('images/scenarioMenu/characters/${character.toLowerCase()}_menu');
+				animation.addByPrefix('idle', idleAnim, 16);
+				scale.set(4, 4);
 
-				var confirmAnim:String = charFile.confirm_anim;
-				if(confirmAnim != null && confirmAnim != charFile.idle_anim)
-				{
+				if (confirmAnim != null && confirmAnim != idleAnim) {
 					animation.addByPrefix('confirm', confirmAnim, 24, false);
-					if (animation.getByName('confirm') != null) //check for invalid animation
+					if (animation.getByName('confirm') != null)
 						hasConfirmAnimation = true;
 				}
 
-				flipX = (charFile.flipX == true);
-
-				if(charFile.scale != 1) {
-					scale.set(charFile.scale, charFile.scale);
-					updateHitbox();
-				}
-				offset.set(charFile.position[0], charFile.position[1]);
+				flipX = false;
 				animation.play('idle');
 		}
 	}

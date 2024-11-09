@@ -164,7 +164,7 @@ class TitleState extends MusicBeatState
 
 		FlxG.mouse.visible = false;
 		#if FREEPLAY
-		MusicBeatState.switchState(new FreeplayState());
+		MusicBeatState.switchState(new BallsFreeplay());
 		#elseif CHARTING
 		MusicBeatState.switchState(new ChartingState());
 		#else
@@ -185,14 +185,14 @@ class TitleState extends MusicBeatState
 
 			// da gort check :>
 			#if mobile
-                        if (!LimeAssets.exists("assets/images/gort.png")) {
-                            throw new ValueException("why the hell u delete gort..");
-                        }
-                        #else
-                        if (!Paths.fileExists('images/gort.png', IMAGE)) {
-                            throw new ValueException("why the hell u delete gort..");
-                        }
-                        #end
+            if (!LimeAssets.exists("assets/images/gort.png")) {
+                throw new ValueException("why the hell u delete gort..");
+            }
+            #else
+            if (!Paths.fileExists('images/gort.png', IMAGE)) {
+                throw new ValueException("why the hell u delete gort..");
+            }
+            #end
 
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{

@@ -29,7 +29,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 
 		var name:String = song;
 		if(week > -1) {
-			name = WeekData.weeksLoaded.get(WeekData.weeksList[week]).weekName;
+			name = "this progress";
 		}
 		name += ' (' + CoolUtil.difficulties[difficulty] + ')?';
 

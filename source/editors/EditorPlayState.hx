@@ -19,6 +19,9 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import openfl.events.KeyboardEvent;
 import FunkinLua;
+#if mobile
+import mobile.MobileControls;
+#end
 
 using StringTools;
 
@@ -159,14 +162,12 @@ class EditorPlayState extends MusicBeatState
 			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
 
-      
-		#if android
-		addAndroidControls();
-		#end
-
-		#if android
-		androidc.visible = true;
-		#end
+		#if mobile
+        mobileControls.visible = false;
+		if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
+			_virtualpad.visible = true;
+		}
+        #end
 
 		super.create();
 	}
@@ -329,9 +330,12 @@ class EditorPlayState extends MusicBeatState
 		{
 			FlxG.sound.music.pause();
 			vocals.pause();
-         #if android
-			androidc.visible = false;
-			#end
+            #if mobile
+            mobileControls.visible = false;
+		    if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
+			    _virtualpad.visible = true;
+		    }
+            #end
 			LoadingState.loadAndSwitchState(new editors.ChartingState());
 		}
 

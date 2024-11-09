@@ -28,7 +28,7 @@ import Controls;
 import openfl.Lib;
 import openfl.display.StageScaleMode;
 #if mobile
-import android.MobileScaleMode;
+import mobile.MobileScaleMode;
 #end
 
 using StringTools;
@@ -78,12 +78,19 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		#end
 
-		/*var option:Option = new Option('Adaptive Caching',
-			"If checked, it will use your GPU with RAM to cache song assets. \nTurn it on, if you have a good GPU.",
+		var option:Option = new Option('Adaptive Caching',
+			"If checked, it will use your GPU with RAM to cache sprites. \nTurn it on, if you have a good GPU.",
 			'adaptiveCache',
 			'bool',
-		       false);
-		addOption(option);*/
+		    false);
+		addOption(option);
+
+		var option:Option = new Option('GPU Caching',
+			"The same is above but GPU only.",
+			'cacheOnGPU',
+			'bool',
+		    false);
+		addOption(option);
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		var option:Option = new Option('Framerate',

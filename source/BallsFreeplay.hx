@@ -161,32 +161,32 @@ class BallsFreeplay extends MusicBeatState
         floor.visible = false;
         add(floor);
 
-	player = new FlxSprite(455, 250);
-    player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
-    player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
-    player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
-    player.animation.addByPrefix('walk', 'BF_Walk', 24, true);
-    player.animation.addByPrefix('run', 'BF_Run', 24, true);
-    player.animation.play("idle");
-    player.antialiasing = true;
-    player.acceleration.y = 500;
-    player.maxVelocity.y = 350;
-    player.drag.x = 400;
+	    player = new FlxSprite(455, 250);
+        player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
+        player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
+        player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
+        player.animation.addByPrefix('walk', 'BF_Walk', 24, true);
+        player.animation.addByPrefix('run', 'BF_Run', 24, true);
+        player.animation.play("idle");
+        player.antialiasing = true;
+        player.acceleration.y = 500;
+        player.maxVelocity.y = 350;
+        player.drag.x = 400;
 
         jumpTimer = new FlxTimer();
         add(player);
 
-	#if !android
-    yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
-    #else
-    yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
-    #end
-    yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-    yn.visible = true;
-	yn.y += 675;
-    yn.color = FlxColor.WHITE;
-    yn.borderSize = 0.9;
-    add(yn);
+	    #if !mobile
+        yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
+        #else
+        yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
+        #end
+        yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        yn.visible = true;
+	    yn.y += 675;
+        yn.color = FlxColor.WHITE;
+        yn.borderSize = 0.9;
+        add(yn);
 
         textBG = new FlxSprite(FlxG.width, 0);
         textBG.makeGraphic(400, 125, FlxColor.BLACK);
@@ -205,24 +205,24 @@ class BallsFreeplay extends MusicBeatState
 
         textTargetX = FlxG.width - textBG.width - 10;
 
-        FlxG.sound.load(Paths.sound('jump'));
+        CoolUtil.precacheSound('jump');
 
 	    CoolUtil.precacheMusic('freeplayThemeDuccly');
 	    CoolUtil.precacheMusic('freeplayTheme');
 
-	    #if android
+	    #if mobile
         addVirtualPad(LEFT_FULL, A_B_C_X_Y);
         #end
 
 	    if (ClientPrefs.ducclyMix)
         {
             FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
-		    FlxG.sound.music.fadeIn(4, 0, 0.85);
+		    FlxG.sound.music.fadeIn(4, 0, 0.875);
         }
         else
         {
             FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
-		    FlxG.sound.music.fadeIn(4, 0, 0.85);
+		    FlxG.sound.music.fadeIn(4, 0, 0.875);
 	    }
 
 	    songIndex = lastSongIndex;
@@ -383,7 +383,7 @@ class BallsFreeplay extends MusicBeatState
         nowPlayingText.x = textBG.x;
         slidingText.x = textBG.x;
 
-	    if(FlxG.keys.pressed.CONTROL #if android || _virtualpad.buttonC.pressed #end)
+	    if(FlxG.keys.pressed.CONTROL #if mobile || _virtualpad.buttonC.pressed #end)
 	    {
 	        persistentUpdate = false;
 	        openSubState(new GameplayChangersSubstate());
@@ -451,8 +451,8 @@ class BallsFreeplay extends MusicBeatState
         }
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump && player.isTouching(FlxObject.FLOOR)) {
+            FlxG.sound.play(Paths.sound('jump'), 0.8);
             player.velocity.y -= floor.y + 250;
-            FlxG.sound.play(Paths.sound('jump'), 0.7);
             player.animation.play("jump");
             canJump = false;
             jumpTimer.start(0.5, function(_:FlxTimer):Void {

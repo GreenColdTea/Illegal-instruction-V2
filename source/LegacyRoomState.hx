@@ -41,25 +41,17 @@ class LegacyRoomState extends MusicBeatState
     var selectorSprite:MenuItemAgainFuckYou;
     var imageName:String;
 
+    var save:FlxSave;
+
     override function create()
     {
         Paths.clearStoredMemory();
 	  	Paths.clearUnusedMemory();
 
-        FlxG.sound.playMusic(Paths.music('Legacy_menu'), 0);
-        FlxG.sound.music.fadeIn(4, 0, 0.7);
-
-        var save:FlxSave = new FlxSave();
-        if (save.bind("songSelection")) {
-            curSelected = save.data.curSelected != null ? save.data.curSelected : 0;
-            save.close();
-        }
+        FlxG.sound.playMusic(Paths.music('Legacy_menu'), true);
 
         PlayState.isStoryMode = false;
         PlayState.isFreeplay = false;
-
-        transIn = FlxTransitionableState.defaultTransIn;
-		transOut = FlxTransitionableState.defaultTransOut;
 
         #if desktop
 		// Updating Discord Rich Presence
@@ -128,10 +120,6 @@ class LegacyRoomState extends MusicBeatState
             changeSelection(-1);
         if(accepted) {
             var save:FlxSave = new FlxSave();
-            if (save.bind("songSelection")) {
-                save.data.curSelected = curSelected;
-                save.close();
-            }
             broStopScrolling = true;
             var songLowercase:String = Paths.formatToSongPath(songs[curSelected]);
             FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -161,7 +149,7 @@ class LegacyRoomState extends MusicBeatState
         curSelected += change;
 
         if (curSelected < 0)
-			curSelected = songs.length - 1;
+		    curSelected = songs.length - 1;
 		if (curSelected >= songs.length)
 			curSelected = 0;
 

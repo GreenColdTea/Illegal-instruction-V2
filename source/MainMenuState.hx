@@ -35,10 +35,11 @@ class MainMenuState extends MusicBeatState
 	public static var firstStart:Bool = true;
 	
 	var optionShit:Array<String> = [
-		'story_mode',
+		'scenario_mode',
 		'freeplay',
 		'credits',
 		'collection',
+		'legacy',
 		'options'
 	];
 
@@ -69,7 +70,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 3)), 0.1);
+		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('chaotixMenu/menu-bg'));
 		bg.scrollFactor.set(0, 0);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
@@ -130,7 +131,7 @@ class MainMenuState extends MusicBeatState
 		if (!FlxG.sound.music.playing || FlxG.sound.music.length != 89170)
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
-				FlxG.sound.music.play(true, 8032);
+				FlxG.sound.music.play(true, 8045);
 			}
 		}
 
@@ -141,8 +142,8 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 150;
-			var offset2:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+			var offset:Float = 108 - (Math.max(optionShit.length, 5) - 5) * 150;
+			var offset2:Float = 108 - (Math.max(optionShit.length, 5) - 5) * 80;
 			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
 			menuItem.scale.x = scale;
 			menuItem.scale.y = scale;
@@ -150,7 +151,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
-			if (!ClientPrefs.beatDuke && optionShit[i] == 'collection') {
+			if (!ClientPrefs.beatDuke && (optionShit[i] == 'collection' || optionShit[i] == 'legacy')) {
 				//menuItem.color = FlxColor.fromHSL(menuItem.color.hue, menuItem.color.saturation, 0.2, 1);
 				menuItem.animation.addByPrefix('idle', optionShit[i] + " locked", 24);
 				menuItem.animation.play('idle');
@@ -163,8 +164,8 @@ class MainMenuState extends MusicBeatState
 			menuItem.ID = i;
 			menuItem.updateHitbox();
 			menuItems.add(menuItem);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
+			var scr:Float = (optionShit.length - 5) * 0.135;
+			if(optionShit.length < 7) scr = 0;
 			menuItem.scrollFactor.set(0, scr);
 			menuItem.antialiasing = false;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
@@ -190,6 +191,10 @@ class MainMenuState extends MusicBeatState
 					menuItem.x = 700;
 					menuItem.y = 0;
 					menuItem.scrollFactor.set(1, 1);
+				case 5:
+					menuItem.x = 1000;
+					menuItem.y = 0;
+					menuItem.scrollFactor.set(1, 1);
 			}
 				menuItem.y = 300 + (i * 350);
 
@@ -210,8 +215,8 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-        #if android
-		addVirtualPad(UP_DOWN, A_B_C);
+        #if mobile
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 
 		super.create();
@@ -257,7 +262,7 @@ class MainMenuState extends MusicBeatState
 			if (controls.ACCEPT)
 			{
 				
-				if (!ClientPrefs.beatDuke && optionShit[curSelected] == 'collection')
+				if (!ClientPrefs.beatDuke && (optionShit[curSelected] == 'collection' || optionShit[curSelected] == 'legacy'))
 					{
 						selectedSomethin = false;
 						cooldownLol = true;
@@ -292,16 +297,23 @@ class MainMenuState extends MusicBeatState
 									
 										switch (daChoice)
 										{
-											case 'story_mode':
+											case 'scenario_mode':
+												#if !mobile
 												MusicBeatState.switchState(new StoryMenuState());
+												#else
+												MusicBeatState.switchState(new mobile.StoryMenuState());
+												#end
 											case 'freeplay':
 												MusicBeatState.switchState(new BallsFreeplay());
 											case 'collection':
 												MusicBeatState.switchState(new CollectionRoomState());
+											case 'legacy':
+												MusicBeatState.switchState(new LegacyRoomState());
 											case 'credits':
 												MusicBeatState.switchState(new CreditsState());
 											case 'options':
 												LoadingState.loadAndSwitchState(new options.OptionsState());
+												options.OptionsState.onPlayState = false;
 										}
 									});
 								}
@@ -311,25 +323,33 @@ class MainMenuState extends MusicBeatState
 		
 			}
 			#if debug									
-			if (FlxG.keys.justPressed.EIGHT #if android || _virtualpad.buttonX.justPressed #end)
+			if (FlxG.keys.justPressed.SIX #if mobile || _virtualpad.buttonX.justPressed #end)
 				{
 					FlxG.save.data.beatduke = true;
 					FlxG.save.data.beatchaotix = true;
 					FlxG.save.data.beatnormal = true;
+					FlxG.sound.play(Paths.sound('ring'));
 				}
-			if (FlxG.keys.justPressed.NINE #if android || _virtualpad.buttonY.justPressed #end)
+			if (FlxG.keys.justPressed.EIGHT #if mobile || _virtualpad.buttonS.justPressed #end)
+				{
+					FlxG.save.data.beatduke = false;
+					FlxG.save.data.beatchaotix = false;
+					FlxG.save.data.beatnormal = false;
+					FlxG.sound.play(Paths.sound('nope'));
+				}
+			if (FlxG.keys.justPressed.NINE #if mobile || _virtualpad.buttonY.justPressed #end)
 				{
 					MusicBeatState.switchState(new CollectionRoomState());
 				}
-			if (FlxG.keys.justPressed.FIVE #if android || _virtualpad.buttonZ.justPressed #end)
+			if (FlxG.keys.justPressed.FIVE #if mobile || _virtualpad.buttonZ.justPressed #end)
 				{
-					MusicBeatState.switchState(new FreeplayState());
+					MusicBeatState.switchState(new mobile.StoryMenuState());
 				}
-			#end
 			if (FlxG.keys.justPressed.ONE #if mobile || _virtualpad.buttonC.justPressed #end)
 			{
 				MusicBeatState.switchState(new LegacyRoomState());
 			}
+			#end
 			if (FlxG.keys.anyJustPressed(debugKeys) #if mobile || _virtualpad.buttonE.justPressed #end)
 			{
 				selectedSomethin = true;
@@ -364,10 +384,10 @@ class MainMenuState extends MusicBeatState
 
 			if (spr.ID == curSelected)
 			{
-				if(ClientPrefs.beatDuke || daChoice != 'collection')
+				if(ClientPrefs.beatDuke || (daChoice != 'collection' && daChoice != 'legacy'))
 					spr.animation.play('selected');
 				var add:Float = 0;
-				if(menuItems.length > 4) {
+				if(menuItems.length > 5) {
 					add = menuItems.length * 8;
 				}
 				camFollow.setPosition(spr.getGraphicMidpoint().x + 150, spr.getGraphicMidpoint().y + 70);

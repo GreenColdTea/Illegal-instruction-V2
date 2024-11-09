@@ -154,7 +154,7 @@ class SonicNumberDisplay extends FlxSpriteGroup {
 
     }
 
-    if(style == 'chotix'){
+    if (style == 'chotix'){
       if(Std.string(newNumber).contains("69")){
         seperated=[];
         for(i in 0...members.length)

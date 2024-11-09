@@ -95,7 +95,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.seenCutscene = false;
 
 			if (PlayState.isStoryMode)
+				#if !mobile
 				MusicBeatState.switchState(new StoryMenuState());
+				#else
+				MusicBeatState.switchState(new mobile.StoryMenuState());
+				#end
 			else if (PlayState.isFreeplay)
 				MusicBeatState.switchState(new BallsFreeplay());
 			else 

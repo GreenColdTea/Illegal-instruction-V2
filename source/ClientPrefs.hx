@@ -16,6 +16,7 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var shaders:Bool = true;
+	public static var cacheOnGPU:Bool = #if !switch false #else true #end;
 	public static var adaptiveCache:Bool = false;
 	public static var noBordersScreen:Bool = false;
 	public static var framerate:Int = 60;
@@ -24,7 +25,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
-    public static var controllerMode:Bool = #if android true #else false #end;
+    public static var controllerMode:Bool = #if mobile true #else false #end;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
@@ -32,9 +33,10 @@ class ClientPrefs {
 	public static var timeBarType:String = 'Time Left';
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
+	public static var dodgepos:String = 'middle';
+	public static var isvpad:Bool = false;
 	public static var healthBarAlpha:Float = 1;
-    public static var hitboxmode:String = 'Classic';  //starting new way to change between hitboxes yay
-	public static var hitboxalpha:Float = 0.2; //someone request this lol
+	public static var mariomaster:Bool = true; //starting new way to change between hitboxes yay
 	public static var hitsoundVolume:Float = 0;
 	public static var pauseMusic:String = 'Chaotix Break';
 	public static var gameplaySettings:Map<String, Dynamic> = [
@@ -89,6 +91,8 @@ class ClientPrefs {
 		'back'			=> [BACKSPACE, ESCAPE],
 		'pause'			=> [ENTER, ESCAPE],
 		'reset'			=> [R, NONE],
+
+		'note_space'    => [SPACE, NONE],
 		
 		'volume_mute'	=> [ZERO, NONE],
 		'volume_up'		=> [NUMPADPLUS, PLUS],
@@ -115,6 +119,7 @@ class ClientPrefs {
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.shaders = shaders;
 		FlxG.save.data.adaptiveCache = adaptiveCache;
+		FlxG.save.data.cacheOnGPU = cacheOnGPU;
 		FlxG.save.data.noBordersScreen = noBordersScreen;
 		FlxG.save.data.vSync = vSync;
 		FlxG.save.data.framerate = framerate;
@@ -144,8 +149,9 @@ class ClientPrefs {
 		FlxG.save.data.hitsoundVolume = hitsoundVolume;
 		FlxG.save.data.pauseMusic = pauseMusic;
 
-                FlxG.save.data.hitboxmode = hitboxmode;
-		FlxG.save.data.hitboxalpha = hitboxalpha;
+        FlxG.save.data.isvpad = isvpad;
+		FlxG.save.data.dodgepos = dodgepos;
+		FlxG.save.data.mariomaster = mariomaster;
 
 		//mod shit
 		FlxG.save.data.beatduke = beatDuke;
@@ -177,8 +183,8 @@ class ClientPrefs {
 		if(FlxG.save.data.adaptiveCache != null) {
 			adaptiveCache = FlxG.save.data.adaptiveCache;
 		}
-		if(FlxG.save.data.adaptiveCache != null) {
-			vSync = FlxG.save.data.vSync;
+		if(FlxG.save.data.cacheOnGPU != null) {
+			cacheOnGPU = FlxG.save.data.cacheOnGPU;
 		}
 		if(FlxG.save.data.noBordersScreen != null) {
 			noBordersScreen = FlxG.save.data.noBordersScreen;
@@ -207,11 +213,14 @@ class ClientPrefs {
 		if(FlxG.save.data.shaders != null) {
 			shaders = FlxG.save.data.shaders;
 		}
-                if(FlxG.save.data.hitboxmode != null) {
-			hitboxmode = FlxG.save.data.hitboxmode;
+        if(FlxG.save.data.isvpad != null) {
+			isvpad = FlxG.save.data.isvpad;
 		}
-		if(FlxG.save.data.hitboxalpha != null) {
-			hitboxalpha = FlxG.save.data.hitboxalpha;
+		if(FlxG.save.data.dodgepos != null) {
+			dodgepos = FlxG.save.data.dodgepos;
+		}
+		if(FlxG.save.data.mariomaster != null) {
+			mariomaster = FlxG.save.data.mariomaster;
 		}
 		if(FlxG.save.data.framerate != null) {
 			framerate = FlxG.save.data.framerate;

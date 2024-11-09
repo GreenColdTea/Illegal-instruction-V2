@@ -52,6 +52,7 @@
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
+	<assets path="mobile" rename="assets/mobile" if="mobile" />
 
 	<!-- DONT ENABLE THIS -->
 	<!--<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>-->
@@ -115,8 +116,8 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxcpp" />
 	<haxelib name="hxcpp-debug-server" if="desktop"/>
-	<haxelib name="openfl" version="9.3.0" />
-	<lime version="8.0.1" />
+	<haxelib name="openfl" version="9.2.0" />
+	<lime version="8.2.1" />
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
@@ -191,5 +192,4 @@
 
 	<haxedef name='no-deprecation-warnings' />
 	<haxedef name='message.reporting' value='pretty' />
-
 </project>
