@@ -2837,13 +2837,19 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+		DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
 		{
 			FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
+		}
+
+		switch (SONG.song.toLowerCase())
+		{
+			case "test" | "endless-legacy" | "found-you-legacy":
+				startCircle.visible = false;
 		}
 
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
@@ -3456,7 +3462,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength);
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -3835,11 +3841,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
 			}
 			#end
 		}
@@ -3854,11 +3860,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
 			}
 		}
 		#end
@@ -3871,7 +3877,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+			DiscordClient.changePresence(detailsPausedText, SONG.song, iconP2.getCharacter());
 		}
 		#end
 
@@ -4175,7 +4181,7 @@ class PlayState extends MusicBeatState
 				//}
 
 				#if desktop
-				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsPausedText, SONG.song, iconP2.getCharacter());
 				#end
 			}
 		}
@@ -4558,7 +4564,7 @@ class PlayState extends MusicBeatState
 
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song, iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;
@@ -6050,6 +6056,8 @@ class PlayState extends MusicBeatState
 		{
 			case 'breakout':
 			{
+			   if (curStage == "entrance")
+			   {
 				switch (curStep)
 				{
 				    case 384:
@@ -6186,32 +6194,35 @@ class PlayState extends MusicBeatState
 						holyFuckStopZoomin = false;
 						defaultZoomin = false;
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
+					}
 				}
 			}
 
 			case 'breakout-legacy':
 			{
+			   if (curStage == "entrance-legacy")
+			   {
 				switch (curStep)
 				{
-					case 384:
-						wowZoomin = true;
-					case 512:
-						wowZoomin = false;
-					case 522:
-						FlxTween.tween(camHUD, {alpha: 0}, 1.3, {ease: FlxEase.cubeInOut});
-						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 4, {ease: FlxEase.cubeInOut});
-					case 560:
-						FlxTween.tween(theStatic, {alpha: 0.9}, 1.5, {ease: FlxEase.quadInOut});
-					case 704:
+					    case 384:
+						    wowZoomin = true;
+					    case 512:
+						    wowZoomin = false;
+					    case 522:
+						    FlxTween.tween(camHUD, {alpha: 0}, 1.3, {ease: FlxEase.cubeInOut});
+						    FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 4, {ease: FlxEase.cubeInOut});
+					    case 560:
+						    FlxTween.tween(theStatic, {alpha: 0.9}, 1.5, {ease: FlxEase.quadInOut});
+					    case 704:
 						if (ClientPrefs.shaders) {
-						camGame.setFilters([barrelDistortionFilter]);
-						camHUD.setFilters([barrelDistortionFilter]);
-						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 1.0, barrelDistortion2: 1.0}, 0.5, {ease: FlxEase.quadInOut});
+						    camGame.setFilters([barrelDistortionFilter]);
+						    camHUD.setFilters([barrelDistortionFilter]);
+						    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 1.0, barrelDistortion2: 1.0}, 0.5, {ease: FlxEase.quadInOut});
 						}
 						case 728:
 							if (ClientPrefs.shaders) {
-							FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -1.0, barrelDistortion2: -1.0}, 0.35,
-								{ease: FlxEase.quadInOut});
+							    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -1.0, barrelDistortion2: -1.0}, 0.35,
+								    {ease: FlxEase.quadInOut});
 				            }
 						case 732:
 							if (ClientPrefs.shaders) {
@@ -6260,11 +6271,14 @@ class PlayState extends MusicBeatState
 						case 1216:
 							holyFuckStopZoomin = false;
 							FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
+						}
 					}
 				}
 
 			case 'soulless-endeavors':
 			{
+			   if (curStage == "soulless")
+			   {
 				switch (curStep)
 				{
 					case 896:
@@ -6363,11 +6377,14 @@ class PlayState extends MusicBeatState
 						soulRocks.alpha = 0;
 						soulKai.alpha = 0;
 						soulFrontRocks.alpha = 0;
+					}
 				}
 			}
 
 			case 'soulless-endeavors-legacy':
 				{
+				   if (curStage == "soulless-legacy")
+				   {
 					switch (curStep)
 					{
 						case 640:
@@ -6435,11 +6452,14 @@ class PlayState extends MusicBeatState
 							wowZoomin = false;
 							holyFuckStopZoomin = false;
 							FlxTween.tween(camHUD, {alpha: 0}, 1.75, {ease: FlxEase.cubeInOut});
+						}
 					}
 				}
 
 			case 'color-crash':
 			{
+			   if (curStage == "wechnia")
+			   {
 				switch (curStep)
 				{
 					case 64, 832:
@@ -6468,58 +6488,65 @@ class PlayState extends MusicBeatState
 						wowZoomin = false;
 						defaultZoomin = false;
 						FlxTween.tween(camHUD, {alpha: 0}, 0.25, {ease: FlxEase.linear});
+					}
 				}
 			}
 
 			case "my-horizon":
-				switch (curStep) {
-				case 79:
-                    FlxTween.tween(camHUD, {alpha: 1}, 1.75, {ease: FlxEase.linear});
+			   if (curStage == "horizon")
+			   {
+				switch (curStep) 
+				{
+				    case 79:
+                        FlxTween.tween(camHUD, {alpha: 1}, 1.75, {ease: FlxEase.linear});
 
-				case 728:
-					FlxTween.tween(camHUD, {alpha: 0}, 1.5, {ease: FlxEase.linear});
-					FlxTween.tween(horizonBGp1, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonBGp2, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonBGp3, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonBGp4, {alpha: 0}, 1, {ease: FlxEase.linear});
-                    FlxTween.tween(dad, {alpha: 0}, 1.75, {ease: FlxEase.linear});
-					FlxTween.tween(gf, {alpha: 0}, 1.75, {ease: FlxEase.linear});
-					FlxTween.tween(boyfriend, {alpha: 0}, 1.75, {ease: FlxEase.linear});
-					FlxTween.tween(horizonFGp1, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonFGp2, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonFGp3, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonFGp4, {alpha: 0}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonMG, {alpha: 0}, 1, {ease: FlxEase.linear});
+				    case 728:
+					    FlxTween.tween(camHUD, {alpha: 0}, 1.5, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonBGp1, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonBGp2, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonBGp3, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonBGp4, {alpha: 0}, 1, {ease: FlxEase.linear});
+                        FlxTween.tween(dad, {alpha: 0}, 1.75, {ease: FlxEase.linear});
+					    FlxTween.tween(gf, {alpha: 0}, 1.75, {ease: FlxEase.linear});
+					    FlxTween.tween(boyfriend, {alpha: 0}, 1.75, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonFGp1, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonFGp2, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonFGp3, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonFGp4, {alpha: 0}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonMG, {alpha: 0}, 1, {ease: FlxEase.linear});
 
-				case 1000:
-					dad.x += 300;
-					dad.y += 65;
-					boyfriend.x -= 250;
-					boyfriend.y += 85;
+				    case 1000:
+					    dad.x += 300;
+					    dad.y += 65;
+					    boyfriend.x -= 250;
+					    boyfriend.y += 85;
 
-				case 1024:
-					FlxTween.tween(this, {health: 1}, 3.75);
-					FlxG.camera.flash(FlxColor.RED, 1.5);
-					FlxTween.tween(horizonSpookyBGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonSpookyBGp2, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonSpookyBGp3, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonSpookyBGp4, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonSpookyFGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonSpookyFGp2, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(horizonSpookyFloor, {alpha: 1}, 1, {ease: FlxEase.linear});
-                    FlxTween.tween(dad, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(gf, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(boyfriend, {alpha: 1}, 1, {ease: FlxEase.linear});
-					FlxTween.tween(camHUD, {alpha: 0.9}, 1, {ease: FlxEase.linear});
+				    case 1024:
+					    FlxTween.tween(this, {health: 1}, 3.75);
+					    FlxG.camera.flash(FlxColor.RED, 1.5);
+					    FlxTween.tween(horizonSpookyBGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonSpookyBGp2, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonSpookyBGp3, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonSpookyBGp4, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonSpookyFGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonSpookyFGp2, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(horizonSpookyFloor, {alpha: 1}, 1, {ease: FlxEase.linear});
+                        FlxTween.tween(dad, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(gf, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(boyfriend, {alpha: 1}, 1, {ease: FlxEase.linear});
+					    FlxTween.tween(camHUD, {alpha: 0.9}, 1, {ease: FlxEase.linear});
 
-					opponentStrums.forEach(function(spr:StrumNote)
-					{
-						spr.reloadNote();
-					});
+					    opponentStrums.forEach(function(spr:StrumNote)
+					    {
+						    spr.reloadNote();
+					    });
+					}
 				}
 
 				case 'my-horizon-legacy':
 				{
+				   if (curStage == "horizon-legacy")
+				   {
 					switch (curStep)
 					{
 						case 896:
@@ -6559,11 +6586,14 @@ class PlayState extends MusicBeatState
 							camHUD.shake(0.003, 1);
 						case 2337:
 							defaultZoomin = false;
+						}
 					}
 				}
 		
 				case 'our-horizon-legacy':
 					{
+					   if (curStage == "horizon-legacy")
+					   {
 						switch (curStep)
 						{
 							case 765:
@@ -6725,11 +6755,14 @@ class PlayState extends MusicBeatState
 							case 3104:
 								removeShit(3);
 								FlxG.camera.flash(FlxColor.WHITE, 2);
+							}
 						}
 					}
 		
 				    case 'found-you-legacy':
 					{
+					   if (curStage == "founded")
+					   {
 						switch (curStep)
 						{
 							case 1: // do it jiggle?
@@ -6796,13 +6829,16 @@ class PlayState extends MusicBeatState
 								revivedIsPissed(1);
 								revivedIsPissed(2);
 								revivedIsPissed(3);
+						   }
 						}
 					}
 
 					case 'malediction-legacy':
 					{
-						switch (curStep)
+						if (curStage == "curse")
 						{
+						    switch (curStep)
+						    {
 								case 528, 725:
 									FlxTween.tween(camHUD, {alpha: 0.5}, 0.3,{ease: FlxEase.cubeInOut});
 								case 558, 735:
@@ -6822,11 +6858,14 @@ class PlayState extends MusicBeatState
 									}
 								case 1184:
 									FlxTween.tween(camHUD, {alpha: 0}, 1,{ease: FlxEase.cubeInOut});
+							}
 						}
 					}
 
 					case 'endless-legacy':
 					{
+					   if (curStage == "mazin-legacy")
+					   {
 						switch (curStep)
 						{
 							case 272, 912, 1172:
@@ -6878,11 +6917,14 @@ class PlayState extends MusicBeatState
 							case 1681:
 								defaultCamZoom = 0.6;
 								holyFuckStopZoomin = false;
+						   }
 						}
 					}
 				
 			case 'vista':
 			{
+			   if (curStage == "vista")
+			   {
 				switch (curStep)
 				{
 					case 512:
@@ -7006,6 +7048,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.PURPLE, 1);
 						FlxTween.tween(camGame, {alpha: 0}, 1);
 						FlxTween.tween(camHUD, {alpha: 0}, 1);
+					}
 				}			
 			}
 

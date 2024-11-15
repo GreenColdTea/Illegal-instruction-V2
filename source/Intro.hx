@@ -75,6 +75,7 @@ class Intro extends MusicBeatState
         video.onEndReached.add(function()
         {   
             FlxG.save.data.seenIntro = true; 
+            save.flush();
             MusicBeatState.switchState(new TitleState());
         });
         video.play(Paths.video("II_Intro"));
@@ -83,6 +84,7 @@ class Intro extends MusicBeatState
         video.finishCallback = function()
         {
             FlxG.save.data.seenIntro = true; 
+            save.flush();
             MusicBeatState.switchState(new TitleState());
         }
         video.playVideo(Paths.video("II_Intro"));

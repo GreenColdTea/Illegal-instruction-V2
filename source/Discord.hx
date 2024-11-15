@@ -17,7 +17,7 @@ class DiscordClient
 	public static var isInitialized:Bool = false;
 	public function new()
 	{
-                #if desktop
+        #if desktop
 		trace("Discord Client starting...");
 		DiscordRpc.start({
 			clientID: "863222024192262205",
@@ -35,26 +35,26 @@ class DiscordClient
 		}
 
 		DiscordRpc.shutdown();
-                #end
+        #end
 	}
 	
 	public static function shutdown()
 	{
-                #if desktop
+        #if desktop
 		DiscordRpc.shutdown();
-                #end
+        #end
 	}
 	
 	static function onReady()
 	{
-                #if desktop
+        #if desktop
 		DiscordRpc.presence({
 			details: "In the Menus",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "Psych Engine"
+			largeImageText: "Illegal Instruction"
 		});
-                #end
+        #end
 	}
 
 	static function onError(_code:Int, _message:String)
@@ -81,7 +81,7 @@ class DiscordClient
 
 	public static function changePresence(details:String, state:Null<String>, ?smallImageKey : String, ?hasStartTimestamp : Bool, ?endTimestamp: Float)
 	{
-                #if desktop
+        #if desktop
 		var startTimestamp:Float = if(hasStartTimestamp) Date.now().getTime() else 0;
 
 		if (endTimestamp > 0)
@@ -93,18 +93,18 @@ class DiscordClient
 			details: details,
 			state: state,
 			largeImageKey: 'icon',
-			largeImageText: "Engine Version: " + MainMenuState.psychEngineVersion,
+			largeImageText: "Mod Version: " + MainMenuState.psychEngineVersion,
 			smallImageKey : smallImageKey,
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),
                         endTimestamp : Std.int(endTimestamp / 1000)
 		});
-                #end
+        #end
 
 		//trace('Discord RPC Updated. Arguments: $details, $state, $smallImageKey, $hasStartTimestamp, $endTimestamp');
 	}
 
-	#if LUA_ALLOWED
+	#if (LUA_ALLOWED && desktop)
 	public static function addLuaCallbacks(lua:State) {
 		Lua_helper.add_callback(lua, "changePresence", function(details:String, state:Null<String>, ?smallImageKey:String, ?hasStartTimestamp:Bool, ?endTimestamp:Float) {
 			changePresence(details, state, smallImageKey, hasStartTimestamp, endTimestamp);
