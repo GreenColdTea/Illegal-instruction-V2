@@ -16,7 +16,7 @@
 	"image": "characters/transform",
 	"position": [
 		-70,
-		-100
+		-110
 	],
 	"healthicon": "chaotix",
 	"flip_x": false,
@@ -26,7 +26,7 @@
 		189
 	],
 	"camera_position": [
-		-70,
+		-60,
 		200
 	],
 	"sing_duration": 6.1,

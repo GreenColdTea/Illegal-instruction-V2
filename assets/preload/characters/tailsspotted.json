@@ -1,22 +1,33 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				242,
 				145
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "spotted",
+			"fps": 24,
+			"name": "BEASTIFOUNDYOU",
+			"indices": []
+		},
+		{
+			"offsets": [
+				242,
+				145
+			],
 			"indices": [],
-			"name": "BEASTIFOUNDYOU"
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "IDLE0000"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/TAILSSPOTTEDBEASTGO",
 	"position": [
 		-110,
-		-50
+		-70
 	],
 	"healthicon": "beast",
 	"flip_x": false,

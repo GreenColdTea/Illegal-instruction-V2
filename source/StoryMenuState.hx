@@ -80,8 +80,8 @@ class StoryMenuState extends MusicBeatState
 		if(curWeek >= WeekData.weeksList.length) curWeek = 0;
 		persistentUpdate = persistentDraw = true;
 
-		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
-		scoreText.setFormat("Chaotix Nova Regular", 33, "right");
+		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 34);
+		scoreText.setFormat("Chaotix Nova Regular", 31, "right");
 
 		var rankText:FlxText = new FlxText(0, 10);
 		rankText.text = 'RANK: GREAT';
@@ -138,7 +138,7 @@ class StoryMenuState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
+		DiscordClient.changePresence("Selecting the player.", null);
 		#end
 
 		var num:Int = 0;
@@ -203,7 +203,7 @@ class StoryMenuState extends MusicBeatState
 		changeWeek();
 		changeDifficulty();
 
-        #if android
+        #if mobile
         addVirtualPad(UP_DOWN, A_B_C);
         #end
 

@@ -1400,7 +1400,6 @@ class PlayState extends MusicBeatState
 				fuckedTails.scrollFactor.set(0.9, 1);
 				fuckedTails.scale.set(1.1, 1.1);
 				fuckedTails.antialiasing = ClientPrefs.globalAntialiasing;
-				add(fuckedTails);
 
 				amyBopFucked = new FlxSprite(-800, 150);
 				amyBopFucked.frames = Paths.getSparrowAtlas('chaotix/bopscared/AmyScared', 'exe');
@@ -2182,13 +2181,14 @@ class PlayState extends MusicBeatState
 				itemFly2 = frontierMasterEmeraldLegacy;
 
 			case 'vista':
-				gf.x += 150;
+				/*gf.x += 150;
 				gf.y += 75;
 				dad.y += 37.5;
 				boyfriend.y += 80;
-				boyfriend.x += 200;
+				boyfriend.x += 200;*/
 				add(amyBop);
 				add(knuxBopFucked);
+				add(fuckedTails);
 
 			case "wechnia":
 				add(wechniaP9);
@@ -2766,7 +2766,7 @@ class PlayState extends MusicBeatState
                             startCircle.animation.play('idle');
                         }
                     });
-                    FlxTween.tween(startCircle, {alpha: 1}, 4, {
+                    FlxTween.tween(startCircle, {alpha: 1}, 4.25, {
                         onComplete: function(twn:FlxTween)
                         {
                             remove(startCircle);
@@ -6114,6 +6114,7 @@ class PlayState extends MusicBeatState
 						dad.cameras = [camGame2];
 						boyfriend.animation.pause();
                         gf.animation.pause();
+						gf.animation.pause();
 						gray = new GrayscaleShader();
 						camGame.setFilters([new ShaderFilter(gray.shader)]);
 						holyFuckStopZoomin = false;
@@ -7442,7 +7443,7 @@ class PlayState extends MusicBeatState
 					entranceFloor.destroy();
 					remove(entranceOver);
 					entranceOver.destroy();
-			                Paths.clearUnusedMemory();
+			        Paths.clearUnusedMemory();
 					//the game is racist its over
 					//this is a joke coming from a mixed dude shut the fuck up twitter.
 				case 2:

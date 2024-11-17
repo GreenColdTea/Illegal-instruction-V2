@@ -71,7 +71,7 @@
 	"image": "characters/Beast",
 	"position": [
 		80,
-		100
+		80
 	],
 	"healthicon": "beast",
 	"flip_x": false,

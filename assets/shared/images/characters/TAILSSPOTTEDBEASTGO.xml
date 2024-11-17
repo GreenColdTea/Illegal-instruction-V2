@@ -172,4 +172,5 @@
 	<SubTexture name="BEASTIFOUNDYOU0167" x="1114" y="6640" width="1114" height="931" frameX="-9" frameY="-154" frameWidth="1196" frameHeight="1085"/>
 	<SubTexture name="BEASTIFOUNDYOU0168" x="2228" y="6640" width="1114" height="931" frameX="-9" frameY="-154" frameWidth="1196" frameHeight="1085"/>
 	<SubTexture name="BEASTIFOUNDYOU0169" x="2228" y="6640" width="1114" height="931" frameX="-9" frameY="-154" frameWidth="1196" frameHeight="1085"/>
+	<SubTexture name="IDLE0000" x="2228" y="6640" width="1114" height="931" frameX="-9" frameY="-154" frameWidth="1196" frameHeight="1085"/>
 </TextureAtlas>

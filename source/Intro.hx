@@ -74,7 +74,7 @@ class Intro extends MusicBeatState
         #if (hxCodec >= "3.0.0")
         video.onEndReached.add(function()
         {   
-            FlxG.save.data.seenIntro = true; 
+            save.data.seenIntro = true; 
             save.flush();
             MusicBeatState.switchState(new TitleState());
         });
@@ -83,7 +83,7 @@ class Intro extends MusicBeatState
         video.canSkip = save.data.seenIntro;
         video.finishCallback = function()
         {
-            FlxG.save.data.seenIntro = true; 
+            save.data.seenIntro = true; 
             save.flush();
             MusicBeatState.switchState(new TitleState());
         }
