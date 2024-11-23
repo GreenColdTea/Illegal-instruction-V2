@@ -282,6 +282,11 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var scoreTxt:FlxText;
 	public var songNameHUD:FlxText;
+
+	public var curTime:Float;
+
+	public var curMS:Float;
+
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
 
@@ -299,7 +304,7 @@ class PlayState extends MusicBeatState
 	public var inCutscene:Bool = false;
 	public var skipCountdown:Bool = false;
 	var songLength:Float = 0;
-	var barSongLength:Float = 0; // hi neb i like ur code g :D
+	public var barSongLength:Float = 0; // hi neb i like ur code g :D
 	public var boyfriendCameraOffset:Array<Float> = null;
 	public var opponentCameraOffset:Array<Float> = null;
 	public var girlfriendCameraOffset:Array<Float> = null;
@@ -1518,13 +1523,13 @@ class PlayState extends MusicBeatState
 				horizonBGp4.scale.set(1.5, 1.5);
 				horizonBGp4.antialiasing = ClientPrefs.globalAntialiasing;
 
-				horizonFGp1 = new FlxSprite(-450, -100);
+				horizonFGp1 = new FlxSprite(-450, -50);
 				horizonFGp1.loadGraphic(Paths.image('horizon/fgpart1', 'exe'));
 				horizonFGp1.scrollFactor.set(0.8, 1);
 				horizonFGp1.scale.set(1.5, 1.5);
 				horizonFGp1.antialiasing = ClientPrefs.globalAntialiasing;
 
-				horizonFGp2 = new FlxSprite(-450, -85);
+				horizonFGp2 = new FlxSprite(-450, -75);
 				horizonFGp2.loadGraphic(Paths.image('horizon/fgpart2', 'exe'));
 				horizonFGp2.scrollFactor.set(0.8, 1);
 				horizonFGp2.scale.set(1.5, 1.5);
@@ -2837,7 +2842,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
+		DiscordClient.changePresence(detailsText, SONG.song.replace("-", " "), iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -3462,7 +3467,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(detailsText, SONG.song.replace("-", " "), iconP2.getCharacter(), true, songLength);
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -3841,11 +3846,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song.replace("-", " "), iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song.replace("-", " "), iconP2.getCharacter());
 			}
 			#end
 		}
@@ -3860,11 +3865,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song.replace("-", " "), iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song, iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song.replace("-", " "), iconP2.getCharacter());
 			}
 		}
 		#end
@@ -3877,7 +3882,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song, iconP2.getCharacter());
+			DiscordClient.changePresence(detailsPausedText, SONG.song.replace("-", " "), iconP2.getCharacter());
 		}
 		#end
 
@@ -4181,7 +4186,7 @@ class PlayState extends MusicBeatState
 				//}
 
 				#if desktop
-				DiscordClient.changePresence(detailsPausedText, SONG.song, iconP2.getCharacter());
+				DiscordClient.changePresence(detailsPausedText, SONG.song.replace("-", " "), iconP2.getCharacter());
 				#end
 			}
 		}
@@ -4265,7 +4270,7 @@ class PlayState extends MusicBeatState
 				}
 
 				if(updateTime) {
-					var curTime:Float = Conductor.songPosition - ClientPrefs.noteOffset;
+					curTime = Conductor.songPosition - ClientPrefs.noteOffset;
 					if(curTime < 0) curTime = 0;
 					songPercent = (curTime / barSongLength);
 
@@ -4279,7 +4284,7 @@ class PlayState extends MusicBeatState
 						timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
 
 					if(chaotixHUD!=null) {
-						var curMS:Float = Math.floor(curTime);
+						curMS = Math.floor(curTime);
 						var curSex:Int = Math.floor(curMS / 1000);
 						if (curSex < 0)
 							curSex = 0;
@@ -6028,10 +6033,12 @@ class PlayState extends MusicBeatState
 			luaArray.remove(lua);
 		}
 	}
+   
+    public static var lastStepHit:Int = -1;
 
 	var gray:GrayscaleShader;
 	var distortion:DistortionShader;
-	var lastStepHit:Int = -1;
+
 	override function stepHit()
 	{
 		super.stepHit();

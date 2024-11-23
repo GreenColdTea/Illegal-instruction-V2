@@ -173,7 +173,7 @@ class TitleState extends MusicBeatState
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
 		} else {*/
-			#if desktop
+			#if (desktop && !VIDEOS_ALLOWED)
 			if (!DiscordClient.isInitialized)
 			{
 				DiscordClient.initialize();

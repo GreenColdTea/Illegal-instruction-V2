@@ -99,8 +99,8 @@ class OptionsState extends MusicBeatState
 		selectorRight = new Alphabet(0, 0, '<', true, false);
 		add(selectorRight);
 
-		#if android
-		var tipText:FlxText = new FlxText(10, 12, 0, 'Press C to Go In Android Controls Menu', 16);
+		#if mobile
+		var tipText:FlxText = new FlxText(10, 12, 0, 'Press C to Go In Mobile Controls Menu', 16);
 		tipText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tipText.borderSize = 2;
 		tipText.scrollFactor.set();
@@ -110,7 +110,7 @@ class OptionsState extends MusicBeatState
 		changeSelection();
 		ClientPrefs.saveSettings();
 
-        #if android
+        #if mobile
 		addVirtualPad(UP_DOWN, A_B_C);
         #end
 
@@ -151,7 +151,7 @@ class OptionsState extends MusicBeatState
 			openSelectedSubstate(options[curSelected]);
 		}
 
-		#if android
+		#if mobile
 		if (_virtualpad.buttonC.justPressed) {
 			openSubState(new mobile.MobileControlsSubState());
 		}

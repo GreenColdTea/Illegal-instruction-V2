@@ -34,6 +34,9 @@ class PauseSubState extends MusicBeatSubstate
 	var levelDifficulty:FlxText;
 	var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
+
+	public static var curRender:String;
+
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
 
@@ -88,32 +91,19 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
+		curRender = PlayState.SONG.player2;
+
 	    var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
 	    pauseArt.scale.set(0.4, 0.4);
-		pauseArt.loadGraphic(Paths.image('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0], 'shared'));
+		pauseArt.loadGraphic(Paths.image('Renders/' + curRender + PlayState.instance.pauseRenderPrefix[0], 'shared'));
 		pauseArt.scrollFactor.set();
-		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + PlayState.SONG.player2 + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
-		    pauseArt.x = renderDistance * -1;
-	        pauseArt.antialiasing = true;
-		    pauseArt.alpha = 0;
-	    if (PlayState.SONG.player2 == 'duke') {
-		    pauseArt.x += 215;
-	        pauseArt.y -= 125;
-		}
-	    else if (PlayState.SONG.player2 == 'chaotix' || PlayState.SONG.player2 == 'chaotix-rimlit') {
-		    pauseArt.x -= 175;
-	        pauseArt.y += 35;
-		}
-		else if (PlayState.SONG.player2 == "chotix") {
-			pauseArt.scale.set(0.5, 0.5);
-			pauseArt.x += 350;
-			pauseArt.y += 270;
-		}
-		else if (PlayState.SONG.player2 == "Wechnia") {
-			pauseArt.x += 250;
-	        pauseArt.y += 35;
-		}
+		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
+		pauseArt.x = renderDistance * -1;
+	    pauseArt.antialiasing = true;
+		pauseArt.alpha = 0;
+
+		fixRenders();
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += Std.string(PlayState.SONG.song).replace("-", " ");
@@ -176,7 +166,7 @@ class PauseSubState extends MusicBeatSubstate
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-                #if android
+        #if mobile
 		if (PlayState.chartingMode)
 		{
 		        addVirtualPad(LEFT_FULL, A);
@@ -195,8 +185,11 @@ class PauseSubState extends MusicBeatSubstate
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
 
-		if (pauseArt != null && PlayState.SONG.player2 == "dukep2" && PlayState.SONG.song.toLowerCase() != "soulless-endeavors")
-			pauseArt.loadGraphic(Paths.image('Renders/dukep2', 'shared'));
+		if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
+			curRender = "dukep2";
+		    pauseArt.x = 75;
+			pauseArt.y = -450;
+		}
 
 		super.update(elapsed);
 		updateSkipTextStuff();
@@ -375,6 +368,26 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic.destroy();
 
 		super.destroy();
+	}
+
+	function fixRenders():Void
+	{
+		switch (curRender)
+		{
+			case "duke":
+				pauseArt.x += 215;
+				pauseArt.y -= 125;
+			case 'chaotix' |'chaotix-rimlit':
+				pauseArt.x -= 175;
+				pauseArt.y += 35;
+			case "chotix":
+				pauseArt.scale.set(0.5, 0.5);
+				pauseArt.x += 350;
+				pauseArt.y += 270;
+			case "Wechnia":
+				pauseArt.x += 250;
+				pauseArt.y += 35;
+		}
 	}
 
 	function changeSelection(change:Int = 0):Void

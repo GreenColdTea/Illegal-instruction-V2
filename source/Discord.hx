@@ -20,7 +20,7 @@ class DiscordClient
         #if desktop
 		trace("Discord Client starting...");
 		DiscordRpc.start({
-			clientID: "863222024192262205",
+			clientID: "1309095287498997760",
 			onReady: onReady,
 			onError: onError,
 			onDisconnected: onDisconnected
@@ -49,10 +49,10 @@ class DiscordClient
 	{
         #if desktop
 		DiscordRpc.presence({
-			details: "In the Menus",
+			details: "Welcome to my kingdom, BF...",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "Illegal Instruction"
+			largeImageText: "When the time is right… Oh, until then—know this: I'll be waiting for you, lurking in the shadows."
 		});
         #end
 	}
@@ -69,25 +69,23 @@ class DiscordClient
 
 	public static function initialize()
 	{
-                #if desktop
+        #if desktop
 		var DiscordDaemon = sys.thread.Thread.create(() ->
 		{
 			new DiscordClient();
 		});
 		trace("Discord Client initialized");
 		isInitialized = true;
-                #end
+        #end
 	}
 
 	public static function changePresence(details:String, state:Null<String>, ?smallImageKey : String, ?hasStartTimestamp : Bool, ?endTimestamp: Float)
 	{
         #if desktop
-		var startTimestamp:Float = if(hasStartTimestamp) Date.now().getTime() else 0;
-
-		if (endTimestamp > 0)
-		{
-			endTimestamp = startTimestamp + endTimestamp;
-		}
+		var startTimestamp:Float = 0;
+		
+		if (hasStartTimestamp) startTimestamp = Date.now().getTime();
+		if (endTimestamp > 0) endTimestamp = startTimestamp + endTimestamp;
 
 		DiscordRpc.presence({
 			details: details,
@@ -97,7 +95,7 @@ class DiscordClient
 			smallImageKey : smallImageKey,
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),
-                        endTimestamp : Std.int(endTimestamp / 1000)
+            endTimestamp : Std.int(endTimestamp / 1000)
 		});
         #end
 

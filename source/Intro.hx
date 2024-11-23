@@ -7,23 +7,10 @@ import sys.FileSystem;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.input.keyboard.FlxKey;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.addons.transition.TransitionData;
-//import flixel.graphics.FlxGraphic;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
-import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
-import flixel.system.FlxSound;
-import flixel.system.ui.FlxSoundTray;
-import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
 import flixel.util.FlxSave;
@@ -32,9 +19,9 @@ import flixel.util.FlxSave;
 #if (hxCodec >= "3.0.0")
 import hxcodec.flixel.FlxVideo as VideoHandler;
 #elseif (hxCodec == "2.6.1")
-import hxcodec.VideoHandler as VideoHandler;
+import hxcodec.VideoHandler;
 #elseif (hxCodec == "2.6.0")
-import VideoHandler as VideoHandler;
+import VideoHandler;
 #elseif hxvlc
 import hxvlc.flixel.FlxVideo as VideoHandler;
 #else
@@ -51,15 +38,14 @@ class Intro extends MusicBeatState
 {
     override public function create()
     {
+        initializeSettings();
+
 	    FlxG.mouse.visible = false;
+        
+        FlxG.save.bind('funkin', 'ninjamuffin99');
+        if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
 
-        var save:FlxSave;
-
-        save = new FlxSave();
-        save.bind('Intro');
-        if (save.data.seenIntro == null) save.data.seenIntro = false;
-
-        if (save.data.seenIntro) {
+        if (FlxG.save.data.seenIntro) {
             FlxG.sound.muteKeys = TitleState.muteKeys;
             FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
             FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
@@ -70,21 +56,31 @@ class Intro extends MusicBeatState
             FlxG.sound.volume = 10;
         }
 
+        #if desktop
+		if (!DiscordClient.isInitialized)
+		{
+			DiscordClient.initialize();
+			Application.current.onExit.add (function (exitCode) {
+				DiscordClient.shutdown();
+			});
+		}
+		#end
+
         var video:VideoHandler = new VideoHandler();
         #if (hxCodec >= "3.0.0")
         video.onEndReached.add(function()
         {   
-            save.data.seenIntro = true; 
-            save.flush();
+            FlxG.save.data.seenIntro = true; 
+            FlxG.save.flush();
             MusicBeatState.switchState(new TitleState());
         });
         video.play(Paths.video("II_Intro"));
         #else
-        video.canSkip = save.data.seenIntro;
+        video.canSkip = FlxG.save.data.seenIntro;
         video.finishCallback = function()
         {
-            save.data.seenIntro = true; 
-            save.flush();
+            FlxG.save.data.seenIntro = true; 
+            FlxG.save.flush();
             MusicBeatState.switchState(new TitleState());
         }
         video.playVideo(Paths.video("II_Intro"));
@@ -93,6 +89,13 @@ class Intro extends MusicBeatState
 		super.create();
         
     }
+
+    private function initializeSettings() {
+        PlayerSettings.init();
+        ClientPrefs.loadPrefs();
+        FlxG.game.focusLostFramerate = ClientPrefs.framerate;
+    }
+
     override public function update(elapsed:Float)
     {
         super.update(elapsed);

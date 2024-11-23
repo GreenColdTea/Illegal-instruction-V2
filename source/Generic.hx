@@ -13,6 +13,7 @@ import UIKit.UIAlertView;
 #end
 import haxe.CallStack;
 import haxe.io.Path;
+import haxe.io.Bytes;
 import sys.io.Process;
 import flixel.FlxG;
 import haxe.CallStack.StackItem;
@@ -48,19 +49,27 @@ class Generic {
 	*/
 	public static function returnPath(m:Modes = ROOTDATA):String {
 		#if android
-		if (m == ROOTDATA && mode != ROOTDATA) { // the most stupid checking i made
+		if (m == ROOTDATA && mode != ROOTDATA) {
 			m = mode;
 		}
 		switch (m) {
 			case ROOTDATA:
 				path = lime.system.System.applicationStorageDirectory;
 			case INTERNAL:
-			    path = Environment.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file') + '/';
+				path = Environment.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file') + '/';
 				if (!FileSystem.exists(path)) {
 					FileSystem.createDirectory(path);
 				}
-			/*case ANDROIDDATA:
-			    path = Environment.getDataDirectory() + '/';*/
+			case MEDIAFILE:
+				path = Environment.getExternalStorageDirectory() + '/Android/media/' + Application.current.meta.get('packageName') + '/';
+				if (!FileSystem.exists(path)) {
+					FileSystem.createDirectory(path);
+				}
+			case OBB:
+				path = Environment.getExternalStorageDirectory() + '/Android/obb/' + Application.current.meta.get('packageName') + '/';
+				if (!FileSystem.exists(path)) {
+					FileSystem.createDirectory(path);
+				}
 		}
 		if (path != null && path.length > 0) {
 			trace(path);
@@ -80,10 +89,10 @@ class Generic {
          * @edit: Saw (M.A. Jigsaw)
 	 */
 	public static function initCrashHandler() {
-            Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(e:UncaughtErrorEvent) {
-                e.preventDefault();
-		e.stopPropagation();
-		e.stopImmediatePropagation();
+        Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, function(e:UncaughtErrorEvent) {
+            e.preventDefault();
+		    e.stopPropagation();
+		    e.stopImmediatePropagation();
 
 		var m:String = e.error;
 		if (Std.isOfType(e.error, Error)) {
@@ -123,7 +132,7 @@ class Generic {
 			File.saveContent('logs/' + 'Crash - ' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', '$m\n$stackLabel');
 		}
 		catch (e:haxe.Exception)
-			trace('Couldn\'t save error message. (${e.message})');
+		trace('Couldn\'t save error message. (${e.message})');
 		#end
 
 		SUtil.showPopUp('$m\n$stackLabel', "Error!");
@@ -134,6 +143,9 @@ class Generic {
 
 		js.Browser.window.location.reload(true);
 		#else
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+
 		System.exit(1);
 		#end
 	        });
@@ -185,22 +197,41 @@ class Generic {
 	
 	public static function copyContent(copyPath:String, savePath:String)
 	{
-			trace(returnPath());
-			trace('saving dir: ' + returnPath() + savePath);
-			trace(copyPath);
-			var fileName:String = Paths.video("StoryStart");
-			trace(fileName);
-			trace('FileSystem.exists(fileName) = ' + FileSystem.exists(fileName));
-			trace('FileSystem.exists(returnPath() + savePath) = ' + FileSystem.exists(returnPath() + savePath));
-			trace('Assets.exists(copyPath) = ' + Assets.exists(copyPath));
-			if (!FileSystem.exists(returnPath() + savePath)/* && Assets.exists(copyPath)*/) {
-				File.saveBytes(returnPath() + savePath, Assets.getBytes('videos:' + copyPath));
-			    trace('saved');
-			}
+		trace(returnPath());
+        trace('saving dir: ' + returnPath() + savePath);
+        trace(copyPath);
+
+        var fileName:String = returnPath() + savePath;
+        trace(fileName);
+        trace('FileSystem.exists(fileName) = ' + FileSystem.exists(fileName));
+        trace('Assets.exists(copyPath) = ' + Assets.exists(copyPath));
+
+        if (!FileSystem.exists(returnPath() + savePath)) {
+            if (!FileSystem.exists(returnPath())) {
+                FileSystem.createDirectory(returnPath());
+            }
+
+            var fileData:Bytes;
+
+            if (copyPath.indexOf(".mp4") > -1) {
+                fileData = Assets.getBytes('videos:' + copyPath);
+            } else if (copyPath.indexOf(".txt") > -1 || copyPath.indexOf(".json") > -1) {
+                fileData = haxe.io.Bytes.ofString(Assets.getText('weeks:' + copyPath));
+            } else {
+                fileData = Assets.getBytes(copyPath);
+            }
+
+            if (fileData != null) {
+                File.saveBytes(fileName, fileData);
+                trace('saved');
+            }
+        }
 	}
 }
 
 enum Modes {
 	ROOTDATA;
 	INTERNAL;
+	MEDIAFILE;
+	OBB;
 }

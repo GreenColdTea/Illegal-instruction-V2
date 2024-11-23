@@ -25,7 +25,7 @@ import mobile.MobileControls;
 
 using StringTools;
 
-class EditorPlayState extends MusicBeatState
+class EditorPlayState extends MusicBeatSubstate
 {
 	// Yes, this is mostly a copy of PlayState, it's kinda dumb to make a direct copy of it but... ehhh
 	private var strumLine:FlxSprite;
@@ -69,9 +69,12 @@ class EditorPlayState extends MusicBeatState
 	{
 		instance = this;
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite(0, 0);
+		bg.loadGraphic(Paths.image('menuDesat'));
+		bg.screenCenter();
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		bg.alpha = 0.8;
 		bg.scrollFactor.set();
-		bg.color = FlxColor.fromHSB(FlxG.random.int(0, 359), FlxG.random.float(0, 0.8), FlxG.random.float(0.3, 1));
 		add(bg);
 
 		keysArray = [
@@ -162,12 +165,12 @@ class EditorPlayState extends MusicBeatState
 			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
 
-		#if mobile
+		/*#if mobile
         mobileControls.visible = false;
 		if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
 			_virtualpad.visible = true;
 		}
-        #end
+        #end*/
 
 		super.create();
 	}
@@ -322,7 +325,7 @@ class EditorPlayState extends MusicBeatState
 	}
 
 	private function endSong() {
-		LoadingState.loadAndSwitchState(new editors.ChartingState());
+		close();
 	}
 
 	override function update(elapsed:Float) {
@@ -330,13 +333,13 @@ class EditorPlayState extends MusicBeatState
 		{
 			FlxG.sound.music.pause();
 			vocals.pause();
-            #if mobile
+            /*#if mobile
             mobileControls.visible = false;
 		    if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
 			    _virtualpad.visible = true;
 		    }
-            #end
-			LoadingState.loadAndSwitchState(new editors.ChartingState());
+            #end*/
+			close();
 		}
 
 		if (startingSong) {
@@ -510,18 +513,20 @@ class EditorPlayState extends MusicBeatState
 		super.update(elapsed);
 	}
 	
-	override public function onFocus():Void
-	{
-		vocals.play();
-
-		super.onFocus();
-	}
-	
 	override public function onFocusLost():Void
 	{
+		FlxG.sound.music.pause();
 		vocals.pause();
 
 		super.onFocusLost();
+	}
+
+	override function onFocusGained():Void
+	{
+		FlxG.sound.music.resume();
+		vocals.resume();
+	
+		super.onFocusGained();
 	}
 
 	override function beatHit()

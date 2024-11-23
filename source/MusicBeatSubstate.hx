@@ -173,6 +173,11 @@ class MusicBeatSubstate extends FlxSubState
 			beatHit();
 	}
 
+	public function onFocusGained():Void
+	{
+		
+	}
+
 	public function beatHit():Void
 	{
 		//do literally nothing dumbass

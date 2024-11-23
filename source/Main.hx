@@ -41,7 +41,7 @@ class Main extends Sprite
     var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
     var framerate:Int = 60; // How many frames per second the game should run at.
     var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-    var startFullscreen:Bool = true; // Whether to start the game in fullscreen on desktop targets
+    var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
     public static var fpsVar:FPS;
 
     // You can pretty much ignore everything from here on - your code should go in your states.
@@ -50,6 +50,16 @@ class Main extends Sprite
     static final videva:Array<String> = [
         "II_Intro"
     ];
+
+    static final weeksList:Array<String> = [
+        "duke",
+		"chaotix",
+		"chotix",
+		"ashura",
+		"test",
+		"wechidna",
+		"wechnia"
+	];
 
     public static function main():Void
     {
@@ -114,7 +124,7 @@ class Main extends Sprite
 	    #end
 
         #if mobile
-        Generic.mode = ROOTDATA;
+        Generic.mode = MEDIAFILE;
 	    if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		    FileSystem.createDirectory(Generic.returnPath() + 'assets');
         }
@@ -127,7 +137,7 @@ class Main extends Sprite
 
 	    for (video in videva) {
 		    Generic.copyContent(Paths._video(video), Paths._video(video));
-	    }
+	    }    
         #end
 
         ClientPrefs.loadDefaultKeys();

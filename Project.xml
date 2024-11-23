@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Illegal Instruction" file="Illegarl" packageName="com.harbinger.ii" package="com.harbinger.ii" main="Main" version="2.0.1(unfinished)" company="illegalinstruction" />
+	<app title="FNF': Illegal Instruction" file="Illegarl" packageName="com.harbinger.ii" package="com.harbinger.ii" main="Main" version="2.0.1(unfinished)" company="illegalinstruction" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -158,18 +158,19 @@
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 
-        <android permission="android.permission.CAPTURE_AUDIO_OUTPUT"/>
-        <android target-sdk-version="29" if="android"/>
+    <android permission="android.permission.CAPTURE_AUDIO_OUTPUT"/>
+    <android target-sdk-version="29" if="android"/>
 
-        <!-- _________________________________ Android Stuff _______________________________ -->	
-	    <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
-        <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
-	    <config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>
+    <!-- _________________________________ Android Stuff _______________________________ -->	
+	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
+    <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
+	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" if="android"/>
+	<application android:requestLegacyExternalStorage="true" if="android"/>
    
-        <haxedef name="HXCPP_CHECK_POINTER"/>
-        <haxedef name="HXCPP_STACK_LINE" />
-        <haxedef name="HXCPP_STACK_TRACE"/>
-		<!--<haxedef name="HXCPP_MSVC_CUSTOM"/>-->
+    <haxedef name="HXCPP_CHECK_POINTER"/>
+    <haxedef name="HXCPP_STACK_LINE" />
+    <haxedef name="HXCPP_STACK_TRACE"/>
+	<!--<haxedef name="HXCPP_MSVC_CUSTOM"/>-->
 
 	<!-- I'm tired to install and uninstall build everytime so i decided to add certificate to update instead of uninstall -->
 	<certificate path="II-Key.keystore" password="Illegarl" alias="ii-key" alias-password="Illegarl" if="android" unless="debug" />

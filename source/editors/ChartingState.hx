@@ -401,6 +401,7 @@ class ChartingState extends MusicBeatState
 		lastSong = currentSongName;
 
 		zoomTxt = new FlxText(10, 10, 0, "Zoom: 1 / 1", 16);
+		zoomTxt.y -= 500;
 		zoomTxt.scrollFactor.set();
 		add(zoomTxt);
 
@@ -1737,7 +1738,9 @@ class ChartingState extends MusicBeatState
 			if (FlxG.keys.justPressed.ESCAPE #if mobile || _virtualpad.buttonB.justPressed #end)
 			{
 				autosaveSong();
-				LoadingState.loadAndSwitchState(new editors.EditorPlayState(sectionStartTime()));
+				FlxG.sound.music.pause();
+				vocals.pause();
+				openSubState(new editors.EditorPlayState(sectionStartTime()));
 			}
 			if (FlxG.keys.justPressed.ENTER #if mobile || _virtualpad.buttonA.justPressed #end)
 			{
