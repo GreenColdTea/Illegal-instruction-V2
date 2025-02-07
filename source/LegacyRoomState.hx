@@ -32,6 +32,7 @@ class LegacyRoomState extends MusicBeatState
 {
     var songs:Array<String> = ['breakout', 'soulless-endeavors', 'final-frontier', 'my-horizon', 'our-horizon', 'found-you', 'malediction', 'long-sky', 'endless'];
     private var curSelected:Int = 0;
+    var selectedItem:MenuItemAgainFuckYou = null;
     var lerpScore:Int = 0;
     var intendedScore:Int = 0;
     var broStopScrolling:Bool = false;
@@ -125,10 +126,18 @@ class LegacyRoomState extends MusicBeatState
             FlxG.sound.play(Paths.sound('confirmMenu'));
             PlayState.SONG = Song.loadFromJson(songLowercase + "-legacy", songLowercase + "-legacy");
 			PlayState.isStoryMode = false;
-            /* im sad this doesn't work :(((((
-            FlxTween.tween(selectorSprite, {"scale.x": selectorSprite.scale.x + 1, "scale.y": selectorSprite.scale.y + 1}, 1, {ease: FlxEase.cubeInOut});
-            FlxTween.tween(selectorSprite, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});
-            */
+            /* im sad this doesn't work :(((((*/
+            for (i in grpImages.members) {
+                if (i.ID == curSelected) {
+                    selectedItem = i;
+                    break;
+                }
+            }
+            if (selectedItem != null) {
+                FlxTween.tween(selectedItem.scale, {x: selectedItem.scale.x + 1, y: selectedItem.scale.y + 1}, 1, {ease: FlxEase.cubeInOut});
+                FlxTween.tween(selectedItem, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});
+            }
+            FlxTween.tween(bg, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});           
             FlxTween.tween(bg, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});
             new FlxTimer().start(1, function(tmr:FlxTimer)
                 {
@@ -142,6 +151,7 @@ class LegacyRoomState extends MusicBeatState
             }
         super.update(elapsed);
     }
+    
     function changeSelection(change:Int){
 
         FlxG.sound.play(Paths.sound('scrollMenu'));

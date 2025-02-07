@@ -3,9 +3,8 @@ package lime.utils;
 import haxe.PosInfos;
 import sys.io.File;
 import sys.FileSystem;
-import openfl.Lib; // I FORGOR
-
-using StringTools; // AGAIN
+import openfl.Lib;
+using StringTools;
 
 #if !lime_debug
 @:fileXml('tags="haxe,release"')
@@ -28,15 +27,12 @@ class Log
 		}
 	}
 
-	public static function error(message:Dynamic, ?info:PosInfos):Void
-	{
-		if (level >= LogLevel.ERROR)
-		{
+	public static function error(message:Dynamic, ?info:PosInfos):Void {
+		if (level >= LogLevel.ERROR) {
 			var message = "[" + info.className + "] ERROR: " + message;
-
-			if (throwErrors)
-			{
-                if (!FileSystem.exists(Generic.returnPath() + 'logs'))
+			
+			if (throwErrors) {
+				if (!FileSystem.exists(Generic.returnPath() + 'logs'))
 					FileSystem.createDirectory(Generic.returnPath() + 'logs');
 
 				File.saveContent(Generic.returnPath()
@@ -47,20 +43,22 @@ class Log
 					+ '.log',
 					message
 					+ '\n');
-
-                    Lib.application.window.alert(message, 'Error!');
-				throw message;
-			}
-			else
-			{
-				#if js
-				untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").error(message);
-				#else
+				
+				#if webassembly
 				println(message);
+				#elseif android
+				Lib.application.window.alert(message, "Error!");
+				#end
+				throw message;
+			} else {
+				#if js
+					untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").error(message);
+				#else
+					println(message);
 				#end
 			}
 		}
-	}
+	}	
 
 	public static function info(message:Dynamic, ?info:PosInfos):Void
 	{
@@ -127,21 +125,21 @@ class Log
 		#elseif verbose
 		level = VERBOSE;
 		#else
-		#if sys
-		var args = Sys.args();
-		if (args.indexOf("-v") > -1 || args.indexOf("-verbose") > -1)
-		{
-			level = VERBOSE;
-		}
-		else
-		#end
-		{
-			#if debug
-			level = DEBUG;
-			#else
-			level = INFO;
+			#if sys
+			var args = Sys.args();
+			if (args.indexOf("-v") > -1 || args.indexOf("-verbose") > -1)
+			{
+				level = VERBOSE;
+			}
+			else
 			#end
-		}
+			{
+				#if debug
+				level = DEBUG;
+				#else
+				level = INFO;
+				#end
+			}
 		#end
 
 		#if js

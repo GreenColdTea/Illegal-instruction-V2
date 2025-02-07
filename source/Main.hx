@@ -33,6 +33,21 @@ import mobile.MobileScaleMode;
 
 using CoolUtil;
 
+#if windows
+@:buildXml('
+<target id="haxe">
+	<lib name="wininet.lib" if="windows" />
+	<lib name="dwmapi.lib" if="windows" />
+</target>
+')
+@:cppFileCode('
+#include <windows.h>
+#include <winuser.h>
+#pragma comment(lib, "Shell32.lib")
+extern "C" HRESULT WINAPI SetCurrentProcessExplicitAppUserModelID(PCWSTR AppID);
+')
+#end
+
 class Main extends Sprite
 {
     var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
@@ -41,14 +56,16 @@ class Main extends Sprite
     var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
     var framerate:Int = 60; // How many frames per second the game should run at.
     var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-    var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+    var startFullscreen:Bool = true; // Whether to start the game in fullscreen on desktop targets
     public static var fpsVar:FPS;
 
     // You can pretty much ignore everything from here on - your code should go in your states.
     public static var path:String = System.applicationStorageDirectory;
 
     static final videva:Array<String> = [
-        "II_Intro"
+        "II_Intro",
+        "breakout_cut",
+        "hellspawn_cut"
     ];
 
     static final weeksList:Array<String> = [
@@ -64,6 +81,9 @@ class Main extends Sprite
     public static function main():Void
     {
         Lib.current.addChild(new Main());
+        /*#if desktop
+        AudioDeviceListener.startAudioMonitoring();
+        #end*/
 	    #if cpp
 	    cpp.NativeGc.enable(true);
 	    #elseif hl

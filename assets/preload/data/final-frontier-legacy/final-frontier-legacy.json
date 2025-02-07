@@ -14255,7 +14255,7 @@
 				],
 				"altAnim": false,
 				"bpm": 166,
-				"changeBPM": true,
+				"changeBPM": false,
 				"mustHitSection": false
 			},
 			{
@@ -23662,7 +23662,7 @@
 			}
 		],
 		"player2": "espio-legacy",
-		"gfVersion": "gf-alt",
+		"gfVersion": "gf-alt-legacy",
 		"events": [
 			[
 				105205.479452055,
@@ -23710,7 +23710,7 @@
 		"validScore": true,
 		"needsVoices": true,
 		"stage": "frontier-legacy",
-		"bpm": 146,
+		"bpm": 180,
 		"noteStyle": null,
 		"speed": 2.8
 	}

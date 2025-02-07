@@ -67,6 +67,7 @@ import sys.io.File;
 @:access(openfl.media.Sound.__buffer)
 
 class ChartingState extends MusicBeatState
+
 {
 	public static var noteTypeList:Array<String> = //Used for backwards compatibility with 0.1 - 0.3.2 charts, though, you should add your hardcoded custom note types here too.
 	[
@@ -93,11 +94,11 @@ class ChartingState extends MusicBeatState
 		['Add Camera Zoom', "Used on MILF on that one \"hard\" part\nValue 1: Camera zoom add (Default: 0.015)\nValue 2: UI zoom add (Default: 0.03)\nLeave the values blank if you want to use Default."],
 		['BG Freaks Expression', "Should be used only in \"school\" Stage!"],
 		['Trigger BG Ghouls', "Should be used only in \"schoolEvil\" Stage!"],
-		['Play Animation', "Plays an animation on a Character,\nonce the animation is completed,\nthe animation changes to Idle\n\nValue 1: Animation to play.\nValue 2: Character (Dad, BF, GF)"],
+		['Play Animation', "Plays an animation on a Character,\nonce the animation is completed,\nthe animation changes to Idle\n\nValue 1: Animation to play.\nValue 2: Character (Opponent, BF, GF)"],
 		['Camera Follow Pos', "Value 1: X\nValue 2: Y\n\nThe camera won't change the follow point\nafter using this, for getting it back\nto normal, leave both values blank."],
-		['Alt Idle Animation', "Sets a specified suffix after the idle animation name.\nYou can use this to trigger 'idle-alt' if you set\nValue 2 to -alt\n\nValue 1: Character to set (Dad, BF or GF)\nValue 2: New suffix (Leave it blank to disable)"],
+		['Alt Idle Animation', "Sets a specified suffix after the idle animation name.\nYou can use this to trigger 'idle-alt' if you set\nValue 2 to -alt\n\nValue 1: Character to set (Opponent, BF or GF)\nValue 2: New suffix (Leave it blank to disable)"],
 		['Screen Shake', "Value 1: Camera shake\nValue 2: HUD shake\n\nEvery value works as the following example: \"1, 0.05\".\nThe first number (1) is the duration.\nThe second number (0.05) is the intensity."],
-		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
+		['Change Character', "Value 1: Character to change (Opponent, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Chaotix Health Randomization',"Value 1: Randomize the health. (Vista Only)\nValue 2: Used near the ending, not \nhealth randomization."],
 		["Final Frontier Sections", "Value 1: Duke Section of Final Frontier.\nValue 2: Soul Section of Final Frontier."],
@@ -251,9 +252,10 @@ class ChartingState extends MusicBeatState
 
 		vortex = FlxG.save.data.chart_vortex;
 		ignoreWarnings = FlxG.save.data.ignoreWarnings;
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ChartEditorBG'));
 		bg.scrollFactor.set();
-		bg.alpha = 0.5;
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		bg.alpha = 0.4;
 		add(bg);
 
 		gridLayer = new FlxTypedGroup<FlxSprite>();
@@ -264,7 +266,7 @@ class ChartingState extends MusicBeatState
 
 		var eventIcon:FlxSprite = new FlxSprite(-GRID_SIZE - 5, -90).loadGraphic(Paths.image('eventArrow'));
 		leftIcon = new HealthIcon('bf');
-		rightIcon = new HealthIcon('dad');
+		rightIcon = new HealthIcon('chotix');
 		rightIcon.flipX = true;
 
 		eventIcon.scrollFactor.set(1, 1);
@@ -371,9 +373,9 @@ class ChartingState extends MusicBeatState
 
 		var tipTextArray:Array<String> = text.split('\n');
 		for (i in 0...tipTextArray.length) {
-			var tipText:FlxText = new FlxText(UI_box.x, UI_box.y + UI_box.height + 8, 0, tipTextArray[i], 16);
+			var tipText:FlxText = new FlxText(UI_box.x, UI_box.y + UI_box.height + 8, 0, tipTextArray[i], 15);
 			tipText.y += i * 12;
-			tipText.setFormat(Paths.font("vcr.ttf"), 14, FlxColor.WHITE, LEFT/*, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK*/);
+			tipText.setFormat(Paths.font("chaotix.ttf"), 13, FlxColor.WHITE, LEFT/*, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK*/);
 			//tipText.borderSize = 2;
 			tipText.scrollFactor.set();
 			add(tipText);
@@ -454,7 +456,21 @@ class ChartingState extends MusicBeatState
 
 		var reloadSongJson:FlxButton = new FlxButton(reloadSong.x, saveButton.y + 30, "Reload JSON", function()
 		{
-			openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, function(){loadJson(_song.song.toLowerCase()); }, null,ignoreWarnings));
+			openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, function() {
+				var songName = _song.song.toLowerCase();
+				var songFolder = Paths.formatToSongPath(UI_songTitle.text);
+				var formattedSongPath = Paths.json(songFolder + "/" + songName);
+				#if sys
+				trace("Checking system file: " + formattedSongPath + " -> " + sys.FileSystem.exists(formattedSongPath));
+				#end
+				if (OpenFlAssets.exists(formattedSongPath)) {
+					loadJson(songName);
+				} else {
+					openSubState(new Prompt('Song not found!\nPlease check the song name.', 1, function() {
+						closeSubState();
+					}, null, false, "OK", null));
+				}
+			}, null, ignoreWarnings, "OK", "CANCEL"));
 		});
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'Load Autosave', function()
@@ -488,7 +504,7 @@ class ChartingState extends MusicBeatState
 
 		var clear_events:FlxButton = new FlxButton(320, 310, 'Clear events', function()
 			{
-				openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, clearEvents, null,ignoreWarnings));
+				openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, clearEvents, null, ignoreWarnings, "OK", "CANCEL"));
 			});
 		clear_events.color = FlxColor.RED;
 		clear_events.label.color = FlxColor.WHITE;
@@ -499,7 +515,7 @@ class ChartingState extends MusicBeatState
 					_song.notes[sec].sectionNotes = [];
 				}
 				updateGrid();
-			}, null,ignoreWarnings));
+			}, null, ignoreWarnings, "OK", "CANCEL"));
 
 			});
 		clear_notes.color = FlxColor.RED;
@@ -627,9 +643,22 @@ class ChartingState extends MusicBeatState
 		blockPressWhileTypingOn.push(noteSplashesInputText);
 
 		var reloadNotesButton:FlxButton = new FlxButton(noteSplashesInputText.x + 5, noteSplashesInputText.y + 20, 'Change Notes', function() {
-			_song.arrowSkin = noteSkinInputText.text;
-			updateGrid();
-		});
+		    var skinName = noteSkinInputText.text;
+			var notesSkinPath = "assets/shared/images/" + skinName + ".png";
+			#if sys
+			trace("Checking system file for notes skin: " + notesSkinPath + " -> " + sys.FileSystem.exists(notesSkinPath));
+			#end
+            if (OpenFlAssets.exists(notesSkinPath)) {
+                _song.arrowSkin = skinName;
+                updateGrid();
+			} else if (skinName == '') {
+				_song.arrowSkin = 'NOTE_assets';
+            } else {
+                openSubState(new Prompt('Notes skin not found!\nPlease check the notes skin name.', 1, function() { 
+                    closeSubState(); 
+                }, null, false, "OK", null));
+            }}
+		);	
 
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
@@ -1427,13 +1456,13 @@ class ChartingState extends MusicBeatState
 			var label = check.getLabel().text;
 			switch (label)
 			{
-				case 'Must hit section':
+				case 'Must Hit Section':
 					_song.notes[curSec].mustHitSection = check.checked;
 
 					updateGrid();
 					updateHeads();
 
-				case 'GF section':
+				case 'GF Section':
 					_song.notes[curSec].gfSection = check.checked;
 
 					updateGrid();
@@ -1442,6 +1471,7 @@ class ChartingState extends MusicBeatState
 				case 'Change BPM':
 					_song.notes[curSec].changeBPM = check.checked;
 					FlxG.log.add('changed bpm freak');
+
 				case "Alt Animation":
 					_song.notes[curSec].altAnim = check.checked;
 			}
@@ -2069,12 +2099,15 @@ class ChartingState extends MusicBeatState
 		FlxG.sound.music.pitch = playbackSpeed;
 		vocals.pitch = playbackSpeed;
 
-		bpmTxt.text =
-		Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + " / " + Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2)) +
-		"\nSection: " + curSec +
-		"\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
-		"\n\nStep: " + curStep +
-		"\n\nBeat Snap: " + quantization + "th";
+		var currentTime:String = formatTime(Conductor.songPosition);
+        var songLength:String = (FlxG.sound.music != null) ? formatTime(FlxG.sound.music.length) : "00:00:00";
+
+        bpmTxt.text =
+            "Time: " + currentTime + " / " + songLength +
+            "\n\nSection: " + curSec +
+            "\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
+            "\n\nStep: " + curStep +
+            "\n\nBeat Snap: " + quantization + "th";
 
 		var playedSound:Array<Bool> = [false, false, false, false]; //Prevents ouchy GF sex sounds
 		curRenderedNotes.forEachAlive(function(note:Note) {
@@ -2563,7 +2596,7 @@ class ChartingState extends MusicBeatState
 		var healthIconP1:String = loadHealthIconFromCharacter(_song.player1);
 		var healthIconP2:String = loadHealthIconFromCharacter(_song.player2);
 		var healthIconGF:String = loadHealthIconFromCharacter(_song.gfVersion);
-
+	
 		if (_song.notes[curSec].mustHitSection)
 		{
 			leftIcon.changeIcon(healthIconP1);
@@ -2574,8 +2607,10 @@ class ChartingState extends MusicBeatState
 		{
 			leftIcon.changeIcon(healthIconP2);
 			rightIcon.changeIcon(healthIconP1);
-			if (_song.notes[curSec].gfSection) leftIcon.changeIcon(healthIconGF);
+			if (_song.notes[curSec].gfSection) rightIcon.changeIcon(healthIconGF);
 		}
+
+		//trace ('Health icons updated');
 	}
 
 	function loadHealthIconFromCharacter(char:String) {
@@ -2638,7 +2673,7 @@ class ChartingState extends MusicBeatState
 		curRenderedNoteType.clear();
 		nextRenderedNotes.clear();
 		nextRenderedSustains.clear();
-
+	
 		if (_song.notes[curSec].changeBPM && _song.notes[curSec].bpm > 0)
 		{
 			Conductor.changeBPM(_song.notes[curSec].bpm);
@@ -2653,7 +2688,7 @@ class ChartingState extends MusicBeatState
 					daBPM = _song.notes[i].bpm;
 			Conductor.changeBPM(daBPM);
 		}
-
+	
 		// CURRENT SECTION
 		var beats:Float = getSectionBeats();
 		for (i in _song.notes[curSec].sectionNotes)
@@ -2664,14 +2699,15 @@ class ChartingState extends MusicBeatState
 			{
 				curRenderedSustains.add(setupSusNote(note, beats));
 			}
-
+	
 			if(i[3] != null && note.noteType != null && note.noteType.length > 0) {
 				var typeInt:Null<Int> = noteTypeMap.get(i[3]);
 				var theType:String = '' + typeInt;
 				if(typeInt == null) theType = '?';
-
-				var daText:AttachedFlxText = new AttachedFlxText(0, 0, 100, theType, 24);
-				daText.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+	
+				var daText:AttachedFlxText = new AttachedFlxText(0, 0, 100, theType, 18);
+				daText.setFormat(Paths.font("pixel-latin.ttf"), 18, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				daText.borderStyle = NONE;
 				daText.xAdd = -32;
 				daText.yAdd = 6;
 				daText.borderSize = 1;
@@ -2681,7 +2717,7 @@ class ChartingState extends MusicBeatState
 			note.mustPress = _song.notes[curSec].mustHitSection;
 			if(i[1] > 3) note.mustPress = !note.mustPress;
 		}
-
+	
 		// CURRENT EVENTS
 		var startThing:Float = sectionStartTime();
 		var endThing:Float = sectionStartTime(1);
@@ -2691,12 +2727,13 @@ class ChartingState extends MusicBeatState
 			{
 				var note:Note = setupNoteData(i, false);
 				curRenderedNotes.add(note);
-
+	
 				var text:String = 'Event: ' + note.eventName + ' (' + Math.floor(note.strumTime) + ' ms)' + '\nValue 1: ' + note.eventVal1 + '\nValue 2: ' + note.eventVal2;
 				if(note.eventLength > 1) text = note.eventLength + ' Events:\n' + note.eventName;
-
-				var daText:AttachedFlxText = new AttachedFlxText(0, 0, 400, text, 12);
-				daText.setFormat(Paths.font("vcr.ttf"), 12, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE_FAST, FlxColor.BLACK);
+	
+				var daText:AttachedFlxText = new AttachedFlxText(0, 0, 400, text, 8);
+				daText.setFormat(Paths.font("pixel-latin.ttf"), 8, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE_FAST, FlxColor.BLACK);
+				daText.borderStyle = NONE;
 				daText.xAdd = -410;
 				daText.borderSize = 1;
 				if(note.eventLength > 1) daText.yAdd += 8;
@@ -2705,7 +2742,7 @@ class ChartingState extends MusicBeatState
 				//trace('test: ' + i[0], 'startThing: ' + startThing, 'endThing: ' + endThing);
 			}
 		}
-
+	
 		// NEXT SECTION
 		var beats:Float = getSectionBeats(1);
 		if(curSec < _song.notes.length-1) {
@@ -2720,7 +2757,7 @@ class ChartingState extends MusicBeatState
 				}
 			}
 		}
-
+	
 		// NEXT EVENTS
 		var startThing:Float = sectionStartTime(1);
 		var endThing:Float = sectionStartTime(2);
@@ -2733,6 +2770,7 @@ class ChartingState extends MusicBeatState
 				nextRenderedNotes.add(note);
 			}
 		}
+		updateHeads();
 	}
 
 	function setupNoteData(i:Array<Dynamic>, isNextSection:Bool):Note
@@ -3025,17 +3063,10 @@ class ChartingState extends MusicBeatState
 
 	function loadJson(song:String):Void
 	{
-		//freakty null fix, i freaking hate it when this happens
-		//make it look sexier if possible
-		if (CoolUtil.difficulties[PlayState.storyDifficulty] != CoolUtil.defaultDifficulty) {
-			if(CoolUtil.difficulties[PlayState.storyDifficulty] == null){
-				PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
-			} else {
-				PlayState.SONG = Song.loadFromJson(song.toLowerCase() + "-" + CoolUtil.difficulties[PlayState.storyDifficulty], song.toLowerCase());
-			}
-		} else {
-        PlayState.SONG = Song.loadFromJson(song.toLowerCase() + "-hard", song.toLowerCase());
-        }
+		var songLower:String = song.toLowerCase();	
+		var lastDashIndex = songLower.lastIndexOf("-");
+			
+		PlayState.SONG = Song.loadFromJson(songLower, songLower);
 		MusicBeatState.resetState();
 	}
 
@@ -3078,6 +3109,17 @@ class ChartingState extends MusicBeatState
 	function sortByTime(Obj1:Array<Dynamic>, Obj2:Array<Dynamic>):Int
 	{
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1[0], Obj2[0]);
+	}
+
+
+    function formatTime(ms:Float):String {
+		var mm:Int = Std.int(ms / 60000);
+		var ss:Int = Std.int((ms % 60000) / 1000);
+		var msDisplay:Int = Std.int((ms % 1000) / 10);
+	
+		return StringTools.lpad(Std.string(mm), "0", 2) + ":" +
+			   StringTools.lpad(Std.string(ss), "0", 2) + ":" +
+			   StringTools.lpad(Std.string(msDisplay), "0", 2);
 	}
 
 	private function saveEvents()

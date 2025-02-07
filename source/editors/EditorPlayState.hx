@@ -109,7 +109,7 @@ class EditorPlayState extends MusicBeatSubstate
 
 		var splash:NoteSplash = new NoteSplash(100, 100, 0);
 		grpNoteSplashes.add(splash);
-		splash.alpha = 0.0;
+		splash.visible = ClientPrefs.noteSplashes;
 		
 		if (PlayState.SONG.needsVoices)
 			vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
@@ -133,26 +133,26 @@ class EditorPlayState extends MusicBeatSubstate
 		noteTypeMap = null;
 
 		scoreTxt = new FlxText(0, FlxG.height - 50, FlxG.width, "Hits: 0 | Misses: 0", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("chaotix.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 		
 		beatTxt = new FlxText(10, 610, FlxG.width, "Beat: 0", 20);
-		beatTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		beatTxt.setFormat(Paths.font("chaotix.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		beatTxt.scrollFactor.set();
 		beatTxt.borderSize = 1.25;
 		add(beatTxt);
 
 		stepTxt = new FlxText(10, 640, FlxG.width, "Step: 0", 20);
-		stepTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		stepTxt.setFormat(Paths.font("chaotix.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		stepTxt.scrollFactor.set();
 		stepTxt.borderSize = 1.25;
 		add(stepTxt);
 
 		var tipText:FlxText = new FlxText(10, FlxG.height - 24, 0, 'Press ESC to Go Back to Chart Editor', 16);
-		tipText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		tipText.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tipText.borderSize = 2;
 		tipText.scrollFactor.set();
 		add(tipText);
@@ -173,6 +173,22 @@ class EditorPlayState extends MusicBeatSubstate
         #end*/
 
 		super.create();
+
+		FlxG.stage.window.onFocusOut.add(function() {
+			FlxG.sound.music.pause();
+			if (vocals != null) {
+				vocals.pause();
+				vocals.time = FlxG.sound.music.time;
+			}
+		});
+		
+		FlxG.stage.window.onFocusIn.add(function() {
+			FlxG.sound.music.resume();
+			if (vocals != null) {
+				vocals.time = FlxG.sound.music.time;
+				vocals.resume();
+			}
+		});	
 	}
 
 	function sayGo() {
@@ -513,7 +529,7 @@ class EditorPlayState extends MusicBeatSubstate
 		super.update(elapsed);
 	}
 	
-	override public function onFocusLost():Void
+	/*override public function onFocusLost():Void
 	{
 		FlxG.sound.music.pause();
 		vocals.pause();
@@ -527,7 +543,7 @@ class EditorPlayState extends MusicBeatSubstate
 		vocals.resume();
 	
 		super.onFocusGained();
-	}
+	}*/
 
 	override function beatHit()
 	{
@@ -847,10 +863,10 @@ class EditorPlayState extends MusicBeatSubstate
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
-		rating.acceleration.y = 550;
-		rating.velocity.y -= FlxG.random.int(140, 175);
-		rating.velocity.x -= FlxG.random.int(0, 10);
-		rating.visible = !ClientPrefs.hideHud;
+        rating.acceleration.y = 550;
+        rating.velocity.y -= FlxG.random.int(140, 175);
+        rating.velocity.x += FlxG.random.int(0, 10);
+        rating.visible = !ClientPrefs.hideHud;
 		rating.x += ClientPrefs.comboOffset[0];
 		rating.y -= ClientPrefs.comboOffset[1];
 
@@ -1020,22 +1036,30 @@ class EditorPlayState extends MusicBeatSubstate
 
 	function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null) {
 		var skin:String = 'noteSplashes';
-		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
-		
+		if (PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) 
+			skin = PlayState.SONG.splashSkin;
+	
 		var hue:Float = ClientPrefs.arrowHSV[data % 4][0] / 360;
 		var sat:Float = ClientPrefs.arrowHSV[data % 4][1] / 100;
 		var brt:Float = ClientPrefs.arrowHSV[data % 4][2] / 100;
-		if(note != null) {
-			skin = note.noteSplashTexture;
+	
+		if (note != null) {
+			if (note.noteSplashTexture != null && note.noteSplashTexture.length > 0)
+				skin = note.noteSplashTexture;
 			hue = note.noteSplashHue;
 			sat = note.noteSplashSat;
 			brt = note.noteSplashBrt;
 		}
-
+	
 		var splash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
-		splash.setupNoteSplash(x, y, data, skin, hue, sat, brt);
-		grpNoteSplashes.add(splash);
-	}
+		
+		if (splash != null) {
+			splash.setupNoteSplash(x, y, data, skin, hue, sat, brt);
+			grpNoteSplashes.add(splash);
+		} else {
+			trace("Warning: Note Splashes is null, check recycling system!");
+		}
+	}	
 	
 	override function destroy() {
 		FlxG.sound.music.stop();

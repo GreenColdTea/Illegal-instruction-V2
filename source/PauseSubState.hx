@@ -35,6 +35,8 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseArt:FlxSprite;
 	var skipTimeTracker:Alphabet;
 
+	public static var levelInfo:FlxText;
+
 	public static var curRender:String;
 
 	var curTime:Float = Math.max(0, Conductor.songPosition);
@@ -91,7 +93,7 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-		curRender = PlayState.SONG.player2;
+		curRender = PlayState.instance.dad.curCharacter;
 
 	    var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
@@ -105,10 +107,13 @@ class PauseSubState extends MusicBeatSubstate
 
 		fixRenders();
 
-		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
+		levelInfo = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += Std.string(PlayState.SONG.song).replace("-", " ");
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("chaotix.ttf"), 32);
+		if (PlayState.SONG.song.toLowerCase() == 'found-you-legacy') { 
+			levelInfo.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32);
+		}
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
@@ -122,12 +127,18 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.text = "Defeats: " + PlayState.deathCounter;
 		blueballedTxt.scrollFactor.set();
 		blueballedTxt.setFormat(Paths.font('chaotix.ttf'), 32);
+		if (PlayState.SONG.song.toLowerCase() == 'found-you-legacy') { 
+			blueballedTxt.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32);
+		}
 		blueballedTxt.updateHitbox();
 		add(blueballedTxt);
 
 		practiceText = new FlxText(20, 15 + 101, 0, "PRACTICE MODE", 32);
 		practiceText.scrollFactor.set();
 		practiceText.setFormat(Paths.font('chaotix.ttf'), 32);
+        if (PlayState.SONG.song.toLowerCase() == 'found-you-legacy') { 
+			practiceText.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32);
+		}
 		practiceText.x = FlxG.width - (practiceText.width + 20);
 		practiceText.updateHitbox();
 		practiceText.visible = PlayState.instance.practiceMode;
@@ -136,6 +147,9 @@ class PauseSubState extends MusicBeatSubstate
 		var chartingText:FlxText = new FlxText(20, 15 + 101, 0, "DEBUG MODE", 32);
 		chartingText.scrollFactor.set();
 		chartingText.setFormat(Paths.font('chaotix.ttf'), 32);
+		if (PlayState.SONG.song.toLowerCase() == 'found-you-legacy') { 
+			chartingText.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32);
+		}
 		chartingText.x = FlxG.width - (chartingText.width + 20);
 		chartingText.y = FlxG.height - (chartingText.height + 20);
 		chartingText.updateHitbox();

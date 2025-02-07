@@ -67,12 +67,35 @@ class FunkinLua {
 
 		var result:Dynamic = LuaL.dofile(lua, script);
 		var resultStr:String = Lua.tostring(lua, result);
-		if(resultStr != null && result != 0) {
-			lime.app.Application.current.window.alert(resultStr, 'Error on .LUA script!');
-			trace('Error on .LUA script! ' + resultStr);
+		if (result != 0) { 
+			#if !windows
+			var errorMsg = resultStr != null ? resultStr : "Unknown error";
+			lime.app.Application.current.window.alert(errorMsg, "Error on .LUA script!");
+			trace("Error on .LUA script! " + errorMsg);
 			lua = null;
 			return;
-		}
+			#else
+			var errorMsg = resultStr != null ? resultStr : "Unknown error";
+			var escapedErrorMsg = StringTools.replace(errorMsg, "'", "''");
+    
+			var escapedErrorMsg = StringTools.replace(errorMsg, "'", "''");
+
+            var nullLiteral = "$" + "null";
+
+            var command = "powershell -Command \"& { " +
+                  "Add-Type -AssemblyName System.Windows.Forms; " +
+                  "[System.Windows.Forms.MessageBox]::Show(" + nullLiteral + ", '" + escapedErrorMsg + "', 'Error on .LUA script!', " +
+                  "[System.Windows.Forms.MessageBoxButtons]::OK, " +
+                  "[System.Windows.Forms.MessageBoxIcon]::Error, " +
+                  "[System.Windows.Forms.MessageBoxDefaultButton]::Button1, " +
+                  "[System.Windows.Forms.MessageBoxOptions]::ServiceNotification); " +
+                  "}\"";
+			Sys.command(command);
+			trace("Error on .LUA script! " + errorMsg);
+			lua = null;
+			return;						
+			#end
+		}		
 		scriptName = script;
 		trace('Lua file loaded succesfully:' + script);
 

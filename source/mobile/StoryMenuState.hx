@@ -38,7 +38,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	private static var lastDifficultyName:String = '';
-	var curDifficulty:Int = 2;
+	var curDifficulty:Int = 1;
 	var text:FlxSprite;
 
 	private static var curWeek:Int = 0;
@@ -307,7 +307,7 @@ class StoryMenuState extends MusicBeatState
 
     function changeDifficulty(change:Int = 0):Void
     {
-	    curDifficulty = 2;
+	    curDifficulty = 1;
 
 	    var diff:String = CoolUtil.difficulties[curDifficulty];
 	    lastDifficultyName = diff;

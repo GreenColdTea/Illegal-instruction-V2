@@ -21,7 +21,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" fps="" background="#000000" hardware="true" vsync="false" />
+	<window width="1280" height="720" fps="" background="#000000" hardware="true" vsync="false" allow-high-dpi="true"/>
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -30,7 +30,7 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" allow-high-dpi="true"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" allow-shaders="true" require-shaders="true"/>
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" />
@@ -116,9 +116,10 @@
     <haxelib name="extension-androidtools" if="android"/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
-	<haxelib name="hxcpp" />
 	<haxelib name="hxcpp-debug-server" if="desktop"/>
 	<haxelib name="openfl" version="9.2.0" />
+
+	<haxelib name="hxcpp" />	
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
@@ -179,7 +180,7 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
          <section if="android">
          <!--Gradle-->	
-           <config:android gradle-version="7.4.2" gradle-plugin="7.3.1" />		
+           <config:android gradle-version="8.0" gradle-plugin="8.0.2" />		
          </section>
 
 	<!-- _________________________________ Custom _______________________________ -->

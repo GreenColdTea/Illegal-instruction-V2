@@ -28,71 +28,80 @@ class Prompt extends MusicBeatSubstate
 	var buttonAccept:FlxButton;
 	var buttonNo:FlxButton;
 	var cornerSize:Int = 10;
-	public function new(promptText:String='', defaultSelected:Int = 0, okCallback:Void->Void, cancelCallback:Void->Void,acceptOnDefault:Bool=false,option1:String=null,option2:String=null) 
+	private var _option1:String;
+    private var _option2:String;
+
+	public function new(promptText:String='', defaultSelected:Int = 0, okCallback:Void->Void, cancelCallback:Void->Void, acceptOnDefault:Bool=false, option1:String=null, option2:String=null) 
 	{
 		selected = defaultSelected;
 		okc = okCallback;
 		cancelc = cancelCallback;
 		theText = promptText;
 		goAnyway = acceptOnDefault;
-		
+			
+		_option1 = option1;
+		_option2 = option2;
+			
 		var op1 = 'OK';
 		var op2 = 'CANCEL';
-		
+			
 		if (option1 != null) op1 = option1;
 		if (option2 != null) op2 = option2;
-		buttonAccept = new FlxButton(473.3, 450, op1, function(){if(okc != null)okc();
-		close();} );
-		buttonNo = new FlxButton(633.3,450,op2,function(){if(cancelc != null)cancelc();
-		close();});
-		super();	
-	}
+		buttonAccept = new FlxButton(473.3, 450, op1, function(){
+			if(okc != null) okc();
+			close();
+		});
+		buttonNo = new FlxButton(633.3,450, op2, function() {
+			if(cancelc != null) cancelc();
+			close();
+		});
+
+		super();  
+	}		
 	
 	override public function create():Void 
-	{
-		super.create();
-		if (goAnyway){
-			
-			
-				if(okc != null)okc();
-			close();
-			
-		}else{
-		panel = new FlxSprite(0, 0);
-		panelbg = new FlxSprite(0, 0);
-		makeSelectorGraphic(panel,300,150,0xff999999);
-		makeSelectorGraphic(panelbg,302,165,0xff000000);
-		//panel.makeGraphic(300, 150, 0xff999999);
-		//panel.loadGraphic(Paths.image('ui/promptbg'));
-		/*
-		buttons.frames = Paths.getSparrowAtlas('ui/prompt_buttons');
-		buttons.animation.addByIndices('but0', 'buttons', [0], '', 0);
-		buttons.animation.addByIndices('but1', 'buttons', [1], '', 0);
-		buttons.animation.play('but0');
-		buttons.scrollFactor.set();*/
-		panel.scrollFactor.set();
-		panel.screenCenter();
-		panelbg.scrollFactor.set();
-		panelbg.screenCenter();
-		
-		add(panelbg);
-		add(panel);
-		add(buttonAccept);
-		add(buttonNo);
-		//add(buttons);
-		var textshit:FlxText = new FlxText(buttonNo.width*2, panel.y, 300, theText, 16);
-		textshit.alignment = 'center';
-		add(textshit);
-		textshit.screenCenter();
-		buttonAccept.screenCenter();
-		buttonNo.screenCenter();
-		buttonAccept.x -= buttonNo.width/1.5;
-		buttonAccept.y = panel.y + panel.height-30;
-		buttonNo.x += buttonNo.width/1.5;
-		buttonNo.y = panel.y + panel.height-30;
-		textshit.scrollFactor.set();
+		{
+			super.create();
+			if (goAnyway){
+				if(okc != null) okc();
+				close();
+			} else {
+				panel = new FlxSprite(0, 0);
+				panelbg = new FlxSprite(0, 0);
+				makeSelectorGraphic(panel, 300, 150, 0xff999999);
+				makeSelectorGraphic(panelbg, 302, 165, 0xff000000);
+				panel.scrollFactor.set();
+				panel.screenCenter();
+				panelbg.scrollFactor.set();
+				panelbg.screenCenter();
+				
+				add(panelbg);
+				add(panel);
+				add(buttonAccept);
+				if (_option2 != null) {
+					add(buttonNo);
+				}
+				
+				var textField:FlxText = new FlxText(0, panel.y, 300, theText, 16);
+				textField.alignment = 'center';
+				textField.screenCenter();
+				textField.y -= 10;
+				add(textField);
+				
+				if (_option2 == null) {
+					buttonAccept.x = panel.x + panel.width / 2 - buttonAccept.width / 2;
+				} else {
+					buttonAccept.screenCenter();
+					buttonAccept.x -= buttonNo.width / 1.5;
+					buttonNo.screenCenter();
+					buttonNo.x += buttonNo.width / 1.5;
+					buttonNo.y = panel.y + panel.height - 30;
+				}
+				buttonAccept.y = panel.y + panel.height - 30;
+				textField.scrollFactor.set();
+			}
 		}
-	}
+
 	/*
 	override public function update(elapsed:Float):Void 
 	{

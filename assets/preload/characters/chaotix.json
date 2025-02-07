@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "ChaotixIdle"
+			"fps": 24,
+			"name": "ChaotixIdle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				130,
 				-31
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "ChaotixLeft"
+			"fps": 24,
+			"name": "ChaotixLeft",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-19,
 				-132
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "ChaotixDown"
+			"fps": 24,
+			"name": "ChaotixDown",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				53,
 				30
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "ChaotixUp"
+			"fps": 24,
+			"name": "ChaotixUp",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				5,
 				-92
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "ChaotixRight"
+			"fps": 24,
+			"name": "ChaotixRight",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -65,8 +65,8 @@
 	"healthicon": "chaotix",
 	"flip_x": false,
 	"healthbar_colors": [
-		255,
-		59,
+		235,
+		39,
 		169
 	],
 	"camera_position": [

@@ -289,62 +289,65 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 	 * Change the contents with a new data list
 	 * Replaces the old content with the new content
 	 */
-	public function setData(DataList:Array<StrNameLabel>):Void
-	{
-		var i:Int = 0;
-
-		if (DataList != null)
+	 public function setData(DataList:Array<StrNameLabel>):Void
 		{
-			for (data in DataList)
+			//Alphabetize the list
+			DataList.sort((a, b) -> Reflect.compare(a.label.toLowerCase(), b.label.toLowerCase()));
+		
+			var i:Int = 0;
+		
+			if (DataList != null)
 			{
-				var recycled:Bool = false;
-				if (list != null)
+				for (data in DataList)
 				{
-					if (i <= list.length - 1)
-					{ // If buttons exist, try to re-use them
-						var btn:FlxUIButton = list[i];
-						if (btn != null)
-						{
-							btn.label.text = data.label; // Set the label
-							list[i].name = data.name; // Replace the name
-							recycled = true; // we successfully recycled it
+					var recycled:Bool = false;
+					if (list != null)
+					{
+						if (i <= list.length - 1)
+						{ // If buttons exist, try to re-use them
+							var btn:FlxUIButton = list[i];
+							if (btn != null)
+							{
+								btn.label.text = data.label; // Set the label
+								list[i].name = data.name; // Replace the name
+								recycled = true; // we successfully recycled it
+							}
 						}
 					}
+					else
+					{
+						list = [];
+					}
+					if (!recycled)
+					{ // If we couldn't recycle a button, make a fresh one
+						var t:FlxUIButton = makeListButton(i, data.label, data.name);
+						list.push(t);
+						add(t);
+						t.visible = false;
+					}
+					i++;
 				}
-				else
-				{
-					list = [];
+		
+				// Remove excess buttons:
+				if (list.length > DataList.length)
+				{ // we have more entries in the original set
+					for (j in DataList.length...list.length)
+					{ // start counting from end of list
+						var b:FlxUIButton = list.pop(); // remove last button on list
+						b.visible = false;
+						b.active = false;
+						remove(b, true); // remove from widget
+						b.destroy(); // destroy it
+						b = null;
+					}
 				}
-				if (!recycled)
-				{ // If we couldn't recycle a button, make a fresh one
-					var t:FlxUIButton = makeListButton(i, data.label, data.name);
-					list.push(t);
-					add(t);
-					t.visible = false;
-				}
-				i++;
+		
+				selectSomething(DataList[0].name, DataList[0].label);
 			}
-
-			// Remove excess buttons:
-			if (list.length > DataList.length)
-			{ // we have more entries in the original set
-				for (j in DataList.length...list.length)
-				{ // start counting from end of list
-					var b:FlxUIButton = list.pop(); // remove last button on list
-					b.visible = false;
-					b.active = false;
-					remove(b, true); // remove from widget
-					b.destroy(); // destroy it
-					b = null;
-				}
-			}
-
-			selectSomething(DataList[0].name, DataList[0].label);
-		}
-
-		dropPanel.resize(header.background.width, getPanelHeight());
-		updateButtonPositions();
-	}
+		
+			dropPanel.resize(header.background.width, getPanelHeight());
+			updateButtonPositions();
+		}		
 
 	private function selectSomething(name:String, label:String):Void
 	{
@@ -426,34 +429,65 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 	}
 
 	public override function update(elapsed:Float):Void
-	{
-		super.update(elapsed);
-
-		#if FLX_MOUSE
-		if (dropPanel.visible)
 		{
-			if(list.length > 1 && canScroll) {
-				if(FlxG.mouse.wheel > 0 || FlxG.keys.justPressed.UP) {
-					// Go up
-					--currentScroll;
-					if(currentScroll < 0) currentScroll = 0;
-					updateButtonPositions();
-				}
-				else if (FlxG.mouse.wheel < 0 || FlxG.keys.justPressed.DOWN) {
-					// Go down
-					currentScroll++;
-					if(currentScroll >= list.length) currentScroll = list.length-1;
-					updateButtonPositions();
-				}
-			}
-
-			if (FlxG.mouse.justPressed && !FlxG.mouse.overlaps(this))
+			super.update(elapsed);
+	
+			#if FLX_MOUSE
+			if (dropPanel.visible)
 			{
-				showList(false);
+				#if mobile //thanks gamerbross
+				if(list.length > 1 && canScroll) 
+				{
+					for (swipe in FlxG.swipes)
+					{
+						var f = swipe.startPosition.x - swipe.endPosition.x;
+						var g = swipe.startPosition.y - swipe.endPosition.y;
+						if (25 <= Math.sqrt(f * f + g * g))
+						{
+							if ((-45 <= swipe.startPosition.angleBetween(swipe.endPosition) && 45 >= swipe.startPosition.angleBetween(swipe.endPosition)))
+							{
+								// Go down
+								currentScroll++;
+								if(currentScroll >= list.length) currentScroll = list.length-1;
+								updateButtonPositions();
+							}
+							else if (-180 <= swipe.startPosition.angleBetween(swipe.endPosition) && -135 >= swipe.startPosition.angleBetween(swipe.endPosition) || (135 <= swipe.startPosition.angleBetween(swipe.endPosition) && 180 >= swipe.startPosition.angleBetween(swipe.endPosition)))
+							{
+								// Go up
+								--currentScroll;
+								if(currentScroll < 0) currentScroll = 0;
+								updateButtonPositions();
+							}
+						}
+					}
+				}
+				#else
+				if(list.length > 1 && canScroll) 
+				{
+					if(FlxG.mouse.wheel > 0 || FlxG.keys.justPressed.UP) 
+					{
+						// Go up
+						--currentScroll;
+						if(currentScroll < 0) currentScroll = 0;
+						updateButtonPositions();
+					}
+					else if (FlxG.mouse.wheel < 0 || FlxG.keys.justPressed.DOWN) 
+					{
+						// Go down
+						currentScroll++;
+						if(currentScroll >= list.length) currentScroll = list.length-1;
+						updateButtonPositions();
+					}
+				}
+	
+				if (FlxG.mouse.justPressed && !FlxG.mouse.overlaps(this))
+				{
+					showList(false);
+				}
+				#end
 			}
+			#end
 		}
-		#end
-	}
 
 	override public function destroy():Void
 	{

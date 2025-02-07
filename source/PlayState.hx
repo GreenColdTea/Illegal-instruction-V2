@@ -343,7 +343,6 @@ class PlayState extends MusicBeatState
 	var ringsLabel:FlxSprite;
 	var hudDisplays:Map<String, SonicNumberDisplay> = [];
 	var hudStyle:Map<String, String> = [
-		"vista" => "chaotix",
 		"soulless-endeavors" => "chaotix",
 		"meltdown" => "chotix",
 		"long-sky-legacy" => "chotix",
@@ -404,7 +403,6 @@ class PlayState extends MusicBeatState
 	//general stuff (statics n shit...)
 	var theStatic:FlxSprite;  //THE FUNNY THE FUNNY!!!!
 	var staticlol:StaticShader;
-	var staticlolLQ:StaticShaderLQ;
 	var staticlmao:StaticShader;
 	var staticOverlay:ShaderFilter;
 	var glitchThingy:DistortGlitchShader;
@@ -1222,31 +1220,21 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.endSoundName = 'chaotix-retry';
 
                 if (ClientPrefs.shaders) {
-				
-				camGlitchShader = new GlitchShaderB();
-				camGlitchShader.iResolution.value = [FlxG.width, FlxG.height];
-				camGlitchFilter = new ShaderFilter(camGlitchShader);
+				    camGlitchShader = new GlitchShaderB();
+				    camGlitchShader.iResolution.value = [FlxG.width, FlxG.height];
+				    camGlitchFilter = new ShaderFilter(camGlitchShader);
 
-				if (!ClientPrefs.lowQuality) {
 				    staticlol = new StaticShader();
-					staticOverlay = new ShaderFilter(staticlol);
+				    staticOverlay = new ShaderFilter(staticlol);
 				    staticlol.iTime.value = [0];
 				    staticlol.iResolution.value = [FlxG.width, FlxG.height];
 				    staticlol.alpha.value = [staticAlpha];
 				    staticlol.enabled.value = [false];
-                } else {
-					staticlolLQ = new StaticShaderLQ();
-					staticOverlay = new ShaderFilter(staticlolLQ);
-				    staticlolLQ.iTime.value = [0];
-				    staticlolLQ.iResolution.value = [FlxG.width, FlxG.height];
-				    staticlolLQ.alpha.value = [staticAlpha];
-				    staticlolLQ.enabled.value = [false];
-				}
 
-				camFuckShader = new Fuck();
-				camFuckFilter = new ShaderFilter(camFuckShader);
+				    camFuckShader = new Fuck();
+				    camFuckFilter = new ShaderFilter(camFuckShader);
 
-				camGame.setFilters([staticOverlay, camFuckFilter]);
+				    camGame.setFilters([staticOverlay, camFuckFilter]);
                 }
 
 				GameOverSubstate.characterName = 'bfii-death';
@@ -2018,7 +2006,7 @@ class PlayState extends MusicBeatState
 		var filesPushed:Array<String> = [];
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
 
-		#if MODS_ALLOWED
+		#if MODS_ALLOWED 
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
 		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
 			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
@@ -2095,7 +2083,7 @@ class PlayState extends MusicBeatState
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
 
-
+        
 		dadGhost.visible = false;
 		dadGhost.antialiasing = ClientPrefs.globalAntialiasing;
 		dadGhost.alpha = 0.6;
@@ -2186,11 +2174,6 @@ class PlayState extends MusicBeatState
 				itemFly2 = frontierMasterEmeraldLegacy;
 
 			case 'vista':
-				/*gf.x += 150;
-				gf.y += 75;
-				dad.y += 37.5;
-				boyfriend.y += 80;
-				boyfriend.x += 200;*/
 				add(amyBop);
 				add(knuxBopFucked);
 				add(fuckedTails);
@@ -2270,6 +2253,9 @@ class PlayState extends MusicBeatState
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
 		timeTxt.setFormat(Paths.font("chaotix.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		if (SONG.song.toLowerCase() == 'found-you-legacy') {
+			timeTxt.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		}
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
@@ -2307,12 +2293,6 @@ class PlayState extends MusicBeatState
 		fakeTimeBar.numDivisions = 1000;
 		fakeTimeBar.visible = showTime;
 
-		/*if (!isPixelHUD)
-			{
-				add(timeBarBG);
-				add(timeBar);
-				add(timeTxt);
-			}*/
 		add(timeBarBG);
 		add(timeBar);
 		add(timeTxt);
@@ -2451,7 +2431,6 @@ class PlayState extends MusicBeatState
 
 
 		FlxG.camera.follow(camFollowPos, LOCKON, 1);
-		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow);
 
@@ -2503,23 +2482,35 @@ class PlayState extends MusicBeatState
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("chaotix.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		if (SONG.song.toLowerCase() == 'found-you-legacy') {
+			scoreTxt.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		}
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
-		scoreTxt.visible = false;
-		/*if (!isPixelHUD)
-		{
-		}*/
+		scoreTxt.visible = true;
+		if (ClientPrefs.downScroll) {
+			scoreTxt.y -= 75;
+		}
 		add(scoreTxt);
 
 		songNameHUD = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
 		songNameHUD.setFormat(Paths.font("chaotix.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		if (SONG.song.toLowerCase() == 'found-you-legacy') {
+			songNameHUD.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		}
 		songNameHUD.scrollFactor.set();
 		songNameHUD.borderSize = 1.25;
 		songNameHUD.visible = !ClientPrefs.hideHud;
+		if (!ClientPrefs.downScroll && SONG.song.toLowerCase().endsWith("legacy")) {
+			songNameHUD.y -= 100;
+		}
 		add(songNameHUD);
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("chaotix.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		if (SONG.song.toLowerCase() == 'found-you-legacy') {
+			botplayTxt.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		}
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
@@ -2656,19 +2647,19 @@ class PlayState extends MusicBeatState
 
 			add(chaotixHUD);
 
-			if(!ClientPrefs.downScroll) {
+			if (!ClientPrefs.downScroll) {
 				for(member in chaotixHUD.members)
 					member.y = (FlxG.height-member.height-member.y);
 			}
 			chaotixHUD.cameras = [camHUD];
 
-			if(SONG.song.toLowerCase()=='soulless-endeavors' || SONG.song.toLowerCase()=='soulless-endeavors-legacy')
+			if (SONG.song.toLowerCase() == 'soulless-endeavors' || SONG.song.toLowerCase() == 'soulless-endeavors-legacy')
 				chaotixHUD.visible = false;		
 		}
 
-		if(chaotixHUD!=null && chaotixHUD.visible) {
+		if (chaotixHUD != null && chaotixHUD.visible) {
 			healthBar.x += 150;
-			iconP1.x = 1000;
+			iconP1.x = 1025;
 			iconP2.x = 400;
 			healthBarBG.x += 150;
 			timeBar.visible = false;
@@ -2679,7 +2670,7 @@ class PlayState extends MusicBeatState
 			remove(timeTxt);
 		}
 		else {
-			iconP1.x = 850;
+			iconP1.x = 875;
 		    iconP2.x = 250;
 		}
 
@@ -3974,10 +3965,6 @@ class PlayState extends MusicBeatState
 			staticlol.iTime.value[0] = Conductor.songPosition / 1000;
 			staticlol.alpha.value = [staticAlpha];
 		}
-		if(staticlolLQ!=null){
-			staticlolLQ.iTime.value[0] = Conductor.songPosition / 1000;
-			staticlolLQ.alpha.value = [staticAlpha];
-		}
 		if(staticlmao!=null){
 			staticlmao.iTime.value[0] = Conductor.songPosition / 1000;
 			staticlmao.alpha.value = [staticAlpha];
@@ -4000,7 +3987,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (glitchinTime) {
-			if(dad.curCharacter.startsWith("chaotix-beast-unpixel"))
+			if(dad.curCharacter.startsWith("chaotix-beast-unpixel") || dad.curCharacter.startsWith("chaotix-beast-shaded"))
 				camGlitchShader.amount = FlxMath.lerp(0.1, camGlitchShader.amount, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
 			else
 				camGlitchShader.amount = FlxMath.lerp(0, camGlitchShader.amount, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
@@ -4053,48 +4040,19 @@ class PlayState extends MusicBeatState
 
 		}
 
-		if(scoreRandom){
-			switch(FlxG.random.int(1, 15)) {
-				case 1:
-					songNameHUD + 'v1sT4';
-				case 2:
-					songNameHUD + '0vVVOu';
-				case 3:
-					songNameHUD + 'duKqfdcaXs';
-				case 4:
-					songNameHUD + 'iPpj5TMNW';
-				case 5:
-					songNameHUD + '5JH1Bg7gRQ';
-				case 6:
-					songNameHUD + 'Gkpo5g7vxm';
-				case 7:
-					songNameHUD + 'NUSmyXyoyH';
-				case 8:
-					songNameHUD + '1f5VmRWPXE';
-				case 9:
-					songNameHUD + 'MLioiJtZX4';
-				case 10:
-					songNameHUD + 'WPvSwx9e5d';
-				case 11:
-					songNameHUD + 'E0U0xZuJ8p';
-				case 12:
-					songNameHUD + 'd9f8cj1Rs3';
-				case 13:
-					songNameHUD + 'Gkpo5g7vxm';
-				case 14:
-					songNameHUD + 'ZLyE8jMV62';
-				case 15:
-					songNameHUD + '9j3fOVV9Sw';
-				}
-		} /*else {
-			if(ratingName == '?') {
-				scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
-			} else {
-				scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName + ' (' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%)' + ' - ' + ratingFC;//peeps wanted no integer rating
-			}
-		}*/
+		if (scoreRandom) {
+			var timer:FlxTimer = new FlxTimer();
+            timer.start(2.5, function(timer:FlxTimer) {
+                randomizeSongName();
+                timer.start(2.5, function(timer:FlxTimer) {
+                    randomizeSongName();
+                });
+            });
+		} else {
+			updateScoreText();
+		}				
 
-		if(hexes>0)
+		if(hexes > 0)
 		{
 			hexTimer += elapsed;
 			if (hexTimer >= 5)
@@ -4206,13 +4164,6 @@ class PlayState extends MusicBeatState
 
 		var iconOffset:Int = 26;
 
-
-		songNameHUD.text = SONG.song.replace("-", " ");
-        if (SONG.song.endsWith("Legacy")) {
-            songNameHUD.text = songNameHUD.text.replace(" Legacy", "\nLegacy");
-        }
-
-
 		if (health > 2)
 			health = 2;
 
@@ -4283,7 +4234,7 @@ class PlayState extends MusicBeatState
 					if(ClientPrefs.timeBarType != 'Song Name')
 						timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
 
-					if(chaotixHUD!=null) {
+					if(chaotixHUD != null) {
 						curMS = Math.floor(curTime);
 						var curSex:Int = Math.floor(curMS / 1000);
 						if (curSex < 0)
@@ -4354,7 +4305,7 @@ class PlayState extends MusicBeatState
 
 		if (unspawnNotes[0] != null)
 		{
-			var time:Float = 3000;//shit be werid on 4:3
+			var time:Float = 3000; //shit be werid on 4:3
 			if(songSpeed < 1) time /= songSpeed;
 
 			while (unspawnNotes.length > 0 && unspawnNotes[0].strumTime - Conductor.songPosition < time)
@@ -4501,7 +4452,7 @@ class PlayState extends MusicBeatState
 
 		#if debug
 		if(!endingSong && !startingSong) {
-			if (FlxG.keys.justPressed.ONE) {
+			if (FlxG.keys.justPressed.ONE) { //Complete the song for testing purposes lol
 				KillNotes();
 				FlxG.sound.music.onComplete();
 			}
@@ -4520,6 +4471,67 @@ class PlayState extends MusicBeatState
 		}
 		callOnLuas('onUpdatePost', [elapsed]);
 	}
+
+	function randomizeSongName():Void {
+        var randomValue:Int = FlxG.random.int(1, 15);
+		#if debug
+        //trace("Random text nuber: " + randomValue);
+		#end
+        switch(randomValue) {
+			case 1:
+				songNameHUD.text = 'v1sT4';
+			case 2:
+				songNameHUD.text = '0vVVOu';
+			case 3:
+				songNameHUD.text = 'duKqfdcaXs';
+			case 4:
+				songNameHUD.text = 'iPpj5TMNW';
+			case 5:
+				songNameHUD.text = '5JH1Bg7gRQ';
+			case 6:
+				songNameHUD.text = 'Gkpo5g7vxm';
+			case 7:
+				songNameHUD.text = 'NUSmyXyoyH';
+			case 8:
+				songNameHUD.text = '1f5VmRWPXE';
+			case 9:
+				songNameHUD.text = 'MLioiJtZX4';
+			case 10:
+				songNameHUD.text = 'WPvSwx9e5d';
+			case 11:
+				songNameHUD.text = 'E0U0xZuJ8p';
+			case 12:
+				songNameHUD.text = 'd9f8cj1Rs3';
+			case 13:
+				songNameHUD.text = 'Gkpo5g7vxm';
+			case 14:
+				songNameHUD.text = 'ZLyE8jMV62';
+			case 15:
+				songNameHUD.text = '9j3fOVV9Sw';
+		}
+    }
+
+    function updateScoreText():Void {
+        songNameHUD.text = SONG.song.replace("-", " ");
+        
+        if (SONG.song.endsWith("Legacy")) {
+            songNameHUD.text = songNameHUD.text.replace(" Legacy", "\nLegacy");
+        }
+
+		if (SONG.song.toLowerCase() != 'found-you-legacy') {
+            if(ratingName == '?') {
+                scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
+            } else {
+                scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName + ' ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' - ' + ratingFC;
+            }
+		} else {
+			if(ratingName == '?') {
+                scoreTxt.text = 'Score: ' + songScore + ' - Misses: ' + songMisses + ' - Rating: ' + ratingName;
+            } else {
+                scoreTxt.text = 'Score: ' + songScore + ' - Misses: ' + songMisses + ' - Rating: ' + ratingName + ' ' + Highscore.floorDecimal(ratingPercent * 100, 2) + ' - ' + ratingFC;
+            }
+		}
+    }
 
 	public function openChartEditor()
 	{
@@ -5786,7 +5798,7 @@ class PlayState extends MusicBeatState
 				}
 				if (glitchinTime)
 					if(!note.isSustainNote && ClientPrefs.shaders){
-						if (camGlitchShader != null && char.curCharacter.startsWith('chaotix-beast-unpixel'))
+						if (camGlitchShader != null && (char.curCharacter.startsWith('chaotix-beast-unpixel') || char.curCharacter.startsWith('chaotix-beast-pixel')))
 							camGlitchShader.amount += 0.030;
 					}
 			}
@@ -6081,23 +6093,23 @@ class PlayState extends MusicBeatState
 		                dad.y += 25;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
-                                        if (ClientPrefs.shaders) {
-						camGame.setFilters([barrelDistortionFilter]);
-						camHUD.setFilters([barrelDistortionFilter]);
-	                                }
+                        if (ClientPrefs.shaders) {
+						    camGame.setFilters([barrelDistortionFilter]);
+						    camHUD.setFilters([barrelDistortionFilter]);
+	                    }
 					case 784:
-		                        if (ClientPrefs.shaders) {
-						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.75, barrelDistortion2: -0.5}, 1.5, {ease: FlxEase.quadInOut});
-					}
+		                if (ClientPrefs.shaders) {
+						    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.75, barrelDistortion2: -0.5}, 1.5, {ease: FlxEase.quadInOut});
+					    }
 					case 800:
-                                        if (ClientPrefs.shaders) {
+                        if (ClientPrefs.shaders) {
 						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: 0, barrelDistortion2: 0}, 0.35,{
 							ease: FlxEase.quadInOut, onComplete: function(tw:FlxTween)
 							{
 								camGame.setFilters([]);
 								camHUD.setFilters([]);
 							}});
-                                         }
+                        }
                         dad.y += 25;
 						iShouldKickUrFuckinAss(1);
 						cameraSpeed = 1.5;
@@ -6160,32 +6172,35 @@ class PlayState extends MusicBeatState
 						camHUD.zoom += 2;
 						FlxTween.tween(camHUD, {alpha: 1}, 1, {ease: FlxEase.cubeInOut});
 					case 1870:
-                                        if (ClientPrefs.shaders) {
-						camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
-						camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
-                                        }
+                        if (ClientPrefs.shaders && !ClientPrefs.lowQuality) {
+						    camGame.setFilters([camGlitchFilter, barrelDistortionFilter]);
+						    camHUD.setFilters([camGlitchFilter, barrelDistortionFilter]);
+                        } else if (ClientPrefs.shaders) {
+							camGame.setFilters([barrelDistortionFilter]);
+						    camHUD.setFilters([barrelDistortionFilter]);
+						}
 					case 1872:
-                                        if (ClientPrefs.shaders) {
-						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.05, barrelDistortion2: -0.05}, 2, {ease: FlxEase.quadInOut});
-                                        }
+                        if (ClientPrefs.shaders) {
+						    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.05, barrelDistortion2: -0.05}, 2, {ease: FlxEase.quadInOut});
+                        }
 					case 2000:
 						FlxG.camera.flash(FlxColor.GREEN, 1.5);
-                                        if (ClientPrefs.shaders) {
-						camGlitchShader.amount = 0.075;
-						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.1, barrelDistortion2: -0.1}, 2, {ease: FlxEase.quadInOut});
-                                        }
+                        if (ClientPrefs.shaders) {
+						    camGlitchShader.amount = 0.075;
+						    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.1, barrelDistortion2: -0.1}, 2, {ease: FlxEase.quadInOut});
+                        }
 					case 2128:
 						FlxG.camera.flash(FlxColor.RED, 1.5);
-                                        if (ClientPrefs.shaders) {
-						camGlitchShader.amount = 0.1;
-						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.15, barrelDistortion2: -0.15}, 2, {ease: FlxEase.quadInOut});
-                                        }
+                        if (ClientPrefs.shaders) {
+						    camGlitchShader.amount = 0.1;
+						    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.15, barrelDistortion2: -0.15}, 2, {ease: FlxEase.quadInOut});
+                        }
 					case 2224:
 						FlxG.camera.flash(FlxColor.GREEN, 1.5);
-                                        if (ClientPrefs.shaders) {
-						camGlitchShader.amount = 0.15;
-						FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.20, barrelDistortion2: -0.20}, 2, {ease: FlxEase.quadInOut});
-                                        }
+                        if (ClientPrefs.shaders) {
+						    camGlitchShader.amount = 0.15;
+						    FlxTween.tween(barrelDistortionShader, {barrelDistortion1: -0.20, barrelDistortion2: -0.20}, 2, {ease: FlxEase.quadInOut});
+                        }
 					case 2288: 
 						FlxG.camera.flash(FlxColor.RED, 1.5);
                         if (ClientPrefs.shaders) {
@@ -6314,6 +6329,7 @@ class PlayState extends MusicBeatState
 						timeBarBG.visible = false;
 						timeTxt.visible = false;
 						chaotixHUD.visible = true;
+						scoreTxt.visible = false;
 						songNameHUD.x -= 1250;
 						boyfriend.y -= 115;
 				        boyfriend.x -= 150;
@@ -6342,6 +6358,7 @@ class PlayState extends MusicBeatState
 						soulFrontRocks.visible = true;
 						soulPixelBgBg.visible = false;
 						soulPixelBg.visible = false;
+						scoreTxt.visible = !ClientPrefs.hideHud;
 						boyfriend.y += 50;
 				        boyfriend.x += 200;
 				        dad.x += 1;
@@ -6417,6 +6434,7 @@ class PlayState extends MusicBeatState
 							timeBarBG.visible = false;
 							timeTxt.visible = false;
 							chaotixHUD.visible = true;
+							scoreTxt.visible = false;
 						case 1152:
 							theStatic.visible = true;
 						case 1153:
@@ -6428,6 +6446,7 @@ class PlayState extends MusicBeatState
 							timeBar.visible = !ClientPrefs.hideHud;
 							timeBarBG.visible = !ClientPrefs.hideHud;
 							timeTxt.visible = !ClientPrefs.hideHud;
+							scoreTxt.visible = !ClientPrefs.hideHud;
 							chaotixHUD.visible = false;
 
 							health = 1;
@@ -6651,6 +6670,9 @@ class PlayState extends MusicBeatState
 			                    add(songNameHUD);
 
 								timeBar.visible = !ClientPrefs.hideHud;
+							    timeBarBG.visible = !ClientPrefs.hideHud;
+							    timeTxt.visible = !ClientPrefs.hideHud;
+								scoreTxt.visible = !ClientPrefs.hideHud;
 			                    chaotixHUD.visible = false;
 
 								healthBar.x -= 150;
@@ -6834,9 +6856,9 @@ class PlayState extends MusicBeatState
 								chaotixGlass(2);
 								chaotixGlass(3);
 							case 4135:
-								revivedIsPissed(1);
-								revivedIsPissed(2);
 								revivedIsPissed(3);
+								revivedIsPissed(2);
+								revivedIsPissed(1);
 						   }
 						}
 					}
@@ -6872,7 +6894,7 @@ class PlayState extends MusicBeatState
 
 					case 'endless-legacy':
 					{
-					   if (curStage == "mazin-legacy")
+					   if (curStage == "mazin")
 					   {
 						switch (curStep)
 						{
@@ -6995,12 +7017,11 @@ class PlayState extends MusicBeatState
 					case 2336:
 						defaultCamZoom = 0.70;
 						glitchinTime = true;
-						scoreRandom = true;	
 						camHUD.zoom += 2;
 						FlxG.camera.flash(FlxColor.BLACK, 1);
-						if(ClientPrefs.flashing && ClientPrefs.shaders) {
-							camGame.setFilters([camGlitchFilter, camFuckFilter]);
-							camHUD.setFilters([camGlitchFilter, camFuckFilter]);
+						if(ClientPrefs.flashing && ClientPrefs.shaders && !ClientPrefs.lowQuality) {
+							camGame.setFilters([camGlitchFilter, camFuckFilter, staticOverlay]);
+							camHUD.setFilters([camGlitchFilter, camFuckFilter, staticOverlay]);
 						}
                         if (ClientPrefs.shaders) {
 						    camFuckShader.amount = 0.01;
@@ -7009,9 +7030,12 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(this, {health: 1}, 2);
 						FlxTween.tween(fuckedBG, {alpha: 1}, 2);
                         Paths.clearUnusedMemory();
+					case 2591:
+						scoreRandom = true;
 					case 2592:
 						defaultCamZoom = 0.60;
-						wowZoomin = true;	
+						wowZoomin = true;
+						scoreRandom = true;	
 						FlxG.camera.flash(FlxColor.PURPLE, 1);
                         if (ClientPrefs.shaders) {
 						    camFuckShader.amount = 0.02;
@@ -7180,7 +7204,7 @@ class PlayState extends MusicBeatState
 		{
 			charmyBop.animation.play('danceRight');
 		}
-/* 		if (curBeat % 2 == 0 && curStage == 'vista' && fucklesMode)
+        /*if (curBeat % 2 == 0 && curStage == 'vista' && fucklesMode)
 		{
 			gf.animation.play('scared');
 		} */
@@ -7534,10 +7558,13 @@ class PlayState extends MusicBeatState
 			add(timeBarBG);
 			add(timeTxt);
 			add(songNameHUD);
+			add(scoreTxt);
 
 			timeBarBG.visible = !ClientPrefs.hideHud;
+			fakeTimeBar.visible = !ClientPrefs.hideHud;
 			timeBar.visible = !ClientPrefs.hideHud;
 			timeTxt.visible = !ClientPrefs.hideHud;
+			scoreTxt.visible = !ClientPrefs.hideHud;
 			chaotixHUD.visible = false;
 
 			fucklesBGPixelLegacy.visible = false;
@@ -7684,10 +7711,12 @@ class PlayState extends MusicBeatState
 
 		timeBar.visible = false;
 		timeTxt.visible = false;
+		scoreTxt.visible = false;
         if (SONG.song.toLowerCase() == "my-horizon-legacy") {
 			timeBarBG.visible = false;
+		} else if (SONG.song.toLowerCase() == "vista") {
+			scoreTxt.visible = true;
 		}
-		scoreTxt.visible = false;
 
 		opponentStrums.forEach(function(spr:FlxSprite)
 		{
@@ -7743,6 +7772,9 @@ class PlayState extends MusicBeatState
 			if (text.trim() != '' && duration > 0 && color.alphaFloat > 0) {
 				lyricText = new FlxText(0, 0, FlxG.width, text);
 				lyricText.setFormat(Paths.font("chaotix.ttf"), 24, color, CENTER, OUTLINE, FlxColor.BLACK);
+				if (SONG.song.toLowerCase() == 'found-you-legacy') {
+					lyricText.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 24, color, CENTER, OUTLINE, FlxColor.BLACK);
+				}
 				lyricText.alpha = 0;
 				lyricText.screenCenter(XY);
 				lyricText.y += 250;
@@ -7854,7 +7886,7 @@ class PlayState extends MusicBeatState
 			if (goods > 0) ratingFC = "GFC";
 			if (bads > 0 || shits > 0) ratingFC = "FC";
 			if (songMisses > 0 && songMisses < 10) ratingFC = "SDCB";
-			else if (songMisses >= 10) ratingFC = "Clear";
+			else if (songMisses >= 10) ratingFC = "";
 
 			if(fcLabel!=null){
 				if(fcLabel.animation.curAnim!=null){

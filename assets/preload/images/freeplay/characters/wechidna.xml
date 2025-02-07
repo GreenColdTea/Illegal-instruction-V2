@@ -1,56 +1,69 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <TextureAtlas imagePath="wechidna.png">
-	<!-- Created with Adobe Animate version 23.0.1.70 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="wechidna0000" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0001" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0002" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0003" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0004" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0005" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0006" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0007" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0008" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0009" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0010" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0011" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0012" x="0" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0013" x="40" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0014" x="40" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0015" x="40" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0016" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0017" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0018" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0019" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0020" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0021" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0022" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0023" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0024" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0025" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0026" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0027" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0028" x="80" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0029" x="120" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0030" x="120" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0031" x="120" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0032" x="160" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0033" x="160" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0034" x="160" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0035" x="200" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0036" x="200" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0037" x="200" y="0" width="40" height="76"/>
-	<SubTexture name="wechidna0038" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0039" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0040" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0041" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0042" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0043" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0044" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0045" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0046" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0047" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0048" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0049" x="0" y="76" width="40" height="76"/>
-	<SubTexture name="wechidna0050" x="0" y="76" width="40" height="76"/>
+<SubTexture name="wechidna0000" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0001" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0002" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0003" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0004" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0005" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0006" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0007" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0008" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0009" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0010" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0011" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0012" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0013" x="40" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0014" x="40" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0015" x="40" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0016" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0017" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0018" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0019" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0020" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0021" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0022" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0023" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0024" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0025" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0026" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0027" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0028" x="80" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0029" x="120" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0030" x="120" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0031" x="120" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0032" x="0" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0033" x="0" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0034" x="0" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0035" x="40" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0036" x="40" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0037" x="40" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0038" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0039" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0040" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0041" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0042" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0043" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0044" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0045" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0046" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0047" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0048" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0049" x="80" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0050" x="40" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0051" x="40" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0052" x="40" y="76" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0053" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0054" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0055" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0056" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0057" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0058" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0059" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0060" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0061" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0062" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0063" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0064" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
+<SubTexture name="wechidna0065" x="0" y="0" width="40" height="76" frameX="0" frameY="0" frameWidth="40" frameHeight="76" />
 </TextureAtlas>

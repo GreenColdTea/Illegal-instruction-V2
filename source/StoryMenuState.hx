@@ -37,7 +37,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	private static var lastDifficultyName:String = '';
-	var curDifficulty:Int = 2;
+	var curDifficulty:Int = 1;
 	var text:FlxSprite;
 
 	var bgSprite:FlxSprite;
@@ -343,7 +343,7 @@ class StoryMenuState extends MusicBeatState
 	var tweenDifficulty:FlxTween;
 	function changeDifficulty(change:Int = 0):Void
 	{
-		curDifficulty = 2;
+		curDifficulty = 1;
 
 		WeekData.setDirectoryFromWeek(loadedWeeks[curWeek]);
 

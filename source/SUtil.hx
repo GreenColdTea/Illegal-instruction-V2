@@ -52,7 +52,7 @@ class SUtil
 		#if android
 		if (!Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE))
 		{
-                        Permissions.requestPermission([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
+            Permissions.requestPermission([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
 			SUtil.applicationAlert('Permissions', "if you accepted the permissions all good if not expect a crash" + '\n' + 'Press Ok to see what happens');
 		}
 
@@ -115,6 +115,7 @@ class SUtil
 		#if android
 		Tools.showAlertDialog(title, message, {name: "OK", func: null}, null);
 		#elseif (!ios || !iphonesim)
+		FlxG.sound.music.stop();
 		lime.app.Application.current.window.alert(message, title);
 		#else
 		trace('$title - $message');

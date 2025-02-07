@@ -478,7 +478,7 @@ class BallsFreeplay extends MusicBeatState
     function doTheLoad()
     {
         var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
-        PlayState.SONG = Song.loadFromJson(songLowercase + '-hard', songLowercase);
+        PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
 	    FlxG.mouse.visible = false;
         PlayState.isStoryMode = false;
         PlayState.isFreeplay = true;
