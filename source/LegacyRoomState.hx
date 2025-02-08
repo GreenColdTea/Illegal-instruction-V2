@@ -119,8 +119,7 @@ class LegacyRoomState extends MusicBeatState
             changeSelection(1);
         if(controls.UI_LEFT_P && !broStopScrolling)
             changeSelection(-1);
-        if(accepted) {
-            var save:FlxSave = new FlxSave();
+        if(accepted && !broStopScrolling) {
             broStopScrolling = true;
             var songLowercase:String = Paths.formatToSongPath(songs[curSelected]);
             FlxG.sound.play(Paths.sound('confirmMenu'));

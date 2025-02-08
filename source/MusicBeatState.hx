@@ -18,7 +18,9 @@ import openfl.system.System;
 import openfl.Lib;
 import lime.app.Application;
 import flixel.system.scaleModes.RatioScaleMode;
+#if MODS_ALLOWED
 import sys.FileSystem;
+#end
 #if mobile
 import mobile.MobileControls;
 import mobile.flixel.FlxVirtualPad;

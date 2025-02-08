@@ -3,7 +3,7 @@ package editors;
 #if desktop
 import Discord.DiscordClient;
 #end
-import flash.geom.Rectangle;
+import openfl.geom.Rectangle;
 import haxe.Json;
 import haxe.format.JsonParser;
 import haxe.io.Bytes;
@@ -53,7 +53,6 @@ import openfl.utils.ByteArray;
 
 using StringTools;
 #if sys
-import flash.media.Sound;
 import sys.FileSystem;
 import sys.io.File;
 #end
@@ -242,6 +241,10 @@ class ChartingState extends MusicBeatState
 			addSection();
 			PlayState.SONG = _song;
 		}
+
+		#if cpp
+        cpp.NativeGc.run(true);
+        #end
 
 		// Paths.clearMemory();
 
@@ -3095,13 +3098,13 @@ class ChartingState extends MusicBeatState
 		if ((data != null) && (data.length > 0))
 		{
 			#if mobile
-			SUtil.saveContent(Paths.formatToSongPath(_song.song) + "-hard", ".json", data.trim());
+			SUtil.saveContent("events.json", data.trim());
 			#else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), Paths.formatToSongPath(_song.song) + "-hard" + ".json");
+			_file.save(data.trim(), Paths.formatToSongPath(_song.song) + ".json");
 			#end
 		}
 	}
@@ -3137,7 +3140,7 @@ class ChartingState extends MusicBeatState
 		if ((data != null) && (data.length > 0))
 		{
 			#if mobile
-			SUtil.saveContent("events", ".json", data.trim());
+			SUtil.saveContent("events.json", data.trim());
 			#else
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);

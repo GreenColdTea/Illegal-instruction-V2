@@ -47,7 +47,7 @@ class Log
 				#if webassembly
 				println(message);
 				#elseif android
-				Lib.application.window.alert(message, "Error!");
+				SUtil.showPopUp(message, "Error!");
 				#end
 				throw message;
 			} else {

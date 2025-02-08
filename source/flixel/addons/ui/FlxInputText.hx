@@ -37,6 +37,10 @@ class FlxInputText extends FlxText
 	public static inline var ONLY_ALPHANUMERIC:Int = 3;
 	public static inline var CUSTOM_FILTER:Int = 4;
 
+	public var selectionStart:Int = 0;
+    public var selectionEnd:Int = 0;
+    public var hasSelection:Bool = false;
+
 	public static inline var ALL_CASES:Int = 0;
 	public static inline var UPPER_CASE:Int = 1;
 	public static inline var LOWER_CASE:Int = 2;
@@ -340,6 +344,18 @@ class FlxInputText extends FlxText
 		return false;
 	}
 
+    public function setSelection(start:Int, end:Int):Void
+	{
+		if (start < 0) start = 0;
+		if (end > text.length) end = text.length;
+		if (start > end) return;
+		
+		selectionStart = start;
+		selectionEnd = end;
+		hasSelection = true;
+		
+	}
+
 	/**
 	 * Handles keypresses generated on the stage.
 	 */
@@ -403,8 +419,8 @@ class FlxInputText extends FlxText
 				return;
 			}
 
-			// Do nothing for Shift, Ctrl, Esc, and flixel console hotkey
-			if (key == 16 || key == 17 || key == 220 || key == 27)
+			// Do nothing for Shift, Ctrl, Caps Lock, Esc, and flixel console hotkey
+			if (key == 16 || key == 17 || key == 20 || key == 220 || key == 27)
 			{
 				return;
 			}
@@ -416,6 +432,12 @@ class FlxInputText extends FlxText
 					caretIndex--;
 					text = text; // forces scroll update
 				}
+			}
+			//// Crtl/Cmd + A to select all text
+			else if(key == 65 && e.ctrlKey)
+			{
+				setSelection(0, this.text.length); // Select all text
+				return;
 			}
 			// Right arrow
 			else if (key == 39)

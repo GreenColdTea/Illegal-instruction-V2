@@ -2503,6 +2503,8 @@ class PlayState extends MusicBeatState
 		songNameHUD.visible = !ClientPrefs.hideHud;
 		if (!ClientPrefs.downScroll && SONG.song.toLowerCase().endsWith("legacy")) {
 			songNameHUD.y -= 100;
+		} else if (!ClientPrefs.downScroll && !SONG.song.toLowerCase().endsWith("legacy")) {
+			songNameHUD.y -= 75;
 		}
 		add(songNameHUD);
 
@@ -3900,7 +3902,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (SONG.player1 == "bf-running") {
+		if (boyfriend.curCharacter == "bf-running") {
 			bfFeetAppear(1);
 			bfSEFeet.x = boyfriend.x + 350;
             bfSEFeet.y = boyfriend.y + 262.5;
@@ -7030,7 +7032,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(this, {health: 1}, 2);
 						FlxTween.tween(fuckedBG, {alpha: 1}, 2);
                         Paths.clearUnusedMemory();
-					case 2591:
+					case 2561:
 						scoreRandom = true;
 					case 2592:
 						defaultCamZoom = 0.60;
