@@ -36,10 +36,9 @@ import sys.thread.Thread;
 
 class Intro extends MusicBeatState
 {
+    var settingsLoaded:Bool = false;
     override public function create()
     {
-        initializeSettings();
-
 	    FlxG.mouse.visible = false;
         
         FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -93,11 +92,14 @@ class Intro extends MusicBeatState
     private function initializeSettings() {
         PlayerSettings.init();
         ClientPrefs.loadPrefs();
-        FlxG.game.focusLostFramerate = ClientPrefs.framerate;
     }
 
     override public function update(elapsed:Float)
     {
+        if (!settingsLoaded) {
+            initializeSettings();
+            settingsLoaded = true;
+        }
         super.update(elapsed);
     }
 }

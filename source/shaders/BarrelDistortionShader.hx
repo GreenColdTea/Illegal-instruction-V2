@@ -1,5 +1,5 @@
-package;
-import flixel.system.FlxAssets.FlxShader;
+package shaders;
+import shaders.flixel.FlxShader;
 
 class BarrelDistortionShader extends FlxShader {
 	@:isVar

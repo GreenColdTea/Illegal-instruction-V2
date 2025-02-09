@@ -100,6 +100,7 @@ class ControlsSubState extends MusicBeatSubstate {
 			} else {
 				optionText.forceX = 200;
 			}
+			optionText.y -= 100;
 			optionText.yMult = 60;
 			optionText.targetY = i;
 			grpOptions.add(optionText);
@@ -112,9 +113,9 @@ class ControlsSubState extends MusicBeatSubstate {
 		}
 		changeSelection();
 
-                #if android
-                addVirtualPad(LEFT_FULL, A_B);
-                #end
+        #if mobile
+        addVirtualPad(LEFT_FULL, A_B);
+        #end
 	}
 
 	var leaving:Bool = false;

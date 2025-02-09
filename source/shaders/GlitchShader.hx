@@ -1,5 +1,6 @@
-package;
-import flixel.system.FlxAssets.FlxShader;
+package shaders;
+
+import shaders.flixel.FlxShader;
 
 class GlitchShaderA extends FlxShader {
 	@:isVar

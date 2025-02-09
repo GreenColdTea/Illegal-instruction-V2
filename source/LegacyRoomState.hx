@@ -59,15 +59,17 @@ class LegacyRoomState extends MusicBeatState
 	  	DiscordClient.changePresence("Welcome to the old kingdom...", null);
 	  	#end
 
-        bg = new FlxBackdrop(1, 0, true, false);
+        bg = new FlxBackdrop();
         bg.loadGraphic(Paths.image('chaotixMenu/menu-bg'));
-	  	bg.scrollFactor.set(0, 0);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
+        bg.scrollFactor.set(0, 0);
+        bg.repeatAxes = X;
+        bg.setGraphicSize(Std.int(bg.width * 1.175));
         bg.alpha = 0.5;
-		bg.updateHitbox();
-		bg.screenCenter();
-	  	bg.antialiasing = false;
-	  	add(bg);
+        bg.updateHitbox();
+        bg.screenCenter();
+        bg.antialiasing = false;
+        add(bg);
+          
 
         grpImages = new FlxTypedGroup<MenuItemAgainFuckYou>();
 	  	add(grpImages);
@@ -98,14 +100,14 @@ class LegacyRoomState extends MusicBeatState
     }
     override function update(elapsed:Float)
     {
-        bg.x -= 1;
-
         lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
         if(Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
 
         intendedScore = Highscore.getScore(Paths.formatToSongPath(songs[curSelected] + "-legacy"), 1);
 
         scoreText.text = "SCORE: " + lerpScore;
+
+        bg.x -= 1;
 
         var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;

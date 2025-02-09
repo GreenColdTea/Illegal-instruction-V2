@@ -1,6 +1,5 @@
 package;
 
-import GlitchShader.Fuck;
 import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
@@ -61,9 +60,10 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
-import GlitchShader.GlitchShaderA;
-import GlitchShader.GlitchShaderB;
 import Shaders;
+import shaders.GlitchShader.Fuck;
+import shaders.GlitchShader.GlitchShaderA;
+import shaders.GlitchShader.GlitchShaderB;
 import shaders.*;
 import modchart.*;
 

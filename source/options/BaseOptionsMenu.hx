@@ -82,15 +82,15 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		titleText.alpha = 0.4;
 		add(titleText);
 
-		descText = new FlxText(50, 600, 1180, "", 32);
-		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		descText = new FlxText(50, 600, 1180, "", 24);
+		descText.setFormat(Paths.font("chaotix.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
 		add(descText);
 
 		for (i in 0...optionsArray.length)
 		{
-			var optionText:Alphabet = new Alphabet(0, 70 * i, optionsArray[i].name, false, false);
+			var optionText:Alphabet = new Alphabet(0, 70 * i + 10, optionsArray[i].name, false, false);
 			optionText.isMenuItem = true;
 			optionText.x += 300;
 			/*optionText.forceX = 300;
@@ -125,9 +125,9 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-                #if android
-                addVirtualPad(LEFT_FULL, A_B_C);
-                #end
+        #if mobile
+        addVirtualPad(LEFT_FULL, A_B_C);
+        #end
 	}
 
 	public function addOption(option:Option) {
@@ -150,12 +150,12 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		}
 
 		if (controls.BACK) {
-			#if android
-         FlxTransitionableState.skipNextTransOut = true;
+			#if mobile
+            FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
-         #else
-         close();
-         #end
+            #else
+            close();
+            #end
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 
@@ -248,7 +248,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
+			if(controls.RESET #if mobile || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{

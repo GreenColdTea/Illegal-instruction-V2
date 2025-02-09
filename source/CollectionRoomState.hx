@@ -50,13 +50,14 @@ class CollectionRoomState extends MusicBeatState
 
             for (i in 0...characterList.length)
                 {
-                    sprSprite = new FlxBackdrop(1, 0, true, false);
+                    sprSprite = new FlxBackdrop();
                     sprSprite.loadGraphic(Paths.image('collection/bg/' + characterList[i]));
                     sprSprite.ID = i;
+                    sprSprite.repeatAxes = X;
                     if (sprSprite.ID != curSelected)
-                        {
-                            sprSprite.alpha = 0;
-                        }
+                    {
+                        sprSprite.alpha = 0;
+                    }
                     sprSprite.antialiasing = ClientPrefs.globalAntialiasing;
                     sprSprite.screenCenter();
                     bgShits.add(sprSprite);
@@ -96,8 +97,8 @@ class CollectionRoomState extends MusicBeatState
             charBio.scale.y = 0.6;
             add(charBio);
 
-            #if android
-               addVirtualPad(UP_DOWN, B);
+            #if mobile
+            addVirtualPad(UP_DOWN, B);
             #end
         }
 
@@ -106,19 +107,6 @@ class CollectionRoomState extends MusicBeatState
 
     override function update(elapsed:Float)
         {
-            switch (characterList[curSelected])
-            {
-                case 'duke':
-                   sprSprite.x += 1;
-                case 'p2-duke':
-                   sprSprite.x += 1;
-                case 'chaotix':
-                   sprSprite.x += 1;
-                case 'p2-chaotix':
-                   sprSprite.x += 1;
-                default:
-                   sprSprite.x += 1;
-            }
             if (controls.BACK && !movedBack && !hitEnter)
                 {
                     movedBack = true;
@@ -143,9 +131,11 @@ class CollectionRoomState extends MusicBeatState
                     doTheFunnyThing(characterShit);
                 }
 
-            charBio.text = charText;
+            sprSprite.x -= 1;
 
             reloadText();
+
+            charBio.text = charText;
             fixTheFunny();
             super.update(elapsed);
         }

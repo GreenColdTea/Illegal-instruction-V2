@@ -98,13 +98,13 @@
 	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<haxelib name="flixel" version="5.2.2" />
+	<haxelib name="flixel" version="5.6.2" />
 	<haxedev set='webgl' />
 
-	<lime version="8.0.1" />
+	<lime version="8.2.2" />
 
 	<!--In case you want to use the addons package-->
-	<haxelib name="flixel-addons" version="2.12.0" />
+	<haxelib name="flixel-addons" version="3.2.3" />
 	<haxelib name="hscript" />
 	<define name="hscriptPos" />
 
@@ -117,7 +117,7 @@
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxcpp-debug-server" if="desktop"/>
-	<haxelib name="openfl" version="9.2.0" />
+	<haxelib name="openfl" version="9.3.2" />
 
 	<haxelib name="hxcpp" />	
 
