@@ -67,17 +67,7 @@ class Main extends Sprite
         "breakout_cut",
         "hellspawn_cut"
     ];
-
-    static final weeksList:Array<String> = [
-        "duke",
-		"chaotix",
-		"chotix",
-		"ashura",
-		"test",
-		"wechidna",
-		"wechnia"
-	];
-
+    
     public static function main():Void
     {
         Lib.current.addChild(new Main());

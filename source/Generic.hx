@@ -1,6 +1,5 @@
 package;
 
-import sys.FileSystem;
 #if android
 //import android.Hardware;
 import android.Permissions;
@@ -14,7 +13,6 @@ import UIKit.UIAlertView;
 import haxe.CallStack;
 import haxe.io.Path;
 import haxe.io.Bytes;
-import sys.io.Process;
 import flixel.FlxG;
 import haxe.CallStack.StackItem;
 import haxe.CallStack;
@@ -28,8 +26,10 @@ import openfl.utils.Assets;
 import flixel.FlxState;
 import flixel.addons.ui.FlxUIButton;
 import flixel.text.FlxText;
-import sys.io.File;
 import flixel.util.FlxColor;
+import sys.FileSystem;
+import sys.io.Process;
+import sys.io.File;
 
 using StringTools;
 
