@@ -62,7 +62,7 @@ jobs:
           haxelib set extension-androidtools 2.1.1
 
       - name: Compile
-        run: haxelib run lime build android -D -final -ONLY_ARM64
+        run: haxelib run lime build android -D -final
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
