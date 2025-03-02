@@ -197,35 +197,36 @@ class Generic {
 	
 	public static function copyContent(copyPath:String, savePath:String)
 	{
-		trace(returnPath());
-        trace('saving dir: ' + returnPath() + savePath);
-        trace(copyPath);
+	    trace(returnPath());
+            trace('saving dir: ' + returnPath() + savePath);
+            trace(copyPath);
 
-        var fileName:String = returnPath() + savePath;
-        trace(fileName);
-        trace('FileSystem.exists(fileName) = ' + FileSystem.exists(fileName));
-        trace('Assets.exists(copyPath) = ' + Assets.exists(copyPath));
+            var fileName:String = returnPath() + savePath;
+            trace(fileName);
+            trace('FileSystem.exists(fileName) = ' + FileSystem.exists(fileName));
+            trace('Assets.exists(copyPath) = ' + Assets.exists(copyPath));
 
-        if (!FileSystem.exists(returnPath() + savePath)) {
-            if (!FileSystem.exists(returnPath())) {
-                FileSystem.createDirectory(returnPath());
+            if (!FileSystem.exists(returnPath() + savePath)) {
+                if (!FileSystem.exists(returnPath())) {
+                    FileSystem.createDirectory(returnPath());
+                }
+
+                var fileData:Bytes;
+
+                if (copyPath.indexOf(".mp4") > -1) {
+                    fileData = Assets.getBytes('videos:' + copyPath);
+                } else if (copyPath.indexOf(".lua") > -1 || copyPath.indexOf(".txt") > -1 || copyPath.indexOf(".json") > -1) {
+		    fileData = haxe.io.Bytes.ofString(Assets.getText('weeks:' + copyPath));
+                    fileData = haxe.io.Bytes.ofString(Assets.getText('scripts:' + copyPath));
+                } else {
+                    fileData = Assets.getBytes(copyPath);
+                }
+
+                if (fileData != null) {
+                    File.saveBytes(fileName, fileData);
+                    trace('saved');
+                }
             }
-
-            var fileData:Bytes;
-
-            if (copyPath.indexOf(".mp4") > -1) {
-                fileData = Assets.getBytes('videos:' + copyPath);
-            } else if (copyPath.indexOf(".txt") > -1 || copyPath.indexOf(".json") > -1) {
-                fileData = haxe.io.Bytes.ofString(Assets.getText('weeks:' + copyPath));
-            } else {
-                fileData = Assets.getBytes(copyPath);
-            }
-
-            if (fileData != null) {
-                File.saveBytes(fileName, fileData);
-                trace('saved');
-            }
-        }
 	}
 }
 
