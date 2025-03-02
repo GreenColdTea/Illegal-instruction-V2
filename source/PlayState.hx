@@ -2010,7 +2010,8 @@ class PlayState extends MusicBeatState
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
 		#else
 		var foldersToCheck:Array<String> = [Generic.returnPath() + 'assets/scripts/'];
-
+		#end
+			
 		#if MODS_ALLOWED 
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
 		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
