@@ -47,7 +47,7 @@ jobs:
           haxelib git hxCodec https://github.com/MobilePorting/hxCodec-0.6.3.git 2f48d6692c2a21aaaab3e671c8fa0fc278a7ac9a --quiet
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
-          haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex --quiet
+          haxelib git hscript https://github.com/ianharrigan/hscript-ex --quiet
           haxelib list
 
       - name: Setup Lime
