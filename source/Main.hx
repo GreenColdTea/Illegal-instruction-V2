@@ -71,21 +71,18 @@ class Main extends Sprite
     public static function main():Void
     {
         Lib.current.addChild(new Main());
-        /*#if desktop
-        AudioDeviceListener.startAudioMonitoring();
-        #end*/
-	    #if cpp
-	    cpp.NativeGc.enable(true);
-	    #elseif hl
-	    hl.Gc.enable(true);
-	    #end
+	#if cpp
+	cpp.NativeGc.enable(true);
+	#elseif hl
+	hl.Gc.enable(true);
+	#end
     }
 
     public function new()
     {
         super();
 
-	    Generic.initCrashHandler();
+	Generic.initCrashHandler();
 
         if (stage != null)
         {
@@ -137,12 +134,15 @@ class Main extends Sprite
         Generic.mode = MEDIAFILE;
 	    if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		    FileSystem.createDirectory(Generic.returnPath() + 'assets');
-        }
+            }
 	    if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
 		    FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
 	    }
-        if (!FileSystem.exists(Generic.returnPath() + 'assets/weeks')) {
+            if (!FileSystem.exists(Generic.returnPath() + 'assets/weeks')) {
 		    FileSystem.createDirectory(Generic.returnPath() + 'assets/weeks');
+	    }
+	    if (!FileSystem.exists(Generic.returnPath() + 'assets/scripts')) {
+		    FileSystem.createDirectory(Generic.returnPath() + 'assets/scripts');
 	    }
 
 	    for (video in videva) {
