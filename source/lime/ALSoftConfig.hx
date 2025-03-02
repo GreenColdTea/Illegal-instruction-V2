@@ -1,4 +1,4 @@
-package lime.media;
+package lime;
 
 import lime.system.System;
 import haxe.macro.Context;
