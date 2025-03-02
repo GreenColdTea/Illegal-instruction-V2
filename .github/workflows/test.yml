@@ -60,12 +60,12 @@ jobs:
           haxelib set openfl 9.2.2
           haxelib set hscript 2.4.0
           haxelib set flixel-tools 1.5.1
-          haxelib install flixel-ui 2.6.3
+          haxelib set flixel-ui 2.6.3
           haxelib set flixel-addons 3.2.2
           haxelib set extension-androidtools 2.1.1
 
       - name: Compile
-        run: haxelib run lime build android -D -final
+        run: haxelib run lime build android -D -final -ONLY_ARM64
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
