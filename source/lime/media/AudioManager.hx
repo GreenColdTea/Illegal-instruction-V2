@@ -6,7 +6,7 @@ import lime.media.openal.AL;
 import lime.media.openal.ALC;
 import lime.media.openal.ALContext;
 import lime.media.openal.ALDevice;
-import lime.media.ALSoftConfig;
+import lime.ALSoftConfig;
 #if (js && html5)
 import js.Browser;
 #end
