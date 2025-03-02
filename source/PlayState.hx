@@ -2006,7 +2006,10 @@ class PlayState extends MusicBeatState
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
+		#if !mobile
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
+		#else
+		var foldersToCheck:Array<String> = [Generic.returnPath() + 'assets/scripts/'];
 
 		#if MODS_ALLOWED 
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
