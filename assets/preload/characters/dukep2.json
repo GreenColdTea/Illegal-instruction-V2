@@ -59,8 +59,8 @@
 	"no_antialiasing": false,
 	"image": "characters/Duke2",
 	"position": [
-		140,
-		410
+		80,
+		225
 	],
 	"healthicon": "duke2",
 	"flip_x": false,

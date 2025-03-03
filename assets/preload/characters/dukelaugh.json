@@ -16,7 +16,7 @@
 	"image": "characters/dukelaugh",
 	"position": [
 		80,
-		450
+		247.5
 	],
 	"healthicon": "duke",
 	"flip_x": false,
@@ -26,8 +26,8 @@
 		0
 	],
 	"camera_position": [
-		-60,
-		-80
+		0,
+		-90
 	],
 	"sing_duration": 6.1,
 	"scale": 1.7
