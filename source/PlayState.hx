@@ -2006,7 +2006,7 @@ class PlayState extends MusicBeatState
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPath('scripts/'), Paths.getPreloadPath('scripts/')];
+		var foldersToCheck:Array<String> = [#if android Generic.returnPath() + 'scripts/',#end Paths.getPreloadPath('scripts/')];
 			
 		#if MODS_ALLOWED 
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
@@ -2046,7 +2046,11 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#else
-		var luaFile:String = Paths.getPath('stages/') + curStage + '.lua';
+	        #if android 
+		var luaFile:String = Generic.returnPath() + 'stages/' + curStage + '.lua';
+		#else
+		var luaFile:String = Paths.getPreloadPath('stages/') + curStage + '.lua';
+		#end
 		if (FileSystem.exists(luaFile)) {
 		    doPush = true;
 		}
@@ -2710,7 +2714,7 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/'), Paths.getPath() + 'data/' + Paths.formatToSongPath(SONG.song) + '/'];
+		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/') #if android, Generic.returnPath() + 'data/' + Paths.formatToSongPath(SONG.song) + '/' #end];
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
