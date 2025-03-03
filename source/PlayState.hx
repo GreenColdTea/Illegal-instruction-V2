@@ -2006,11 +2006,7 @@ class PlayState extends MusicBeatState
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		#if !android
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
-		#else
-		var foldersToCheck:Array<String> = [Generic.returnPath() + 'assets/scripts/'];
-		#end
+		var foldersToCheck:Array<String> = [Paths.getPath() + 'scripts/', Paths.getPreloadPath('scripts/')];
 			
 		#if MODS_ALLOWED 
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
@@ -2036,8 +2032,9 @@ class PlayState extends MusicBeatState
 
 
 		// STAGE SCRIPTS
-		#if (MODS_ALLOWED && LUA_ALLOWED)
+		#if LUA_ALLOWED
 		var doPush:Bool = false;
+		$if MODS_ALLOWED
 		var luaFile:String = 'stages/' + curStage + '.lua';
 		if(FileSystem.exists(Paths.modFolders(luaFile))) {
 			luaFile = Paths.modFolders(luaFile);
@@ -2048,6 +2045,12 @@ class PlayState extends MusicBeatState
 				doPush = true;
 			}
 		}
+		#else
+		var luaFile:String = Paths.getPath() + 'stages/' + curStage + '.lua';
+		if (FileSystem.exists(luaFile) {
+		    doPush = true;
+		}
+		#end
 
 		if(doPush)
 			luaArray.push(new FunkinLua(luaFile));
