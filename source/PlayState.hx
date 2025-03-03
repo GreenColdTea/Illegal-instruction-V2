@@ -3207,11 +3207,12 @@ class PlayState extends MusicBeatState
 		}
 
 		#if mobile
-        mobileControls.visible = true;
+                mobileControls.visible = true;
 		if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
+			addVirtualPad(NONE, NOME);
 			_virtualpad.visible = true;
 		}
-        #end
+                #end
 
 		inCutscene = false;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
@@ -5041,11 +5042,12 @@ class PlayState extends MusicBeatState
 
      
 		#if mobile
-        mobileControls.visible = false;
+                mobileControls.visible = false;
 		if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
+			addVirtualPad(NONE, NOME);
 			_virtualpad.visible = true;
 		}
-        #end
+                #end
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		fakeTimeBar.visible = false;
