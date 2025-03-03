@@ -1508,7 +1508,7 @@ class PlayState extends MusicBeatState
 				horizonBGp3.antialiasing = ClientPrefs.globalAntialiasing;
 
 				horizonBGp4 = new FlxSprite(-375, -150);
-			    horizonBGp4.loadGraphic(Paths.image('horizon/bgpart4', 'exe'));
+			        horizonBGp4.loadGraphic(Paths.image('horizon/bgpart4', 'exe'));
 				horizonBGp4.scrollFactor.set(0.75, 1);
 				horizonBGp4.scale.set(1.5, 1.5);
 				horizonBGp4.antialiasing = ClientPrefs.globalAntialiasing;
@@ -1548,34 +1548,34 @@ class PlayState extends MusicBeatState
 				horizonSpookyBGp1.antialiasing = ClientPrefs.globalAntialiasing;
 				horizonSpookyBGp1.alpha = 0;
 
-				horizonSpookyBGp2 = new FlxSprite(150, 50);
+				horizonSpookyBGp2 = new FlxSprite(-350, -150);
 				horizonSpookyBGp2.loadGraphic(Paths.image('horizon/spooky/spookyp2', 'exe'));
 				horizonSpookyBGp2.scrollFactor.set(0.65, 1);
 				horizonSpookyBGp2.scale.set(1.5, 1.5);
 				horizonSpookyBGp2.antialiasing = ClientPrefs.globalAntialiasing;
 				horizonSpookyBGp2.alpha = 0;
 
-				horizonSpookyBGp3 = new FlxSprite(300, 75);
+				horizonSpookyBGp3 = new FlxSprite(-350, -150);
 				horizonSpookyBGp3.loadGraphic(Paths.image('horizon/spooky/spookyp3', 'exe'));
 				horizonSpookyBGp3.scrollFactor.set(0.7, 1);
 				horizonSpookyBGp3.scale.set(1.5, 1.5);
 				horizonSpookyBGp3.antialiasing = ClientPrefs.globalAntialiasing;
 				horizonSpookyBGp3.alpha = 0;
 
-				horizonSpookyBGp4 = new FlxSprite(-350, -225);
+				horizonSpookyBGp4 = new FlxSprite(-375, -150);
 				horizonSpookyBGp4.loadGraphic(Paths.image('horizon/spooky/spookyp4', 'exe'));
 				horizonSpookyBGp4.scrollFactor.set(0.75, 1);
 				horizonSpookyBGp4.scale.set(1.5, 1.5);
 				horizonSpookyBGp4.antialiasing = ClientPrefs.globalAntialiasing;
 				horizonSpookyBGp4.alpha = 0;
 				
-				horizonSpookyFGp1 = new FlxSprite(275, 275);
+				horizonSpookyFGp1 = new FlxSprite(-450, -50);
 				horizonSpookyFGp1.loadGraphic(Paths.image('horizon/spooky/spookyfg1', 'exe'));
 				horizonSpookyFGp1.scale.set(1.525, 1.525);
 				horizonSpookyFGp1.antialiasing = ClientPrefs.globalAntialiasing;
 				horizonSpookyFGp1.alpha = 0;
 
-				horizonSpookyFGp2 = new FlxSprite(-500, -150);
+				horizonSpookyFGp2 = new FlxSprite(-450, -100);
 				horizonSpookyFGp2.loadGraphic(Paths.image('horizon/spooky/spookyfg2', 'exe'));
 				horizonSpookyFGp2.scrollFactor.set(0.5, 1);
 				horizonSpookyFGp2.scale.set(1.5, 1.5);
