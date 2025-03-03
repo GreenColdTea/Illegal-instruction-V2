@@ -118,10 +118,7 @@ class WeekData {
 			}
 		}
 		#else
-		#if !android
-		var directories:Array<String> = [Paths.getPreloadPath()];
-		#else
-		var directories:Array<String> = [Paths.getPath()];
+		var directories:Array<String> = [Paths.getPreloadPath(), Paths.getPath()];
 		var originalLength:Int = directories.length;
 		#end
 
