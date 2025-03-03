@@ -103,6 +103,7 @@ class OptionsState extends MusicBeatState
 		var tipText:FlxText = new FlxText(10, 12, 0, 'Press C to Go In Mobile Controls Menu', 16);
 		tipText.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tipText.borderSize = 2;
+		tipText.y += 10;
 		tipText.scrollFactor.set();
 		add(tipText);
 		#end
