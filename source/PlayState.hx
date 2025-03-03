@@ -2006,7 +2006,7 @@ class PlayState extends MusicBeatState
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		#if !mobile
+		#if !android
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
 		#else
 		var foldersToCheck:Array<String> = [Generic.returnPath() + 'assets/scripts/'];
@@ -2707,7 +2707,11 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
+	        #if !android
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
+	        #else
+		var foldersToCheck:Array<String> = [Generic.returnPath() + 'data/' + Paths.formatToSongPath(Song.song) + '/'];
+	        #end
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
