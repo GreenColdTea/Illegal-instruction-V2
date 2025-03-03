@@ -835,6 +835,64 @@ class FunkinLua {
 			}
 		});
 
+		Lua_helper.add_callback(lua, "callScript", function(?luaFile:String, ?funcName:String, ?args:Array<Dynamic>){
+			if(luaFile==null){
+				#if (linc_luajit >= "0.0.6")
+				LuaL.error(lua, "bad argument #1 to 'callScript' (string expected, got nil)");
+				#end
+				return;
+			}
+			if(funcName==null){
+				#if (linc_luajit >= "0.0.6")
+				LuaL.error(lua, "bad argument #2 to 'callScript' (string expected, got nil)");
+				#end
+				return;
+			}
+			if(args==null){
+				args = [];
+			}
+			var cervix = luaFile + ".lua";
+			if(luaFile.endsWith(".lua"))cervix=luaFile;
+			var doPush = false;
+			#if MODS_ALLOWED
+			if(FileSystem.exists(Paths.modFolders(cervix)))
+			{
+				cervix = Paths.modFolders(cervix);
+				doPush = true;
+			}
+			else if(FileSystem.exists(cervix))
+			{
+				doPush = true;
+			}
+			else {
+				cervix = Paths.getPreloadPath(cervix);
+				if(FileSystem.exists(cervix)) {
+					doPush = true;
+				}
+			}
+			#else
+			cervix = Paths.getPreloadPath(cervix);
+			if(Assets.exists(cervix)) {
+				doPush = true;
+			}
+			#end
+			if(doPush)
+			{
+				for (luaInstance in PlayState.instance.luaArray)
+				{
+					if(luaInstance.scriptName == cervix)
+					{
+						luaInstance.call(funcName, args);
+
+						return;
+					}
+
+				}
+			}
+			Lua.pushnil(lua);
+
+		});
+
 		//Tween shit, but for strums
 		Lua_helper.add_callback(lua, "noteTweenX", function(tag:String, note:Int, value:Dynamic, duration:Float, ease:String) {
 			cancelTween(tag);
