@@ -2047,7 +2047,7 @@ class PlayState extends MusicBeatState
 		}
 		#else
 		var luaFile:String = Paths.getPath() + 'stages/' + curStage + '.lua';
-		if (FileSystem.exists(luaFile) {
+		if (FileSystem.exists(luaFile)) {
 		    doPush = true;
 		}
 		#end
