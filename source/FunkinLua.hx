@@ -1194,7 +1194,7 @@ class FunkinLua {
 			if(FlxTransitionableState.skipNextTransIn)
 				CustomFadeTransition.nextCamera = null;
 
-			if (PlayState.isStoryMode) {
+			if (PlayState.isStoryMode)
 				#if !mobile
 				MusicBeatState.switchState(new StoryMenuState());
 			        #else
