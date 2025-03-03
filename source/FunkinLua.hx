@@ -2652,8 +2652,9 @@ class FunkinLua {
 		#if !android
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('shaders/');
 		#else
-		var foldersToCheck:Array<String> = [Generic.returnPath() + '/shaders/');
+		var foldersToCheck:Array<String> = [Generic.returnPath() + '/shaders/'];
 	        #end
+		#end
 
 		#if MODS_ALLOWED
 		for(mod in Paths.getGlobalMods())
