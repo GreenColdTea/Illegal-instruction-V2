@@ -1194,16 +1194,17 @@ class FunkinLua {
 			if(FlxTransitionableState.skipNextTransIn)
 				CustomFadeTransition.nextCamera = null;
 
-			if (PlayState.isStoryMode)
+			if (PlayState.isStoryMode) {
 				#if !mobile
 				MusicBeatState.switchState(new StoryMenuState());
 			        #else
 				MusicBeatState.switchState(new mobile.StoryMenuState());
 			        #end
-			elseif (PlayState.isFreeplay)
+			} elseif (PlayState.isFreeplay) {
 				MusicBeatState.switchState(new BallsFreeplay());
-			else
+			} else {
 				MusicBeatState.switchState(new LegacyRoomState());
+			}
 
 			PlayState.changedDifficulty = false;
 			PlayState.chartingMode = false;
