@@ -7626,31 +7626,28 @@ class PlayState extends MusicBeatState
 
 	function changeIcon(change:String, colorArray:Array<Int>)
 		{
-			switch (change)
+			switch (change.toLowerCase())
 			{
-				case "dad":
+				case "dad" | "1":
 					if (dad.animation.curAnim.name == "singLEFT" || dad.animation.curAnim.name == "singRIGHT" ||
 						dad.animation.curAnim.name == "singUP" || dad.animation.curAnim.name == "singDOWN") {
-				
 						iconP2.changeIcon(dad.healthIcon);
 						dad.healthColorArray = [colorArray[0], colorArray[1], colorArray[2]];
 						triggerEventNote("Change Character", "dad", dad.curCharacter);
 					}
 					else if (gf.animation.curAnim.name == "singLEFT" || gf.animation.curAnim.name == "singRIGHT" ||
 						gf.animation.curAnim.name == "singUP" || gf.animation.curAnim.name == "singDOWN") {
-				
 						iconP2.changeIcon(gf.healthIcon);
 						dad.healthColorArray = [gf.healthColorArray[0], gf.healthColorArray[1], gf.healthColorArray[2]];
 						triggerEventNote("Change Character", "dad", dad.curCharacter);
 					}
 	
-				case "bf":
+				case "bf" | "0":
 					if (boyfriend.animation.curAnim.name == "singLEFT" || boyfriend.animation.curAnim.name == "singRIGHT" ||
 						boyfriend.animation.curAnim.name == "singUP" || boyfriend.animation.curAnim.name == "singDOWN" || boyfriend.animation.curAnim.name.endsWith("-miss") || boyfriend.animation.curAnim.name.endsWith("-alt")) 
 					{
 						iconP1.changeIcon(boyfriend.healthIcon);
-
-                        boyfriend.healthColorArray = [colorArray[0], colorArray[1], colorArray[2]];
+                                                boyfriend.healthColorArray = [colorArray[0], colorArray[1], colorArray[2]];
 						triggerEventNote("Change Character", 'bf', boyfriend.curCharacter);
 						//trace("BF ICON NOW: " + boyfriend.healthIcon + " AND COLOR NOW: " + boyfriend.healthColorArray);
 					} 
@@ -7659,7 +7656,6 @@ class PlayState extends MusicBeatState
 						gf.animation.curAnim.name.endsWith("-alt")) 
 					{
 						iconP1.changeIcon(gf.healthIcon);
-
 						boyfriend.healthColorArray = [gf.healthColorArray[0], gf.healthColorArray[1], gf.healthColorArray[2]];
 						triggerEventNote("Change Character", 'bf', boyfriend.curCharacter);
 						//trace("BF ICON NOW: " + boyfriend.healthIcon + " AND COLOR NOW: " + boyfriend.healthColorArray);
