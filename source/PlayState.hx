@@ -2987,12 +2987,22 @@ class PlayState extends MusicBeatState
 			return true;
 		}
 
+		#if MODS_ALLOWED
 		var foldersToCheck:Array<String> = [Paths.mods('shaders/')];
 		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
 			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/shaders/'));
+		#elseif ((MODS_ALLOWED && LUA_ALLOWED) || (!MODS_ALLOWED && LUA_ALLOWED))
+		#if !android
+		var foldersToCheck:Array<String> = [Paths.getPreloadPath('shaders/');
+		#else
+		var foldersToCheck:Array<String> = [Generic.returnPath() + '/shaders/'];
+	        #end
+		#end
 
+		#if MODS_ALLOWED
 		for(mod in Paths.getGlobalMods())
 			foldersToCheck.insert(0, Paths.mods(mod + '/shaders/'));
+		#end
 		
 		for (folder in foldersToCheck)
 		{
