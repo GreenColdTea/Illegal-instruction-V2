@@ -2432,7 +2432,6 @@ class FunkinLua {
 		return null;
 	}
 
-	var lastCalledFunction:String = '';
 	public function call(func:String, args:Array<Dynamic>):Dynamic {
 		#if LUA_ALLOWED
 		if(closed) return Function_Continue;
