@@ -121,7 +121,7 @@ class WeekData {
 		#if !android
 		var directories:Array<String> = [Paths.getPreloadPath()];
 		#else
-		var directories:Array<String> = [Generic.returnPath()];
+		var directories:Array<String> = [Generic.returnPath() + "assets/"];
 		#end
 		var originalLength:Int = directories.length;
 		#end
@@ -129,7 +129,7 @@ class WeekData {
 		#if !android
 		var sexList:Array<String> = CoolUtil.coolTextFile(Paths.getPreloadPath('weeks/weeksList.txt'));
 		#else
-		var sexList:Array<String> = CoolUtil.coolTextFile(Generic.returnPath() + 'weeks/weeksList.txt');
+		var sexList:Array<String> = CoolUtil.coolTextFile(Generic.returnPath() + 'assets/weeks/weeksList.txt');
 		#end
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
