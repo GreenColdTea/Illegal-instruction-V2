@@ -1200,11 +1200,10 @@ class FunkinLua {
 			        #else
 				MusicBeatState.switchState(new mobile.StoryMenuState());
 			        #end
-			} elseif (PlayState.isFreeplay) {
+			else if (PlayState.isFreeplay)
 				MusicBeatState.switchState(new BallsFreeplay());
-			} else {
+			else
 				MusicBeatState.switchState(new LegacyRoomState());
-			}
 
 			PlayState.changedDifficulty = false;
 			PlayState.chartingMode = false;
