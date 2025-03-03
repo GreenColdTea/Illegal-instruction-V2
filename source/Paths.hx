@@ -40,6 +40,7 @@ class Paths
 		'songs',
 		'music',
 		'sounds',
+		'shaders',
 		'videos',
 		'images',
 		'stages',
@@ -205,6 +206,15 @@ class Paths
 	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
 	{
 		return getPath(file, type, library);
+	}
+
+	inline static public function shaderFrag(key:String, ?library:String)
+	{
+		return getPath('shaders/$key.frag', TEXT, library);
+	}
+	inline static public function shaderVert(key:String, ?library:String)
+	{
+		return getPath('shaders/$key.vert', TEXT, library);
 	}
 
 	inline static public function txt(key:String, ?library:String)
