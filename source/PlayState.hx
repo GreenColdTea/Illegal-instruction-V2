@@ -2710,7 +2710,7 @@ class PlayState extends MusicBeatState
 	        #if !android
 		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
 	        #else
-		var foldersToCheck:Array<String> = [Generic.returnPath() + 'data/' + Paths.formatToSongPath(Song.song) + '/'];
+		var foldersToCheck:Array<String> = [Generic.returnPath() + 'data/' + Paths.formatToSongPath(SONG.song) + '/'];
 	        #end
 
 		#if MODS_ALLOWED
