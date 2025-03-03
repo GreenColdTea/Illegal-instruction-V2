@@ -7700,7 +7700,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (change.toLowerCase())
 			{
-				case "dad" | "1":
+				case "dad" | "1" | "opponent":
 					if (dad.animation.curAnim.name == "singLEFT" || dad.animation.curAnim.name == "singRIGHT" ||
 						dad.animation.curAnim.name == "singUP" || dad.animation.curAnim.name == "singDOWN") {
 						iconP2.changeIcon(dad.healthIcon);
