@@ -40,10 +40,10 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 	function getOptions()
 	{
-		var goption:GameplayOption = new GameplayOption('Scroll Type', 'scrolltype', 'string', 'multiplicative', ["multiplicative", "constant"]);
+		var goption:GameplayOption = new GameplayOption('Scroll Type:', 'scrolltype', 'string', 'multiplicative', ["multiplicative", "constant"]);
 		optionsArray.push(goption);
 
-		var option:GameplayOption = new GameplayOption('Scroll Speed', 'scrollspeed', 'float', 1);
+		var option:GameplayOption = new GameplayOption('Scroll Speed:', 'scrollspeed', 'float', 1);
 		option.scrollSpeed = 1.5;
 		option.minValue = 0.5;
 		option.changeValue = 0.1;
@@ -67,7 +67,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		option.displayFormat = '%vX';
 		optionsArray.push(option);*/
 
-		var option:GameplayOption = new GameplayOption('Health Gain Multiplier', 'healthgain', 'float', 1);
+		var option:GameplayOption = new GameplayOption('Health Gain Multiplier:', 'healthgain', 'float', 1);
 		option.scrollSpeed = 2.5;
 		option.minValue = 0;
 		option.maxValue = 5;
@@ -75,7 +75,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		option.displayFormat = '%vX';
 		optionsArray.push(option);
 
-		var option:GameplayOption = new GameplayOption('Health Loss Multiplier', 'healthloss', 'float', 1);
+		var option:GameplayOption = new GameplayOption('Health Loss Multiplier:', 'healthloss', 'float', 1);
 		option.scrollSpeed = 2.5;
 		option.minValue = 0.5;
 		option.maxValue = 5;
@@ -156,7 +156,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		changeSelection();
 		reloadCheckboxes();
 
-                #if android
+                #if mobile
                 addVirtualPad(LEFT_FULL, A_B_C);
                 addVirtualPadCamera();
                 #end
@@ -177,12 +177,12 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		}
 
 		if (controls.BACK) {
-			#if android
-         FlxTransitionableState.skipNextTransOut = true;
+			#if mobile
+                        FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
-         #else
-         close();
-         #end
+                        #else
+                        close();
+                        #end
 			ClientPrefs.saveSettings();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
@@ -246,7 +246,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 									curOption.curOption = num;
 									curOption.setValue(curOption.options[num]); //lol
 									
-									if (curOption.name == "Scroll Type")
+									if (curOption.name == "Scroll Type:")
 									{
 										var oOption:GameplayOption = getOptionByName("Scroll Speed");
 										if (oOption != null)
@@ -296,7 +296,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
+			if(controls.RESET #if mobile || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{
@@ -311,7 +311,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 						updateTextFrom(leOption);
 					}
 
-					if(leOption.name == 'Scroll Speed')
+					if(leOption.name == 'Scroll Speed:')
 					{
 						leOption.displayFormat = "%vX";
 						leOption.maxValue = 3;
