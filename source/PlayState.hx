@@ -6190,7 +6190,7 @@ class PlayState extends MusicBeatState
 					case 736:
 						FlxTween.tween(camHUD, {alpha: 0}, 3, {ease: FlxEase.cubeInOut});
 		            case 755:
-		                dad.y += 25;
+		                //dad.y += 25;
 					case 768:
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.25}, 3, {ease: FlxEase.cubeInOut});
                         if (ClientPrefs.shaders) {
@@ -6212,7 +6212,7 @@ class PlayState extends MusicBeatState
                         }
                         dad.y += 25;
 						iShouldKickUrFuckinAss(1);
-						cameraSpeed = 1.5;
+						cameraSpeed = 1.55;
 						holyFuckStopZoomin = true;
                         Paths.clearUnusedMemory();
 					case 1056:
