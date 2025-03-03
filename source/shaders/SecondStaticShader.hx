@@ -1,4 +1,4 @@
-package;
+package shaders;
 
 import shaders.flixel.FlxShader;
 import openfl.display.BitmapData;
