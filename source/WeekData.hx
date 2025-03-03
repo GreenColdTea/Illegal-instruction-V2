@@ -121,7 +121,7 @@ class WeekData {
 		#if !android
 		var directories:Array<String> = [Paths.getPreloadPath()];
 		#else
-		var directories:Array<String> = [Generic.returnPath() + 'assets/'];
+		var directories:Array<String> = [Paths.getPath()];
 		var originalLength:Int = directories.length;
 		#end
 
