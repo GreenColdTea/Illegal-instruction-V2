@@ -2006,7 +2006,7 @@ class PlayState extends MusicBeatState
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPath() + 'scripts/', Paths.getPreloadPath('scripts/')];
+		var foldersToCheck:Array<String> = [Paths.getPath('scripts/'), Paths.getPreloadPath('scripts/')];
 			
 		#if MODS_ALLOWED 
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
@@ -2046,7 +2046,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#else
-		var luaFile:String = Paths.getPath() + 'stages/' + curStage + '.lua';
+		var luaFile:String = Paths.getPath('stages/') + curStage + '.lua';
 		if (FileSystem.exists(luaFile)) {
 		    doPush = true;
 		}
@@ -6986,7 +6986,7 @@ class PlayState extends MusicBeatState
 
 					case 'endless-legacy':
 					{
-					   if (curStage == "mazin")
+					   if (curStage == "infinity-legacy")
 					   {
 						switch (curStep)
 						{
