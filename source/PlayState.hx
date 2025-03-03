@@ -2127,11 +2127,11 @@ class PlayState extends MusicBeatState
 				add(entranceSpookyOver);
 				add(entranceOver);
 
-				dad.y += 225;
+				/*dad.y += 225;
 				gf.x += 175;
 				gf.y += 250;
 				boyfriend.x += 275;
-				boyfriend.y += 235;
+				boyfriend.y += 235;*/
 				theStatic.visible = false;
 				add(theStatic);
 
