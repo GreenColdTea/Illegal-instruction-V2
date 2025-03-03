@@ -38,7 +38,8 @@ class MusicBeatState extends FlxUIState
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;
 
-	public static var curSelected:Int = 0;
+	private var curSection:Int = 0;
+	private var stepsToDo:Int = 0;
 
 	public var curDecStep:Float = 0;
 	public var curDecBeat:Float = 0;
