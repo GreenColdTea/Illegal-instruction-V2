@@ -6210,7 +6210,7 @@ class PlayState extends MusicBeatState
 								camHUD.setFilters([]);
 							}});
                         }
-                        dad.y += 25;
+                        //dad.y += 25;
 						iShouldKickUrFuckinAss(1);
 						cameraSpeed = 1.55;
 						holyFuckStopZoomin = true;
