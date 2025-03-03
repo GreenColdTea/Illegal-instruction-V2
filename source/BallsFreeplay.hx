@@ -405,8 +405,7 @@ class BallsFreeplay extends MusicBeatState
         if (FlxG.keys.justPressed.ENTER #if mobile || controls.ACCEPT #end)
         {
             doTheLoad();
-	        lastSongIndex = songIndex;
-	        updateScreen();
+	    lastSongIndex = songIndex;
         }
 
         if (controls.BACK)
