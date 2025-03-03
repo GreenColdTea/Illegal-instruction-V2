@@ -312,6 +312,7 @@ class BallsFreeplay extends MusicBeatState
 
     // screen update command
     public function updateScreen():Void {
+	FlxG.sound.play(Paths.sound('scrollMenu'));
         intendedScore = Highscore.getScore(Std.string([songIndex]), 2);
 	    lastSongIndex = songIndex;
         for (sprite in screenInfo.members) {
