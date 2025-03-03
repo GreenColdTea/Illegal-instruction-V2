@@ -5,9 +5,9 @@ import llua.State;
 import llua.Convert;
 #end
 
-import animateatlas.AtlasFrameMaker;
 import flixel.FlxG;
 import Shaders;
+import animateatlas.AtlasFrameMaker;
 import flixel.addons.effects.FlxTrail;
 import flixel.input.keyboard.FlxKey;
 import flixel.tweens.FlxTween;
@@ -27,9 +27,11 @@ import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.filters.BitmapFilter;
 import openfl.utils.Assets;
+import openfl.display.BitmapData;
 import flixel.math.FlxMath;
 import flixel.util.FlxSave;
 import flixel.addons.transition.FlxTransitionableState;
+import shaders.flixel.FlxShader;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
