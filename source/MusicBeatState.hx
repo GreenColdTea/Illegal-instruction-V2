@@ -38,6 +38,8 @@ class MusicBeatState extends FlxUIState
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;
 
+	public static var curSelected:Int = 0;
+
 	public var curDecStep:Float = 0;
 	public var curDecBeat:Float = 0;
 	private var controls(get, never):Controls;
@@ -226,6 +228,39 @@ class MusicBeatState extends FlxUIState
 
 	}
 
+	private function updateSection():Void
+	{
+		if(stepsToDo < 1) stepsToDo = Math.round(getBeatsOnSection() * 4);
+		while(curStep >= stepsToDo)
+		{
+			curSection++;
+			var beats:Float = getBeatsOnSection();
+			stepsToDo += Math.round(beats * 4);
+			sectionHit();
+		}
+	}
+
+	private function rollbackSection():Void
+	{
+		if(curStep < 0) return;
+
+		var lastSection:Int = curSection;
+		curSection = 0;
+		stepsToDo = 0;
+		for (i in 0...PlayState.SONG.notes.length)
+		{
+			if (PlayState.SONG.notes[i] != null)
+			{
+				stepsToDo += Math.round(getBeatsOnSection() * 4);
+				if(stepsToDo > curStep) break;
+				
+				curSection++;
+			}
+		}
+
+		if(curSection > lastSection) sectionHit();
+	}
+
 	override function update(elapsed:Float)
 	{
 		//everyStep();
@@ -234,8 +269,21 @@ class MusicBeatState extends FlxUIState
 		updateCurStep();
 		updateBeat();
 
-		if (oldStep != curStep && curStep > 0)
-			stepHit();
+		if (oldStep != curStep)
+		{
+			if(curStep > 0)
+				stepHit();
+
+			if(PlayState.SONG != null)
+			{
+				if (oldStep < curStep)
+					updateSection();
+				else
+					rollbackSection();
+			}
+		}
+
+		if(FlxG.save.data != null) FlxG.save.data.fullscreen = FlxG.fullscreen;
 
 		super.update(elapsed);
 	}
@@ -306,5 +354,10 @@ class MusicBeatState extends FlxUIState
 	public function beatHit():Void
 	{
 		//do literally nothing dumbass
+	}
+
+	public function sectionHit():Void
+	{
+		//trace('Section: ' + curSection + ', Beat: ' + curBeat + ', Step: ' + curStep);
 	}
 }
