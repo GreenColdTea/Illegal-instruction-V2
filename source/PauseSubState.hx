@@ -33,7 +33,7 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeText:FlxText;
 	var levelDifficulty:FlxText;
 	var pauseArt:FlxSprite;
-	var skipTimeTracker:Alphabet;
+	var skipTimeTracker:FlxText;
 
 	public static var levelInfo:FlxText;
 
