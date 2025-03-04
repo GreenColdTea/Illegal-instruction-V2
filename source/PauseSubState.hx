@@ -37,7 +37,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static var levelInfo:FlxText;
 
-	public static var curRender:String;
+	public static var curRender:String = PlayState.instance.dad.curCharacter;
 
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
@@ -92,8 +92,6 @@ class PauseSubState extends MusicBeatSubstate
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
-
-		curRender = PlayState.instance.dad.curCharacter;
 
 	    var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
