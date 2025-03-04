@@ -461,7 +461,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		for (i in 0...menuItems.length) {
-			var item = new Alphabet(0, 70 * i + 30, menuItems[i], true, false);
+			var item = new Alphabet(0, 70, menuItems[i], true, false);
 			item.isMenuItem = true;
 			if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
 				item.textFont = "sonic-cd-menu-font.ttf";
@@ -469,7 +469,7 @@ class PauseSubState extends MusicBeatSubstate
 			item.targetY = i;
 			grpMenuShit.add(item);
 
-			if(menuItems[i] == 'Skip Time')
+			if(menuItems[i] == 'Skip Time:')
 			{
 				skipTimeText = new FlxText(0, 0, 0, '', 41);
 				skipTimeText.setFormat(Paths.font("chaotix.ttf"), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
