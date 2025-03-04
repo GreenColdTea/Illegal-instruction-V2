@@ -55,7 +55,7 @@ class PauseSubState extends MusicBeatSubstate
 			#end)
 		{
 			#if !debug
-			menuItemsOG.insert(2, 'Leave Debug Mode');
+			menuItemsOG.insert(2, 'Leave From' + \n + 'Debug Mode');
 			#end
 			
 			var num:Int = 0;
@@ -136,7 +136,7 @@ class PauseSubState extends MusicBeatSubstate
 		practiceText = new FlxText(20, 15 + 101, 0, "PRACTICE MODE", 32);
 		practiceText.scrollFactor.set();
 		practiceText.setFormat(Paths.font('chaotix.ttf'), 32);
-        if (PlayState.SONG.song.toLowerCase() == 'found-you-legacy') { 
+                if (PlayState.SONG.song.toLowerCase() == 'found-you-legacy') { 
 			practiceText.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32);
 		}
 		practiceText.x = FlxG.width - (practiceText.width + 20);
@@ -169,7 +169,7 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.x = FlxG.width - (blueballedTxt.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
-	    FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
+	        FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
@@ -199,10 +199,19 @@ class PauseSubState extends MusicBeatSubstate
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
 
-		if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
+		//Outdated
+		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
 			curRender = "dukep2";
-		    pauseArt.x = 75;
+		        pauseArt.x = 75;
 			pauseArt.y = -450;
+		}*/
+
+		if (curRender == 'dukep2midsong' || curRender == 'dukepixel') {
+                        curRender = 'dukep2';
+		} else if (curRender == 'wechidnaMH') {
+			curRender = 'wechidna';
+		} else if (curRender == 'wechMH') {
+                        curRender = 'wechbeast';
 		}
 
 		super.update(elapsed);
@@ -303,7 +312,7 @@ class PauseSubState extends MusicBeatSubstate
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
 					restartSong();
-				case "Leave Debug Mode":
+				case "Leave From" + \n + "Debug Mode":
 					restartSong();
 					PlayState.chartingMode = false;
 				case 'Debug Mode':
