@@ -284,7 +284,7 @@ class Paths
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/voices';
 		var voicesPath:Dynamic = returnSound('songs', songKey);
 			
-		if (!OpenFlAssets.exists(voicesPath) {
+		if (!OpenFlAssets.exists(voicesPath)) {
 			songKey = '${song.toLowerCase().replace(' ', '-')}/Voices';
 			voicesPath = returnSound('songs', songKey);
 		}
@@ -297,7 +297,7 @@ class Paths
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/inst';
 		var instPath:Dynamic = returnSound('songs', songKey);
 			
-		if (!OpenFlAssets.exists(instPath) {
+		if (!OpenFlAssets.exists(instPath)) {
 			songKey = '${song.toLowerCase().replace(' ', '-')}/Inst';
 			instPath = returnSound('songs', songKey);
 		}
