@@ -56,13 +56,13 @@ class Alphabet extends FlxSpriteGroup {
 	 * @param typingSpeed Speed of the typing effect
 	 * @param textSize   Text scale (base size is 42)
 	 */
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, ?typingSpeed:Float = 0.05, ?textSize:Float = 1, ?textFont:String = "chaotix.ttf") {
+	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, ?typingSpeed:Float = 0.05, ?textSize:Float = 1, ?textFontStyle:String = "chaotix.ttf") {
 		super(x, y);
 		forceX = Math.NEGATIVE_INFINITY;
 		this.textSize = textSize;
 		_finalText = text;
 		this.text = text;
-		this.textFont = textFont;
+		textFont = textFontStyle;
 		this.typed = typed;
 		isBold = bold;
 		
@@ -126,6 +126,9 @@ class Alphabet extends FlxSpriteGroup {
 			}
 			
 			var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, character, textSize, isBold, textFont);
+			if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
+				textFont = "sonic-cd-menu-font.ttf";
+			}
 			add(letter);
 			lettersArray.push(letter);
 			
