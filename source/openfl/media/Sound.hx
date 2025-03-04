@@ -411,7 +411,7 @@ class Sound extends EventDispatcher
 		var buffer = AudioBuffer.fromFile(path);
 		if (buffer == null)
 		{
-			throw new IOError("Error loading sound from file: " + path);
+	         SUtil.showPopUp("Error loading sound from file: " + path, "Error!");
 		}
 		return fromAudioBuffer(buffer);
 		#else
