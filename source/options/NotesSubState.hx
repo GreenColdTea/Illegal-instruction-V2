@@ -88,11 +88,12 @@ class NotesSubState extends MusicBeatSubstate
 
 		hsbText = new Alphabet(0, 0, "Hue    Saturation  Brightness", false, false, 0, 0.65);
 		hsbText.x = posX + 240;
+		hsbText.y += 50;
 		add(hsbText);
 
 		changeSelection();
 
-                #if android
+                #if mobile
                 addVirtualPad(LEFT_FULL, A_B_C);
                 #end
 	}
