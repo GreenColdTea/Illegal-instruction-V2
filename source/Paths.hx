@@ -280,30 +280,28 @@ class Paths
 	}
 
 	inline static public function voices(song:String):Dynamic
-	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/voices';
-		var voicesPath:Dynamic = returnSound('songs', songKey);
-			
-		if (!OpenFlAssets.exists(voicesPath)) {
-			songKey = '${song.toLowerCase().replace(' ', '-')}/Voices';
-			voicesPath = returnSound('songs', songKey);
-		}
-			
-		return voicesPath;
-	}
+        {
+                var songKey:String = '${song.toLowerCase().replace(" ", "-")}/voices';
+                var voicesPath:String = getPath('songs/$songKey.$SOUND_EXT', SOUND);
+
+                if (!OpenFlAssets.exists(voicesPath)) {
+                    songKey = '${song.toLowerCase().replace(" ", "-")}/Voices';
+                    voicesPath = getPath('songs/$songKey.$SOUND_EXT', SOUND);
+                }
+                return returnSound('songs', songKey);
+        }
 		
 	inline static public function inst(song:String):Dynamic
-	{
-		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/inst';
-		var instPath:Dynamic = returnSound('songs', songKey);
-			
-		if (!OpenFlAssets.exists(instPath)) {
-			songKey = '${song.toLowerCase().replace(' ', '-')}/Inst';
-			instPath = returnSound('songs', songKey);
-		}
-			
-		return instPath;
-	}		
+        {
+                var songKey:String = '${song.toLowerCase().replace(" ", "-")}/inst';
+                var instPath:String = getPath('songs/$songKey.$SOUND_EXT', SOUND);
+
+                if (!OpenFlAssets.exists(instPath)) {
+                    songKey = '${song.toLowerCase().replace(" ", "-")}/Inst';
+                    instPath = getPath('songs/$songKey.$SOUND_EXT', SOUND);
+                }
+                return returnSound('songs', songKey);
+        }	
 
 	inline static public function image(key:String, ?library:String, ?allowGPU:Bool = false):Dynamic
 	{
