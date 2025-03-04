@@ -55,12 +55,13 @@ class Alphabet extends FlxSpriteGroup {
 	 * @param typingSpeed Speed of the typing effect
 	 * @param textSize   Text scale (base size is 42)
 	 */
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, ?typingSpeed:Float = 0.05, ?textSize:Float = 1) {
+	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, ?typingSpeed:Float = 0.05, ?textSize:Float = 1, ?textFont:String = "chaotix.ttf") {
 		super(x, y);
 		forceX = Math.NEGATIVE_INFINITY;
 		this.textSize = textSize;
 		_finalText = text;
 		this.text = text;
+		this.textFont = textFont;
 		this.typed = typed;
 		isBold = bold;
 		
@@ -123,7 +124,7 @@ class Alphabet extends FlxSpriteGroup {
 				continue; 
 			}
 			
-			var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, character, textSize, isBold);
+			var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, character, textSize, isBold, textFont);
 			add(letter);
 			lettersArray.push(letter);
 			
