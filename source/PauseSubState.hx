@@ -418,40 +418,40 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
-	function changeSelection(change:Int = 0):Void
-	{
-		curSelected += change;
+        function changeSelection(change:Int = 0):Void
+        {
+            curSelected += change;
 
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
-		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
-		if (curSelected >= menuItems.length)
-			curSelected = 0;
+            if (curSelected < 0)
+                curSelected = menuItemsText.length - 1;
+            if (curSelected >= menuItemsText.length)
+                curSelected = 0;
 
-		var bullShit:Int = 0;
+            var bullShit:Int = 0;
 
-		for (item in grpMenuShit.members)
-		{
-			item.targetY = bullShit - curSelected;
-			bullShit++;
+            for (item in menuItemsText)
+            {
+                item.targetY = bullShit - curSelected;
+                bullShit++;
 
-			item.alpha = 0.6;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
+                item.text.alpha = 0.6;
+                // item.text.setGraphicSize(Std.int(item.text.width * 0.8));
 
-			if (item.targetY == 0)
-			{
-				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
+                if (item.targetY == 0)
+                {
+                    item.text.alpha = 1;
+                    // item.text.setGraphicSize(Std.int(item.text.width));
 
-				if(item == skipTimeTracker)
-				{
-					curTime = Math.max(0, Conductor.songPosition);
-					updateSkipTimeText();
-				}
-			}
-		}
-	}
+                    if (item.text == skipTimeTracker)
+                    {
+                        curTime = Math.max(0, Conductor.songPosition);
+                        updateSkipTimeText();
+                    }
+                }
+            }
+        }
 
         function regenMenu():Void {
             for (i in 0...grpMenuShit.members.length) {
