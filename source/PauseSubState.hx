@@ -62,7 +62,7 @@ class PauseSubState extends MusicBeatSubstate
 			if(!PlayState.instance.startingSong)
 			{
 				num = 1;
-				menuItemsOG.insert(3, 'Skip Time');
+				menuItemsOG.insert(3, 'Skip Time:');
 			}
 			menuItemsOG.insert(3 + num, 'End Song');
 			menuItemsOG.insert(4 + num, 'Toggle Practice Mode');
@@ -180,7 +180,7 @@ class PauseSubState extends MusicBeatSubstate
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-        #if mobile
+                #if mobile
 		if (PlayState.chartingMode)
 		{
 		        addVirtualPad(LEFT_FULL, A);
@@ -239,7 +239,7 @@ class PauseSubState extends MusicBeatSubstate
 		var daSelected:String = menuItems[curSelected];
 		switch (daSelected)
 		{
-			case 'Skip Time':
+			case 'Skip Time:':
 				if (controls.UI_LEFT_P)
 				{
 					if(FlxG.keys.pressed.SHIFT){
@@ -318,7 +318,7 @@ class PauseSubState extends MusicBeatSubstate
 				case 'Debug Mode':
 		                        close();
 					PlayState.chartingMode = true;
-				case 'Skip Time':
+				case 'Skip Time:':
 					if(curTime < Conductor.songPosition)
 					{
 						PlayState.startOnTime = curTime;
@@ -465,6 +465,9 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...menuItems.length) {
 			var item = new Alphabet(0, 70 * i + 30, menuItems[i], true, false);
 			item.isMenuItem = true;
+			if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
+				item.textFont = "sonic-cd-menu-font.ttf";
+			}
 			item.targetY = i;
 			grpMenuShit.add(item);
 
