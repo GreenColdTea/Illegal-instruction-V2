@@ -55,7 +55,7 @@ class PauseSubState extends MusicBeatSubstate
 			#end)
 		{
 			#if !debug
-			menuItemsOG.insert(2, 'Leave From' + \n + 'Debug Mode');
+			menuItemsOG.insert(2, 'Leave From' + '\n' + 'Debug Mode');
 			#end
 			
 			var num:Int = 0;
@@ -312,7 +312,7 @@ class PauseSubState extends MusicBeatSubstate
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
 					restartSong();
-				case "Leave From" + \n + "Debug Mode":
+				case "Leave From" + '\n' + "Debug Mode":
 					restartSong();
 					PlayState.chartingMode = false;
 				case 'Debug Mode':
