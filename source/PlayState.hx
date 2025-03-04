@@ -2159,11 +2159,11 @@ class PlayState extends MusicBeatState
 			
 			//fml bruv raz is such a mEANIE
 			case 'soulless':
-				dad.x += 15;
+				/*dad.x += 15;
 				gf.x += 975;
 				gf.y += 75;
 				boyfriend.x += 275;
-				boyfriend.y += 15;
+				boyfriend.y += 15;*/
 
 				dadGroup.visible = true;
 				boyfriendGroup.visible = true;
