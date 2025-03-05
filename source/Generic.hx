@@ -126,8 +126,8 @@ class Generic {
 		#if sys
 		try
 		{
-			if (!FileSystem.exists(Generic.returnPath() + 'logs'))
-				FileSystem.createDirectory(Generic.returnPath() + 'logs');
+			if (!FileSystem.exists(returnPath() + 'logs'))
+				FileSystem.createDirectory(returnPath() + 'logs');
 
 			File.saveContent('logs/' + 'Crash - ' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', '$m\n$stackLabel');
 		}
