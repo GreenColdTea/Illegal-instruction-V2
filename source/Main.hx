@@ -52,7 +52,7 @@ class Main extends Sprite
 {
     var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
     var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-    var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
+    var initialState:Class<FlxState> = Intro; // The FlxState the game starts with.
     var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
     var framerate:Int = 60; // How many frames per second the game should run at.
     var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -203,6 +203,8 @@ class Main extends Sprite
 	        if (FlxG.game != null)
 		        resetSpriteCache(FlxG.game);
 	    });
+
+	    FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
 
 	    #if mobile
 	    FlxG.signals.postGameStart.addOnce(() -> {
