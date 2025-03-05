@@ -92,8 +92,6 @@ class Main extends Sprite
         {
             addEventListener(Event.ADDED_TO_STAGE, init);
         }
-
-	FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
     }
 
     private function init(?E:Event):Void
