@@ -101,12 +101,6 @@ class Main extends Sprite
             removeEventListener(Event.ADDED_TO_STAGE, init);
         }
 
-	    #if cpp
-	    untyped __global__.__hxcpp_set_critical_error_handler(onError);
-	    #elseif hl
-	    hl.Api.setErrorHandler(onError);
-	    #end
-
         setupGame();
     }
 
