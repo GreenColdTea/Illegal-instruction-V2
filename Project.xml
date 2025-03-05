@@ -114,7 +114,6 @@
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="faxe" if="switch"/>
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/> 
-        <haxelib name="extension-androidtools" if="android"/>
 	<!--<haxelib name="polymod"/>-->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxcpp-debug-server" if="desktop"/>
@@ -165,7 +164,7 @@
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
    
-    <section if="cpp">
+        <section if="cpp">
 		<haxedef name="HXCPP_CHECK_POINTER" />
 		<haxedef name="HXCPP_STACK_LINE" />
 		<haxedef name="HXCPP_STACK_TRACE" />
@@ -176,7 +175,7 @@
 	<!-- I'm tired to install and uninstall build everytime so i decided to add certificate to update instead of uninstall -->
 	<certificate path="II-Key.keystore" password="Illegarl" alias="ii-key" alias-password="Illegarl" if="android" unless="debug" />
 
-    <!--Enable this for Nape release builds for a serious peformance improvement-->
+        <!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!-- _________________________________ Custom _______________________________ -->
