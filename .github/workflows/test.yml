@@ -43,7 +43,6 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
-          haxelib install extension-androidtools 2.1.1 --skip-dependencies --quiet
           haxelib git hxCodec https://github.com/MobilePorting/hxCodec-0.6.3.git 2f48d6692c2a21aaaab3e671c8fa0fc278a7ac9a --quiet
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
@@ -59,7 +58,6 @@ jobs:
           haxelib set flixel-tools 1.5.1
           haxelib set flixel-ui 2.6.3
           haxelib set flixel-addons 3.2.3
-          haxelib set extension-androidtools 2.1.1
 
       - name: Compile
         run: haxelib run lime build android -D -final -ONLY_ARM64
