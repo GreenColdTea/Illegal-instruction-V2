@@ -96,40 +96,39 @@ class SUtil
 	#if android
         public static function requestPermissions():Void
         {
-    if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU) {
-        var permissions:Array<String> = ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO'];
-        AndroidPermissions.requestPermissions(permissions);
-    } else {
-        var permissions:Array<String> = ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'];
-        AndroidPermissions.requestPermissions(permissions);
-    }
+            if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU) {
+                var permissions:Array<String> = ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO'];
+                AndroidPermissions.requestPermissions(permissions);
+            } else {
+                var permissions:Array<String> = ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'];
+                AndroidPermissions.requestPermissions(permissions);
+            }
 
-    if (!AndroidEnvironment.isExternalStorageManager())
-    {
-        if (AndroidVersion.SDK_INT >= AndroidVersionCode.S)
-            AndroidSettings.requestSetting('REQUEST_MANAGE_MEDIA');
-        AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
-    }
+            if (!AndroidEnvironment.isExternalStorageManager())
+            {
+                if (AndroidVersion.SDK_INT >= AndroidVersionCode.S)
+                    AndroidSettings.requestSetting('REQUEST_MANAGE_MEDIA');
+                    AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
+            }
 
-    if ((AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU
-        && !AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_MEDIA_IMAGES'))
-        || (AndroidVersion.SDK_INT < AndroidVersionCode.TIRAMISU
-            && !AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_EXTERNAL_STORAGE')))
-        showPopUp('If you accepted the permissions you are all good!' + '\nIf you didn\'t then expect a crash' + '\nPress OK to see what happens',
-            'Notice!');
+            if ((AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU
+                && !AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_MEDIA_IMAGES'))
+                || (AndroidVersion.SDK_INT < AndroidVersionCode.TIRAMISU
+                    && !AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_EXTERNAL_STORAGE')))
+                showPopUp('If you accepted the permissions you are all good!' + '\nIf you didn\'t then expect a crash' + '\nPress OK to see what happens',
+                    'Notice!');
 
-    try
-    {
-        if (!FileSystem.exists(SUtil.getStorageDirectory()))
-            FileSystem.createDirectory(SUtil.getStorageDirectory());
-    }
-    catch (e:Dynamic)
-    {
-        showPopUp('Please create directory to\n' + SUtil.getStorageDirectory(true) + '\nPress OK to close the game', 'Error!');
-        LimeSystem.exit(1);
-    }
-}
-#end
+            try
+            {
+                if (!FileSystem.exists(SUtil.getStorageDirectory()))
+                    FileSystem.createDirectory(SUtil.getStorageDirectory());
+            }
+            catch (e:Dynamic)
+            {
+                showPopUp('Please create directory to\n' + SUtil.getStorageDirectory(true) + '\nPress OK to close the game', 'Error!');
+                LimeSystem.exit(1);
+            }
+        }
 
 	public static function checkExternalPaths(?splitStorage = false):Array<String>
 	{
