@@ -75,6 +75,9 @@ class CrashHandler
 		saveErrorMessage('$m\n$stackLabel');
 		#end
 
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+
 		SUtil.showPopUp('$m\n$stackLabel', "Error!");
 		lime.system.System.exit(1);
 	}
@@ -92,6 +95,9 @@ class CrashHandler
 		#if sys
 		saveErrorMessage(log.join('\n'));
 		#end
+
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
 
 		SUtil.showPopUp(log.join('\n'), "Critical Error!");
 		lime.system.System.exit(1);
