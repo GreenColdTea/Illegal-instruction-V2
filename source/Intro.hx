@@ -115,7 +115,7 @@ class Intro extends FlxState
 
 			try
 			{
-				final file:String = haxe.io.Path.join(['videos', FileSystem.readDirectory('videos')[0]]);
+				var file:String = haxe.io.Path.join(["videos", "my_intro.mp4"]);
 
 				if (file != null && file.length > 0)
 					video.load(file);
