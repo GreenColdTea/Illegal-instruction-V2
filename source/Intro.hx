@@ -1,105 +1,137 @@
 package;
 
-import flixel.graphics.FlxGraphic;
-#if sys
-import sys.FileSystem;
-#end
+import flixel.system.FlxAssets;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.FlxState;
-import flixel.input.keyboard.FlxKey;
-import flixel.group.FlxGroup;
-import flixel.input.gamepad.FlxGamepad;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import lime.app.Application;
-import openfl.Assets;
-import flixel.util.FlxSave;
+import hxvlc.flixel.FlxVideoSprite;
+import hxvlc.util.Handle;
+import openfl.display.FPS;
+import sys.FileSystem;
 
-#if VIDEOS_ALLOWED
-#if (hxCodec >= "3.0.0")
-import hxcodec.flixel.FlxVideo as VideoHandler;
-#elseif (hxCodec == "2.6.1")
-import hxcodec.VideoHandler;
-#elseif (hxCodec == "2.6.0")
-import VideoHandler;
-#elseif hxvlc
-import hxvlc.flixel.FlxVideo as VideoHandler;
-#else
-import vlc.VideoHandler;
-#end
-#end
-
-#if desktop
-import Discord.DiscordClient;
-import sys.thread.Thread;
-#end
-
-class Intro extends MusicBeatState
+@:nullSafety
+class Intro extends FlxState
 {
-    var settingsLoaded:Bool = false;
-    override public function create()
-    {
-	    FlxG.mouse.visible = false;
-        
-        FlxG.save.bind('funkin', 'ninjamuffin99');
-        if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
+	static final IntroVideo = Paths.video("II_Intro");
 
-        if (FlxG.save.data.seenIntro) {
-            FlxG.sound.muteKeys = TitleState.muteKeys;
-            FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-            FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
-        } else {
-            FlxG.sound.muteKeys = [];
-            FlxG.sound.volumeDownKeys = [];
-            FlxG.sound.volumeUpKeys = [];
-            FlxG.sound.volume = 10;
-        }
+	var video:Null<FlxVideoSprite>;
+	var versionInfo:Null<FlxText>;
+	var fpsInfo:Null<FlxText>;
+	var fps:Null<FPS>;
 
-        #if desktop
-		if (!DiscordClient.isInitialized)
-		{
-			DiscordClient.initialize();
-			Application.current.onExit.add (function (exitCode) {
-				DiscordClient.shutdown();
-			});
-		}
-		#end
+	override function create():Void
+	{
+		FlxG.autoPause = false;
 
-        var video:VideoHandler = new VideoHandler();
-        #if (hxCodec >= "3.0.0")
-        video.onEndReached.add(function()
-        {   
-            FlxG.save.data.seenIntro = true; 
-            FlxG.save.flush();
-            MusicBeatState.switchState(new TitleState());
-        });
-        video.play(Paths.video("II_Intro"));
-        #else
-        video.canSkip = FlxG.save.data.seenIntro;
-        video.finishCallback = function()
-        {
-            FlxG.save.data.seenIntro = true; 
-            FlxG.save.flush();
-            MusicBeatState.switchState(new TitleState());
-        }
-        video.playVideo(Paths.video("II_Intro"));
-        #end
+		setupVideoAsync();
+
+		setupUI();
 
 		super.create();
-        
-    }
+	}
 
-    private function initializeSettings() {
-        PlayerSettings.init();
-        ClientPrefs.loadPrefs();
-    }
+	override function update(elapsed:Float):Void
+	{
+		if (fps != null && fpsInfo != null)
+		{
+			#if HXVLC_ENABLE_STATS
+			@:nullSafety(Off)
+			if (video != null && video.bitmap != null && video.bitmap.stats != null)
+				fpsInfo.text = 'FPS ${fps.currentFPS}\n${video.bitmap.stats.toString()}';
+			else
+				fpsInfo.text = 'FPS ${fps.currentFPS}';
+			#else
+			fpsInfo.text = 'FPS ${fps.currentFPS}';
+			#end
+		}
 
-    override public function update(elapsed:Float)
-    {
-        if (!settingsLoaded) {
-            initializeSettings();
-            settingsLoaded = true;
-        }
-        super.update(elapsed);
-    }
+		if (video != null && video.bitmap != null)
+		{
+			if (FlxG.keys.justPressed.SPACE)
+				video.bitmap.togglePaused();
+
+			if (FlxG.keys.justPressed.LEFT)
+				video.bitmap.position -= 0.1;
+			else if (FlxG.keys.justPressed.RIGHT)
+				video.bitmap.position += 0.1;
+
+			if (FlxG.keys.justPressed.A)
+				video.bitmap.rate -= 0.01;
+			else if (FlxG.keys.justPressed.D)
+				video.bitmap.rate += 0.01;
+		}
+
+		super.update(elapsed);
+	}
+
+	private function setupUI():Void
+	{
+		versionInfo = new FlxText(10, FlxG.height - 10, 0, 'LibVLC ${Handle.version}', 17);
+		versionInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+		versionInfo.font = FlxAssets.FONT_DEBUGGER;
+		versionInfo.active = false;
+		versionInfo.alignment = JUSTIFY;
+		versionInfo.antialiasing = true;
+		versionInfo.y -= versionInfo.height;
+		add(versionInfo);
+
+		fpsInfo = new FlxText(10, 10, 0, 'FPS 0', 17);
+		fpsInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+		fpsInfo.font = FlxAssets.FONT_DEBUGGER;
+		fpsInfo.active = false;
+		fpsInfo.alignment = JUSTIFY;
+		fpsInfo.antialiasing = true;
+		add(fpsInfo);
+
+		fps = new FPS();
+		fps.visible = false;
+		FlxG.stage.addChild(fps);
+	}
+
+	private function setupVideoAsync():Void
+	{
+		Handle.initAsync(function(success:Bool):Void
+		{
+			if (!success)
+				return;
+
+			video = new FlxVideoSprite(0, 0);
+			video.active = false;
+			video.antialiasing = true;
+			video.bitmap.onFormatSetup.add(function():Void
+			{
+				if (video.bitmap != null && video.bitmap.bitmapData != null)
+				{
+					final scale:Float = Math.min(FlxG.width / video.bitmap.bitmapData.width, FlxG.height / video.bitmap.bitmapData.height);
+
+					video.setGraphicSize(video.bitmap.bitmapData.width * scale, video.bitmap.bitmapData.height * scale);
+					video.updateHitbox();
+					video.screenCenter();
+				}
+			});
+			video.bitmap.onEndReached.add(video.destroy);
+
+			try
+			{
+				final file:String = haxe.io.Path.join(['videos', FileSystem.readDirectory('videos')[0]]);
+
+				if (file != null && file.length > 0)
+					video.load(file);
+				else
+					video.load(IntroVideo);
+			}
+			catch (e:Dynamic)
+				video.load(IntroVideo);
+
+			if (versionInfo != null)
+				insert(members.indexOf(versionInfo), video);
+
+			FlxTimer.wait(0.001, function():Void
+			{
+				video.play();
+			});
+		});
+	}
 }
