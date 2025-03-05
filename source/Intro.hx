@@ -14,7 +14,7 @@ import sys.FileSystem;
 @:nullSafety
 class Intro extends FlxState
 {
-	static final IntroVideo = Paths.video("II_Intro");
+	static final IntroVideoPH = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
 	var video:Null<FlxVideoSprite>;
 	var versionInfo:Null<FlxText>;
@@ -115,15 +115,15 @@ class Intro extends FlxState
 
 			try
 			{
-				var file:String = haxe.io.Path.join(["videos", "my_intro.mp4"]);
+				var file:String = haxe.io.Path.join(["videos", "II_Intro.mp4"]);
 
 				if (file != null && file.length > 0)
 					video.load(file);
 				else
-					video.load(IntroVideo);
+					video.load(IntroVideoPH);
 			}
 			catch (e:Dynamic)
-				video.load(IntroVideo);
+				video.load(IntroVideoPH);
 
 			if (versionInfo != null)
 				insert(members.indexOf(versionInfo), video);
