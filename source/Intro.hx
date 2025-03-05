@@ -31,8 +31,6 @@ class Intro extends MusicBeatState
 		setupUI();
 
 		super.create();
-
-		FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
 	}
 
 	override function update(elapsed:Float):Void
