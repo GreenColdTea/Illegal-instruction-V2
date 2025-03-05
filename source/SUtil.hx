@@ -98,10 +98,10 @@ class SUtil
         {
     if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU) {
         var permissions:Array<String> = ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO'];
-        AndroidPermissions.requestPermissions(permissions); // Исправлено
+        AndroidPermissions.requestPermissions(permissions);
     } else {
         var permissions:Array<String> = ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'];
-        AndroidPermissions.requestPermissions(permissions); // Исправлено
+        AndroidPermissions.requestPermissions(permissions);
     }
 
     if (!AndroidEnvironment.isExternalStorageManager())
