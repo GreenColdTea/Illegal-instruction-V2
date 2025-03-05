@@ -9,6 +9,7 @@ import flixel.FlxState;
 import hxvlc.flixel.FlxVideoSprite;
 import hxvlc.util.Handle;
 import openfl.display.FPS;
+import openfl.utils.Assets as OpenFlAssets;
 import sys.FileSystem;
 
 @:nullSafety
@@ -54,15 +55,10 @@ class Intro extends MusicBeatState
 			if (FlxG.keys.justPressed.SPACE)
 				video.bitmap.togglePaused();
 
-			if (FlxG.keys.justPressed.LEFT)
+			if (controls.UI_LEFT_P)
 				video.bitmap.position -= 0.1;
-			else if (FlxG.keys.justPressed.RIGHT)
+			else if (controls.UI_RIGHT_P)
 				video.bitmap.position += 0.1;
-
-			if (FlxG.keys.justPressed.A)
-				video.bitmap.rate -= 0.01;
-			else if (FlxG.keys.justPressed.D)
-				video.bitmap.rate += 0.01;
 		}
 
 		super.update(elapsed);
@@ -117,9 +113,9 @@ class Intro extends MusicBeatState
 
 			try
 			{
-				var file:String = haxe.io.Path.join(["videos", "II_Intro.mp4"]);
+				var file:String = Paths.video("II_Intro");
 
-				if (file != null && file.length > 0)
+				if (OpenFlAssets.exists(file)
 					video.load(file);
 				else
 					video.load(IntroVideoPH);
