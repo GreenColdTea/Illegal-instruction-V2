@@ -12,7 +12,7 @@ import openfl.display.FPS;
 import sys.FileSystem;
 
 @:nullSafety
-class Intro extends FlxState
+class Intro extends MusicBeatState
 {
 	static final IntroVideoPH = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
