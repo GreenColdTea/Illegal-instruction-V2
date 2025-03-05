@@ -39,11 +39,11 @@ class Intro extends FlxState
 			#if HXVLC_ENABLE_STATS
 			@:nullSafety(Off)
 			if (video != null && video.bitmap != null && video.bitmap.stats != null)
-				fpsInfo.text = 'FPS ${fps.currentFPS}\n${video.bitmap.stats.toString()}';
+				fpsInfo.text = 'FPS: ${fps.currentFPS}\n${video.bitmap.stats.toString()}';
 			else
-				fpsInfo.text = 'FPS ${fps.currentFPS}';
+				fpsInfo.text = 'FPS: ${fps.currentFPS}';
 			#else
-			fpsInfo.text = 'FPS ${fps.currentFPS}';
+			fpsInfo.text = 'FPS: ${fps.currentFPS}';
 			#end
 		}
 
@@ -70,16 +70,16 @@ class Intro extends FlxState
 	{
 		versionInfo = new FlxText(10, FlxG.height - 10, 0, 'LibVLC ${Handle.version}', 17);
 		versionInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-		versionInfo.font = FlxAssets.FONT_DEBUGGER;
+		versionInfo.font = Paths.font("chaotix.ttf");
 		versionInfo.active = false;
 		versionInfo.alignment = JUSTIFY;
 		versionInfo.antialiasing = true;
 		versionInfo.y -= versionInfo.height;
 		add(versionInfo);
 
-		fpsInfo = new FlxText(10, 10, 0, 'FPS 0', 17);
+		fpsInfo = new FlxText(10, 10, 0, 'FPS: 0', 17);
 		fpsInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-		fpsInfo.font = FlxAssets.FONT_DEBUGGER;
+		fpsInfo.font = Paths.font("chaotix.ttf");
 		fpsInfo.active = false;
 		fpsInfo.alignment = JUSTIFY;
 		fpsInfo.antialiasing = true;
