@@ -128,10 +128,7 @@ class Intro extends FlxState
 			if (versionInfo != null)
 				insert(members.indexOf(versionInfo), video);
 
-			FlxTimer.wait(0.001, function():Void
-			{
-				video.play();
-			});
+			FlxTimer.start(0.001, (_) -> video.play());
 		});
 	}
 }
