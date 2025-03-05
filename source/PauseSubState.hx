@@ -419,79 +419,78 @@ class PauseSubState extends MusicBeatSubstate
 	}
 
         function changeSelection(change:Int = 0):Void
+{
+    curSelected += change;
+
+    FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+
+    if (curSelected < 0)
+        curSelected = menuItemsText.length - 1;
+    if (curSelected >= menuItemsText.length)
+        curSelected = 0;
+
+    var bullShit:Int = 0;
+    var startY = (FlxG.height / 2) - (menuItemsText.length * 70 / 2);
+
+    for (item in menuItemsText)
+    {
+        item.y = startY + (bullShit - curSelected) * 70;
+        bullShit++;
+
+        item.alpha = 0.6;
+
+        if (bullShit - 1 == curSelected)
         {
-            curSelected += change;
+            item.alpha = 1;
 
-            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-            if (curSelected < 0)
-                curSelected = menuItemsText.length - 1;
-            if (curSelected >= menuItemsText.length)
-                curSelected = 0;
-
-            var bullShit:Int = 0;
-
-            for (item in menuItemsText)
+            if (item == skipTimeTracker)
             {
-                item.targetY = bullShit - curSelected;
-                bullShit++;
-
-                item.text.alpha = 0.6;
-                // item.text.setGraphicSize(Std.int(item.text.width * 0.8));
-
-                if (item.targetY == 0)
-                {
-                    item.text.alpha = 1;
-                    // item.text.setGraphicSize(Std.int(item.text.width));
-
-                    if (item.text == skipTimeTracker)
-                    {
-                        curTime = Math.max(0, Conductor.songPosition);
-                        updateSkipTimeText();
-                    }
-                }
+                curTime = Math.max(0, Conductor.songPosition);
+                updateSkipTimeText();
             }
         }
+    }
+}
 
-        function regenMenu():Void {
-            for (i in 0...grpMenuShit.members.length) {
-                var obj = grpMenuShit.members[0];
-                obj.kill();
-                grpMenuShit.remove(obj, true);
-                obj.destroy();
-            }
-            menuItemsText = [];
+function regenMenu():Void {
+    for (i in 0...grpMenuShit.members.length) {
+        var obj = grpMenuShit.members[0];
+        obj.kill();
+        grpMenuShit.remove(obj, true);
+        obj.destroy();
+    }
+    menuItemsText = [];
 
-            var itemHeight = 70;
-            var totalHeight = menuItems.length * itemHeight;
-            var startY = (FlxG.height / 2) - (totalHeight / 2);
+    var itemHeight = 70;
+    var totalHeight = menuItems.length * itemHeight;
+    var startY = (FlxG.height / 2) - (totalHeight / 2);
 
-            for (i in 0...menuItems.length) {
-                var item = new FlxText(0, startY + (i * itemHeight), 0, menuItems[i], 32);
-                item.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-                item.borderSize = 2;
-                item.scrollFactor.set();
-                item.screenCenter(X);
-		item.x -= 70;
-                grpMenuShit.add(item);
-                menuItemsText.push(item);
+    for (i in 0...menuItems.length) {
+        var item = new FlxText(0, startY + (i * itemHeight), 0, menuItems[i], 32);
+        item.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        item.borderSize = 2;
+        item.scrollFactor.set();
+        item.screenCenter(X);
+        item.x -= 70;
+        grpMenuShit.add(item);
+        menuItemsText.push(item);
 
-                if (menuItems[i] == 'Skip Time:') {
-                    skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
-                    skipTimeText.setFormat(Paths.font("chaotix.ttf"), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-                    skipTimeText.borderSize = 2;
-                    skipTimeText.scrollFactor.set();
-                    skipTimeTracker = item;
-                    add(skipTimeText);
+        if (menuItems[i] == 'Skip Time:') {
+            skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
+            skipTimeText.setFormat(Paths.font("chaotix.ttf"), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+            skipTimeText.borderSize = 2;
+            skipTimeText.scrollFactor.set();
+            skipTimeTracker = item;
+            add(skipTimeText);
 
-                    updateSkipTextStuff();
-                    updateSkipTimeText();
-                }
-            }
-
-            curSelected = 0;
-            changeSelection();
+            updateSkipTextStuff();
+            updateSkipTimeText();
         }
+    }
+
+    curSelected = 0;
+    changeSelection();
+}
 	
 	function updateSkipTextStuff()
 	{
