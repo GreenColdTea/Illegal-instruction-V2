@@ -117,7 +117,7 @@ class SUtil
 		}
 		catch (e:Dynamic)
 		{
-			showPopUp('Please create directory to\n' + getStorageDirectory() + '\nPress OK to close the game', "Error!");
+			showPopUp('Please create directory to\n' + getStorageDirectory(true) + '\nPress OK to close the game', "Error!");
 			LimeSystem.exit(1);
 		}
 	}
