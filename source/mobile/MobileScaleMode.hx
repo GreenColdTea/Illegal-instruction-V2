@@ -7,13 +7,6 @@ import flixel.system.scaleModes.BaseScaleMode;
  * ...
  * @author: Karim Akra
  */
-
-import flixel.system.scaleModes.BaseScaleMode;
-
-/**
- * ...
- * @author: Karim Akra
- */
 class MobileScaleMode extends BaseScaleMode
 {
 	public static var allowWideScreen(default, set):Bool = true;
