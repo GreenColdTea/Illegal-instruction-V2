@@ -183,6 +183,8 @@ class Main extends Sprite
 		        resetSpriteCache(FlxG.game);
 	    });
 
+	    FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
+
 	    #if mobile
 	    FlxG.scaleMode = new MobileScaleMode();
 	    #end
