@@ -75,7 +75,7 @@ class CrashHandler
 		saveErrorMessage('$m\n$stackLabel');
 		#end
 
-		CoolUtil.showPopUp('$m\n$stackLabel', "Error!");
+		SUtil.showPopUp('$m\n$stackLabel', "Error!");
 		lime.system.System.exit(1);
 	}
 
@@ -93,7 +93,7 @@ class CrashHandler
 		saveErrorMessage(log.join('\n'));
 		#end
 
-		CoolUtil.showPopUp(log.join('\n'), "Critical Error!");
+		SUtil.showPopUp(log.join('\n'), "Critical Error!");
 		lime.system.System.exit(1);
 	}
 	#end
