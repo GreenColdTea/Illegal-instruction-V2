@@ -186,7 +186,9 @@ class Main extends Sprite
 	    FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
 
 	    #if mobile
-	    FlxG.scaleMode = new MobileScaleMode();
+	    FlxG.signals.postGameStart.addOnce(() -> {
+		    FlxG.scaleMode = new MobileScaleMode();
+	    });
 	    #end
 
 	    #if android 
