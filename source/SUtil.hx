@@ -99,12 +99,12 @@ class SUtil
 		if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU) {
 			var permissions = ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO'];
             for (permission in permissions) {
-                AndroidPermissions.requestPermission(permission);
+                AndroidPermissions.requestPermissions(permission);
             }
 		} else {
 		    var permissions = ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'];
             for (permission in permissions) {
-                AndroidPermissions.requestPermission(permission);
+                AndroidPermissions.requestPermissions(permission);
             }
 		}
 
