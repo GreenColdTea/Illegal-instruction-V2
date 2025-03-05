@@ -100,7 +100,7 @@
 
 	<!--Flixel 5.6.1-->
 	<haxelib name="flixel" version="git" />
-	<haxedev set='webgl' />
+	<haxedev set='webgl'/>
 
 	<haxelib name="flixel-ui" version="2.6.3"/>
 
@@ -132,8 +132,6 @@
 		<assets path="alsoft.txt" rename="plugins/alsoft.ini" type="text" if="windows"/>
 		<assets path="alsoft.txt" rename="plugins/alsoft.conf" type="text" unless="windows"/>
 	</section>
-  
-        <haxedef name="SHARE_MOBILE_FILES" if="mobile" />
 		
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
