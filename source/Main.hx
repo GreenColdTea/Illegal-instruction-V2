@@ -92,6 +92,8 @@ class Main extends Sprite
         {
             addEventListener(Event.ADDED_TO_STAGE, init);
         }
+
+	FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
     }
 
     private function init(?E:Event):Void
@@ -129,6 +131,27 @@ class Main extends Sprite
             zoom = 1;
         }
 	    #end
+
+	        #if windows
+		// DPI Scaling fix for windows 
+		// this shouldn't be needed for other systems
+		// Credit to YoshiCrafter29 for finding this function
+		untyped __cpp__("SetProcessDPIAware();");
+
+		var display = lime.system.System.getDisplay(0);
+		if (display != null) {
+			var dpiScale:Float = display.dpi / 96;
+			Application.current.window.width = Std.int(game.width * dpiScale);
+			Application.current.window.height = Std.int(game.height * dpiScale);
+
+			Application.current.window.x = Std.int((Application.current.window.display.bounds.width - Application.current.window.width) / 2);
+			Application.current.window.y = Std.int((Application.current.window.display.bounds.height - Application.current.window.height) / 2);
+		}
+		#end
+
+		#if VIDEOS_ALLOWED
+		hxvlc.util.Handle.init(#if (hxvlc >= "1.8.0")  ['--no-lua'] #end);
+		#end
 
         #if mobile
         Generic.mode = MEDIAFILE;
@@ -182,8 +205,6 @@ class Main extends Sprite
 	        if (FlxG.game != null)
 		        resetSpriteCache(FlxG.game);
 	    });
-
-	    FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
 
 	    #if mobile
 	    FlxG.signals.postGameStart.addOnce(() -> {
