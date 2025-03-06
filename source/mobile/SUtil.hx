@@ -63,18 +63,6 @@ class SUtil
 		return daPath;
 	}
 
-	public static function showPopUp(message:String, title:String):Void
-	{
-		FlxG.sound.music.stop();
-		#if android
-		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
-		#elseif (!ios || !iphonesim)
-		lime.app.Application.current.window.alert(message, title);
-		#else
-		trace('$title - $message');
-		#end
-	}
-
 	public static function saveContent(fileName:String, fileData:String, ?alert:Bool = true):Void
 	{
 		try
