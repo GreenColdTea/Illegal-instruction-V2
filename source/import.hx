@@ -32,6 +32,9 @@ import android.os.Build.VERSION_CODES as AndroidVersionCode;
 import android.os.BatteryManager as AndroidBatteryManager;
 #end
 
+// Mobile
+import mobile.*;
+
 #if sys
 import sys.*;
 import sys.io.*;
