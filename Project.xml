@@ -114,7 +114,6 @@
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="faxe" if="switch"/>
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/> 
-	<haxelib name="extension-androidtools" if="android"/>
 	<!--<haxelib name="polymod"/>-->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxcpp-debug-server" if="desktop debug"/>
@@ -132,6 +131,16 @@
 		<assets path="alsoft.txt" rename="plugins/alsoft.ini" type="text" if="windows"/>
 		<assets path="alsoft.txt" rename="plugins/alsoft.conf" type="text" unless="windows"/>
 	</section>
+
+	<section if="hxvlc">
+		<haxedef name="HXVLC_NO_SHARE_DIRECTORY" />
+		<haxedef name="HXVLC_EXPERIMENTAL_WINDOWSARM" if="windows HXCPP_ARM64" />
+		<haxedef name="HXVLC_OPENAL" />
+	</section>
+
+	<!-- Basically Allows Videos To Render In Higher Quality On Higher Resoluttions -->
+	<haxedef name="openfl_dpi_aware" unless="web" />
+	<haxedef name="haxeui_focus_out_on_click" />
 		
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
