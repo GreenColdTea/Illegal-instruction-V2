@@ -33,7 +33,9 @@ import android.os.BatteryManager as AndroidBatteryManager;
 #end
 
 // Mobile
+#if mobile
 import mobile.*;
+#end
 
 #if sys
 import sys.*;
