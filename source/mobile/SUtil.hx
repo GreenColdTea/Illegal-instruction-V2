@@ -86,10 +86,10 @@ class SUtil
 	{
 		if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU)
 			for (perms in ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO', 'READ_MEDIA_VISUAL_USER_SELECTED'])
-	                        AndroidPermissions.requestPermissions(perms);
+	                        AndroidPermissions.requestPermission(perms);
 		else
 			for (perms in ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'])
-			        AndroidPermissions.requestPermissions(perms);
+			        AndroidPermissions.requestPermission(perms);
 
 		if (!AndroidEnvironment.isExternalStorageManager())
 			AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
@@ -98,7 +98,7 @@ class SUtil
 			&& !AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_MEDIA_IMAGES'))
 			|| (AndroidVersion.SDK_INT < AndroidVersionCode.TIRAMISU
 				&& !AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_EXTERNAL_STORAGE')))
-			showPopUp('If you accepted the permissions you are all good!\nIf you didn\'t then expect a crash\nPress OK to see what happens', "Warning!");
+			CoolUtil.showPopUp('If you accepted the permissions you are all good!\nIf you didn\'t then expect a crash\nPress OK to see what happens', "Warning!");
 
 		try
 		{
