@@ -86,12 +86,10 @@ class SUtil
 	{
 		if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU)
 			var permsList:Array<String> = ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO', 'READ_MEDIA_VISUAL_USER_SELECTED'];
-			for (perms in permsList)
-	                        AndroidPermissions.requestPermissions(perms);
+	                AndroidPermissions.requestPermissions(permsList);
 		else
 			var permsList:Array<String> = ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'];
-			for (perms in permsList)
-			        AndroidPermissions.requestPermissions(perms);
+			AndroidPermissions.requestPermissions(permsList);
 
 		if (!AndroidEnvironment.isExternalStorageManager())
 			AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
