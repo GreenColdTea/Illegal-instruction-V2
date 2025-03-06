@@ -85,10 +85,12 @@ class SUtil
 	public static function requestPermissions():Void
 	{
 		if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU)
-			for (perms in ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO', 'READ_MEDIA_VISUAL_USER_SELECTED'])
+			var permsList:Array<String> = ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO', 'READ_MEDIA_VISUAL_USER_SELECTED'];
+			for (perms in permsList)
 	                        AndroidPermissions.requestPermission(perms);
 		else
-			for (perms in ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'])
+			var permsList:Array<String> = ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'];
+			for (perms in permsList)
 			        AndroidPermissions.requestPermission(perms);
 
 		if (!AndroidEnvironment.isExternalStorageManager())
