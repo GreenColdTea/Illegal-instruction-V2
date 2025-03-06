@@ -2521,6 +2521,24 @@ class FunkinLua {
 	}
 	#end
 
+	#if (!flash && sys)
+	public function getShader(obj:String):FlxRuntimeShader
+	{
+		var killMe:Array<String> = obj.split('.');
+		var leObj:FlxSprite = getObjectDirectly(killMe[0]);
+		if(killMe.length > 1) {
+			leObj = getVarInArray(getPropertyLoopThingWhatever(killMe), killMe[killMe.length-1]);
+		}
+
+		if(leObj != null) {
+			var shader:Dynamic = leObj.shader;
+			var shader:FlxRuntimeShader = shader;
+			return shader;
+		}
+		return null;
+	}
+	#end
+
 	#if hscript
 	public function initHaxeModule()
 	{
