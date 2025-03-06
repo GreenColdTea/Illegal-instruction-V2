@@ -72,11 +72,11 @@ class SUtil
 
 			File.saveContent('saves/$fileName', fileData);
 			if (alert)
-				showPopUp('$fileName has been saved.', "Success!");
+				CoolUtil.showPopUp('$fileName has been saved.', "Success!");
 		}
 		catch (e:Exception)
 			if (alert)
-				showPopUp('$fileName couldn\'t be saved.\n(${e.message})', "Error!")
+				CoolUtil.showPopUp('$fileName couldn\'t be saved.\n(${e.message})', "Error!")
 			else
 				trace('$fileName couldn\'t be saved. (${e.message})');
 	}
@@ -107,7 +107,7 @@ class SUtil
 		}
 		catch (e:Dynamic)
 		{
-			showPopUp('Please create directory to\n' + getStorageDirectory(true) + '\nPress OK to close the game', "Error!");
+			CoolUtil.showPopUp('Please create directory to\n' + getStorageDirectory(true) + '\nPress OK to close the game', "Error!");
 			LimeSystem.exit(1);
 		}
 	}
