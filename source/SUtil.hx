@@ -98,10 +98,10 @@ class SUtil
 	{
 		if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU)
 			for (perms in ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO', 'READ_MEDIA_VISUAL_USER_SELECTED'])
-	                        AndroidPermissions.requestPermission(perms);
+	                        AndroidPermissions.requestPermissions(perms);
 		else
 			for (perms in ['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE'])
-			        AndroidPermissions.requestPermission(perms);
+			        AndroidPermissions.requestPermissions(perms);
 
 		if (!AndroidEnvironment.isExternalStorageManager())
 			AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
