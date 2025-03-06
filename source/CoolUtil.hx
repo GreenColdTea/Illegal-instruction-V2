@@ -6,6 +6,9 @@ import openfl.system.System;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
+#if android
+import android.Tools as AndroidTools;
+#end
 #if sys
 import sys.io.File;
 import sys.FileSystem;
@@ -128,6 +131,18 @@ class CoolUtil
 	private static function precacheSoundFile(file:Dynamic):Void {
 		if (Assets.exists(file, SOUND) || Assets.exists(file, MUSIC))
 			Assets.getSound(file, true);
+	}
+
+	public static function showPopUp(message:String, title:String):Void
+	{
+		FlxG.sound.music.stop();
+		#if android
+		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
+		#elseif (!ios || !iphonesim)
+		lime.app.Application.current.window.alert(message, title);
+		#else
+		trace('$title - $message');
+		#end
 	}
 
 	inline public static function quantize(f:Float, snap:Float){
