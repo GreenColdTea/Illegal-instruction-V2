@@ -1,4 +1,4 @@
-package;
+package mobile;
 
 #if android
 //import android.Hardware;
