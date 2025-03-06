@@ -25,7 +25,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib git openfl https://github.com/MobilePorting/openfl 9.3.4 > /dev/null --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
-          haxelib install lime 8.1.3 > /dev/null --quiet
+          haxelib git lime https://github.com/MobilePorting/lime.git > /dev/null --quiet
           haxelib git hxcpp https://github.com/MobilePorting/hxcpp > /dev/null
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools 1.5.1 --quiet
@@ -34,7 +34,6 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
-          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git --quiet --skip-dependencies
           haxelib git hxvlc https://github.com/MobilePorting/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
@@ -42,7 +41,6 @@ jobs:
 
       - name: Setup Lime
         run: |
-          haxelib set lime 8.1.3
           haxelib run lime setup -alias -y
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
@@ -77,7 +75,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
-          haxelib install lime 8.1.3 --quiet
+          haxelib install lime 8.2.2 --quiet
           haxelib git openfl https://github.com/MobilePorting/openfl 9.3.4 --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
           haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
@@ -96,7 +94,7 @@ jobs:
 
       - name: Setup Lime
         run: |
-          haxelib set lime 8.1.3
+          haxelib set lime 8.2.2
           haxelib run lime setup -alias -y
           haxelib set flixel-tools 1.5.1
           haxelib set flixel-ui 2.6.3
