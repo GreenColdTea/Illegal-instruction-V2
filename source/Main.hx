@@ -12,6 +12,7 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.system.System;
+import lime.app.Application;
 #if sys
 import sys.FileSystem;
 #end
