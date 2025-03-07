@@ -37,7 +37,7 @@ class Intro extends MusicBeatState
 	{
 		if (video != null && video.bitmap != null)
 		{
-			if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if mobile || FlxG.touches.justReleased()) && FlxG.save.data.seenIntro)
+			if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if mobile || FlxG.touches.justReleased() #end) && FlxG.save.data.seenIntro)
 				video.destroy();
 
 		}
