@@ -51,7 +51,7 @@ jobs:
           haxelib set flixel-addons 3.2.3
 
       - name: Compile Android
-        run: haxelib run lime build android -final -Darch=arm64-v8a
+        run: haxelib run lime build android -final -D -ONLY_ARM64
 
       - name: Publish Android Artifact
         uses: actions/upload-artifact@v4
@@ -101,7 +101,7 @@ jobs:
           haxelib set flixel-addons 3.2.3
 
       - name: Compile Windows
-        run: haxelib run lime build windows -debug
+        run: haxelib run lime build windows -D
 
       - name: Publish Windows Artifact
         uses: actions/upload-artifact@v4
