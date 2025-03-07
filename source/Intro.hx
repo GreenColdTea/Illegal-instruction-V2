@@ -24,6 +24,8 @@ class Intro extends MusicBeatState
 	{
 		FlxG.autoPause = false;
 
+		FlxG.mouse.visible = false;
+
 		setupVideoAsync();
 
 		setupUI();
@@ -35,7 +37,7 @@ class Intro extends MusicBeatState
 	{
 		if (video != null && video.bitmap != null)
 		{
-			if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if mobile || FlxG.touches.justReleased())
+			if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if mobile || FlxG.touches.justReleased()) && FlxG.save.data.seenIntro)
 				video.destroy();
 
 		}
@@ -45,6 +47,20 @@ class Intro extends MusicBeatState
 
 	private function setupUI():Void
 	{
+                FlxG.save.bind('funkin', 'Intro');
+                if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
+
+                if (FlxG.save.data.seenIntro) {
+                    FlxG.sound.muteKeys = TitleState.muteKeys;
+                    FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
+                    FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+                } else {
+                    FlxG.sound.muteKeys = [];
+                    FlxG.sound.volumeDownKeys = [];
+                    FlxG.sound.volumeUpKeys = [];
+                    FlxG.sound.volume = 10;
+		}
+		
 		versionInfo = new FlxText(10, FlxG.height - 10, 0, 'LibVLC ${Handle.version}', 17);
 		versionInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
 		versionInfo.font = Paths.font("chaotix.ttf");
@@ -76,7 +92,12 @@ class Intro extends MusicBeatState
 					video.screenCenter();
 				}
 			});
-			video.bitmap.onEndReached.add(video.destroy);
+			video.onEndReached.add(function() {
+				video.destroy();
+                                FlxG.save.data.seenIntro = true; 
+                                FlxG.save.flush();
+                                MusicBeatState.switchState(new TitleState());
+                        });
 
 			try
 			{
