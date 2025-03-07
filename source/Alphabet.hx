@@ -127,9 +127,9 @@ class Alphabet extends FlxSpriteGroup {
 			
 			var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, character, textSize, isBold, textFont);
 			// null object reference fuck
-			/*if (PlayState.SONG.song.toLowerCase() == "found-you-legacy" && PlayState.SONG.song.toLowerCase() != null) {
-				textFont = "sonic-cd-menu-font.ttf";
-			}*/
+			if (PlayState.SONG != null && PlayState.SONG.song != null && PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
+                                textFont = "sonic-cd-menu-font.ttf";
+			}
 			add(letter);
 			lettersArray.push(letter);
 			
