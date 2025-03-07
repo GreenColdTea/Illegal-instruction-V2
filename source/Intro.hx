@@ -14,7 +14,10 @@ import hxvlc.flixel.FlxVideoSprite;
 import hxvlc.util.Handle;
 import openfl.display.FPS;
 import openfl.utils.Assets as OpenFlAssets;
+import lime.app.Application;
+#if sys
 import sys.FileSystem;
+#end
 
 @:nullSafety
 class Intro extends MusicBeatState
