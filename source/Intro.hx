@@ -62,7 +62,8 @@ class Intro extends MusicBeatState
                     FlxG.sound.volumeUpKeys = [];
                     FlxG.sound.volume = 10;
 		}
-		
+
+		#if debug
 		versionInfo = new FlxText(10, FlxG.height - 10, 0, 'LibVLC ${Handle.version}', 17);
 		versionInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
 		versionInfo.font = Paths.font("chaotix.ttf");
@@ -71,6 +72,7 @@ class Intro extends MusicBeatState
 		versionInfo.antialiasing = true;
 		versionInfo.y -= versionInfo.height;
 		add(versionInfo);
+		#end
 	}
 
 	private function setupVideoAsync():Void
@@ -104,11 +106,7 @@ class Intro extends MusicBeatState
 			try
 			{
 				var file:String = Paths.video("II_Intro");
-
-				//if (OpenFlAssets.exists(file))
-					video.load(file);
-				/*else
-					video.load(IntroVideoPH);*/
+				video.load(file);
 			}
 			catch (e:Dynamic)
 				video.load(IntroVideoPH);
