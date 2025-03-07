@@ -1,5 +1,9 @@
 package;
 
+#if desktop
+import Discord.DiscordClient;
+import sys.thread.Thread;
+#end
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -49,7 +53,12 @@ class Intro extends MusicBeatState
 
 	private function setupUI():Void
 	{
-                FlxG.save.bind('funkin', 'Intro');
+                FlxG.save.bind('funkin', 'ninjamuffin99');
+
+                PlayerSettings.init();
+		
+		ClientPrefs.loadPrefs();
+		
                 if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
 
                 if (FlxG.save.data.seenIntro) {
@@ -62,6 +71,16 @@ class Intro extends MusicBeatState
                     FlxG.sound.volumeUpKeys = [];
                     FlxG.sound.volume = 10;
 		}
+
+		#if desktop
+		if (!DiscordClient.isInitialized)
+		{
+			DiscordClient.initialize();
+			Application.current.onExit.add (function (exitCode) {
+				DiscordClient.shutdown();
+			});
+		}
+		#end
 
 		#if debug
 		versionInfo = new FlxText(10, FlxG.height - 10, 0, 'LibVLC ${Handle.version}', 17);
