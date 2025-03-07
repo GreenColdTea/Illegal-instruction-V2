@@ -101,7 +101,7 @@ jobs:
           haxelib set flixel-addons 3.2.3
 
       - name: Compile Windows
-        run: haxelib run lime build windows -final
+        run: haxelib run lime build windows -debug
 
       - name: Publish Windows Artifact
         uses: actions/upload-artifact@v4
