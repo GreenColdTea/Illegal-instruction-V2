@@ -104,10 +104,10 @@ class Intro extends MusicBeatState
 			{
 				var file:String = Paths.video("II_Intro");
 
-				if (OpenFlAssets.exists(file))
+				//if (OpenFlAssets.exists(file))
 					video.load(file);
-				else
-					video.load(IntroVideoPH);
+				/*else
+					video.load(IntroVideoPH);*/
 			}
 			catch (e:Dynamic)
 				video.load(IntroVideoPH);
