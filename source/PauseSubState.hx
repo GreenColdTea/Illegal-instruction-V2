@@ -38,7 +38,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static var levelInfo:FlxText;
 
-	public static var curRender = (PlayState.instance != null && PlayState.instance.dad != null) ? PlayState.instance.dad.curCharacter : "duke";
+	public static var curRender:String;
 
 	var curTime:Float = Math.max(0, Conductor.songPosition);
 	//var botplayText:FlxText;
@@ -70,6 +70,8 @@ class PauseSubState extends MusicBeatSubstate
 			menuItemsOG.insert(5 + num, 'Toggle Botplay');
 		}
 		menuItems = menuItemsOG;
+
+	        curRender = PlayState.instance.dad.curCharacter;
 
 		for (i in 0...CoolUtil.difficulties.length) {
 			var diff:String = '' + CoolUtil.difficulties[i];
@@ -197,6 +199,8 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
+
+		curRender = PlayState.instance.dad.curCharacter;
 
 		//Outdated
 		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
