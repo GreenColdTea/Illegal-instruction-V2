@@ -470,8 +470,12 @@ function regenMenu():Void {
     var startY = (FlxG.height / 2) - (totalHeight / 2);
 
     for (i in 0...menuItems.length) {
-        var item = new FlxText(0, startY + (i * itemHeight), 0, menuItems[i], 32);
-        item.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        var item = new FlxText(-70, startY + (i * itemHeight), 0, menuItems[i], 36);
+	if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
+                item.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 36, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+	} else {
+		item.setFormat(Paths.font("chaotix.ttf"), 36, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+	}
         item.borderSize = 2;
         item.scrollFactor.set();
         item.screenCenter(X);
