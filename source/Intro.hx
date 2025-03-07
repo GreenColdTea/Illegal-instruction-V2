@@ -19,8 +19,6 @@ class Intro extends MusicBeatState
 
 	var video:Null<FlxVideoSprite>;
 	var versionInfo:Null<FlxText>;
-	var fpsInfo:Null<FlxText>;
-	var fps:Null<FPS>;
 
 	override function create():Void
 	{
@@ -35,28 +33,11 @@ class Intro extends MusicBeatState
 
 	override function update(elapsed:Float):Void
 	{
-		if (fps != null && fpsInfo != null)
-		{
-			#if HXVLC_ENABLE_STATS
-			@:nullSafety(Off)
-			if (video != null && video.bitmap != null && video.bitmap.stats != null)
-				fpsInfo.text = 'FPS: ${fps.currentFPS}\n${video.bitmap.stats.toString()}';
-			else
-				fpsInfo.text = 'FPS: ${fps.currentFPS}';
-			#else
-			fpsInfo.text = 'FPS: ${fps.currentFPS}';
-			#end
-		}
-
 		if (video != null && video.bitmap != null)
 		{
-			if (FlxG.keys.justPressed.SPACE)
-				video.bitmap.togglePaused();
+			if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if mobile || FlxG.touches.justReleased())
+				video.destroy();
 
-			if (controls.UI_LEFT_P)
-				video.bitmap.position -= 0.1;
-			else if (controls.UI_RIGHT_P)
-				video.bitmap.position += 0.1;
 		}
 
 		super.update(elapsed);
@@ -72,18 +53,6 @@ class Intro extends MusicBeatState
 		versionInfo.antialiasing = true;
 		versionInfo.y -= versionInfo.height;
 		add(versionInfo);
-
-		fpsInfo = new FlxText(10, 10, 0, 'FPS: 0', 17);
-		fpsInfo.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-		fpsInfo.font = Paths.font("chaotix.ttf");
-		fpsInfo.active = false;
-		fpsInfo.alignment = JUSTIFY;
-		fpsInfo.antialiasing = true;
-		add(fpsInfo);
-
-		fps = new FPS();
-		fps.visible = false;
-		FlxG.stage.addChild(fps);
 	}
 
 	private function setupVideoAsync():Void
