@@ -36,6 +36,8 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseArt:FlxSprite;
 	var skipTimeTracker:FlxText;
 
+	var fontStyle:String;
+
 	public static var levelInfo:FlxText;
 
 	public static var curRender:String;
@@ -200,8 +202,6 @@ class PauseSubState extends MusicBeatSubstate
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
 
-		curRender = PlayState.instance.dad.curCharacter;
-
 		//Outdated
 		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
 			curRender = "dukep2";
@@ -209,11 +209,11 @@ class PauseSubState extends MusicBeatSubstate
 			pauseArt.y = -450;
 		}*/
 
-		if (curRender == 'dukep2midsong' || curRender == 'dukepixel') {
+		if (PlayState.instance.dad.curCharacter == 'dukep2midsong' || PlayState.instance.dad.curCharacter == 'dukepixel') {
                         curRender = 'dukep2';
-		} else if (curRender == 'wechidnaMH') {
+		} else if (PlayState.instance.dad.curCharacter == 'wechidnaMH') {
 			curRender = 'wechidna';
-		} else if (curRender == 'wechMH') {
+		} else if (PlayState.instance.dad.curCharacter == 'wechMH') {
                         curRender = 'wechbeast';
 		}
 
@@ -422,83 +422,73 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
-        function changeSelection(change:Int = 0):Void
-{
-    curSelected += change;
-
-    FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-    if (curSelected < 0)
-        curSelected = menuItemsText.length - 1;
-    if (curSelected >= menuItemsText.length)
-        curSelected = 0;
-
-    var bullShit:Int = 0;
-    var startY = (FlxG.height / 2) - (menuItemsText.length * 70 / 2);
-
-    for (item in menuItemsText)
-    {
-        item.y = startY + (bullShit - curSelected) * 70;
-        bullShit++;
-
-        item.alpha = 0.6;
-
-        if (bullShit - 1 == curSelected)
+        function changeSelection(change:Int = 0):Void 
         {
-            item.alpha = 1;
+                curSelected += change;
+                FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
-            if (item == skipTimeTracker)
-            {
-                curTime = Math.max(0, Conductor.songPosition);
-                updateSkipTimeText();
+                if (curSelected < 0) 
+                    curSelected = menuItemsText.length - 1;
+                if (curSelected >= menuItemsText.length) 
+                    curSelected = 0;
+
+                var centerY = FlxG.height / 2;
+                var spacing = 100;
+                var bullShit = 0;
+
+                for (item in menuItemsText) 
+                {
+                    var targetY = centerY + (bullShit - curSelected) * spacing;
+                    FlxTween.tween(item, { y: targetY, alpha: (bullShit == curSelected ? 1 : 0.6) }, 0.15, { ease: FlxEase.quartInOut });
+                    bullShit++;
+                }
+        }
+
+        function regenMenu():Void {
+               for (i in 0...grpMenuShit.members.length) {
+                   var obj = grpMenuShit.members[0];
+                   obj.kill();
+                   grpMenuShit.remove(obj, true);
+                   obj.destroy();
+               }
+               menuItemsText = [];
+
+              var itemHeight = 70;
+              var totalHeight = menuItems.length * itemHeight;
+              var startY = (FlxG.height / 2) - (totalHeight / 2);
+
+	      if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
+                        fontStyle = "sonic-cd-menu-font.ttf";
+	      } else {
+		        fontStyle = "chaotix.ttf";
+	      }
+
+              for (i in 0...menuItems.length) {
+                  var item = new FlxText(-150, startY + (i * itemHeight), 0, menuItems[i], 42);
+		  item.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                  item.borderSize = 2;
+                  item.scrollFactor.set();
+                  item.screenCenter(X);
+                  item.x -= 70;
+                  grpMenuShit.add(item);
+                  menuItemsText.push(item);
+
+                  if (menuItems[i] == 'Skip Time:') {
+                      skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
+                      skipTimeText.setFormat(Paths.font(fontStyle), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                      skipTimeText.borderSize = 2;
+                      skipTimeText.scrollFactor.set();
+                      skipTimeTracker = item;
+                      add(skipTimeText);
+
+                      updateSkipTextStuff();
+                      updateSkipTimeText();
+                 }
             }
+
+            curSelected = 0;
+            changeSelection();
         }
-    }
-}
-
-function regenMenu():Void {
-    for (i in 0...grpMenuShit.members.length) {
-        var obj = grpMenuShit.members[0];
-        obj.kill();
-        grpMenuShit.remove(obj, true);
-        obj.destroy();
-    }
-    menuItemsText = [];
-
-    var itemHeight = 70;
-    var totalHeight = menuItems.length * itemHeight;
-    var startY = (FlxG.height / 2) - (totalHeight / 2);
-
-    for (i in 0...menuItems.length) {
-        var item = new FlxText(-70, startY + (i * itemHeight), 0, menuItems[i], 36);
-	if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
-                item.setFormat(Paths.font("sonic-cd-menu-font.ttf"), 36, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-	} else {
-		item.setFormat(Paths.font("chaotix.ttf"), 36, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-	}
-        item.borderSize = 2;
-        item.scrollFactor.set();
-        item.screenCenter(X);
-        item.x -= 70;
-        grpMenuShit.add(item);
-        menuItemsText.push(item);
-
-        if (menuItems[i] == 'Skip Time:') {
-            skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
-            skipTimeText.setFormat(Paths.font("chaotix.ttf"), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-            skipTimeText.borderSize = 2;
-            skipTimeText.scrollFactor.set();
-            skipTimeTracker = item;
-            add(skipTimeText);
-
-            updateSkipTextStuff();
-            updateSkipTimeText();
-        }
-    }
-
-    curSelected = 0;
-    changeSelection();
-}
 	
 	function updateSkipTextStuff()
 	{
