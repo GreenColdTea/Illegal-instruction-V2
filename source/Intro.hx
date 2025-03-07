@@ -44,7 +44,7 @@ class Intro extends MusicBeatState
 	{
 		if (video != null && video.bitmap != null)
 		{
-			var isTapped:Bool = #if mobile FlxG.touches.justReleased().length > 0 #else false #end;
+			var isTapped:Bool = #if android FlxG.android.justReleased.BACK #else false #end;
                         if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || isTapped) && FlxG.save.data.seenIntro)
 				video.destroy();
 			        MusicBeatState.switchState(new TitleState());
