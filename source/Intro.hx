@@ -24,7 +24,7 @@ class Intro extends MusicBeatState
 {
 	static final IntroVideoPH = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
-	var video:Null<FlxVideoSprite>;
+	var video:Null<FlxVideo>;
 	var versionInfo:Null<FlxText>;
 
 	override function create():Void
@@ -46,7 +46,7 @@ class Intro extends MusicBeatState
 		{
 			var isTapped:Bool = #if android FlxG.android.justReleased.BACK #else false #end;
                         if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || isTapped) && FlxG.save.data.seenIntro)
-				video.bitmap.togglePaused();
+				video.dispose();
 			        MusicBeatState.switchState(new TitleState());
 
 		}
@@ -103,12 +103,11 @@ class Intro extends MusicBeatState
 			if (!success)
 				return;
 
-			video = new FlxVideoSprite(0, 0);
-			video.active = false;
+			video = new FlxVideo();
 			video.antialiasing = true;
-			video.bitmap.onFormatSetup.add(function():Void
+			video.onFormatSetup.add(function():Void
 			{
-				if (video.bitmap != null && video.bitmap.bitmapData != null)
+				if (video != null && video.bitmapData != null)
 				{
 					final scale:Float = Math.min(FlxG.width / video.bitmap.bitmapData.width, FlxG.height / video.bitmap.bitmapData.height);
 
@@ -117,7 +116,7 @@ class Intro extends MusicBeatState
 					video.screenCenter();
 				}
 			});
-			video.bitmap.onEndReached.add(function() {
+			video.onEndReached.add(function() {
                                 FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
