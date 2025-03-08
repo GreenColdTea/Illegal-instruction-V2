@@ -34,7 +34,7 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
-          haxelib git hxvlc https://github.com/MobilePorting/hxvlc --quiet --skip-dependencies
+          haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
           haxelib list
@@ -87,7 +87,7 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
-          haxelib git hxvlc https://github.com/MobilePorting/hxvlc --quiet --skip-dependencies
+          haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
           haxelib list
