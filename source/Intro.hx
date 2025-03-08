@@ -26,12 +26,11 @@ class Intro extends MusicBeatState
 
 	var video:Null<FlxVideo>;
 	var versionInfo:Null<FlxText>;
+	var canSkip = FlxG.save.data.seenIntro;
 
 	override function create():Void
 	{
 		FlxG.autoPause = false;
-
-		video.canSkip = false;
 
 		FlxG.mouse.visible = false;
 
@@ -46,8 +45,8 @@ class Intro extends MusicBeatState
 	{
 		if (video != null)
 		{
-			if (FlxG.save.data.seenIntro)
-				video.canSkip = true;
+			if (canSkip && (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end))
+                                video.skipVideo();
 
 		}
 
@@ -117,7 +116,7 @@ class Intro extends MusicBeatState
 			video.finishCallback = function() {
 				video.dispose();
 				FlxG.removeChild(video);
-                                FlxG.save.data.seenIntro = true; 
+                                if (!FlxG.save.data.seenIntro) FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
                         };
