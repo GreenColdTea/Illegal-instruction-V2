@@ -128,9 +128,6 @@ class Intro extends MusicBeatState
 			catch (e:Dynamic)
 				video.load(IntroVideoPH);
 
-			if (versionInfo != null && video != null)
-				insert(members.indexOf(versionInfo), video);
-
 			new FlxTimer().start(0.001, (_) -> {
                                 video.play();
                         });
