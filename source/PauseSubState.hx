@@ -469,7 +469,7 @@ class PauseSubState extends MusicBeatSubstate
                   item.borderSize = 2;
                   item.scrollFactor.set();
                   item.screenCenter(X);
-                  item.x -= 250;
+                  item.x -= 450;
                   grpMenuShit.add(item);
                   menuItemsText.push(item);
 
