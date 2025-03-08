@@ -24,6 +24,8 @@ class Note extends FlxSprite
 
 	public static var instance:Note;
 
+	public var parentNote:Note;
+
 	public var currentPrefix:String = "";
 	public var currentTexture:String = "";
 	public var currentSuffix:String = "";
@@ -262,6 +264,17 @@ class Note extends FlxSprite
 			earlyHitMult = 1;
 		}
 		x += offsetX;
+
+		// determine parent note
+		if (isSustainNote && prevNote != null) {
+			parentNote = prevNote;
+			while (parentNote.parentNote != null)
+				parentNote = parentNote.parentNote;
+			parentNote.childrenNotes.push(this);
+		} else if (!isSustainNote)
+			parentNote = null;
+
+		scaleDefault.set(scale.x,scale.y);
 	}
 
 	var lastNoteOffsetXForPixelAutoAdjusting:Float = 0;
