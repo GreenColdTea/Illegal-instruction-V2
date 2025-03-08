@@ -48,6 +48,7 @@ class Intro extends MusicBeatState
                         if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || isTapped)
 				if (FlxG.save.data.seenIntro)
 				        video.dispose();
+			                FlxG.removeChild(video);
 			                MusicBeatState.switchState(new TitleState());
 
 		}
@@ -116,10 +117,13 @@ class Intro extends MusicBeatState
 			});
 			#end
 			video.finishCallback = function() {
+				video.dispose();
+				FlxG.removeChild(video);
                                 FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
                         };
+			FlxG.addChildBelowMouse(video);
 
 			try
 			{
