@@ -17,6 +17,9 @@ class StrumNote extends FlxSprite
 	public var sustainReduce:Bool = true;
 	
 	private var player:Int;
+
+	public var z:Float = 0; // for modchart system
+	public var zIndex:Float = 0;
 	
 	public var texture(default, set):String = null;
 	private function set_texture(value:String):String {
@@ -41,6 +44,16 @@ class StrumNote extends FlxSprite
 
 		scrollFactor.set();
 	}
+
+	public function getZIndex(){
+                var animZOffset:Float = 0;
+                if(animation.curAnim!=null && animation.curAnim.name=='confirm')animZOffset+=1;
+                return z + animZOffset - player;
+        }
+
+        function updateZIndex(){
+                zIndex=getZIndex();
+        }
 
 	public function reloadNote()
 	{
@@ -141,6 +154,8 @@ class StrumNote extends FlxSprite
 			centerOrigin();
 		//}
 		}
+
+		updateZIndex();
 
 		super.update(elapsed);
 	}
