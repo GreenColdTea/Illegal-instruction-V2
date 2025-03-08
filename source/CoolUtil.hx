@@ -66,10 +66,6 @@ class CoolUtil
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float {
 		return Math.max(min, Math.min(max, value));
 	}
-	
-	inline public static function quantize(f:Float, interval:Float){
-		return Std.int((f+interval/2)/interval)*interval;
-	}
 
 	public static function coolTextFile(path:String):Array<String>
 	{
