@@ -2139,6 +2139,11 @@ class PlayState extends MusicBeatState
 		theStatic.setGraphicSize(FlxG.width, FlxG.height);
 		theStatic.screenCenter();
 
+		var centerP = new FlxSprite(0, 0);
+		centerP.screenCenter(XY);
+
+		center = FlxPoint.get(centerP.x, centerP.y);
+
 		switch(curStage)
 		{
 			case 'entrance':
