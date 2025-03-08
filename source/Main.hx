@@ -59,7 +59,7 @@ class Main extends Sprite
     var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
     var startFullscreen:Bool = true; // Whether to start the game in fullscreen on desktop targets
     public static var fpsVar:FPS;
-
+//
     // You can pretty much ignore everything from here on - your code should go in your states.
     public static var path:String = System.applicationStorageDirectory;
 
