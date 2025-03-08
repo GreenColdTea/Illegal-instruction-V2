@@ -63,7 +63,7 @@ class AlphaModifier extends Modifier {
 
   override function updateNote(note:Note, player:Int, pos:Vector3, scale:FlxPoint){
     var player = note.mustPress==true?0:1;
-    var roundedSpeed = FlxMath.roundDecimal(PlayState.current.songSpeed, 2);
+    var roundedSpeed = FlxMath.roundDecimal(PlayState.songSpeed, 2);
     var psuedoY:Float = (-((Conductor.songPosition - note.strumTime) * (0.45 * roundedSpeed)));
 
     var yPos:Float = psuedoY+modMgr.state.upscrollOffset;
