@@ -8,10 +8,11 @@ import Section.SwagSection;
 class Modifier {
   public var modMgr:ModManager;
   public var percents:Array<Float>=[0,0];
-  public var noteData = Note.instance.noteData;
+  public var noteData:Note;
   public var submods:Map<String,Modifier> = [];
-  public function new(modMgr:ModManager){
-    this.modMgr=modMgr;
+  public function new(modMgr:ModManager, noteData:Note){
+    this.modMgr = modMgr;
+    this.noteData = noteData;
     for(submod in getSubmods()){
       submods.set(submod,new Modifier(modMgr));
     }
