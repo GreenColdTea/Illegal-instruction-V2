@@ -104,7 +104,7 @@ class Intro extends MusicBeatState
 				return;
 
 			video = new FlxVideo();
-			video.antialiasing = true;
+			video.smoothing = true;
 			#if mobile
 			video.onFormatSetup.add(function():Void
 			{
