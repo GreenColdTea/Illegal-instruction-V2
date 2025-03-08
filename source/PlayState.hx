@@ -716,7 +716,7 @@ class PlayState extends MusicBeatState
 			};
 		}
 
-      modManager = new ModManager(this);
+                modManager = new ModManager(this, Note);
 
 		defaultCamZoom = stageData.defaultZoom;
 		isPixelStage = stageData.isPixelStage;
