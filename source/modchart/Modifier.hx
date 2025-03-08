@@ -1,7 +1,9 @@
 package modchart;
+
 import flixel.math.FlxPoint;
 import ui.*;
 import math.*;
+import Section.SwagSection;
 
 class Modifier {
   public var modMgr:ModManager;
