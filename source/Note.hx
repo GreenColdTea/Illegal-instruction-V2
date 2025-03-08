@@ -22,6 +22,7 @@ class Note extends FlxSprite
 {
 	public var row:Int = 0;
 
+	public static var instance:Note;
 
 	public var currentPrefix:String = "";
 	public var currentTexture:String = "";
@@ -153,6 +154,8 @@ class Note extends FlxSprite
 
 		if (prevNote == null)
 			prevNote = this;
+
+		instance = this;
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
