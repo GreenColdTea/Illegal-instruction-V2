@@ -115,12 +115,11 @@ class Intro extends MusicBeatState
 				}
 			});
 			#end
-			video.onEndReached.add(function() {
+			video.finishCallBack = function() {
                                 FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
-                        });
-			FlxG.stage.addChild(video);
+                        };
 
 			try
 			{
