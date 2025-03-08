@@ -22,6 +22,8 @@ class Note extends FlxSprite
 {
 	public var row:Int = 0;
 
+	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
+
 	public static var instance:Note;
 
 	public var currentPrefix:String = "";
