@@ -220,7 +220,7 @@ class Main extends Sprite
     #if (cpp || hl)
     private static function onError(message:Dynamic):Void
     {
-            CrashHandler.handleError(message);
+            throw Std.string(message);
     }
     #end
 	
