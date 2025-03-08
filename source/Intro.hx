@@ -56,7 +56,11 @@ class Intro extends MusicBeatState
 
 	private function setupUI():Void
 	{
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+		ClientPrefs.loadPrefs();
+		
                 PlayerSettings.init();
+		
                 if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
 
                 if (FlxG.save.data.seenIntro) {
