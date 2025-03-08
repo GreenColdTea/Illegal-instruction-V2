@@ -4477,10 +4477,6 @@ class PlayState extends MusicBeatState
         var strumGroup:FlxTypedGroup<StrumNote> = playerStrums;
         if (!daNote.mustPress) strumGroup = opponentStrums;
 
-	var noteData:Array<SwagSection>;
-
-	noteData = songData.notes;
-
         var downscrollMultiplier:Float = 1;
 	if (ClientPrefs.downScroll)
 		downscrollMultiplier = -1;
