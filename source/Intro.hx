@@ -42,7 +42,7 @@ class Intro extends MusicBeatState
 
 	override function update(elapsed:Float):Void
 	{
-		if (video != null && video.bitmap != null)
+		if (video != null)
 		{
 			var isTapped:Bool = #if android FlxG.android.justReleased.BACK #else false #end;
                         if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || isTapped) && FlxG.save.data.seenIntro)
@@ -105,17 +105,15 @@ class Intro extends MusicBeatState
 
 			video = new FlxVideo();
 			video.antialiasing = true;
+			#if mobile
 			video.onFormatSetup.add(function():Void
 			{
-				if (video != null && video.bitmapData != null)
+				if (video != null)
 				{
-					final scale:Float = Math.min(FlxG.width / video.bitmap.bitmapData.width, FlxG.height / video.bitmap.bitmapData.height);
-
-					video.setGraphicSize(video.bitmap.bitmapData.width * scale, video.bitmap.bitmapData.height * scale);
-					video.updateHitbox();
-					video.screenCenter();
+					FlxG.scaleMode = new MobileScaleMode();
 				}
 			});
+			#end
 			video.onEndReached.add(function() {
                                 FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
