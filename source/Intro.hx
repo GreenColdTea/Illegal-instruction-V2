@@ -115,7 +115,7 @@ class Intro extends MusicBeatState
 				}
 			});
 			#end
-			video.finishCallBack = function() {
+			video.finishCallback = function() {
                                 FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
