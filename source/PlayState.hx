@@ -4477,18 +4477,21 @@ class PlayState extends MusicBeatState
         var strumGroup:FlxTypedGroup<StrumNote> = playerStrums;
         if (!daNote.mustPress) strumGroup = opponentStrums;
 
-        var downscrollMultiplier:Float = 1;
-		  if (ClientPrefs.downScroll)
-				downscrollMultiplier = -1;
+	var noteData:Array<SwagSection>;
 
-		  if (useModchart)
-				downscrollMultiplier = CoolUtil.scale(modManager.get("reverse").getScrollReversePerc(daNote.noteData, daNote.mustPress == true ? 0 : 1),
+	noteData = songData.notes;
+
+        var downscrollMultiplier:Float = 1;
+	if (ClientPrefs.downScroll)
+		downscrollMultiplier = -1;
+
+	if (useModchart)
+		downscrollMultiplier = CoolUtil.scale(modManager.get("reverse").getScrollReversePerc(daNote.noteData, daNote.mustPress == true ? 0 : 1),
 							0, 1, 1, -1);
 
-		  var receptors:FlxTypedGroup<StrumNote> = (daNote.mustPress ? playerStrums : opponentStrums);
-
-		  var receptorPosY:Float = receptors.members[Math.floor(daNote.noteData)].y;
-		  var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, daNote.speed);
+	var receptors:FlxTypedGroup<StrumNote> = (daNote.mustPress ? playerStrums : opponentStrums);
+	var receptorPosY:Float = receptors.members[Math.floor(daNote.noteData)].y;
+	var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, daNote.speed);
 
         var strumX:Float = strumGroup.members[daNote.noteData].x;
         var strumY:Float = strumGroup.members[daNote.noteData].y;
