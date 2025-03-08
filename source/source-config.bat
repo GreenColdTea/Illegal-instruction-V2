@@ -2,21 +2,22 @@
 cls
 title Illegal Instructions Necessary Libraries Installer for Compiling
 echo.
-echo Setting flixel 5.2.2...
-echo.
-haxelib set flixel 5.2.2 --quiet
-echo.
-echo Setting flixel-addons 2.12.0...
-echo.
-haxelib set flixel-addons 2.12.0 --quiet
-echo.
-echo Setting openfl 9.2.0...
-echo.
-haxelib set openfl 9.2.0 --quiet
-echo.
-echo Setting lime 8.0.1...
-echo.
-haxelib set lime 8.0.1 --quiet
+haxelib setup C:
+haxelib git openfl https://github.com/MobilePorting/openfl 9.3.4 > /dev/null --quiet
+haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
+haxelib git lime https://github.com/MobilePorting/lime.git > /dev/null --quiet
+haxelib git hxcpp https://github.com/MobilePorting/hxcpp > /dev/null
+haxelib run lime setup flixel --quiet
+haxelib install flixel-tools 1.5.1 --quiet
+haxelib install flixel-ui 2.6.3 --quiet
+haxelib install flixel-addons 3.2.3 --quiet
+haxelib install tjson --quiet
+haxelib install hxjsonast --quiet
+haxelib install hscript 2.4.0 --quiet
+haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
+haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
+haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
+haxelib list
 echo.
 echo Done! Press any key to close the app!
 pause
