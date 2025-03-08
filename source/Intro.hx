@@ -46,7 +46,7 @@ class Intro extends MusicBeatState
 		{
 			var isTapped:Bool = #if android FlxG.android.justReleased.BACK #else false #end;
                         if ((FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || isTapped) && FlxG.save.data.seenIntro)
-				video.kill();
+				video.bitmap.togglePaused();
 			        MusicBeatState.switchState(new TitleState());
 
 		}
@@ -119,7 +119,6 @@ class Intro extends MusicBeatState
 				}
 			});
 			video.bitmap.onEndReached.add(function() {
-				video.destroy();
                                 FlxG.save.data.seenIntro = true; 
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
