@@ -18,7 +18,7 @@ class ReceptorScrollModifier extends Modifier {
     // in the galaxy code ^^
     // using as reference because im bad
 
-    var roundedSpeed = FlxMath.roundDecimal(PlayState.current.songSpeed, 2);
+    var roundedSpeed = FlxMath.roundDecimal(PlayState.songSpeed, 2);
 
     var currSongPos = Conductor.songPosition * (0.45 * roundedSpeed);
     var vDiff = -(-visualDiff - currSongPos) / moveSpeed;
@@ -37,7 +37,7 @@ class ReceptorScrollModifier extends Modifier {
   override function updateNote(note:Note, player:Int, pos:Vector3, scale:FlxPoint){
     if(getPercent(player)==0)return;
 
-    var roundedSpeed = FlxMath.roundDecimal(PlayState.current.songSpeed, 2);
+    var roundedSpeed = FlxMath.roundDecimal(PlayState.songSpeed, 2);
     var currSongPos = Conductor.songPosition * (0.45 * roundedSpeed);
     var visualDiff = (-((Conductor.songPosition - note.strumTime) * (0.45 * roundedSpeed)));
 
