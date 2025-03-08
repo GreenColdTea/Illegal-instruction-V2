@@ -7,6 +7,7 @@ class Modifier {
   public var modMgr:ModManager;
   public var percents:Array<Float>=[0,0];
   var noteData:Array<SwagSection>;
+  var songData = PlayState.SONG;
   public var submods:Map<String,Modifier> = [];
   public function new(modMgr:ModManager){
     noteData = songData.notes;
