@@ -24,6 +24,8 @@ class Note extends FlxSprite
 
 	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
+	public var desiredAlpha:Float = 1;
+
 	public static var instance:Note;
 
 	public var currentPrefix:String = "";
@@ -386,6 +388,12 @@ class Note extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if(!inEditor){
+			alpha = CoolUtil.scale(desiredAlpha,0,1,0,baseAlpha);
+			if (tooLate || (parentNote != null && parentNote.tooLate))
+				alpha *= 0.3;
+		}
 
 		if(isSustainNote){
 			if(prevNote!=null && prevNote.isSustainNote){
