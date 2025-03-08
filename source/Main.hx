@@ -18,14 +18,7 @@ import sys.FileSystem;
 #end
 
 #if CRASH_HANDLER
-import openfl.events.UncaughtErrorEvent;
-import openfl.events.ErrorEvent;
-import openfl.errors.Error;
-import haxe.CallStack;
-import haxe.io.Path;
-import sys.FileSystem;
-import sys.io.File;
-import sys.io.Process;
+import CrashHandler;
 #end
 
 #if mobile
@@ -82,7 +75,9 @@ class Main extends Sprite
     {
         super();
 
+	#if CRASH_HANDLER
 	CrashHandler.init();
+	#end
 
         if (stage != null)
         {
@@ -222,7 +217,7 @@ class Main extends Sprite
     #if (cpp || hl)
     private static function onError(message:Dynamic):Void
     {
-	    throw Std.string(message);
+            CrashHandler.handleError(message);
     }
     #end
 	
