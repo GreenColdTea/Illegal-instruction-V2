@@ -108,6 +108,14 @@ class PauseSubState extends MusicBeatSubstate
 	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
 
+	        if (PlayState.instance.dad.curCharacter == 'dukep2midsong' || PlayState.instance.dad.curCharacter == 'dukepixel') {
+                        curRender = 'dukep2';
+		} else if (PlayState.instance.dad.curCharacter == 'wechidnaMH') {
+			curRender = 'wechidna';
+		} else if (PlayState.instance.dad.curCharacter == 'wechMH') {
+                        curRender = 'wechbeast';
+		}
+
 		fixRenders();
 
 		levelInfo = new FlxText(20, 15, 0, "", 32);
@@ -208,14 +216,6 @@ class PauseSubState extends MusicBeatSubstate
 		        pauseArt.x = 75;
 			pauseArt.y = -450;
 		}*/
-
-		if (PlayState.instance.dad.curCharacter == 'dukep2midsong' || PlayState.instance.dad.curCharacter == 'dukepixel') {
-                        curRender = 'dukep2';
-		} else if (PlayState.instance.dad.curCharacter == 'wechidnaMH') {
-			curRender = 'wechidna';
-		} else if (PlayState.instance.dad.curCharacter == 'wechMH') {
-                        curRender = 'wechbeast';
-		}
 
 		super.update(elapsed);
 		updateSkipTextStuff();
@@ -453,7 +453,7 @@ class PauseSubState extends MusicBeatSubstate
                }
                menuItemsText = [];
 
-              var itemHeight = 70;
+              var itemHeight = 10;
               var totalHeight = menuItems.length * itemHeight;
               var startY = (FlxG.height / 2) - (totalHeight / 2);
 
@@ -469,7 +469,7 @@ class PauseSubState extends MusicBeatSubstate
                   item.borderSize = 2;
                   item.scrollFactor.set();
                   item.screenCenter(X);
-                  item.x -= 425;
+                  item.x -= 400;
                   grpMenuShit.add(item);
                   menuItemsText.push(item);
 
