@@ -1241,7 +1241,7 @@ class PlayState extends MusicBeatState
 
 				GameOverSubstate.characterName = 'bfii-death';
 				defaultCamZoom = 0.6;
-
+				
 				vistaBG = new FlxSprite(-450, -250);
 				vistaBG.loadGraphic(Paths.image('chaotix/vistaBg', 'exe'));
 				vistaBG.scrollFactor.set(0.6, 1);
@@ -1876,6 +1876,8 @@ class PlayState extends MusicBeatState
 		
 				case 'frontier-legacy':
 					defaultCamZoom = 0.6;
+
+				        luaArray.push(new FunkinLua("assets/data/final-frontier-legacy/" + Paths.lua("script")));
 		
 					frontierBgLegacy = new BGSprite('frontier/sky', -600, -120, 1, 0.9);
 					frontierBgLegacy.scale.x = 2.0;
