@@ -25,6 +25,7 @@ class Note extends FlxSprite
 	public static var instance:Note;
 
 	public var parentNote:Note;
+	public var childrenNotes:Array<Note> = [];
 
 	public var currentPrefix:String = "";
 	public var currentTexture:String = "";
