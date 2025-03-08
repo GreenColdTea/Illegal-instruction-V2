@@ -160,10 +160,13 @@ class Main extends Sprite
 	    }    
         #end
 
+	FlxG.save.bind('funkin', 'ninjamuffin99');
+
         ClientPrefs.loadDefaultKeys();
-	    // fuck you, persistent caching stays ON during sex
-	    FlxGraphic.defaultPersist = true;
-	    // the reason for this is we're going to be handling our own cache smartly
+	ClientPrefs.loadPrefs();
+	// fuck you, persistent caching stays ON during sex
+	FlxGraphic.defaultPersist = true;
+	// the reason for this is we're going to be handling our own cache smartly
 
         #if !VIDEOS_ALLOWED
         initialState = TitleState;
