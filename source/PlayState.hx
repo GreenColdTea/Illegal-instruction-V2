@@ -2975,6 +2975,24 @@ class PlayState extends MusicBeatState
 	  
 	}
 
+        public function getXPosition(diff:Float, direction:Int, player:Int):Float
+	{
+		var x:Float = (FlxG.width / 2) - Note.swagWidth - 54 + Note.swagWidth * direction;
+		if (!ClientPrefs.middleScroll)
+		{
+			switch (player)
+			{
+				case 0:
+					x += FlxG.width / 2 - Note.swagWidth * 2 - 100;
+				case 1:
+					x -= FlxG.width / 2 - Note.swagWidth * 2 - 100;
+			}
+		}
+		x -= 56;
+
+		return x;
+	}
+
 	#if (!flash && sys)
 	public var runtimeShaders:Map<String, Array<String>> = new Map<String, Array<String>>();
 	public function createRuntimeShader(name:String):FlxRuntimeShader
