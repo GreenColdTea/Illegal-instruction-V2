@@ -37,6 +37,7 @@ class Note extends FlxSprite
 	public var zIndex:Float = 0;
 	public var baseAlpha:Float = 1;
 	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
+	public var scaleDefault:FlxPoint;
 	public var desiredAlpha:Float = 1;
 
 	public var mustPress:Bool = false;
