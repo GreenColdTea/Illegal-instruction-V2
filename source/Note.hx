@@ -29,6 +29,9 @@ class Note extends FlxSprite
 
 	public var strumTime:Float = 0;
 
+	public var z:Float = 0; // for modchart system
+	public var zIndex:Float = 0;
+
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
 	public var canBeHit:Bool = false;
@@ -376,6 +379,18 @@ class Note extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if(isSustainNote){
+			if(prevNote!=null && prevNote.isSustainNote){
+				zIndex=prevNote.zIndex;
+			}else if(prevNote!=null && !prevNote.isSustainNote){
+				zIndex=prevNote.zIndex-1;
+			}
+		}else{
+			zIndex=z;
+		}
+
+		zIndex-=(mustPress==true?0:1);
 
 		if (mustPress)
 		{
