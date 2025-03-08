@@ -157,6 +157,8 @@ class Note extends FlxSprite
 	{
 		super();
 
+		scaleDefault = FlxPoint.get();
+
 		if (prevNote == null)
 			prevNote = this;
 
@@ -252,6 +254,7 @@ class Note extends FlxSprite
 					prevNote.scale.y *= 1.19;
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
+				prevNote.scaleDefault.set(prevNote.scale.x,prevNote.scale.y);
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
