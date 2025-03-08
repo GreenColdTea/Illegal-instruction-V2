@@ -19,7 +19,7 @@ import lime.app.Application;
 import sys.FileSystem;
 #end
 
-@:nullSafety
+//@:nullSafety
 class Intro extends MusicBeatState
 {
 	static final IntroVideoPH = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
