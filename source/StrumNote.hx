@@ -20,6 +20,7 @@ class StrumNote extends FlxSprite
 
 	public var z:Float = 0; // for modchart system
 	public var zIndex:Float = 0;
+	public var scaleDefault:FlxPoint;
 	
 	public var texture(default, set):String = null;
 	private function set_texture(value:String):String {
@@ -34,6 +35,7 @@ class StrumNote extends FlxSprite
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
 		noteData = leData;
+		scaleDefault = new FlxPoint();
 		this.player = player;
 		this.noteData = leData;
 		super(x, y);
@@ -126,6 +128,8 @@ class StrumNote extends FlxSprite
 			}
 		}
 		updateHitbox();
+		scrollFactor.set();
+		scaleDefault.set(scale.x,scale.y);
 
 		if(lastAnim != null)
 		{
