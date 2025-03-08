@@ -45,10 +45,10 @@
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
 	<define name="MODS_ALLOWED" if="desktop" />
-	<define name="LUA_ALLOWED" if="desktop || mobile" />
+	<define name="LUA_ALLOWED" if="cpp" />
 	<define name="ACHIEVEMENTS_ALLOWED" if="officialBuild" />
-	<define name="VIDEOS_ALLOWED" if="desktop || mobile" />
-        <define name="CRASH_HANDLER" if="desktop || mobile" />
+	<define name="VIDEOS_ALLOWED" if="desktop || mobile" unless="32bits"/>
+        <define name="CRASH_HANDLER" if="cpp" />
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
@@ -192,6 +192,9 @@
              <config:android gradle-version="8.10.2" gradle-plugin="8.1.0" />		
         </section>
 
+	<!-- Allow Access to Engine Files in mobile -->
+	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
@@ -203,11 +206,14 @@
 
 	<!--Code Cleanup and Full Compile of Classes-->
 	<haxeflag name="-dce" value="full" />
+	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('hxvlc')" />
 
 	<!--Analyzer Optimization-->
 	<haxedef name="analyzer-optimize" />
 
 	<haxedef name='no-deprecation-warnings' />
+		
+	<!--For Haxe 4.3.0 and above-->
 	<haxedef name='message.reporting' value='pretty' />
 </project>
