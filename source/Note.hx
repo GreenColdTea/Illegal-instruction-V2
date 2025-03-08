@@ -22,10 +22,6 @@ class Note extends FlxSprite
 {
 	public var row:Int = 0;
 
-	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
-
-	public var desiredAlpha:Float = 1;
-
 	public static var instance:Note;
 
 	public var currentPrefix:String = "";
@@ -36,6 +32,9 @@ class Note extends FlxSprite
 
 	public var z:Float = 0; // for modchart system
 	public var zIndex:Float = 0;
+	public var baseAlpha:Float = 1;
+	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
+	public var desiredAlpha:Float = 1;
 
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
@@ -200,7 +199,7 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
-			alpha = 0.6;
+			baseAlpha = 0.6;
 			multAlpha = 0.6;
 			hitsoundDisabled = true;
 			if(ClientPrefs.downScroll) flipY = true;
