@@ -46,7 +46,9 @@ class Intro extends MusicBeatState
 		if (video != null)
 		{
 			if (canSkip && (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end))
-                                video.skipVideo();
+                                video.dispose();
+				FlxG.removeChild(video);
+			        MusicBeatState.switchState(new TitleState());
 
 		}
 
