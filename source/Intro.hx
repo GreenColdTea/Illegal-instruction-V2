@@ -31,6 +31,8 @@ class Intro extends MusicBeatState
 	{
 		FlxG.autoPause = false;
 
+		video.canSkip = false;
+
 		FlxG.mouse.visible = false;
 
 		setupVideoAsync();
@@ -44,12 +46,8 @@ class Intro extends MusicBeatState
 	{
 		if (video != null)
 		{
-			var isTapped:Bool = #if android FlxG.android.justReleased.BACK #else false #end;
-                        if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || isTapped)
-				if (FlxG.save.data.seenIntro)
-				        video.dispose();
-			                FlxG.removeChild(video);
-			                MusicBeatState.switchState(new TitleState());
+			if (FlxG.save.data.seenIntro)
+				video.canSkip = true;
 
 		}
 
