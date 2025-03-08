@@ -91,6 +91,8 @@ class Note extends FlxSprite
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000; //plan on doing scroll directions soon -bb
 
+	public var speed:Float = 1; //for modcharts
+
 	public var hitsoundDisabled:Bool = false;
 
 	public var hitbox:Float = Conductor.safeZoneOffset;
