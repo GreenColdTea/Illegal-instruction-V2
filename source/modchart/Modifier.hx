@@ -8,11 +8,9 @@ import Section.SwagSection;
 class Modifier {
   public var modMgr:ModManager;
   public var percents:Array<Float>=[0,0];
-  var noteData:Array<SwagSection>;
-  var songData = PlayState.SONG;
+  var noteData = PlayState.noteData;
   public var submods:Map<String,Modifier> = [];
   public function new(modMgr:ModManager){
-    noteData = songData.notes;
     this.modMgr=modMgr;
     for(submod in getSubmods()){
       submods.set(submod,new Modifier(modMgr));
