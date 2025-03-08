@@ -119,7 +119,7 @@ class Intro extends MusicBeatState
                                 FlxG.save.flush();
                                 MusicBeatState.switchState(new TitleState());
                         });
-			add(video);
+			FlxG.stage.addChild(video);
 
 			try
 			{
