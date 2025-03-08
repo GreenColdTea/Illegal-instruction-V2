@@ -98,14 +98,14 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	    var renderDistance:Float = -75;
+	        var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
-	    pauseArt.scale.set(0.4, 0.4);
+	        pauseArt.scale.set(0.4, 0.4);
 		pauseArt.loadGraphic(Paths.image('Renders/' + curRender + PlayState.instance.pauseRenderPrefix[0], 'shared'));
 		pauseArt.scrollFactor.set();
 		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
 		pauseArt.x = renderDistance * -1;
-	    pauseArt.antialiasing = true;
+	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
 
 		fixRenders();
@@ -439,7 +439,7 @@ class PauseSubState extends MusicBeatSubstate
                 for (item in menuItemsText) 
                 {
                     var targetY = centerY + (bullShit - curSelected) * spacing;
-                    FlxTween.tween(item, { y: targetY, alpha: (bullShit == curSelected ? 1 : 0.6) }, 0.5, { ease: FlxEase.quartInOut });
+                    FlxTween.tween(item, { y: targetY, alpha: (bullShit == curSelected ? 1 : 0.6) }, 0.4, { ease: FlxEase.quartInOut });
                     bullShit++;
                 }
         }
