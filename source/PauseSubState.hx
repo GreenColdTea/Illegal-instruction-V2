@@ -433,7 +433,7 @@ class PauseSubState extends MusicBeatSubstate
                     curSelected = 0;
 
                 var centerY = FlxG.height / 2;
-                var spacing = 100;
+                var spacing = 150;
                 var bullShit = 0;
 
                 for (item in menuItemsText) 
@@ -464,7 +464,7 @@ class PauseSubState extends MusicBeatSubstate
 	      }
 
               for (i in 0...menuItems.length) {
-                  var item = new FlxText(-150, startY + (i * itemHeight), 0, menuItems[i], 42);
+                  var item = new FlxText(-530, startY + (i * itemHeight), 0, menuItems[i], 42);
 		  item.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                   item.borderSize = 2;
                   item.scrollFactor.set();
