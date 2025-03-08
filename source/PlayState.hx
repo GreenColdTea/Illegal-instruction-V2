@@ -181,8 +181,6 @@ class PlayState extends MusicBeatState
 	public var GF_X:Float = 400;
 	public var GF_Y:Float = 130;
 
-	//modcharts
-
 	public var songSpeedTween:FlxTween;
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
@@ -195,7 +193,7 @@ class PlayState extends MusicBeatState
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
-    public static var isFreeplay:Bool = false;
+        public static var isFreeplay:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
@@ -259,9 +257,9 @@ class PlayState extends MusicBeatState
 
 	//shader things
 	public var shaderUpdates:Array<Float->Void> = [];
-    public var camGameShaders:Array<ShaderEffect> = [];
-    public var camHUDShaders:Array<ShaderEffect> = [];
-    public var camOtherShaders:Array<ShaderEffect> = [];
+        public var camGameShaders:Array<ShaderEffect> = [];
+        public var camHUDShaders:Array<ShaderEffect> = [];
+        public var camOtherShaders:Array<ShaderEffect> = [];
 
 	//Gameplay settings
 	public var healthGain:Float = 1;
@@ -302,9 +300,9 @@ class PlayState extends MusicBeatState
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
-	public var upscrollOffset = 50;
-
         public var modManager:ModManager;
+        public var upscrollOffset = 50;
+	public var downscrollOffset = FlxG.height - 150;
 
 	public var defaultCamZoom:Float = 1.05;
 
@@ -2278,7 +2276,7 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = -5000;
 
 		strumLine = new FlxSprite(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, upscrollOffset).makeGraphic(FlxG.width, 10);
-		if(ClientPrefs.downScroll) strumLine.y = FlxG.height - 150;
+		if(ClientPrefs.downScroll) strumLine.y = downscrollOffset;
 		strumLine.scrollFactor.set();
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
