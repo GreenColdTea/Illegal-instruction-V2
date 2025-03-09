@@ -226,6 +226,7 @@ class PlayState extends MusicBeatState
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+	private var noteHoldSplashes:NoteHoldSplash;
 
 	private var curSong:String = "";
 
@@ -2757,6 +2758,8 @@ class PlayState extends MusicBeatState
 		add(barbedWires);
 		add(wireVignette);
 
+		noteHoldSplashes = new NoteHoldSplash();			    
+
 		var daSong:String = Paths.formatToSongPath(curSong);
 	
         add(blackFuck);
@@ -4055,6 +4058,8 @@ class PlayState extends MusicBeatState
 	    {
 			changeIcon("bf", [50, 73, 127]);
 		}
+
+		noteHoldSplashes.update(elapsed);
 
 		//time bar personalized with dad health bar
 		var dadColR = dad.healthColorArray[0];
@@ -6211,6 +6216,10 @@ class PlayState extends MusicBeatState
 				note.destroy();
 			}
 		}
+
+		if (note.mustPress)
+			noteHoldSplashes.goodNoteHit(note.noteData, note.isSustainNote);
+		
 	}
 
 	function spawnNoteSplashOnNote(note:Note) {
