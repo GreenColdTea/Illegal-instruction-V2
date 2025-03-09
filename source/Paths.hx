@@ -48,6 +48,8 @@ class Paths
 		'scripts',
 	];
 
+	public static final HSCRIPT_EXTENSIONS:Array<String> = ["hscript", "hxs", "hx"];
+
 	public static function excludeAsset(key:String) {
 		if (!dumpExclusions.contains(key))
 			dumpExclusions.push(key);
@@ -207,7 +209,7 @@ class Paths
 		for (fileExt in extensions) {
 			var baseFile:String = '$scriptPath.$fileExt';
 			for (file in [#if MODS_ALLOWED Paths.modFolders(baseFile), #end Paths.getPreloadPath(baseFile)]) {
-				if (Paths.exists(file))
+				if (OpenFlAssets.exists(file))
 					return file;
 				      
 			}
