@@ -26,7 +26,7 @@ class ModManager {
   private var schedule:Map<String,Array<ModEvent>>=[];
   private var funcs:Array<FuncEvent>=[];
   private var mods:Array<Modifier> = [];
-
+  public var infPath:Array<Array<Vector3>>=[[],[],[],[] ];
   public var state:PlayState;
   public var receptors:Array<Array<StrumNote>>=[[],[]];
   public function new(state:PlayState){
@@ -70,7 +70,6 @@ class ModManager {
     defineMod("boost",new AccelModifier(this));
 
     defineMod("transformX",new TransformModifier(this));
-    var infPath:Array<Array<Vector3>>=[[],[],[],[] ];
 
     var r = 0;
     while(r<360){
