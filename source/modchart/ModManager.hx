@@ -29,9 +29,8 @@ class ModManager {
 
   public var state:PlayState;
   public var receptors:Array<Array<StrumNote>>=[[],[]];
-  public function new(state:PlayState, noteData:Note){
+  public function new(state:PlayState){
     this.state = state;
-    this.noteData = noteData;
   }
 
   public function setReceptors(){
