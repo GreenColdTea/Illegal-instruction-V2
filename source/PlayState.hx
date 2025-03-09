@@ -4624,28 +4624,48 @@ class PlayState extends MusicBeatState
 
         // Sustain note clipping
         var center:Float = strumY + Note.swagWidth / 2;
-        if (strumGroup.members[daNote.noteData].sustainReduce && daNote.isSustainNote && (daNote.mustPress || !daNote.ignoreNote) &&
-            (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+        if (daNote.isSustainNote)
         {
-            if (strumScroll)
+            if ((daNote.animation.curAnim.name.endsWith('holdend')) && (daNote.prevNote != null))
             {
-                if (daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center)
+                daNote.y -= ((daNote.prevNote.height / 2) * downscrollMultiplier);
+                if (downscrollMultiplier < 0)
+                {
+                    daNote.y += (daNote.height * 2);
+                    if (daNote.endHoldOffset == Math.NEGATIVE_INFINITY)
+                    {
+                        daNote.endHoldOffset = (daNote.prevNote.y - (daNote.y + daNote.height));
+                    }
+                    else
+                        daNote.y += daNote.endHoldOffset;
+                }
+                else
+                    daNote.y += ((daNote.height / 2) * downscrollMultiplier);
+            }
+
+            if (downscrollMultiplier < 0) // Downscroll logic
+            {
+                daNote.flipY = true;
+                if ((daNote.parentNote != null && daNote.parentNote.wasGoodHit)
+                    && daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
+                    && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
                 {
                     var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
                     swagRect.height = (center - daNote.y) / daNote.scale.y;
                     swagRect.y = daNote.frameHeight - swagRect.height;
-
                     daNote.clipRect = swagRect;
                 }
             }
             else
             {
-                if (daNote.y + daNote.offset.y * daNote.scale.y <= center)
+                daNote.flipY = false;
+                if ((daNote.parentNote != null && daNote.parentNote.wasGoodHit)
+                    && daNote.y + daNote.offset.y * daNote.scale.y <= center
+                    && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
                 {
                     var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
                     swagRect.y = (center - daNote.y) / daNote.scale.y;
                     swagRect.height -= swagRect.y;
-
                     daNote.clipRect = swagRect;
                 }
             }
@@ -4666,8 +4686,7 @@ class PlayState extends MusicBeatState
             notes.remove(daNote, true);
             daNote.destroy();
         }
-    });
-}
+    }
 		checkEventNote();
 
 		#if debug
