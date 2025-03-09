@@ -1989,7 +1989,6 @@ class FunkinLua {
                     if (PlayState.instance.modManager.exists(name)) 
                         return false;
 
-                    var mod:Modifier = null;
                     var modManager = PlayState.instance.modManager;
 			
 		    if (modManager.exists(name)) {
@@ -1997,7 +1996,7 @@ class FunkinLua {
                         return false;
 		    }
 
-                    switch (type.toLowerCase().trim()) {
+                    var mod:Modifier = switch (type.toLowerCase().trim()) {
                         case "reverse":
                             mod = new ReverseModifier(modManager);
                         case "flip":
@@ -2029,13 +2028,13 @@ class FunkinLua {
 			case "infinite":
 			    mod = new PathModifier(modManager, modManager.infPath, 1850);
 			case "transformx":
-			    mod = new AccelModifier(modManager);
+			    mod = new TransformModifier(modManager);
 			case "perspective":
 			    mod = new PerspectiveModifier(modManager);
 			default:
                             luaTrace('addMod: Invalid modifier type "' + type + '"!', true);
-                            return false;
-                    }
+                            null;
+                    };
 
                     if (mod != null) {
                         modManager.defineMod(name, mod);
