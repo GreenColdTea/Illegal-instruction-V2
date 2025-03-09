@@ -28,10 +28,10 @@ class NoteHoldSplash extends FlxSprite {
             posXR = PlayState.instance.playerStrums.members[3].x;
 
             // Create hold cover sprites
-            red = createSprite("red", "holdCoverRed", posXR - 107, posY - 80, "push");
-            purple = createSprite("purple", "holdCoverPurple", posXP - 107, posY - 80, "idle");
-            blue = createSprite("blue", "holdCoverBlue", posXB - 107, posY - 80, "push");
-            green = createSprite("green", "holdCoverGreen", posXG - 107, posY - 80, "push");
+            red = createSprite("red", Paths.image("holdCoverRed", "shared"), posXR - 107, posY - 80, "push");
+            purple = createSprite("purple", Paths.image("holdCoverPurple", "shared"), posXP - 107, posY - 80, "idle");
+            blue = createSprite("blue", Paths.image("holdCoverBlue", "shared"), posXB - 107, posY - 80, "push");
+            green = createSprite("green", Paths.image("holdCoverGreen", "shared"), posXG - 107, posY - 80, "push");
 
             // Hide sprites initially
             red.visible = false;
