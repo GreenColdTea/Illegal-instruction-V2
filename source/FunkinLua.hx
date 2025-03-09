@@ -2018,16 +2018,16 @@ class FunkinLua {
                 });
 		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
 			var modManager = PlayState.instance.modManager;
-                        if (ModManager.exists(name)) {
-                                ModManager.set(name, percent, player);
+                        if (modManager.exists(name)) {
+                                modManager.set(name, percent, player);
                                 return true;
                         }
                         return false;
                 });
 		Lua_helper.add_callback(lua, "removeMod", function(name:String) {
 			var modManager = PlayState.instance.modManager;
-                        if (ModManager.exists(name)) {
-                                ModManager.removeMod(name);
+                        if (modManager.exists(name)) {
+                                modManager.removeMod(name);
                                 return true;
                         }
                         return false;
