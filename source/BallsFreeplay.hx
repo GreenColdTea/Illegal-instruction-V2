@@ -106,7 +106,7 @@ class BallsFreeplay extends MusicBeatState
         {x: 25, y: -20, flipX: true}, // ID 3
         {x: 5, y: 37.5, flipX: false}, // ID 4
         {x: 0, y: 12.5, flipX: false}, // ID 5
-        {x: -15, y: 282.5, flipX: false} // ID 6
+        {x: -15, y: 37.5, flipX: false} // ID 6
     ];
 
     override function create()
