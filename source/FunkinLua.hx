@@ -2028,22 +2028,22 @@ class FunkinLua {
                     var modManager = PlayState.instance.modManager;
     
                     if (!modManager.exists(name)) {
-                        luaTrace('queueMod: Modifier "' + name + '" does not exist!', true);
+                        luaTrace('queueModEase: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
 
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-		Lua_helper.add_callback(lua, "queueModSet", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+		Lua_helper.add_callback(lua, "queueModSet", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
     
                     if (!modManager.exists(name)) {
-                        luaTrace('queueMod: Modifier "' + name + '" does not exist!', true);
+                        luaTrace('queueModSet: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
 
-                    modManager.queueSet(startStep, endStep, name, percent, easeType, player);
+                    modManager.queueSet(startStep, name, percent, player);
                     return true;
                 });
 		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
