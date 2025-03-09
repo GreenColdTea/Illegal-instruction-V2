@@ -1985,33 +1985,36 @@ class FunkinLua {
 
 		//modchart shit
 		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
-                        if (ModManager.exists(name)) return false; // Не даем создать два одинаковых
-
-                        var mod:Modifier = null;
-                        switch (type.toLowerCase()) {
-                               case "reverse":
-                                     mod = new ReverseModifier(ModManager);
-                               case "flip":
-                                     mod = new FlipModifier(ModManager);
-                               case "drunk":
-                                     mod = new DrunkModifier(ModManager);
-                               case "confusion":
-                                     mod = new ConfusionModifier(ModManager);
-                               case "tornado":
-                                     mod = new TornadoModifier(ModManager);
-                               case "mini":
-                                     mod = new ScaleModifier(ModManager);
-                               case "scrollangle":
-                                     mod = new AngleModifier(ModManager);
-                               case "boost":
-                                     mod = new AccelModifier(ModManager);
-                        }
-
-                        if (mod != null) {
-                                ModManager.defineMod(name, mod);
-                                return true;
-                        }
+                    if (PlayState.instance.modManager.exists(name)) 
                         return false;
+
+                    var mod:Modifier = null;
+                    var modManager = PlayState.instance.modManager;
+
+                    switch (type.toLowerCase().trim()) {
+                        case "reverse":
+                            mod = new ReverseModifier(modManager);
+                        case "flip":
+                            mod = new FlipModifier(modManager);
+                        case "drunk":
+                            mod = new DrunkModifier(modManager);
+                        case "confusion":
+                            mod = new ConfusionModifier(modManager);
+                        case "tornado":
+                            mod = new TornadoModifier(modManager);
+                        case "mini":
+                            mod = new ScaleModifier(modManager);
+                        case "scrollangle":
+                            mod = new AngleModifier(modManager);
+                        case "boost":
+                            mod = new AccelModifier(modManager);
+                    }
+
+                   if (mod != null) {
+                       modManager.defineMod(name, mod);
+                       return true;
+                   }
+                   return false;
                 });
 		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
                         if (ModManager.exists(name)) {
