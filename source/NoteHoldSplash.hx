@@ -48,10 +48,10 @@ class NoteHoldSplash extends FlxSprite {
             blue.visible = false;
             green.visible = false;
 
-            add(red);
-            add(purple);
-            add(blue);
-            add(green);
+            FlxG.state.add(red);
+            FlxG.state.add(purple);
+            FlxG.state.add(blue);
+            FlxG.state.add(green);
         }
     }
 
@@ -89,10 +89,10 @@ class NoteHoldSplash extends FlxSprite {
     public function update(elapsed:Float) {
         var isPixel = PlayState.isPixelStage;
         if (isPixel) {
-            remove(red);
-            remove(blue);
-            remove(green);
-            remove(purple);
+            FlxG.state.remove(red);
+            FlxG.state.remove(blue);
+            FlxG.state.remove(green);
+            FlxG.state.remove(purple);
         }
 
         // Update positions based on strum line lol
