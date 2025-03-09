@@ -106,7 +106,7 @@ class Note extends FlxSprite
 	public var hitbox:Float = Conductor.safeZoneOffset;
 
 	@:isVar
-	public var isSustainEnd( get, null):Bool = false;
+	public var isSustainEnd(get, null):Bool = false;
 
 	function get_isSustainEnd(){
 		return animation!=null && animation.curAnim!=null && animation.curAnim.name.endsWith("holdend");
@@ -218,6 +218,9 @@ class Note extends FlxSprite
 			if(ClientPrefs.downScroll) flipY = true;
 
 			offsetX += width / 2;
+			if(ClientPrefs.downScroll)
+				offsetY += 15;
+	
 			copyAngle = false;
 
 			switch (noteData)
