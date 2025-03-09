@@ -134,13 +134,13 @@ class Paths
 			}		   
 		}
 
-      for (key in OpenFlAssets.cache.getKeys())	
-     {			
-     if (!localTrackedAssets.contains(key) && key != null)		
-     {				
-    OpenFlAssets.cache.clear(key);			
-     }	
-     }
+                for (key in OpenFlAssets.cache.getKeys())	
+                {			
+                     if (!localTrackedAssets.contains(key) && key != null)		
+                     {				
+                          OpenFlAssets.cache.clear(key);			
+                     }	
+                }
 		
 		// flags everything to be cleared out next unused memory clear
 		localTrackedAssets = [];
@@ -202,6 +202,19 @@ class Paths
 	{
 		return Main.path + 'assets/$file';
 	}*/
+
+	public static function getFileWithExts(scriptPath:String, extensions:Array<String>) {
+		for (fileExt in extensions) {
+			var baseFile:String = '$scriptPath.$fileExt';
+			for (file in [#if MODS_ALLOWED Paths.modFolders(baseFile), #end Paths.getPreloadPath(baseFile)]) {
+				if (Paths.exists(file))
+					return file;
+				      
+			}
+		}
+
+		return null;
+	}
 
 	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
 	{
@@ -399,6 +412,15 @@ class Paths
 		final hideChars = ~/[.,'"%?!]/g;
 
 		return hideChars.replace(invalidChars.replace(path, '-'), '').trim().toLowerCase();
+	}
+
+	public inline static function getHScriptPath(scriptPath:String)
+	{
+		#if hscript
+		return getFileWithExtensions(scriptPath, Paths.HSCRIPT_EXTENSIONS);
+		#else
+		return null;
+		#end
 	}
 
 	// completely rewritten asset loading? fuck!
