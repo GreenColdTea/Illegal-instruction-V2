@@ -49,6 +49,7 @@ import Discord;
 #end
 
 import modchart.*;
+import modchart.modifiers.*;
 
 #if hscript
 import hscript.Parser;
