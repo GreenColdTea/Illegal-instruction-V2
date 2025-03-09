@@ -2026,7 +2026,7 @@ class FunkinLua {
                         case "boost":
                             mod = new AccelModifier(modManager);
 			case "infinite":
-			    mod = new PathModifier(modManager);
+			    mod = new PathModifier(modManager, modManager.infPath, 1850);
 			case "transformx":
 			    mod = new AccelModifier(modManager);
 			case "perspective":
