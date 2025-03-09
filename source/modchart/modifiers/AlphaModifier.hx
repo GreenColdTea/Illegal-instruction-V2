@@ -3,6 +3,7 @@ import ui.*;
 import modchart.*;
 import flixel.math.FlxPoint;
 import flixel.math.FlxMath;
+import Note;
 import math.*;
 
 class AlphaModifier extends Modifier {
