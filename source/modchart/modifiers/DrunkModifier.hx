@@ -113,7 +113,7 @@ class DrunkModifier extends Modifier {
     return submods;
   }
 
-  override function getAliases() {
+  public function getAliases() {
     return [
       "tipZ" => "tipsyZ",
       "tipZSpeed" => "tipsyZSpeed",
