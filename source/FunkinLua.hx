@@ -50,6 +50,7 @@ import Discord;
 
 import modchart.*;
 import modchart.modifiers.*;
+import math.*;
 
 #if hscript
 import hscript.Parser;
