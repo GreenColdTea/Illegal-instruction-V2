@@ -2819,59 +2819,82 @@ class CustomSubstate extends MusicBeatSubstate
 #if hscript
 class HScript
 {
-	public static var parser:Parser = new Parser();
-	public var interp:Interp;
+        public static var parser:Parser = new Parser();
+        public var interp:Interp;
 
-	public var variables(get, never):Map<String, Dynamic>;
+        public var variables(get, never):Map<String, Dynamic>;
 
-	public function get_variables()
-	{
-		return interp.variables;
-	}
+        public function get_variables() {
+            return interp.variables;
+        }
 
-	public function new()
-	{
-		interp = new Interp();
-		interp.variables.set('FlxG', FlxG);
-		interp.variables.set('FlxSprite', FlxSprite);
-		interp.variables.set('FlxCamera', FlxCamera);
-		interp.variables.set('FlxTimer', FlxTimer);
-		interp.variables.set('FlxTween', FlxTween);
-		interp.variables.set('FlxEase', FlxEase);
-		interp.variables.set('PlayState', PlayState);
-		interp.variables.set('game', PlayState.instance);
-		interp.variables.set('Paths', Paths);
-		interp.variables.set('Conductor', Conductor);
-		interp.variables.set('ClientPrefs', ClientPrefs);
-		interp.variables.set('Character', Character);
-		interp.variables.set('Alphabet', Alphabet);
-		interp.variables.set('CustomSubstate', CustomSubstate);
-		#if (!flash && sys)
-		interp.variables.set('FlxRuntimeShader', FlxRuntimeShader);
-		#end
-		interp.variables.set('ShaderFilter', openfl.filters.ShaderFilter);
-		interp.variables.set('StringTools', StringTools);
+        public function new() {
+            interp = new Interp();
 
-		interp.variables.set('setVar', function(name:String, value:Dynamic)
-		{
-			PlayState.instance.variables.set(name, value);
-		});
-		interp.variables.set('getVar', function(name:String)
-		{
-			var result:Dynamic = null;
-			if(PlayState.instance.variables.exists(name)) result = PlayState.instance.variables.get(name);
-			return result;
-		});
-		interp.variables.set('removeVar', function(name:String)
-		{
-			if(PlayState.instance.variables.exists(name))
-			{
-				PlayState.instance.variables.remove(name);
-				return true;
-			}
-			return false;
-		});
-	}
+            // Flixel Core
+            interp.variables.set('FlxG', FlxG);
+            interp.variables.set('FlxSprite', FlxSprite);
+            interp.variables.set('FlxCamera', FlxCamera);
+            interp.variables.set('FlxTimer', FlxTimer);
+            interp.variables.set('FlxTween', FlxTween);
+            interp.variables.set('FlxEase', FlxEase);
+            interp.variables.set('FlxMath', flixel.math.FlxMath);
+            interp.variables.set('FlxGroup', flixel.group.FlxGroup);
+            interp.variables.set('FlxSound', flixel.system.FlxSound);
+            interp.variables.set('FlxColor', flixel.util.FlxColor);
+            interp.variables.set('FlxPoint', FlxPoint);
+
+            // FNF-related
+            interp.variables.set('PlayState', PlayState);
+            interp.variables.set('game', PlayState.instance);
+            interp.variables.set('Paths', Paths);
+            interp.variables.set('Conductor', Conductor);
+            interp.variables.set('ClientPrefs', ClientPrefs);
+            interp.variables.set('Character', Character);
+            interp.variables.set('Alphabet', Alphabet);
+            interp.variables.set('CustomSubstate', CustomSubstate);
+            interp.variables.set('Note', Note);
+            interp.variables.set('StrumNote', StrumNote);
+            interp.variables.set('Song', Song);
+            interp.variables.set('HealthIcon', HealthIcon);
+            interp.variables.set('PlayerSettings', PlayerSettings);
+            interp.variables.set('ModManager', modchart.ModManager);
+            interp.variables.set('Modifier', modchart.Modifier);
+
+            // Extra utilities
+            interp.variables.set('Math', Math);
+            interp.variables.set('Std', Std);
+            interp.variables.set('Reflect', Reflect);
+            interp.variables.set('StringTools', StringTools);
+
+            #if (!flash && sys)
+            interp.variables.set('FlxRuntimeShader', FlxRuntimeShader);
+            #end
+
+            interp.variables.set('ShaderFilter', openfl.filters.ShaderFilter);
+
+	    interp.variables.set('FlxShader', shaders.flixel.FlxShader);
+
+            // Custom Variables Functions
+            interp.variables.set('setVar', function(name:String, value:Dynamic) {
+                PlayState.instance.variables.set(name, value);
+            });
+
+            interp.variables.set('getVar', function(name:String) {
+                var result:Dynamic = null;
+                if (PlayState.instance.variables.exists(name)) result = PlayState.instance.variables.get(name);
+                return result;
+            });
+
+            interp.variables.set('removeVar', function(name:String) {
+                if (PlayState.instance.variables.exists(name)) {
+                    PlayState.instance.variables.remove(name);
+                    return true;
+                }
+                return false;
+            });
+        }
+	
 
 	public function execute(codeToRun:String):Dynamic
 	{
