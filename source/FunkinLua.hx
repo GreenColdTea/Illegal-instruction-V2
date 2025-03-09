@@ -1831,6 +1831,8 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "changePresence", function(details:String, state:Null<String>, ?smallImageKey:String, ?hasStartTimestamp:Bool, ?endTimestamp:Float) {
 			#if desktop
 			DiscordClient.changePresence(details, state, smallImageKey, hasStartTimestamp, endTimestamp);
+			#else
+			luaTrace("changePresence: Discord RPC isn't supported on this platform!", false, false, FlxColor.RED);
 			#end
 		});
 
