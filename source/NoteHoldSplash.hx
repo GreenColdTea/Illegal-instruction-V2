@@ -5,17 +5,17 @@ import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 
 class NoteHoldSplash {
-    private var splash:Bool;
-    private var posY:Float;
-    private var posXP:Float;
-    private var posXB:Float;
-    private var posXG:Float;
-    private var posXR:Float;
+    var splash:Bool;
+    var posY:Float;
+    var posXP:Float;
+    var posXB:Float;
+    var posXG:Float;
+    var posXR:Float;
 
-    private var red:FlxSprite;
-    private var purple:FlxSprite;
-    private var blue:FlxSprite;
-    private var green:FlxSprite;
+    var red:FlxSprite;
+    var purple:FlxSprite;
+    var blue:FlxSprite;
+    var green:FlxSprite;
 
     public function new() {
         splash = ClientPrefs.noteSplashes;
