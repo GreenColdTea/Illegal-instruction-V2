@@ -80,7 +80,7 @@ class Note extends FlxSprite
 	public var offsetX:Float = 0;
 	public var offsetY:Float = 0;
 	public var offsetAngle:Float = 0;
-	public var multAlpha = baseAlpha;
+	public var multAlpha:Float;
 
 	public var copyX:Bool = true;
 	public var copyY:Bool = true;
@@ -165,6 +165,8 @@ class Note extends FlxSprite
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
 	{
 		super();
+
+		multAlpha = baseAlpha;
 
 		scaleDefault = FlxPoint.get();
 
