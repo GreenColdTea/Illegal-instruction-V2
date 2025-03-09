@@ -17,9 +17,18 @@ class NoteHoldSplash extends FlxSprite {
     var blue:FlxSprite;
     var green:FlxSprite;
 
+    public var colorSwap:ColorSwap;
+
     public function new() {
+        
+        colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
+		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
+		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
+        
         splash = ClientPrefs.noteSplashes;
         posY = PlayState.instance.playerStrums.members[3].y;
+        colorSwap = new ColorSwap();
+		shader = colorSwap.shader;
         
         if (splash) {
             posXP = PlayState.instance.playerStrums.members[0].x;
