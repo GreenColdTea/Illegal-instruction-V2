@@ -183,6 +183,9 @@ class Note extends FlxSprite
 		this.strumTime = strumTime;
 		if(!inEditor) this.strumTime += ClientPrefs.noteOffset;
 
+		if(!ClientPrefs.opponentStrums) alpha = 0;
+		else if(ClientPrefs.middleScroll) alpha = 0.4;
+
 		this.noteData = noteData;
 
 		if(noteData > -1) {
@@ -213,6 +216,9 @@ class Note extends FlxSprite
 		if (isSustainNote && prevNote != null)
 		{
 			baseAlpha = 0.6;
+			if(!ClientPrefs.opponentStrums) alpha = 0;
+		        else if(ClientPrefs.middleScroll) alpha = 0.2;
+			
 			hitsoundDisabled = true;
 			if(ClientPrefs.downScroll) flipY = true;
 
@@ -436,11 +442,7 @@ class Note extends FlxSprite
 		if (mustPress)
 		{
 			// ok river
-			if (strumTime > Conductor.songPosition - hitbox
-			&& strumTime < Conductor.songPosition + (hitbox * earlyHitMult))
-				canBeHit = true;
-			else
-				canBeHit = false;
+			canBeHit = true;
 
 			if (strumTime < Conductor.songPosition - hitbox && !wasGoodHit)
 				tooLate = true;
