@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import shaders.ColorSwap;
 
-class NoteHoldSplash extends FlxSprite {
+class NoteHoldSplash {
     var splash:Bool;
     var posY:Float;
     var posXP:Float;
@@ -88,7 +88,7 @@ class NoteHoldSplash extends FlxSprite {
         });
     }
 
-    override function update(elapsed:Float) {
+    public function update(elapsed:Float) {
         if (PlayState.isPixelStage) {
             FlxG.state.remove(red);
             FlxG.state.remove(blue);
