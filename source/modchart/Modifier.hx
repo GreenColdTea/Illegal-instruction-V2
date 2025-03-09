@@ -65,4 +65,5 @@ class Modifier {
 
   public function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float)return pos;
 
+  public function getAliases():Map<String,String>{return [];}
 }
