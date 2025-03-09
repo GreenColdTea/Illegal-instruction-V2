@@ -417,7 +417,7 @@ class Paths
 	public inline static function getHScriptPath(scriptPath:String)
 	{
 		#if hscript
-		return getFileWithExtensions(scriptPath, Paths.HSCRIPT_EXTENSIONS);
+		return getFileWithExts(scriptPath, Paths.HSCRIPT_EXTENSIONS);
 		#else
 		return null;
 		#end
