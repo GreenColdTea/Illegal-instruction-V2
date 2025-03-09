@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 
-class NoteHoldSplash {
+class NoteHoldSplash extends FlxSprite {
     var splash:Bool;
     var posY:Float;
     var posXP:Float;
