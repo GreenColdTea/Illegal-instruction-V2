@@ -98,6 +98,17 @@ class BallsFreeplay extends MusicBeatState
     var lerpScore:Int = 0;
     var intendedScore:Int = 0;
 
+    // best coding ever
+    var characterOffsets:Array<{x:Float, y:Float, flipX:Bool}> = [
+        {x: 0, y: 0, flipX: false},   // ID 0
+        {x: 0, y: 0, flipX: false},   // ID 1
+        {x: 0, y: -60, flipX: true},  // ID 2
+        {x: 25, y: -20, flipX: true}, // ID 3
+        {x: 5, y: 37.5, flipX: false}, // ID 4
+        {x: 0, y: 12.5, flipX: false}, // ID 5
+        {x: -15, y: 282.5, flipX: false} // ID 6
+    ];
+
     override function create()
     {
         Paths.clearStoredMemory();
@@ -256,26 +267,14 @@ class BallsFreeplay extends MusicBeatState
             songCharacter.y = 245;
             songCharacter.alpha = 0;
             songCharacter.ID = i;
-            if (songCharacter.ID == 6) {
-                songCharacter.y = 282.5;
-                songCharacter.x -= 15;
+
+            if (songCharacter.ID >= 0 && songCharacter.ID < characterOffsets.length) {
+                var offset = characterOffsets[songCharacter.ID];
+                songCharacter.x += offset.x;
+                songCharacter.y += offset.y;
+                songCharacter.flipX = offset.flipX;
             }
-            else if (songCharacter.ID == 5) {
-                songCharacter.y += 12.5;
-            }
-            else if (songCharacter.ID == 4) {
-                songCharacter.y += 37.5;
-                songCharacter.x += 5;
-            }
-            else if (songCharacter.ID == 3) {
-                songCharacter.x += 25;
-                songCharacter.y -= 20;
-                songCharacter.flipX = true;
-            }
-            else if (songCharacter.ID == 2) {
-                songCharacter.y -= 60;
-                songCharacter.flipX = true;
-            }
+            
             screenCharacters.add(songCharacter);
 
             var songPlayable:FlxSprite = new FlxSprite();
