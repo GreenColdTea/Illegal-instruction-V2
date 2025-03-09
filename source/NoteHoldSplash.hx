@@ -78,7 +78,7 @@ class NoteHoldSplash extends FlxSprite {
     }
 
     public function update(elapsed:Float) {
-        var isPixel = PlayState.instance.isPixelStage;
+        var isPixel = PlayState.isPixelStage;
         if (isPixel) {
             remove(red);
             remove(blue);
