@@ -1988,13 +1988,13 @@ class FunkinLua {
                     if (PlayState.instance.modManager.exists(name)) 
                         return false;
 
+                    var mod:Modifier = null;
+                    var modManager = PlayState.instance.modManager;
+			
 		    if (modManager.exists(name)) {
                         luaTrace('addMod: Modifier "' + name + '" already exists!', true);
                         return false;
 		    }
-
-                    var mod:Modifier = null;
-                    var modManager = PlayState.instance.modManager;
 
                     switch (type.toLowerCase().trim()) {
                         case "reverse":
@@ -2024,7 +2024,7 @@ class FunkinLua {
                    }
                    return false;
                 });
-	        Lua_helper.add_callback(lua, "queueMod", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+	        Lua_helper.add_callback(lua, "queueModEase", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
     
                     if (!modManager.exists(name)) {
@@ -2033,6 +2033,17 @@ class FunkinLua {
                     }
 
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
+                    return true;
+                });
+		Lua_helper.add_callback(lua, "queueModSet", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+                    var modManager = PlayState.instance.modManager;
+    
+                    if (!modManager.exists(name)) {
+                        luaTrace('queueMod: Modifier "' + name + '" does not exist!', true);
+                        return false;
+                    }
+
+                    modManager.queueSet(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
 		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
