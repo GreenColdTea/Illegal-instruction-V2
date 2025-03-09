@@ -2024,22 +2024,34 @@ class FunkinLua {
                    }
                    return false;
                 });
-	        Lua_helper.add_callback(lua, "queueModEase", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+	        Lua_helper.add_callback(lua, "easeModByStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
     
                     if (!modManager.exists(name)) {
-                        luaTrace('queueModEase: Modifier "' + name + '" does not exist!', true);
+                        luaTrace('easeModByStep: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
 
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-		Lua_helper.add_callback(lua, "queueModSet", function(startStep:Float, name:String, percent:Float, player:Int) {
+	        Lua_helper.add_callback(lua, "easeModBySeconds", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1)
+                {
+                    var modMgr = PlayState.instance.modManager;
+                    if (modMgr.exists(mod))
+                    {
+                        modMgr.queueEaseL(step, length, mod, value, ease, player);
+                    }
+                    else
+                    {
+                        luaTrace('easeModBySeconds: Modifier "' + mod + '" does not exist.');
+                    }
+                });
+		Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
     
                     if (!modManager.exists(name)) {
-                        luaTrace('queueModSet: Modifier "' + name + '" does not exist!', true);
+                        luaTrace('setModAtStep: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
 
