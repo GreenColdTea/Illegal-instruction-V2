@@ -2009,20 +2009,38 @@ class FunkinLua {
                             mod = new TornadoModifier(modManager);
                         case "mini":
                             mod = new ScaleModifier(modManager);
+			case "invent":
+			    mod = new InvertModifier(modManager);
+			case "rotatex":
+			    mod = new RotateModifier(modManager);
+			case "centerrotatex":
+			    mod = new RotateModifier(modManager,'center', new Vector3(FlxG.width/2 - Note.swagWidth / 2,FlxG.height/2 - Note.swagWidth / 2));
+		        case "localrotatex":
+			    mod = new LocalRotateModifier(modManager);
                         case "scrollangle":
                             mod = new AngleModifier(modManager);
+			case "receptorscroll":
+			    mod = new ReceptorScrollModifier(modManager);
+			case "beat":
+			    mod = new BeatModifier(modManager);
                         case "boost":
                             mod = new AccelModifier(modManager);
+			case "infinite":
+			    mod = new PathModifier(modManager);
+			case "transformx":
+			    mod = new AccelModifier(modManager);
+			case "perspective":
+			    mod = new PerspectiveModifier(modManager);
 			default:
                             luaTrace('addMod: Invalid modifier type "' + type + '"!', true);
                             return false;
                     }
 
-                   if (mod != null) {
-                       modManager.defineMod(name, mod);
-                       return true;
-                   }
-                   return false;
+                    if (mod != null) {
+                        modManager.defineMod(name, mod);
+                        return true;
+                    }
+                    return false;
                 });
 	        Lua_helper.add_callback(lua, "easeModByStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
@@ -2037,10 +2055,10 @@ class FunkinLua {
                 });
 	        Lua_helper.add_callback(lua, "easeModBySeconds", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1)
                 {
-                    var modMgr = PlayState.instance.modManager;
-                    if (modMgr.exists(mod))
+                    var modManager = PlayState.instance.modManager;
+                    if (modManager.exists(mod))
                     {
-                        modMgr.queueEaseL(step, length, mod, value, ease, player);
+                        modManager.queueEaseL(step, length, mod, value, ease, player);
                     }
                     else
                     {
