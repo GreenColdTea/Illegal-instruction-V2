@@ -48,6 +48,8 @@ import flixel.addons.display.FlxRuntimeShader;
 import Discord;
 #end
 
+import modchart.*;
+
 #if hscript
 import hscript.Parser;
 import hscript.Interp;
