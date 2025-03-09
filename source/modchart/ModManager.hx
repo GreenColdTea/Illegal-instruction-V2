@@ -1,6 +1,6 @@
 // TROLL MODCHART SYSTEM IN PSYCH!!!
 // WRITTEN BY NEBULA_ZORUA!!
-// PORTED FROM https://github.com/nebulazorua/troll-engine
+// PORTED FROM https://github.com/riconuts/FNF-Troll-Engine
 
 package modchart;
 
