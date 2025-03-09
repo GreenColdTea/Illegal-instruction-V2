@@ -2842,27 +2842,11 @@ class HScript
             interp.variables.set('FlxGroup', flixel.group.FlxGroup);
             interp.variables.set('FlxSound', flixel.system.FlxSound);
 	    //Fuck, this is abstract
-            interp.variables.set('FlxColor', {
-                fromRGB: flixel.util.FlxColor.fromRGB,
-                fromHSB: flixel.util.FlxColor.fromHSB,
-                fromString: flixel.util.FlxColor.fromString,
-                WHITE: flixel.util.FlxColor.WHITE,
-                BLACK: flixel.util.FlxColor.BLACK,
-                GRAY: flixel.util.FlxColor.GRAY,
-
-                RED: flixel.util.FlxColor.RED,
-                GREEN: flixel.util.FlxColor.GREEN,
-                BLUE: flixel.util.FlxColor.BLUE,
-                PINK: flixel.util.FlxColor.PINK,
-                YELLOW: flixel.util.FlxColor.YELLOW,
-                PURPLE: flixel.util.FlxColor.PURPLE,
-                CYAN: flixel.util.FlxColor.CYAN,
-                ORANGE: flixel.util.FlxColor.ORANGE,
-                BROWN: flixel.util.FlxColor.BROWN,
-
-                TRANSPARENT: flixel.util.FlxColor.TRANSPARENT
-            });
-            interp.variables.set('FlxPoint', FlxPoint);
+            interp.variables.set('FlxColor', setFlxColorVars());
+            interp.variables.set('FlxPoint', {
+		   get: FlxPoint.get,
+		   weak: FlxPoint.weak
+	    });
 
             // FNF-related
             interp.variables.set('PlayState', PlayState);
@@ -2922,6 +2906,30 @@ class HScript
 		HScript.parser.line = 1;
 		HScript.parser.allowTypes = true;
 		return interp.execute(HScript.parser.parseString(codeToRun));
+	}
+
+	function setFlxColorVars():Dynamic 
+	{
+                return {
+                             fromRGB: flixel.util.FlxColor.fromRGB,
+                             fromHSB: flixel.util.FlxColor.fromHSB,
+                             fromString: flixel.util.FlxColor.fromString,
+
+                             WHITE: flixel.util.FlxColor.WHITE,
+                             BLACK: flixel.util.FlxColor.BLACK,
+                             GRAY: flixel.util.FlxColor.GRAY,
+                             RED: flixel.util.FlxColor.RED,
+                             GREEN: flixel.util.FlxColor.GREEN,
+                             BLUE: flixel.util.FlxColor.BLUE,
+                             PINK: flixel.util.FlxColor.PINK,
+                             YELLOW: flixel.util.FlxColor.YELLOW,
+                             PURPLE: flixel.util.FlxColor.PURPLE,
+                             CYAN: flixel.util.FlxColor.CYAN,
+                             ORANGE: flixel.util.FlxColor.ORANGE,
+                             BROWN: flixel.util.FlxColor.BROWN,
+
+                            TRANSPARENT: flixel.util.FlxColor.TRANSPARENT
+                };
 	}
 }
 #end
