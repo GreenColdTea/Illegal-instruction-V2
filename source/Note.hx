@@ -105,6 +105,13 @@ class Note extends FlxSprite
 
 	public var hitbox:Float = Conductor.safeZoneOffset;
 
+	@:isVar
+	public var isSustainEnd( get, null):Bool = false;
+
+	function get_isSustainEnd(){
+		return animation!=null && animation.curAnim!=null && animation.curAnim.name.endsWith("holdend");
+	}
+
 	private function set_texture(value:String):String {
 		if(texture != value) {
 			reloadNote('', value);
