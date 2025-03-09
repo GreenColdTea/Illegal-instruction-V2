@@ -2841,7 +2841,29 @@ class HScript
             interp.variables.set('FlxMath', flixel.math.FlxMath);
             interp.variables.set('FlxGroup', flixel.group.FlxGroup);
             interp.variables.set('FlxSound', flixel.system.FlxSound);
-            interp.variables.set('FlxColor', flixel.util.FlxColor);
+	    //Fuck, this is abstract
+            interp.variables.set('FlxColor', {
+                fromRGB: flixel.util.FlxColor.fromRGB,
+                fromHSB: flixel.util.FlxColor.fromHSB,
+                fromString: flixel.util.FlxColor.fromString,
+                WHITE: flixel.util.FlxColor.WHITE,
+                BLACK: flixel.util.FlxColor.BLACK,
+                GRAY: flixel.util.FlxColor.GRAY,
+                LIGHTGRAY: flixel.util.FlxColor.LIGHTGRAY,
+                DARKGRAY: flixel.util.FlxColor.DARKGRAY,
+
+                RED: flixel.util.FlxColor.RED,
+                GREEN: flixel.util.FlxColor.GREEN,
+                BLUE: flixel.util.FlxColor.BLUE,
+                PINK: flixel.util.FlxColor.PINK,
+                YELLOW: flixel.util.FlxColor.YELLOW,
+                PURPLE: flixel.util.FlxColor.PURPLE,
+                CYAN: flixel.util.FlxColor.CYAN,
+                ORANGE: flixel.util.FlxColor.ORANGE,
+                BROWN: flixel.util.FlxColor.BROWN,
+
+                TRANSPARENT: flixel.util.FlxColor.TRANSPARENT
+            });
             interp.variables.set('FlxPoint', FlxPoint);
 
             // FNF-related
