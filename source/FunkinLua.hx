@@ -2017,6 +2017,7 @@ class FunkinLua {
                    return false;
                 });
 		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
+			var modManager = PlayState.instance.modManager;
                         if (ModManager.exists(name)) {
                                 ModManager.set(name, percent, player);
                                 return true;
@@ -2024,6 +2025,7 @@ class FunkinLua {
                         return false;
                 });
 		Lua_helper.add_callback(lua, "removeMod", function(name:String) {
+			var modManager = PlayState.instance.modManager;
                         if (ModManager.exists(name)) {
                                 ModManager.removeMod(name);
                                 return true;
