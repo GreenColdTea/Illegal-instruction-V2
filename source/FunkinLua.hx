@@ -1988,9 +1988,6 @@ class FunkinLua {
 
 		//modchart shit
 		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
-                    if (PlayState.instance.modManager.exists(name)) 
-                        return false;
-
                     var modManager = PlayState.instance.modManager;
 			
 		    if (modManager.exists(name)) {
