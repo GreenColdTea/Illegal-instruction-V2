@@ -88,7 +88,7 @@ class NoteHoldSplash extends FlxSprite {
         });
     }
 
-    public function update(elapsed:Float) {
+    override function update(elapsed:Float) {
         if (PlayState.isPixelStage) {
             FlxG.state.remove(red);
             FlxG.state.remove(blue);
