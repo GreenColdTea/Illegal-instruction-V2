@@ -22,14 +22,14 @@ class NoteHoldSplash extends FlxSprite {
 
     public function new() {
         
-        colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
-		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
-		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
+        colorSwap.hue = ClientPrefs.arrowHSV[Note.noteData % 4][0] / 360;
+	colorSwap.saturation = ClientPrefs.arrowHSV[Note.noteData % 4][1] / 100;
+	colorSwap.brightness = ClientPrefs.arrowHSV[Note.noteData % 4][2] / 100;
         
         splash = ClientPrefs.noteSplashes;
         posY = PlayState.instance.playerStrums.members[3].y;
         colorSwap = new ColorSwap();
-		shader = colorSwap.shader;
+	shader = colorSwap.shader;
         
         if (splash) {
             posXP = PlayState.instance.playerStrums.members[0].x;
@@ -87,7 +87,7 @@ class NoteHoldSplash extends FlxSprite {
         });
     }
 
-    public function update(elapsed:Float) {
+    override function update(elapsed:Float) {
         var isPixel = PlayState.isPixelStage;
         if (isPixel) {
             FlxG.state.remove(red);
