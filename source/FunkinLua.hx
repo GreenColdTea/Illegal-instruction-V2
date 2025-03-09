@@ -2849,8 +2849,6 @@ class HScript
                 WHITE: flixel.util.FlxColor.WHITE,
                 BLACK: flixel.util.FlxColor.BLACK,
                 GRAY: flixel.util.FlxColor.GRAY,
-                LIGHTGRAY: flixel.util.FlxColor.LIGHTGRAY,
-                DARKGRAY: flixel.util.FlxColor.DARKGRAY,
 
                 RED: flixel.util.FlxColor.RED,
                 GREEN: flixel.util.FlxColor.GREEN,
