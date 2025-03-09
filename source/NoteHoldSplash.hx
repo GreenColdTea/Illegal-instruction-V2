@@ -96,7 +96,7 @@ class NoteHoldSplash extends FlxSprite {
         }
 
         // Update positions based on strum line lol
-        for (i in 0...4) {
+        for (i in 0...3) {
             var strum = PlayState.instance.playerStrums.members[i];
             switch (i) {
                 case 0:
