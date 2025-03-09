@@ -2927,8 +2927,9 @@ class HScript
                              CYAN: flixel.util.FlxColor.CYAN,
                              ORANGE: flixel.util.FlxColor.ORANGE,
                              BROWN: flixel.util.FlxColor.BROWN,
+			     MAGENTA: flixel.util.FlxColor.MAGENTA,
 
-                            TRANSPARENT: flixel.util.FlxColor.TRANSPARENT
+                             TRANSPARENT: flixel.util.FlxColor.TRANSPARENT
                 };
 	}
 }
