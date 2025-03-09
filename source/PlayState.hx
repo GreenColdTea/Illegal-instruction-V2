@@ -133,7 +133,7 @@ class PlayState extends MusicBeatState
 	var glitchinTime:Bool = false;
 
         // IN THE SETUPMODCHART FUNCTION
-	public var useModchart:Bool = false;
+	public static var useModchart:Bool = false;
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
