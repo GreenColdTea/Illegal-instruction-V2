@@ -21,6 +21,8 @@ class NoteHoldSplash extends FlxSprite {
     var colorSwap:ColorSwap;
 
     public function new() {
+        super();
+        
         if (PlayState.instance == null) return;
 
         splash = ClientPrefs.noteSplashes;
