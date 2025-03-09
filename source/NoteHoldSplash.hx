@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
-import ColorSwap;
+import shaders.ColorSwap;
 
 class NoteHoldSplash extends FlxSprite {
     var splash:Bool;
