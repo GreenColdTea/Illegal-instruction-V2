@@ -80,7 +80,7 @@ class Note extends FlxSprite
 	public var offsetX:Float = 0;
 	public var offsetY:Float = 0;
 	public var offsetAngle:Float = 0;
-	public var multAlpha:Float = 1;
+	public var multAlpha: = baseAlpha;
 
 	public var copyX:Bool = true;
 	public var copyY:Bool = true;
@@ -213,7 +213,6 @@ class Note extends FlxSprite
 		if (isSustainNote && prevNote != null)
 		{
 			baseAlpha = 0.6;
-			multAlpha = 0.6;
 			hitsoundDisabled = true;
 			if(ClientPrefs.downScroll) flipY = true;
 
@@ -417,7 +416,7 @@ class Note extends FlxSprite
 		super.update(elapsed);
 
 		if(!inEditor){
-			alpha = CoolUtil.scale(desiredAlpha,0,1,0,baseAlpha);
+			alpha = CoolUtil.scale(desiredAlpha, 0, 1, 0, baseAlpha);
 			if (tooLate || (parentNote != null && parentNote.tooLate))
 				alpha *= 0.3;
 		}
