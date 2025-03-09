@@ -169,29 +169,29 @@ class ModManager {
     }
   }
 
-  public function defineBlankMod(modName:String){
+  public static function defineBlankMod(modName:String){
     defineMod(modName, new Modifier(this), false);
   }
 
-  public function get(modName:String):Dynamic{
+  public static function get(modName:String):Dynamic{
     return definedMods[modName];
   }
 
-  public function getModPercent(modName:String, player:Int):Float{
+  public static function getModPercent(modName:String, player:Int):Float{
     return get(modName).getPercent(player);
   }
 
-  public function exists(modName:String):Bool{
+  public static function exists(modName:String):Bool{
     return definedMods.exists(modName);
   }
 
-  public function set(modName:String, percent:Float, player:Int){
+  public static function set(modName:String, percent:Float, player:Int){
     if(exists(modName)){
       definedMods[modName].setPercent(percent,player);
     }
   }
 
-  private function run(){
+  private static function run(){
     for(modName in schedule.keys()){
       var events = schedule.get(modName);
       for(event in events){
@@ -205,7 +205,7 @@ class ModManager {
     }
   }
 
-  public function getMods():Array<Modifier>{
+  public static function getMods():Array<Modifier>{
     var modArr:Array<Modifier>=[];
     for(m in mods){
       modArr.push(m);
@@ -220,7 +220,7 @@ class ModManager {
     }
   }
 
-  public function getPath(diff:Float, vDiff:Float, column:Int, player:Int):Vector3{
+  public static function getPath(diff:Float, vDiff:Float, column:Int, player:Int):Vector3{
     var pos = new Vector3(state.getXPosition(diff, column, player), vDiff, 0);
     for(mod in mods){
       pos = mod.getPath(vDiff, pos, column, player, diff);
@@ -229,7 +229,7 @@ class ModManager {
     return pos;
   }
 
-  public function getNoteScale(note:Note):FlxPoint{
+  public static function getNoteScale(note:Note):FlxPoint{
     var def = note.scaleDefault;
     var scale = FlxPoint.get(def.x,def.y);
     for(mod in mods){
@@ -238,20 +238,20 @@ class ModManager {
     return scale;
   }
 
-  public function updateNote(note:Note, player:Int, scale:FlxPoint, pos:Vector3){
+  public static function updateNote(note:Note, player:Int, scale:FlxPoint, pos:Vector3){
     for(mod in mods){
       mod.updateNote(note, player, pos, scale);
     }
   }
 
 
-  public function getReceptorPos(rec:StrumNote, player:Int=0):Vector3{
+  public static function getReceptorPos(rec:StrumNote, player:Int=0):Vector3{
     var pos = getPath(0, 0, rec.noteData, player);
 
     return pos;
   }
 
-  public function getReceptorScale(rec:StrumNote, player:Int=0):FlxPoint{
+  public static function getReceptorScale(rec:StrumNote, player:Int=0):FlxPoint{
     var def = rec.scaleDefault;
     var scale = FlxPoint.get(def.x,def.y);
     for(mod in mods){
@@ -260,7 +260,7 @@ class ModManager {
     return scale;
   }
 
-  public function updateReceptor(rec:StrumNote, player:Int, scale:FlxPoint, pos:Vector3){
+  public static function updateReceptor(rec:StrumNote, player:Int, scale:FlxPoint, pos:Vector3){
     for(mod in mods){
       mod.updateReceptor(rec, player, pos, scale);
     }
