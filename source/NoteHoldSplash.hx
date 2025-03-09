@@ -18,30 +18,29 @@ class NoteHoldSplash extends FlxSprite {
     var blue:FlxSprite;
     var green:FlxSprite;
 
-    public var colorSwap:ColorSwap;
+    var colorSwap:ColorSwap;
 
     public function new() {
-        
-        colorSwap.hue = ClientPrefs.arrowHSV[Note.noteData % 4][0] / 360;
-	colorSwap.saturation = ClientPrefs.arrowHSV[Note.noteData % 4][1] / 100;
-	colorSwap.brightness = ClientPrefs.arrowHSV[Note.noteData % 4][2] / 100;
-        
+        if (PlayState.instance == null) return;
+
         splash = ClientPrefs.noteSplashes;
-        posY = PlayState.instance.playerStrums.members[3].y;
         colorSwap = new ColorSwap();
-	shader = colorSwap.shader;
         
         if (splash) {
-            posXP = PlayState.instance.playerStrums.members[0].x;
-            posXB = PlayState.instance.playerStrums.members[1].x;
-            posXG = PlayState.instance.playerStrums.members[2].x;
-            posXR = PlayState.instance.playerStrums.members[3].x;
+            var strums = PlayState.instance.playerStrums.members;
+            if (strums.length < 4) return;
+
+            posXP = strums[0].x;
+            posXB = strums[1].x;
+            posXG = strums[2].x;
+            posXR = strums[3].x;
+            posY = strums[3].y;
 
             // Create hold cover sprites
-            red = createSprite("red", Paths.image("holdCoverRed", "shared"), posXR - 107, posY - 80, "push");
-            purple = createSprite("purple", Paths.image("holdCoverPurple", "shared"), posXP - 107, posY - 80, "idle");
-            blue = createSprite("blue", Paths.image("holdCoverBlue", "shared"), posXB - 107, posY - 80, "push");
-            green = createSprite("green", Paths.image("holdCoverGreen", "shared"), posXG - 107, posY - 80, "push");
+            red = createSprite(Paths.getSparrowAtlas("holdCoverRed", "shared"), posXR - 107, posY - 80, "push");
+            purple = createSprite(Paths.getSparrowAtlas("holdCoverPurple", "shared"), posXP - 107, posY - 80, "idle");
+            blue = createSprite(Paths.getSparrowAtlas("holdCoverBlue", "shared"), posXB - 107, posY - 80, "push");
+            green = createSprite(Paths.getSparrowAtlas("holdCoverGreen", "shared"), posXG - 107, posY - 80, "push");
 
             // Hide sprites initially
             red.visible = false;
@@ -56,10 +55,10 @@ class NoteHoldSplash extends FlxSprite {
         }
     }
 
-    private function createSprite(name:String, path:String, x:Float, y:Float, anim:String):FlxSprite {
+    private function createSprite(frames:FlxSprite, x:Float, y:Float, anim:String):FlxSprite {
         var sprite = new FlxSprite(x, y);
-        sprite.frames = Paths.getSparrowAtlas(path);
-        sprite.animation.addByPrefix(anim, path, 24, false);
+        sprite.frames = frames;
+        sprite.animation.addByPrefix(anim, anim, 24, false);
         sprite.animation.play(anim);
         return sprite;
     }
@@ -68,18 +67,18 @@ class NoteHoldSplash extends FlxSprite {
         if (splash && isSustainNote) {
             switch (noteData) {
                 case 0:
-                    showEffect(purple, "idle", "byePurple");
+                    showEffect(purple, "idle");
                 case 1:
-                    showEffect(blue, "push", "byeBlue");
+                    showEffect(blue, "push");
                 case 2:
-                    showEffect(green, "push", "byeGreen");
+                    showEffect(green, "push");
                 case 3:
-                    showEffect(red, "push", "byeRed");
+                    showEffect(red, "push");
             }
         }
     }
 
-    private function showEffect(sprite:FlxSprite, anim:String, timerName:String) {
+    private function showEffect(sprite:FlxSprite, anim:String) {
         sprite.visible = true;
         sprite.animation.play(anim);
         new FlxTimer().start(0.56, function(_) {
@@ -88,31 +87,20 @@ class NoteHoldSplash extends FlxSprite {
     }
 
     override function update(elapsed:Float) {
-        var isPixel = PlayState.isPixelStage;
-        if (isPixel) {
+        if (PlayState.isPixelStage) {
             FlxG.state.remove(red);
             FlxG.state.remove(blue);
             FlxG.state.remove(green);
             FlxG.state.remove(purple);
         }
 
-        // Update positions based on strum line lol
-        for (i in 0...3) {
-            var strum = PlayState.instance.playerStrums.members[i];
-            switch (i) {
-                case 0:
-                    purple.x = strum.x - 107;
-                    purple.y = strum.y - 80;
-                case 1:
-                    blue.x = strum.x - 107;
-                    blue.y = strum.y - 80;
-                case 2:
-                    green.x = strum.x - 107;
-                    green.y = strum.y - 80;
-                case 3:
-                    red.x = strum.x - 107;
-                    red.y = strum.y - 80;
-            }
-        }
+        var strums = PlayState.instance.playerStrums.members;
+        if (strums.length < 4) return;
+
+        // Update sprite positions
+        purple.setPosition(strums[0].x - 107, strums[0].y - 80);
+        blue.setPosition(strums[1].x - 107, strums[1].y - 80);
+        green.setPosition(strums[2].x - 107, strums[2].y - 80);
+        red.setPosition(strums[3].x - 107, strums[3].y - 80);
     }
 }
