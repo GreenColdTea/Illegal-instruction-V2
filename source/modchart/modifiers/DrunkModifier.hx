@@ -96,7 +96,13 @@ class DrunkModifier extends Modifier {
         var p = props[i];
         for (prop in p) submods.push('$mod$axe$prop');
 
-        for (d in 0...PlayState.keyCount) {
+        var maxLane = 0;
+        for (note in PlayState.instance.notes) {
+          if (note.noteData > maxLane) maxLane = note.noteData;
+        }
+        var laneCount = maxLane + 1; // Strum notes amount
+
+        for (d in 0...laneCount) {
           submods.push('$mod$axe$d');
           for (prop in p) submods.push('$mod$axe$d$prop');
         }
