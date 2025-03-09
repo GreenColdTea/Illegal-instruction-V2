@@ -1980,6 +1980,51 @@ class FunkinLua {
 			}
 		});
 
+		//modchart shit
+		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
+                        if (ModManager.exists(name)) return false; // Не даем создать два одинаковых
+
+                        var mod:Modifier = null;
+                        switch (type.toLowerCase()) {
+                               case "reverse":
+                                     mod = new ReverseModifier(ModManager);
+                               case "flip":
+                                     mod = new FlipModifier(ModManager);
+                               case "drunk":
+                                     mod = new DrunkModifier(ModManager);
+                               case "confusion":
+                                     mod = new ConfusionModifier(ModManager);
+                               case "tornado":
+                                     mod = new TornadoModifier(ModManager);
+                               case "mini":
+                                     mod = new ScaleModifier(ModManager);
+                               case "scrollangle":
+                                     mod = new AngleModifier(ModManager);
+                               case "boost":
+                                     mod = new AccelModifier(ModManager);
+                        }
+
+                        if (mod != null) {
+                                ModManager.defineMod(name, mod);
+                                return true;
+                        }
+                        return false;
+                });
+		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
+                        if (ModManager.exists(name)) {
+                                ModManager.set(name, percent, player);
+                                return true;
+                        }
+                        return false;
+                });
+		Lua_helper.add_callback(lua, "removeMod", function(name:String) {
+                        if (ModManager.exists(name)) {
+                                ModManager.removeMod(name);
+                                return true;
+                        }
+                        return false;
+                });
+
 		Lua_helper.add_callback(lua, "initSaveData", function(name:String, ?folder:String = 'psychenginemods') {
 			if(!PlayState.instance.modchartSaves.exists(name))
 			{
