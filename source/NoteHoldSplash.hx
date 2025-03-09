@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import shaders.ColorSwap;
 
-class NoteHoldSplash {
+class NoteHoldSplash extends FlxSprite {
     var splash:Bool;
     var posY:Float;
     var posXP:Float;
@@ -39,10 +39,10 @@ class NoteHoldSplash {
             posY = strums[3].y;
 
             // Create hold cover sprites
-            red = createSprite(Paths.getSparrowAtlas("holdCoverRed", "shared"), posXR - 107, posY - 80, "push");
-            purple = createSprite(Paths.getSparrowAtlas("holdCoverPurple", "shared"), posXP - 107, posY - 80, "idle");
-            blue = createSprite(Paths.getSparrowAtlas("holdCoverBlue", "shared"), posXB - 107, posY - 80, "push");
-            green = createSprite(Paths.getSparrowAtlas("holdCoverGreen", "shared"), posXG - 107, posY - 80, "push");
+            red = createSprite("holdCoverRed", posXR - 107, posY - 80, "push");
+            purple = createSprite("holdCoverPurple", posXP - 107, posY - 80, "idle");
+            blue = createSprite("holdCoverBlue", posXB - 107, posY - 80, "push");
+            green = createSprite("holdCoverGreen", posXG - 107, posY - 80, "push");
 
             // Hide sprites initially
             red.visible = false;
@@ -57,9 +57,9 @@ class NoteHoldSplash {
         }
     }
 
-    private function createSprite(frames:FlxSprite, x:Float, y:Float, anim:String):FlxSprite {
+    private function createSprite(path:String, x:Float, y:Float, anim:String):FlxSprite {
         var sprite = new FlxSprite(x, y);
-        sprite.frames = frames;
+        sprite.frames = Paths.getSparrowAtlas(path, "shared");
         sprite.animation.addByPrefix(anim, anim, 24, false);
         sprite.animation.play(anim);
         return sprite;
