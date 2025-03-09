@@ -297,7 +297,7 @@ class BallsFreeplay extends MusicBeatState
             }
             screenPlayers.add(songPlayable);
 
-	        var characterText = new FlxText(0, 0, songs[i].replace("-", " \n").toUpperCase());
+	        var characterText = new FlxText(0, 0, songs[i].replace("-", "\n").toUpperCase());
 	        characterText.updateHitbox();
             characterText.screenCenter();
             characterText.setFormat(Paths.font("pixel.otf"), 35, FlxColor.RED, "center");
