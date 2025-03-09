@@ -4686,7 +4686,8 @@ class PlayState extends MusicBeatState
             notes.remove(daNote, true);
             daNote.destroy();
         }
-    }
+    });
+}
 		checkEventNote();
 
 		#if debug
