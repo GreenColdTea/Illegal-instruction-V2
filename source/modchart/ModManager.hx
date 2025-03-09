@@ -1,6 +1,6 @@
-// ANDROMEDA MODCHART SYSTEM IN PSYCH FOR SONIC.EXE!!!
+// TROLL MODCHART SYSTEM IN PSYCH!!!
 // WRITTEN BY NEBULA_ZORUA!!
-// PORTED FROM https://github.com/nebulazorua/andromeda-engine
+// PORTED FROM https://github.com/nebulazorua/troll-engine
 
 package modchart;
 
