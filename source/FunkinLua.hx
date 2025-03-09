@@ -2000,39 +2000,39 @@ class FunkinLua {
 
                     var mod:Modifier = switch (type.toLowerCase().trim()) {
                         case "reverse":
-                            mod = new ReverseModifier(modManager);
+                            new ReverseModifier(modManager);
                         case "flip":
-                            mod = new FlipModifier(modManager);
+                            new FlipModifier(modManager);
                         case "drunk":
-                            mod = new DrunkModifier(modManager);
+                            new DrunkModifier(modManager);
                         case "confusion":
-                            mod = new ConfusionModifier(modManager);
+                            new ConfusionModifier(modManager);
                         case "tornado":
-                            mod = new TornadoModifier(modManager);
+                            new TornadoModifier(modManager);
                         case "mini":
-                            mod = new ScaleModifier(modManager);
+                            new ScaleModifier(modManager);
 			case "invent":
-			    mod = new InvertModifier(modManager);
+			    new InvertModifier(modManager);
 			case "rotatex":
-			    mod = new RotateModifier(modManager);
+			    new RotateModifier(modManager);
 			case "centerrotatex":
-			    mod = new RotateModifier(modManager,'center', new Vector3(FlxG.width/2 - Note.swagWidth / 2,FlxG.height/2 - Note.swagWidth / 2));
+			    new RotateModifier(modManager,'center', new Vector3(FlxG.width/2 - Note.swagWidth / 2,FlxG.height/2 - Note.swagWidth / 2));
 		        case "localrotatex":
-			    mod = new LocalRotateModifier(modManager);
+			    new LocalRotateModifier(modManager);
                         case "scrollangle":
-                            mod = new AngleModifier(modManager);
+                            new AngleModifier(modManager);
 			case "receptorscroll":
-			    mod = new ReceptorScrollModifier(modManager);
+			    new ReceptorScrollModifier(modManager);
 			case "beat":
-			    mod = new BeatModifier(modManager);
+			    new BeatModifier(modManager);
                         case "boost":
-                            mod = new AccelModifier(modManager);
+                            new AccelModifier(modManager);
 			case "infinite":
-			    mod = new PathModifier(modManager, modManager.infPath, 1850);
+			    new PathModifier(modManager, modManager.infPath, 1850);
 			case "transformx":
-			    mod = new TransformModifier(modManager);
+			    new TransformModifier(modManager);
 			case "perspective":
-			    mod = new PerspectiveModifier(modManager);
+			    new PerspectiveModifier(modManager);
 			default:
                             luaTrace('addMod: Invalid modifier type "' + type + '"!', true);
                             null;
