@@ -131,9 +131,11 @@ class NoteHoldSplash extends FlxSprite {
         }
     }
 
-    public function update(elapsed:Float) {
+    override function update(elapsed:Float) {
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
+
+        super.update(elapsed);
 
         for (i in 0...notedatas.length) {
             var noteName = notedatas[i];
