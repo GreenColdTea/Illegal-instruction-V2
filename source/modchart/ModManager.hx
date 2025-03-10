@@ -27,9 +27,19 @@ class ModManager {
 
     private var easingFuncs:Map<String, Float->Float> = [
         "linear" => FlxEase.linear,
-        "quadIn" => FlxEase.quadIn,
-        "quadOut" => FlxEase.quadOut,
-        "quadInOut" => FlxEase.quadInOut
+
+        "quadIn" => FlxEase.quadIn, "quadOut" => FlxEase.quadOut, "quadInOut" => FlxEase.quadInOut,
+        "cubeIn" => FlxEase.cubeIn, "cubeOut" => FlxEase.cubeOut, "cubeInOut" => FlxEase.cubeInOut,
+        "quartIn" => FlxEase.quartIn, "quartOut" => FlxEase.quartOut, "quartInOut" => FlxEase.quartInOut,
+        "quintIn" => FlxEase.quintIn, "quintOut" => FlxEase.quintOut, "quintInOut" => FlxEase.quintInOut,
+    
+        "sineIn" => FlxEase.sineIn, "sineOut" => FlxEase.sineOut, "sineInOut" => FlxEase.sineInOut,
+        "expoIn" => FlxEase.expoIn, "expoOut" => FlxEase.expoOut, "expoInOut" => FlxEase.expoInOut,
+        "circIn" => FlxEase.circIn, "circOut" => FlxEase.circOut, "circInOut" => FlxEase.circInOut,
+
+        "backIn" => FlxEase.backIn, "backOut" => FlxEase.backOut, "backInOut" => FlxEase.backInOut,
+        "elasticIn" => FlxEase.elasticIn, "elasticOut" => FlxEase.elasticOut, "elasticInOut" => FlxEase.elasticInOut,
+        "bounceIn" => FlxEase.bounceIn, "bounceOut" => FlxEase.bounceOut, "bounceInOut" => FlxEase.bounceInOut
     ];
 
     public function new(state:PlayState) {
