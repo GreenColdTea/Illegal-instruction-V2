@@ -15,7 +15,7 @@ class AttachedText extends Alphabet
 		isMenuItem = false;
 		this.offsetX = offsetX;
 		this.offsetY = offsetY;
-		this.textFont = textFont
+		this.textFont = textFont;
 	}
 
 	override function update(elapsed:Float) {
