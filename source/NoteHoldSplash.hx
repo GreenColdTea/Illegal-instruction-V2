@@ -6,7 +6,7 @@ import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import shaders.ColorSwap;
 
-class NoteHoldSplash {
+class NoteHoldSplash extends FlxSprite {
     private var holdfolders:String = "holdCover";
     private var notedatas:Array<String> = ["Purple", "Blue", "Green", "Red"];
     
