@@ -81,15 +81,16 @@ class ModManager {
         defineMod("perspective", new PerspectiveModifier(this));
 
         // Optimizations for infPath
-        for (r in 0...360 step 15) {
-            var rad = r * Math.PI / 180;
+        var r = 0;
+        while (r < 360) {
             for (data in 0...infPath.length) {
+                var rad = r * Math.PI / 180;
                 infPath[data].push(new Vector3(
                     FlxG.width / 2 + (FlxMath.fastSin(rad)) * 600,
-                    FlxG.height / 2 + (FlxMath.fastSin(rad) * FlxMath.fastCos(rad)) * 600,
-                    0
+                    FlxG.height / 2 + (FlxMath.fastSin(rad) * FlxMath.fastCos(rad)) * 600, 0
                 ));
             }
+            r += 15;
         }
         defineMod("infinite", new PathModifier(this, infPath, 1850));
     }
