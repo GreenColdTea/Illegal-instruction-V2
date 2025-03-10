@@ -54,7 +54,7 @@ class NoteHoldCover extends FlxTypedSpriteGroup<FlxSprite>
 
         for (direction in NoteDirection.ALL_DIRECTIONS)
         {
-            var directionName = direction.colorName.toTitleCase();
+            var directionName = CoolUtil.toTitleCase(direction.colorName);
             FlxAnimationUtil.addAtlasAnimation(glow, new AnimationData('holdCoverStart$directionName', 'holdCoverStart${directionName}0', FRAMERATE_DEFAULT, false));
             FlxAnimationUtil.addAtlasAnimation(glow, new AnimationData('holdCover$directionName', 'holdCover${directionName}0', FRAMERATE_DEFAULT, true));
             FlxAnimationUtil.addAtlasAnimation(glow, new AnimationData('holdCoverEnd$directionName', 'holdCoverEnd${directionName}0', FRAMERATE_DEFAULT, false));
