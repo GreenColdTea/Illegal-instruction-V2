@@ -127,7 +127,6 @@ class NoteHoldSplash {
                 sprite.animation.play("hold");
             }
         }
-    }
 
     function update(elapsed:Float) {
         var strums = PlayState.instance.playerStrums.members;
