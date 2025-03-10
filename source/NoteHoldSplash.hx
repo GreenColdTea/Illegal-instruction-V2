@@ -97,7 +97,7 @@ class NoteHoldSplash extends FlxSprite {
         }
 
         var strums = PlayState.instance.playerStrums.members;
-        if (strums.length < 4) return;
+        if (strums == null || strums.length < 4) return; // Prevents null reference errors
 
         // Update sprite positions
         purple.setPosition(strums[0].x - 107, strums[0].y - 80);
