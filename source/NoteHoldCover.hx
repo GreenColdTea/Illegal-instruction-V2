@@ -28,6 +28,10 @@ class NoteHoldCover extends FlxTypedSpriteGroup<FlxSprite>
         setup();
     }
 
+    function toTitleCase(str:String):String {
+        return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+    }
+
     public static function preloadFrames():Void
     {
         holdFrames = null;
@@ -230,5 +234,25 @@ class FlxAnimationUtil
         for (frame in a.frames) result.pushFrame(frame);
         for (frame in b.frames) result.pushFrame(frame);
         return result;
+    }
+}
+
+class AnimationData {
+    public var name:String;
+    public var prefix:String;
+    public var frameRate:Int = 24;
+    public var looped:Bool = false;
+    public var flipX:Bool = false;
+    public var flipY:Bool = false;
+    public var frameIndices:Array<Int> = [];
+
+    public function new(name:String, prefix:String, frameRate:Int = 24, looped:Bool = false, flipX:Bool = false, flipY:Bool = false, frameIndices:Array<Int> = []) {
+        this.name = name;
+        this.prefix = prefix;
+        this.frameRate = frameRate;
+        this.looped = looped;
+        this.flipX = flipX;
+        this.flipY = flipY;
+        this.frameIndices = frameIndices;
     }
 }
