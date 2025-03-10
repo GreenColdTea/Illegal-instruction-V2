@@ -51,7 +51,7 @@ class CoolUtil
 		return difficulties[PlayState.storyDifficulty].toUpperCase();
 	}
 
-	function toTitleCase(str:String):String {
+	public static function toTitleCase(str:String):String {
                 return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 	}
 
