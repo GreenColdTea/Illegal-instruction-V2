@@ -444,7 +444,11 @@ class Note extends FlxSprite
 		if (mustPress)
 		{
 			// ok river
-			canBeHit = true;
+			if (strumTime > Conductor.songPosition - hitbox
+			&& strumTime < Conductor.songPosition + (hitbox * earlyHitMult))
+				canBeHit = true;
+			else
+				canBeHit = false;
 
 			if (strumTime < Conductor.songPosition - hitbox && !wasGoodHit)
 				tooLate = true;
