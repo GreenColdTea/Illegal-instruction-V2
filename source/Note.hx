@@ -470,4 +470,8 @@ class Note extends FlxSprite
 				alpha = 0.3;
 		}
 	}
+
+	override function draw(){
+		super.draw();
+	}
 }
