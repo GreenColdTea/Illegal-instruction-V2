@@ -119,29 +119,35 @@ class ModManager {
     }
 
     public function getList(modName:String, player:Int):Array<ModEvent> {
-        if (definedMods.exists(modName)) {
-            var list:Array<ModEvent> = [];
+        var list:Array<ModEvent> = [];
+    
+        if (schedule.exists(modName)) {
             for (e in schedule[modName]) {
-                if (e.player == player) {
-                    list.push(e);
+                if (Std.isOfType(e, ModEvent)) {
+                    var modEvent:ModEvent = cast e;
+                    if (modEvent.player == player) {
+                        list.push(modEvent);
+                    }
                 }
             }
-            list.sort((a, b) -> Std.int(a.step - b.step));
-            return list;
         }
-        return [];
+    
+        list.sort((a, b) -> Std.int(a.step - b.step));
+        return list;
     }
-
+    
     public function getLatest(modName:String, player:Int) {
         return schedule[modName] != null && schedule[modName].length > 0
             ? schedule[modName][schedule[modName].length - 1]
             : new ModEvent(0, modName, 0, 0, this);
     }
 
-    public function getPreviousWithEvent(event:ModEvent):ModEvent {
-        var list = getList(event.modName, event.player);
-        var idx = list.indexOf(event);
-        return (idx > 0) ? list[idx - 1] : new ModEvent(0, event.modName, 0, event.player, this);
+    public function getLatestWithEvent(event:Event) {
+        if (Std.isOfType(event, ModEvent)) {
+            var modEvent:ModEvent = cast event;
+            return getLatest(modEvent.modName, modEvent.player);
+        }
+        return new ModEvent(0, "", 0, 0, this);
     }
 
     public function getLatestWithEvent(event:ModEvent):ModEvent {
