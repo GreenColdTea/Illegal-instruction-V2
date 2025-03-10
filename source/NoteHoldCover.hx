@@ -36,7 +36,7 @@ class NoteHoldCover extends FlxTypedSpriteGroup<FlxSprite>
         {
             var directionName = direction.colorName.toTitleCase();
 
-            var atlas:FlxFramesCollection = Paths.getSparrowAtlas('holdCover${directionName}');
+            var atlas:FlxFramesCollection = Paths.getSparrowAtlas('holdCover/holdCover${directionName}', "shared");
             atlas.parent.persist = true;
 
             if (holdFrames != null)
