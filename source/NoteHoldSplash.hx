@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
+import shaders.ColorSwap;
 
 class NoteHoldSplash extends FlxSprite {
     private var holdfolders:String = "holdCover";
@@ -39,6 +40,13 @@ class NoteHoldSplash extends FlxSprite {
         sprite.setGraphicSize(Std.int(sprite.width * 0.8)); // Adjust size if necessary
         sprite.updateHitbox();
         sprite.scrollFactor.set();
+
+        var colorSwap = new ColorSwap();
+        colorSwap.hue = ClientPrefs.arrowHSV[noteIndex][0] / 360;
+        colorSwap.saturation = ClientPrefs.arrowHSV[noteIndex][1] / 100;
+        colorSwap.brightness = ClientPrefs.arrowHSV[noteIndex][2] / 100;
+        sprite.shader = colorSwap.shader;
+        
         return sprite;
     }
 
@@ -123,7 +131,7 @@ class NoteHoldSplash extends FlxSprite {
         }
     }
 
-    piblic function update(elapsed:Float) {
+    public function update(elapsed:Float) {
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
 
