@@ -38,7 +38,7 @@ class ReverseModifier extends Modifier {
         return percent;
     }
 
-    public function getScrollReversePerc(dir:Int, player:Int):Float {
+    override public function getScrollReversePerc(dir:Int, player:Int):Float {
         return getReversePercent(dir, player);
     }
 
