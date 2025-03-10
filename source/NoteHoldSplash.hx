@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import shaders.ColorSwap;
 
-class NoteHoldSplash extends FlxSprite {
+class NoteHoldSplash {
     
     private var holdfolders:String = "holdCover";
     private var notedatas:Array<String> = ["Purple", "Blue", "Green", "Red"];
@@ -20,8 +20,6 @@ class NoteHoldSplash extends FlxSprite {
 
     public function new() {
         if (PlayState.instance == null || !ClientPrefs.noteSplashes) return;
-        
-        super();
 
         for (i in 0...notedatas.length) {
             var name = notedatas[i];
@@ -121,9 +119,7 @@ class NoteHoldSplash extends FlxSprite {
         }
     }
 
-    override function update(elapsed:Float) {
-        
-        super.update(elapsed);
+    public function update(elapsed:Float) {
 
         if (!ClientPrefs.noteSplashes) return;
 
