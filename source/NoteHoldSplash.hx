@@ -39,10 +39,10 @@ class NoteHoldSplash extends FlxSprite {
             posY = strums[3].y;
 
             // Create hold cover sprites
-            red = createSprite("holdCoverRed", posXR - 107, posY - 80, "push");
-            purple = createSprite("holdCoverPurple", posXP - 107, posY - 80, "idle");
-            blue = createSprite("holdCoverBlue", posXB - 107, posY - 80, "push");
-            green = createSprite("holdCoverGreen", posXG - 107, posY - 80, "push");
+            red = createSprite("holdCoverRed", posXR - 107, posY - 80);
+            purple = createSprite("holdCoverPurple", posXP - 107, posY - 80);
+            blue = createSprite("holdCoverBlue", posXB - 107, posY - 80);
+            green = createSprite("holdCoverGreen", posXG - 107, posY - 80);
 
             // Hide sprites initially
             red.visible = false;
@@ -57,9 +57,9 @@ class NoteHoldSplash extends FlxSprite {
         }
     }
 
-    private function createSprite(path:String, x:Float, y:Float, anim:String):FlxSprite {
+    private function createSprite(anim:String, x:Float, y:Float):FlxSprite {
         var sprite = new FlxSprite(x, y);
-        sprite.frames = Paths.getSparrowAtlas(path, "shared");
+        sprite.frames = Paths.getSparrowAtlas(anim, "shared");
         sprite.animation.addByPrefix(anim, anim, 24, false);
         sprite.animation.play(anim);
         return sprite;
