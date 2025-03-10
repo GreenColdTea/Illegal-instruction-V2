@@ -4056,11 +4056,11 @@ class PlayState extends MusicBeatState
 		}
 
 		if (SONG.song.toLowerCase() == "found-you-legacy" && curStep < 3359)
-	    {
+	        {
 			changeIcon("bf", [50, 73, 127]);
 		}
 
-		noteHoldSplashes.update(elapsed);
+		if (noteHoldSplashes != null) noteHoldSplashes.update(elapsed);
 
 		//time bar personalized with dad health bar
 		var dadColR = dad.healthColorArray[0];
