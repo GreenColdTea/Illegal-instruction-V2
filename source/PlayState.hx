@@ -2758,7 +2758,8 @@ class PlayState extends MusicBeatState
 		add(barbedWires);
 		add(wireVignette);
 
-		noteHoldSplashes = new NoteHoldSplash();			    
+		noteHoldSplashes = new NoteHoldSplash();
+		add(noteHoldSplashes);
 
 		var daSong:String = Paths.formatToSongPath(curSong);
 	
