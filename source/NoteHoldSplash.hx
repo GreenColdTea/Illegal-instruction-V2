@@ -42,9 +42,9 @@ class NoteHoldSplash extends FlxSprite {
         sprite.scrollFactor.set();
 
         var colorSwap = new ColorSwap();
-        colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
-        colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
-        colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
+        colorSwap.hue = ClientPrefs.arrowHSV[Note.noteData % 4][0] / 360;
+        colorSwap.saturation = ClientPrefs.arrowHSV[Note.noteData % 4][1] / 100;
+        colorSwap.brightness = ClientPrefs.arrowHSV[Note.noteData % 4][2] / 100;
         sprite.shader = colorSwap.shader;
         
         return sprite;
@@ -133,6 +133,8 @@ class NoteHoldSplash extends FlxSprite {
     override function update(elapsed:Float) {
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
+
+        super.update(elapsed);
 
         for (i in 0...notedatas.length) {
             var noteName = notedatas[i];
