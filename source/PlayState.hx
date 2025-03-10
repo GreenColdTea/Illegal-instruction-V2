@@ -226,7 +226,7 @@ class PlayState extends MusicBeatState
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
-	private var noteHoldSplashes:NoteHoldSplash;
+	private var noteHoldCovers:Map<Note, NoteHoldCover> = [];
 
 	private var curSong:String = "";
 
@@ -2770,9 +2770,6 @@ class PlayState extends MusicBeatState
 		add(barbedWires);
 		add(wireVignette);
 
-		noteHoldSplashes = new NoteHoldSplash();
-		add(noteHoldSplashes);
-
 		var daSong:String = Paths.formatToSongPath(curSong);
 	
         add(blackFuck);
@@ -3898,6 +3895,16 @@ class PlayState extends MusicBeatState
 			strumLineNotes.add(babyArrow);
 			babyArrow.postAddedToGroup();
 		}
+
+      if (ClientPrefs.noteSplashes) {
+         for (note in notes.members) {
+             if (note.isSustainNote) {
+                 var holdCover = new NoteHoldCover(note);
+                 noteHoldCovers.set(note, holdCover);
+                 add(holdCover);
+             }
+         }
+      }
 	}
 
 	override function openSubState(SubState:FlxSubState)
@@ -4068,11 +4075,17 @@ class PlayState extends MusicBeatState
 		}
 
 		if (SONG.song.toLowerCase() == "found-you-legacy" && curStep < 3359)
-	        {
+	   {
 			changeIcon("bf", [50, 73, 127]);
 		}
 
-		if (noteHoldSplashes != null) noteHoldSplashes.update(elapsed);
+		if (!ClientPrefs.noteSplashes) {
+         for (note => holdCover in noteHoldCovers) {
+             remove(holdCover);
+         }
+         noteHoldCovers.clear();
+         return;
+      }
 
 		//time bar personalized with dad health bar
 		var dadColR = dad.healthColorArray[0];
@@ -5887,6 +5900,9 @@ class PlayState extends MusicBeatState
 	}
 
 	function noteMiss(daNote:Note):Void { //You didn't hit the key and let it go offscreen, also used by Hurt Notes
+      if (note.isSustainNote && noteHoldCovers.exists(note)) {
+         noteHoldCovers.get(note).playEnd();
+      }
 		//Dupe note remove
 		notes.forEachAlive(function(note:Note) {
 			if (daNote != note && daNote.mustPress && daNote.noteData == note.noteData && daNote.isSustainNote == note.isSustainNote && Math.abs(daNote.strumTime - note.strumTime) < 1) {
@@ -5946,6 +5962,7 @@ class PlayState extends MusicBeatState
 		}
 
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
+      noteHoldCovers.remove(note);
 	}
 
 	function noteMissPress(direction:Int = 1):Void //You pressed a key when there was no notes to press for this key
@@ -6230,10 +6247,10 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (noteHoldSplashes != null) {
-                        noteHoldSplashes.goodNoteHit(notes.members.indexOf(note), note.noteData, note.noteType, note.isSustainNote);
-		}
-		
+		if (note.isSustainNote && noteHoldCovers.exists(note)) {
+         noteHoldCovers.get(note).playStart();
+      }
+		noteHoldCovers.remove(note);
 	}
 
 	function spawnNoteSplashOnNote(note:Note) {
