@@ -10,11 +10,12 @@ class AttachedText extends Alphabet
 	public var sprTracker:FlxSprite;
 	public var copyVisible:Bool = true;
 	public var copyAlpha:Bool = false;
-	public function new(text:String = "", ?offsetX:Float = 0, ?offsetY:Float = 0, ?bold = false, ?scale:Float = 1) {
+	public function new(text:String = "", ?offsetX:Float = 0, ?offsetY:Float = 0, ?bold = false, ?scale:Float = 1, ?textFont:String = "chaotix.ttf") {
 		super(0, 0, text, bold, false, 0.05, scale);
 		isMenuItem = false;
 		this.offsetX = offsetX;
 		this.offsetY = offsetY;
+		this.textFont = textFont
 	}
 
 	override function update(elapsed:Float) {
