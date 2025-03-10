@@ -52,7 +52,7 @@ class CoolUtil
 	}
 
 	function toTitleCase(str:String):String {
-        return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+                return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 	}
 
 	public static function rotate(x:Float, y:Float, angle:Float, ?point:FlxPoint):FlxPoint{
