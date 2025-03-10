@@ -599,6 +599,18 @@ class PlayState extends MusicBeatState
 
 	var scoreRandom:Bool = false;
 
+	override function draw()
+	{
+		super.draw();
+		// trace('it is being called');
+		/*holdRenderer.drawHoldNotes(camHUD.canvas.graphics);
+			@:privateAccess
+			camHUD.canvas.graphics.__dirty = true; */
+
+		// ^^ this does NOT work and I have no clue why
+		// if someone wants to fix it, then go ahead
+	}
+
 	override public function create()
 	{
 		Paths.clearStoredMemory();
