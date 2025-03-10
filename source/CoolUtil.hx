@@ -51,11 +51,15 @@ class CoolUtil
 		return difficulties[PlayState.storyDifficulty].toUpperCase();
 	}
 
+	function toTitleCase(str:String):String {
+        return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+	}
+
 	public static function rotate(x:Float, y:Float, angle:Float, ?point:FlxPoint):FlxPoint{
-		var p = point==null?FlxPoint.get():point;
+		var p = point == null ? FlxPoint.get():point;
 		p.set(
-			(x*Math.cos(angle))-(y*Math.sin(angle)),
-			(x*Math.sin(angle))+(y*Math.cos(angle))
+			(x * Math.cos(angle)) - (y * Math.sin(angle)),
+			(x * Math.sin(angle)) + (y * Math.cos(angle))
 		);
 		return p;
 	}
