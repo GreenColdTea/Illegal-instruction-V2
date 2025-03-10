@@ -6,6 +6,7 @@ import flixel.util.FlxTimer;
 import shaders.ColorSwap;
 
 class NoteHoldSplash extends FlxSprite {
+    
     private var holdfolders:String = "holdCover";
     private var notedatas:Array<String> = ["Purple", "Blue", "Green", "Red"];
     
@@ -18,7 +19,7 @@ class NoteHoldSplash extends FlxSprite {
     private var holdEndOffsets = { x: -110, y: -93 };
 
     public function new() {
-        if (PlayState.instance == null) return;
+        if (PlayState.instance == null || !ClientPrefs.noteSplashes) return;
         
         super();
 
@@ -50,7 +51,7 @@ class NoteHoldSplash extends FlxSprite {
     }
 
     public function goodNoteHit(id:Int, direction:Int, noteType:String, isSustainNote:Bool) {
-        if (!isSustainNote) return;
+        if (!isSustainNote || !ClientPrefs.noteSplashes) return;
 
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || direction >= strums.length) return;
@@ -93,7 +94,7 @@ class NoteHoldSplash extends FlxSprite {
     }
 
     public function opponentNoteHit(id:Int, direction:Int, noteType:String, isSustainNote:Bool) {
-        if (!isSustainNote) return;
+        if (!isSustainNote || !ClientPrefs.noteSplashes) return;
 
         var strums = PlayState.instance.opponentStrums.members;
         if (strums == null || direction >= strums.length) return;
@@ -121,7 +122,10 @@ class NoteHoldSplash extends FlxSprite {
     }
 
     override function update(elapsed:Float) {
+        
         super.update(elapsed);
+
+        if (!ClientPrefs.noteSplashes) return;
 
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
