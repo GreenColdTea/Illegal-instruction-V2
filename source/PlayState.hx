@@ -5900,8 +5900,8 @@ class PlayState extends MusicBeatState
 	}
 
 	function noteMiss(daNote:Note):Void { //You didn't hit the key and let it go offscreen, also used by Hurt Notes
-      if (note.isSustainNote && noteHoldCovers.exists(note)) {
-         noteHoldCovers.get(note).playEnd();
+      if (daNote.isSustainNote && noteHoldCovers.exists(daNote)) {
+         noteHoldCovers.get(daNote).playEnd();
       }
 		//Dupe note remove
 		notes.forEachAlive(function(note:Note) {
@@ -5962,7 +5962,7 @@ class PlayState extends MusicBeatState
 		}
 
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
-      noteHoldCovers.remove(note);
+      noteHoldCovers.remove(daNote);
 	}
 
 	function noteMissPress(direction:Int = 1):Void //You pressed a key when there was no notes to press for this key
