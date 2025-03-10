@@ -3,106 +3,136 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
-import shaders.ColorSwap;
+import flixel.util.FlxColor;
 
-class NoteHoldSplash extends FlxSprite {
-    var splash:Bool;
-    var posY:Float;
-    var posXP:Float;
-    var posXB:Float;
-    var posXG:Float;
-    var posXR:Float;
+class NoteHoldSplash extends {
+    private var holdfolders:String = "holdCover";
+    private var notedatas:Array<String> = ["Purple", "Blue", "Green", "Red"];
+    
+    private var holdSprites:Map<String, FlxSprite> = [];
+    private var holdEndSprites:Map<String, FlxSprite> = [];
+    private var visiblehold:Array<Bool> = [false, false, false, false];
+    private var oppovisiblehold:Array<Bool> = [false, false, false, false];
 
-    var red:FlxSprite;
-    var purple:FlxSprite;
-    var blue:FlxSprite;
-    var green:FlxSprite;
-
-    var colorSwap:ColorSwap;
+    private var holdOffsets = { x: -110, y: -93 };
+    private var holdEndOffsets = { x: -110, y: -93 };
 
     public function new() {
-        super();
-        
         if (PlayState.instance == null) return;
 
-        splash = ClientPrefs.noteSplashes;
-        colorSwap = new ColorSwap();
-        
-        if (splash) {
-            var strums = PlayState.instance.playerStrums.members;
-            if (strums.length < 4) return;
+        super();
 
-            posXP = strums[0].x;
-            posXB = strums[1].x;
-            posXG = strums[2].x;
-            posXR = strums[3].x;
-            posY = strums[3].y;
-
-            // Create hold cover sprites
-            red = createSprite("holdCoverRed", posXR - 107, posY - 80);
-            purple = createSprite("holdCoverPurple", posXP - 107, posY - 80);
-            blue = createSprite("holdCoverBlue", posXB - 107, posY - 80);
-            green = createSprite("holdCoverGreen", posXG - 107, posY - 80);
-
-            // Hide sprites initially
-            red.visible = false;
-            purple.visible = false;
-            blue.visible = false;
-            green.visible = false;
-
-            FlxG.state.add(red);
-            FlxG.state.add(purple);
-            FlxG.state.add(blue);
-            FlxG.state.add(green);
+        for (i in 0...notedatas.length) {
+            var name = notedatas[i];
+            var sprite = createAnimatedSprite("holdCoverEnd" + name, holdfolders + name, -2000, -2000, "holdend");
+            sprite.visible = false;
+            holdEndSprites.set(name, sprite);
+            FlxG.state.add(sprite);
         }
     }
 
-    private function createSprite(anim:String, x:Float, y:Float):FlxSprite {
+    private function createAnimatedSprite(name:String, path:String, x:Float, y:Float, anim:String):FlxSprite {
         var sprite = new FlxSprite(x, y);
-        sprite.frames = Paths.getSparrowAtlas(anim, "shared");
-        sprite.animation.addByPrefix(anim, anim, 24, false);
+        sprite.frames = Paths.getSparrowAtlas(path, "shared");
+        sprite.animation.addByPrefix(anim, "holdCoverEnd" + name, 24, false);
         sprite.animation.play(anim);
+        sprite.setGraphicSize(Std.int(sprite.width * 0.8)); // Adjust size if necessary
+        sprite.updateHitbox();
+        sprite.scrollFactor.set();
         return sprite;
     }
 
-    public function goodNoteHit(noteData:Int, isSustainNote:Bool) {
-        if (splash && isSustainNote) {
-            switch (noteData) {
-                case 0:
-                    showEffect(purple, "idle");
-                case 1:
-                    showEffect(blue, "push");
-                case 2:
-                    showEffect(green, "push");
-                case 3:
-                    showEffect(red, "push");
+    public function goodNoteHit(id:Int, direction:Int, noteType:String, isSustainNote:Bool) {
+        if (!isSustainNote) return;
+
+        var strums = PlayState.instance.playerStrums.members;
+        if (strums == null || direction >= strums.length) return;
+
+        var posX = strums[direction].x;
+        var posY = strums[direction].y;
+
+        var noteName = notedatas[direction];
+        var sprite = holdSprites.get(noteName);
+
+        if (PlayState.instance.notes.members[id].animation.curAnim.name.toLowerCase().indexOf("end") != -1) {
+            // End hold animation
+            visiblehold[direction] = false;
+            if (sprite != null) sprite.visible = false;
+
+            var holdEndSprite = holdEndSprites.get(noteName);
+            if (holdEndSprite != null) {
+                holdEndSprite.setPosition(posX + holdEndOffsets.x, posY + holdEndOffsets.y);
+                holdEndSprite.visible = true;
+                holdEndSprite.animation.play("holdend");
+
+                new FlxTimer().start(0.56, function(_) {
+                    holdEndSprite.visible = false;
+                });
+            }
+        } else {
+            // Normal hold animation
+            if (!visiblehold[direction]) {
+                visiblehold[direction] = true;
+
+                if (sprite == null) {
+                    sprite = createAnimatedSprite("holdCover" + noteName, holdfolders + noteName, posX + holdOffsets.x, posY + holdOffsets.y, "hold");
+                    sprite.visible = true;
+                    holdSprites.set(noteName, sprite);
+                    FlxG.state.add(sprite);
+                }
+                
+                sprite.setPosition(posX + holdOffsets.x, posY + holdOffsets.y);
+                sprite.visible = true;
+                sprite.animation.play("hold");
             }
         }
     }
 
-    private function showEffect(sprite:FlxSprite, anim:String) {
-        sprite.visible = true;
-        sprite.animation.play(anim);
-        new FlxTimer().start(0.56, function(_) {
-            sprite.visible = false;
-        });
+    public function opponentNoteHit(id:Int, direction:Int, noteType:String, isSustainNote:Bool) {
+        if (!isSustainNote) return;
+
+        var strums = PlayState.instance.opponentStrums.members;
+        if (strums == null || direction >= strums.length) return;
+
+        var posX = strums[direction].x;
+        var posY = strums[direction].y;
+        var noteName = notedatas[direction];
+
+        if (PlayState.instance.notes.members[id].animation.curAnim.name.toLowerCase().indexOf("end") != -1) {
+            // Hide opponent hold splash on end
+            oppovisiblehold[direction] = false;
+            var sprite = holdSprites.get("OppoHoldCover" + noteName);
+            if (sprite != null) sprite.visible = false;
+        } else {
+            // Show opponent hold splash
+            /*if (!oppovisiblehold[direction]) {
+                oppovisiblehold[direction] = true;*/
+
+                var sprite = holdSprites.get("OppoHoldCover" + noteName);
+                if (sprite == null) {
+                    sprite = createAnimatedSprite("OppoHoldCover" + noteName, holdfolders + noteName, posX + holdOffsets.x, posY + holdOffsets.y, "hold");
+                    sprite.visible = true;
+                    holdSprites.set("OppoHoldCover" + noteName, sprite);
+                    //FlxG.state.add(sprite);
+                }
+
+                sprite.setPosition(posX + holdOffsets.x, posY + holdOffsets.y);
+                sprite.visible = true;
+                sprite.animation.play("hold");
+            }
+        }
     }
 
     override function update(elapsed:Float) {
-        if (PlayState.isPixelStage) {
-            FlxG.state.remove(red);
-            FlxG.state.remove(blue);
-            FlxG.state.remove(green);
-            FlxG.state.remove(purple);
-        }
-
         var strums = PlayState.instance.playerStrums.members;
-        if (strums == null || strums.length < 4) return; // Prevents null reference errors
+        if (strums == null || strums.length < 4) return;
 
-        // Update sprite positions
-        purple.setPosition(strums[0].x - 107, strums[0].y - 80);
-        blue.setPosition(strums[1].x - 107, strums[1].y - 80);
-        green.setPosition(strums[2].x - 107, strums[2].y - 80);
-        red.setPosition(strums[3].x - 107, strums[3].y - 80);
+        for (i in 0...notedatas.length) {
+            var noteName = notedatas[i];
+            var sprite = holdSprites.get(noteName);
+            if (sprite != null) {
+                sprite.setPosition(strums[i].x + holdOffsets.x, strums[i].y + holdOffsets.y);
+            }
+        }
     }
 }
