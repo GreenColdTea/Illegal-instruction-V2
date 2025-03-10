@@ -242,7 +242,9 @@ class AnimationData {
     public var flipY:Bool = false;
     public var frameIndices:Array<Int> = [];
 
-    public function new(name:String, prefix:String, frameRate:Int = 24, looped:Bool = false, flipX:Bool = false, flipY:Bool = false, frameIndices:Array<Int> = []) {
+    public function new(name:String, prefix:String, frameRate:Int = 24, looped:Bool = false, flipX:Bool = false, flipY:Bool = false, ?frameIndices:Array<Int> = null) {
+        if (frameIndices == null) frameIndices = [];
+        
         this.name = name;
         this.prefix = prefix;
         this.frameRate = frameRate;
