@@ -86,19 +86,19 @@ class NoteHoldCover extends FlxTypedSpriteGroup<FlxSprite>
     public function playStart():Void
     {
         var direction:NoteDirection = NoteDirection.fromInt(holdNote.noteData);
-        glow.animation.play('holdCoverStart${direction.colorName.toTitleCase()}');
+        glow.animation.play('holdCoverStart${CoolUtil.toTitleCase(direction.colorName)}');
     }
 
     public function playContinue():Void
     {
         var direction:NoteDirection = NoteDirection.fromInt(holdNote.noteData);
-        glow.animation.play('holdCover${direction.colorName.toTitleCase()}');
+        glow.animation.play('holdCover${CoolUtil.toTitleCase(direction.colorName)}');
     }
 
     public function playEnd():Void
     {
         var direction:NoteDirection = NoteDirection.fromInt(holdNote.noteData);
-        glow.animation.play('holdCoverEnd${direction.colorName.toTitleCase()}');
+        glow.animation.play('holdCoverEnd${CoolUtil.toTitleCase(direction.colorName)}');
     }
 
     public override function kill():Void
