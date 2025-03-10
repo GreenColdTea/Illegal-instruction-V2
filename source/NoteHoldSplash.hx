@@ -21,6 +21,8 @@ class NoteHoldSplash extends FlxSprite {
     public function new() {
         if (PlayState.instance == null) return;
 
+        super();
+
         for (i in 0...notedatas.length) {
             var name = notedatas[i];
             var sprite = createAnimatedSprite("holdCoverEnd" + name, holdfolders + name, -2000, -2000, "holdend");
@@ -40,9 +42,9 @@ class NoteHoldSplash extends FlxSprite {
         sprite.scrollFactor.set();
 
         var colorSwap = new ColorSwap();
-        colorSwap.hue = ClientPrefs.arrowHSV[noteIndex][0] / 360;
-        colorSwap.saturation = ClientPrefs.arrowHSV[noteIndex][1] / 100;
-        colorSwap.brightness = ClientPrefs.arrowHSV[noteIndex][2] / 100;
+        colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
+        colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
+        colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
         sprite.shader = colorSwap.shader;
         
         return sprite;
@@ -128,7 +130,7 @@ class NoteHoldSplash extends FlxSprite {
             }
         }
 
-    function update(elapsed:Float) {
+    override function update(elapsed:Float) {
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
 
