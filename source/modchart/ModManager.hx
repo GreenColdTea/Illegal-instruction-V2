@@ -142,16 +142,23 @@ class ModManager {
             : new ModEvent(0, modName, 0, 0, this);
     }
 
+    public function getPreviousWithEvent(event:ModEvent) {
+        if (definedMods[event.modName] != null) {
+            var list:Array<ModEvent> = getList(event.modName, event.player);
+            var idx = list.indexOf(event);
+            if (idx != -1 && idx > 0) {
+                return list[idx - 1];
+            }
+        }
+        return new ModEvent(0, event.modName, 0, 0, this);
+    }
+
     public function getLatestWithEvent(event:Event) {
         if (Std.isOfType(event, ModEvent)) {
             var modEvent:ModEvent = cast event;
             return getLatest(modEvent.modName, modEvent.player);
         }
         return new ModEvent(0, "", 0, 0, this);
-    }
-
-    public function getLatestWithEvent(event:ModEvent):ModEvent {
-        return getLatest(cast(event, ModEvent).modName, cast(event, ModEvent).player);
     }
 
     public function getNoteScale(note:Note):FlxPoint {
