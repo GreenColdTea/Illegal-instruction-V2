@@ -17,7 +17,7 @@ import ui.*;
 
 class ModManager {
     private var definedMods:Map<String, Modifier> = [];
-    private var schedule:Map<String, Array<ModEvent>> = [];
+    private var schedule:Map<String, Array<Event>> = [];
     private var funcs:Array<FuncEvent> = [];
     private var mods:Array<Modifier> = [];
     public var infPath:Array<Array<Vector3>> = [[], [], [], []];
