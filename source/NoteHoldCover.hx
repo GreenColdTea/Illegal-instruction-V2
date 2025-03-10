@@ -28,16 +28,12 @@ class NoteHoldCover extends FlxTypedSpriteGroup<FlxSprite>
         setup();
     }
 
-    function toTitleCase(str:String):String {
-        return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
-    }
-
     public static function preloadFrames():Void
     {
         holdFrames = null;
         for (direction in NoteDirection.ALL_DIRECTIONS)
         {
-            var directionName = direction.colorName.toTitleCase();
+            var directionName = CoolUtil.toTitleCase(direction.colorName);
 
             var atlas:FlxFramesCollection = Paths.getSparrowAtlas('holdCover/holdCover${directionName}', "shared");
             atlas.parent.persist = true;
