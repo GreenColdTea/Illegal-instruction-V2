@@ -123,7 +123,7 @@ class NoteHoldSplash extends FlxSprite {
         }
     }
 
-    override function update(elapsed:Float) {
+    piblic function update(elapsed:Float) {
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
 
