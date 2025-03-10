@@ -56,6 +56,25 @@ class ModManager {
         }
     }
 
+    public function getReceptorPos(rec:StrumNote, player:Int = 0):Vector3 {
+        return getPath(0, 0, rec.noteData, player);
+    }
+
+    public function getReceptorScale(rec:StrumNote, player:Int = 0):FlxPoint {
+        var def = rec.scaleDefault;
+        var scale = FlxPoint.get(def.x, def.y);
+        for (mod in mods) {
+            scale = mod.getReceptorScale(rec, scale, rec.noteData, player);
+        }
+        return scale;
+    }
+
+    public function updateReceptor(rec:StrumNote, player:Int, scale:FlxPoint, pos:Vector3) {
+        for (mod in mods) {
+            mod.updateReceptor(rec, player, pos, scale);
+        }
+    }
+
     public function registerModifiers() {
         defineBlankMod("waveTimeFactor");
         set("waveTimeFactor", 100, 0);
@@ -95,10 +114,39 @@ class ModManager {
         defineMod("infinite", new PathModifier(this, infPath, 1850));
     }
 
+    public function get(modName:String):Modifier {
+        return definedMods.exists(modName) ? definedMods.get(modName) : null;
+    }
+
     public function getLatest(modName:String, player:Int) {
         return schedule[modName] != null && schedule[modName].length > 0
             ? schedule[modName][schedule[modName].length - 1]
             : new ModEvent(0, modName, 0, 0, this);
+    }
+
+    public function getPreviousWithEvent(event:ModEvent):ModEvent {
+        var list = getList(event.modName, event.player);
+        var idx = list.indexOf(event);
+        return (idx > 0) ? list[idx - 1] : new ModEvent(0, event.modName, 0, event.player, this);
+    }
+
+    public function getLatestWithEvent(event:ModEvent):ModEvent {
+        return getLatest(event.modName, event.player);
+    }
+
+    public function getNoteScale(note:Note):FlxPoint {
+        var def = note.scaleDefault;
+        var scale = FlxPoint.get(def.x, def.y);
+        for (mod in mods) {
+            scale = mod.getNoteScale(note, scale, note.noteData, note.mustPress ? 0 : 1);
+        }
+        return scale;
+    }
+
+    public function updateNote(note:Note, player:Int, scale:FlxPoint, pos:Vector3) {
+        for (mod in mods) {
+            mod.updateNote(note, player, pos, scale);
+        }
     }
 
     public function defineMod(modName:String, modifier:Modifier) {
@@ -166,6 +214,22 @@ class ModManager {
             queueEase(step, endStep, modName, percent, style, 1);
         } else {
             schedule[modName].push(new EaseEvent(step, endStep, modName, percent, easeFunc, player, this, startVal));
+        }
+    }
+
+    public function queueEaseL(step:Float, length:Float, modName:String, percent:Float, style:String, player:Int = -1, ?startVal:Float) {
+        if (!schedule.exists(modName)) {
+            trace('$modName is not a valid mod!');
+            return;
+        }
+        if (player == -1) {
+            queueEaseL(step, length, modName, percent, style, 0);
+            queueEaseL(step, length, modName, percent, style, 1);
+        } else {
+            var easeFunc = Reflect.getProperty(FlxEase, style);
+            if (easeFunc == null) easeFunc = FlxEase.linear;
+            var stepSex = Conductor.stepToSeconds(step);
+            schedule[modName].push(new EaseEvent(step, Conductor.getStep(stepSex + (length * 1000)), modName, percent, easeFunc, player, this, startVal));
         }
     }
 
