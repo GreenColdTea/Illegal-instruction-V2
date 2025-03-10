@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
-import flixel.util.FlxColor;
 import shaders.ColorSwap;
 
 class NoteHoldSplash extends FlxSprite {
@@ -20,31 +19,31 @@ class NoteHoldSplash extends FlxSprite {
 
     public function new() {
         if (PlayState.instance == null) return;
-
+        
         super();
 
         for (i in 0...notedatas.length) {
             var name = notedatas[i];
-            var sprite = createAnimatedSprite("holdCoverEnd" + name, holdfolders + name, -2000, -2000, "holdend");
+            var sprite = createAnimatedSprite("holdCoverEnd" + name, holdfolders + name, -2000, -2000, "holdend", i);
             sprite.visible = false;
             holdEndSprites.set(name, sprite);
             FlxG.state.add(sprite);
         }
     }
 
-    private function createAnimatedSprite(name:String, path:String, x:Float, y:Float, anim:String):FlxSprite {
+    private function createAnimatedSprite(name:String, path:String, x:Float, y:Float, anim:String, noteData:Int):FlxSprite {
         var sprite = new FlxSprite(x, y);
         sprite.frames = Paths.getSparrowAtlas(path, "shared");
         sprite.animation.addByPrefix(anim, "holdCoverEnd" + name, 24, false);
         sprite.animation.play(anim);
-        sprite.setGraphicSize(Std.int(sprite.width * 0.8)); // Adjust size if necessary
+        sprite.setGraphicSize(Std.int(sprite.width * 0.8));
         sprite.updateHitbox();
         sprite.scrollFactor.set();
 
         var colorSwap = new ColorSwap();
-        colorSwap.hue = ClientPrefs.arrowHSV[Note.noteData % 4][0] / 360;
-        colorSwap.saturation = ClientPrefs.arrowHSV[Note.noteData % 4][1] / 100;
-        colorSwap.brightness = ClientPrefs.arrowHSV[Note.noteData % 4][2] / 100;
+        colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
+        colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
+        colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
         sprite.shader = colorSwap.shader;
         
         return sprite;
@@ -58,12 +57,10 @@ class NoteHoldSplash extends FlxSprite {
 
         var posX = strums[direction].x;
         var posY = strums[direction].y;
-
         var noteName = notedatas[direction];
-        var sprite = holdSprites.get(noteName);
 
+        var sprite = holdSprites.get(noteName);
         if (PlayState.instance.notes.members[id].animation.curAnim.name.toLowerCase().indexOf("end") != -1) {
-            // End hold animation
             visiblehold[direction] = false;
             if (sprite != null) sprite.visible = false;
 
@@ -78,12 +75,11 @@ class NoteHoldSplash extends FlxSprite {
                 });
             }
         } else {
-            // Normal hold animation
             if (!visiblehold[direction]) {
                 visiblehold[direction] = true;
 
                 if (sprite == null) {
-                    sprite = createAnimatedSprite("holdCover" + noteName, holdfolders + noteName, posX + holdOffsets.x, posY + holdOffsets.y, "hold");
+                    sprite = createAnimatedSprite("holdCover" + noteName, holdfolders + noteName, posX + holdOffsets.x, posY + holdOffsets.y, "hold", direction);
                     sprite.visible = true;
                     holdSprites.set(noteName, sprite);
                     FlxG.state.add(sprite);
@@ -107,34 +103,28 @@ class NoteHoldSplash extends FlxSprite {
         var noteName = notedatas[direction];
 
         if (PlayState.instance.notes.members[id].animation.curAnim.name.toLowerCase().indexOf("end") != -1) {
-            // Hide opponent hold splash on end
             oppovisiblehold[direction] = false;
             var sprite = holdSprites.get("OppoHoldCover" + noteName);
             if (sprite != null) sprite.visible = false;
         } else {
-            // Show opponent hold splash
-            /*if (!oppovisiblehold[direction]) {
-                oppovisiblehold[direction] = true;*/
-
-                var sprite = holdSprites.get("OppoHoldCover" + noteName);
-                if (sprite == null) {
-                    sprite = createAnimatedSprite("OppoHoldCover" + noteName, holdfolders + noteName, posX + holdOffsets.x, posY + holdOffsets.y, "hold");
-                    sprite.visible = true;
-                    holdSprites.set("OppoHoldCover" + noteName, sprite);
-                    //FlxG.state.add(sprite);
-                }
-
-                sprite.setPosition(posX + holdOffsets.x, posY + holdOffsets.y);
+            var sprite = holdSprites.get("OppoHoldCover" + noteName);
+            if (sprite == null) {
+                sprite = createAnimatedSprite("OppoHoldCover" + noteName, holdfolders + noteName, posX + holdOffsets.x, posY + holdOffsets.y, "hold", direction);
                 sprite.visible = true;
-                sprite.animation.play("hold");
+                holdSprites.set("OppoHoldCover" + noteName, sprite);
             }
+
+            sprite.setPosition(posX + holdOffsets.x, posY + holdOffsets.y);
+            sprite.visible = true;
+            sprite.animation.play("hold");
         }
+    }
 
     override function update(elapsed:Float) {
+        super.update(elapsed);
+
         var strums = PlayState.instance.playerStrums.members;
         if (strums == null || strums.length < 4) return;
-
-        super.update(elapsed);
 
         for (i in 0...notedatas.length) {
             var noteName = notedatas[i];
