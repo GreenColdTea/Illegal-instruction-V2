@@ -211,17 +211,17 @@ enum abstract NoteDirection(Int) from Int to Int
  */
 class FlxAnimationUtil
 {
-    public static function addAtlasAnimation(target:FlxSprite, anim:AnimationData)
-    {
-        var frameRate = anim.frameRate == null ? 24 : anim.frameRate;
-        var looped = anim.looped == null ? false : anim.looped;
-        var flipX = anim.flipX == null ? false : anim.flipX;
-        var flipY = anim.flipY == null ? false : anim.flipY;
+    public static function addAtlasAnimation(target:FlxSprite, anim:AnimationData) {
+        var frameRate = anim.frameRate;
+        var looped = anim.looped;
+        var flipX = anim.flipX;
+        var flipY = anim.flipY;
 
-        if (anim.frameIndices != null && anim.frameIndices.length > 0)
-            target.animation.addByIndices(anim.name, anim.prefix, anim.frameIndices, '', frameRate, looped, flipX, flipY);
-        else
+        if (anim.frameIndices != null && anim.frameIndices.length > 0) {
+            target.animation.addByIndices(anim.name, anim.prefix, anim.frameIndices, "", frameRate, looped, flipX, flipY);
+        } else {
             target.animation.addByPrefix(anim.name, anim.prefix, frameRate, looped, flipX, flipY);
+        }
     }
 
     public static function combineFramesCollections(a:FlxFramesCollection, b:FlxFramesCollection):FlxFramesCollection
