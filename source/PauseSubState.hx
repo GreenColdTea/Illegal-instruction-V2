@@ -469,7 +469,7 @@ class PauseSubState extends MusicBeatSubstate
                   item.borderSize = 2;
                   item.scrollFactor.set();
                   item.screenCenter(X);
-                  item.x -= 400;
+                  item.x -= 350;
                   grpMenuShit.add(item);
                   menuItemsText.push(item);
 
@@ -477,6 +477,7 @@ class PauseSubState extends MusicBeatSubstate
                       skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
                       skipTimeText.setFormat(Paths.font(fontStyle), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                       skipTimeText.borderSize = 2;
+		      skipTimeText.x -= 50;
                       skipTimeText.scrollFactor.set();
                       skipTimeTracker = item;
                       add(skipTimeText);
