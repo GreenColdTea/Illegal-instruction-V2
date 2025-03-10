@@ -28,6 +28,9 @@ class Modifier {
     return modMgr.getModPercent(modName,player);
   }
 
+  public function getScrollReversePerc(dir:Int, player:Int):Float {
+        return 0;
+  }
 
   public function getSubmodPercent(modName:String, player:Int){
     if(submods.exists(modName)){
