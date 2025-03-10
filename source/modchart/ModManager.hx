@@ -118,6 +118,20 @@ class ModManager {
         return definedMods.exists(modName) ? definedMods.get(modName) : null;
     }
 
+    public function getList(modName:String, player:Int):Array<ModEvent> {
+        if (definedMods.exists(modName)) {
+            var list:Array<ModEvent> = [];
+            for (e in schedule[modName]) {
+                if (e.player == player) {
+                    list.push(e);
+                }
+            }
+            list.sort((a, b) -> Std.int(a.step - b.step));
+            return list;
+        }
+        return [];
+    }
+
     public function getLatest(modName:String, player:Int) {
         return schedule[modName] != null && schedule[modName].length > 0
             ? schedule[modName][schedule[modName].length - 1]
@@ -131,7 +145,7 @@ class ModManager {
     }
 
     public function getLatestWithEvent(event:ModEvent):ModEvent {
-        return getLatest(event.modName, event.player);
+        return getLatest(cast(event, ModEvent).modName, cast(event, ModEvent).player);
     }
 
     public function getNoteScale(note:Note):FlxPoint {
