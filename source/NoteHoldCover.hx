@@ -8,7 +8,6 @@ import flixel.util.FlxTimer;
 import shaders.ColorSwap;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxColor;
-import funkin.play.notes.Note;
 
 class NoteHoldCover extends FlxTypedSpriteGroup<FlxSprite>
 {
