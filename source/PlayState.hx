@@ -6217,7 +6217,9 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		noteHoldSplashes.goodNoteHit(i, note.noteData, note.noteType, note.isSustainNote);
+		if (noteHoldSplashes != null) {
+                        noteHoldSplashes.goodNoteHit(notes.members.indexOf(note), note.noteData, note.noteType, note.isSustainNote);
+		}
 		
 	}
 
