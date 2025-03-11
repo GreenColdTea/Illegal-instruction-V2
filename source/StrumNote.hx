@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import shaders.*;
+import math.*;
 
 using StringTools;
 
@@ -18,9 +19,8 @@ class StrumNote extends FlxSprite
 	
 	private var player:Int;
 
-	public var z:Float = 0; // for modchart system
-	public var zIndex:Float = 0;
-	public var scaleDefault:FlxPoint;
+	public var vec3Cache:Vector3 = new Vector3(); // for vector3 operations in modchart code
+	public var defScale:FlxPoint = FlxPoint.get(); // for modcharts to keep the scaling
 	
 	public var texture(default, set):String = null;
 	private function set_texture(value:String):String {
@@ -30,6 +30,12 @@ class StrumNote extends FlxSprite
 		}
 		return value;
 	}
+
+	override function destroy()
+	{
+		defScale.put();
+		super.destroy();
+	}	
 
 	public function new(x:Float, y:Float, leData:Int, player:Int) {
 		colorSwap = new ColorSwap();
@@ -45,17 +51,9 @@ class StrumNote extends FlxSprite
 		texture = skin; //Load texture and anims
 
 		scrollFactor.set();
+
+		defScale.copyFrom(scale);
 	}
-
-	public function getZIndex(){
-                var animZOffset:Float = 0;
-                if(animation.curAnim!=null && animation.curAnim.name=='confirm')animZOffset+=1;
-                return z + animZOffset - player;
-        }
-
-        function updateZIndex(){
-                zIndex=getZIndex();
-        }
 
 	public function reloadNote()
 	{
@@ -159,8 +157,6 @@ class StrumNote extends FlxSprite
 		//}
 		}*/
 
-		updateZIndex();
-
 		super.update(elapsed);
 	}
 
@@ -178,7 +174,11 @@ class StrumNote extends FlxSprite
 			colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
 
 			if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
-				//centerOrigin();
+				centerOrigin();
+			}
+			if (animation.curAnim.name == 'pressed' && !PlayState.isPixelStage)
+			{
+				centerOrigin();
 			}
 		}
 	}
