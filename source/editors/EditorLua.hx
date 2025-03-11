@@ -65,7 +65,7 @@ class EditorLua {
 		set('Function_Continue', Function_Continue);
 		set('inChartEditor', true);
 
-		set('useModchart', PlayState.useModchart);
+		set('useModchart', PlayState.songIsModcharted);
 
 		set('curBpm', Conductor.bpm);
 		set('bpm', PlayState.SONG.bpm);
