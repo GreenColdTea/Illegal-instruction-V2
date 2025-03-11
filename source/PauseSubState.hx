@@ -432,8 +432,8 @@ class PauseSubState extends MusicBeatSubstate
                 if (curSelected >= menuItemsText.length) 
                     curSelected = 0;
 
-                var centerY = FlxG.height / 2;
-                var spacing = 125;
+                var centerY = FlxG.height / 2 + 50;
+                var spacing = 120;
                 var bullShit = 0;
 
                 for (item in menuItemsText) 
@@ -477,7 +477,7 @@ class PauseSubState extends MusicBeatSubstate
                       skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
                       skipTimeText.setFormat(Paths.font(fontStyle), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                       skipTimeText.borderSize = 2;
-		      skipTimeText.x -= 50;
+		      skipTimeText.x -= 75;
                       skipTimeText.scrollFactor.set();
                       skipTimeTracker = item;
                       add(skipTimeText);
