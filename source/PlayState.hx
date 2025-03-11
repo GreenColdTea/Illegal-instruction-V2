@@ -226,7 +226,7 @@ class PlayState extends MusicBeatState
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
-	private var noteHoldCovers:Map<Note, NoteHoldCover> = [];
+	//private var noteHoldCovers:Map<Note, NoteHoldCover> = [];
 
 	private var curSong:String = "";
 
@@ -3896,7 +3896,7 @@ class PlayState extends MusicBeatState
 			babyArrow.postAddedToGroup();
 		}
 
-      if (ClientPrefs.noteSplashes) {
+      /*if (ClientPrefs.noteSplashes) {
          for (note in notes.members) {
              if (note.isSustainNote) {
                  var holdCover = new NoteHoldCover(note);
@@ -3904,7 +3904,7 @@ class PlayState extends MusicBeatState
                  add(holdCover);
              }
          }
-      }
+      }*/
 	}
 
 	override function openSubState(SubState:FlxSubState)
@@ -4079,13 +4079,13 @@ class PlayState extends MusicBeatState
 			changeIcon("bf", [50, 73, 127]);
 		}
 
-		if (!ClientPrefs.noteSplashes) {
+		/*if (!ClientPrefs.noteSplashes) {
          for (note => holdCover in noteHoldCovers) {
              remove(holdCover);
          }
          noteHoldCovers.clear();
          return;
-      }
+      }*/
 
 		//time bar personalized with dad health bar
 		var dadColR = dad.healthColorArray[0];
@@ -5900,9 +5900,9 @@ class PlayState extends MusicBeatState
 	}
 
 	function noteMiss(daNote:Note):Void { //You didn't hit the key and let it go offscreen, also used by Hurt Notes
-      if (daNote.isSustainNote && noteHoldCovers.exists(daNote)) {
+      /*if (daNote.isSustainNote && noteHoldCovers.exists(daNote)) {
          noteHoldCovers.get(daNote).playEnd();
-      }
+      }*/
 		//Dupe note remove
 		notes.forEachAlive(function(note:Note) {
 			if (daNote != note && daNote.mustPress && daNote.noteData == note.noteData && daNote.isSustainNote == note.isSustainNote && Math.abs(daNote.strumTime - note.strumTime) < 1) {
@@ -5962,7 +5962,7 @@ class PlayState extends MusicBeatState
 		}
 
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
-      noteHoldCovers.remove(daNote);
+      //noteHoldCovers.remove(daNote);
 	}
 
 	function noteMissPress(direction:Int = 1):Void //You pressed a key when there was no notes to press for this key
@@ -6247,10 +6247,10 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (note.isSustainNote && noteHoldCovers.exists(note)) {
+		/*if (note.isSustainNote && noteHoldCovers.exists(note)) {
          noteHoldCovers.get(note).playStart();
       }
-		noteHoldCovers.remove(note);
+		noteHoldCovers.remove(note);*/
 	}
 
 	function spawnNoteSplashOnNote(note:Note) {
