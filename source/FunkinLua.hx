@@ -1355,24 +1355,24 @@ class FunkinLua {
 			}
 		});
 
-		Lua_helper.add_callback(lua, "makeLuaSprite", function(tag:String, image:String, x:Float, y:Float) {
+		Lua_helper.add_callback(lua, "makeLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?library:String) {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);
 			if(image != null && image.length > 0)
 			{
-				leSprite.loadGraphic(Paths.image(image));
+				leSprite.loadGraphic(Paths.image(image, library));
 			}
 			leSprite.antialiasing = ClientPrefs.globalAntialiasing;
 			PlayState.instance.modchartSprites.set(tag, leSprite);
 			leSprite.active = true;
 		});
-		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?spriteType:String = "sparrow") {
+		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?spriteType:String = "sparrow", ?library:String) {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);
 			
-			loadFrames(leSprite, image, spriteType);
+			loadFrames(leSprite, image, spriteType, library);
 			leSprite.antialiasing = ClientPrefs.globalAntialiasing;
 			PlayState.instance.modchartSprites.set(tag, leSprite);
 		});
@@ -2337,21 +2337,22 @@ class FunkinLua {
 		return Reflect.getProperty(leArray, variable);
 	}
 
-	function loadFrames(spr:FlxSprite, image:String, spriteType:String)
+	function loadFrames(spr:FlxSprite, image:String, spriteType:String, ?library:String)
 	{
 		switch(spriteType.toLowerCase().trim())
 		{	
 			case "texture" | "textureatlas" | "tex":
 				spr.frames = AtlasFrameMaker.construct(image);
+				AtlasFrameMaker.construct.library = library;
 				
 			case "texture_noaa" | "textureatlas_noaa" | "tex_noaa":
-				spr.frames = AtlasFrameMaker.construct(image, null, true);
+				spr.frames = AtlasFrameMaker.construct(image, null, true, library);
 				
 			case "packer" | "packeratlas" | "pac":
-				spr.frames = Paths.getPackerAtlas(image);
+				spr.frames = Paths.getPackerAtlas(image, library);
 			
 			default:
-				spr.frames = Paths.getSparrowAtlas(image);
+				spr.frames = Paths.getSparrowAtlas(image, library);
 		}
 	}
 
