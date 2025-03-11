@@ -191,6 +191,26 @@ class ModManager {
 		timeline.addEvent(new EaseEvent(step, endStep, modName, target, easeFunc, player, this));
 	}
 
+	public function queueSet(step:Float, modName:String, target:Float, player:Int = -1)
+	{
+		if (player == -1)
+		{
+			queueSet(step, modName, target, 0);
+			queueSet(step, modName, target, 1);
+		}
+		else
+			timeline.addEvent(new SetEvent(step, modName, target, player, this));
+		
+	}
+
+	public function queueFunc(step:Float, endStep:Float, callback:(CallbackEvent, Float) -> Void)
+	{
+		timeline.addEvent(new StepCallbackEvent(step, endStep, callback, this));
+	}
+    
+	public function queueFuncOnce(step:Float, callback:(CallbackEvent, Float) -> Void)
+		timeline.addEvent(new CallbackEvent(step, callback, this));
+
 	public function randomFloat(minVal:Float, maxVal:Float):Float
 		return FlxG.random.float(minVal, maxVal);
 }
