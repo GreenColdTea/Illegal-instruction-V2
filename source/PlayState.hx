@@ -1899,7 +1899,7 @@ class PlayState extends MusicBeatState
 				case 'frontier-legacy':
 					defaultCamZoom = 0.6;
 
-				        luaArray.push(new FunkinLua(Paths.lua("script")));
+				        luaArray.push(new FunkinLua(Paths.lua("final-frontier-legacy/script")));
 		
 					frontierBgLegacy = new BGSprite('frontier/sky', -600, -120, 1, 0.9);
 					frontierBgLegacy.scale.x = 2.0;
