@@ -4562,6 +4562,7 @@ class PlayState extends MusicBeatState
 					strumAngle = opponentStrums.members[daNote.noteData].angle;
 					strumAlpha = opponentStrums.members[daNote.noteData].alpha;
 				}
+				var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
 
 				strumX += daNote.offsetX;
 				strumY += daNote.offsetY;
@@ -4569,7 +4570,7 @@ class PlayState extends MusicBeatState
 				strumAlpha *= daNote.multAlpha;
 				var pN:Int = daNote.mustPress ? 0 : 1;
 				var pos = modManager.getPos(daNote.strumTime, modManager.getVisPos(Conductor.songPosition, daNote.strumTime, SONG.speed),
-					daNote.strumTime - Conductor.songPosition, curBeat, daNote.noteData, pN, daNote, [], daNote.vec3Cache);
+				daNote.strumTime - Conductor.songPosition, curBeat, daNote.noteData, pN, daNote, [], daNote.vec3Cache);
 
 				modManager.updateObject(curBeat, daNote, pos, pN);
 				pos.x += daNote.offsetX;
@@ -4597,9 +4598,9 @@ class PlayState extends MusicBeatState
 				}
 				var center:Float = strumY + Note.swagWidth / 2;
 				
-				if (daNote.copyX)
+				if(daNote.copyX)
 				{
-					daNote.x = strumX;
+					daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
 				}
 				if (daNote.copyAngle)
 				{
@@ -4611,9 +4612,11 @@ class PlayState extends MusicBeatState
 				}
 				if (daNote.copyY)
 				{
+					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+					
 					if (ClientPrefs.downScroll)
 					{
-						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 						if (daNote.isSustainNote)
 						{
 							// Jesus fuck this took me so much mother fucking time AAAAAAAAAA
@@ -4649,8 +4652,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-
+						daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 						if (daNote.mustPress || !daNote.ignoreNote)
 						{
 							if (daNote.isSustainNote
