@@ -4313,35 +4313,35 @@ class PlayState extends MusicBeatState
 				DiscordClient.changePresence(detailsPausedText, SONG.song.replace("-", " "), iconP2.getCharacter());
 				#end
 
-            	if (useModchart)
-		{
-			playerStrums.forEach(function(spr:StrumNote)
-			{
-				var pos = modManager.getReceptorPos(spr, 0);
-				var scale = modManager.getReceptorScale(spr, 0);
-				modManager.updateReceptor(spr, 0, scale, pos);
+            	                if (useModchart)
+		                {
+			                playerStrums.forEach(function(spr:StrumNote)
+			                {
+				                var pos = modManager.getReceptorPos(spr, 0);
+				                var scale = modManager.getReceptorScale(spr, 0);
+				                modManager.updateReceptor(spr, 0, scale, pos);
 
-				spr.x = pos.x;
-				spr.y = pos.y;
-				spr.z = pos.z;
-				spr.scale.set(scale.x, scale.y);
+				                spr.x = pos.x;
+				                spr.y = pos.y;
+				                spr.z = pos.z;
+				                spr.scale.set(scale.x, scale.y);
 
-				scale.put();
-			});
-			opponentStrums.forEach(function(spr:StrumNote)
-			{
-				var pos = modManager.getReceptorPos(spr, 1);
-				var scale = modManager.getReceptorScale(spr, 1);
-				modManager.updateReceptor(spr, 1, scale, pos);
+				                scale.put();
+			                });
+		   	                opponentStrums.forEach(function(spr:StrumNote)
+			                {
+				                var pos = modManager.getReceptorPos(spr, 1);
+				                var scale = modManager.getReceptorScale(spr, 1);
+				                modManager.updateReceptor(spr, 1, scale, pos);
 
-				spr.x = pos.x;
-				spr.y = pos.y;
-				spr.z = pos.z;
-				spr.scale.set(scale.x, scale.y);
+				                spr.x = pos.x;
+				                spr.y = pos.y;
+				                spr.z = pos.z;
+				                spr.scale.set(scale.x, scale.y);
 
-				scale.put();
-			});
-		}
+				                scale.put();
+			                });
+		                }
 
 			}
 		}
@@ -4517,16 +4517,16 @@ class PlayState extends MusicBeatState
 		}
 
 		if (generatedMusic)
-{
-    if (!inCutscene) {
-        if (!cpuControlled) {
-            keyShit();
-        } else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
-            boyfriend.dance();
-        }
-    }
+                {
+                    if (!inCutscene) {
+                        if (!cpuControlled) {
+                            keyShit();
+                        } else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
+                            boyfriend.dance();
+                        }
+                    }
 
-    var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
+                    var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
     notes.forEachAlive(function(daNote:Note)
     {
         var strumGroup:FlxTypedGroup<StrumNote> = playerStrums;
@@ -4554,7 +4554,7 @@ class PlayState extends MusicBeatState
         strumX += daNote.offsetX;
         strumY += daNote.offsetY;
         strumAngle += daNote.offsetAngle;
-        strumAlpha *= daNote.multAlpha;
+        strumAlpha *= daNote.baseAlpha;
 
         // Apply modchart transformations first
         if (useModchart)
@@ -4615,7 +4615,7 @@ class PlayState extends MusicBeatState
             {
                 daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
 
-                if (strumScroll && daNote.isSustainNote)
+                /*if (strumScroll && daNote.isSustainNote)
                 {
                     if (daNote.animation.curAnim.name.endsWith('end'))
                     {
@@ -4628,7 +4628,7 @@ class PlayState extends MusicBeatState
                     }
                     daNote.y += (Note.swagWidth / 2) - (60.5 * (songSpeed - 1));
                     daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (songSpeed - 1);
-                }
+                }*/
             }
         }
 
@@ -4680,44 +4680,44 @@ class PlayState extends MusicBeatState
                     && daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
                     && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
                 {
-                    var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
-                    swagRect.height = (center - daNote.y) / daNote.scale.y;
-                    swagRect.y = daNote.frameHeight - swagRect.height;
-                    daNote.clipRect = swagRect;
+                                    var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
+                                    swagRect.height = (center - daNote.y) / daNote.scale.y;
+                                    swagRect.y = daNote.frameHeight - swagRect.height;
+                                    daNote.clipRect = swagRect;
+                                }
+                            }
+                            else
+                            {
+                                daNote.flipY = false;
+                                if ((daNote.parentNote != null && daNote.parentNote.wasGoodHit)
+                                    && daNote.y + daNote.offset.y * daNote.scale.y <= center
+                                    && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+                                {
+                                    var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+                                    swagRect.y = (center - daNote.y) / daNote.scale.y;
+                                    swagRect.height -= swagRect.y;
+                                    daNote.clipRect = swagRect;
+                                }
+                            }
+                        }
+
+                        // Kill extremely late notes and cause misses
+                        if (Conductor.songPosition > noteKillOffset + daNote.strumTime)
+                        {
+                            if (daNote.mustPress && !cpuControlled && !daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit))
+                            {
+                                noteMiss(daNote);
+                            }
+
+                            daNote.active = false;
+                            daNote.visible = false;
+
+                            daNote.kill();
+                            notes.remove(daNote, true);
+                            daNote.destroy();
+                        }
+                    });
                 }
-            }
-            else
-            {
-                daNote.flipY = false;
-                if ((daNote.parentNote != null && daNote.parentNote.wasGoodHit)
-                    && daNote.y + daNote.offset.y * daNote.scale.y <= center
-                    && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-                {
-                    var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-                    swagRect.y = (center - daNote.y) / daNote.scale.y;
-                    swagRect.height -= swagRect.y;
-                    daNote.clipRect = swagRect;
-                }
-            }
-        }
-
-        // Kill extremely late notes and cause misses
-        if (Conductor.songPosition > noteKillOffset + daNote.strumTime)
-        {
-            if (daNote.mustPress && !cpuControlled && !daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit))
-            {
-                noteMiss(daNote);
-            }
-
-            daNote.active = false;
-            daNote.visible = false;
-
-            daNote.kill();
-            notes.remove(daNote, true);
-            daNote.destroy();
-        }
-    });
-}
 		checkEventNote();
 
 		#if debug
