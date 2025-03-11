@@ -8,9 +8,9 @@ class ColorSwap {
 	public var hue(default, set):Float = 0;
 	public var saturation(default, set):Float = 0;
 	public var brightness(default, set):Float = 0;
-        public var daAlpha(default, set):Float = 1;
+	public var daAlpha(default, set):Float = 1;
 	public var flash(default, set):Float = 0;
-	
+
 	private function set_daAlpha(value:Float)
 		{
 			daAlpha = value;
@@ -24,7 +24,7 @@ class ColorSwap {
 			shader.flash.value[0] = flash;
 			return flash;
 		}
-
+		
 	private function set_hue(value:Float) {
 		hue = value;
 		shader.uTime.value[0] = hue;
@@ -46,6 +46,8 @@ class ColorSwap {
 	public function new()
 	{
 		shader.uTime.value = [0, 0, 0];
+		shader.daAlpha.value = [1];
+		shader.flash.value = [0];
 		shader.awesomeOutline.value = [false];
 	}
 }
@@ -100,6 +102,8 @@ class ColorSwapShader extends FlxShader {
 		}
 
 		uniform vec3 uTime;
+		uniform float daAlpha;
+		uniform float flash;
 		uniform bool awesomeOutline;
 
 		const float offset = 1.0 / 128.0;
@@ -168,6 +172,10 @@ class ColorSwapShader extends FlxShader {
 						color = vec4(1.0, 1.0, 1.0, 1.0);
 				}
 			}
+			if(flash != 0.0){
+				color = mix(color,vec4(1.0,1.0,1.0,1.0),flash) * color.a;
+			}
+			color *= daAlpha;
 			gl_FragColor = color;
 
 			/* 
