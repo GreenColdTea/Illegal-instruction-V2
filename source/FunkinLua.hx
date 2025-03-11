@@ -1414,7 +1414,7 @@ class FunkinLua {
 			}
 		});
 
-		Lua_helper.add_callback(lua, "makeLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?library:String) {
+		Lua_helper.add_callback(lua, "makeLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?library:Null<String> = null) {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);
@@ -1426,7 +1426,7 @@ class FunkinLua {
 			PlayState.instance.modchartSprites.set(tag, leSprite);
 			leSprite.active = true;
 		});
-		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?spriteType:String = "sparrow", ?library:String) {
+		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?spriteType:String = "sparrow", ?library:Null<String> = null) {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);
@@ -2481,7 +2481,7 @@ class FunkinLua {
 		return Reflect.getProperty(leArray, variable);
 	}
 
-	function loadFrames(spr:FlxSprite, image:String, spriteType:String, ?library:String)
+	function loadFrames(spr:FlxSprite, image:String, spriteType:String, ?library:Null<String> = null)
 	{
 		switch(spriteType.toLowerCase().trim())
 		{	
