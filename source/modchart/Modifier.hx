@@ -60,11 +60,13 @@ class Modifier {
     public function getPercent(player:Int):Float
         return percents[player] * 100;
 
-    public function setValue(value:Float, player:Int = -1) {
-        if (player == -1)
-            percents.fill(value);
-        else
-            percents[player] = value;
+    public function setValue(value:Float, player:Int = -1)
+	{
+		if (player == -1)
+			for (idx in 0...percents.length)
+				percents[idx] = value;
+		else
+			percents[player] = value;
     }
 
     public function setPercent(percent:Float, player:Int = -1)
