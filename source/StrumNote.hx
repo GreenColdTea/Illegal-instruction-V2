@@ -154,10 +154,10 @@ class StrumNote extends FlxSprite
 			}
 		}
 		//if(animation.curAnim != null){ //my bad i was upset
-		if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
+		/*if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
 			centerOrigin();
 		//}
-		}
+		}*/
 
 		updateZIndex();
 
@@ -178,7 +178,7 @@ class StrumNote extends FlxSprite
 			colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
 
 			if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
-				centerOrigin();
+				//centerOrigin();
 			}
 		}
 	}
