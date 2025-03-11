@@ -4543,25 +4543,19 @@ class PlayState extends MusicBeatState
 					daNote.active = true;
 				}
 
+				var strumGroup:FlxTypedGroup<StrumNote> = playerStrums;
+				if(!daNote.mustPress) strumGroup = opponentStrums;
+
 				// i am so fucking sorry for this if condition
 				var strumX:Float = 0;
 				var strumY:Float = 0;
 				var strumAngle:Float = 0;
 				var strumAlpha:Float = 0;
-				if (daNote.mustPress)
-				{
-					strumX = playerStrums.members[daNote.noteData].x;
-					strumY = playerStrums.members[daNote.noteData].y;
-					strumAngle = playerStrums.members[daNote.noteData].angle;
-					strumAlpha = playerStrums.members[daNote.noteData].alpha;
-				}
-				else
-				{
-					strumX = opponentStrums.members[daNote.noteData].x;
-					strumY = opponentStrums.members[daNote.noteData].y;
-					strumAngle = opponentStrums.members[daNote.noteData].angle;
-					strumAlpha = opponentStrums.members[daNote.noteData].alpha;
-				}
+				var strumX:Float = strumGroup.members[daNote.noteData].x;
+				var strumY:Float = strumGroup.members[daNote.noteData].y;
+				var strumAngle:Float = strumGroup.members[daNote.noteData].angle;
+				var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
+				var strumAlpha:Float = strumGroup.members[daNote.noteData].alpha;
 				var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
 
 				strumX += daNote.offsetX;
@@ -4596,8 +4590,9 @@ class PlayState extends MusicBeatState
 					else
 						daNote.mAngle = 0;
 				}
-				var center:Float = strumY + Note.swagWidth / 2;
 				
+				var center:Float = strumY + Note.swagWidth / 2;
+				var angleDir = strumDirection * Math.PI / 180;
 				if(daNote.copyX)
 				{
 					daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
