@@ -4506,6 +4506,8 @@ class PlayState extends MusicBeatState
                 }
          }
 
+         var roundedSpeed:Float = FlxMath.roundDecimal(SONG.speed, 2);
+		
          opponentStrums.forEachAlive(function(strum:StrumNote)
 			{
 				var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 1, strum, [], strum.vec3Cache);
@@ -4594,7 +4596,7 @@ class PlayState extends MusicBeatState
 						daNote.mAngle = 0;
 				}
 				var center:Float = strumY + Note.swagWidth / 2;
-
+				
 				if (daNote.copyX)
 				{
 					daNote.x = strumX;
