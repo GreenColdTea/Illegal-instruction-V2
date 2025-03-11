@@ -1,3 +1,5 @@
+package;
+
 #if LUA_ALLOWED
 import llua.Lua;
 import llua.LuaL;
@@ -2077,60 +2079,43 @@ class FunkinLua {
 		//modchart shit
 		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
                     var modManager = PlayState.instance.modManager;
-			
-		    if (modManager.exists(name)) {
+
+                    if (modManager.get(name) != null) {
                         luaTrace('addMod: Modifier "' + name + '" already exists!', true);
                         return false;
-		    }
+                    }
 
                     var mod:Modifier = switch (type.toLowerCase().trim()) {
-                        case "reverse":
-                            new ReverseModifier(modManager);
-                        case "flip":
-                            new FlipModifier(modManager);
-                        case "drunk":
-                            new DrunkModifier(modManager);
-                        case "confusion":
-                            new ConfusionModifier(modManager);
-                        case "tornado":
-                            new TornadoModifier(modManager);
-                        case "mini":
-                            new ScaleModifier(modManager);
-			case "invent":
-			    new InvertModifier(modManager);
-			case "rotatex":
-			    new RotateModifier(modManager);
-			case "centerrotatex":
-			    new RotateModifier(modManager,'center', new Vector3(FlxG.width/2 - Note.swagWidth / 2,FlxG.height/2 - Note.swagWidth / 2));
-		        case "localrotatex":
-			    new LocalRotateModifier(modManager);
-                        case "scrollangle":
-                            new AngleModifier(modManager);
-			case "receptorscroll":
-			    new ReceptorScrollModifier(modManager);
-			case "beat":
-			    new BeatModifier(modManager);
-                        case "boost":
-                            new AccelModifier(modManager);
-			case "transformx":
-			    new TransformModifier(modManager);
-			case "perspective":
-			    new PerspectiveModifier(modManager);
-			default:
+                        case "reverse": new ReverseModifier(modManager);
+                        case "flip": new FlipModifier(modManager);
+                        case "drunk": new DrunkModifier(modManager);
+                        case "confusion": new ConfusionModifier(modManager);
+                        case "tornado": new TornadoModifier(modManager);
+                        case "mini": new ScaleModifier(modManager);
+                        case "invert": new InvertModifier(modManager);
+                        case "rotatex": new RotateModifier(modManager);
+                        case "centerrotatex":
+                            new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2));
+                        case "localrotatex": new LocalRotateModifier(modManager);
+                        case "beat": new BeatModifier(modManager);
+                        case "transformx": new TransformModifier(modManager);
+                        case "perspective": new PerspectiveModifier(modManager);
+                        default:
                             luaTrace('addMod: Invalid modifier type "' + type + '"!', true);
                             null;
                     };
 
                     if (mod != null) {
-                        modManager.defineMod(name, mod);
+                        modManager.registerMod(name, mod);
                         return true;
                     }
                     return false;
                 });
-	        Lua_helper.add_callback(lua, "easeModByStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+
+                Lua_helper.add_callback(lua, "easeModByStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
-    
-                    if (!modManager.exists(name)) {
+
+                    if (modManager.get(name) == null) {
                         luaTrace('easeModByStep: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
@@ -2138,22 +2123,20 @@ class FunkinLua {
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-	        Lua_helper.add_callback(lua, "easeModBySeconds", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1)
-                {
+
+                Lua_helper.add_callback(lua, "easeModBySeconds", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
-                    if (modManager.exists(mod))
-                    {
-                        modManager.queueEaseL(step, length, mod, value, ease, player);
-                    }
-                    else
-                    {
-                        luaTrace('easeModBySeconds: Modifier "' + mod + '" does not exist.');
+                    if (modManager.get(mod) != null) {
+                        modManager.queueEaseP(step, step + length, mod, value, ease, player);
+                    } else {
+                        luaTrace('easeModBySeconds: Modifier "' + mod + '" does not exist.', true);
                     }
                 });
-		Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
+
+                Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
-    
-                    if (!modManager.exists(name)) {
+
+                    if (modManager.get(name) == null) {
                         luaTrace('setModAtStep: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
@@ -2161,29 +2144,44 @@ class FunkinLua {
                     modManager.queueSet(startStep, name, percent, player);
                     return true;
                 });
-		Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
-			var modManager = PlayState.instance.modManager;
-			if (!modManager.exists(name)) {
-                                luaTrace('setModValue: Modifier "' + name + '" not found!', true);
-                                return false;
-			} else {
-                                modManager.set(name, percent, player);
-                                return true;
-                        }
+
+		Lua_helper.add_callback(lua, "setModAtSeconds", function(startStep:Float, name:String, percent:Float, player:Int) {
+                    var modManager = PlayState.instance.modManager;
+
+                    if (modManager.get(name) == null) {
+                        luaTrace('setModAtSeconds: Modifier "' + name + '" does not exist!', true);
                         return false;
-                });
-		Lua_helper.add_callback(lua, "removeMod", function(name:String) {
-			var modManager = PlayState.instance.modManager;
-			if (!modManager.exists(name)) {
-                                luaTrace('removeMod: Cannot remove non-existent modifier "' + name + '"!', true);
-                                return false;
-			} else {
-                                modManager.removeMod(name);
-                                return true;
-                        }
-                        return false;
+                    }
+
+                    modManager.queueSetP(startStep, name, percent, player);
+                    return true;
                 });
 
+                Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
+                    var modManager = PlayState.instance.modManager;
+
+                    if (modManager.get(name) == null) {
+                        luaTrace('setModValue: Modifier "' + name + '" not found!', true);
+                        return false;
+                    }
+
+                    modManager.setValue(name, percent, player);
+                    return true;
+                });
+
+                Lua_helper.add_callback(lua, "removeMod", function(name:String) {
+                    var modManager = PlayState.instance.modManager;
+
+                    if (modManager.get(name) == null) {
+                        luaTrace('removeMod: Cannot remove non-existent modifier "' + name + '"!', true);
+                        return false;
+                    }
+
+                    modManager.register.remove(name);
+                    return true;
+                });
+                            
+                    
 		Lua_helper.add_callback(lua, "initSaveData", function(name:String, ?folder:String = 'psychenginemods') {
 			if(!PlayState.instance.modchartSaves.exists(name))
 			{
