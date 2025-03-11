@@ -1,100 +1,129 @@
 package modchart.modifiers;
-import ui.*;
-import modchart.*;
-import flixel.math.FlxPoint;
+import flixel.FlxG;
 import flixel.math.FlxMath;
-import Note;
+import flixel.math.FlxPoint;
 import math.*;
+import modchart.*;
+import ui.*;
+class AlphaModifier extends NoteModifier {
+	override function getName()
+		return 'stealth';
 
-class AlphaModifier extends Modifier {
+	override function ignorePos()
+		return true;
+
   public static var fadeDistY = 120;
 
   public function getHiddenSudden(player:Int=-1){
-    return getSubmodPercent("hidden",player) * getSubmodPercent("sudden",player);
+    return getSubmodValue("hidden",player) * getSubmodValue("sudden",player);
   }
 
   public function getHiddenEnd(player:Int=-1){
-    return modMgr.state.center.y + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,-1,-1.25) + modMgr.state.center.y * getSubmodPercent("hiddenOffset",player);
+    return (FlxG.height / 2) + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,-1,-1.25) + (FlxG.height / 2) * getSubmodValue("hiddenOffset",player);
   }
 
   public function getHiddenStart(player:Int=-1){
-    return modMgr.state.center.y + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,0,-0.25) + modMgr.state.center.y * getSubmodPercent("hiddenOffset",player);
+    return (FlxG.height / 2) + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,0,-0.25) + (FlxG.height / 2) * getSubmodValue("hiddenOffset",player);
   }
 
   public function getSuddenEnd(player:Int=-1){
-    return modMgr.state.center.y + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,1,1.25) + modMgr.state.center.y * getSubmodPercent("suddenOffset",player);
+    return (FlxG.height / 2) + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,1,1.25) + (FlxG.height / 2) * getSubmodValue("suddenOffset",player);
   }
 
   public function getSuddenStart(player:Int=-1){
-    return modMgr.state.center.y + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,0,0.25) + modMgr.state.center.y * getSubmodPercent("suddenOffset",player);
+    return (FlxG.height / 2) + fadeDistY * CoolUtil.scale(getHiddenSudden(player),0,1,0,0.25) + (FlxG.height / 2) * getSubmodValue("suddenOffset",player);
   }
 
-  function getAlpha(yPos:Float,player:Int,note:Note){
+  function getVisibility(yPos:Float,player:Int,note:Note):Float{
     var distFromCenter = yPos;
     var alpha:Float = 0;
 
+    if(yPos<0 && getSubmodValue("stealthPastReceptors", player)==0)
+      return 1.0;
+
+
     var time = Conductor.songPosition/1000;
 
-    if(getSubmodPercent("hidden",player)!=0){
-      var hiddenAdjust = CoolUtil.boundTo(CoolUtil.scale(yPos,getHiddenStart(player),getHiddenEnd(player),0,-1),-1,0);
-      alpha += getSubmodPercent("hidden",player)*hiddenAdjust;
+    if(getSubmodValue("hidden",player)!=0){
+      var hiddenAdjust = CoolUtil.clamp(CoolUtil.scale(yPos,getHiddenStart(player),getHiddenEnd(player),0,-1),-1,0);
+      alpha += getSubmodValue("hidden",player)*hiddenAdjust;
     }
 
-    if(getSubmodPercent("sudden",player)!=0){
-      var suddenAdjust = CoolUtil.boundTo(CoolUtil.scale(yPos,getSuddenStart(player),getSuddenEnd(player),0,-1),-1,0);
-      alpha += getSubmodPercent("sudden",player)*suddenAdjust;
+    if(getSubmodValue("sudden",player)!=0){
+      var suddenAdjust = CoolUtil.clamp(CoolUtil.scale(yPos,getSuddenStart(player),getSuddenEnd(player),0,-1),-1,0);
+      alpha += getSubmodValue("sudden",player)*suddenAdjust;
     }
 
-    if(getPercent(player)!=0){
-      alpha -= getPercent(player);
-    }
+    if(getValue(player)!=0)
+      alpha -= getValue(player);
 
-    if(getSubmodPercent("blink",player)!=0){
+
+    if(getSubmodValue("blink",player)!=0){
       var f = CoolUtil.quantize(FlxMath.fastSin(time*10),0.3333);
       alpha += CoolUtil.scale(f,0,1,-1,0);
     }
 
-    if(getSubmodPercent("randomVanish",player)!=0){
+    if(getSubmodValue("randomVanish",player)!=0){
       var realFadeDist:Float = 240;
-      alpha += CoolUtil.scale(Math.abs(distFromCenter),realFadeDist,2*realFadeDist,-1,0)*getSubmodPercent("randomVanish",player);
+      alpha += CoolUtil.scale(Math.abs(distFromCenter),realFadeDist,2*realFadeDist,-1,0)*getSubmodValue("randomVanish",player);
     }
 
-    return CoolUtil.boundTo(alpha+1,0,1);
+    return CoolUtil.clamp(alpha+1,0,1);
   }
 
-  override function updateNote(note:Note, player:Int, pos:Vector3, scale:FlxPoint){
+  function getGlow(visible:Float){
+    var glow = CoolUtil.scale(visible, 1, 0.5, 0, 1.3);
+    return CoolUtil.clamp(glow,0,1);
+  }
+
+  function getAlpha(visible:Float){
+    var alpha = CoolUtil.scale(visible, 0.5, 0, 1, 0);
+    return CoolUtil.clamp(alpha,0,1);
+  }
+
+  override function shouldExecute(player:Int, val:Float)return true;
+	override function ignoreUpdateReceptor()return false;
+	override function ignoreUpdateNote()return false;
+
+	override function updateNote(beat:Float, note:Note, pos:Vector3, player:Int){
     var player = note.mustPress==true?0:1;
-    var roundedSpeed = FlxMath.roundDecimal(PlayState.instance.songSpeed, 2);
-    var psuedoY:Float = (-((Conductor.songPosition - note.strumTime) * (0.45 * roundedSpeed)));
+    @:privateAccess
+		var pos = modMgr.getPos(note.strumTime, modMgr.getVisPos(Conductor.songPosition, note.strumTime, PlayState.instance.songSpeed),
+			note.strumTime - Conductor.songPosition,
+			PlayState.instance.curBeat, note.noteData,
+			player, note, ["reverse"]);
 
-    var yPos:Float = psuedoY+modMgr.state.upscrollOffset;
 
+		var alphaMod = (1 - getSubmodValue("alpha", player)) * (1 - getSubmodValue('alpha${note.noteData}', player)) * (1 - getSubmodValue("noteAlpha", player)) * (1 - getSubmodValue('noteAlpha${note.noteData}', player));
+    var alpha = getVisibility(pos.y,player,note);
 
-    var alpha = getAlpha(yPos,player,note);
-    var distFromHalf = Math.abs(alpha-0.5);
-    var glow = CoolUtil.scale(distFromHalf,0,0.5,1.3,0);
-    var alphaMod = 1 - getSubmodPercent("alpha",player) * (1-getSubmodPercent("noteAlpha",player));
-    note.desiredAlpha = alpha * alphaMod;//((alpha>=0.5?1:0)*alphaMod);
-
-    //note.effect.setFlash(glow);
-
+    if(getSubmodValue("dontUseStealthGlow",player)==0){
+			note.colorSwap.daAlpha = getAlpha(alpha);
+			note.colorSwap.flash = getGlow(alpha);
+    }else
+			note.colorSwap.daAlpha = alpha;
+    
+		note.colorSwap.daAlpha *= alphaMod;	
+    
   }
 
-  override function updateReceptor(receptor:StrumNote, player:Int, pos:Vector3, scale:FlxPoint){
-    var alpha = 1 - getSubmodPercent("alpha",player);
-    if(getSubmodPercent("dark",player)!=0 || getSubmodPercent('dark${receptor.noteData}',player)!=0){
-      alpha = alpha*(1-getSubmodPercent("dark",player))*(1-getSubmodPercent('dark${receptor.noteData}',player));
+  override function updateReceptor(beat:Float, receptor:StrumNote, pos:Vector3, player:Int){
+		var alpha = (1 - getSubmodValue("alpha", player)) * (1 - getSubmodValue('alpha${receptor.noteData}', player));
+		if (getSubmodValue("dark", player) != 0 || getSubmodValue('dark${receptor.noteData}',player)!=0){
+			alpha = alpha * (1 - getSubmodValue("dark", player)) * (1 - getSubmodValue('dark${receptor.noteData}',player));
     }
-    receptor.alpha = alpha;
-
-  }
-
-  override function update(elapsed:Float){
+    @:privateAccess
+		receptor.colorSwap.daAlpha = alpha;
 
   }
 
   override function getSubmods(){
-    var subMods:Array<String> = ["noteAlpha", "alpha", "hidden","hiddenOffset","sudden","suddenOffset","blink","randomVanish","dark"];
+    var subMods:Array<String> = ["noteAlpha", "alpha", "hidden","hiddenOffset","sudden","suddenOffset","blink","randomVanish","dark","useStealthGlow","stealthPastReceptors"];
+    for(i in 0...4){
+			subMods.push('noteAlpha$i');
+			subMods.push('alpha$i');
+			subMods.push('dark$i');
+    }
     return subMods;
   }
 }

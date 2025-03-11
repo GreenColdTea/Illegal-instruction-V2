@@ -1,4 +1,5 @@
 package modchart.modifiers;
+import flixel.FlxSprite;
 import ui.*;
 import modchart.*;
 import flixel.math.FlxPoint;
@@ -20,7 +21,12 @@ import math.*;
 // either way
 // perspective projection woo
 
-class PerspectiveModifier extends Modifier {
+class PerspectiveModifier extends NoteModifier {
+  override function getName()return 'perspectiveDONTUSE';
+	override function getOrder()
+		return Modifier.ModifierOrder.LAST + 100;
+  override function shouldExecute(player:Int, val:Float)return true;
+
   var fov = Math.PI/2;
   var near = 0;
   var far = 2;
@@ -54,12 +60,13 @@ class PerspectiveModifier extends Modifier {
     var a = (near+far)/(near-far);
     var b = 2*near*far/(near-far);
     var z = (a*shit+b);
+    //trace(shit, curZ, z, x/z, y/z);
     var returnedVector = new Vector3(x/z,y/z,z).add(halfOffset);
 
     return returnedVector;
   }
 
-  /*override function getReceptorPos(receptor:StrumNote, pos:Vector3, data:Int, player:Int){ // maybe replace FlxPoint with a Vector3?
+  /*override function getReceptorPos(receptor:Receptor, pos:Vector3, data:Int, player:Int){ // maybe replace FlxPoint with a Vector3?
     // HI 4MBR0S3 IM SORRY :(( I GENUINELY FUCKIN FORGOT TO CREDIT PLEASEDONTHATEMEILOVEYOURSTUFF:(
     var vec = getVector(receptor.z,pos);
     pos.x=vec.x;
@@ -67,16 +74,18 @@ class PerspectiveModifier extends Modifier {
 
     return pos;
   }*/
-  override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float){
+	override function getPos(time:Float, visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite)
     return getVector(pos.z,pos);
-  }
+  
 
-  override function updateReceptor(receptor:StrumNote, player:Int, pos:Vector3, scale:FlxPoint){
-    scale.scale(1/pos.z);
+	override function updateReceptor(beat:Float, receptor:StrumNote, pos:Vector3, player:Int){
+    receptor.scale.scale(1/pos.z);
   }
+  
 
-  override function updateNote(note:Note, player:Int, pos:Vector3, scale:FlxPoint){
-    scale.scale(1/pos.z);
+	override function updateNote(beat:Float, note:Note, pos:Vector3, player:Int){
+    note.scale.scale(1/pos.z);
   }
+  
 
 }

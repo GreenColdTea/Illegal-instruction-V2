@@ -1,23 +1,19 @@
 package modchart.modifiers;
 
-import modchart.*;
-import flixel.math.FlxMath;
+import flixel.FlxSprite;
 import math.Vector3;
 
-class FlipModifier extends Modifier {
-    override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float) {
-        if (getPercent(player) == 0 || player >= modMgr.receptors.length || data >= modMgr.receptors[player].length)
-            return pos;
+class FlipModifier extends NoteModifier {
+	override function getName()return 'flip';
 
-        var receptors = modMgr.receptors[player];
-        var kNum = receptors.length - 1;
+	override function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite){
+		if (getValue(player) == 0)
+			return pos;
 
-        // barriers
-        if (data < 0 || data > kNum) return pos;
+		var receptors = modMgr.receptors[player];
 
-        var distance = Note.swagWidth * (kNum / 2) * (1 - (2 * data / kNum));
-        pos.x += distance * getPercent(player);
-
+		var distance = Note.swagWidth * (receptors.length / 2) * (1.5 - data);
+		pos.x += distance * getValue(player);
         return pos;
     }
 }
