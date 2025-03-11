@@ -1,26 +1,34 @@
 package modchart.modifiers;
-import ui.*;
+
 import modchart.*;
-import flixel.math.FlxPoint;
-import flixel.math.FlxMath;
+import math.Vector3;
 import flixel.FlxG;
-import math.*;
 
 class TornadoModifier extends Modifier {
-  override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float) {
-    if (getPercent(player) == 0) return pos;
+    override public function getModType()
+        return NOTE_MOD; // Affects note positions
 
-    var receptors = modMgr.receptors[player];
-    var len = receptors.length;
-    var playerColumn = data % len;
-    
-    var phaseShift = visualDiff / 135;
-    var columnPhaseShift = playerColumn * Math.PI / 3;
+    override public function getName()
+        return "tornado";
 
-    var returnReceptorToZeroOffsetX = (-Math.cos(-columnPhaseShift) + 1) / 2 * Note.swagWidth * 3;
-    var offsetX = (-Math.cos(phaseShift - columnPhaseShift) + 1) / 2 * Note.swagWidth * 3 - returnReceptorToZeroOffsetX;
+    override public function getOrder()
+        return DEFAULT;
 
-    var outPos = pos.clone();
-    return outPos.add(new Vector3(offsetX * getPercent(player)));
-  }
+    override public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite):Vector3 {
+        var strength = getValue(player);
+        if (strength == 0) return pos;
+
+        var receptors = modMgr.receptors[player];
+        var len = receptors.length;
+        var column = data % len;
+
+        var phaseShift = diff / 135;
+        var columnPhaseShift = column * Math.PI / 3;
+
+        var baseOffset = (-Math.cos(-columnPhaseShift) + 1) / 2 * Note.swagWidth * 3;
+        var offsetX = (-Math.cos(phaseShift - columnPhaseShift) + 1) / 2 * Note.swagWidth * 3 - baseOffset;
+
+        var outPos = pos.clone();
+        return outPos.add(new Vector3(offsetX * strength));
+    }
 }
