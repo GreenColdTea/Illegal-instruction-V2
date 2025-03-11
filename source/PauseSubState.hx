@@ -432,7 +432,7 @@ class PauseSubState extends MusicBeatSubstate
                 if (curSelected >= menuItemsText.length) 
                     curSelected = 0;
 
-                var centerY = FlxG.height / 2 + 50;
+                var centerY = FlxG.height / 2 - 50;
                 var spacing = 120;
                 var bullShit = 0;
 
