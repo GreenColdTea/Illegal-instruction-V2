@@ -1270,6 +1270,21 @@ class FunkinLua {
 			PlayState.chartingMode = false;
 			PlayState.instance.transitioning = true;
 		});
+
+                Lua_helper.add_callback(lua, "addOffset", function(obj:String, anim:String, x:Float, y:Float) {
+			if(PlayState.instance.modchartSprites.exists(obj)) {
+				PlayState.instance.modchartSprites.get(obj).animOffsets.set(anim, [x, y]);
+				return true;
+			}
+
+			var char:Character = Reflect.getProperty(getInstance(), obj);
+			if(char != null) {
+				char.addOffset(anim, x, y);
+				return true;
+			}
+			return false;
+		});
+					
 		Lua_helper.add_callback(lua, "getSongPosition", function() {
 			return Conductor.songPosition;
 		});
@@ -2982,6 +2997,7 @@ class FunkinLua {
 class ModchartSprite extends FlxSprite
 {
 	public var wasAdded:Bool = false;
+	public var animOffsets:Map<String, Array<Float>> = new Map<String, Array<Float>>();
 	//public var isInFront:Bool = false;
 
 	public function new(?x:Float = 0, ?y:Float = 0)
