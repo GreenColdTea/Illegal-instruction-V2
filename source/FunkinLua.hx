@@ -3024,24 +3024,26 @@ class ModchartText extends FlxText
 
 class DebugLuaText extends FlxText
 {
-	private var disableTime:Float = 10;
-	public var parentGroup:FlxTypedGroup<DebugLuaText>;
-	public function new(text:String, parentGroup:FlxTypedGroup<DebugLuaText>, color:FlxColor) {
-		this.parentGroup = parentGroup;
-		super(10, 10, 0, text, 16);
-		setFormat(Paths.font("vcr.ttf"), 20, color, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scrollFactor.set();
-		borderSize = 1;
-	}
+    private var disableTime:Float = 10;
+    public var parentGroup:FlxTypedGroup<DebugLuaText>;
 
-	override function update(elapsed:Float) {
-		super.update(elapsed);
-		disableTime -= elapsed;
-		if(disableTime < 0) disableTime = 0;
-		if(disableTime < 1) alpha = disableTime;
-	}
+    public function new(text:String, parentGroup:FlxTypedGroup<DebugLuaText>, color:FlxColor) {
+        this.parentGroup = parentGroup;
+        super(10, 10, FlxG.width - 20, text, 16);
+        setFormat(Paths.font("vcr.ttf"), 20, color, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        scrollFactor.set();
+        borderSize = 1;
+        wordWrap = true;
+    }
+
+    override function update(elapsed:Float) {
+        super.update(elapsed);
+        disableTime -= elapsed;
+        if(disableTime < 0) disableTime = 0;
+        if(disableTime < 1) alpha = disableTime;
+    }
 }
-
+					
 class CustomSubstate extends MusicBeatSubstate
 {
 	public static var name:String = 'unnamed';
