@@ -41,7 +41,6 @@ class StrumNote extends FlxSprite
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
 		noteData = leData;
-		scaleDefault = new FlxPoint();
 		this.player = player;
 		this.noteData = leData;
 		super(x, y);
@@ -127,7 +126,6 @@ class StrumNote extends FlxSprite
 		}
 		updateHitbox();
 		scrollFactor.set();
-		scaleDefault.set(scale.x,scale.y);
 
 		if(lastAnim != null)
 		{
