@@ -6,13 +6,13 @@ import flixel.FlxG;
 
 class TornadoModifier extends Modifier {
     override public function getModType()
-        return NOTE_MOD; // Affects note positions
+        return ModifierType.NOTE_MOD; // Affects note positions
 
     override public function getName()
         return "tornado";
 
     override public function getOrder()
-        return DEFAULT;
+        return ModifierOrder.DEFAULT;
 
     override public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite):Vector3 {
         var strength = getValue(player);
