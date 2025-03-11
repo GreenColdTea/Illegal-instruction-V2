@@ -2342,8 +2342,7 @@ class FunkinLua {
 		switch(spriteType.toLowerCase().trim())
 		{	
 			case "texture" | "textureatlas" | "tex":
-				spr.frames = AtlasFrameMaker.construct(image);
-				AtlasFrameMaker.construct.library = library;
+				spr.frames = AtlasFrameMaker.construct(image, null, false, library);
 				
 			case "texture_noaa" | "textureatlas_noaa" | "tex_noaa":
 				spr.frames = AtlasFrameMaker.construct(image, null, true, library);
