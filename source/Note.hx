@@ -8,6 +8,7 @@ import flixel.util.FlxColor;
 import openfl.display.BitmapData;
 import editors.ChartingState;
 import shaders.ColorSwap;
+import math.*;
 
 using StringTools;
 
