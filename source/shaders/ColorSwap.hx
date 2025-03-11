@@ -8,6 +8,22 @@ class ColorSwap {
 	public var hue(default, set):Float = 0;
 	public var saturation(default, set):Float = 0;
 	public var brightness(default, set):Float = 0;
+        public var daAlpha(default, set):Float = 1;
+	public var flash(default, set):Float = 0;
+	
+	private function set_daAlpha(value:Float)
+		{
+			daAlpha = value;
+			shader.daAlpha.value[0] = daAlpha;
+			return daAlpha;
+		}
+	
+	private function set_flash(value:Float)
+		{
+			flash = value;
+			shader.flash.value[0] = flash;
+			return flash;
+		}
 
 	private function set_hue(value:Float) {
 		hue = value;
