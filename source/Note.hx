@@ -225,8 +225,6 @@ class Note extends FlxSprite
 			if(ClientPrefs.downScroll) flipY = true;
 
 			offsetX += width / 2;
-			if(ClientPrefs.downScroll)
-				offsetY += 15;
 	
 			copyAngle = false;
 
@@ -263,11 +261,7 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
-				if(PlayState.instance != null)
-				{
-					prevNote.scale.y *= PlayState.instance.songSpeed;
-				}
+				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05 * PlayState.instance.songSpeed;
 
 				if(PlayState.isPixelStage) {
 					prevNote.scale.y *= 1.19;
