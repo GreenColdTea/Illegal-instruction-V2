@@ -55,17 +55,25 @@ class CoolUtil
                 return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 	}
 
-	public static function rotate(x:Float, y:Float, angle:Float, ?point:FlxPoint):FlxPoint{
-		var p = point == null ? FlxPoint.get():point;
-		p.set(
-			(x * Math.cos(angle)) - (y * Math.sin(angle)),
-			(x * Math.sin(angle)) + (y * Math.cos(angle))
-		);
-		return p;
+	inline public static function scale(x:Float, l1:Float, h1:Float, l2:Float, h2:Float):Float
+		return ((x - l1) * (h2 - l2) / (h1 - l1) + l2);
+
+	inline public static function clamp(n:Float, l:Float, h:Float)
+	{
+		if (n > h)
+			n = h;
+		if (n < l)
+			n = l;
+
+		return n;
 	}
 
-	inline public static function scale(x:Float,l1:Float,h1:Float,l2:Float,h2:Float):Float
-		return ((x - l1) * (h2 - l2) / (h1 - l1) + l2);
+	public static function rotate(x:Float, y:Float, angle:Float, ?point:FlxPoint):FlxPoint
+	{
+		var p = point == null ? FlxPoint.weak() : point;
+		p.set((x * Math.cos(angle)) - (y * Math.sin(angle)), (x * Math.sin(angle)) + (y * Math.cos(angle)));
+		return p;
+	}
 
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float {
 		return Math.max(min, Math.min(max, value));
