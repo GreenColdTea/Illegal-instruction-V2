@@ -4605,63 +4605,50 @@ class PlayState extends MusicBeatState
 				{
 					daNote.alpha = strumAlpha;
 				}
-				if (daNote.copyY)
-				{
-					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
-					
-					if (ClientPrefs.downScroll)
-					{
-						daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-						if (daNote.isSustainNote)
-						{
-							// Jesus fuck this took me so much mother fucking time AAAAAAAAAA
-							if (daNote.animation.curAnim.name.endsWith('end'))
-							{
-								daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
-								daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
-								if (PlayState.isPixelStage)
-								{
-									daNote.y += 8;
-								}
-								else
-								{
-									daNote.y -= 19;
-								}
-							}
-							daNote.y += (Note.swagWidth / 2) - (60.5 * (roundedSpeed - 1));
-							daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1);
+				if (daNote.copyY) {
+    if (ClientPrefs.downScroll) {
+        daNote.distance = 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed;
+    } else {
+        daNote.distance = -0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed;
+    }
 
-							if (daNote.mustPress || !daNote.ignoreNote)
-							{
-								if (daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
-									&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-								{
-									var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
-									swagRect.height = (center - daNote.y) / daNote.scale.y;
-									swagRect.y = daNote.frameHeight - swagRect.height;
+    daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
 
-									daNote.clipRect = swagRect;
-								}
-							}
-						}
-					}
-					else
-					{
-						daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-						if (daNote.mustPress || !daNote.ignoreNote)
-						{
-							if (daNote.isSustainNote
-								&& daNote.y + daNote.offset.y * daNote.scale.y <= center
-								&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-							{
-								var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-								swagRect.y = (center - daNote.y) / daNote.scale.y;
-								swagRect.height -= swagRect.y;
+    if (daNote.isSustainNote) {
+        if (daNote.animation.curAnim.name.endsWith('end')) {
+            daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
+            daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
 
-								daNote.clipRect = swagRect;
-							}
-						}
-					}
+            if (PlayState.isPixelStage) {
+                daNote.y += 8;
+            } else {
+                daNote.y -= 19;
+            }
+        }
+
+        daNote.y += (Note.swagWidth / 2) - (60.5 * (roundedSpeed - 1));
+        daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1);
+
+        if (daNote.mustPress || !daNote.ignoreNote) {
+            if (ClientPrefs.downScroll) {
+                if (daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
+                    && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit)))) {
+                    var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
+                    swagRect.height = (center - daNote.y) / daNote.scale.y;
+                    swagRect.y = daNote.frameHeight - swagRect.height;
+                    daNote.clipRect = swagRect;
+                }
+            } else {
+                if (daNote.y + daNote.offset.y * daNote.scale.y <= center
+                    && (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit)))) {
+                    var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+                    swagRect.y = (center - daNote.y) / daNote.scale.y;
+                    swagRect.height -= swagRect.y;
+                    daNote.clipRect = swagRect;
+                }
+            }
+        }
+    }
 				}
 
            // Opponent auto-hits notes
