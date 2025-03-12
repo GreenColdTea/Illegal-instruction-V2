@@ -4,7 +4,7 @@ package;
 import Discord.DiscordClient;
 #end
 import flixel.*;
-import flixel.group.FlxTypedGroup;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
@@ -224,6 +224,20 @@ class BallsFreeplay extends MusicBeatState {
         player.animation.play("idle");
     }
 
+    textBG.x = FlxMath.lerp(textBG.x, isTextVisible ? textTargetX : FlxG.width, 4 * elapsed);
+    nowPlayingText.x = textBG.x;
+    slidingText.x = textBG.x;
+
     super.update(elapsed);
 }
+    function toggleText() {
+        isTextVisible = true;
+        isAnimating = true;
+
+        hideTimer.cancel();
+        hideTimer.start(2.75, function(_) {
+            isTextVisible = false;
+            isAnimating = false;
+        });
+    }
 }
