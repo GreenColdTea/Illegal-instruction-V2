@@ -28,6 +28,16 @@ class BallsFreeplay extends MusicBeatState {
            {x: -360, y: 230, flipX: false}, // Wechidna
            {x: -340, y: 250, flipX: false}  // Wechnia
     ];
+
+    var screenPlayersOffsets:Array<{x:Float, y:Float}> = [
+           {x: 375, y: -50},  // bf-pixel
+           {x: 375, y: -50},  // bf-pixel
+           {x: 375, y: -50},  // bf-pixel
+           {x: 365, y: -70},  // BFLMAO
+           {x: 375, y: -50},  // bf-pixel
+           {x: 375, y: -50},  // bf-pixel
+           {x: 375, y: -52.5} // mighty 
+    ];
 	
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
@@ -132,7 +142,15 @@ class BallsFreeplay extends MusicBeatState {
             group.add(sprite);
         }
 
-        addSprite(screenInfo, 'freeplay/screen/${songs[i]}');
+        var songPortrait:FlxSprite = new FlxSprite();
+        songPortrait.loadGraphic(Paths.image('freeplay/screen/' + songs[i]));
+        songPortrait.screenCenter();
+        songPortrait.antialiasing = false;
+        songPortrait.scale.set(4.5, 4.5);
+        songPortrait.y -= 40;
+        songPortrait.alpha = 0;
+        songPortrait.ID = i;
+        screenInfo.add(songPortrait);
 
         var charSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/characters/${characters[i]}'));
         charSprite.screenCenter();
@@ -145,7 +163,17 @@ class BallsFreeplay extends MusicBeatState {
         charSprite.ID = i;
         screenCharacters.add(charSprite);
 
-        addSprite(screenPlayers, 'freeplay/playables/${playables[i]}', 375, -50, 5.5);
+        var songPlayable:FlxSprite = new FlxSprite();
+        songPlayable.frames = Paths.getSparrowAtlas('freeplay/playables/' + playables[i]);
+        songPlayable.animation.addByPrefix('idle', playables[i], 13, true);
+        songPlayable.animation.play('idle');
+        songPlayable.screenCenter();
+        songPlayable.scale.set(5.5, 5.5);
+        songPlayable.x += screenPlayersOffsets[i].x;
+        songPlayable.y += screenPlayersOffsets[i].y;
+        songPlayable.alpha = 0;
+        songPlayable.ID = i;
+        screenPlayers.add(songPlayable);
       }
     }
 
