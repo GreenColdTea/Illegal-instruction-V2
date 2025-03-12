@@ -4607,7 +4607,7 @@ class PlayState extends MusicBeatState
 				}
 				if (daNote.copyY) 
 				{
-                                        if (hasDownScroll)
+                                        if (strumScroll)
 					{
 						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 						if (daNote.isSustainNote)
