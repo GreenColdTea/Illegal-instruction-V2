@@ -217,7 +217,9 @@ class BallsFreeplay extends MusicBeatState
         textTargetX = FlxG.width - textBG.width - 10;
 
 	CoolUtil.precacheSound('jump');
-	["freeplayThemeDuccly", "freeplayTheme"].iter(CoolUtil.precacheMusic);
+	for (music in ["freeplayThemeDuccly", "freeplayTheme"]) {
+            CoolUtil.precacheMusic(music);
+	}
 
 	var music = ClientPrefs.ducclyMix ? 'freeplayThemeDuccly' : 'freeplayTheme';
 
