@@ -15,7 +15,7 @@ import modchart.events.*;
 class ModManager {
 	public function registerDefaultModifiers()
 	{
-		var quickRegs:Array<Any> = [FlipModifier, ReverseModifier, InvertModifier, DrunkModifier, BeatModifier, AlphaModifier, ScaleModifier, ConfusionModifier, OpponentModifier, TransformModifier, InfinitePathModifier, PerspectiveModifier];
+		var quickRegs:Array<Any> = [FlipModifier, TornadoModifier, ReverseModifier, InvertModifier, DrunkModifier, BeatModifier, AlphaModifier, ScaleModifier, ConfusionModifier, OpponentModifier, TransformModifier, InfinitePathModifier, PerspectiveModifier];
 		for (mod in quickRegs)
 			quickRegister(Type.createInstance(mod, [this]));
 
