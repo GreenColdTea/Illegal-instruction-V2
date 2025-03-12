@@ -2080,11 +2080,6 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
                     var modManager = PlayState.instance.modManager;
 
-		    if (modManager.canMorchartOnLua)
-			    return true;
-		    else
-			    return false;
-
                     if (modManager.get(name) != null) {
                         luaTrace('addMod: Modifier "' + name + '" already exists!', true);
                         return false;
@@ -2114,7 +2109,6 @@ class FunkinLua {
                     }
                     return false;
                 });
-
                 Lua_helper.add_callback(lua, "easeModByStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
@@ -2126,7 +2120,6 @@ class FunkinLua {
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-
                 Lua_helper.add_callback(lua, "easeModBySeconds", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
                     if (modManager.get(mod) != null) {
@@ -2135,7 +2128,6 @@ class FunkinLua {
                         luaTrace('easeModBySeconds: Modifier "' + mod + '" does not exist.', true);
                     }
                 });
-
                 Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
@@ -2147,7 +2139,6 @@ class FunkinLua {
                     modManager.queueSet(startStep, name, percent, player);
                     return true;
                 });
-
 		Lua_helper.add_callback(lua, "setModAtSeconds", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
@@ -2159,7 +2150,6 @@ class FunkinLua {
                     modManager.queueSetP(startStep, name, percent, player);
                     return true;
                 });
-
                 Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
@@ -2171,7 +2161,6 @@ class FunkinLua {
                     modManager.setValue(name, percent, player);
                     return true;
                 });
-
                 Lua_helper.add_callback(lua, "removeMod", function(name:String) {
                     var modManager = PlayState.instance.modManager;
 
@@ -2184,7 +2173,6 @@ class FunkinLua {
                     return true;
                 });
                             
-                    
 		Lua_helper.add_callback(lua, "initSaveData", function(name:String, ?folder:String = 'psychenginemods') {
 			if(!PlayState.instance.modchartSaves.exists(name))
 			{
