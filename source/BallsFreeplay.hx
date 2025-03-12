@@ -278,6 +278,12 @@ class BallsFreeplay extends MusicBeatState {
 	    openSubState(new GameplayChangersSubstate());
         }
 
+        if (FlxG.keys.justPressed.ENTER #if mobile || controls.ACCEPT #end)
+        {
+            doTheLoad();
+	    lastSongIndex = songIndex;
+        }
+
         // character moving shit
         var moveSpeed:Float = 300;
         var runSpeed:Float = 385;
@@ -328,6 +334,21 @@ class BallsFreeplay extends MusicBeatState {
 
         super.update(elapsed);
     }
+
+    function doTheLoad()
+    {
+        FlxG.sound.play(Paths.sound('confirmMenu'));
+        var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
+        PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
+	FlxG.mouse.visible = false;
+        PlayState.isStoryMode = false;
+        PlayState.isFreeplay = true;
+        PlayState.storyDifficulty = 2;
+	FlxG.sound.music.volume = 0;
+	FreeplayState.destroyFreeplayVocals();
+	LoadingState.loadAndSwitchState(new PlayState());
+    }
+	    
     function toggleText() {
         isTextVisible = true;
         isAnimating = true;
