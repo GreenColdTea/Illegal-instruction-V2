@@ -114,7 +114,7 @@ class ModManager {
 
 			var mod = register.get(modName);
                         if (mod == null) {
-                               PlayState.addTextToDebug("Error: Modifier '" + modName + "' not found in register!");
+                               PlayState.instance.addTextToDebug("Error: Modifier '" + modName + "' not found in register!");
                                return;
                         }
                         mod.setValue(val, player);
