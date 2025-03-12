@@ -284,6 +284,11 @@ class BallsFreeplay extends MusicBeatState {
 	    lastSongIndex = songIndex;
         }
 
+	if (controls.BACK)
+        {
+            switchToBack();
+	}
+
         // character moving shit
         var moveSpeed:Float = 300;
         var runSpeed:Float = 385;
@@ -347,6 +352,13 @@ class BallsFreeplay extends MusicBeatState {
 	FlxG.sound.music.volume = 0;
 	FreeplayState.destroyFreeplayVocals();
 	LoadingState.loadAndSwitchState(new PlayState());
+    }
+
+    public function switchToBack() 
+    {
+	FlxG.sound.play(Paths.sound('cancelMenu'));
+	FlxG.mouse.visible = false;
+        MusicBeatState.switchState(new MainMenuState());
     }
 	    
     function toggleText() {
