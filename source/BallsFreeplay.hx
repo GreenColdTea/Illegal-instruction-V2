@@ -112,36 +112,36 @@ class BallsFreeplay extends MusicBeatState
     override function create()
     {
         Paths.clearStoredMemory();
-	    Paths.clearUnusedMemory();
+	Paths.clearUnusedMemory();
 
         transIn = FlxTransitionableState.defaultTransIn;
-	    transOut = FlxTransitionableState.defaultTransOut;
+	transOut = FlxTransitionableState.defaultTransOut;
 
         FlxG.mouse.visible = true;
 
         #if desktop
         // Updating Discord Rich Presence
-	    DiscordClient.changePresence("Selecting The New World.", null);
-	    #end
+	DiscordClient.changePresence("Selecting The New World.", null);
+	#end
 
         var blackFuck:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
         blackFuck.screenCenter();
         add(blackFuck);
 
         backgroundShits = new FlxTypedGroup<FlxSprite>();
-		add(backgroundShits);
+	add(backgroundShits);
 
         screenInfo = new FlxTypedGroup<FlxSprite>();
-		add(screenInfo);
+	add(screenInfo);
 
         screenCharacters = new FlxTypedGroup<FlxSprite>();
-		add(screenCharacters);
+	add(screenCharacters);
 
-	    screenPlayers = new FlxTypedGroup<FlxSprite>();
-	    add(screenPlayers);
+	screenPlayers = new FlxTypedGroup<FlxSprite>();
+	add(screenPlayers);
 
-	    screenSong = new FlxTypedGroup<FlxText>();
-	    add(screenSong);
+	screenSong = new FlxTypedGroup<FlxText>();
+	add(screenSong);
 
         var characterText:FlxText;
         var yn:FlxText;
@@ -154,13 +154,13 @@ class BallsFreeplay extends MusicBeatState
         screen.updateHitbox();
         add(screen);
 
-	    var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
-	    screenLogo.scale.set(2, 1.75);
-	    screenLogo.screenCenter(X);
-	    screenLogo.updateHitbox();
-	    screenLogo.x -= 92.5;
-	    screenLogo.y += 61;
-	    add(screenLogo);
+	var screenLogo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/logo'));
+	screenLogo.scale.set(2, 1.75);
+	screenLogo.screenCenter(X);
+	screenLogo.updateHitbox();
+	screenLogo.x -= 92.5;
+	screenLogo.y += 61;
+	add(screenLogo);
 
         scoreText = new FlxText(925, 65, 0, "SCORE:\n49324858", 36);
         scoreText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.RED, "center");
@@ -172,7 +172,7 @@ class BallsFreeplay extends MusicBeatState
         floor.visible = false;
         add(floor);
 
-	    player = new FlxSprite(455, 250);
+	player = new FlxSprite(455, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -187,14 +187,14 @@ class BallsFreeplay extends MusicBeatState
         jumpTimer = new FlxTimer();
         add(player);
 
-	    #if !mobile
+	#if !mobile
         yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
         #else
         yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
-	    yn.y += 675;
+	yn.y += 675;
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
         add(yn);
@@ -216,19 +216,19 @@ class BallsFreeplay extends MusicBeatState
 
         textTargetX = FlxG.width - textBG.width - 10;
 
-	     CoolUtil.precacheSound('jump');
-	     ["freeplayThemeDuccly", "freeplayTheme"].map(CoolUtil.precacheMusic);
+	CoolUtil.precacheSound('jump');
+	["freeplayThemeDuccly", "freeplayTheme"].iter(CoolUtil.precacheMusic);
 
-	     var music = ClientPrefs.ducclyMix ? 'freeplayThemeDuccly' : 'freeplayTheme';
+	var music = ClientPrefs.ducclyMix ? 'freeplayThemeDuccly' : 'freeplayTheme';
 
-	     #if mobile
+	#if mobile
         addVirtualPad(LEFT_FULL, A_B_C_X_Y);
         #end
 
-	     FlxG.sound.playMusic(Paths.music(music), 0);
-		  FlxG.sound.music.fadeIn(4, 0, 0.875);
+	FlxG.sound.playMusic(Paths.music(music), 0);
+	FlxG.sound.music.fadeIn(4, 0, 0.875);
 
-	    songIndex = lastSongIndex;
+	songIndex = lastSongIndex;
 
         super.create();
     }
