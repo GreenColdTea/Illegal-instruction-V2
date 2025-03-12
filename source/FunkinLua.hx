@@ -2086,18 +2086,15 @@ class FunkinLua {
                     }
 
                     var mod:Modifier = switch (type.toLowerCase().trim()) {
+			case "alpha": new AlphaModifier(modManager)b
                         case "reverse": new ReverseModifier(modManager);
                         case "flip": new FlipModifier(modManager);
                         case "drunk": new DrunkModifier(modManager);
                         case "confusion": new ConfusionModifier(modManager);
-                        case "tornado": new TornadoModifier(modManager);
                         case "mini": new ScaleModifier(modManager);
                         case "invert": new InvertModifier(modManager);
-                        case "rotatex": new RotateModifier(modManager);
-                        case "centerrotatex":
-                            new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2));
-                        case "localrotatex": new LocalRotateModifier(modManager);
                         case "beat": new BeatModifier(modManager);
+			case "opponent": new OpponentModifier(modManager);
                         case "transformx": new TransformModifier(modManager);
                         case "perspective": new PerspectiveModifier(modManager);
                         default:
