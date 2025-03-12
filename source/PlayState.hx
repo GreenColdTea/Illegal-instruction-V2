@@ -3370,12 +3370,11 @@ class PlayState extends MusicBeatState
 				if(!ClientPrefs.opponentStrums) opponentStrums.members[i].visible = false;
 			}
 
-         	if (songIsModcharted)
-			{
-                                 modManager.receptors = [playerStrums.members, opponentStrums.members];
-		   	         modManager.registerDefaultModifiers();
-				 ModCharts.lesGo(modManager, SONG.song.toLowerCase());
-			}
+                        modManager.receptors = [playerStrums.members, opponentStrums.members];
+			callOnLuas('onPreModifierRegister', []);
+		   	modManager.registerDefaultModifiers();
+			callOnLuas('onPostModifierRegister', []);
+			ModCharts.lesGo(modManager, SONG.song.toLowerCase());
 
 			/*if (isPixelHUD)
 				{
