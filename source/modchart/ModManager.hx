@@ -14,6 +14,7 @@ import modchart.events.*;
 // Weird amalgamation of Schmovin' modifier system, Andromeda modifier system and my own new shit -neb
 
 class ModManager {
+	var canMorchartOnLua:Bool = false;
 	public function registerDefaultModifiers()
 	{
 		var quickRegs:Array<Any> = [FlipModifier, TornadoModifier, ReverseModifier, InvertModifier, DrunkModifier, BeatModifier, AlphaModifier, ScaleModifier, ConfusionModifier, OpponentModifier, TransformModifier, InfinitePathModifier, PerspectiveModifier];
@@ -25,6 +26,8 @@ class ModManager {
 		quickRegister(new LocalRotateModifier(this, 'local'));
 		quickRegister(new SubModifier("noteSpawnTime", this));
 		setValue("noteSpawnTime", 1250);
+
+		canMorchartOnLua = true;
 	}
 
 
