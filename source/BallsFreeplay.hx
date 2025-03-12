@@ -38,6 +38,16 @@ class BallsFreeplay extends MusicBeatState {
            {x: 375, y: -50},  // bf-pixel
            {x: 375, y: -52.5} // mighty 
     ];
+
+    var screenSongOffsets:Array<{x:Float, y:Float}> = [
+           {x: -475, y: -280}, // Breakout
+           {x: -475, y: -280}, // Soulless Endeavors
+           {x: -465, y: -270}, // Vista
+           {x: -470, y: -275}, // Meltdown
+           {x: -475, y: -285}, // Cascade
+           {x: -485, y: -280}, // My Horizon
+           {x: -485, y: -280}  // Color Crash
+    ];
 	
     var screenInfo:FlxTypedGroup<FlxSprite>;
     var screenCharacters:FlxTypedGroup<FlxSprite>;
@@ -174,6 +184,16 @@ class BallsFreeplay extends MusicBeatState {
         songPlayable.alpha = 0;
         songPlayable.ID = i;
         screenPlayers.add(songPlayable);
+
+	var characterText = new FlxText(0, 0, songs[i].replace("-", "\n").toUpperCase());
+        characterText.updateHitbox();
+        characterText.screenCenter();
+        characterText.setFormat(Paths.font("pixel.otf"), 35, FlxColor.RED, "center");
+        characterText.x += screenSongOffsets[i].x;
+        characterText.y += screenSongOffsets[i].y;
+        characterText.alpha = 0;
+        characterText.ID = i;
+        screenSong.add(characterText);
       }
     }
 
