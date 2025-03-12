@@ -2078,7 +2078,7 @@ class FunkinLua {
 
 		//modchart shit
 		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
-                    var modManager = PlayState.instance.modManager;
+                    var modManager = PlayState.instance?.modManager;
 
                     if (modManager.get(name) != null) {
                         luaTrace('addMod: Modifier "' + name + '" already exists!', true);
