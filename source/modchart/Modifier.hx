@@ -42,8 +42,13 @@ class Modifier {
     public function setPercent(percent:Float, player:Int = -1) setValue(percent / 100, player);
 
     public function setValue(value:Float, player:Int = -1) {
-        if (player == -1) percents.fill(value);
-        else percents[player] = value;
+        if (player == -1) {
+            for (i in 0...percents.length) {
+                percents[i] = value;
+            }
+        } else {
+                percents[player] = value;
+        }
     }
 
     public function getSubmods():Array<String> return [];
