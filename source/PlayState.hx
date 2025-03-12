@@ -3372,9 +3372,9 @@ class PlayState extends MusicBeatState
 
          	if (songIsModcharted)
 			{
-            modManager.receptors = [playerStrums.members, opponentStrums.members];
-		   	modManager.registerDefaultModifiers();
-				ModCharts.lesGo(this, modManager, SONG.song.toLowerCase());
+                                 modManager.receptors = [playerStrums.members, opponentStrums.members];
+		   	         modManager.registerDefaultModifiers();
+				 ModCharts.lesGo(modManager, SONG.song.toLowerCase());
 			}
 
 			/*if (isPixelHUD)
