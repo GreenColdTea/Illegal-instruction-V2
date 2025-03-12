@@ -2,6 +2,7 @@
 
 package modchart;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxColor;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxSprite;
 import flixel.FlxG;
@@ -114,7 +115,7 @@ class ModManager {
 
 			var mod = register.get(modName);
                         if (mod == null) {
-                               PlayState.instance.addTextToDebug("Error: Modifier '" + modName + "' not found in register!");
+                               PlayState.instance.addTextToDebug("Error: Modifier '" + modName + "' not found in register!", FlxColor.YELLOW);
                                return;
                         }
                         mod.setValue(val, player);
