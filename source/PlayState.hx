@@ -4494,224 +4494,158 @@ class PlayState extends MusicBeatState
 				unspawnNotes.splice(index, 1);
 			}
 		}       
+					
+		if (generatedMusic)
+{
+    if (!inCutscene) {
+        if (!cpuControlled) {
+            keyShit();
+        } else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration 
+            && boyfriend.animation.curAnim.name.startsWith('sing') 
+            && !boyfriend.animation.curAnim.name.endsWith('miss')) {
+            boyfriend.dance();
+        }
+    }
 
-       if (generatedMusic)
+    // opponent strums update
+    opponentStrums.forEachAlive(function(strum:StrumNote) {
+        var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 1, strum, [], strum.vec3Cache);
+        modManager.updateObject(curDecBeat, strum, pos, 1);
+        strum.x = pos.x;
+        strum.y = pos.y;
+    });
+
+    // player strums update
+    playerStrums.forEachAlive(function(strum:StrumNote) {
+        var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 0, strum, [], strum.vec3Cache);
+        modManager.updateObject(curDecBeat, strum, pos, 0);
+        strum.x = pos.x;
+        strum.y = pos.y;
+    });
+
+    var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
+    notes.forEachAlive(function(daNote:Note) {
+        var strumGroup:FlxTypedGroup<StrumNote> = daNote.mustPress ? playerStrums : opponentStrums;
+        var strum:StrumNote = strumGroup.members[daNote.noteData];
+
+        var strumX:Float = strum.x + daNote.offsetX;
+        var strumY:Float = strum.y + daNote.offsetY;
+        var strumAngle:Float = strum.angle + daNote.offsetAngle;
+        var strumDirection:Float = strum.direction;
+        var strumAlpha:Float = strum.alpha * daNote.multAlpha;
+        var strumScroll:Bool = strum.downScroll;
+
+        var pN:Int = daNote.mustPress ? 0 : 1;
+
+        // modchart shit
+        var pos = modManager.getPos(
+            daNote.strumTime, 
+            modManager.getVisPos(Conductor.songPosition, daNote.strumTime, SONG.speed),
+            daNote.strumTime - Conductor.songPosition, 
+            curBeat, 
+            daNote.noteData, 
+            pN, 
+            daNote, 
+            [], 
+            daNote.vec3Cache
+        );
+        modManager.updateObject(curBeat, daNote, pos, pN);
+
+        pos.x += daNote.offsetX;
+        pos.y += daNote.offsetY;
+        daNote.x = pos.x;
+        daNote.y = pos.y;
+
+        // Distance solving
+        daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * SONG.speed);
+        var angleDir = strumDirection * Math.PI / 180;
+
+        if (daNote.copyAngle)
+            daNote.angle = strumDirection - 90 + strumAngle;
+
+        if (daNote.copyAlpha)
+            daNote.alpha = strumAlpha;
+
+        if (daNote.copyX)
+            daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+
+        if (daNote.copyY)
         {
-          if (!inCutscene) {
-                 if (!cpuControlled) {
-                        keyShit();
-                 } else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
-                        boyfriend.dance();
+            daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+
+            if (strumScroll && daNote.isSustainNote)
+            {
+                if (daNote.animation.curAnim.name.endsWith('end')) {
+                    daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * SONG.speed + (46 * (SONG.speed - 1));
+                    daNote.y -= 46 * (1 - (fakeCrochet / 600)) * SONG.speed;
+                    if (PlayState.isPixelStage) {
+                        daNote.y += 8 + (6 - daNote.originalHeightForCalcs) * PlayState.daPixelZoom;
+                    } else {
+                        daNote.y -= 19;
+                    }
                 }
-         }
+                daNote.y += (Note.swagWidth / 2) - (60.5 * (SONG.speed - 1));
+                daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (SONG.speed - 1);
+            }
+        }
 
-         var roundedSpeed:Float = FlxMath.roundDecimal(SONG.speed, 2);
-		
-         opponentStrums.forEachAlive(function(strum:StrumNote)
-			{
-				var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 1, strum, [], strum.vec3Cache);
-				modManager.updateObject(curDecBeat, strum, pos, 1);
-				strum.x = pos.x;
-				strum.y = pos.y;
-			});
-	
-			playerStrums.forEachAlive(function(strum:StrumNote)
-			{
-				var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 0, strum, [], strum.vec3Cache);
-				modManager.updateObject(curDecBeat, strum, pos, 0);
-				strum.x = pos.x;
-				strum.y = pos.y;
-			});
-
-			var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
-			notes.forEachAlive(function(daNote:Note)
-			{
-				if (!daNote.mustPress && ClientPrefs.middleScroll)
-				{
-					daNote.active = true;
-					if(!songIsModcharted) daNote.visible = false;
-				}
-				else if (daNote.y > FlxG.height)
-				{
-					daNote.active = false;
-					daNote.visible = false;
-				}
-				else
-				{
-					daNote.visible = true;
-					daNote.active = true;
-				}
-
-				var strumGroup:FlxTypedGroup<StrumNote> = playerStrums;
-				if(!daNote.mustPress) strumGroup = opponentStrums;
-
-				// i am so fucking sorry for this if condition
-				var strumX:Float = 0;
-				var strumY:Float = 0;
-				var strumAngle:Float = 0;
-				var strumAlpha:Float = 0;
-				var strumX:Float = strumGroup.members[daNote.noteData].x;
-				var strumY:Float = strumGroup.members[daNote.noteData].y;
-				var strumAngle:Float = strumGroup.members[daNote.noteData].angle;
-				var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
-				var strumAlpha:Float = strumGroup.members[daNote.noteData].alpha;
-				var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
-
-				strumX += daNote.offsetX;
-				strumY += daNote.offsetY;
-				strumAngle += daNote.offsetAngle;
-				strumAlpha *= daNote.multAlpha;
-				var pN:Int = daNote.mustPress ? 0 : 1;
-				var pos = modManager.getPos(daNote.strumTime, modManager.getVisPos(Conductor.songPosition, daNote.strumTime, SONG.speed),
-				daNote.strumTime - Conductor.songPosition, curBeat, daNote.noteData, pN, daNote, [], daNote.vec3Cache);
-
-				modManager.updateObject(curBeat, daNote, pos, pN);
-				pos.x += daNote.offsetX;
-				pos.y += daNote.offsetY;
-				daNote.x = pos.x;
-				daNote.y = pos.y;
-				if (daNote.isSustainNote)
-				{
-					var futureSongPos = Conductor.songPosition + 75;
-					var diff = daNote.strumTime - futureSongPos;
-					var vDiff = modManager.getVisPos(futureSongPos, daNote.strumTime, SONG.speed);
-
-					var nextPos = modManager.getPos(daNote.strumTime, vDiff, diff, Conductor.getStep(futureSongPos) / 4, daNote.noteData, pN, daNote, [],
-						daNote.vec3Cache);
-					nextPos.x += daNote.offsetX;
-					nextPos.y += daNote.offsetY;
-					var diffX = (nextPos.x - pos.x);
-					var diffY = (nextPos.y - pos.y);
-					var rad = Math.atan2(diffY, diffX);
-					var deg = rad * (180 / Math.PI);
-					if (deg != 0)
-						daNote.mAngle = (deg + 90);
-					else
-						daNote.mAngle = 0;
-				}
-
-				if (strumScroll) //Downscroll
-				{
-					//daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * songSpeed);
-					daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-				}
-				else //Upscroll
-				{
-					//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * songSpeed);
-					daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-				}
-				
-				var center:Float = strumY + Note.swagWidth / 2;
-				var angleDir = strumDirection * Math.PI / 180;
-				if(daNote.copyX)
-				{
-					daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
-				}
-				if (daNote.copyAngle)
-				{
-					daNote.angle = strumAngle;
-				}
-				if (daNote.copyAlpha)
-				{
-					daNote.alpha = strumAlpha;
-				}
-				if (daNote.copyY) 
-				{
-					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
-                                        if (strumScroll)
-					{
-						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
-						if (daNote.isSustainNote)
-						{
-							// Jesus fuck this took me so much mother fucking time AAAAAAAAAA
-							if (daNote.animation.curAnim.name.endsWith('end'))
-							{
-								daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
-								daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
-								if (PlayState.isPixelStage)
-								{
-									daNote.y += 8 + (6 - daNote.originalHeightForCalcs) * PlayState.daPixelZoom;
-								}
-								else
-								{
-									daNote.y -= 19;
-								}
-							}
-							daNote.y += (Note.swagWidth / 2) - (60.5 * (roundedSpeed - 1));
-							daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1);
-
-							if (daNote.mustPress || !daNote.ignoreNote)
-							{
-								if (daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
-									&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-								{
-									var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
-									swagRect.height = (center - daNote.y) / daNote.scale.y;
-									swagRect.y = daNote.frameHeight - swagRect.height;
-
-									daNote.clipRect = swagRect;
-								}
-							}
-						}
-					}
-					else
-					{
-						//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
-
-						if (daNote.mustPress || !daNote.ignoreNote)
-						{
-							if (daNote.isSustainNote
-								&& daNote.y + daNote.offset.y * daNote.scale.y <= center
-								&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-							{
-								var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-								swagRect.y = (center - daNote.y) / daNote.scale.y;
-								swagRect.height -= swagRect.y;
-
-								daNote.clipRect = swagRect;
-							}
-						}
-					}
-				}
-
-                                // Opponent auto-hits notes
-                                if (!daNote.mustPress && daNote.wasGoodHit && !daNote.hitByOpponent && !daNote.ignoreNote)
-                                {
-                                        opponentNoteHit(daNote);
-                                }
-
-                                // Botplay handling
-                                if (daNote.mustPress && cpuControlled)
-                                {
-                                        if (daNote.isSustainNote)
-                                        {
-                                                  if (daNote.canBeHit)
-                                                  goodNoteHit(daNote);
-                                        }
-                                        else if (daNote.strumTime <= Conductor.songPosition || (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress))
-                                        {
-                                                  goodNoteHit(daNote);
-                                        }
-                                }
-
-           
-				// Kill extremely late notes and cause misses
-				if (Conductor.songPosition > noteKillOffset + daNote.strumTime)
-				{
-					if (daNote.mustPress && !cpuControlled &&!daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit)) {
-						noteMiss(daNote);
-					}
-
-					daNote.active = false;
-					daNote.visible = false;
-
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-				}
-                        });
+        var center:Float = strumY + Note.swagWidth / 2;
+        if (strum.sustainReduce && daNote.isSustainNote && (daNote.mustPress || !daNote.ignoreNote) &&
+            (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+        {
+            if (strumScroll)
+            {
+                if (daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center)
+                {
+                    var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
+                    swagRect.height = (center - daNote.y) / daNote.scale.y;
+                    swagRect.y = daNote.frameHeight - swagRect.height;
+                    daNote.clipRect = swagRect;
                 }
+            }
+            else
+            {
+                if (daNote.y + daNote.offset.y * daNote.scale.y <= center)
+                {
+                    var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+                    swagRect.y = (center - daNote.y) / daNote.scale.y;
+                    swagRect.height -= swagRect.y;
+                    daNote.clipRect = swagRect;
+                }
+            }
+        }
+
+        // Opponent note hitting
+        if (!daNote.mustPress && daNote.wasGoodHit && !daNote.hitByOpponent && !daNote.ignoreNote)
+        {
+            opponentNoteHit(daNote);
+        }
+
+        // botplay handing
+        if (daNote.mustPress && cpuControlled) {
+            if (daNote.isSustainNote) {
+                if (daNote.canBeHit) {
+                    goodNoteHit(daNote);
+                }
+            } else if (daNote.strumTime <= Conductor.songPosition || (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress)) {
+                goodNoteHit(daNote);
+            }
+        }
+
+        if (Conductor.songPosition > noteKillOffset + daNote.strumTime)
+        {
+            if (daNote.mustPress && !cpuControlled && !daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit)) {
+                noteMiss(daNote);
+            }
+
+            daNote.active = false;
+            daNote.visible = false;
+            daNote.kill();
+            notes.remove(daNote, true);
+            daNote.destroy();
+        }
+    });
+}												
 
 		checkEventNote();
 
