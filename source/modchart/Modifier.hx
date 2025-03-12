@@ -28,42 +28,42 @@ class Modifier {
     public var parent:Modifier; // for submods
     public var active:Bool = false;
 
-    inline public function getModType():ModifierType return MISC_MOD;
-    inline public function ignorePos():Bool return false;
-    inline public function ignoreUpdateReceptor():Bool return true;
-    inline public function ignoreUpdateNote():Bool return true;
-    inline public function doesUpdate():Bool return getModType() == MISC_MOD;
-    inline public function shouldExecute(player:Int, value:Float):Bool return value != 0;
-    inline public function getOrder():Int return DEFAULT;
-    inline public function getName():String return '';
+    public function getModType():ModifierType return MISC_MOD;
+    public function ignorePos():Bool return false;
+    public function ignoreUpdateReceptor():Bool return true;
+    public function ignoreUpdateNote():Bool return true;
+    public function doesUpdate():Bool return getModType() == MISC_MOD;
+    public function shouldExecute(player:Int, value:Float):Bool return value != 0;
+    public function getOrder():Int return DEFAULT;
+    public function getName():String return '';
 
-    inline public function getValue(player:Int):Float return percents[player];
-    inline public function getPercent(player:Int):Float return percents[player] * 100;
-    inline public function setPercent(percent:Float, player:Int = -1) setValue(percent / 100, player);
+    public function getValue(player:Int):Float return percents[player];
+    public function getPercent(player:Int):Float return percents[player] * 100;
+    public function setPercent(percent:Float, player:Int = -1) setValue(percent / 100, player);
 
     public function setValue(value:Float, player:Int = -1) {
         if (player == -1) percents.fill(value);
         else percents[player] = value;
     }
 
-    inline public function getSubmods():Array<String> return [];
+    public function getSubmods():Array<String> return [];
 
-    inline public function getSubmodPercent(modName:String, player:Int):Float {
+    public function getSubmodPercent(modName:String, player:Int):Float {
         var mod = submods.get(modName);
         return (mod != null) ? mod.getPercent(player) : 0;
     }
 
-    inline public function getSubmodValue(modName:String, player:Int):Float {
+    public function getSubmodValue(modName:String, player:Int):Float {
         var mod = submods.get(modName);
         return (mod != null) ? mod.getValue(player) : 0;
     }
 
-    inline public function setSubmodPercent(modName:String, endPercent:Float, player:Int) {
+    public function setSubmodPercent(modName:String, endPercent:Float, player:Int) {
         var mod = submods.get(modName);
         if (mod != null) mod.setPercent(endPercent, player);
     }
 
-    inline public function setSubmodValue(modName:String, endValue:Float, player:Int) {
+    public function setSubmodValue(modName:String, endValue:Float, player:Int) {
         var mod = submods.get(modName);
         if (mod != null) mod.setValue(endValue, player);
     }
