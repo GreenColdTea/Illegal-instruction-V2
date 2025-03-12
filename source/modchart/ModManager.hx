@@ -15,7 +15,7 @@ class ModManager {
 	public static var canMorchartOnLua:Bool = false;
 	public function registerDefaultModifiers()
 	{
-		var quickRegs = [
+		var quickRegs:Array<Any> = [
 			FlipModifier, TornadoModifier, ReverseModifier, InvertModifier, DrunkModifier,
 			BeatModifier, AlphaModifier, ScaleModifier, ConfusionModifier, OpponentModifier,
 			TransformModifier, InfinitePathModifier, PerspectiveModifier
