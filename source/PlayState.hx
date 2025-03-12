@@ -3371,6 +3371,7 @@ class PlayState extends MusicBeatState
 			}
 
                         modManager.receptors = [playerStrums.members, opponentStrums.members];
+			modManager.canMorchartOnLua = true;
 			callOnLuas('onPreModifierRegister', []);
 		   	modManager.registerDefaultModifiers();
 			callOnLuas('onPostModifierRegister', []);
