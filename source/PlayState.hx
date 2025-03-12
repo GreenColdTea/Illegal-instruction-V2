@@ -4620,7 +4620,7 @@ class PlayState extends MusicBeatState
 					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
                                         if (strumScroll)
 					{
-						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
 						if (daNote.isSustainNote)
 						{
 							// Jesus fuck this took me so much mother fucking time AAAAAAAAAA
