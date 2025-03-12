@@ -14,7 +14,7 @@ import modchart.events.*;
 // Weird amalgamation of Schmovin' modifier system, Andromeda modifier system and my own new shit -neb
 
 class ModManager {
-	public var canMorchartOnLua:Bool = false;
+	public static var canMorchartOnLua:Bool = false;
 	public function registerDefaultModifiers()
 	{
 		var quickRegs:Array<Any> = [FlipModifier, TornadoModifier, ReverseModifier, InvertModifier, DrunkModifier, BeatModifier, AlphaModifier, ScaleModifier, ConfusionModifier, OpponentModifier, TransformModifier, InfinitePathModifier, PerspectiveModifier];
