@@ -228,6 +228,29 @@ class BallsFreeplay extends MusicBeatState {
         FlxG.sound.music.fadeIn(4, 0, 0.85);
     }
 
+    lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
+    if(Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
+
+    scoreText.text = "SCORE:" + "\n" + lerpScore;
+
+    if (controls.UI_UP_P)
+    {
+            songIndex = (songIndex - 1 + songs.length) % songs.length;
+            updateScreen();
+    }
+
+    if (controls.UI_DOWN_P)
+    {
+            songIndex = (songIndex + 1) % songs.length;
+            updateScreen();
+    }
+
+    if(FlxG.keys.pressed.CONTROL #if mobile || _virtualpad.buttonC.pressed #end)
+    {
+	    persistentUpdate = false;
+	    openSubState(new GameplayChangersSubstate());
+    }
+
     // character moving shit
     var moveSpeed:Float = 300;
     var runSpeed:Float = 385;
