@@ -112,7 +112,12 @@ class ModManager {
 			if (activeMods[player] == null)
 				activeMods[player]=[];
 
-			register.get(modName).setValue(val, player);
+			var mod = register.get(modName);
+                        if (mod == null) {
+                               PlayState.addTextToDebug("Error: Modifier '" + modName + "' not found in register!");
+                               return;
+                        }
+                        mod.setValue(val, player);
 			
 			if (!activeMods[player].contains(name) && mod.shouldExecute(player, val)){
 				if (daMod.getName() != name)
