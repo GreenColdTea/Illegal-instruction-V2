@@ -2081,9 +2081,9 @@ class FunkinLua {
                     var modManager = PlayState.instance.modManager;
 
 		    if (modManager.canMorchartOnLua)
-			    return true
+			    return true;
 		    else
-			    return false
+			    return false;
 
                     if (modManager.get(name) != null) {
                         luaTrace('addMod: Modifier "' + name + '" already exists!', true);
