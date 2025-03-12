@@ -2086,7 +2086,7 @@ class FunkinLua {
                     }
 
                     var mod:Modifier = switch (type.toLowerCase().trim()) {
-			case "alpha": new AlphaModifier(modManager)b
+			case "alpha": new AlphaModifier(modManager);
                         case "reverse": new ReverseModifier(modManager);
                         case "flip": new FlipModifier(modManager);
                         case "drunk": new DrunkModifier(modManager);
