@@ -4176,6 +4176,7 @@ class PlayState extends MusicBeatState
 		if (isPixelStage && !ClientPrefs.hideHud) 
 		{
 			songNameHUD.visible = true;
+			scoreTxt.visible = true;
 		}
 
 		healthBarOver.x = healthBar.x - 4;
@@ -4431,8 +4432,6 @@ class PlayState extends MusicBeatState
 						}
 					}
 
-
-
 				}
 			}
 
@@ -4590,6 +4589,17 @@ class PlayState extends MusicBeatState
 					else
 						daNote.mAngle = 0;
 				}
+
+				if (strumScroll) //Downscroll
+				{
+					//daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * songSpeed);
+					daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+				}
+				else //Upscroll
+				{
+					//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * songSpeed);
+					daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+				}
 				
 				var center:Float = strumY + Note.swagWidth / 2;
 				var angleDir = strumDirection * Math.PI / 180;
@@ -4607,6 +4617,7 @@ class PlayState extends MusicBeatState
 				}
 				if (daNote.copyY) 
 				{
+					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
                                         if (strumScroll)
 					{
 						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
@@ -4619,7 +4630,7 @@ class PlayState extends MusicBeatState
 								daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
 								if (PlayState.isPixelStage)
 								{
-									daNote.y += 8;
+									daNote.y += 8 + (6 - daNote.originalHeightForCalcs) * PlayState.daPixelZoom;
 								}
 								else
 								{
@@ -4645,7 +4656,8 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
 
 						if (daNote.mustPress || !daNote.ignoreNote)
 						{
