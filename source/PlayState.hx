@@ -2349,10 +2349,10 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 
-
-		holdRenderer = new PlayfieldRenderer(strumLineNotes, notes);
+		holdRenderer = new HoldRenderer(strumLineNotes, notes);
                 holdRenderer.cameras = [camHUD];
                 add(holdRenderer);
+		
 		add(grpNoteSplashes);
 
 		if(ClientPrefs.timeBarType == 'Song Name')
