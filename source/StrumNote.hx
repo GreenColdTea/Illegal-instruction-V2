@@ -4,11 +4,13 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import math.*;
+import shaders.ColorSwap;
 
 using StringTools;
 
 class StrumNote extends FlxSprite
 {
+	private var colorSwap:ColorSwap;
 	public var resetAnim:Float = 0;
 	public var noteData:Int = 0;
 	public var direction:Float = 90; //plan on doing scroll directions soon -bb
@@ -41,8 +43,8 @@ class StrumNote extends FlxSprite
   }
 
 	public function new(x:Float, y:Float, leData:Int, player:Int) {
+                scaleDefault = new FlxPoint();
 		colorSwap = new ColorSwap();
-      scaleDefault = new FlxPoint();
 		shader = colorSwap.shader;
 		noteData = leData;
 		this.player = player;
@@ -128,7 +130,7 @@ class StrumNote extends FlxSprite
 		}
 		updateHitbox();
 		scrollFactor.set();
-      scaleDefault.set(scale.x,scale.y);
+                scaleDefault.set(scale.x,scale.y);
 
 		if(lastAnim != null)
 		{
