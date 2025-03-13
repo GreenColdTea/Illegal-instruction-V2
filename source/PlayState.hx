@@ -599,17 +599,20 @@ class PlayState extends MusicBeatState
 
 	var scoreRandom:Bool = false;
    
-   override function draw()
-	{
-		super.draw();
-		// trace('it is being called');
-		/*holdRenderer.drawHoldNotes(camHUD.canvas.graphics);
-			@:privateAccess
-			camHUD.canvas.graphics.__dirty = true; */
+        override function draw()
+        {
+            super.draw();
 
-		// ^^ this does NOT work and I have no clue why
-		// if someone wants to fix it, then go ahead
-	}
+            if (holdRenderer != null) {
+                var gfx = camHUD.canvas.graphics;
+                holdRenderer.drawHoldNotes(gfx);
+
+                #if openfl
+                gfx.__dirty = true;
+                gfx.invalidate();
+                #end
+            }
+        }
 
 	override public function create()
 	{
@@ -3881,7 +3884,7 @@ class PlayState extends MusicBeatState
 
 			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
 			babyArrow.downScroll = ClientPrefs.downScroll;
-         if (!isStoryMode && !skipArrowStartTween)
+                        if (!isStoryMode && !skipArrowStartTween)
 			{
 				//babyArrow.y -= 10;
 				babyArrow.alpha = 0;
