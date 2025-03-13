@@ -2348,6 +2348,11 @@ class PlayState extends MusicBeatState
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
+
+
+		holdRenderer = new PlayfieldRenderer(strumLineNotes, notes);
+                holdRenderer.cameras = [camHUD];
+                add(holdRenderer);
 		add(grpNoteSplashes);
 
 		if(ClientPrefs.timeBarType == 'Song Name')
@@ -2866,9 +2871,6 @@ class PlayState extends MusicBeatState
 		    }
 	
 		RecalculateRating();
-
-		holdRenderer = new HoldRenderer(strumLineNotes, notes);
-                add(holdRenderer);
 	
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
 		if(ClientPrefs.hitsoundVolume > 0) CoolUtil.precacheSound('hitsound');
