@@ -1,6 +1,7 @@
 package modchart.modifiers;
 
 import flixel.math.FlxMath;
+import math.Vector3;
 import math.CoolMath;//Games
 
 using StringTools;
