@@ -9,7 +9,6 @@ using StringTools;
 
 class StrumNote extends FlxSprite
 {
-	private var colorSwap:ColorSwap;
 	public var resetAnim:Float = 0;
 	public var noteData:Int = 0;
 	public var direction:Float = 90; //plan on doing scroll directions soon -bb
@@ -18,7 +17,7 @@ class StrumNote extends FlxSprite
 	
 	private var player:Int;
 
-   public var z:Float = 0; // for modchart system
+        public var z:Float = 0; // for modchart system
 	public var zIndex:Float = 0;
 	public var scaleDefault:FlxPoint;
 	
