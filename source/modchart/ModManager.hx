@@ -63,10 +63,16 @@ class ModManager {
         for (modName => mod in modList) defineMod(modName, mod);
 
         var infPath:Array<Array<Vector3>> = [[], [], [], []];
-        for (r in 0...360 by 15) {
+        var r = 0;
+        while (r < 360) {
             var rad = r * Math.PI / 180;
-            for (data in 0...infPath.length)
-                infPath[data].push(new Vector3(FlxG.width / 2 + FlxMath.fastSin(rad) * 600, FlxG.height / 2 + (FlxMath.fastSin(rad) * FlxMath.fastCos(rad)) * 600, 0));
+            for (data in 0...infPath.length) {
+                infPath[data].push(new Vector3(
+                    FlxG.width / 2 + FlxMath.fastSin(rad) * 600,
+                    FlxG.height / 2 + (FlxMath.fastSin(rad) * FlxMath.fastCos(rad)) * 600, 0
+                ));
+            }
+            r += 15;
         }
         defineMod("infinite", new PathModifier(this, infPath, 1850));
     }
