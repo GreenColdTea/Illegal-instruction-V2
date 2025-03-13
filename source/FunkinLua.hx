@@ -3116,6 +3116,7 @@ class HScript
             interp.variables.set('PlayerSettings', PlayerSettings);
             interp.variables.set('ModManager', modchart.ModManager);
             interp.variables.set('Modifier', modchart.Modifier);
+	    interp.variables.set('ModCharts', ModCharts);
 
             // Extra utilities
             interp.variables.set('Math', Math);
