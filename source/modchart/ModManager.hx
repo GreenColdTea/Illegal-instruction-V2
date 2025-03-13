@@ -143,10 +143,10 @@ class ModManager {
     }
 
     public function queueEaseP(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float)
-    		queueEase(step, endStep, modName, percent / 100, style, player, startVal / 100);
+        queueEase(step, endStep, modName, percent / 100, style, player, startVal / 100);
 	
-	  public function queueSetP(step:Float, modName:String, percent:Float, player:Int = -1)
-	    	queueSet(step, modName, percent / 100, player);
+    public function queueSetP(step:Float, modName:String, percent:Float, player:Int = -1)
+	queueSet(step, modName, percent / 100, player);
 	
 
     public function queueSet(step:Float, modName:String, percent:Float, player:Int = -1) {
