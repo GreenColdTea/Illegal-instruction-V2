@@ -18,7 +18,8 @@ class ModManager {
 		var quickRegs:Array<Any> = [
 			FlipModifier, TornadoModifier, ReverseModifier, InvertModifier, DrunkModifier,
 			BeatModifier, AlphaModifier, ScaleModifier, ConfusionModifier, OpponentModifier,
-			TransformModifier, InfinitePathModifier, PerspectiveModifier
+			TransformModifier, InfinitePathModifier, PerspectiveModifier, SchmovinDrunkModifier,
+			AccelModifier, SpiralModifier
 		];
 		for (mod in quickRegs) quickRegister(Type.createInstance(mod, [this]));
 
