@@ -2120,12 +2120,12 @@ class FunkinLua {
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-                Lua_helper.add_callback(lua, "easeModBySeconds", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
+                Lua_helper.add_callback(lua, "easeModByStepP", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
                     if (modManager.get(mod) != null) {
                         modManager.queueEaseP(step, step + length, mod, value, ease, player);
                     } else {
-                        luaTrace('easeModBySeconds: Modifier "' + mod + '" does not exist.', true);
+                        luaTrace('easeModByStepP: Modifier "' + mod + '" does not exist.', true);
                     }
                 });
                 Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
@@ -2139,7 +2139,7 @@ class FunkinLua {
                     modManager.queueSet(startStep, name, percent, player);
                     return true;
                 });
-		Lua_helper.add_callback(lua, "setModAtSeconds", function(startStep:Float, name:String, percent:Float, player:Int) {
+		Lua_helper.add_callback(lua, "setModAtStepP", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
