@@ -1,5 +1,4 @@
 package modchart.modifiers;
-import flixel.FlxSprite;
 import ui.*;
 import modchart.*;
 import flixel.math.FlxPoint;
@@ -8,60 +7,51 @@ import flixel.FlxG;
 import math.Vector3;
 import math.*;
 
-class RotateModifier extends NoteModifier { // this'll be rotateX in ModManager
-	override function getName()
-		return '${prefix}rotateX';
+class RotateModifier extends Modifier { // this'll be rotateX in ModManager
+  inline function lerp(a:Float,b:Float,c:Float){
+    return a+(b-a)*c;
+  }
+  var daOrigin:Vector3;
+  var prefix:String;
+  public function new(modMgr:ModManager,?prefix:String='',?origin:Vector3){
+    super(modMgr);
 
-	override function getOrder()
-		return Modifier.ModifierOrder.LAST + 2;
+    this.prefix=prefix;
+    this.daOrigin=origin;
 
-    inline function lerp(a:Float,b:Float,c:Float){
-        return a+(b-a)*c;
-    }
-    var daOrigin:Vector3;
-    var prefix:String;
-	public function new(modMgr:ModManager, ?prefix:String = '', ?origin:Vector3, ?parent:Modifier){
-        this.prefix=prefix;
-        this.daOrigin=origin;
-        super(modMgr, parent);
+    submods.set('${prefix}rotateY',new Modifier(modMgr));
+    submods.set('${prefix}rotateZ',new Modifier(modMgr));
 
-    }
+  }
 
-    // thanks schmoovin'
-    function rotateV3(vec:Vector3,xA:Float,yA:Float,zA:Float):Vector3{
-        var rotateZ = CoolUtil.rotate(vec.x, vec.y, zA);
-        var offZ = new Vector3(rotateZ.x, rotateZ.y, vec.z);
+  // thanks schmoovin'
+  function rotateV3(vec:Vector3,xA:Float,yA:Float,zA:Float):Vector3{
+    var rotateZ = CoolUtil.rotate(vec.x, vec.y, zA);
+		var offZ = new Vector3(rotateZ.x, rotateZ.y, vec.z);
 
-        var rotateX = CoolUtil.rotate(offZ.z, offZ.y, xA);
-        var offX = new Vector3(offZ.x, rotateX.y, rotateX.x);
+		var rotateX = CoolUtil.rotate(offZ.z, offZ.y, xA);
+		var offX = new Vector3(offZ.x, rotateX.y, rotateX.x);
 
-        var rotateY = CoolUtil.rotate(offX.x, offX.z, yA);
-        var offY = new Vector3(rotateY.x, offX.y, rotateY.y);
+		var rotateY = CoolUtil.rotate(offX.x, offX.z, yA);
+		var offY = new Vector3(rotateY.x, offX.y, rotateY.y);
 
-		rotateZ.putWeak();
-        rotateX.putWeak();
-        rotateY.putWeak();
+		return offY;
 
-        return offY;
+  }
 
-    }
+  override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float){
+    var origin:Vector3 = new Vector3(modMgr.state.getXPosition(timeDiff, data, player), FlxG.height / 2 - Note.swagWidth / 2);
+    if(daOrigin!=null)origin=daOrigin;
 
-	override function getPos(time:Float, visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite){
-        var origin:Vector3 = new Vector3(modMgr.getBaseX(data, player), FlxG.height / 2 - Note.swagWidth / 2);
-        if(daOrigin!=null)origin=daOrigin;
+    var diff = pos.subtract(origin);
+    var scale = FlxG.height;
+    diff.z *= scale;
+    var out = rotateV3(diff, getPercent(player)*100, getSubmodPercent('${prefix}rotateY',player)*100, getSubmodPercent('${prefix}rotateZ',player)*100);
+    out.z /= scale;
+    return origin.add(out);
+  }
 
-        var diff = pos.subtract(origin);
-        var scale = FlxG.height;
-        diff.z *= scale;
-        var out = rotateV3(diff, getValue(player), getSubmodValue('${prefix}rotateY',player), getSubmodValue('${prefix}rotateZ',player));
-        out.z /= scale;
-        return origin.add(out);
-    }
-
-    override function getSubmods(){
-        return [
-            '${prefix}rotateY',
-            '${prefix}rotateZ'
-        ];
-    }
+  override function getSubmods(){
+    return [];
+  }
 }

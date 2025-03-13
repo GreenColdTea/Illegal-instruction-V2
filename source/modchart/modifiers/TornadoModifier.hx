@@ -1,34 +1,55 @@
 package modchart.modifiers;
-
+import ui.*;
 import modchart.*;
-import math.Vector3;
+import flixel.math.FlxPoint;
+import flixel.math.FlxMath;
 import flixel.FlxG;
+import math.*;
 
 class TornadoModifier extends Modifier {
-    override public function getModType()
-        return ModifierType.NOTE_MOD; // Affects note positions
+  //override function getNotePos(note:Note, pos:Vector3, data:Int, player:Int){
+  override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float){
+    if(getPercent(player)==0)return pos;
 
-    override public function getName()
-        return "tornado";
+    var receptors = modMgr.receptors[player];
+    var len = receptors.length;
+    // thank you 4mbr0s3
+    var playerColumn = data % receptors.length;
+    var columnPhaseShift = playerColumn * Math.PI / 3;
+    var phaseShift =visualDiff / 135;
+    var returnReceptorToZeroOffsetX = (-Math.cos(-columnPhaseShift) + 1) / 2 * Note.swagWidth * 3;
+    var offsetX = (-Math.cos(phaseShift - columnPhaseShift) + 1) / 2 * Note.swagWidth * 3 - returnReceptorToZeroOffsetX;
+    var outPos = pos.clone();
+    return outPos.add(new Vector3(offsetX * getPercent(player)));
 
-    override public function getOrder()
-        return ModifierOrder.DEFAULT;
+    /*var width = 2;
+    var receptors = modMgr.receptors[player];
+    var len = receptors.length;
 
-    override public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite):Vector3 {
-        var strength = getValue(player);
-        if (strength == 0) return pos;
+    var start:Int = data-width;
+    var end:Int = data+width;
+    start = Std.int(CoolUtil.boundTo(start,0,len));
+    end = Std.int(CoolUtil.boundTo(end,0,len));
 
-        var receptors = modMgr.receptors[player];
-        var len = receptors.length;
-        var column = data % len;
+    var min:Float = FlxMath.MAX_VALUE_FLOAT;
+    var max:Float = -FlxMath.MAX_VALUE_FLOAT;
 
-        var phaseShift = diff / 135;
-        var columnPhaseShift = column * Math.PI / 3;
-
-        var baseOffset = (-Math.cos(-columnPhaseShift) + 1) / 2 * Note.swagWidth * 3;
-        var offsetX = (-Math.cos(phaseShift - columnPhaseShift) + 1) / 2 * Note.swagWidth * 3 - baseOffset;
-
-        var outPos = pos.clone();
-        return outPos.add(new Vector3(offsetX * strength));
+    for(i in start...end){
+      var rec = receptors[i];
+      min = Math.min(min,rec.defaultX);
+      max = Math.max(max,rec.defaultX);
     }
+
+    var offset:Float = receptors[data].defaultX;
+    var between:Float = CoolUtil.scale(offset,min,max,-1,1);
+    var rads:Float = Math.acos(between);
+    rads += pos.y * 6 / FlxG.height;
+
+    var adjustedOffset = CoolUtil.scale(FlxMath.fastCos(rads),-1,1,min,max);
+    var z = CoolUtil.scale(FlxMath.fastSin(rads),0,1,0,0.1);
+    pos.x += (adjustedOffset-offset)*getPercent(player);
+    pos.z += z;
+
+    return pos;*/
+  }
 }

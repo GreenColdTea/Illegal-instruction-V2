@@ -1,5 +1,4 @@
 package modchart.modifiers;
-import flixel.FlxSprite;
 import ui.*;
 import modchart.*;
 import flixel.math.FlxPoint;
@@ -15,23 +14,13 @@ typedef PathInfo = {
   var end:Float;
 }
 
-class PathModifier extends NoteModifier {
+class PathModifier extends Modifier {
   var moveSpeed:Float;
   var pathData:Array<Array<PathInfo>>=[];
   var totalDists:Array<Float> = [];
-  override function getName()return 'basePath';
-  public function getMoveSpeed(){
-    return 5000;
-  }
-
-	public function getPath():Array<Array<Vector3>>{
-    return [];
-  }
-
-  public function new(modMgr:ModManager, ?parent:Modifier){
-    super(modMgr, parent);
-		moveSpeed = getMoveSpeed();
-		var path:Array<Array<Vector3>> = getPath();
+  public function new(modMgr:ModManager, path:Array<Array<Vector3>>, moveSpeed:Float=5000){
+    super(modMgr);
+    this.moveSpeed=moveSpeed;
     var dir:Int = 0;
     // ridiculous that haxe doesnt have a numeric for loop
 
@@ -78,17 +67,17 @@ class PathModifier extends NoteModifier {
   }
 
 
-	override function getPos(time:Float, visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite){
-    if(getValue(player)==0)return pos;
+  override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float){
+    if(getPercent(player)==0)return pos;
     //var vDiff = Math.abs(timeDiff);
-    var vDiff = -timeDiff;
+    var vDiff = timeDiff;
     // tried to use visualDiff but didnt work :(
     // will get it working later
 
     var progress  = (vDiff / -moveSpeed) * totalDists[data];
     var outPos = pos.clone();
     var daPath = pathData[data];
-    if(progress<=0)return pos.lerp(daPath[0].position,getValue(player));
+    if(progress<=0)return pos.lerp(daPath[0].position,getPercent(player));
 
     var idx:Int = 0;
     // STILL ridiculous
@@ -101,7 +90,7 @@ class PathModifier extends NoteModifier {
         if(progress>cData.start && progress<cData.end){
           var alpha = (cData.start - progress)/cData.dist;
           var interpPos:Vector3 = cData.position.lerp(nData.position,alpha);
-          outPos = pos.lerp(interpPos,getValue(player));
+          outPos = pos.lerp(interpPos,getPercent(player));
         }
       }
       idx++;

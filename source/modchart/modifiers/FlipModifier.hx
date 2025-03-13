@@ -1,19 +1,36 @@
 package modchart.modifiers;
+import ui.*;
+import modchart.*;
+import flixel.math.FlxPoint;
+import flixel.math.FlxMath;
+import math.*;
 
-import flixel.FlxSprite;
-import math.Vector3;
+class FlipModifier extends Modifier {
+  /*override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float){
+    if(getPercent(player)==0)return pos;
 
-class FlipModifier extends NoteModifier {
-	override function getName()return 'flip';
+    var receptors = modMgr.receptors[player];
+    var kNum = receptors.length-1;
 
-	override function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite){
-		if (getValue(player) == 0)
-			return pos;
+    var idx:Int = Std.int(CoolUtil.scale(data,0,kNum,kNum,0));
+    var current = receptor;
+    var next = receptors[idx];
+    var dist = next.defaultX-current.defaultX;
 
-		var receptors = modMgr.receptors[player];
+    pos.x = pos.x + dist * getPercent(player);
 
-		var distance = Note.swagWidth * (receptors.length / 2) * (1.5 - data);
-		pos.x += distance * getValue(player);
-        return pos;
-    }
+    return pos;
+  }*/
+
+  override function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float){
+    if(getPercent(player)==0)return pos;
+
+    var receptors = modMgr.receptors[player];
+    var kNum = receptors.length-1;
+
+    var distance = Note.swagWidth * (receptors.length/2) * (1.5-data);
+    pos.x += distance * getPercent(player);
+
+    return pos;
+  }
 }
