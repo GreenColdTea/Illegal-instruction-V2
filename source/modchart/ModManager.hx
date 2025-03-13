@@ -86,6 +86,10 @@ class ModManager {
         return list.length > 0 ? list[list.length - 1] : new ModEvent(0, modName, 0, 0, this);
     }
 
+    public function get(modName:String):Dynamic{
+        return definedMods[modName];
+    }
+
     inline public function getPreviousWithEvent(event:ModEvent):ModEvent {
         var list = getList(event.modName, event.player);
         var idx = list.indexOf(event);
