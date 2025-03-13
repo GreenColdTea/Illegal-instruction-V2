@@ -2344,7 +2344,7 @@ class FunkinLua {
 		});
 
 		//SHADER SHIT
-		if (ClientPrefs.shaders == true)
+		if (ClientPrefs.shaders)
 		{
 		Lua_helper.add_callback(lua, "addChromaticAbberationEffect", function(camera:String,chromeOffset:Float = 0.005) {
 			
