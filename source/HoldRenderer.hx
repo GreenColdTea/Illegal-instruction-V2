@@ -82,7 +82,7 @@ class HoldRenderer extends FlxSprite {
     }
 
     private function getCorrectScrollSpeed() {
-        return PlayState.instance.SONG.speed;
+        return PlayState.instance.songSpeed;
     }
 
     private function drawStuff(notePositions:Array<NotePositionData>) {
