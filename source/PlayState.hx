@@ -2868,7 +2868,7 @@ class PlayState extends MusicBeatState
 		RecalculateRating();
 
 		holdRenderer = new HoldRenderer(strumLineNotes, notes);
-                add(HoldRenderer);
+                add(holdRenderer);
 	
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
 		if(ClientPrefs.hitsoundVolume > 0) CoolUtil.precacheSound('hitsound');
