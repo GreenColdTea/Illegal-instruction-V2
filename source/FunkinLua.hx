@@ -2104,7 +2104,7 @@ class FunkinLua {
                     };
 
                     if (mod != null) {
-                        modManager.registerMod(name, mod);
+                        modManager.defineMod(name, mod);
                         return true;
                     }
                     return false;
@@ -2158,7 +2158,7 @@ class FunkinLua {
                         return false;
                     }
 
-                    modManager.setValue(name, percent, player);
+                    modManager.set(name, percent, player);
                     return true;
                 });
                 Lua_helper.add_callback(lua, "removeMod", function(name:String) {
@@ -2169,7 +2169,7 @@ class FunkinLua {
                         return false;
                     }
 
-                    modManager.register.remove(name);
+                    modManager.removeMod(name);
                     return true;
                 });
                             
