@@ -132,8 +132,9 @@ class PlayState extends MusicBeatState
 	var jigglyOiledUpBlackMen:WiggleEffect;
 	var glitchinTime:Bool = false;
 
-   // IN THE SETUPMODCHART FUNCTION
+        // IN THE SETUPMODCHART FUNCTION
 	public static var songIsModcharted:Bool = false;
+	var holdRenderer:HoldRenderer;
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
@@ -604,13 +605,14 @@ class PlayState extends MusicBeatState
             super.draw();
 
             if (holdRenderer != null) {
-                var gfx = camHUD.canvas.graphics;
+		holdRenderer.draw();
+                /*var gfx = camHUD.canvas.graphics;
                 holdRenderer.drawHoldNotes(gfx);
 
                 #if openfl
                 gfx.__dirty = true;
                 gfx.invalidate();
-                #end
+                #end*/
             }
         }
 
@@ -2344,7 +2346,6 @@ class PlayState extends MusicBeatState
 
 		timeBarBG.sprTracker = timeBar;
 
-
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 		add(grpNoteSplashes);
@@ -2865,6 +2866,9 @@ class PlayState extends MusicBeatState
 		    }
 	
 		RecalculateRating();
+
+		holdRenderer = new HoldRenderer(strumLineNotes, notes);
+                add(HoldRenderer);
 	
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
 		if(ClientPrefs.hitsoundVolume > 0) CoolUtil.precacheSound('hitsound');
@@ -4250,7 +4254,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-      modManager.update(elapsed);
+                modManager.update(elapsed);
+		holdRenderer.update(elapsed);
 
 		if(!inCutscene) {
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 2.4 * cameraSpeed, 0, 1);
