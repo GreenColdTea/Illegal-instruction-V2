@@ -7,6 +7,7 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import openfl.display.BitmapData;
 import editors.ChartingState;
+import shaders.ColorSwap;
 import math.*;
 
 using StringTools;
@@ -93,12 +94,13 @@ class Note extends FlxSprite
 
 	public var texture(default, set):String = null;
 
+	public var colorSwap:ColorSwap;
 	public var noAnimation:Bool = false;
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000; //plan on doing scroll directions soon -bb
 
 	public var speed:Float = 1; //for modcharts
-   public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
+        public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
 	public var hitsoundDisabled:Bool = false;
 
