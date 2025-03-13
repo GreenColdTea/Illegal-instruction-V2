@@ -1,5 +1,5 @@
 // @author Nebula_Zorua
-// @optimization GCN
+// @optimization GCT
 
 package modchart;
 
