@@ -7,7 +7,6 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import openfl.display.BitmapData;
 import editors.ChartingState;
-import shaders.ColorSwap;
 import math.*;
 
 using StringTools;
@@ -31,15 +30,14 @@ class Note extends FlxSprite
 	public var currentPrefix:String = "";
 	public var currentTexture:String = "";
 	public var currentSuffix:String = "";
-
-	public var typeOffsetX:Float = 0; // used to offset notes, mainly for note types. use in place of offset.x and offset.y when offsetting notetypes
-	public var typeOffsetY:Float = 0;
-	public var mAngle:Float = 0;
-	public var bAngle:Float = 0;
+	
 	public var strumTime:Float = 0;
 
-	public var vec3Cache:Vector3 = new Vector3(); // for vector3 operations in modchart code
-	public var defScale:FlxPoint = FlxPoint.get(); // for modcharts to keep the scaling
+	public var z:Float = 0; // for modchart system
+	public var zIndex:Float = 0;
+	public var desiredAlpha:Float = 1;
+	public var baseAlpha:Float = 1;
+	public var scaleDefault:FlxPoint;
 
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
@@ -101,6 +99,7 @@ class Note extends FlxSprite
 	public var distance:Float = 2000; //plan on doing scroll directions soon -bb
 
 	public var speed:Float = 1; //for modcharts
+   public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
 	public var hitsoundDisabled:Bool = false;
 
@@ -113,12 +112,6 @@ class Note extends FlxSprite
 		texture = value;
 		return value;
 	}
-
-	override function destroy()
-	{
-		defScale.put();
-		super.destroy();
-	}	
 
 	private function set_noteType(value:String):String {
 		hitbox = Conductor.safeZoneOffset;
@@ -165,6 +158,7 @@ class Note extends FlxSprite
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
 	{
 		super();
+      scaleDefault = FlxPoint.get();
 
 		if (prevNote == null)
 			prevNote = this;
@@ -180,9 +174,6 @@ class Note extends FlxSprite
 		y -= 2000;
 		this.strumTime = strumTime;
 		if(!inEditor) this.strumTime += ClientPrefs.noteOffset;
-
-		if(!ClientPrefs.opponentStrums) alpha = 0;
-		else if(ClientPrefs.middleScroll) alpha = 0.4;
 
 		this.noteData = noteData;
 
@@ -213,7 +204,8 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
-			multAlpha = 0.6;
+			multAlpha = baseAlpha;
+         baseAlpha = 0.6;
 			
 			hitsoundDisabled = true;
 			if(ClientPrefs.downScroll) flipY = true;
@@ -234,7 +226,6 @@ class Note extends FlxSprite
 					animation.play('redholdend');
 			}
 
-			defScale.copyFrom(scale);
 			updateHitbox();
 
 			offsetX -= width / 2;
@@ -262,8 +253,7 @@ class Note extends FlxSprite
 					prevNote.scale.y *= 1.19;
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
-				prevNote.defScale.copyFrom(prevNote.scale);
-				//prevNote.scaleDefault.set(prevNote.scale.x,prevNote.scale.y);
+				prevNote.scaleDefault.set(prevNote.scale.x,prevNote.scale.y);
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
@@ -286,7 +276,7 @@ class Note extends FlxSprite
 		} else if (!isSustainNote)
 			parentNote = null;
 
-		defScale.copyFrom(scale);
+      scaleDefault.set(scale.x,scale.y);
 	}
 
 	var lastNoteOffsetXForPixelAutoAdjusting:Float = 0;
@@ -356,7 +346,6 @@ class Note extends FlxSprite
 		if(isSustainNote) {
 			scale.y = lastScaleY;
 		}
-		defScale.copyFrom(scale);
 		updateHitbox();
 
 		if(animName != null)
@@ -413,6 +402,24 @@ class Note extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+      if(!inEditor){
+			alpha = CoolUtil.scale(desiredAlpha,0,1,0,baseAlpha);
+			if (tooLate || (parentNote != null && parentNote.tooLate))
+				alpha *= 0.3;
+		}
+
+      if(isSustainNote){
+			if(prevNote!=null && prevNote.isSustainNote){
+				zIndex=prevNote.zIndex;
+			}else if(prevNote!=null && !prevNote.isSustainNote){
+				zIndex=prevNote.zIndex-1;
+			}
+		}else{
+			zIndex=z;
+		}
+
+		zIndex-=(mustPress==true?0:1);
 
 		if (mustPress)
 		{
