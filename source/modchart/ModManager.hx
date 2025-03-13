@@ -160,6 +160,31 @@ class ModManager {
       return scale;
     }
 
+    public function getModPercent(modName:String, player:Int):Float{
+      return get(modName).getPercent(player);
+    }
+
+    public function getReceptorPos(rec:StrumNote, player:Int=0):Vector3{
+    var pos = getPath(0, 0, rec.noteData, player);
+
+    return pos;
+  }
+
+    public function getReceptorScale(rec:StrumNote, player:Int=0):FlxPoint{
+      var def = rec.scaleDefault;
+      var scale = FlxPoint.get(def.x,def.y);
+      for(mod in mods){
+        scale = mod.getReceptorScale(rec, scale, rec.noteData, player);
+      }
+      return scale;
+    }
+
+    public function updateReceptor(rec:StrumNote, player:Int, scale:FlxPoint, pos:Vector3){
+      for(mod in mods){
+        mod.updateReceptor(rec, player, pos, scale);
+      }
+    }
+
     public function queueEase(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
         queueEvent(step, endStep, modName, percent, style, player, startVal);
     }
@@ -170,7 +195,6 @@ class ModManager {
     public function queueSetP(step:Float, modName:String, percent:Float, player:Int = -1)
 	queueSet(step, modName, percent / 100, player);
 	
-
     public function queueSet(step:Float, modName:String, percent:Float, player:Int = -1) {
         if (player == -1) {
             queueSet(step, modName, percent, 0);
