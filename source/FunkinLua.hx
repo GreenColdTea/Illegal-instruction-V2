@@ -2095,9 +2095,9 @@ class FunkinLua {
                         case "mini": new ScaleModifier(modManager);
                         case "invert": new InvertModifier(modManager);
                         case "beat": new BeatModifier(modManager);
-			case "receptorScroll": new ReceptorScrollModifier(modManager)
+			case "receptorScroll": new ReceptorScrollModifier(modManager);
 			case "opponentswap": new OpponentModifier(modManager);
-			case "centerrotateX": new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2)),
+			case "centerrotateX": new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2));
                         case "transformx": new TransformModifier(modManager);
                         case "perspective": new PerspectiveModifier(modManager);
                         default:
