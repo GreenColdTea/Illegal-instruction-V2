@@ -142,6 +142,24 @@ class ModManager {
         for (mod in mods) mod.update(elapsed);
     }
 
+    public function getPath(diff:Float, vDiff:Float, column:Int, player:Int):Vector3{
+      var pos = new Vector3(state.getXPosition(diff, column, player), vDiff, 0);
+      for(mod in mods){
+        pos = mod.getPath(vDiff, pos, column, player, diff);
+      }
+
+      return pos;
+    }
+
+    public function getNoteScale(note:Note):FlxPoint{
+      var def = note.scaleDefault;
+      var scale = FlxPoint.get(def.x,def.y);
+      for(mod in mods){
+        scale = mod.getNoteScale(note, scale, note.noteData, note.mustPress==true?0:1);
+      }
+      return scale;
+    }
+
     public function queueEase(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
         queueEvent(step, endStep, modName, percent, style, player, startVal);
     }
