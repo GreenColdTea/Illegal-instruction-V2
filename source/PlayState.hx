@@ -4570,7 +4570,7 @@ class PlayState extends MusicBeatState
         var strumAlpha:Float = strumGroup.members[daNote.noteData].alpha * daNote.multAlpha;
         var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
         
-        var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, daNote.speed);
+        var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, songSpeed * daNote.speed);
         
         if (songIsModcharted) {
             var notePos = modManager.getPath(Conductor.songPosition - daNote.strumTime, psuedoY, daNote.noteData, daNote.mustPress ? 0 : 1);
@@ -4598,15 +4598,6 @@ class PlayState extends MusicBeatState
                 daNote.angle = (angle != 0) ? angle + 90 : 0;
                 if (downscrollMultiplier < 0) daNote.angle += 180;
 
-		    if (strumScroll && daNote.animation.curAnim.name.endsWith('end')) {
-			daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * songSpeed + (46 * (songSpeed - 1));
-			daNote.y -= 46 * (1 - (fakeCrochet / 600)) * songSpeed;
-			if(PlayState.isPixelStage) {
-				daNote.y += 8 + (6 - daNote.originalHeightForCalcs) * PlayState.daPixelZoom;
-			} else {
-				daNote.y -= 19;
-			}
-		    }
               }
 
               scale.put();
@@ -4614,6 +4605,16 @@ class PlayState extends MusicBeatState
             daNote.y = strumY + (downscrollMultiplier * psuedoY);
             daNote.x = strumX;
         }
+
+	if (strumScroll && daNote.animation.curAnim.name.endsWith('end')) {
+	    daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * songSpeed + (46 * (songSpeed - 1));
+	    daNote.y -= 46 * (1 - (fakeCrochet / 600)) * songSpeed;
+	    if(PlayState.isPixelStage) {
+		    daNote.y += 8 + (6 - daNote.originalHeightForCalcs) * PlayState.daPixelZoom;
+	    } else {
+		    daNote.y -= 19;
+	    }
+	}
 
         if (!daNote.mustPress && daNote.wasGoodHit && !daNote.hitByOpponent && !daNote.ignoreNote) {
             opponentNoteHit(daNote);
