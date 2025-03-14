@@ -428,8 +428,8 @@ class BallsFreeplay extends MusicBeatState
         // Limit by borders bang
         var minX = 10 * worldScale; // Left border
         var maxX = (FlxG.width - 10) * worldScale; // Right border
-        if (pos.x < minX) player.body.setPosition(new B2Vec2(minX, pos.y));
-        if (pos.x > maxX) player.body.setPosition(new B2Vec2(maxX, pos.y));
+        if (pos.x < minX) playerBody.setPosition(new B2Vec2(minX, pos.y));
+        if (pos.x > maxX) playerBody.setPosition(new B2Vec2(maxX, pos.y));
 
         var velocity:B2Vec2 = playerBody.getLinearVelocity();
         canJump = false;
