@@ -28,6 +28,7 @@ import lime.utils.Assets;
 import flixel.system.FlxSound;
 import haxe.io.Path;
 import openfl.utils.Assets as OpenFlAssets;
+
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
@@ -93,11 +94,11 @@ class BallsFreeplay extends MusicBeatState
     var canJump:Bool = false;
     var player:FlxSprite;
     var floor:FlxSprite;
-    var speed:Float = 105;
-    var maxSpeed:Float = 385;
-    var acceleration:Float = 300;
-    var deceleration:Float = 37.5;
     var velocityX:Float = 0;
+    var accel:Float = 300; // Acceleration
+    var decel:Float = 38.5; // deceleration
+    var maxSpeed:Float = 385; // Max speed
+    var airFriction:Float = 0.98; // Air friction
     var jumpTimer:FlxTimer;
 
     var slidingText:FlxText;
@@ -190,7 +191,7 @@ class BallsFreeplay extends MusicBeatState
         createBoundary(FlxG.width, FlxG.height / 2, 10, FlxG.height / 2); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
-        floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 55) / 30);
+        floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
         floorBody = world.createBody(floorDef);
 
         var floorShape:B2PolygonShape = new B2PolygonShape();
@@ -385,11 +386,6 @@ class BallsFreeplay extends MusicBeatState
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
-        var accel:Float = 1.5; // Ускорение
-        var decel:Float = 0.8; // Замедление
-        var maxSpeed:Float = 10; // Max speed
-        var airFriction:Float = 0.98; // Замедление в воздухе
-
         if ((FlxG.keys.justPressed.THREE #if mobile || _virtualpad.buttonX.justPressed #end) && !isAnimating)
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
@@ -450,8 +446,8 @@ class BallsFreeplay extends MusicBeatState
         // Anims
         if (!canJump) {
             player.animation.play("jump");
-        } else if (Math.abs(velocity.x) > 3) {
-            player.animation.play(Math.abs(velocity.x) > 10 ? "run" : "walk");
+        } else if (Math.abs(velocity.x) > 0) {
+            player.animation.play(Math.abs(velocity.x) > 325 ? "run" : "walk");
         } else {
             player.animation.play("idle");
         }
@@ -500,12 +496,12 @@ class BallsFreeplay extends MusicBeatState
               if (velocity.x > -maxSpeed) {
                 playerBody.applyForce(new B2Vec2(-accel, 0), playerBody.getWorldCenter());
             }
-            player.flipX = true;
+            player.flipX = false;
         } else if (controls.UI_RIGHT && !controls.UI_LEFT) {
             if (velocity.x < maxSpeed) {
                 playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getWorldCenter());
             }
-            player.flipX = false;
+            player.flipX = true;
         }
 
         if (!controls.UI_LEFT && !controls.UI_RIGHT) {
