@@ -38,6 +38,7 @@ import box2D.dynamics.B2BodyDef;
 import box2D.dynamics.B2Fixture;
 import box2D.dynamics.B2FixtureDef;
 import box2D.collision.shapes.B2PolygonShape;
+import box2D.dynamics.contacts.B2Contact;
 import box2D.common.math.B2Vec2;
 
 using StringTools;
