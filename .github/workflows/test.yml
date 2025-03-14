@@ -31,6 +31,7 @@ jobs:
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
           haxelib install flixel-addons 3.2.3 --quiet
+          haxelib install box2d --quiet
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript --quiet
@@ -84,6 +85,7 @@ jobs:
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
           haxelib install flixel-addons 3.2.3 --quiet
+          haxelib install box2d --quiet
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript 2.4.0 --quiet
