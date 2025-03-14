@@ -220,7 +220,7 @@ class BallsFreeplay extends MusicBeatState
         playerFixDef.density = 1;
         playerFixDef.friction = 0.3;
         playerFixDef.restitution = 0;
-        player.body.createFixture(playerFixDef);
+        playerBody.createFixture(playerFixDef);
 
         player = new FlxSprite(455, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
@@ -387,17 +387,17 @@ class BallsFreeplay extends MusicBeatState
     {
         var accel:Float = 1.5; // Ускорение
         var decel:Float = 0.8; // Замедление
-        var maxSpeed:Float = 10; // Макс. скорость
+        var maxSpeed:Float = 10; // Max speed
         var airFriction:Float = 0.98; // Замедление в воздухе
 
-        if ((FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonX.justPressed #end) && !isAnimating)
+        if ((FlxG.keys.justPressed.THREE #if mobile || _virtualpad.buttonX.justPressed #end) && !isAnimating)
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
             FlxG.sound.music.stop();
 
             toggleText();
 
-	        if (ClientPrefs.ducclyMix)
+	    if (ClientPrefs.ducclyMix)
             {
                 FlxG.sound.playMusic(Paths.music('freeplayThemeDuccly'), 0);
 		        FlxG.sound.music.fadeIn(4, 0, 0.85);
@@ -408,7 +408,7 @@ class BallsFreeplay extends MusicBeatState
                 FlxG.sound.playMusic(Paths.music('freeplayTheme'), 0);
 		        FlxG.sound.music.fadeIn(4, 0, 0.85);
                 slidingText.text = "Choose Your Destiny - HarbingerBeats" + "\n" + "(Chaotix Mix)";
-	        }
+	    }
         }
 
         lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
@@ -421,31 +421,31 @@ class BallsFreeplay extends MusicBeatState
         world.step(elapsed, 10, 10); // Physics updates
 
         // Updating player's positions with Box2D-XY
-        var pos = player.body.getPosition();
+        var pos = playerBody.getPosition();
         player.x = pos.x / worldScale - player.width / 2;
         player.y = pos.y / worldScale - player.height / 2;
  
-       // Limit by borders bang
-       var minX = 10 * worldScale; // Left border
-       var maxX = (FlxG.width - 10) * worldScale; // Right border
-       if (pos.x < minX) player.body.setPosition(new B2Vec2(minX, pos.y));
-       if (pos.x > maxX) player.body.setPosition(new B2Vec2(maxX, pos.y));
+        // Limit by borders bang
+        var minX = 10 * worldScale; // Left border
+        var maxX = (FlxG.width - 10) * worldScale; // Right border
+        if (pos.x < minX) player.body.setPosition(new B2Vec2(minX, pos.y));
+        if (pos.x > maxX) player.body.setPosition(new B2Vec2(maxX, pos.y));
 
-       var velocity:B2Vec2 = playerBody.getLinearVelocity();
-       canJump = false;
+        var velocity:B2Vec2 = playerBody.getLinearVelocity();
+        canJump = false;
 
-       var contact:B2Contact = world.getContactList();
-while (contact != null) {
-    var fixtureA:B2Fixture = contact.getFixtureA();
-    var fixtureB:B2Fixture = contact.getFixtureB();
+        var contact:B2Contact = world.getContactList();
+        while (contact != null) {
+            var fixtureA:B2Fixture = contact.getFixtureA();
+            var fixtureB:B2Fixture = contact.getFixtureB();
 
-    if ((fixtureA.getBody() == playerBody && fixtureB.getBody() == floorBody) ||
-        (fixtureB.getBody() == playerBody && fixtureA.getBody() == floorBody)) {
-        canJump = true;
-    }
+            if ((fixtureA.getBody() == playerBody && fixtureB.getBody() == floorBody) ||
+                (fixtureB.getBody() == playerBody && fixtureA.getBody() == floorBody)) {
+                canJump = true;
+            }
 
-    contact = contact.getNext();
-}
+            contact = contact.getNext();
+        }
 
         // Anims
         if (!canJump) {
@@ -518,7 +518,7 @@ while (contact != null) {
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            playerBody.applyLinearImpulse(new B2Vec2(0, -30), playerBody.getWorldCenter());
+            playerBody.applyImpulse(new B2Vec2(0, -30), playerBody.getWorldCenter());
             player.animation.play("jump");
             canJump = false;
         }
@@ -538,8 +538,8 @@ while (contact != null) {
     // go to the main menu
     public function switchToBack() 
     {
-	    FlxG.sound.play(Paths.sound('cancelMenu'));
-	    FlxG.mouse.visible = false;
+        FlxG.sound.play(Paths.sound('cancelMenu'));
+	FlxG.mouse.visible = false;
         MusicBeatState.switchState(new MainMenuState());
     }
 	
@@ -548,13 +548,12 @@ while (contact != null) {
         FlxG.sound.play(Paths.sound('confirmMenu'));
         var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
         PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
-	    FlxG.mouse.visible = false;
+        FlxG.mouse.visible = false;
         PlayState.isStoryMode = false;
         PlayState.isFreeplay = true;
         PlayState.storyDifficulty = 2;
-	    FlxG.sound.music.volume = 0;
-	    FreeplayState.destroyFreeplayVocals();
-	    LoadingState.loadAndSwitchState(new PlayState());
+	FlxG.sound.music.volume = 0;
+	LoadingState.loadAndSwitchState(new PlayState());
     }
 
     function toggleText() {
