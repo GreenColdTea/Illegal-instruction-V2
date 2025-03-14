@@ -213,14 +213,15 @@ class BallsFreeplay extends MusicBeatState
         playerBody = world.createBody(playerDef);
 
         var playerShape = new B2PolygonShape();
-        playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
-
+        
         var playerFixDef = new B2FixtureDef();
         playerFixDef.shape = playerShape;
         playerFixDef.density = 1;
         playerFixDef.friction = 0.3;
         playerFixDef.restitution = 0;
+	    
         playerBody.createFixture(playerFixDef);
+	playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
 
         player = new FlxSprite(455, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
