@@ -433,14 +433,18 @@ class BallsFreeplay extends MusicBeatState
        var velocity:B2Vec2 = playerBody.getLinearVelocity();
        canJump = false;
 
-       for (var contact = world.getContactList(); contact != null; contact = contact.getNext()) {
-             var fixtureA:B2Fixture = contact.getFixtureA();
-             var fixtureB:B2Fixture = contact.getFixtureB();
-             if ((fixtureA.getBody() == playerBody && fixtureB.getBody() == floorBody) ||
-               (fixtureB.getBody() == playerBody && fixtureA.getBody() == floorBody)) {
-                canJump = true;
-             }
-        }
+       var contact:B2Contact = world.getContactList();
+while (contact != null) {
+    var fixtureA:B2Fixture = contact.getFixtureA();
+    var fixtureB:B2Fixture = contact.getFixtureB();
+
+    if ((fixtureA.getBody() == playerBody && fixtureB.getBody() == floorBody) ||
+        (fixtureB.getBody() == playerBody && fixtureA.getBody() == floorBody)) {
+        canJump = true;
+    }
+
+    contact = contact.getNext();
+}
 
         // Anims
         if (!canJump) {
