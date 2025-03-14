@@ -4573,7 +4573,7 @@ class PlayState extends MusicBeatState
             if (daNote.isSustainNote) {
                 var futurePos = Conductor.songPosition + 75;
                 var diff = futurePos - daNote.strumTime;
-                var vDiff = -((futurePos - daNote.strumTime) * (0.45 * (songSpeed * daNote.speed)));
+                var vDiff = -((diff) * (0.45 * daNote.speed));
 
                 var nextPos = modManager.getPath(diff, vDiff, daNote.noteData, daNote.mustPress ? 0 : 1);
                 nextPos.x += daNote.offsetX;
