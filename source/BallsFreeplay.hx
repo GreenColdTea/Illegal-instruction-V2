@@ -212,9 +212,6 @@ class BallsFreeplay extends MusicBeatState
         playerDef.type = B2Body.b2_dynamicBody;
         playerBody = world.createBody(playerDef);
 
-        var playerShape = new B2PolygonShape();
-        playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
-	    
         var playerFixDef = new B2FixtureDef();
         playerFixDef.shape = playerShape;
         playerFixDef.density = 1;
@@ -230,7 +227,11 @@ class BallsFreeplay extends MusicBeatState
         player.animation.addByPrefix('run', 'BF_Run', 24, true);
         player.animation.play("idle");
         player.antialiasing = true;
+	player.updateHitbox();
         add(player);
+
+	var playerShape = new B2PolygonShape();
+        playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
 
         jumpTimer = new FlxTimer();
         add(player);
