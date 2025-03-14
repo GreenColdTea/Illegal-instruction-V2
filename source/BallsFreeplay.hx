@@ -95,9 +95,9 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite;
     var floor:FlxSprite;
     var velocityX:Float = 0;
-    var accel:Float = 300; // Acceleration
-    var decel:Float = 38.5; // deceleration
-    var maxSpeed:Float = 385; // Max speed
+    var accel:Float = 2.5; // Acceleration
+    var decel:Float = 0.85; // deceleration
+    var maxSpeed:Float = 10; // Max speed
     var airFriction:Float = 0.98; // Air friction
     var jumpTimer:FlxTimer;
 
@@ -187,8 +187,8 @@ class BallsFreeplay extends MusicBeatState
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
         createBoundary(FlxG.width / 2, 0, FlxG.width / 2, 10); // Ceiling
-        createBoundary(0, FlxG.height / 2, 10, FlxG.height / 2); // Left wall
-        createBoundary(FlxG.width, FlxG.height / 2, 10, FlxG.height / 2); // Right wall
+        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2); // Left wall
+        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
@@ -208,7 +208,7 @@ class BallsFreeplay extends MusicBeatState
         add(floor);
 
         // Player (BF)
-        player = new FlxSprite(455, 250);
+        player = new FlxSprite(500, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -219,7 +219,7 @@ class BallsFreeplay extends MusicBeatState
 	player.updateHitbox();
 
 	var playerDef:B2BodyDef = new B2BodyDef();
-        playerDef.position.set(455 / 30, 250 / 30);
+        playerDef.position.set(500 / 30, 250 / 30);
         playerDef.type = B2Body.b2_dynamicBody;
         playerBody = world.createBody(playerDef);
 
@@ -330,7 +330,6 @@ class BallsFreeplay extends MusicBeatState
             songPlayable.y -= 50;
             songPlayable.alpha = 0;
             songPlayable.ID = i;
-
             switch (songPlayable.ID) {
                 case 3:
                     songPlayable.x -= 10;
@@ -340,8 +339,8 @@ class BallsFreeplay extends MusicBeatState
             }
             screenPlayers.add(songPlayable);
 
-	        var characterText = new FlxText(0, 0, songs[i].replace("-", "\n").toUpperCase());
-	        characterText.updateHitbox();
+	    var characterText = new FlxText(0, 0, songs[i].replace("-", "\n").toUpperCase());
+	    characterText.updateHitbox();
             characterText.screenCenter();
             characterText.setFormat(Paths.font("pixel.otf"), 35, FlxColor.RED, "center");
             characterText.x -= 475;
@@ -447,7 +446,7 @@ class BallsFreeplay extends MusicBeatState
         if (!canJump) {
             player.animation.play("jump");
         } else if (Math.abs(velocity.x) > 0) {
-            player.animation.play(Math.abs(velocity.x) > 325 ? "run" : "walk");
+            player.animation.play(Math.abs(velocity.x) > 3 ? "run" : "walk");
         } else {
             player.animation.play("idle");
         }
@@ -514,7 +513,7 @@ class BallsFreeplay extends MusicBeatState
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            playerBody.applyImpulse(new B2Vec2(0, -30), playerBody.getWorldCenter());
+            playerBody.applyImpulse(new B2Vec2(0, -11), playerBody.getWorldCenter());
             player.animation.play("jump");
             canJump = false;
         }
