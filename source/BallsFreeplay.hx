@@ -524,9 +524,8 @@ while (contact != null) {
 
         // Jump Anti-spam system
         new FlxTimer().start(0.2, function(t:FlxTimer) {
-                canJump = true;
-            });
-        }
+            canJump = true;
+        });
 
         if (!canJump && player.animation.curAnim.name != "jump") {
             player.animation.play("jump");
