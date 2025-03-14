@@ -86,6 +86,7 @@ class BallsFreeplay extends MusicBeatState
 
     //bf settings
     var world:B2World;
+    var worldScale:Float;
     var playerBody:B2Body;
     var floorBody:B2Body;
 
@@ -160,7 +161,7 @@ class BallsFreeplay extends MusicBeatState
         var characterText:FlxText;
         var yn:FlxText;
 
-	    createMenuElements();
+	createMenuElements();
         updateScreen();
 
         var screen:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freeplay/Frame'));
@@ -180,8 +181,8 @@ class BallsFreeplay extends MusicBeatState
         scoreText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.RED, "center");
         add(scoreText);
 
-        var worldScale:Float = 1 / 30;
-        var world = new box2D.dynamics.B2World(new B2Vec2(0, 9.8), true);
+        worldScale = 1 / 30;
+        world = new B2World(new B2Vec2(0, 9.8), true);
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
         createBoundary(FlxG.width / 2, 0, FlxG.width / 2, 10); // Ceiling
@@ -192,18 +193,18 @@ class BallsFreeplay extends MusicBeatState
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 55) / 30);
         floorBody = world.createBody(floorDef);
 
-       var floorShape:B2PolygonShape = new B2PolygonShape();
-       floorShape.setAsBox(FlxG.width / 2 / 30, 10 / 30);
+        var floorShape:B2PolygonShape = new B2PolygonShape();
+        floorShape.setAsBox(FlxG.width / 2 / 30, 10 / 30);
 
-       var floorFixture:B2FixtureDef = new B2FixtureDef();
-       floorFixture.shape = floorShape;
-       floorFixture.density = 0;
-       floorBody.createFixture(floorFixture);
+        var floorFixture:B2FixtureDef = new B2FixtureDef();
+        floorFixture.shape = floorShape;
+        floorFixture.density = 0;
+        floorBody.createFixture(floorFixture);
 
-       floor = new FlxSprite(0, FlxG.height - 110);
-       floor.makeGraphic(FlxG.width, 110, FlxColor.BLUE);
-       floor.visible = false;
-       add(floor);
+        floor = new FlxSprite(0, FlxG.height - 110);
+        floor.makeGraphic(FlxG.width, 110, FlxColor.BLUE);
+        floor.visible = false;
+        add(floor);
 
         // Player (BF)
         var playerDef:B2BodyDef = new B2BodyDef();
@@ -464,11 +465,11 @@ while (contact != null) {
         nowPlayingText.x = textBG.x;
         slidingText.x = textBG.x;
 
-	    if(FlxG.keys.pressed.CONTROL #if mobile || _virtualpad.buttonC.pressed #end)
-	    {
-	        persistentUpdate = false;
-	        openSubState(new GameplayChangersSubstate());
-	    }
+	if(FlxG.keys.pressed.CONTROL #if mobile || _virtualpad.buttonC.pressed #end)
+	{
+	    persistentUpdate = false;
+	    openSubState(new GameplayChangersSubstate());
+	}
 	    
         if (controls.UI_UP_P)
         {
