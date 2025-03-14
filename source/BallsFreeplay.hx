@@ -31,6 +31,15 @@ import openfl.utils.Assets as OpenFlAssets;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
+
+import box2D.dynamics.B2World;
+import box2D.dynamics.B2Body;
+import box2D.dynamics.B2BodyDef;
+import box2D.dynamics.B2Fixture;
+import box2D.dynamics.B2FixtureDef;
+import box2D.collision.shapes.B2PolygonShape;
+import box2D.common.math.B2Vec2;
+
 using StringTools;
 
 class BallsFreeplay extends MusicBeatState
@@ -75,6 +84,11 @@ class BallsFreeplay extends MusicBeatState
     var screenPlayers:FlxTypedGroup<FlxSprite>;
 
     //bf settings
+    var world:B2World;
+    var playerBody:B2Body;
+    var floorBody:B2Body;
+
+    var canJump:Bool = false;
     var player:FlxSprite;
     var floor:FlxSprite;
     var speed:Float = 105;
@@ -83,7 +97,6 @@ class BallsFreeplay extends MusicBeatState
     var deceleration:Float = 37.5;
     var velocityX:Float = 0;
     var jumpTimer:FlxTimer;
-    var canJump:Bool = true;
 
     var slidingText:FlxText;
     var textBG:FlxSprite;
@@ -166,13 +179,48 @@ class BallsFreeplay extends MusicBeatState
         scoreText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.RED, "center");
         add(scoreText);
 
-        floor = new FlxSprite(0, FlxG.height - 110);
-        floor.makeGraphic(FlxG.width, 110, FlxColor.BLUE);
-        floor.immovable = true;
-        floor.visible = false;
-        add(floor);
+        var worldScale:Float = 1 / 30;
+        var world = new box2D.dynamics.B2World(new B2Vec2(0, 9.8), true);
+    
+        createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
+        createBoundary(FlxG.width / 2, 0, FlxG.width / 2, 10); // Ceiling
+        createBoundary(0, FlxG.height / 2, 10, FlxG.height / 2); // Left wall
+        createBoundary(FlxG.width, FlxG.height / 2, 10, FlxG.height / 2); // Right wall
 
-	player = new FlxSprite(455, 250);
+        var floorDef:B2BodyDef = new B2BodyDef();
+        floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 55) / 30);
+        floorBody = world.createBody(floorDef);
+
+       var floorShape:B2PolygonShape = new B2PolygonShape();
+       floorShape.setAsBox(FlxG.width / 2 / 30, 10 / 30);
+
+       var floorFixture:B2FixtureDef = new B2FixtureDef();
+       floorFixture.shape = floorShape;
+       floorFixture.density = 0;
+       floorBody.createFixture(floorFixture);
+
+       floor = new FlxSprite(0, FlxG.height - 110);
+       floor.makeGraphic(FlxG.width, 110, FlxColor.BLUE);
+       floor.visible = false;
+       add(floor);
+
+        // Player (BF)
+        var playerDef:B2BodyDef = new B2BodyDef();
+        playerDef.position.set(455 / 30, 250 / 30);
+        playerDef.type = B2Body.b2_dynamicBody;
+        playerBody = world.createBody(playerDef);
+
+        var playerShape = new B2PolygonShape();
+        playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
+
+        var playerFixDef = new B2FixtureDef();
+        playerFixDef.shape = playerShape;
+        playerFixDef.density = 1;
+        playerFixDef.friction = 0.3;
+        playerFixDef.restitution = 0;
+        player.body.createFixture(playerFixDef);
+
+        player = new FlxSprite(455, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
         player.animation.addByPrefix('jump', 'BF_Jump', 24, true);
@@ -180,9 +228,7 @@ class BallsFreeplay extends MusicBeatState
         player.animation.addByPrefix('run', 'BF_Run', 24, true);
         player.animation.play("idle");
         player.antialiasing = true;
-        player.acceleration.y = 500;
-        player.maxVelocity.y = 350;
-        player.drag.x = 400;
+        add(player);
 
         jumpTimer = new FlxTimer();
         add(player);
@@ -337,6 +383,11 @@ class BallsFreeplay extends MusicBeatState
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
+        var accel:Float = 1.5; // Ускорение
+        var decel:Float = 0.8; // Замедление
+        var maxSpeed:Float = 10; // Макс. скорость
+        var airFriction:Float = 0.98; // Замедление в воздухе
+
         if ((FlxG.keys.justPressed.THREE #if android || _virtualpad.buttonX.justPressed #end) && !isAnimating)
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
@@ -365,7 +416,39 @@ class BallsFreeplay extends MusicBeatState
 
         scoreText.text = "SCORE:" + "\n" + lerpScore;
 
-        FlxG.collide(player, floor);
+        world.step(elapsed, 10, 10); // Physics updates
+
+        // Updating player's positions with Box2D-XY
+        var pos = player.body.getPosition();
+        player.x = pos.x / worldScale - player.width / 2;
+        player.y = pos.y / worldScale - player.height / 2;
+ 
+       // Limit by borders bang
+       var minX = 10 * worldScale; // Left border
+       var maxX = (FlxG.width - 10) * worldScale; // Right border
+       if (pos.x < minX) player.body.setPosition(new B2Vec2(minX, pos.y));
+       if (pos.x > maxX) player.body.setPosition(new B2Vec2(maxX, pos.y));
+
+       var velocity:B2Vec2 = playerBody.getLinearVelocity();
+       canJump = false;
+
+       for (var contact = world.getContactList(); contact != null; contact = contact.getNext()) {
+             var fixtureA:B2Fixture = contact.getFixtureA();
+             var fixtureB:B2Fixture = contact.getFixtureB();
+             if ((fixtureA.getBody() == playerBody && fixtureB.getBody() == floorBody) ||
+               (fixtureB.getBody() == playerBody && fixtureA.getBody() == floorBody)) {
+                canJump = true;
+             }
+        }
+
+        // Anims
+        if (!canJump) {
+            player.animation.play("jump");
+        } else if (Math.abs(velocity.x) > 3) {
+            player.animation.play(Math.abs(velocity.x) > 10 ? "run" : "walk");
+        } else {
+            player.animation.play("idle");
+        }
 
         if (isTextVisible) {
             textBG.x = FlxMath.lerp(textBG.x, textTargetX, 3.275 * elapsed);
@@ -399,7 +482,7 @@ class BallsFreeplay extends MusicBeatState
         if (FlxG.keys.justPressed.ENTER #if mobile || controls.ACCEPT #end)
         {
             doTheLoad();
-	    lastSongIndex = songIndex;
+	         lastSongIndex = songIndex;
         }
 
         if (controls.BACK)
@@ -407,54 +490,40 @@ class BallsFreeplay extends MusicBeatState
             switchToBack();
         }
 
-        if (player.isTouching(FlxObject.FLOOR)) {
-            if (controls.UI_LEFT && !controls.UI_RIGHT) {
-                velocityX = Math.max(velocityX - acceleration * elapsed, -maxSpeed);
-                player.flipX = false;
-                playMovementAnimation();
-                //trace("Moving left, velocityX: " + velocityX);
-            } else if (controls.UI_RIGHT && !controls.UI_LEFT) {
-                velocityX = Math.min(velocityX + acceleration * elapsed, maxSpeed);
-                player.flipX = true;
-                playMovementAnimation();
-                //trace("Moving right, velocityX: " + velocityX);
-            } else {
-                if (velocityX > 0) {
-                    velocityX = Math.max(velocityX - deceleration * elapsed, 0);
-                } else if (velocityX < 0) {
-                    velocityX = Math.min(velocityX + deceleration * elapsed, 0);
-                }
+        if (controls.UI_LEFT && !controls.UI_RIGHT) {
+              if (velocity.x > -maxSpeed) {
+                playerBody.applyForce(new B2Vec2(-accel, 0), playerBody.getWorldCenter());
+            }
+            player.flipX = true;
+        } else if (controls.UI_RIGHT && !controls.UI_LEFT) {
+            if (velocity.x < maxSpeed) {
+                playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getWorldCenter());
+            }
+            player.flipX = false;
+        }
 
-                if (velocityX == 0) {
-                    player.animation.play("idle");
-                }
+        if (!controls.UI_LEFT && !controls.UI_RIGHT) {
+            if (canJump) {
+                playerBody.setLinearVelocity(new B2Vec2(velocity.x * decel, velocity.y));
+            } else {
+                playerBody.setLinearVelocity(new B2Vec2(velocity.x * airFriction, velocity.y));
             }
         }
 
-        player.velocity.x = FlxMath.lerp(player.velocity.x, velocityX, 0.1);
-
-        //apply velocity while ensuring the player doesnt go off-screen
-        player.velocity.x = velocityX;
-        
-        if (player.x < -100) {
-            player.x = -100;
-            velocityX = 0;
-        } else if (player.x + player.width > FlxG.width + 100) {
-            player.x = FlxG.width + 100 - player.width;
-            velocityX = 0;
-        }
-
-        if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump && player.isTouching(FlxObject.FLOOR)) {
+        if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            player.velocity.y -= floor.y + 250;
+            playerBody.applyLinearImpulse(new B2Vec2(0, -30), playerBody.getWorldCenter());
             player.animation.play("jump");
             canJump = false;
-            jumpTimer.start(0.5, function(_:FlxTimer):Void {
+        }
+
+        // Jump Anti-spam system
+        new FlxTimer().start(0.2, function(t:FlxTimer) {
                 canJump = true;
             });
         }
 
-        if (!player.isTouching(FlxObject.FLOOR) && player.animation.curAnim.name != "jump") {
+        if (!canJump && player.animation.curAnim.name != "jump") {
             player.animation.play("jump");
         }
 
@@ -483,16 +552,6 @@ class BallsFreeplay extends MusicBeatState
 	    LoadingState.loadAndSwitchState(new PlayState());
     }
 
-    function playMovementAnimation() {
-        if (Math.abs(velocityX) > 325) {
-            player.animation.play("run");
-        } else if (Math.abs(velocityX) > 0) {
-            player.animation.play("walk");
-        } else {
-            player.animation.play("idle");
-        }
-    }
-
     function toggleText() {
         isTextVisible = true;
         isAnimating = true;
@@ -502,5 +561,19 @@ class BallsFreeplay extends MusicBeatState
             isTextVisible = false;
             isAnimating = false;
         });
+    }
+
+    function createBoundary(x:Float, y:Float, w:Float, h:Float) {
+        var bodyDef = new B2BodyDef();
+        bodyDef.position.set(x * worldScale, y * worldScale);
+        var shape = new B2PolygonShape();
+        shape.setAsBox(w * worldScale, h * worldScale);
+        var fixDef = new B2FixtureDef();
+        fixDef.shape = shape;
+        fixDef.density = 0;
+        fixDef.friction = 0.5;
+        fixDef.restitution = 0.1;
+        var body = world.createBody(bodyDef);
+        body.createFixture(fixDef);
     }
 }

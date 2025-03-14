@@ -134,7 +134,6 @@ class PlayState extends MusicBeatState
 
         // IN THE SETUPMODCHART FUNCTION
 	public static var songIsModcharted:Bool = false;
-	var holdRenderer:HoldRenderer;
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
@@ -604,16 +603,6 @@ class PlayState extends MusicBeatState
         {
             super.draw();
 
-            if (holdRenderer != null) {
-		holdRenderer.draw();
-                /*var gfx = camHUD.canvas.graphics;
-                holdRenderer.drawHoldNotes(gfx);
-
-                #if openfl
-                gfx.__dirty = true;
-                gfx.invalidate();
-                #end*/
-            }
         }
 
 	override public function create()
@@ -2349,10 +2338,6 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 
-		holdRenderer = new HoldRenderer(strumLineNotes, notes);
-                holdRenderer.cameras = [camHUD];
-                add(holdRenderer);
-		
 		add(grpNoteSplashes);
 
 		if(ClientPrefs.timeBarType == 'Song Name')
@@ -4257,8 +4242,6 @@ class PlayState extends MusicBeatState
 		}
 
                 modManager.update(elapsed);
-		holdRenderer.update(elapsed);
-
 		if(!inCutscene) {
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 2.4 * cameraSpeed, 0, 1);
 			var offX:Float = 0;
@@ -6238,8 +6221,6 @@ class PlayState extends MusicBeatState
 		#if hscript
 		if(FunkinLua.hscript != null) FunkinLua.hscript = null;
 		#end
-
-		holdRenderer.destroy();
 
 		if(!ClientPrefs.controllerMode)
 		{
