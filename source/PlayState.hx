@@ -4555,7 +4555,7 @@ class PlayState extends MusicBeatState
         var strumAlpha:Float = strumGroup.members[daNote.noteData].alpha * daNote.multAlpha;
         var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
         
-        var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, songSpeed * daNote.speed);
+        var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, daNote.speed);
         
         if (songIsModcharted) {
             var notePos = modManager.getPath(Conductor.songPosition - daNote.strumTime, psuedoY, daNote.noteData, daNote.mustPress ? 0 : 1);
@@ -4577,7 +4577,7 @@ class PlayState extends MusicBeatState
 
                 var nextPos = modManager.getPath(diff, vDiff, daNote.noteData, daNote.mustPress ? 0 : 1);
                 nextPos.x += daNote.offsetX;
-                nextPos.y += daNote.offsetY;
+                nextPos.y += daNote.offsetY / songSpeed;
 
                 var angle = Math.atan2(nextPos.y - notePos.y, nextPos.x - notePos.x) * (180 / Math.PI);
                 daNote.angle = (angle != 0) ? angle + 90 : 0;
