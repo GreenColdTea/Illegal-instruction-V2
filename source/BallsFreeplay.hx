@@ -207,18 +207,6 @@ class BallsFreeplay extends MusicBeatState
         add(floor);
 
         // Player (BF)
-        var playerDef:B2BodyDef = new B2BodyDef();
-        playerDef.position.set(455 / 30, 250 / 30);
-        playerDef.type = B2Body.b2_dynamicBody;
-        playerBody = world.createBody(playerDef);
-
-        var playerFixDef = new B2FixtureDef();
-        playerFixDef.shape = playerShape;
-        playerFixDef.density = 1;
-        playerFixDef.friction = 0.3;
-        playerFixDef.restitution = 0;
-        playerBody.createFixture(playerFixDef);
-	
         player = new FlxSprite(455, 250);
         player.frames = Paths.getSparrowAtlas('freeplay/encore/BFMenu');
         player.animation.addByPrefix('idle', 'BF_Idle', 24, true);
@@ -228,11 +216,22 @@ class BallsFreeplay extends MusicBeatState
         player.animation.play("idle");
         player.antialiasing = true;
 	player.updateHitbox();
-        add(player);
+
+	var playerDef:B2BodyDef = new B2BodyDef();
+        playerDef.position.set(455 / 30, 250 / 30);
+        playerDef.type = B2Body.b2_dynamicBody;
+        playerBody = world.createBody(playerDef);
 
 	var playerShape = new B2PolygonShape();
         playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
 
+        var playerFixDef = new B2FixtureDef();
+        playerFixDef.shape = playerShape;
+        playerFixDef.density = 1;
+        playerFixDef.friction = 0.3;
+        playerFixDef.restitution = 0;
+        playerBody.createFixture(playerFixDef);
+	    
         jumpTimer = new FlxTimer();
         add(player);
 
