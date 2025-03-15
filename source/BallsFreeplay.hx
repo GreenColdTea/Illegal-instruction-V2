@@ -186,8 +186,8 @@ class BallsFreeplay extends MusicBeatState
         world = new B2World(new B2Vec2(0, 9.8), true);
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
-        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0.25, 0.01); // Left wall
-        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0.25, 0.01); // Right wall
+        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.01); // Left wall
+        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.01); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
@@ -423,11 +423,11 @@ class BallsFreeplay extends MusicBeatState
         player.y = pos.y / worldScale - player.height / 2;
  
         // Limit by borders bang
-        var minX = 10 * worldScale; // Left border
-        var maxX = (FlxG.width - 10) * worldScale; // Right border
-        if (pos.x < minX) playerBody.setPosition(new B2Vec2(minX, pos.y));
-        if (pos.x > maxX) playerBody.setPosition(new B2Vec2(maxX, pos.y));
-
+        var minX = 10 * worldScale;
+        var maxX = (FlxG.width - 10) * worldScale;
+        if (pos.x < minX) playerBody.setLinearVelocity(new B2Vec2(0, velocity.y));
+        if (pos.x > maxX) playerBody.setLinearVelocity(new B2Vec2(0, velocity.y));
+	
         var velocity:B2Vec2 = playerBody.getLinearVelocity();
         canJump = false;
 
@@ -504,14 +504,13 @@ class BallsFreeplay extends MusicBeatState
             }
             player.flipX = true;
 	} else {
-	    var friction:Float = canJump ? decel : airFriction;
-		
-            playerBody.setLinearVelocity(new B2Vec2(velocity.x * friction, velocity.y));
+	    var slowDownForce:Float = canJump ? -velocity.x * 5 : -velocity.x * 2;
+            playerBody.applyForce(new B2Vec2(slowDownForce, 0), playerBody.getWorldCenter());
 	}     
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            playerBody.applyImpulse(new B2Vec2(0, -60), playerBody.getWorldCenter());
+            playerBody.setLinearVelocity(new B2Vec2(velocity.x, -15));
             player.animation.play("jump");
             canJump = false;
         }
