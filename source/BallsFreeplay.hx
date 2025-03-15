@@ -541,7 +541,7 @@ class BallsFreeplay extends MusicBeatState
     {
         FlxG.sound.play(Paths.sound('confirmMenu'));
         var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
-        PlayState.SONG = Song.loadFromJson(songLowerse, songLowercase);
+        PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
         FlxG.mouse.visible = false;
         PlayState.isStoryMode = false;
         PlayState.isFreeplay = true;
