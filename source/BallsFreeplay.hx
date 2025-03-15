@@ -232,8 +232,6 @@ class BallsFreeplay extends MusicBeatState
         playerFixDef.friction = 0.3;
         playerFixDef.restitution = 0;
         playerBody.createFixture(playerFixDef);
-
-	playerBody.setMassFromShapes();
 	    
         jumpTimer = new FlxTimer();
         add(player);
@@ -387,6 +385,9 @@ class BallsFreeplay extends MusicBeatState
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
+	playerBody.setAwake(true);
+        playerBody.setActive(true);
+	    
         if ((FlxG.keys.justPressed.THREE #if mobile || _virtualpad.buttonX.justPressed #end) && !isAnimating)
         {
             ClientPrefs.ducclyMix = !ClientPrefs.ducclyMix;
@@ -494,7 +495,7 @@ class BallsFreeplay extends MusicBeatState
         }
 
         if (controls.UI_LEFT && !controls.UI_RIGHT) {
-              if (velocity.x > -maxSpeed) {
+            if (velocity.x > -maxSpeed) {
                 playerBody.applyForce(new B2Vec2(-accel, 0), playerBody.getWorldCenter());
             }
             player.flipX = false;
@@ -503,7 +504,10 @@ class BallsFreeplay extends MusicBeatState
                 playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getWorldCenter());
             }
             player.flipX = true;
-        } else {
+	} 
+        
+        if (!controls.UI_LEFT && !controls.UI_RIGHT) 
+	{
             var newX = velocity.x;
             if (Math.abs(newX) > 0.1) { // To not stuck
                 newX *= canJump ? 0.85 : 0.95; // On the ground quickly accelerate, on the air slower
