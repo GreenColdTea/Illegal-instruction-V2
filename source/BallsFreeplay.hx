@@ -95,9 +95,9 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite;
     var floor:FlxSprite;
     var velocityX:Float = 0;
-    var accel:Float = 21; // Acceleration
-    var decel:Float = 0.85; // deceleration
-    var maxSpeed:Float = 56; // Max speed
+    var accel:Float = 14; // Acceleration
+    var decel:Float = 0.2; // deceleration
+    var maxSpeed:Float = 31; // Max speed
     var airFriction:Float = 1.1; // Air friction
     var jumpTimer:FlxTimer;
 
@@ -448,7 +448,7 @@ class BallsFreeplay extends MusicBeatState
         if (!canJump) {
             player.animation.play("jump");
         } else if (Math.abs(velocity.x) > 0.1) {
-            player.animation.play(Math.abs(velocity.x) > 46 ? "run" : "walk");
+            player.animation.play(Math.abs(velocity.x) > 26 ? "run" : "walk");
         } else {
             player.animation.play("idle");
         }
