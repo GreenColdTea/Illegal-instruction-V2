@@ -14,29 +14,24 @@ import openfl.display._internal.stats.DrawCallContext;
 #if flash
 import openfl.Lib;
 #end
-
 #if openfl
 import openfl.system.System;
 #end
 
-/**
-	The FPS class provides an easy-to-use monitor to display
-	the current frame rate of an OpenFL project
-**/
 #if !openfl_debug
 @:fileXml('tags="haxe,release"')
 @:noDebug
 #end
 class FPS extends TextField
 {
-	/**
-		The current frame rate, expressed using frames-per-second
-	**/
 	public var currentFPS(default, null):Int;
 
 	@:noCompletion private var cacheCount:Int;
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
+	@:noCompletion private var peakMemory:UInt = 0;
+
+	final dataTexts = ["B", "KB", "MB", "GB", "TB", "PB"];
 
 	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
 	{
@@ -66,7 +61,6 @@ class FPS extends TextField
 		#end
 	}
 
-	// Event Handlers
 	@:noCompletion
 	private #if !flash override #end function __enterFrame(deltaTime:Float):Void
 	{
@@ -82,18 +76,18 @@ class FPS extends TextField
 		currentFPS = Math.round((currentCount + cacheCount) / 2);
 		if (currentFPS > ClientPrefs.framerate) currentFPS = ClientPrefs.framerate;
 
-		if (currentCount != cacheCount /*&& visible*/)
+		if (currentCount != cacheCount)
 		{
 			text = "FPS: " + currentFPS;
-			var memoryMegas:Float = 0;
-			
-			#if openfl
-			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
-			text += "\nMemory: " + memoryMegas + " MB";
-			#end
+			var memoryUsage:UInt = System.totalMemory;
+			if (memoryUsage > peakMemory) 
+				peakMemory = memoryUsage;
+
+			text += "\nRAM: " + getSizeLabel(memoryUsage);
+			text += "\nRAM Peak: " + getSizeLabel(peakMemory);
 
 			textColor = 0xFFFFFFFF;
-			if (memoryMegas > 3000 || currentFPS <= ClientPrefs.framerate / 2)
+			if (memoryUsage > 3000000000 || currentFPS <= ClientPrefs.framerate / 2)
 			{
 				textColor = 0xFFFF0000;
 			}
@@ -108,6 +102,23 @@ class FPS extends TextField
 		}
 
 		cacheCount = currentCount;
+	}
+
+	function getSizeLabel(num:UInt):String
+	{
+		var size:Float = num;
+		var data = 0;
+		while (size > 1024 && data < dataTexts.length - 1)
+		{
+			data++;
+			size /= 1024;
+		}
+
+		size = Math.round(size * 100) / 100;
+		if (data <= 2)
+			size = Math.round(size);
+
+		return size + " " + dataTexts[data];
 	}
 	
 	public inline function positionFPS(X:Float, Y:Float, ?scale:Float = 1){
