@@ -232,6 +232,8 @@ class BallsFreeplay extends MusicBeatState
         playerFixDef.friction = 0.3;
         playerFixDef.restitution = 0;
         playerBody.createFixture(playerFixDef);
+
+	playerBody.setMassFromShapes();
 	    
         jumpTimer = new FlxTimer();
         add(player);
