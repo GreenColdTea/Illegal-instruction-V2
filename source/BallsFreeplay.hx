@@ -569,8 +569,8 @@ class BallsFreeplay extends MusicBeatState
         var fixDef = new B2FixtureDef();
         fixDef.shape = shape;
         fixDef.density = 0;
-        fixDef.friction = 0.5;
-        fixDef.restitution = 0.1;
+        fixDef.friction = 0.25;
+        fixDef.restitution = 0.01;
         var body = world.createBody(bodyDef);
         body.createFixture(fixDef);
     }
