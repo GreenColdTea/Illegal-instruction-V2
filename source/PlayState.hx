@@ -4527,35 +4527,35 @@ class PlayState extends MusicBeatState
 		}       
 					
 		if (generatedMusic) {
-                        if (!inCutscene) {
-        if (!cpuControlled) {
-            keyShit();
-        } else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration 
-                   && boyfriend.animation.curAnim.name.startsWith('sing') 
-                   && !boyfriend.animation.curAnim.name.endsWith('miss')) {
-            boyfriend.dance();
-        }
-    }
+                    if (!inCutscene) {
+                        if (!cpuControlled) {
+                            keyShit();
+                        } else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration 
+                                   && boyfriend.animation.curAnim.name.startsWith('sing') 
+                                   && !boyfriend.animation.curAnim.name.endsWith('miss')) {
+                            boyfriend.dance();
+                        }
+                    }
 
-    var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
+                    var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
 
-    notes.forEachAlive(function(daNote:Note) {
-        var downscrollMultiplier:Float = 1;
-        if (ClientPrefs.downScroll) downscrollMultiplier = -1;
+                    notes.forEachAlive(function(daNote:Note) {
+                        var downscrollMultiplier:Float = 1;
+                        if (ClientPrefs.downScroll) downscrollMultiplier = -1;
         
-        if (songIsModcharted) {
-            downscrollMultiplier = CoolUtil.scale(modManager.get("reverse").getScrollReversePerc(daNote.noteData, daNote.mustPress ? 0 : 1), 0, 1, 1, -1);
-        }
+                        if (songIsModcharted) {
+                            downscrollMultiplier = CoolUtil.scale(modManager.get("reverse").getScrollReversePerc(daNote.noteData, daNote.mustPress ? 0 : 1), 0, 1, 1, -1);
+                        }
 
-        var strumGroup:FlxTypedGroup<StrumNote> = daNote.mustPress ? playerStrums : opponentStrums;
-        var strumX:Float = strumGroup.members[daNote.noteData].x + daNote.offsetX;
-        var strumY:Float = strumGroup.members[daNote.noteData].y + daNote.offsetY;
-        var strumAngle:Float = strumGroup.members[daNote.noteData].angle + daNote.offsetAngle;
-        var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
-        var strumAlpha:Float = strumGroup.members[daNote.noteData].alpha * daNote.multAlpha;
-        var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
+                        var strumGroup:FlxTypedGroup<StrumNote> = daNote.mustPress ? playerStrums : opponentStrums;
+                        var strumX:Float = strumGroup.members[daNote.noteData].x + daNote.offsetX;
+                        var strumY:Float = strumGroup.members[daNote.noteData].y + daNote.offsetY;
+                        var strumAngle:Float = strumGroup.members[daNote.noteData].angle + daNote.offsetAngle;
+                        var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
+                        var strumAlpha:Float = strumGroup.members[daNote.noteData].alpha * daNote.multAlpha;
+                        var strumScroll:Bool = strumGroup.members[daNote.noteData].downScroll;
         
-        var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, daNote.speed);
+                        var psuedoY:Float = getScrollPos(Conductor.songPosition - daNote.strumTime, daNote.speed);
         
         if (songIsModcharted) {
             var notePos = modManager.getPath(Conductor.songPosition - daNote.strumTime, psuedoY, daNote.noteData, daNote.mustPress ? 0 : 1);
@@ -4577,7 +4577,7 @@ class PlayState extends MusicBeatState
 
                 var nextPos = modManager.getPath(diff, vDiff, daNote.noteData, daNote.mustPress ? 0 : 1);
                 nextPos.x += daNote.offsetX;
-                nextPos.y += daNote.offsetY / songSpeed;
+                nextPos.y += daNote.offsetY * (1 / songSpeed);
 
                 var angle = Math.atan2(nextPos.y - notePos.y, nextPos.x - notePos.x) * (180 / Math.PI);
                 daNote.angle = (angle != 0) ? angle + 90 : 0;
@@ -4592,7 +4592,7 @@ class PlayState extends MusicBeatState
         }
 
 	if (strumScroll && daNote.animation.curAnim.name.endsWith('end')) {
-	    daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * songSpeed + (46 * (songSpeed - 1));
+	    daNote.y += 10.5 * (fakeCrochet / 400) * 1.25 * songSpeed + (40 * (songSpeed - 1));
 	    daNote.y -= 46 * (1 - (fakeCrochet / 600)) * songSpeed;
 	    if(PlayState.isPixelStage) {
 		    daNote.y += 8 + (6 - daNote.originalHeightForCalcs) * PlayState.daPixelZoom;
