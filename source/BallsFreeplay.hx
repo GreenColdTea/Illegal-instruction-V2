@@ -186,9 +186,8 @@ class BallsFreeplay extends MusicBeatState
         world = new B2World(new B2Vec2(0, 9.8), true);
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
-        createBoundary(FlxG.width / 2, 0, FlxG.width / 2, 10); // Ceiling
-        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2); // Left wall
-        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2); // Right wall
+        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0.25, 0.01); // Left wall
+        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0.25, 0.01); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
@@ -561,7 +560,7 @@ class BallsFreeplay extends MusicBeatState
         });
     }
 
-    function createBoundary(x:Float, y:Float, w:Float, h:Float) {
+    function createBoundary(x:Float, y:Float, w:Float, h:Float, ?friction:Float = 0.5, ?restitution:Float = 0.1) {
         var bodyDef = new B2BodyDef();
         bodyDef.position.set(x * worldScale, y * worldScale);
         var shape = new B2PolygonShape();
@@ -569,8 +568,8 @@ class BallsFreeplay extends MusicBeatState
         var fixDef = new B2FixtureDef();
         fixDef.shape = shape;
         fixDef.density = 0;
-        fixDef.friction = 0.25;
-        fixDef.restitution = 0.01;
+        fixDef.friction = friction;
+        fixDef.restitution = restitution;
         var body = world.createBody(bodyDef);
         body.createFixture(fixDef);
     }
