@@ -347,7 +347,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.botplaySine = 0;
 				case 'Options':
 					PlayState.instance.paused = true;
-					PlayState.instance.vocals.volume = 0;
+					PlayState.instance.vocals.stop();
 					PlayState.instance.canResync = false;
 					MusicBeatState.switchState(new OptionsState());
 					if (ClientPrefs.pauseMusic != "None")
@@ -474,10 +474,10 @@ class PauseSubState extends MusicBeatSubstate
                   menuItemsText.push(item);
 
                   if (menuItems[i] == 'Skip Time:') {
-                      skipTimeText = new FlxText(0, item.y + 10, 0, '', 41);
-                      skipTimeText.setFormat(Paths.font(fontStyle), 41, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                      skipTimeText = new FlxText(0, item.y + 10, 0, '', 39);
+                      skipTimeText.setFormat(Paths.font(fontStyle), 39, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                       skipTimeText.borderSize = 2;
-		      skipTimeText.x -= 75;
+		      skipTimeText.x -= 87.5;
                       skipTimeText.scrollFactor.set();
                       skipTimeTracker = item;
                       add(skipTimeText);
