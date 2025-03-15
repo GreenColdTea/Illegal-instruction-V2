@@ -422,27 +422,11 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
-        function changeSelection(change:Int = 0):Void 
-        {
-                curSelected += change;
-                FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-                if (curSelected < 0) 
-                    curSelected = menuItemsText.length - 1;
-                if (curSelected >= menuItemsText.length) 
-                    curSelected = 0;
-
-                var centerY = FlxG.height / 2 - 50;
-                var spacing = 120;
-                var bullShit = 0;
-
-                for (item in menuItemsText) 
-                {
-                    var targetY = centerY + (bullShit - curSelected) * spacing;
-                    FlxTween.tween(item, { y: targetY, alpha: (bullShit == curSelected ? 1 : 0.6) }, 0.35, { ease: FlxEase.quartInOut });
-                    bullShit++;
-                }
-        }
+        function changeSelection(change:Int = 0):Void {
+            curSelected = (curSelected + change + menuItemsText.length) % menuItemsText.length;
+            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+            updateMenuSelection();
+	}
 
         function regenMenu():Void {
             for (i in 0...grpMenuShit.members.length) {
@@ -495,13 +479,7 @@ class PauseSubState extends MusicBeatSubstate
             for (i in 0...menuItemsText.length) {
                 menuItemsText[i].alpha = (i == curSelected) ? 1 : 0.6;
             }
-        }
-
-        function changeSelection(change:Int = 0):Void {
-            curSelected = (curSelected + change + menuItemsText.length) % menuItemsText.length;
-            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-            updateMenuSelection();
-        }
+	}
 	
 	function updateSkipTextStuff()
 	{
