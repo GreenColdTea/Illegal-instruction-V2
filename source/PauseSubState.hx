@@ -101,9 +101,9 @@ class PauseSubState extends MusicBeatSubstate
 	        var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
 	        pauseArt.scale.set(0.4, 0.4);
-		pauseArt.loadGraphic(Paths.image('Renders/' + curRender + PlayState.instance.pauseRenderPrefix[0], 'shared'));
+		pauseArt.loadGraphic(Paths.image('Renders/' + curRender, 'shared'));
 		pauseArt.scrollFactor.set();
-		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + PlayState.instance.pauseRenderPrefix[0] + '.png', IMAGE, 'shared'))) add(pauseArt);
+		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + '.png', IMAGE, 'shared'))) add(pauseArt);
 		pauseArt.x = renderDistance * -1;
 	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
@@ -207,9 +207,9 @@ class PauseSubState extends MusicBeatSubstate
 	var holdTime:Float = 0;
 	override function update(elapsed:Float)
 	{
-		if (pauseMusic.volume < 0.5)
-			pauseMusic.volume += 0.01 * elapsed;
-
+		if (pauseMusic.volume < 1.0) {
+                        pauseMusic.volume = Math.min(1.0, pauseMusic.volume + 0.5 * elapsed);
+		}
 		//Outdated
 		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
 			curRender = "dukep2";
@@ -445,35 +445,35 @@ class PauseSubState extends MusicBeatSubstate
         }
 
         function regenMenu():Void {
-               for (i in 0...grpMenuShit.members.length) {
-                   var obj = grpMenuShit.members[0];
-                   obj.kill();
-                   grpMenuShit.remove(obj, true);
-                   obj.destroy();
-               }
-               menuItemsText = [];
+            for (i in 0...grpMenuShit.members.length) {
+                var obj = grpMenuShit.members[0];
+                obj.kill();
+                grpMenuShit.remove(obj, true);
+                obj.destroy();
+            }
+            menuItemsText = [];
 
-              var itemHeight = 10;
-              var totalHeight = menuItems.length * itemHeight;
-              var startY = (FlxG.height / 2) - (totalHeight / 2);
+            var startY = (FlxG.height / 2) - (menuItems.length * 30) / 2;
+            var spacing = 50;
 
-	      if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
-                        fontStyle = "sonic-cd-menu-font.ttf";
-	      } else {
-		        fontStyle = "chaotix.ttf";
-	      }
+            if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
+                fontStyle = "sonic-cd-menu-font.ttf";
+            } else {
+                fontStyle = "chaotix.ttf";
+            }
 
-              for (i in 0...menuItems.length) {
-                  var item = new FlxText(0, startY + (i * itemHeight), 0, menuItems[i], 42);
-		  item.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-                  item.borderSize = 2;
-                  item.scrollFactor.set();
-                  item.screenCenter(X);
-                  item.x -= 350;
-                  grpMenuShit.add(item);
-                  menuItemsText.push(item);
+            for (i in 0...menuItems.length) {
+                var item = new FlxText(0, startY + (i * spacing), 0, menuItems[i], 42);
+                item.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                item.borderSize = 2;
+                item.scrollFactor.set();
+                item.screenCenter(X);
+                item.x -= 350;
+                item.updateHitbox();
+                grpMenuShit.add(item);
+                menuItemsText.push(item);
 
-                  if (menuItems[i] == 'Skip Time:') {
+		if (menuItems[i] == 'Skip Time:') {
                       skipTimeText = new FlxText(0, item.y + 10, 0, '', 39);
                       skipTimeText.setFormat(Paths.font(fontStyle), 39, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                       skipTimeText.borderSize = 2;
@@ -484,11 +484,23 @@ class PauseSubState extends MusicBeatSubstate
 
                       updateSkipTextStuff();
                       updateSkipTimeText();
-                 }
-            }
+		}
+	    }
 
             curSelected = 0;
-            changeSelection();
+            updateMenuSelection();
+        }
+
+        function updateMenuSelection():Void {
+            for (i in 0...menuItemsText.length) {
+                menuItemsText[i].alpha = (i == curSelected) ? 1 : 0.6;
+            }
+        }
+
+        function changeSelection(change:Int = 0):Void {
+            curSelected = (curSelected + change + menuItemsText.length) % menuItemsText.length;
+            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+            updateMenuSelection();
         }
 	
 	function updateSkipTextStuff()
