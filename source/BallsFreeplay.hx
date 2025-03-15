@@ -501,15 +501,15 @@ class BallsFreeplay extends MusicBeatState
                 playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getWorldCenter());
             }
             player.flipX = true;
-        }
-
-        if (!controls.UI_LEFT && !controls.UI_RIGHT) {
-            if (canJump) {
-                playerBody.setLinearVelocity(new B2Vec2(velocity.x * decel, velocity.y));
+        } else {
+            var newX = velocity.x;
+            if (Math.abs(newX) > 0.1) { // To not stuck
+                newX *= canJump ? 0.85 : 0.95; // On the ground quickly accelerate, on the air slower
             } else {
-                playerBody.setLinearVelocity(new B2Vec2(velocity.x * airFriction, velocity.y));
+                newX = 0; // full stop
             }
-        }
+                playerBody.setLinearVelocity(new B2Vec2(newX, velocity.y));
+	}
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
