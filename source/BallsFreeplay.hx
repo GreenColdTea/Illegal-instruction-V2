@@ -448,7 +448,7 @@ class BallsFreeplay extends MusicBeatState
         // Anims
         if (!canJump) {
             player.animation.play("jump");
-        } else if (Math.abs(velocity.x) > 0) {
+        } else if (Math.abs(velocity.x) > 0.1) {
             player.animation.play(Math.abs(velocity.x) > 3 ? "run" : "walk");
         } else {
             player.animation.play("idle");
