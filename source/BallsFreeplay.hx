@@ -95,10 +95,10 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite;
     var floor:FlxSprite;
     var velocityX:Float = 0;
-    var accel:Float = 2.5; // Acceleration
+    var accel:Float = 21; // Acceleration
     var decel:Float = 0.85; // deceleration
-    var maxSpeed:Float = 10; // Max speed
-    var airFriction:Float = 0.98; // Air friction
+    var maxSpeed:Float = 56; // Max speed
+    var airFriction:Float = 1.1; // Air friction
     var jumpTimer:FlxTimer;
 
     var slidingText:FlxText;
@@ -376,10 +376,10 @@ class BallsFreeplay extends MusicBeatState
                 flxSprite.scale.set(0.35, 0.35);
             }
         }
-	    for (sprite in screenSong.members) {
+        for (sprite in screenSong.members) {
             var flxText:FlxText = cast(sprite, FlxText);
             flxText.alpha = flxText.ID == songIndex ? 1 : 0;
-	    }
+	}
     }
 	
     // Main update function, where all the magic happens
@@ -449,7 +449,7 @@ class BallsFreeplay extends MusicBeatState
         if (!canJump) {
             player.animation.play("jump");
         } else if (Math.abs(velocity.x) > 0.1) {
-            player.animation.play(Math.abs(velocity.x) > 3 ? "run" : "walk");
+            player.animation.play(Math.abs(velocity.x) > 46 ? "run" : "walk");
         } else {
             player.animation.play("idle");
         }
@@ -504,22 +504,15 @@ class BallsFreeplay extends MusicBeatState
                 playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getWorldCenter());
             }
             player.flipX = true;
-	} 
-        
-        if (!controls.UI_LEFT && !controls.UI_RIGHT) 
-	{
-            var newX = velocity.x;
-            if (Math.abs(newX) > 0.1) { // To not stuck
-                newX *= canJump ? 0.85 : 0.95; // On the ground quickly accelerate, on the air slower
-            } else {
-                newX = 0; // full stop
-            }
-                playerBody.setLinearVelocity(new B2Vec2(newX, velocity.y));
-	}
+	} else {
+	    var friction:Float = canJump ? decel : airFriction;
+		
+            playerBody.setLinearVelocity(new B2Vec2(velocity.x * friction, velocity.y));
+	}     
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            playerBody.applyImpulse(new B2Vec2(0, -11), playerBody.getWorldCenter());
+            playerBody.applyImpulse(new B2Vec2(0, -60), playerBody.getWorldCenter());
             player.animation.play("jump");
             canJump = false;
         }
@@ -548,7 +541,7 @@ class BallsFreeplay extends MusicBeatState
     {
         FlxG.sound.play(Paths.sound('confirmMenu'));
         var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
-        PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
+        PlayState.SONG = Song.loadFromJson(songLowerse, songLowercase);
         FlxG.mouse.visible = false;
         PlayState.isStoryMode = false;
         PlayState.isFreeplay = true;
