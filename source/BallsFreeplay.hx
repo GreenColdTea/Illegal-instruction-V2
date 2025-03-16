@@ -95,10 +95,10 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite;
     var floor:FlxSprite;
     var velocityX:Float = 0;
-    var accel:Float = 16; // Acceleration
-    var decel:Float = 0.2; // deceleration
-    var maxSpeed:Float = 29.5; // Max speed
-    var airFriction:Float = 1.1; // Air friction
+    var accel:Float = 17; // Acceleration
+    var decel:Float = 0.21; // deceleration
+    var maxSpeed:Float = 27; // Max speed
+    var airFriction:Float = 1.15; // Air friction
     var jumpTimer:FlxTimer;
 
     var slidingText:FlxText;
@@ -511,7 +511,7 @@ class BallsFreeplay extends MusicBeatState
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            playerBody.setLinearVelocity(new B2Vec2(velocity.x, -7.5));
+            playerBody.setLinearVelocity(new B2Vec2(velocity.x, -15));
             player.animation.play("jump");
             canJump = false;
         }
