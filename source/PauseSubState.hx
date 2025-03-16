@@ -498,7 +498,7 @@ class PauseSubState extends MusicBeatSubstate
 	}
 
         function positionClones() {
-            var baseItem = grpMenu.members[curSelected];
+            var baseItem = grpMenuShit.members[curSelected];
             for (i in 0...clones.length) {
                 clones[i].text = baseItem.text;
                 clones[i].setPosition(baseItem.x, baseItem.y);
