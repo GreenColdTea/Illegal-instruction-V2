@@ -21,6 +21,7 @@ class ModManager {
 
     public var state:PlayState;
     public var receptors:Array<Array<StrumNote>> = [[], []];
+    public var infPath:Array<Array<Vector3>> = [[], [], [], []];
 
     public function new(state:PlayState) {
         this.state = state;
@@ -66,7 +67,6 @@ class ModManager {
 
         for (modName => mod in modList) defineMod(modName, mod);
 
-        var infPath:Array<Array<Vector3>> = [[], [], [], []];
         var r = 0;
         while (r < 360) {
             var rad = r * Math.PI / 180;
