@@ -508,7 +508,7 @@ class PauseSubState extends MusicBeatSubstate
                 var radius = 5 + i * 2;
                 var speed = 1.5 + i * 0.5;
                 FlxTween.angle(clone, 0, 360, speed, {ease: FlxEase.linear, type: FlxTween.LOOPING});
-                FlxTween.tween(clone, {x: clone.x + radius, y: clone.y + radius}, speed, {ease: FlxEase.sineInOut, type: FlxTween.YOYO});
+                FlxTween.tween(clone, {x: clone.x + radius, y: clone.y + radius}, speed, {ease: FlxEase.sineInOut, type: FlxTween.PINGPONG});
             }
 	}
 
