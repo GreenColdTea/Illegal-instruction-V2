@@ -2092,14 +2092,21 @@ class FunkinLua {
                         case "flip": new FlipModifier(modManager);
                         case "drunk": new DrunkModifier(modManager);
                         case "confusion": new ConfusionModifier(modManager);
+			case "boost": new BeatModifier(modManager);
                         case "mini": new ScaleModifier(modManager);
                         case "invert": new InvertModifier(modManager);
                         case "beat": new BeatModifier(modManager);
 			case "receptorScroll": new ReceptorScrollModifier(modManager);
 			case "opponentswap": new OpponentModifier(modManager);
-			case "centerrotateX": new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2));
+			case "centerrotatex": new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2));
+			case "localrotatex": new LocalRotateModifier(modManager);
                         case "transformx": new TransformModifier(modManager);
+			case "rotatex": new RotateModifier(modManager);
                         case "perspective": new PerspectiveModifier(modManager);
+			case "scrollangle": new AngleModifier(modManager);
+			case "camgame": new CamModifier(modManager);
+			case "square": new SquareModifier(modManager);
+                        case "infinite": new PathModifier(modManager, modManager.infPath, 1850);
                         default:
                             luaTrace('addMod: Invalid modifier type "' + type + '"!', true);
                             null;
