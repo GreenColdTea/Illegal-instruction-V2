@@ -186,8 +186,8 @@ class BallsFreeplay extends MusicBeatState
         world = new B2World(new B2Vec2(0, 9.8), true);
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
-        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0); // Left wall
-        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0); // Right wall
+        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.); // Left wall
+        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
