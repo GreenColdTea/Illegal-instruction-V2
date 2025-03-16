@@ -506,7 +506,7 @@ class PauseSubState extends MusicBeatSubstate
                 clones.push(clone);
 
 		var centerX = clone.x;
-		var centerY = cline.y;
+		var centerY = clone.y;
                 var radius = 5 + i * 2;
                 var speed = 1.5 + i * 0.5;
                 FlxTween.tween(clone, {}, speed, {
