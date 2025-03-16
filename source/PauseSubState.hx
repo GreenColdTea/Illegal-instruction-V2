@@ -215,7 +215,6 @@ class PauseSubState extends MusicBeatSubstate
 
 		elapsedTime += elapsed;
 
-		updateClones(elapsed);
 		//Outdated
 		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
 			curRender = "dukep2";
@@ -441,9 +440,11 @@ class PauseSubState extends MusicBeatSubstate
                 grpMenuShit.remove(obj, true);
                 obj.destroy();
             }
+	    grpMenuShit.clear();
             menuItemsText = [];
+	    clones = [];
 
-            var spacing = 50;
+            var spacing = 30;
             var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
 		
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
@@ -453,13 +454,17 @@ class PauseSubState extends MusicBeatSubstate
             }
 
             for (i in 0...menuItems.length) {
-                var item = new FlxText(0, startY + (i * spacing), 0, menuItems[i], 42);
+                var item = new FlxText(0, 0, 0, menuItems[i], 42);
                 item.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                 item.borderSize = 2;
                 item.scrollFactor.set();
+		item.updateHitbox();
                 item.screenCenter(X);
                 item.x -= 350;
-                item.updateHitbox();
+		item.y += startY + (i * spacing);
+
+                createSelectionEffect(item);
+		    
                 grpMenuShit.add(item);
                 menuItemsText.push(item);
 
@@ -476,7 +481,6 @@ class PauseSubState extends MusicBeatSubstate
                       updateSkipTimeText();
 		}
 		    
-		createSelectionEffect();
                 updateMenuSelection();
 	    }
 
@@ -491,14 +495,20 @@ class PauseSubState extends MusicBeatSubstate
             positionClones();
 	}
 
-        function createSelectionEffect() {
+        function createSelectionEffect(baseItem:FlxText) {
             for (i in 0...3) {
-                var clone = new FlxText(0, 0, 0, "", 42);
-                clone.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                var clone = new FlxText(baseItem.x, baseItem.y, 0, baseItem.text, 42);
+                clone.setFormat(Paths.font(fontStyle), 42, FlxColor.GRAY, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                 clone.borderSize = 2;
-                clone.alpha = 0.5;
+                clone.alpha = 0.35;
+                clone.scrollFactor.set();
                 add(clone);
                 clones.push(clone);
+
+                var radius = 5 + i * 2;
+                var speed = 1.5 + i * 0.5;
+                FlxTween.angle(clone, 0, 360, speed, {ease: FlxEase.linear, type: FlxTween.LOOPING});
+                FlxTween.tween(clone, {x: clone.x + radius, y: clone.y + radius}, speed, {ease: FlxEase.sineInOut, type: FlxTween.YOYO});
             }
 	}
 
@@ -509,17 +519,6 @@ class PauseSubState extends MusicBeatSubstate
                 clones[i].setPosition(baseItem.x, baseItem.y);
             }
         }
-
-        function updateClones(elapsed:Float) {
-            var radius = 10;
-            var baseItem = grpMenuShit.members[curSelected];
-
-            for (i in 0...clones.length) {
-                var angle = (elapsedTime * 3) + (i * (Math.PI * 2 / clones.length));
-                clones[i].x = baseItem.x + Math.cos(angle) * radius;
-                clones[i].y = baseItem.y + Math.sin(angle) * radius;
-	    }
-	}
 	
 	function updateSkipTextStuff()
 	{
