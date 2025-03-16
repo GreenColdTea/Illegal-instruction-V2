@@ -472,7 +472,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		    
 		createSelectionEffect();
-                updateSelection();
+                updateMenuSelection();
 	    }
 
             curSelected = 0;
@@ -498,7 +498,7 @@ class PauseSubState extends MusicBeatSubstate
 	}
 
         function positionClones() {
-            var baseItem = menuItems[selectedIndex];
+            var baseItem = menuItems[curSelected];
             for (i in 0...clones.length) {
                 clones[i].text = baseItem.text;
                 clones[i].setPosition(baseItem.x, baseItem.y);
