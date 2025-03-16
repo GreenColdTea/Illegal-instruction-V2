@@ -208,9 +208,10 @@ class PauseSubState extends MusicBeatSubstate
 	var holdTime:Float = 0;
 	override function update(elapsed:Float)
 	{
-		if (pauseMusic.volume < 1.0) {
-                        pauseMusic.volume = Math.min(1.0, pauseMusic.volume + 0.5 * elapsed);
-		}
+		if (pauseMusic.volume < 0.5)
+			pauseMusic.volume += 0.01 * elapsed;
+
+		updateClones(elapsed);
 		//Outdated
 		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
 			curRender = "dukep2";
@@ -440,7 +441,7 @@ class PauseSubState extends MusicBeatSubstate
 
             var spacing = 50;
             var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
-
+		
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
                 fontStyle = "sonic-cd-menu-font.ttf";
             } else {
@@ -506,13 +507,15 @@ class PauseSubState extends MusicBeatSubstate
         }
 
         function updateClones(elapsed:Float) {
-            var radius = 5;
+            var radius = 10;
+            var baseItem = grpMenuShit.members[curSelected];
+
             for (i in 0...clones.length) {
-                var angle = (FlxG.game.ticks * 0.05) + (i * (Math.PI * 2 / clones.length));
-                clones[i].x += Math.cos(angle) * radius;
-                clones[i].y += Math.sin(angle) * radius;
-            }
-        }
+                var angle = (FlxG.time.totalElapsedSeconds * 3) + (i * (Math.PI * 2 / clones.length));
+                clones[i].x = baseItem.x + Math.cos(angle) * radius;
+                clones[i].y = baseItem.y + Math.sin(angle) * radius;
+	    }
+	}
 	
 	function updateSkipTextStuff()
 	{
