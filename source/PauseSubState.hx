@@ -458,10 +458,10 @@ class PauseSubState extends MusicBeatSubstate
                 item.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                 item.borderSize = 2;
                 item.scrollFactor.set();
-		item.updateHitbox();
                 item.screenCenter(X);
                 item.x -= 350;
 		item.y += startY + (i * spacing);
+		item.updateHitbox();
 
                 createSelectionEffect(item);
 		    
