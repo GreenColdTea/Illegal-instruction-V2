@@ -69,7 +69,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		#if mobile
-		var option:Option = new Option('No Black Screen Borders', //Name
+		var option:Option = new Option('Borderless Screen', //Name
 			'If checked, the game window will without black borders(16:9)', //Description
 			'noBordersScreen', //Save data variable name
 			'bool', //Variable type
