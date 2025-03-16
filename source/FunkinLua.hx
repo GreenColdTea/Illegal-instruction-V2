@@ -2092,6 +2092,7 @@ class FunkinLua {
                         case "flip": new FlipModifier(modManager);
                         case "drunk": new DrunkModifier(modManager);
                         case "confusion": new ConfusionModifier(modManager);
+			case "bounce": new BounceModifier(modManager);
 			case "boost": new BeatModifier(modManager);
                         case "mini": new ScaleModifier(modManager);
                         case "invert": new InvertModifier(modManager);
@@ -2104,7 +2105,8 @@ class FunkinLua {
 			case "rotatex": new RotateModifier(modManager);
                         case "perspective": new PerspectiveModifier(modManager);
 			case "scrollangle": new AngleModifier(modManager);
-			case "camgame": new CamModifier(modManager);
+			case "camgame": new CamModifier(modManager, "gameCam", PlayState.camGame);
+			case "camhud": new CamModifier(modManager, "HudCam", PlayState.camHUD);
 			case "square": new SquareModifier(modManager);
                         case "infinite": new PathModifier(modManager, modManager.infPath, 1850);
                         default:
