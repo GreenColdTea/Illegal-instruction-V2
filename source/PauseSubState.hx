@@ -213,7 +213,7 @@ class PauseSubState extends MusicBeatSubstate
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
 
-		elapsedTime += elapsed
+		elapsedTime += elapsed;
 
 		updateClones(elapsed);
 		//Outdated
