@@ -37,6 +37,8 @@ class PauseSubState extends MusicBeatSubstate
 	var pauseArt:FlxSprite;
 	var skipTimeTracker:FlxText;
 
+	var elapsedTime:Float = 0;
+
 	var fontStyle:String;
 
 	public static var levelInfo:FlxText;
@@ -210,6 +212,8 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
+
+		elapsedTime += elapsed
 
 		updateClones(elapsed);
 		//Outdated
@@ -511,7 +515,7 @@ class PauseSubState extends MusicBeatSubstate
             var baseItem = grpMenuShit.members[curSelected];
 
             for (i in 0...clones.length) {
-                var angle = (FlxG.time.totalElapsedSeconds * 3) + (i * (Math.PI * 2 / clones.length));
+                var angle = (elapsedTime * 3) + (i * (Math.PI * 2 / clones.length));
                 clones[i].x = baseItem.x + Math.cos(angle) * radius;
                 clones[i].y = baseItem.y + Math.sin(angle) * radius;
 	    }
