@@ -512,8 +512,8 @@ class PauseSubState extends MusicBeatSubstate
                     ease: FlxEase.linear,
                     onUpdate: function(twn) {
                         var angle = twn.percent * 360;
-                        clone.x = centerX + Math.cos(angle * Math.PI / 180) * radius;
-                        clone.y = centerY + Math.sin(angle * Math.PI / 180) * radius;
+                        clone.x = clone.x + Math.cos(angle * Math.PI / 180) * radius;
+                        clone.y = clone.y + Math.sin(angle * Math.PI / 180) * radius;
                     }
                 });
 	    }
