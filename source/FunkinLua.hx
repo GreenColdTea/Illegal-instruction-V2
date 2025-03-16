@@ -2105,8 +2105,8 @@ class FunkinLua {
 			case "rotatex": new RotateModifier(modManager);
                         case "perspective": new PerspectiveModifier(modManager);
 			case "scrollangle": new AngleModifier(modManager);
-			case "camgame": new CamModifier(modManager, "gameCam", PlayState.camGame);
-			case "camhud": new CamModifier(modManager, "HudCam", PlayState.camHUD);
+			case "camgame": new CamModifier(modManager, "gameCam", PlayState.instance.camGame);
+			case "camhud": new CamModifier(modManager, "HudCam", PlayState.instance.camHUD);
 			case "square": new SquareModifier(modManager);
                         case "infinite": new PathModifier(modManager, modManager.infPath, 1850);
                         default:
