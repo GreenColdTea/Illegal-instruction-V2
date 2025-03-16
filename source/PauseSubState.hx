@@ -444,7 +444,7 @@ class PauseSubState extends MusicBeatSubstate
             menuItemsText = [];
 	    clones = [];
 
-            var spacing = 30;
+            var spacing = 100;
             var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
 		
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
@@ -507,9 +507,16 @@ class PauseSubState extends MusicBeatSubstate
 
                 var radius = 5 + i * 2;
                 var speed = 1.5 + i * 0.5;
-                FlxTween.angle(clone, 0, 360, speed, {ease: FlxEase.linear, type: FlxTween.LOOPING});
-                FlxTween.tween(clone, {x: clone.x + radius, y: clone.y + radius}, speed, {ease: FlxEase.sineInOut, type: FlxTween.PINGPONG});
-            }
+                FlxTween.tween(clone, {}, speed, {
+                    type: FlxTween.LOOPING,
+                    ease: FlxEase.linear,
+                    onUpdate: function(twn) {
+                        var angle = twn.percent * 360;
+                        clone.x = centerX + Math.cos(angle * Math.PI / 180) * radius;
+                        clone.y = centerY + Math.sin(angle * Math.PI / 180) * radius;
+                    }
+                });
+	    }
 	}
 
         function positionClones() {
