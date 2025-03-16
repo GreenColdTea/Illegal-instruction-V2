@@ -358,7 +358,7 @@ class PauseSubState extends MusicBeatSubstate
 					if (ClientPrefs.pauseMusic != "None")
 					{
 						FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), pauseMusic.volume);
-						FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.8);
+						FlxTween.tween(pauseMusic, {volume: 1}, 0.8);
 						FlxG.sound.music.time = pauseMusic.time;
 					}
 					OptionsState.onPlayState = true;
@@ -444,7 +444,7 @@ class PauseSubState extends MusicBeatSubstate
             menuItemsText = [];
 	    clones = [];
 
-            var spacing = 100;
+            var spacing = 150;
             var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
 		
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
@@ -505,6 +505,8 @@ class PauseSubState extends MusicBeatSubstate
                 add(clone);
                 clones.push(clone);
 
+		var centerX = clone.x;
+		var centerY = cline.y;
                 var radius = 5 + i * 2;
                 var speed = 1.5 + i * 0.5;
                 FlxTween.tween(clone, {}, speed, {
@@ -512,8 +514,8 @@ class PauseSubState extends MusicBeatSubstate
                     ease: FlxEase.linear,
                     onUpdate: function(twn) {
                         var angle = twn.percent * 360;
-                        clone.x = clone.x + Math.cos(angle * Math.PI / 180) * radius;
-                        clone.y = clone.y + Math.sin(angle * Math.PI / 180) * radius;
+                        clone.x = centerX + Math.cos(angle * Math.PI / 180) * radius;
+                        clone.y = centerY + Math.sin(angle * Math.PI / 180) * radius;
                     }
                 });
 	    }
