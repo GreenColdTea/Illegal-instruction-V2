@@ -95,9 +95,9 @@ class BallsFreeplay extends MusicBeatState
     var player:FlxSprite;
     var floor:FlxSprite;
     var velocityX:Float = 0;
-    var accel:Float = 14; // Acceleration
+    var accel:Float = 16; // Acceleration
     var decel:Float = 0.2; // deceleration
-    var maxSpeed:Float = 31; // Max speed
+    var maxSpeed:Float = 29.5; // Max speed
     var airFriction:Float = 1.1; // Air friction
     var jumpTimer:FlxTimer;
 
@@ -186,8 +186,8 @@ class BallsFreeplay extends MusicBeatState
         world = new B2World(new B2Vec2(0, 9.8), true);
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
-        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.01); // Left wall
-        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.01); // Right wall
+        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0); // Left wall
+        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
@@ -449,7 +449,7 @@ class BallsFreeplay extends MusicBeatState
         if (!canJump) {
             player.animation.play("jump");
         } else if (Math.abs(velocity.x) > 0.1) {
-            player.animation.play(Math.abs(velocity.x) > 26 ? "run" : "walk");
+            player.animation.play(Math.abs(velocity.x) > 13 ? "run" : "walk");
         } else {
             player.animation.play("idle");
         }
@@ -511,7 +511,7 @@ class BallsFreeplay extends MusicBeatState
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
-            playerBody.setLinearVelocity(new B2Vec2(velocity.x, -15));
+            playerBody.setLinearVelocity(new B2Vec2(velocity.x, -7.5));
             player.animation.play("jump");
             canJump = false;
         }
