@@ -51,7 +51,8 @@ class CoolUtil
 		return difficulties[PlayState.storyDifficulty].toUpperCase();
 	}
 
-	public static function toTitleCase(str:String):String {
+	public static function toTitleCase(str:String):String 
+	{
                 return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 	}
 
@@ -75,8 +76,15 @@ class CoolUtil
 		return p;
 	}
 
-	inline public static function boundTo(value:Float, min:Float, max:Float):Float {
+	inline public static function boundTo(value:Float, min:Float, max:Float):Float 
+	{
 		return Math.max(min, Math.min(max, value));
+	}
+
+	public static function square(angle:Float) 
+	{
+		var fAngle = angle % (Math.PI * 2);
+		return fAngle >= Math.PI ? -1.0 : 1.0;
 	}
 
 	public static function coolTextFile(path:String):Array<String>
