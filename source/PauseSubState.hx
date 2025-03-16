@@ -24,10 +24,11 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<FlxText>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song' #if mobile, 'Debug Mode' #end, 'Options', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song' #if mobile, 'Debug Mode' #end, 'Options', 'Exit'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 	var menuItemsText:Array<FlxText> = [];
+	var clones:Array<FlxText> = [];
 
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
@@ -58,7 +59,7 @@ class PauseSubState extends MusicBeatSubstate
 			#end)
 		{
 			#if !debug
-			menuItemsOG.insert(2, 'Leave From\nDebug Mode');
+			menuItemsOG.insert(2, 'Turn Off Debug Mode');
 			#end
 			
 			var num:Int = 0;
@@ -315,7 +316,7 @@ class PauseSubState extends MusicBeatSubstate
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
 					restartSong();
-				case "Leave From\nDebug Mode":
+				case "Turn Off Debug Mode":
 					restartSong();
 					PlayState.chartingMode = false;
 				case 'Debug Mode':
@@ -357,7 +358,7 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.sound.music.time = pauseMusic.time;
 					}
 					OptionsState.onPlayState = true;
-				case "Exit to menu":
+				case "Exit":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
 					if(PlayState.isStoryMode) {
@@ -437,8 +438,8 @@ class PauseSubState extends MusicBeatSubstate
             }
             menuItemsText = [];
 
-            var startY = (FlxG.height / 2) - (menuItems.length * 30) / 2;
             var spacing = 50;
+            var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
 
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
                 fontStyle = "sonic-cd-menu-font.ttf";
@@ -469,6 +470,9 @@ class PauseSubState extends MusicBeatSubstate
                       updateSkipTextStuff();
                       updateSkipTimeText();
 		}
+		    
+		createSelectionEffect();
+                updateSelection();
 	    }
 
             curSelected = 0;
@@ -478,8 +482,37 @@ class PauseSubState extends MusicBeatSubstate
         function updateMenuSelection():Void {
             for (i in 0...menuItemsText.length) {
                 menuItemsText[i].alpha = (i == curSelected) ? 1 : 0.6;
+	    }
+            positionClones();
+	}
+
+        function createSelectionEffect() {
+            for (i in 0...3) {
+                var clone = new FlxText(0, 0, 0, "", 42);
+                clone.setFormat(Paths.font(fontStyle), 42, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                clone.borderSize = 2;
+                clone.alpha = 0.5;
+                add(clone);
+                clones.push(clone);
             }
 	}
+
+        function positionClones() {
+            var baseItem = menuItems[selectedIndex];
+            for (i in 0...clones.length) {
+                clones[i].text = baseItem.text;
+                clones[i].setPosition(baseItem.x, baseItem.y);
+            }
+        }
+
+        function updateClones(elapsed:Float) {
+            var radius = 5;
+            for (i in 0...clones.length) {
+                var angle = (FlxG.game.ticks * 0.05) + (i * (Math.PI * 2 / clones.length));
+                clones[i].x += Math.cos(angle) * radius;
+                clones[i].y += Math.sin(angle) * radius;
+            }
+        }
 	
 	function updateSkipTextStuff()
 	{
