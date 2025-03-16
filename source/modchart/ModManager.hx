@@ -45,6 +45,7 @@ class ModManager {
             "opponentSwap" => new OpponentModifier(this),
             "scrollAngle" => new AngleModifier(this),
             "mini" => new ScaleModifier(this),
+	    "bounce" => new BounceModifier(this),
             "flip" => new FlipModifier(this),
             "invert" => new InvertModifier(this),
 	    "camGame" => new CamModifier(this),
