@@ -38,6 +38,8 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeTracker:FlxText;
 
 	var elapsedTime:Float = 0;
+	var spacing:Float = 175; 
+        var startY:Float = (FlxG.height - (menuItems.length * spacing)) * 0.5;
 
 	var fontStyle:String;
 
@@ -434,14 +436,13 @@ class PauseSubState extends MusicBeatSubstate
             if (curSelected < 0) curSelected = menuItems.length - 1;
             if (curSelected >= menuItems.length) curSelected = 0;
 
-            var spacing:Float = 135; 
-            var startY:Float = (FlxG.height - (menuItems.length * spacing)) * 0.5;
-    
             for (i in 0...menuItemsText.length) {
                 var item = menuItemsText[i];
                 var targetY = startY + (i - curSelected) * spacing;
-        
-                FlxTween.tween(item, {y: targetY}, 0.2, {ease: FlxEase.quadOut});
+
+		if (curSelected > 2)
+                    FlxTween.tween(item, {y: targetY}, 0.2, {ease: FlxEase.quadOut});
+		    
             }
 
             if (menuItems[curSelected] == "Skip Time:") {
@@ -459,7 +460,6 @@ class PauseSubState extends MusicBeatSubstate
                 grpMenuShit.remove(obj, true);
                 obj.destroy();
             }
-	    grpMenuShit.clear();
             menuItemsText = [];
 	    clones = [];
 
@@ -476,6 +476,7 @@ class PauseSubState extends MusicBeatSubstate
                 item.scrollFactor.set();
                 item.screenCenter(X);
                 item.x -= 350;
+		item.y += startY + (i * spacing);
 		item.updateHitbox();
 
                 //createSelectionEffect(item);
