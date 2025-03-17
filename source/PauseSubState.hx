@@ -484,7 +484,7 @@ class PauseSubState extends MusicBeatSubstate
 		if (i > 2) {
 			FlxTween.tween(item, {y: item.y + 50}, 0.4, {ease: FlxEase.linear});
 		} else if (i >= menuItemsText.length) {
-			FlxTween.tween(item, {y: item.y - 50 * i}, 0.2, {ease: FlxEase.linear});
+			FlxTween.tween(item, {y: item.y - 50 * (i - 2)}, 0.2, {ease: FlxEase.linear});
 			curSelected = 0;
 		}
 		    
