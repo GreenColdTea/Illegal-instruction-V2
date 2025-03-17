@@ -23,7 +23,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib git openfl https://github.com/MobilePorting/openfl 9.3.4 > /dev/null --quiet
+          haxelib git openfl https://github.com/MobilePorting/openfl 9.2.2 > /dev/null --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
           haxelib git lime https://github.com/MobilePorting/lime.git > /dev/null --quiet
           haxelib git hxcpp https://github.com/MobilePorting/hxcpp > /dev/null
@@ -77,7 +77,7 @@ jobs:
         run: |
           haxelib setup C:\haxelib
           haxelib install lime 8.2.2 --quiet
-          haxelib git openfl https://github.com/MobilePorting/openfl 9.3.4 --quiet
+          haxelib git openfl https://github.com/MobilePorting/openfl 9.2.2 --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
           haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
           haxelib install hxcpp-debug-server --quiet
