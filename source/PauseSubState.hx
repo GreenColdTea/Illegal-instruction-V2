@@ -352,7 +352,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.botplaySine = 0;
 				case 'Options':
 					PlayState.instance.paused = true;
-					PlayState.instance.vocals.stop();
+					PlayState.instance.vocals.volume = 0;
 					PlayState.instance.canResync = false;
 					MusicBeatState.switchState(new OptionsState());
 					if (ClientPrefs.pauseMusic != "None")
