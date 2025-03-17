@@ -444,7 +444,7 @@ class PauseSubState extends MusicBeatSubstate
             menuItemsText = [];
 	    clones = [];
 
-            var spacing = 150;
+            var spacing = 135;
             var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
 		
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
@@ -460,7 +460,7 @@ class PauseSubState extends MusicBeatSubstate
                 item.scrollFactor.set();
                 item.screenCenter(X);
                 item.x -= 350;
-		item.y += startY + (i * spacing);
+		item.y += startY + (i * spacing) + 25;
 		item.updateHitbox();
 
                 //createSelectionEffect(item);
@@ -490,6 +490,11 @@ class PauseSubState extends MusicBeatSubstate
         function updateMenuSelection():Void {
             for (i in 0...menuItemsText.length) {
                 menuItemsText[i].alpha = (i == curSelected) ? 1 : 0.6;
+		if (i > 2) {
+			FlxTween.tween(menuItemsText, {y: menuItemsText.y + 50}, 0.4, {ease: FlxEase.linear});
+		} else if (i >= menuItemsText.length) {
+			FlxTween.tween(blueballedTxt, {y: menuItemsText.y - 50 * i}, 0.2, {ease: FlxEase.linear});
+		}
 	    }
             positionClones();
 	}
