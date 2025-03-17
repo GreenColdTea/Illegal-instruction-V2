@@ -159,17 +159,22 @@ class ModManager {
             pos = mod.getPath(vDiff, pos, column, player, diff);
         }
 
+	pos.y = ClientPrefs.downScroll ? FlxG.height - pos.y : pos.y;
         return pos;
     }
 
     public function getPathSustain(diff:Float, vDiff:Float, column:Int, player:Int, sustainLength:Float):Vector3 {
-        var pos = new Vector3(state.getXPosition(diff, column, player), vDiff, 0);
-        var endPos = new Vector3(state.getXPosition(diff + sustainLength, column, player), vDiff + sustainLength, 0);
+        var yPos = ClientPrefs.downScroll ? FlxG.height - vDiff : vDiff;
+        var pos = new Vector3(state.getXPosition(diff, column, player), yPos, 0);
+        var endPos = new Vector3(state.getXPosition(diff + sustainLength, column, player), yPos + sustainLength, 0);
 
         for (mod in mods) {
             pos = mod.getPath(vDiff, pos, column, player, diff);
             endPos = mod.getPath(vDiff + sustainLength, endPos, column, player, diff + sustainLength);
         }
+
+        pos.y = ClientPrefs.downScroll ? FlxG.height - pos.y : pos.y;
+        endPos.y = ClientPrefs.downScroll ? FlxG.height - endPos.y : endPos.y;
 
         var angle = Math.atan2(endPos.y - pos.y, endPos.x - pos.x) * (180 / Math.PI);
         if (angle != 0) angle += 90;
