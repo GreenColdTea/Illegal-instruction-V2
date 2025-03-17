@@ -39,7 +39,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	var elapsedTime:Float = 0;
 	var spacing:Float = 175; 
-        var startY:Float = (FlxG.height - (menuItems.length * spacing)) * 0.5;
+        var startY:Float;
 
 	var fontStyle:String;
 
@@ -77,6 +77,9 @@ class PauseSubState extends MusicBeatSubstate
 			menuItemsOG.insert(5 + num, 'Toggle Botplay');
 		}
 		menuItems = menuItemsOG;
+
+	        startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
+	
 
 	        curRender = PlayState.instance.dad.curCharacter;
 
