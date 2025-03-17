@@ -494,6 +494,7 @@ class PauseSubState extends MusicBeatSubstate
 			FlxTween.tween(menuItemsText, {y: menuItemsText.y + 50}, 0.4, {ease: FlxEase.linear});
 		} else if (i >= menuItemsText.length) {
 			FlxTween.tween(blueballedTxt, {y: menuItemsText.y - 50 * i}, 0.2, {ease: FlxEase.linear});
+			curSelected = 0;
 		}
 	    }
             positionClones();
