@@ -463,7 +463,7 @@ class PauseSubState extends MusicBeatSubstate
 		item.y += startY + (i * spacing);
 		item.updateHitbox();
 
-                createSelectionEffect(item);
+                //createSelectionEffect(item);
 		    
                 grpMenuShit.add(item);
                 menuItemsText.push(item);
