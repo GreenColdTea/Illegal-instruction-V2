@@ -152,13 +152,29 @@ class ModManager {
         }
     }
 
-    public function getPath(diff:Float, vDiff:Float, column:Int, player:Int):Vector3{
+    public function getPath(diff:Float, vDiff:Float, column:Int, player:Int):Vector3 {
         var pos = new Vector3(state.getXPosition(diff, column, player), vDiff, 0);
-        for(mod in mods){
-          pos = mod.getPath(vDiff, pos, column, player, diff);
+
+        for (mod in mods) {
+            pos = mod.getPath(vDiff, pos, column, player, diff);
         }
 
         return pos;
+    }
+
+    public function getPathSustain(diff:Float, vDiff:Float, column:Int, player:Int, sustainLength:Float):Vector3 {
+        var pos = new Vector3(state.getXPosition(diff, column, player), vDiff, 0);
+        var endPos = new Vector3(state.getXPosition(diff + sustainLength, column, player), vDiff + sustainLength, 0);
+
+        for (mod in mods) {
+            pos = mod.getPath(vDiff, pos, column, player, diff);
+            endPos = mod.getPath(vDiff + sustainLength, endPos, column, player, diff + sustainLength);
+        }
+
+        var angle = Math.atan2(endPos.y - pos.y, endPos.x - pos.x) * (180 / Math.PI);
+        if (angle != 0) angle += 90;
+
+        return new Vector3(pos.x, pos.y, angle);
     }
 
     public function getNoteScale(note:Note):FlxPoint{
