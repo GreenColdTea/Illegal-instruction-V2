@@ -485,7 +485,6 @@ class PauseSubState extends MusicBeatSubstate
 	    }
 
             curSelected = 0;
-            updateMenuSelection();
         }
 
         function updateMenuSelection():Void {
@@ -505,8 +504,8 @@ class PauseSubState extends MusicBeatSubstate
                 add(clone);
                 clones.push(clone);
 
-		var centerX = clone.x;
-		var centerY = clone.y;
+		var centerX = baseItem.x;
+		var centerY = baseItem.y;
                 var radius = 5 + i * 2;
                 var speed = 1.5 + i * 0.5;
                 FlxTween.tween(clone, {}, speed, {
