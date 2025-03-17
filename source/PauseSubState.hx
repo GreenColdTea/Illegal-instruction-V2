@@ -491,9 +491,9 @@ class PauseSubState extends MusicBeatSubstate
             for (i in 0...menuItemsText.length) {
                 menuItemsText[i].alpha = (i == curSelected) ? 1 : 0.6;
 		if (i > 2) {
-			FlxTween.tween(menuItemsText, {y: menuItemsText.y + 50}, 0.4, {ease: FlxEase.linear});
+			FlxTween.tween(item, {y: item.y + 50}, 0.4, {ease: FlxEase.linear});
 		} else if (i >= menuItemsText.length) {
-			FlxTween.tween(blueballedTxt, {y: menuItemsText.y - 50 * i}, 0.2, {ease: FlxEase.linear});
+			FlxTween.tween(item, {y: item.y - 50 * i}, 0.2, {ease: FlxEase.linear});
 			curSelected = 0;
 		}
 	    }
