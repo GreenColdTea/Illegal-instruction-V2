@@ -430,6 +430,27 @@ class PauseSubState extends MusicBeatSubstate
         function changeSelection(change:Int = 0):Void {
             curSelected = (curSelected + change + menuItemsText.length) % menuItemsText.length;
             FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+	    if (curSelected < 0)
+		curSelected = menuItems.length - 1;
+	    if (curSelected >= menuItems.length)
+		curSelected = 0;
+
+	    var bullShit:Int = 0;
+
+	    for (item in grpMenuShit.members)
+	    {
+		    item.targetY = bullShit - curSelected;
+		    bullShit++;
+
+		    if (item.targetY == 0)
+		    {
+			    if(item == skipTimeTracker)
+			    {
+				    curTime = Math.max(0, Conductor.songPosition);
+				    updateSkipTimeText();
+			    }
+		    }
+	    }
             updateMenuSelection();
 	}
 
@@ -460,7 +481,7 @@ class PauseSubState extends MusicBeatSubstate
                 item.scrollFactor.set();
                 item.screenCenter(X);
                 item.x -= 350;
-		item.y += startY + (i * spacing) + 25;
+		item.y += startY + (i * spacing) + 50;
 		item.updateHitbox();
 
                 //createSelectionEffect(item);
@@ -480,17 +501,9 @@ class PauseSubState extends MusicBeatSubstate
                       updateSkipTextStuff();
                       updateSkipTimeText();
 		}
-
-		if (i > 2) {
-			FlxTween.tween(item, {y: item.y + 50}, 0.4, {ease: FlxEase.linear});
-		} else if (i >= menuItemsText.length) {
-			FlxTween.tween(item, {y: item.y - 50 * (i - 2)}, 0.2, {ease: FlxEase.linear});
-			curSelected = 0;
-		}
-		    
-                updateMenuSelection();
 	    }
 
+	    updateMenuSelection();
             curSelected = 0;
         }
 
