@@ -430,27 +430,25 @@ class PauseSubState extends MusicBeatSubstate
         function changeSelection(change:Int = 0):Void {
             curSelected = (curSelected + change + menuItemsText.length) % menuItemsText.length;
             FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-	    if (curSelected < 0)
-		curSelected = menuItems.length - 1;
-	    if (curSelected >= menuItems.length)
-		curSelected = 0;
 
-	    var bullShit:Int = 0;
+            if (curSelected < 0) curSelected = menuItems.length - 1;
+            if (curSelected >= menuItems.length) curSelected = 0;
 
-	    for (item in grpMenuShit.members)
-	    {
-		    item.targetY = bullShit - curSelected;
-		    bullShit++;
+            var spacing:Float = 135; 
+            var startY:Float = (FlxG.height - (menuItems.length * spacing)) * 0.5;
+    
+            for (i in 0...menuItemsText.length) {
+                var item = menuItemsText[i];
+                var targetY = startY + (i - curSelected) * spacing;
+        
+                FlxTween.tween(item, {y: targetY}, 0.2, {ease: FlxEase.quadOut});
+            }
 
-		    if (item.targetY == 0)
-		    {
-			    if(item == skipTimeTracker)
-			    {
-				    curTime = Math.max(0, Conductor.songPosition);
-				    updateSkipTimeText();
-			    }
-		    }
-	    }
+            if (menuItems[curSelected] == "Skip Time:") {
+                curTime = Math.max(0, Conductor.songPosition);
+                updateSkipTimeText();
+            }
+
             updateMenuSelection();
 	}
 
@@ -465,9 +463,6 @@ class PauseSubState extends MusicBeatSubstate
             menuItemsText = [];
 	    clones = [];
 
-            var spacing = 135;
-            var startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
-		
             if (PlayState.SONG.song.toLowerCase() == "found-you-legacy") {
                 fontStyle = "sonic-cd-menu-font.ttf";
             } else {
@@ -481,7 +476,6 @@ class PauseSubState extends MusicBeatSubstate
                 item.scrollFactor.set();
                 item.screenCenter(X);
                 item.x -= 350;
-		item.y += startY + (i * spacing) + 50;
 		item.updateHitbox();
 
                 //createSelectionEffect(item);
