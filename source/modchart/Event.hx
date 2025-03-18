@@ -59,7 +59,7 @@ class FuncEvent extends Event {
   }
 }
 
-class ModEvent extends Event {
+class ModEvent extends BaseEvent {
   public var modName:String = '';
   public var endPercent:Float = 0;
   public var player:Int = -1;
