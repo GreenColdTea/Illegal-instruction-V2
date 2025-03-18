@@ -1,6 +1,5 @@
 package modchart;
 
-import modchart.events.ModEvent;
 import modchart.events.BaseEvent;
 import meta.data.*;
 import meta.states.*;
