@@ -18,11 +18,20 @@ class StrumNote extends FlxSprite
 	public var sustainReduce:Bool = true;
 	
 	private var player:Int;
+	public var parent:PlayField;
 
         public var z:Float = 0; // for modchart system
 	public var zIndex:Float = 0;
 	public var scaleDefault:FlxPoint;
-	
+
+	@:isVar
+	public var swagWidth(get, null):Float;
+
+	public function get_swagWidth()
+	{
+		return parent == null ? Note.swagWidth : parent.swagWidth;
+	}
+
 	public var texture(default, set):String = null;
 	private function set_texture(value:String):String {
 		if(texture != value) {
@@ -32,28 +41,33 @@ class StrumNote extends FlxSprite
 		return value;
 	}
 
-   public function getZIndex(){
-    var animZOffset:Float = 0;
-    if(animation.curAnim!=null && animation.curAnim.name=='confirm')animZOffset+=1;
-    return z + animZOffset - player;
-  }
+	public function getZIndex(){
+		var animZOffset:Float = 0;
+		if(animation.curAnim != null && animation.curAnim.name == 'confirm')
+			animZOffset += 1;
+		return z + animZOffset - player;
+	}
 
-  function updateZIndex(){
-    zIndex=getZIndex();
-  }
+	function updateZIndex(){
+		zIndex = getZIndex();
+		if (parent != null) 
+			zIndex += parent.zOffset;
+	}
 
-	public function new(x:Float, y:Float, leData:Int, player:Int) {
-                scaleDefault = new FlxPoint();
+	public function new(x:Float, y:Float, leData:Int, player:Int, ?parent:PlayField) {
+		scaleDefault = new FlxPoint();
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
 		noteData = leData;
 		this.player = player;
 		this.noteData = leData;
+		this.parent = parent;
 		super(x, y);
 
 		var skin:String = 'NOTE_assets';
-		if(PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) skin = PlayState.SONG.arrowSkin;
-		texture = skin; //Load texture and anims
+		if(PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) 
+			skin = PlayState.SONG.arrowSkin;
+		texture = skin; // Load texture and anims
 
 		scrollFactor.set();
 	}
@@ -130,7 +144,7 @@ class StrumNote extends FlxSprite
 		}
 		updateHitbox();
 		scrollFactor.set();
-                scaleDefault.set(scale.x,scale.y);
+		scaleDefault.set(scale.x, scale.y);
 
 		if(lastAnim != null)
 		{
@@ -140,7 +154,7 @@ class StrumNote extends FlxSprite
 
 	public function postAddedToGroup() {
 		playAnim('static');
-		x += Note.swagWidth * noteData;
+		x += swagWidth * noteData;
 		x += 50;
 		x += ((FlxG.width / 2) * player);
 		ID = noteData;
@@ -155,13 +169,7 @@ class StrumNote extends FlxSprite
 			}
 		}
 
-      updateZIndex();
-
-		//if(animation.curAnim != null){ //my bad i was upset
-		/*if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
-			centerOrigin();
-		//}
-		}*/
+		updateZIndex();
 
 		super.update(elapsed);
 	}
