@@ -4,11 +4,10 @@
 package modchart;
 
 import modchart.modifiers.*;
-import modchart.Event.*;
+import modchart.BaseEvent.*;
 import flixel.tweens.FlxEase;
 import flixel.math.FlxPoint;
 import flixel.FlxCamera;
-import states.*;
 import math.*;
 import flixel.math.FlxMath;
 import flixel.FlxG;
