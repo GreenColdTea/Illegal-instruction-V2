@@ -111,6 +111,21 @@ class ModManager {
         return get(modName).getPercent(player);
     }
 
+    public function getPreviousWithEvent(event:ModEvent){
+        if (definedMods[event.modName] != null) {
+            var list:Array<ModEvent> = getList(event.modName,event.player);
+            var idx = list.indexOf(event);
+            if (idx!=-1 && idx>0){
+                return list[idx-1];
+            }
+        }
+        return new ModEvent(0, event.modName, 0, 0, this);
+    }
+
+    public function getLatestWithEvent(event:ModEvent){
+        return getLatest(event.modName, event.player);
+    }
+
     inline public function exists(modName:String):Bool return definedMods.exists(modName);
 
     inline public function set(modName:String, percent:Float, player:Int) {
