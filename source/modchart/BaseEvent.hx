@@ -3,28 +3,16 @@ package modchart;
 import flixel.tweens.FlxEase.EaseFunction;
 import ui.*;
 
-class Event {
-  public var modMgr:ModManager;
-  public var step:Float = 0;
-  public var finished:Bool=false;
-  public function new(step:Float,modMgr:ModManager){
-    this.modMgr=modMgr;
-    this.step=step;
-  }
-
-  public function run(curStep:Float){}
-}
-
 class BaseEvent {
     public var manager:ModManager;
     public var executionStep:Float = 0;
-	public var ignoreExecution:Bool = false;
+    public var ignoreExecution:Bool = false;
     public var finished:Bool = false;
-	public function new(step:Float, manager:ModManager)
-	{
-		this.manager = manager;
-		this.executionStep = step;
-	}
+    public function new(step:Float, manager:ModManager)
+    {
+	   this.manager = manager;
+	   this.executionStep = step;
+    }
 
     public function run(curStep:Float){}
 }
@@ -43,7 +31,7 @@ class CallbackEvent extends BaseEvent {
     }
 }
 
-class FuncEvent extends Event {
+class FuncEvent extends BaseEvent {
   public var callback:Void->Void;
 
   public function new(step:Float,callback:Void->Void,modMgr:ModManager){
@@ -66,21 +54,20 @@ class ModEvent extends BaseEvent {
 
   private var mod:Modifier;
 
-  public function getPreviousPercent(){
-    return modMgr.getPreviousWithEvent(this).endPercent;
+  public function getPreviousPercent() {
+    return manager.getPreviousWithEvent(this).endPercent;
   }
 
-  public function getCurrentPercent(){
-    return modMgr.getLatestWithEvent(this).endPercent;
+  public function getCurrentPercent() {
+    return manager.getLatestWithEvent(this).endPercent;
   }
 
-  public function new(step:Float,modName:String,target:Float,player:Int=-1,modMgr:ModManager){
-    super(step,modMgr);
-    this.modName=modName;
-    this.player=player;
-    endPercent=target;
-
-    this.mod = modMgr.get(modName);
+  public function new(step:Float, modName:String, target:Float, player:Int=-1, modMgr:ModManager) {
+    super(step, modMgr);
+    this.modName = modName;
+    this.player = player;
+    endPercent = target;
+    this.mod = manager.get(modName);
   }
 }
 
