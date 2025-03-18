@@ -89,60 +89,61 @@ class EaseEvent extends ModEvent {
   public var endStep:Float = 0;
   public var length:Float = 0;
   public var startPercent:Null<Float> = 0;
-  public function new(step:Float,endStep:Float,modName:String,target:Float,ease:EaseFunction,player:Int=-1,modMgr:ModManager, ?startVal:Float){
-    super(step,modName,target,player,modMgr);
-    this.endStep=endStep;
-    this.easeFunction=ease;
-    this.length = endStep-step;
 
-    this.startPercent = startVal;//getCurrentPercent();
+  public function new(step:Float, endStep:Float, modName:String, target:Float, ease:EaseFunction, player:Int=-1, modMgr:ModManager, ?startVal:Float){
+    super(step, modName, target, player, modMgr);
+    this.executionStep = step;
+    this.endStep = endStep;
+    this.easeFunction = ease;
+    this.length = endStep - executionStep;
+    this.startPercent = startVal; // getCurrentPercent();
   }
 
-  function ease(t:Float,b:Float,c:Float,d:Float){ // elapsed, begin, change (ending-beginning), duration
+  function ease(t:Float, b:Float, c:Float, d:Float) { // elapsed, begin, change (ending-beginning), duration
     var time = t / d;
     return c * easeFunction(time) + b;
   }
 
-  override function run(curStep:Float){
-    if(curStep>=step && curStep<=endStep){
-      if(this.startPercent==null){
+  override function run(curStep:Float) {
+    if (curStep >= executionStep && curStep <= endStep) {
+      if (this.startPercent == null) {
         this.startPercent = mod.getPercent(player) * 100;
       }
-      var passed = curStep-step;
-      var change = endPercent-startPercent;
+      var passed = curStep - executionStep;
+      var change = endPercent - startPercent;
       mod.setPercent(
-        ease(passed,startPercent,change,length),
+        ease(passed, startPercent, change, length),
         player
       );
-    }else if(curStep>endStep){
-      finished=true;
-      mod.setPercent(endPercent,player);
+    } else if (curStep > endStep) {
+      finished = true;
+      mod.setPercent(endPercent, player);
     }
   }
-
 }
 
 class SetEvent extends ModEvent {
-
-  override function run(curStep:Float){
-    if(curStep>=step){
-      mod.setPercent(endPercent,player);
-      finished=true;
+  override function run(curStep:Float) {
+    if (curStep >= executionStep) {
+      mod.setPercent(endPercent, player);
+      finished = true;
     }
   }
 }
 
 class StepCallbackEvent extends CallbackEvent {
-    public var endStep:Float = 0;
-	public function new(step:Float, endStep:Float, callback:(CallbackEvent, Float) -> Void, modMgr:ModManager)
-	{
-		super(step, callback, modMgr);
-        this.endStep = endStep;
-	}
-    override function run(curStep:Float){
-        if(curStep<=endStep)
-			callback(this, curStep);
-        else
-            finished = true;
-    }
+  public var endStep:Float = 0;
+
+  public function new(step:Float, endStep:Float, callback:(CallbackEvent, Float) -> Void, modMgr:ModManager) {
+    super(step, callback, modMgr);
+    this.executionStep = step;
+    this.endStep = endStep;
+  }
+
+  override function run(curStep:Float) {
+    if (curStep <= endStep)
+      callback(this, curStep);
+    else
+      finished = true;
+  }
 }
