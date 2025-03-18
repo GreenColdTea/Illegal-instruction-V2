@@ -29,6 +29,20 @@ class BaseEvent {
     public function run(curStep:Float){}
 }
 
+class CallbackEvent extends BaseEvent {
+	public var callback:(CallbackEvent, Float)->Void;
+	public function new(step:Float, callback:(CallbackEvent, Float)->Void, modMgr:ModManager)
+	{
+		super(step, modMgr);
+		this.callback = callback;
+	}
+
+    override function run(curStep:Float){
+        callback(this, curStep);
+		finished = true;
+    }
+}
+
 class FuncEvent extends Event {
   public var callback:Void->Void;
 
@@ -116,4 +130,19 @@ class SetEvent extends ModEvent {
       finished=true;
     }
   }
+}
+
+class StepCallbackEvent extends CallbackEvent {
+    public var endStep:Float = 0;
+	public function new(step:Float, endStep:Float, callback:(CallbackEvent, Float) -> Void, modMgr:ModManager)
+	{
+		super(step, callback, modMgr);
+        this.endStep = endStep;
+	}
+    override function run(curStep:Float){
+        if(curStep<=endStep)
+			callback(this, curStep);
+        else
+            finished = true;
+    }
 }
