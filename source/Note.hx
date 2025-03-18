@@ -89,7 +89,7 @@ class Note extends FlxSprite
 	public var hitHealth:Float = 0.023;
 	public var missHealth:Float = 0.0475;
 	public var rating:String = 'unknown';
-	public var ratingMod:Float = 0; //9 = unknown, 0.25 = shit, 0.5 = bad, 0.75 = good, 1 = sick
+	public var ratingMod:Float = 0;
 	public var ratingDisabled:Bool = false;
 
 	public var texture(default, set):String = null;
@@ -97,14 +97,28 @@ class Note extends FlxSprite
 	public var colorSwap:ColorSwap;
 	public var noAnimation:Bool = false;
 	public var hitCausesMiss:Bool = false;
-	public var distance:Float = 2000; //plan on doing scroll directions soon -bb
+	public var distance:Float = 2000; 
 
-	public var speed:Float = 1; //for modcharts
-        public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
+	public var speed:Float = 1; 
+	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
 	public var hitsoundDisabled:Bool = false;
 
 	public var hitbox:Float = Conductor.safeZoneOffset;
+
+	public var playField(default, set):PlayField; 
+	public var desiredPlayfield:PlayField;
+
+	public function set_playField(field:PlayField){
+		if(playField != field){
+			if(playField != null && playField.notes.contains(this))
+				playField.remNote(this);
+
+			if(field != null && !field.notes.contains(this))
+				field.addNote(this);
+		}
+		return playField = field;
+	}
 
 	private function set_texture(value:String):String {
 		if(texture != value) {
@@ -130,21 +144,9 @@ class Note extends FlxSprite
 					colorSwap.hue = 0;
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
-					if(isSustainNote) {
-						missHealth = 0.1;
-					} else {
-						missHealth = 0.3;
-					}
 					hitCausesMiss = true;
 				case 'No Animation':
 					noAnimation = true;
-				case 'Hex Note':
-					missHealth = 0;
-					reloadNote("HEX");
-					hitbox *= 0.55;
-					ignoreNote = true;
-					hitCausesMiss = true;
-					noteSplashDisabled = true;
 				case 'GF Sing':
 					gfNote = true;
 			}
@@ -399,18 +401,19 @@ class Note extends FlxSprite
 			animation.add('purpleScroll', [PURP_NOTE + 4]);
 		}
 	}
+					
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-      if(!inEditor){
-			alpha = CoolUtil.scale(desiredAlpha,0,1,0,baseAlpha);
+		if(!inEditor){
+			alpha = CoolUtil.scale(desiredAlpha, 0, 1, 0, baseAlpha);
 			if (tooLate || (parentNote != null && parentNote.tooLate))
 				alpha *= 0.3;
 		}
 
-      if(isSustainNote){
+		if(isSustainNote){
 			if(prevNote!=null && prevNote.isSustainNote){
 				zIndex=prevNote.zIndex;
 			}else if(prevNote!=null && !prevNote.isSustainNote){
@@ -419,14 +422,14 @@ class Note extends FlxSprite
 		}else{
 			zIndex=z;
 		}
+		zIndex -= (mustPress == true ? 0:1);
 
-		zIndex-=(mustPress==true?0:1);
+		if (playField != null)
+			playField.updateNote(this);
 
 		if (mustPress)
 		{
-			// ok river
-			if (strumTime > Conductor.songPosition - hitbox
-			&& strumTime < Conductor.songPosition + (hitbox * earlyHitMult))
+			if (strumTime > Conductor.songPosition - hitbox && strumTime < Conductor.songPosition + (hitbox * earlyHitMult))
 				canBeHit = true;
 			else
 				canBeHit = false;
@@ -446,13 +449,12 @@ class Note extends FlxSprite
 		}
 
 		if (tooLate && !inEditor)
-		{
-			if (alpha > 0.3)
-				alpha = 0.3;
-		}
+			alpha = 0.3;
 	}
 
-	override function draw(){
-		super.draw();
+	override function destroy(){
+		if(playField != null) playField.remNote(this);
+		scaleDefault.put();
+		super.destroy();
 	}
 }
