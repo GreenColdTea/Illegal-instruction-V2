@@ -87,6 +87,10 @@ class ModManager {
         return definedMods[modName];
     }
 
+    inline public function getList(modName:String, player:Int):Array<ModEvent> {
+        return timeline.getEvents(modName).filter(e -> e.player == player);
+    }
+
     public function defineMod(modName:String, modifier:Modifier, defineSubmods:Bool = true) {
         if (!definedMods.exists(modName)) {
             mods.push(modifier);
