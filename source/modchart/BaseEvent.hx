@@ -34,14 +34,15 @@ class FuncEvent extends BaseEvent {
   public var callback:Void->Void;
 
   public function new(step:Float,callback:Void->Void,modMgr:ModManager){
-    super(step,modMgr);
-    this.callback=callback;
+    super(step, modMgr);
+    this.callback = callback;
+    this.executionStep = step;
   }
 
   override function run(curStep:Float){
-    if(curStep>=step){
+    if(curStep >= executionStep){
       callback();
-      finished=true;
+      finished = true;
     }
   }
 }
