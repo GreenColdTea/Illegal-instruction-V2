@@ -1,8 +1,8 @@
-import modchart.Event.SetEvent;
-import modchart.Event.Event;
-import modchart.Event.EaseEvent;
-import modchart.Event.ModEvent;
-import modchart.Event.BaseEvent;
-import modchart.Event.FuncEvent;
-import modchart.Event.CallbackEvent;
-import modchart.Event.StepCallbackEvent;
+import modchart.BaseEvent.SetEvent;
+import modchart.BaseEvent.BaseEvent as Event;
+import modchart.BaseEvent.EaseEvent;
+import modchart.BaseEvent.ModEvent;
+import modchart.BaseEvent.BaseEvent;
+import modchart.BaseEvent.FuncEvent;
+import modchart.BaseEvent.CallbackEvent;
+import modchart.BaseEvent.StepCallbackEvent;
