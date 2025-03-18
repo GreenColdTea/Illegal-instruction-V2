@@ -80,7 +80,8 @@ class ModManager {
     }
 
     inline public function getLatest(modName:String, player:Int):ModEvent {
-        return timeline.getLatest(modName, player);
+        var list = getList(modName, player);
+        return list.length > 0 ? list[list.length - 1] : new ModEvent(0, modName, 0, player, this);
     }
 
     public function get(modName:String):Dynamic {
@@ -88,7 +89,8 @@ class ModManager {
     }
 
     inline public function getList(modName:String, player:Int):Array<ModEvent> {
-        return timeline.getEvents(modName).filter(e -> e.player == player);
+        return timeline.modEvents.exists(modName) 
+            ? timeline.modEvents.get(modName).filter(e -> e.player == player) : [];
     }
 
     public function defineMod(modName:String, modifier:Modifier, defineSubmods:Bool = true) {
