@@ -1,6 +1,6 @@
 package modchart;
+
 import flixel.math.FlxPoint;
-import ui.*;
 import math.*;
 
 class Modifier {
