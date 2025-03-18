@@ -15,8 +15,7 @@ import flixel.FlxG;
 
 class ModManager {
     private var definedMods:Map<String, Modifier> = [];
-    private var schedule:Map<String, Array<ModEvent>> = [];
-    private var funcs:Array<FuncEvent> = [];
+    private var timeline:EventTimeline = new EventTimeline(); // Используем вместо schedule
     private var mods:Array<Modifier> = [];
 
     public var state:PlayState;
@@ -81,34 +80,19 @@ class ModManager {
         defineMod("infinite", new PathModifier(this, infPath, 1850));
     }
 
-    inline public function getList(modName:String, player:Int):Array<ModEvent> {
-        return schedule.exists(modName) ? schedule[modName].filter(e -> e.player == player) : [];
-    }
-
     inline public function getLatest(modName:String, player:Int):ModEvent {
-        var list = getList(modName, player);
-        return list.length > 0 ? list[list.length - 1] : new ModEvent(0, modName, 0, 0, this);
+        return timeline.getLatest(modName, player);
     }
 
-    public function get(modName:String):Dynamic{
+    public function get(modName:String):Dynamic {
         return definedMods[modName];
     }
 
-    inline public function getPreviousWithEvent(event:ModEvent):ModEvent {
-        var list = getList(event.modName, event.player);
-        var idx = list.indexOf(event);
-        return (idx > 0) ? list[idx - 1] : new ModEvent(0, event.modName, 0, 0, this);
-    }
-
-    inline public function getLatestWithEvent(event:ModEvent):ModEvent {
-        return getLatest(event.modName, event.player);
-    }
-
     public function defineMod(modName:String, modifier:Modifier, defineSubmods:Bool = true) {
-        if (!schedule.exists(modName)) {
+        if (!definedMods.exists(modName)) {
             mods.push(modifier);
-            schedule.set(modName, []);
             definedMods.set(modName, modifier);
+            timeline.addMod(modName);
 
             if (defineSubmods) {
                 for (name in modifier.submods.keys()) defineMod(name, modifier.submods.get(name), false);
@@ -131,14 +115,7 @@ class ModManager {
     }
 
     private function run() {
-        for (modName in schedule.keys()) {
-            for (event in schedule[modName]) {
-                if (!event.finished && state.curDecStep >= event.step) event.run(state.curDecStep);
-            }
-        }
-        for (event in funcs) {
-            if (!event.finished && state.curDecStep >= event.step) event.run(state.curDecStep);
-        }
+        timeline.update(state.curDecStep);
     }
 
     public function update(elapsed:Float) {
@@ -146,106 +123,42 @@ class ModManager {
         for (mod in mods) mod.update(elapsed);
     }
 
-    public function updateNote(note:Note, player:Int, scale:FlxPoint, pos:Vector3){
-        for(mod in mods){
-          mod.updateNote(note, player, pos, scale);
-        }
-    }
-
-    public function getPath(diff:Float, vDiff:Float, column:Int, player:Int):Vector3 {
-        var pos = new Vector3(state.getXPosition(diff, column, player), vDiff, 0);
-
-        for (mod in mods) {
-            pos = mod.getPath(vDiff, pos, column, player, diff);
-        }
-
-	pos.y = ClientPrefs.downScroll ? FlxG.height - pos.y : pos.y;
-        return pos;
-    }
-
-    public function getPathSustain(diff:Float, vDiff:Float, column:Int, player:Int, sustainLength:Float):Vector3 {
-        var yPos = ClientPrefs.downScroll ? FlxG.height - vDiff : vDiff;
-        var pos = new Vector3(state.getXPosition(diff, column, player), yPos, 0);
-        var endPos = new Vector3(state.getXPosition(diff + sustainLength, column, player), yPos + sustainLength, 0);
-
-        for (mod in mods) {
-            pos = mod.getPath(vDiff, pos, column, player, diff);
-            endPos = mod.getPath(vDiff + sustainLength, endPos, column, player, diff + sustainLength);
-        }
-
-        pos.y = ClientPrefs.downScroll ? FlxG.height - pos.y : pos.y;
-        endPos.y = ClientPrefs.downScroll ? FlxG.height - endPos.y : endPos.y;
-
-        var angle = Math.atan2(endPos.y - pos.y, endPos.x - pos.x) * (180 / Math.PI);
-        if (angle != 0) angle += 90;
-
-        return new Vector3(pos.x, pos.y, angle);
-    }
-
-    public function getNoteScale(note:Note):FlxPoint{
-        var def = note.scaleDefault;
-        var scale = FlxPoint.get(def.x,def.y);
-        for(mod in mods){
-          scale = mod.getNoteScale(note, scale, note.noteData, note.mustPress==true?0:1);
-        }
-        return scale;
-    }
-
-    public function getModPercent(modName:String, player:Int):Float{
-        return get(modName).getPercent(player);
-    }
-
-    public function getReceptorPos(rec:StrumNote, player:Int=0):Vector3{
-        var pos = getPath(0, 0, rec.noteData, player);
-
-        return pos;
-    }
-
-    public function getReceptorScale(rec:StrumNote, player:Int=0):FlxPoint{
-        var def = rec.scaleDefault;
-        var scale = FlxPoint.get(def.x,def.y);
-        for(mod in mods){
-          scale = mod.getReceptorScale(rec, scale, rec.noteData, player);
-        }
-        return scale;
-    }
-
-    public function updateReceptor(rec:StrumNote, player:Int, scale:FlxPoint, pos:Vector3){
-        for(mod in mods){
-          mod.updateReceptor(rec, player, pos, scale);
-        }
+    public function updateNote(note:Note, player:Int, scale:FlxPoint, pos:Vector3) {
+        for (mod in mods) mod.updateNote(note, player, pos, scale);
     }
 
     public function queueEase(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
-        queueEvent(step, endStep, modName, percent, style, player, startVal);
+        if (player == -1) {
+            queueEase(step, endStep, modName, percent, style, 0, startVal);
+            queueEase(step, endStep, modName, percent, style, 1, startVal);
+        } else {
+            var easeFunc = Reflect.getProperty(FlxEase, style) ?? FlxEase.linear;
+            timeline.addEvent(new EaseEvent(step, endStep, modName, percent, easeFunc, player, this, startVal));
+        }
     }
 
-    public function queueEaseP(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float)
+    public function queueEaseP(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
         queueEase(step, endStep, modName, percent / 100, style, player, startVal / 100);
-	
-    public function queueSetP(step:Float, modName:String, percent:Float, player:Int = -1)
-	queueSet(step, modName, percent / 100, player);
-	
+    }
+
     public function queueSet(step:Float, modName:String, percent:Float, player:Int = -1) {
         if (player == -1) {
             queueSet(step, modName, percent, 0);
             queueSet(step, modName, percent, 1);
         } else {
-            schedule[modName].push(new SetEvent(step, modName, percent, player, this));
+            timeline.addEvent(new SetEvent(step, modName, percent, player, this));
         }
     }
 
-    private function queueEvent(step:Float, endStep:Float, modName:String, percent:Float, style:String, player:Int, ?startVal:Float) {
-        if (!schedule.exists(modName)) {
-            trace('$modName is not a valid mod!');
-            return;
-        }
-        if (player == -1) {
-            queueEvent(step, endStep, modName, percent, style, 0, startVal);
-            queueEvent(step, endStep, modName, percent, style, 1, startVal);
-        } else {
-            var easeFunc = Reflect.getProperty(FlxEase, style) ?? FlxEase.linear;
-            schedule[modName].push(new EaseEvent(step, endStep, modName, percent, easeFunc, player, this, startVal));
-        }
+    public function queueSetP(step:Float, modName:String, percent:Float, player:Int = -1) {
+        queueSet(step, modName, percent / 100, player);
+    }
+
+    public function queueFunc(step:Float, endStep:Float, callback:(CallbackEvent, Float) -> Void) {
+        timeline.addEvent(new StepCallbackEvent(step, endStep, callback, this));
+    }
+
+    public function queueFuncOnce(step:Float, callback:(CallbackEvent, Float) -> Void) {
+        timeline.addEvent(new CallbackEvent(step, callback, this));
     }
 }
