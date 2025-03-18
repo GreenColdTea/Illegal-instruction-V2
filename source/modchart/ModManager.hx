@@ -15,7 +15,7 @@ import flixel.FlxG;
 
 class ModManager {
     private var definedMods:Map<String, Modifier> = [];
-    private var timeline:EventTimeline = new EventTimeline(); // Используем вместо schedule
+    private var timeline:EventTimeline = new EventTimeline();
     private var mods:Array<Modifier> = [];
 
     public var state:PlayState;
@@ -106,6 +106,10 @@ class ModManager {
 
     inline public function defineBlankMod(modName:String) {
         defineMod(modName, new Modifier(this), false);
+    }
+
+    public function getModPercent(modName:String, player:Int):Float{
+        return get(modName).getPercent(player);
     }
 
     inline public function exists(modName:String):Bool return definedMods.exists(modName);
