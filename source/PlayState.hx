@@ -3381,8 +3381,6 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
-			generateStaticArrows(0);
-			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -3393,7 +3391,7 @@ class PlayState extends MusicBeatState
 				//if(!ClientPrefs.opponentStrums) opponentStrums.members[i].visible = false;
 			}
 
-         modManager.setReceptors();
+                        modManager.setReceptors();
 			modManager.registerModifiers();
 			ModCharts.lesGo(this, modManager, SONG.song.toLowerCase());
 
@@ -3930,62 +3928,6 @@ class PlayState extends MusicBeatState
 				field.fadeIn(true);
 			}
 		}
-	}
-	
-	private function generateStaticArrows(player:Int):Void
-	{
-		for (i in 0...4)
-		{
-			// FlxG.log.add(i);
-			var targetAlpha:Float = 1;
-			if (player < 1)
-			{
-				if(!ClientPrefs.opponentStrums) targetAlpha = 0;
-				else if(ClientPrefs.middleScroll) targetAlpha = 0.35;
-			}
-
-			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
-			babyArrow.downScroll = ClientPrefs.downScroll;
-                        if (!isStoryMode && !skipArrowStartTween)
-			{
-				//babyArrow.y -= 10;
-				babyArrow.alpha = 0;
-				FlxTween.tween(babyArrow, {/*y: babyArrow.y + 10,*/ alpha: targetAlpha}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
-			}
-			else
-			{
-				babyArrow.alpha = targetAlpha;
-			}
-
-			if (player == 1)
-			{
-				playerStrums.add(babyArrow);
-			}
-			else
-			{
-				if(ClientPrefs.middleScroll)
-				{
-					babyArrow.x += 310;
-					if(i > 1) { //Up and Right
-						babyArrow.x += FlxG.width / 2 + 25;
-					}
-				}
-				opponentStrums.add(babyArrow);
-			}
-
-			strumLineNotes.add(babyArrow);
-			babyArrow.postAddedToGroup();
-		}
-
-      /*if (ClientPrefs.noteSplashes) {
-         for (note in notes.members) {
-             if (note.isSustainNote) {
-                 var holdCover = new NoteHoldCover(note);
-                 noteHoldCovers.set(note, holdCover);
-                 add(holdCover);
-             }
-         }
-      }*/
 	}
 
 	override function openSubState(SubState:FlxSubState)
