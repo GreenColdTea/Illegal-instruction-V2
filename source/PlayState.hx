@@ -5137,6 +5137,7 @@ class PlayState extends MusicBeatState
 				switch(charType) {
 					case 0:
 						if(boyfriend.curCharacter != value2) {
+						        var oldChar = boyfriend;
 							if(!boyfriendMap.exists(value2)) {
 								addCharacterToList(value2, charType);
 							}
@@ -5154,6 +5155,7 @@ class PlayState extends MusicBeatState
 
 					case 1:
 						if(dad.curCharacter != value2) {
+		                                        var oldChar = dad;
 							if(!dadMap.exists(value2)) {
 								addCharacterToList(value2, charType);
 							}
@@ -5184,6 +5186,7 @@ class PlayState extends MusicBeatState
 						{
 							if(gf.curCharacter != value2)
 							{
+			                                        var oldChar = gf;
 								if(!gfMap.exists(value2))
 								{
 									addCharacterToList(value2, charType);
