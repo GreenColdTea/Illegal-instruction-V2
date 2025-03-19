@@ -5840,6 +5840,7 @@ class PlayState extends MusicBeatState
 			callOnLuas('onKeyPress', [key]);
 		}
 		//trace('pressed: ' + controlArray);
+	    }
 	}
 
 	private function onKeyRelease(event:KeyboardEvent):Void
