@@ -35,7 +35,8 @@ class NoteSplash extends FlxSprite
 		else
 			setPosition(x - Note.swagWidth * 0.95, y - Note.swagWidth);
 		
-
+                alpha = 1;
+		
 		if(texture == null) {
 			texture = 'noteSplashes';
 			if (PlayState.isPixelStage) {
