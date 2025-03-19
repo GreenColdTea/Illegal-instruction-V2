@@ -120,6 +120,16 @@ class Note extends FlxSprite
 		return playField = field;
 	}
 
+	public function resizeByRatio(ratio:Float) //haha funny twitter shit
+	{
+		if(isSustainNote && !animation.curAnim.name.endsWith('end'))
+		{
+			scale.y *= ratio;
+			baseScaleY = scale.y;
+			updateHitbox();
+		}
+	}
+
 	private function set_texture(value:String):String {
 		if(texture != value) {
 			reloadNote('', value);
@@ -258,6 +268,8 @@ class Note extends FlxSprite
 				}
 				prevNote.scaleDefault.set(prevNote.scale.x,prevNote.scale.y);
 				prevNote.updateHitbox();
+				prevNote.baseScaleX = prevNote.scale.x;
+				prevNote.baseScaleY = prevNote.scale.y;
 				// prevNote.setGraphicSize();
 			}
 
@@ -269,6 +281,8 @@ class Note extends FlxSprite
 			earlyHitMult = 1;
 		}
 		x += offsetX;
+		baseScaleX = scale.x;
+		baseScaleY = scale.y;
 
 		// determine parent note
 		if (isSustainNote && prevNote != null) {
@@ -350,6 +364,8 @@ class Note extends FlxSprite
 			scale.y = lastScaleY;
 		}
 		updateHitbox();
+		baseScaleX = scale.x;
+		baseScaleY = scale.y;
 
 		if(animName != null)
 			animation.play(animName, true);
@@ -357,6 +373,8 @@ class Note extends FlxSprite
 		if(inEditor) {
 			setGraphicSize(ChartingState.GRID_SIZE, ChartingState.GRID_SIZE);
 			updateHitbox();
+			baseScaleX = scale.x;
+			baseScaleY = scale.y;
 		}
 	}
 
@@ -381,6 +399,8 @@ class Note extends FlxSprite
 
 		setGraphicSize(Std.int(width * 0.7));
 		updateHitbox();
+		baseScaleX = scale.x;
+		baseScaleY = scale.y;
 	}
 
 	function loadPixelNoteAnims() {
