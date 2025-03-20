@@ -48,6 +48,11 @@ class Modifier {
     return percents[player];
   }
 
+  public function shouldExecute(player:Int, value:Float):Bool
+	{
+		return value != 0; // override if your modifier should run, even if percent isn't 0
+  }
+
   public function setPercent(percent:Float, player:Int=-1){
     if(player<0){
       for(idx in 0...percents.length){
