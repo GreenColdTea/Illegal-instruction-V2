@@ -272,13 +272,16 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05 * PlayState.instance.songSpeed;
-
+				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
+				if(PlayState.instance != null)
+				{
+					prevNote.scale.y *= PlayState.instance.songSpeed;
+				}
+				
 				if(PlayState.isPixelStage) {
 					prevNote.scale.y *= 1.19;
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
-				prevNote.scaleDefault.set(prevNote.scale.x,prevNote.scale.y);
 				prevNote.updateHitbox();
 				prevNote.baseScaleX = prevNote.scale.x;
 				prevNote.baseScaleY = prevNote.scale.y;
@@ -439,48 +442,37 @@ class Note extends FlxSprite
 		super.update(elapsed);
 
 		if(!inEditor){
-			alpha = CoolUtil.scale(desiredAlpha, 0, 1, 0, baseAlpha);
 			if (tooLate || (parentNote != null && parentNote.tooLate))
 				alpha *= 0.3;
 		}
+		
+		var actualHitbox:Float = hitbox * earlyHitMult;
+		/*if(mustPress){
+			var diff = (strumTime-Conductor.songPosition);
+			var absDiff = Math.abs(diff);
+			canBeHit = absDiff<=actualHitbox;
 
-		if(isSustainNote){
-			if(prevNote!=null && prevNote.isSustainNote){
-				zIndex=prevNote.zIndex;
-			}else if(prevNote!=null && !prevNote.isSustainNote){
-				zIndex=prevNote.zIndex-1;
-			}
-		}else{
-			zIndex=z;
-		}
-		zIndex -= (mustPress == true ? 0:1);
-
-		if (playField != null)
-			playField.updateNote(this);
-
-		if (mustPress)
-		{
-			if (strumTime > Conductor.songPosition - hitbox && strumTime < Conductor.songPosition + (hitbox * earlyHitMult))
-				canBeHit = true;
-			else
-				canBeHit = false;
-
-			if (strumTime < Conductor.songPosition - hitbox && !wasGoodHit)
+			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
 				tooLate = true;
-		}
-		else
-		{
-			canBeHit = false;
+		}else{
+			var diff = (strumTime-Conductor.songPosition);
+			canBeHit = isSustainNote && prevNote.wasGoodHit && prevNote!=null && diff<=actualHitbox || diff<=0;
+		}*/
 
-			if (strumTime < Conductor.songPosition + (hitbox * earlyHitMult))
-			{
-				if((isSustainNote && prevNote.wasGoodHit) || strumTime <= Conductor.songPosition)
-					wasGoodHit = true;
-			}
-		}
+		var diff = (strumTime - Conductor.songPosition);
+		noteDiff = diff;
+		var absDiff = Math.abs(diff);
+		canBeHit = absDiff <= actualHitbox;
+		if (hitByOpponent)wasGoodHit=true;
+
+		if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
+			tooLate = true;
 
 		if (tooLate && !inEditor)
-			alpha = 0.3;
+		{
+			if (alpha > 0.3)
+				alpha = 0.3;
+		}
 	}
 
 	override function destroy(){
