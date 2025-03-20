@@ -4629,8 +4629,8 @@ class PlayState extends MusicBeatState
 				modManager.updateObject(curDecBeat, daNote, pos, pN);
 				pos.x += daNote.offsetX;
 				pos.y += daNote.offsetY;
-				daNote.x = pos.x + scriptedNoteOffsets[daNote.noteData].x;
-				daNote.y = pos.y + scriptedNoteOffsets[daNote.noteData].y;
+				daNote.x = pos.x;
+				daNote.y = pos.y;
 				if (daNote.isSustainNote)
 				{
 					var futureSongPos = Conductor.songPosition + 75;
@@ -4639,8 +4639,8 @@ class PlayState extends MusicBeatState
 
 					var nextPos = modManager.getPos(daNote.strumTime, vDiff, diff, Conductor.getStep(futureSongPos) / 4, daNote.noteData, pN, daNote, [],
 						daNote.vec3Cache);
-					nextPos.x += daNote.offsetX + scriptedNoteOffsets[daNote.noteData].x;
-					nextPos.y += daNote.offsetY + scriptedNoteOffsets[daNote.noteData].y;
+					nextPos.x += daNote.offsetX;
+					nextPos.y += daNote.offsetY;
 					var diffX = (nextPos.x - pos.x);
 					var diffY = (nextPos.y - pos.y);
 					var rad = Math.atan2(diffY, diffX);
