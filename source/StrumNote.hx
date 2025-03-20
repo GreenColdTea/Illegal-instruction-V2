@@ -10,6 +10,9 @@ using StringTools;
 
 class StrumNote extends FlxSprite
 {
+	public var vec3Cache:Vector3 = new Vector3(); // for vector3 operations in modchart code
+	public var defScale:FlxPoint = FlxPoint.get(); // for modcharts to keep the scaling
+
 	private var colorSwap:ColorSwap;
 	public var resetAnim:Float = 0;
 	public var noteData:Int = 0;
@@ -21,8 +24,8 @@ class StrumNote extends FlxSprite
 	public var parent:PlayField;
 
         public var z:Float = 0; // for modchart system
+	public var desiredZIndex:Float = 0;
 	public var zIndex:Float = 0;
-	public var scaleDefault:FlxPoint;
 
 	@:isVar
 	public var swagWidth(get, null):Float;
@@ -41,21 +44,7 @@ class StrumNote extends FlxSprite
 		return value;
 	}
 
-	public function getZIndex(){
-		var animZOffset:Float = 0;
-		if(animation.curAnim != null && animation.curAnim.name == 'confirm')
-			animZOffset += 1;
-		return z + animZOffset - player;
-	}
-
-	function updateZIndex(){
-		zIndex = getZIndex();
-		if (parent != null) 
-			zIndex += parent.zOffset;
-	}
-
 	public function new(x:Float, y:Float, leData:Int, player:Int, ?parent:PlayField) {
-		scaleDefault = new FlxPoint();
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
 		noteData = leData;
@@ -142,10 +131,9 @@ class StrumNote extends FlxSprite
 					animation.addByPrefix('confirm', 'right confirm', 24, false);
 			}
 		}
+		defScale.copyFrom(scale);
 		updateHitbox();
-		scrollFactor.set();
-		scaleDefault.set(scale.x, scale.y);
-
+	
 		if(lastAnim != null)
 		{
 			playAnim(lastAnim, true);
@@ -196,4 +184,10 @@ class StrumNote extends FlxSprite
 			}
 		}
 	}
+
+	override function destroy()
+	{
+		defScale.put();
+		super.destroy();
+	}	
 }
