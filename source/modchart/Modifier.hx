@@ -23,8 +23,8 @@ class Modifier {
   }
 
   public function getName():String{
-		throw new haxe.exceptions.NotImplementedException(); // override in your modifier!!! 
-		return '';
+    throw new haxe.exceptions.NotImplementedException(); // override in your modifier!!! 
+    return '';
   }
 
   public function getModPercent(modName:String, player:Int){
@@ -58,16 +58,17 @@ class Modifier {
     }
   }
 
-  public function updateNote(note:Note, player:Int, pos:Vector3, scale:FlxPoint){}
-  public function updateReceptor(receptor:StrumNote, player:Int, pos:Vector3, scale:FlxPoint){}
+  public function updateNote(note:Note, player:Int, pos:Vector3, scale:FlxPoint) {}
+  public function updateReceptor(receptor:StrumNote, player:Int, pos:Vector3, scale:FlxPoint) {}
+  public function updateObject(beat:Float, obj:FlxSprite, pos:Vector3, player:Int) {}
 
-  public function update(elapsed:Float){};
+  public function update(elapsed:Float) {};
 
-  public function getReceptorScale(receptor:StrumNote, scale:FlxPoint, data:Int, player:Int)return scale;
-  public function getNoteScale(note:Note, scale:FlxPoint, data:Int, player:Int)return scale;
+  public function getReceptorScale(receptor:StrumNote, scale:FlxPoint, data:Int, player:Int) return scale;
+  public function getNoteScale(note:Note, scale:FlxPoint, data:Int, player:Int) return scale;
 
-  public function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float)return pos;
-  public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite)return pos;
+  public function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float) return pos;
+  public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite) return pos;
   
 
 }
