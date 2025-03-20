@@ -137,6 +137,7 @@ class PlayState extends MusicBeatState
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+        public var spawnTime:Float = 3000;
 
 	public var center:FlxPoint;
 
@@ -2306,7 +2307,7 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) strumLine.y = downscrollOffset;
 		strumLine.scrollFactor.set();
 
-      add(noteGroup);
+                add(noteGroup);
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
@@ -2371,9 +2372,6 @@ class PlayState extends MusicBeatState
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.0;
 
-		opponentStrums = new FlxTypedGroup<StrumNote>();
-		playerStrums = new FlxTypedGroup<StrumNote>();
-
 		bfSEFeet = new FlxSprite();
 		bfSEFeet.frames = Paths.getSparrowAtlas('soulless/SEbfFeet', 'exe');
 		bfSEFeet.animation.addByPrefix('idle', 'SEbfFeet Run', 24, true);
@@ -2400,15 +2398,14 @@ class PlayState extends MusicBeatState
 		}
 
 		wireVignette = new FlxSprite().loadGraphic(Paths.image('black_vignette', "exe"));
-		wireVignette.scrollFactor.set();
+		wireVignette.scrollFacor.set();
 		wireVignette.antialiasing = ClientPrefs.globalAntialiasing;
 		wireVignette.setGraphicSize(FlxG.width, FlxG.height);
 		wireVignette.updateHitbox();
 		wireVignette.screenCenter(XY);
 		wireVignette.alpha = 0;
 		wireVignette.cameras = [camOther];
-		wireVignette.cameras = [camOther];
-
+	
 		// startCountdown();
 
 		generateSong(SONG.song);
