@@ -29,8 +29,6 @@ class StrumNote extends FlxSprite
 	public var desiredZIndex:Float = 0;
 	public var zIndex:Float = 0;
 
-	public var targetAlpha:Float = 1;
-
 	@:isVar
 	public var swagWidth(get, null):Float;
 
