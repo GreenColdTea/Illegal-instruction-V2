@@ -959,7 +959,7 @@ class FunkinLua {
 		});
 
 		//Tween shit, but for strums
-		var playField:PlayField = PlayState.instance.playFields.members[note % PlayState.instance.playFields.length];
+		var playField:Note = playField.members[note % playFields.length];
 		Lua_helper.add_callback(lua, "noteTweenX", function(tag:String, note:Int, value:Dynamic, duration:Float, ease:String) {
 			cancelTween(tag);
 			if(note < 0) note = 0;
