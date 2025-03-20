@@ -28,17 +28,22 @@ class Note extends FlxSprite
 	public var parentNote:Note;
 	public var childrenNotes:Array<Note> = [];
 
+	public var vec3Cache:Vector3 = new Vector3(); // for vector3 operations in modchart code
+	public var defScale:FlxPoint = FlxPoint.get(); // for modcharts to keep the scaling
+
+	public var mAngle:Float = 0;
+	public var bAngle:Float = 0;
+
 	public var currentPrefix:String = "";
 	public var currentTexture:String = "";
 	public var currentSuffix:String = "";
 	
 	public var strumTime:Float = 0;
 
-	public var z:Float = 0; // for modchart system
 	public var zIndex:Float = 0;
-	public var desiredAlpha:Float = 1;
-	public var baseAlpha:Float = 1;
-	public var scaleDefault:FlxPoint;
+	public var desiredZIndex:Float = 0;
+	public var z:Float = 0;
+	public var garbage:Bool = false; // if this is true, the note will be removed in the next update cycle
 
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
@@ -174,7 +179,6 @@ class Note extends FlxSprite
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
 	{
 		super();
-      scaleDefault = FlxPoint.get();
 
 		if (prevNote == null)
 			prevNote = this;
@@ -221,7 +225,7 @@ class Note extends FlxSprite
 		if (isSustainNote && prevNote != null)
 		{
 			multAlpha = baseAlpha;
-         baseAlpha = 0.6;
+                        baseAlpha = 0.6;
 			
 			hitsoundDisabled = true;
 			if(ClientPrefs.downScroll) flipY = true;
@@ -296,7 +300,6 @@ class Note extends FlxSprite
 		} else if (!isSustainNote)
 			parentNote = null;
 
-      scaleDefault.set(scale.x,scale.y);
 	}
 
 	var lastNoteOffsetXForPixelAutoAdjusting:Float = 0;
