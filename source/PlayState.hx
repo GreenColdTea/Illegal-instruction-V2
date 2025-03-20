@@ -2398,7 +2398,7 @@ class PlayState extends MusicBeatState
 		}
 
 		wireVignette = new FlxSprite().loadGraphic(Paths.image('black_vignette', "exe"));
-		wireVignette.scrollFacor.set();
+		wireVignette.scrollFactor.set();
 		wireVignette.antialiasing = ClientPrefs.globalAntialiasing;
 		wireVignette.setGraphicSize(FlxG.width, FlxG.height);
 		wireVignette.updateHitbox();
@@ -5034,8 +5034,7 @@ class PlayState extends MusicBeatState
 				}
 
 			case "Chaotix Health Randomization":
-
-			var value:Int = Std.parseInt(value1);
+			        var value:Int = Std.parseInt(value1);
 				if (Math.isNaN(value))
 					value = 0;
 				switch (value)
@@ -5467,7 +5466,7 @@ class PlayState extends MusicBeatState
 	public var showCombo:Bool = true;
 	public var showRating:Bool = true;
 
-   public function getScrollPos(time:Float, mult:Float = 1)
+        public function getScrollPos(time:Float, mult:Float = 1)
 	{
 		var speed:Float = songSpeed * mult;
 		return (-(time * (0.45 * speed)));
@@ -5668,7 +5667,7 @@ class PlayState extends MusicBeatState
 			numScore.visible = !ClientPrefs.hideHud;
 
 			//if (combo >= 10 || combo == 0)
-				insert(members.indexOf(strumLineNotes), numScore);
+			insert(members.indexOf(rating), numScore);
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
