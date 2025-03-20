@@ -175,7 +175,7 @@ class StrumNote extends FlxSprite
 		super.update(elapsed);
 	}
 
-	public function playAnim(anim:String, ?force:Bool = false) {
+	public function playAnim(anim:String, ?force:Bool = false, ?note:Note) {
 		animation.play(anim, force);
 		centerOffsets();
 		centerOrigin();
@@ -184,10 +184,16 @@ class StrumNote extends FlxSprite
 			colorSwap.saturation = 0;
 			colorSwap.brightness = 0;
 		} else {
-			colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
-			colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
-			colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
-
+			if(note==null){
+				colorSwap.hue = ClientPrefs.data.arrowHSV[noteData % 4][0] / 360;
+				colorSwap.saturation = ClientPrefs.data.arrowHSV[noteData % 4][1] / 100;
+				colorSwap.brightness = ClientPrefs.data.arrowHSV[noteData % 4][2] / 100;
+			}else{
+				colorSwap.hue = note.colorSwap.hue;
+				colorSwap.saturation = note.colorSwap.saturation;
+				colorSwap.brightness = note.colorSwap.brightness;
+			}
+			
 			if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
 				centerOrigin();
 			}
