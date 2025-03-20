@@ -130,12 +130,20 @@ class ModManager {
 
     inline public function exists(modName:String):Bool return definedMods.exists(modName);
 
+    public function set(modName:String, percent:Float, player:Int = -1) {
+        if (exists(modName)) definedMods[modName].setPercent(percent, player);
+    }
+
     inline public function setValue(modName:String, percent:Float, player:Int = -1) {
         set(modName, percent, player);
     }
 
+    public function updateTimeline(curStep:Float) {
+        timeline.update(curStep);
+    }
+
     private function run() {
-        timeline.update(state.curDecStep);
+        updateTimeline(state.curDecStep);
     }
 
     public function update(elapsed:Float) {
