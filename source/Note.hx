@@ -119,7 +119,7 @@ class Note extends FlxSprite
 
 	public var hitbox:Float = Conductor.safeZoneOffset;
 
-	public static var playField(default, set):PlayField; 
+	public var playField(default, set):PlayField; 
 	public var desiredPlayfield:PlayField;
 
 	public function set_playField(field:PlayField){
