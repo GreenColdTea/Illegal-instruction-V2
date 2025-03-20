@@ -106,7 +106,7 @@ class PlayField extends FlxTypedGroup<StrumNote> {
         clearReceptors();
 		for (data in 0...keyCount)
 		{
-			var babyArrow:StrumNote = new StrumNote(player, baseX, baseY, data, this);
+			var babyArrow:StrumNote = new StrumNote(baseX, baseY, player, data, this);
                         babyArrow.setGraphicSize(Std.int(babyArrow.width * scale));
 			babyArrow.updateHitbox();
 			babyArrow.downScroll = ClientPrefs.downScroll;
