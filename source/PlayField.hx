@@ -13,7 +13,7 @@ class PlayField extends FlxTypedGroup<StrumNote> {
     public var autoPlayed:Bool = false;
     public var isPlayer:Bool = false;
     public var playerControls:Bool = false;
-	public var inControl(default, set):Bool = true; // incase you want to lock up the playfield
+    public var inControl(default, set):Bool = true; // incase you want to lock up the playfield
 
     public var notes:Array<Note> = [];
 	public var keyCount(default, set):Int = 0;
@@ -23,8 +23,8 @@ class PlayField extends FlxTypedGroup<StrumNote> {
 	{
 		return Note.swagWidth * scale;
 	}
-    public var baseX:Float = 0;
-    public var baseY:Float = 0;
+    public var baseX:Int = 0;
+    public var baseY:Int = 0;
     public var baseAlpha:Float = 1;
     public var offsetReceptors:Bool = false;
     public var player:Int = 0;
@@ -107,9 +107,9 @@ class PlayField extends FlxTypedGroup<StrumNote> {
 		for (data in 0...keyCount)
 		{
 			var babyArrow:StrumNote = new StrumNote(player, baseX, baseY, data, this);
-            babyArrow.setGraphicSize(Std.int(babyArrow.width * scale));
+                        babyArrow.setGraphicSize(Std.int(babyArrow.width * scale));
 			babyArrow.updateHitbox();
-			babyArrow.downScroll = ClientPrefs.data.downScroll;
+			babyArrow.downScroll = ClientPrefsD.downScroll;
 			babyArrow.alphaMult = alpha;
 			add(babyArrow);
 			babyArrow.postAddedToGroup();
