@@ -4572,20 +4572,20 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-      if(startedCountdown){
+                if (startedCountdown) {
 			opponentStrums.forEachAlive(function(strum:StrumNote)
 				{
 					var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 1, strum, [], strum.vec3Cache);
 					modManager.updateObject(curDecBeat, strum, pos, 1);
-					strum.x = pos.x + scriptedStrumOffsets[strum.noteData].x;
-					strum.y = pos.y + scriptedStrumOffsets[strum.noteData].y;
+					strum.x = pos.x;
+					strum.y = pos.y;
 				});
 				playerStrums.forEachAlive(function(strum:StrumNote)
 				{
 					var pos = modManager.getPos(0, 0, 0, curDecBeat, strum.noteData, 0, strum, [], strum.vec3Cache);
 					modManager.updateObject(curDecBeat, strum, pos, 0);
-					strum.x = pos.x + scriptedStrumOffsets[strum.noteData].x;
-					strum.y = pos.y + scriptedStrumOffsets[strum.noteData].y;
+					strum.x = pos.x;
+					strum.y = pos.y;
 				});		
 		}
 
