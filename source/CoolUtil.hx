@@ -81,6 +81,14 @@ class CoolUtil
 		return Math.max(min, Math.min(max, value));
 	}
 
+	inline public static function quantizeAlpha(f:Float, interval:Float){
+		return Std.int((f+interval/2)/interval)*interval;
+	}
+	
+	inline public static function quantize(f:Float, interval:Float){
+		return Std.int((f+interval/2)/interval)*interval;
+	}
+
 	public static function square(angle:Float) 
 	{
 		var fAngle = angle % (Math.PI * 2);
