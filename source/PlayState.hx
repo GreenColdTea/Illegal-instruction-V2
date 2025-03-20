@@ -611,6 +611,8 @@ class PlayState extends MusicBeatState
 	var animController:Bool = true;
 
 	var scoreRandom:Bool = false;
+
+   public var noteGroup:FlxTypedGroup<FlxBasic> = new FlxTypedGroup<FlxBasic>();
    
    public function set_cpuControlled(val:Bool){
 		if(playFields!=null && playFields.members.length > 0){
@@ -2304,6 +2306,8 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) strumLine.y = downscrollOffset;
 		strumLine.scrollFactor.set();
 
+      add(noteGroup);
+
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
 		timeTxt.setFormat(Paths.font("chaotix.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -2355,8 +2359,7 @@ class PlayState extends MusicBeatState
 
 		playFields = new FlxTypedGroup<PlayField>();
 		noteGroup.add(playFields);
-
-		add(grpNoteSplashes);
+		noteGroup.add(grpNoteSplashes);
 
 		if(ClientPrefs.timeBarType == 'Song Name')
 		{
@@ -2730,9 +2733,7 @@ class PlayState extends MusicBeatState
 		    iconP2.x = 250;
 		}
 
-		strumLineNotes.cameras = [camHUD];
-		grpNoteSplashes.cameras = [camHUD];
-		notes.cameras = [camHUD];
+		noteGroup.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarOver.cameras = [camHUD];
 		songNameHUD.cameras = [camHUD];
@@ -3686,7 +3687,7 @@ class PlayState extends MusicBeatState
 		FlxG.sound.list.add(new FlxSound().loadEmbedded(Paths.inst(PlayState.SONG.song)));
 
 		notes = new FlxTypedGroup<Note>();
-		add(notes);
+		noteGroup.add(notes);
 
 		var noteData:Array<SwagSection>;
 
@@ -8296,19 +8297,6 @@ class PlayState extends MusicBeatState
 
 				if(unlock) {
 					Achievements.unlockAchievement(achievementName);
-					return achievementName;
-				}
-			}
-		}
-		return null;
-	}
-	#end
-
-
-	var curLight:Int = 0;
-	var curLightEvent:Int = 0;
-}
-t(achievementName);
 					return achievementName;
 				}
 			}
