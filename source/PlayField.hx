@@ -23,8 +23,8 @@ class PlayField extends FlxTypedGroup<StrumNote> {
 	{
 		return Note.swagWidth * scale;
 	}
-    public var baseX:Int = 0;
-    public var baseY:Int = 0;
+    public var baseX:Float = 0;
+    public var baseY:Float = 0;
     public var baseAlpha:Float = 1;
     public var offsetReceptors:Bool = false;
     public var player:Int = 0;
@@ -109,7 +109,7 @@ class PlayField extends FlxTypedGroup<StrumNote> {
 			var babyArrow:StrumNote = new StrumNote(player, baseX, baseY, data, this);
                         babyArrow.setGraphicSize(Std.int(babyArrow.width * scale));
 			babyArrow.updateHitbox();
-			babyArrow.downScroll = ClientPrefsD.downScroll;
+			babyArrow.downScroll = ClientPrefs.downScroll;
 			babyArrow.alphaMult = alpha;
 			add(babyArrow);
 			babyArrow.postAddedToGroup();
