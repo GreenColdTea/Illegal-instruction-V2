@@ -150,9 +150,8 @@ class StrumNote extends FlxSprite
 
 	public function postAddedToGroup() {
 		playAnim('static');
-		x += swagWidth * noteData;
-		x += 50;
-		x += ((FlxG.width / 2) * player);
+		x -= swagWidth / 2;
+		x = x - (swagWidth * 2) + (swagWidth * noteData) + 54;
 		ID = noteData;
 	}
 
@@ -185,9 +184,9 @@ class StrumNote extends FlxSprite
 			colorSwap.brightness = 0;
 		} else {
 			if(note==null){
-				colorSwap.hue = ClientPrefs.data.arrowHSV[noteData % 4][0] / 360;
-				colorSwap.saturation = ClientPrefs.data.arrowHSV[noteData % 4][1] / 100;
-				colorSwap.brightness = ClientPrefs.data.arrowHSV[noteData % 4][2] / 100;
+				colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
+				colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
+				colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
 			}else{
 				colorSwap.hue = note.colorSwap.hue;
 				colorSwap.saturation = note.colorSwap.saturation;
@@ -195,10 +194,6 @@ class StrumNote extends FlxSprite
 			}
 			
 			if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
-				centerOrigin();
-			}
-			if (animation.curAnim.name == 'pressed' && !PlayState.isPixelStage)
-			{
 				centerOrigin();
 			}
 		}
