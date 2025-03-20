@@ -40,6 +40,8 @@ class Note extends FlxSprite
 	
 	public var strumTime:Float = 0;
 
+	public var noteDiff:Float = 1000;
+
 	public var zIndex:Float = 0;
 	public var desiredZIndex:Float = 0;
 	public var z:Float = 0;
