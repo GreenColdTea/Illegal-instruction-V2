@@ -27,12 +27,18 @@ class StrumNote extends FlxSprite
 	public var desiredZIndex:Float = 0;
 	public var zIndex:Float = 0;
 
+	public var targetAlpha:Float = 1;
+
 	@:isVar
 	public var swagWidth(get, null):Float;
 
 	public function get_swagWidth()
 	{
 		return parent == null ? Note.swagWidth : parent.swagWidth;
+	}
+
+	override function set_alpha(val:Float){
+		return targetAlpha = val;
 	}
 
 	public var texture(default, set):String = null;
@@ -156,8 +162,13 @@ class StrumNote extends FlxSprite
 				resetAnim = 0;
 			}
 		}
-
-		updateZIndex();
+		@:bypassAccessor
+		super.set_alpha(targetAlpha * alphaMult);
+		if(animation.curAnim != null){ //my bad i was upset
+			if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage)
+				centerOrigin();
+			
+		}
 
 		super.update(elapsed);
 	}
