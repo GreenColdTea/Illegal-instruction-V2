@@ -2907,22 +2907,22 @@ class PlayState extends MusicBeatState
 
 		super.create();
 
-      if (!ClientPrefs.data.opponentStrums) {
+                if (!ClientPrefs.opponentStrums) {
 			opponentStrums.baseAlpha = 0;
 			modManager.setValue('alpha',1,1);
 
 		}
-		else if (ClientPrefs.data.middleScroll) {
+		else if (ClientPrefs.middleScroll) {
 			opponentStrums.baseAlpha = 0.35;
 			modManager.setValue('alpha',0.65,1);
 			modManager.setValue('opponentSwap',0.5);
 		}
 
-	    Paths.clearUnusedMemory();
+	        Paths.clearUnusedMemory();
 		CustomFadeTransition.nextCamera = camOther;
-	    #if mobile
+	        #if mobile
 		addMobileControls(false, true);  
-        mobileControls.visible = false;
+                mobileControls.visible = false;
 		#end
 	}
 
@@ -5738,7 +5738,6 @@ class PlayState extends MusicBeatState
 				}
 
 				if(pressNotes.length==0){
-					callOnScripts('onGhostTap', [key]);
 					if (canMiss) {
 						noteMissPress(key);
 						callOnLuas('noteMissPress', [key]);
