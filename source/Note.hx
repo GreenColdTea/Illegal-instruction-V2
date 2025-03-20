@@ -477,9 +477,10 @@ class Note extends FlxSprite
 		}
 	}
 
-	override function destroy(){
-		if(playField != null) playField.remNote(this);
-		scaleDefault.put();
-		super.destroy();
+	override public function destroy(){
+		if (playField!=null)playField.remNote(this);
+		
+		defScale.put();
+		return super.destroy();
 	}
 }
