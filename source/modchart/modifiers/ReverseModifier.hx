@@ -35,7 +35,7 @@ class ReverseModifier extends Modifier {
 			if (val > 1) val = 2 - val;
 		}
 
-		if (ClientPrefs.data.downScroll) val = 1 - val;
+		if (ClientPrefs.downScroll) val = 1 - val;
 
 		return val;
 	}
