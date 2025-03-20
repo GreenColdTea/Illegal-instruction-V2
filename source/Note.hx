@@ -115,8 +115,7 @@ class Note extends FlxSprite
 	public var tail:Array<Note> = []; // for sustains
 	public var parent:Note;
 
-	public var speed:Float = 1; 
-	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
+	public var speed:Float = 1;
 
 	public var hitsoundDisabled:Bool = false;
 
