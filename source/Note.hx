@@ -91,6 +91,7 @@ class Note extends FlxSprite
 	public var offsetY:Float = 0;
 	public var offsetAngle:Float = 0;
 	public var multAlpha:Float = 1;
+	public var multSpeed(default, set):Float = 1;
 
 	public var copyX:Bool = true;
 	public var copyY:Bool = true;
@@ -114,8 +115,6 @@ class Note extends FlxSprite
 
 	public var tail:Array<Note> = []; // for sustains
 	public var parent:Note;
-
-	public var speed:Float = 1;
 
 	public var hitsoundDisabled:Bool = false;
 
@@ -143,6 +142,13 @@ class Note extends FlxSprite
 			baseScaleY = scale.y;
 			updateHitbox();
 		}
+	}
+
+	private function set_multSpeed(value:Float):Float {
+		resizeByRatio(value / multSpeed);
+		multSpeed = value;
+		// trace('fuck cock');
+		return value;
 	}
 
 	private function set_texture(value:String):String {
