@@ -20,6 +20,8 @@ class StrumNote extends FlxSprite
 	public var downScroll:Bool = false; //plan on doing scroll directions soon -bb
 	public var sustainReduce:Bool = true;
 	
+	public var targetAlpha:Float = 1;
+	public var alphaMult:Float;
 	private var player:Int;
 	public var parent:PlayField;
 
