@@ -107,6 +107,11 @@ class Note extends FlxSprite
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000; 
 
+	public var spawned:Bool = false;
+
+	public var tail:Array<Note> = []; // for sustains
+	public var parent:Note;
+
 	public var speed:Float = 1; 
 	public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
@@ -114,7 +119,7 @@ class Note extends FlxSprite
 
 	public var hitbox:Float = Conductor.safeZoneOffset;
 
-	public var playField(default, set):PlayField; 
+	public static var playField(default, set):PlayField; 
 	public var desiredPlayfield:PlayField;
 
 	public function set_playField(field:PlayField){
