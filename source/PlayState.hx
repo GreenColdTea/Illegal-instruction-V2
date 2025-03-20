@@ -5994,7 +5994,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function opponentNoteHit(note:Note):Void
+	function opponentNoteHit(note:Note, playfield:PlayField):Void
 	{
 		if(note.noteType == 'Hey!' && dad.animOffsets.exists('hey')) {
 			dad.playAnim('hey', true);
