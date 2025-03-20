@@ -62,5 +62,7 @@ class Modifier {
   public function getNoteScale(note:Note, scale:FlxPoint, data:Int, player:Int)return scale;
 
   public function getPath(visualDiff:Float, pos:Vector3, data:Int, player:Int, timeDiff:Float)return pos;
+  public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite)return pos;
+  
 
 }
