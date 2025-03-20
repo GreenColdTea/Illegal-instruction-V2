@@ -4547,7 +4547,6 @@ class PlayState extends MusicBeatState
 							note.visible = false;
 							note.ignoreNote = true;
 
-							if (modchartObjects.exists('note${note.ID}'))modchartObjects.remove('note${note.ID}');
 							note.kill();
 							unspawnNotes.remove(note);
 							note.destroy();
@@ -4568,7 +4567,6 @@ class PlayState extends MusicBeatState
 						note.visible = false;
 						note.ignoreNote = true;
 
-						if (modchartObjects.exists('note${note.ID}'))modchartObjects.remove('note${note.ID}');
 						note.kill();
 						unspawnNotes.remove(note);
 						note.destroy();
@@ -4710,7 +4708,7 @@ class PlayState extends MusicBeatState
 	{
 		note.active = false;
 		note.visible = false;
-		if(modchartObjects.exists('note${note.ID}'))modchartObjects.remove('note${note.ID}');
+		
 		note.kill();
 		notes.remove(note, true);
 		note.destroy();
