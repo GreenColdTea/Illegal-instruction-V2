@@ -3381,6 +3381,29 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
+         playerStrums = new PlayField(ClientPrefs.middleScroll ? (FlxG.width / 2):(FlxG.width / 2 + (FlxG.width / 4)), strumLine.y, 4, boyfriend, true, cpuControlled, 0);
+			opponentStrums = new PlayField(ClientPrefs.middleScroll?(FlxG.width / 2):(FlxG.width/2 - (FlxG.width/4)), strumLine.y, 4, dad, false, true, 1);
+			if (!ClientPrefs.opponentStrums) {
+				opponentStrums.baseAlpha = 0;
+			}
+			else if (ClientPrefs.middleScroll) {
+				opponentStrums.baseAlpha = 0.35;
+			}
+
+			opponentStrums.offsetReceptors = ClientPrefs.middleScroll;
+
+			playerStrums.noteHitCallback = goodNoteHit;
+			opponentStrums.noteHitCallback = opponentNoteHit;
+
+			opponentStrums.generateReceptors();
+			playerStrums.generateReceptors();
+			
+			playerStrums.fadeIn(isStoryMode || skipArrowStartTween);
+			opponentStrums.fadeIn(isStoryMode || skipArrowStartTween);
+
+			playFields.add(opponentStrums);
+         playFields.add(playerStrums);
+
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -3516,14 +3539,8 @@ class PlayState extends MusicBeatState
 				}
 
 				notes.forEachAlive(function(note:Note) {
-                    if (ClientPrefs.opponentStrums || note.mustPress)
-					{
-						note.copyAlpha = false;
-						note.alpha = note.multAlpha;
-						if(ClientPrefs.middleScroll && !note.mustPress) {
-							note.alpha *= 0.35;
-						}
-					}
+					note.copyAlpha = false;
+					note.alpha = note.multAlpha * note.playField.baseAlpha;
 				});
 				callOnLuas('onCountdownTick', [swagCounter]);
 
@@ -8279,6 +8296,19 @@ class PlayState extends MusicBeatState
 
 				if(unlock) {
 					Achievements.unlockAchievement(achievementName);
+					return achievementName;
+				}
+			}
+		}
+		return null;
+	}
+	#end
+
+
+	var curLight:Int = 0;
+	var curLightEvent:Int = 0;
+}
+t(achievementName);
 					return achievementName;
 				}
 			}
