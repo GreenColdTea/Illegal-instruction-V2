@@ -5877,7 +5877,9 @@ class PlayState extends MusicBeatState
 
 		if (!fucklesMode)
 		{
-			health -= daNote.missHealth * healthLoss;
+			if (daNote.isSustainNote) health -= (daNote.missHealth * healthLoss) / 2.75;
+		        else health -= daNote.missHealth * healthLoss;
+			
 		}
 		if(instakillOnMiss)
 		{
