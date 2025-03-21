@@ -147,9 +147,11 @@ class StrumNote extends FlxSprite
 	}
 
 	public function postAddedToGroup() {
-                playAnim('static');
-                x = parent.baseX + (Note.swagWidth * noteData); // Используем baseX для правильного размещения
-                ID = noteData;
+		playAnim('static');
+		x -= swagWidth / 2;
+		x = x - (swagWidth * 2) + (swagWidth * noteData) + 54;
+		
+		ID = noteData;
 	}
 
 	override function update(elapsed:Float) {
