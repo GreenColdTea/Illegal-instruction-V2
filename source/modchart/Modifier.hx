@@ -22,11 +22,6 @@ class Modifier {
     return modMgr.get(modName);
   }
 
-  public function getName():String{
-    throw new haxe.exceptions.NotImplementedException(); // override in your modifier!!! 
-    return '';
-  }
-
   public function getModPercent(modName:String, player:Int){
     return modMgr.getModPercent(modName,player);
   }
