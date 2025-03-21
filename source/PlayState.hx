@@ -2907,17 +2907,6 @@ class PlayState extends MusicBeatState
 
 		super.create();
 
-                if (!ClientPrefs.opponentStrums) {
-			opponentStrums.baseAlpha = 0;
-			modManager.setValue('alpha',1,1);
-
-		}
-		else if (ClientPrefs.middleScroll) {
-			opponentStrums.baseAlpha = 0.35;
-			modManager.setValue('alpha',0.65,1);
-			modManager.setValue('opponentSwap',0.5);
-		}
-
 	        Paths.clearUnusedMemory();
 		CustomFadeTransition.nextCamera = camOther;
 	        #if mobile
@@ -3365,13 +3354,17 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
-         playerStrums = new PlayField(ClientPrefs.middleScroll ? (FlxG.width / 2):(FlxG.width / 2 + (FlxG.width / 4)), strumLine.y, 4, boyfriend, true, cpuControlled, 0);
+                        playerStrums = new PlayField(ClientPrefs.middleScroll ? (FlxG.width / 2):(FlxG.width / 2 + (FlxG.width / 4)), strumLine.y, 4, boyfriend, true, cpuControlled, 0);
 			opponentStrums = new PlayField(ClientPrefs.middleScroll?(FlxG.width / 2):(FlxG.width/2 - (FlxG.width/4)), strumLine.y, 4, dad, false, true, 1);
+
 			if (!ClientPrefs.opponentStrums) {
 				opponentStrums.baseAlpha = 0;
+				modManager.setValue('alpha',1,1);
 			}
 			else if (ClientPrefs.middleScroll) {
 				opponentStrums.baseAlpha = 0.35;
+				modManager.setValue('alpha',0.65,1);
+			        modManager.setValue('opponentSwap',0.5);
 			}
 
 			opponentStrums.offsetReceptors = ClientPrefs.middleScroll;
@@ -3386,7 +3379,7 @@ class PlayState extends MusicBeatState
 			opponentStrums.fadeIn(isStoryMode || skipArrowStartTween);
 
 			playFields.add(opponentStrums);
-         playFields.add(playerStrums);
+                        playFields.add(playerStrums);
 
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
