@@ -116,6 +116,8 @@ class PauseSubState extends MusicBeatSubstate
 		pauseArt.alpha = 0;
 	        switch (curRender) 
 		{
+			case 'dukelaugh':
+				curRender = 'duke';
 			case 'dukep2midsong' | 'dukepixel':
 				curRender = 'dukep2';
 			case 'wechidnaMH':
