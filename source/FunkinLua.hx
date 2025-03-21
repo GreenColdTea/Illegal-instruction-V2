@@ -2180,7 +2180,7 @@ class FunkinLua {
                         return false;
                     }
 
-                    modManager.set(name, percent, player);
+                    modManager.setValue(name, percent, player);
                     return true;
                 });
 		Lua_helper.add_callback(lua, "easeModAtSecond", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
