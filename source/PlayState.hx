@@ -5912,7 +5912,7 @@ class PlayState extends MusicBeatState
 					drainMisses++;
 		}
 
-		if(char != null && !daNote.noMissAnimation && char.hasMissAnimations)
+		if(char != null && char.hasMissAnimations)
 		{
 			if(char.animTimer <= 0 && !char.voicelining){
 				var daAlt = '';
@@ -5928,7 +5928,7 @@ class PlayState extends MusicBeatState
       //noteHoldCovers.remove(daNote);
 	}
 
-	function noteMissPress(direction:Int = 1):Void //You pressed a key when there was no notes to press for this key
+	function noteMissPress(direction:Int = 1, anim:Bool = true):Void //You pressed a key when there was no notes to press for this key
 	{
 		if (!boyfriend.stunned)
 		{
