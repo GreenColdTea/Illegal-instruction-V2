@@ -47,7 +47,7 @@ typedef AnimArray = {
 
 class Character extends FlxSprite
 {
-	public var voicelining:Bool = false; // for fleetway, mainly
+	public var voicelining:Bool = false; // for dukin time, mainly
 	// but whenever you need to play an anim that has to be manually interrupted, here you go
 	
 	public var mostRecentRow:Int = 0; // for ghost anims n shit
@@ -65,6 +65,7 @@ class Character extends FlxSprite
 	public var colorTween:FlxTween;
 	public var holdTimer:Float = 0;
 	public var heyTimer:Float = 0;
+	public var animTimer:Float = 0;
 	public var specialAnim:Bool = false;
 	public var animationNotes:Array<Dynamic> = [];
 	public var stunned:Bool = false;
@@ -72,7 +73,6 @@ class Character extends FlxSprite
 	public var idleSuffix:String = '';
 	public var danceIdle:Bool = false; //Character use "danceLeft" and "danceRight" instead of "idle"
 	
-
 	public var healthIcon:String = 'face';
 	public var animationsArray:Array<AnimArray> = [];
 
@@ -268,6 +268,15 @@ class Character extends FlxSprite
 	{
 		if(!debugMode && animation.curAnim != null)
 		{
+			if(animTimer > 0) 
+			{
+				animTimer -= elapsed;
+				if(animTimer<=0){
+					animTimer=0;
+					dance();
+				}
+			}
+			
 			if(heyTimer > 0)
 			{
 				heyTimer -= elapsed;
@@ -317,7 +326,7 @@ class Character extends FlxSprite
 	 */
 	public function dance()
 	{
-		if (!debugMode && !specialAnim && !voicelining)
+		if (!debugMode && !specialAnim && animTimer <= 0 !voicelining)
 		{
 			if(danceIdle)
 			{
