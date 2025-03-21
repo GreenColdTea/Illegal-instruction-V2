@@ -9,10 +9,6 @@ import math.Vector3;
 import modchart.Modifier.ModifierType;
 import modchart.modifiers.*;
 import modchart.events.*;
-import meta.data.*;
-import meta.states.*;
-import meta.states.substate.*;
-import gameObjects.*;
 
 // Weird amalgamation of Schmovin' modifier system, Andromeda modifier system and my own new shit -neb
 
