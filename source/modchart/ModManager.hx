@@ -5,20 +5,24 @@ package modchart;
 
 import modchart.modifiers.*;
 import modchart.BaseEvent.*;
+import modchart.events.*;
 import flixel.tweens.FlxEase;
 import flixel.math.FlxPoint;
-import flixel.FlxCamera;
-import math.*;
-import flixel.math.FlxMath;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import math.Vector3;
+import meta.data.*;
+import meta.states.*;
+import gameObjects.*;
 
 class ModManager {
-    private var definedMods:Map<String, Modifier> = [];
+    private var state:PlayState;
     private var timeline:EventTimeline = new EventTimeline();
-    private var mods:Array<Modifier> = [];
 
-    public var state:PlayState;
+    private var definedMods:Map<String, Modifier> = [];
+    private var activeMods:Array<Array<String>> = [[], []]; 
+    private var modArray:Array<Modifier> = [];
+
     public var receptors:Array<Array<StrumNote>> = [[], []];
     public var infPath:Array<Array<Vector3>> = [[], [], [], []];
 
@@ -35,44 +39,45 @@ class ModManager {
     }
 
     public function registerModifiers() {
+        var quickRegs:Array<Modifier> = [
+            new FlipModifier(this),
+            new ReverseModifier(this),
+            new InvertModifier(this),
+            new DrunkModifier(this),
+            new BeatModifier(this),
+            new AlphaModifier(this),
+            new ReceptorScrollModifier(this),
+            new ScaleModifier(this),
+            new ConfusionModifier(this),
+            new OpponentModifier(this),
+            new TransformModifier(this),
+            new InfinitePathModifier(this),
+            new PerspectiveModifier(this),
+            new AccelModifier(this),
+            new XModifier(this)
+        ];
+
+        for (mod in quickRegs)
+            defineMod(mod.getName(), mod);
+
+        defineMod("rotateX", new RotateModifier(this));
+        defineMod("centerrotateX", new RotateModifier(this, 'center', new Vector3(FlxG.width * 0.5 - Note.swagWidth / 2, FlxG.height * 0.5 - Note.swagWidth / 2)));
+        defineMod("localrotateX", new LocalRotateModifier(this));
+
         defineBlankMod("waveTimeFactor");
         set("waveTimeFactor", 100, 0);
         set("waveTimeFactor", 100, 1);
-
-        var modList = [
-            "reverse" => new ReverseModifier(this),
-            "stealth" => new AlphaModifier(this),
-            "opponentSwap" => new OpponentModifier(this),
-            "scrollAngle" => new AngleModifier(this),
-            "mini" => new ScaleModifier(this),
-            "bounce" => new BounceModifier(this),
-            "flip" => new FlipModifier(this),
-            "invert" => new InvertModifier(this),
-            "camGame" => new CamModifier(this, "gameCam", [PlayState.instance.camGame]),
-            "camHUD" => new CamModifier(this, "HudCam", [PlayState.instance.camHUD]),
-            "tornado" => new TornadoModifier(this),
-            "drunk" => new DrunkModifier(this),
-            "square" => new SquareModifier(this),
-            "confusion" => new ConfusionModifier(this),
-            "beat" => new BeatModifier(this),
-            "rotateX" => new RotateModifier(this),
-            "centerrotateX" => new RotateModifier(this, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2)),
-            "localrotateX" => new LocalRotateModifier(this),
-            "boost" => new AccelModifier(this),
-            "transformX" => new TransformModifier(this),
-            "receptorScroll" => new ReceptorScrollModifier(this),
-            "perspective" => new PerspectiveModifier(this)
-        ];
-
-        for (modName => mod in modList) defineMod(modName, mod);
+        set("noteSpawnTime", 2000);
+        set("xmod", 1);
+        for(i in 0...4) set("xmod$i", 1);
 
         var r = 0;
         while (r < 360) {
             var rad = r * Math.PI / 180;
             for (data in 0...infPath.length) {
                 infPath[data].push(new Vector3(
-                    FlxG.width / 2 + FlxMath.fastSin(rad) * 600,
-                    FlxG.height / 2 + (FlxMath.fastSin(rad) * FlxMath.fastCos(rad)) * 600, 0
+                    FlxG.width / 2 + Math.sin(rad) * 600,
+                    FlxG.height / 2 + (Math.sin(rad) * Math.cos(rad)) * 600, 0
                 ));
             }
             r += 15;
@@ -80,23 +85,9 @@ class ModManager {
         defineMod("infinite", new PathModifier(this, infPath, 1850));
     }
 
-    inline public function getLatest(modName:String, player:Int):ModEvent {
-        var list = getList(modName, player);
-        return list.length > 0 ? list[list.length - 1] : new ModEvent(0, modName, 0, player, this);
-    }
-
-    public function get(modName:String):Dynamic {
-        return definedMods[modName];
-    }
-
-    inline public function getList(modName:String, player:Int):Array<ModEvent> {
-        return timeline.modEvents.exists(modName) 
-            ? timeline.modEvents.get(modName).filter(e -> e.player == player) : [];
-    }
-
     public function defineMod(modName:String, modifier:Modifier, defineSubmods:Bool = true) {
         if (!definedMods.exists(modName)) {
-            mods.push(modifier);
+            modArray.push(modifier);
             definedMods.set(modName, modifier);
             timeline.addMod(modName);
 
@@ -106,49 +97,39 @@ class ModManager {
         }
     }
 
+    inline public function defineBlankMod(modName:String) {
+        defineMod(modName, new Modifier(this), false);
+    }
+
     inline public function removeMod(modName:String) {
         definedMods.remove(modName);
     }
 
-    inline public function defineBlankMod(modName:String) {
-        defineMod(modName, new Modifier(this), false);
+    inline public function get(modName:String):Modifier {
+        return definedMods[modName];
+    }
+
+    inline public function exists(modName:String):Bool {
+        return definedMods.exists(modName);
+    }
+
+    inline public function set(modName:String, percent:Float, player:Int = -1) {
+        if (definedMods.exists(modName)) 
+            definedMods.get(modName).setPercent(percent, player);
     }
 
     public function getModPercent(modName:String, player:Int):Float {
         return get(modName).getPercent(player);
     }
 
-    public function getPreviousWithEvent(event:ModEvent) {
-        var list:Array<ModEvent> = getList(event.modName, event.player);
-        var idx = list.indexOf(event);
-        return (idx > 0) ? list[idx - 1] : new ModEvent(0, event.modName, 0, 0, this);
-    }
-
-    public function getLatestWithEvent(event:ModEvent) {
-        return getLatest(event.modName, event.player);
-    }
-
-    inline public function exists(modName:String):Bool return definedMods.exists(modName);
-
-    inline public function setValue(modName:String, percent:Float, player:Int = -1) {
-        set(modName, percent, player);
+    public function update(elapsed:Float) {
+        updateTimeline(state.curDecStep);
+        for (mod in modArray)
+            mod.update(elapsed);
     }
 
     public function updateTimeline(curStep:Float) {
         timeline.update(curStep);
-    }
-
-    private function run() {
-        updateTimeline(state.curDecStep);
-    }
-
-    public function update(elapsed:Float) {
-        run();
-        for (mod in mods) mod.update(elapsed);
-    }
-
-    public inline function getVisPos(songPos:Float = 0, strumTime:Float = 0, songSpeed:Float = 1) {
-        return -(0.45 * (songPos - strumTime) * songSpeed);
     }
 
     public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, data:Int, player:Int, obj:FlxSprite, ?exclusions:Array<String>, ?pos:Vector3):Vector3 {
@@ -157,24 +138,38 @@ class ModManager {
 
         if (!obj.active) return pos;
 
-        pos.x = state.getXPosition(diff, data, player);
+        pos.x = getBaseX(data, player);
         pos.y = 50 + diff;
         pos.z = 0;
 
-        for (modName in definedMods.keys()) {
+        for (modName in activeMods[player]) {
+            if (exclusions.contains(modName)) continue;
             var mod = definedMods.get(modName);
-            if (!exclusions.contains(modName))
-                pos = mod.getPos(time, diff, tDiff, beat, pos, data, player, obj);
+            pos = mod.getPos(time, diff, tDiff, beat, pos, data, player, obj);
         }
         return pos;
     }
 
     public function updateObject(beat:Float, obj:FlxSprite, pos:Vector3, player:Int) {
-        for (mod in mods) mod.updateObject(beat, obj, pos, player);
+        for (name in activeMods[player]) {
+            var mod:Modifier = definedMods.get(name);
+            if (mod == null) continue;
+            if (!obj.active) continue;
+
+            if (obj is Note) mod.updateNote(beat, cast obj, pos, player);
+            else if (obj is StrumNote) mod.updateReceptor(beat, cast obj, pos, player);
+        }
+
+        if (obj is Note) obj.updateHitbox();
+        obj.centerOrigin();
+        obj.centerOffsets();
     }
 
-    public function set(modName:String, percent:Float, player:Int = -1) {
-        if (definedMods.exists(modName)) definedMods.get(modName).setPercent(percent, player);
+    public function getBaseX(direction:Int, player:Int):Float {
+        var x = (FlxG.width * 0.5) - Note.swagWidth - 54 + Note.swagWidth * direction;
+        if (player == 0) x += FlxG.width * 0.5 - Note.swagWidth * 2 - 100;
+        else if (player == 1) x -= FlxG.width * 0.5 - Note.swagWidth * 2 - 100;
+        return x - 56;
     }
 
     public function queueEase(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
@@ -201,6 +196,17 @@ class ModManager {
     }
 
     public function queueSetP(step:Float, modName:String, percent:Float, player:Int = -1) {
+        queueSet(step, modName, percent / 100, player);
+    }
+
+    public function queueEaseTime(time:Float, endTime:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
+        var step:Float = time * (Conductor.bpm / 60) * 4;
+        var endStep:Float = endTime * (Conductor.bpm / 60) * 4;
+        queueEase(step, endStep, modName, percent / 100, style, player, startVal / 100);
+    }
+
+    public function queueSetTime(time:Float, modName:String, percent:Float, player:Int = -1) {
+        var step:Float = time * (Conductor.bpm / 60) * 4;
         queueSet(step, modName, percent / 100, player);
     }
 
