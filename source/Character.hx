@@ -47,6 +47,9 @@ typedef AnimArray = {
 
 class Character extends FlxSprite
 {
+	public var voicelining:Bool = false; // for fleetway, mainly
+	// but whenever you need to play an anim that has to be manually interrupted, here you go
+	
 	public var mostRecentRow:Int = 0; // for ghost anims n shit
 	public var animGhosts:Array<FlxSprite> = [];
 	public var ghostIdx:Int = 0;
@@ -263,7 +266,7 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if(!debugMode && animation.curAnim != null)
+		if(!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining)
 		{
 			if(heyTimer > 0)
 			{
