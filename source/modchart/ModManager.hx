@@ -109,52 +109,26 @@ class ModManager {
         return definedMods.exists(modName);
     }
 
-    public function setValue(modName:String, val:Float, player:Int=-1){
+    public function setValue(modName:String, val:Float, player:Int = -1) {
         if (player == -1) {
             for (pN in 0...2)
                 setValue(modName, val, pN);
         } else {
-            var daMod = register.get(modName);
-            var mod = daMod.parent == null ? daMod : daMod.parent;
-            var name = mod.getName();
+            var mod = definedMods.get(modName);
+            if (mod == null) return;
 
             if (activeMods[player] == null)
                 activeMods[player] = [];
 
-            register.get(modName).setValue(val, player);
+            mod.setValue(val, player);
 
-            if (!activeMods[player].contains(name) && mod.shouldExecute(player, val)) {
-                if (daMod.getName() != name)
-                    activeMods[player].push(daMod.getName());
-            activeMods[player].push(name);
+            if (!activeMods[player].contains(modName) && mod.shouldExecute(player, val)) {
+                activeMods[player].push(modName);
             } else if (!mod.shouldExecute(player, val)) {
-                var modParent = daMod.parent;
-                if (modParent == null) {
-                    for (name => mod in daMod.submods) {
-                        modParent = daMod;
-                        break;
-                    }
-                }
-                if (daMod != modParent)
-                    activeMods[player].remove(daMod.getName());
-
-                if (modParent != null) {
-                    if (modParent.shouldExecute(player, modParent.getValue(player))) {
-                        activeMods[player].sort((a, b) -> Std.int(register.get(a).getOrder() - register.get(b).getOrder()));
-                        return;
-                    }
-                    for (subname => submod in modParent.submods) {
-                        if (submod.shouldExecute(player, submod.getValue(player))) {
-                            activeMods[player].sort((a, b) -> Std.int(register.get(a).getOrder() - register.get(b).getOrder()));
-                            return;
-                        }
-                    }
-                    activeMods[player].remove(modParent.getName());
-                } else
-                    activeMods[player].remove(daMod.getName());
+                activeMods[player].remove(modName);
             }
 
-            activeMods[player].sort((a, b) -> Std.int(register.get(a).getOrder() - register.get(b).getOrder()));
+            activeMods[player].sort((a, b) -> Std.int(definedMods.get(a).getOrder() - definedMods.get(b).getOrder()));
         }
     }
 
