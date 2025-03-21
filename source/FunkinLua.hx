@@ -2192,7 +2192,7 @@ class FunkinLua {
                     modManager.queueEaseTime(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-                Lua_helper.add_callback(lua, "removeMod", function(name:String) {
+                Lua_helper.add_callback(lua, "removeMod", function(name:String, player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
@@ -2200,7 +2200,7 @@ class FunkinLua {
                         return false;
                     }
 
-                    modManager.removeMod(name);
+                    modManager.removeMod(name, player);
                     return true;
                 });
                             
