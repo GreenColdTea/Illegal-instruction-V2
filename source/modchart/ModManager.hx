@@ -5,15 +5,11 @@ package modchart;
 
 import modchart.modifiers.*;
 import modchart.BaseEvent.*;
-import modchart.events.*;
 import flixel.tweens.FlxEase;
 import flixel.math.FlxPoint;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import math.Vector3;
-import meta.data.*;
-import meta.states.*;
-import gameObjects.*;
 
 class ModManager {
     private var state:PlayState;
