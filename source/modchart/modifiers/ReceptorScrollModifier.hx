@@ -12,8 +12,6 @@ class ReceptorScrollModifier extends Modifier {
 
 	var moveSpeed:Float = Conductor.crochet * 3;
 
-	override function getName() return 'receptorScroll';
-
 	override function getPos(time:Float, visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite) {
 		var diff = timeDiff;
 		var sPos = Conductor.songPosition;
