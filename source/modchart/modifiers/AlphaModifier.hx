@@ -8,9 +8,6 @@ import modchart.*;
 class AlphaModifier extends Modifier {
     public static var fadeDistY = 120;
 
-    override public function getName():String
-        return "stealth";
-
     public function new(modMgr:ModManager) {
         super(modMgr);
     }
