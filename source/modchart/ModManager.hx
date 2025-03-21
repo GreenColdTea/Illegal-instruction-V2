@@ -81,15 +81,11 @@ class ModManager {
         defineMod("infinite", new PathModifier(this, infPath, 1850));
     }
 
-    public function defineMod(modName:String, modifier:Modifier, defineSubmods:Bool = true) {
+    public function defineMod(modName:String, modifier:Modifier) {
         if (!definedMods.exists(modName)) {
             modArray.push(modifier);
             definedMods.set(modName, modifier);
             timeline.addMod(modName);
-
-            if (defineSubmods) {
-                for (name in modifier.submods.keys()) defineMod(name, modifier.submods.get(name), false);
-            }
         }
     }
 
