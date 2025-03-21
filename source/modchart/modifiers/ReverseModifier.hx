@@ -10,8 +10,6 @@ import math.*;
 class ReverseModifier extends Modifier {
 	inline function lerp(a:Float, b:Float, c:Float) return a + (b - a) * c;
 
-	override function getName() return 'reverse';
-
 	public function getReverseValue(dir:Int, player:Int, ?scrolling=false) {
 		var suffix = scrolling ? "Scroll" : "";
 		var receptors = modMgr.receptors[player];
