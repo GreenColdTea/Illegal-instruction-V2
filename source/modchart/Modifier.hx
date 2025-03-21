@@ -4,10 +4,6 @@ package modchart;
 
 import flixel.FlxSprite;
 import math.Vector3;
-import meta.data.*;
-import meta.states.*;
-import meta.states.substate.*;
-import gameObjects.*;
 
 enum ModifierType {
     NOTE_MOD; // used when the mod moves notes
