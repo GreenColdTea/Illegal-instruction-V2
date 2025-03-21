@@ -6133,9 +6133,10 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 			}
 			if (!fucklesMode)
-				{
-					health += note.hitHealth * healthGain;
-				}
+			{
+				if (note.isSustainNote) health += (note.hitHealth * healthGain) / 6;
+			        else health += note.hitHealth * healthGain;
+			}
 
 			if(!note.noAnimation) {
 				var daAlt = '';
