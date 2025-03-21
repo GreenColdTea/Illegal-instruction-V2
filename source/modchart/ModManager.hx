@@ -130,10 +130,6 @@ class ModManager {
 
     inline public function exists(modName:String):Bool return definedMods.exists(modName);
 
-    public function set(modName:String, percent:Float, player:Int = -1) {
-        if (exists(modName)) definedMods[modName].setPercent(percent, player);
-    }
-
     inline public function setValue(modName:String, percent:Float, player:Int = -1) {
         set(modName, percent, player);
     }
@@ -151,30 +147,37 @@ class ModManager {
         for (mod in mods) mod.update(elapsed);
     }
 
-    public function updateObject(beat:Float, obj:FlxSprite, pos:Vector3, player:Int) {
-        for (mod in mods) mod.updateObject(beat, obj, pos, player);
-    }
-
     public inline function getVisPos(songPos:Float = 0, strumTime:Float = 0, songSpeed:Float = 1) {
         return -(0.45 * (songPos - strumTime) * songSpeed);
     }
 
     public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, data:Int, player:Int, obj:FlxSprite, ?exclusions:Array<String>, ?pos:Vector3):Vector3 {
-        if (exclusions == null) exclusions = [];
-        if (pos == null) pos = new Vector3();
+    if (exclusions == null) exclusions = [];
+    if (pos == null) pos = new Vector3();
 
-        if (!obj.active) return pos;
+    if (!obj.active) return pos;
 
-        pos.x = state.getXPosition(diff, data, player);
-        pos.y = 50 + diff;
-        pos.z = 0;
+    pos.x = state.getXPosition(diff, data, player);
+    pos.y = 50 + diff;
+    pos.z = 0;
 
-        for (mod in mods) {
-            if (!exclusions.contains(mod.getName()))
-                pos = mod.getPos(time, diff, tDiff, beat, pos, data, player, obj);
-        }
-        return pos;
+    for (modName in definedMods.keys()) {
+        var mod = definedMods.get(modName);
+        if (!exclusions.contains(modName))
+            pos = mod.getPos(time, diff, tDiff, beat, pos, data, player, obj);
     }
+    return pos;
+}
+
+public function updateObject(beat:Float, obj:FlxSprite, pos:Vector3, player:Int) {
+    for (mod in mods) mod.updateObject(beat, obj, pos, player);
+}
+
+public function set(modName:String, percent:Float, player:Int = -1) {
+    if (definedMods.exists(modName)) definedMods.get(modName).setPercent(percent, player);
+}
+
+inline public function exists(modName:String):Bool return definedMods.exists(modName);
 
     public function queueEase(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
         if (player == -1) {
