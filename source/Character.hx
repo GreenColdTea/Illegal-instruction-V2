@@ -80,6 +80,7 @@ class Character extends FlxSprite
 	public var cameraPosition:Array<Float> = [0, 0];
 
 	public var hasMissAnimations:Bool = false;
+	public var currentlyHolding:Bool = false;
 
 	//Used on Character Editor
 	public var imageFile:String = '';
@@ -317,6 +318,25 @@ class Character extends FlxSprite
 		for (ghost in animGhosts)
 			ghost.update(elapsed);
 		super.update(elapsed);
+
+		if(!debugMode){
+			if(animation.curAnim!=null){
+				if (currentlyHolding) animation.curAnim.curFrame = 0;
+				
+				var name = animation.curAnim.name;
+				if(name.startsWith("hold")){
+					if(name.endsWith("Start") && animation.curAnim.finished){
+						var newName = name.substring(0,name.length-5);
+						var singName = "sing" + name.substring(3, name.length-5);
+						if(animation.getByName(newName)!=null){
+							playAnim(newName,true);
+						}else{
+							playAnim(singName,true);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public var danced:Bool = false;
@@ -326,8 +346,10 @@ class Character extends FlxSprite
 	 */
 	public function dance()
 	{
-		if (!debugMode && !specialAnim && animTimer <= 0 !voicelining)
+		if (!debugMode && !specialAnim && animTimer <= 0 && !voicelining)
 		{
+			if(currentlyHolding) currentlyHolding = false;
+			
 			if(danceIdle)
 			{
 				danced = !danced;
