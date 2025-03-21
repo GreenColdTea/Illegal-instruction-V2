@@ -5864,9 +5864,6 @@ class PlayState extends MusicBeatState
 	}
 
 	function noteMiss(daNote:Note):Void { //You didn't hit the key and let it go offscreen, also used by Hurt Notes
-      /*if (daNote.isSustainNote && noteHoldCovers.exists(daNote)) {
-         noteHoldCovers.get(daNote).playEnd();
-      }*/
 		//Dupe note remove
 		notes.forEachAlive(function(note:Note) {
 			if (daNote != note && daNote.playField.playerControls && daNote.noteData == note.noteData && daNote.isSustainNote == note.isSustainNote && Math.abs(daNote.strumTime - note.strumTime) < 1) {
@@ -5879,7 +5876,6 @@ class PlayState extends MusicBeatState
 		{
 			if (daNote.isSustainNote) health -= (daNote.missHealth * healthLoss) / 2.75;
 		        else health -= daNote.missHealth * healthLoss;
-			
 		}
 		if(instakillOnMiss)
 		{
@@ -5916,13 +5912,16 @@ class PlayState extends MusicBeatState
 					drainMisses++;
 		}
 
-		if(char != null && char.hasMissAnimations)
+		if(char != null && !daNote.noMissAnimation && char.hasMissAnimations)
 		{
-			var daAlt = '';
-			if(daNote.noteType == 'Alt Animation') daAlt = '-alt';
+			if(char.animTimer <= 0 && !char.voicelining){
+				var daAlt = '';
+				if(daNote.noteType == 'Alt Animation') daAlt = '-alt';
 
-			var animToPlay:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss' + daAlt;
-			char.playAnim(animToPlay, true);
+				var animToPlay:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss' + daAlt;
+				char.playAnim(animToPlay, true);
+				if (char.currentlyHolding) char.currentlyHolding = false;
+			}
 		}
 
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
@@ -5983,27 +5982,29 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note, playfield:PlayField):Void
 	{
-		if(note.noteType == 'Hey!' && dad.animOffsets.exists('hey')) {
-			dad.playAnim('hey', true);
-			dad.specialAnim = true;
-			dad.heyTimer = 0.6;
+		var char:Character = playfield.owner;
+
+		if(note.gfNote)
+			char = gf;
+		
+		if(note.noteType == 'Hey!' && char.animOffsets.exists('hey')) {
+			char.playAnim('hey', true);
+			char.specialAnim = true;
+			char.heyTimer = 0.6;
 		} else if(!note.noAnimation) {
 			var altAnim:String = "";
 
-			if (SONG.notes[curSection] != null)
+			var curSect:Int = Math.floor(curStep / 16);
+			if (SONG.notes[curSect] != null)
 			{
-				if (SONG.notes[curSection].altAnim && !SONG.notes[curSection].gfSection) {
+				if (SONG.notes[curSect].altAnim || note.noteType == 'Alt Animation') {
 					altAnim = '-alt';
 				}
 			}
 
 			iconP2.scale.set(1.2, 1.2);
 
-			var char:Character = playfield.owner;
 			var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))] + altAnim;
-			if(note.gfNote) {
-				char = gf;
-			}
 
 			if(char != null)
 			{
@@ -6069,15 +6070,13 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-      note.hitByOpponent = true;
+                note.hitByOpponent = true;
 
 		callOnLuas('opponentNoteHit', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 
 		if (!note.isSustainNote)
 		{
-			note.kill();
-			notes.remove(note, true);
-			note.destroy();
+			note.garbage = true;
 		}
 	}
 
