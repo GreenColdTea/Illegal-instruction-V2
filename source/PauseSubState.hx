@@ -111,18 +111,19 @@ class PauseSubState extends MusicBeatSubstate
 	        pauseArt.scale.set(0.4, 0.4);
 		pauseArt.loadGraphic(Paths.image('Renders/' + curRender, 'shared'));
 		pauseArt.scrollFactor.set();
-		if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + '.png', IMAGE, 'shared'))) add(pauseArt);
 		pauseArt.x = renderDistance * -1;
 	        pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
-
-	        if (PlayState.instance.dad.curCharacter == 'dukep2midsong' || PlayState.instance.dad.curCharacter == 'dukepixel') {
-                        curRender = 'dukep2';
-		} else if (PlayState.instance.dad.curCharacter == 'wechidnaMH') {
-			curRender = 'wechidna';
-		} else if (PlayState.instance.dad.curCharacter == 'wechMH') {
-                        curRender = 'wechbeast';
+	        switch (curRender) 
+		{
+			case 'dukep2midsong' | 'dukepixel':
+				curRender = 'dukep2';
+			case 'wechidnaMH':
+				curRender = 'wechidna';
+			case 'wechMH':
+				curRender = 'wechbeast';
 		}
+	        if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + '.png', IMAGE, 'shared'))) add(pauseArt);
 
 		fixRenders();
 
@@ -432,20 +433,26 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
-        function changeSelection(change:Int = 0):Void {
-            curSelected = (curSelected + change + menuItemsText.length) % menuItemsText.length;
+        function changeSelection(change:Int = 0):Void 
+        {
+            if (menuItems.length == 0) return; // Checking to prevent game crash
+
+            curSelected = (curSelected + change + menuItems.length) % menuItems.length;
             FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
-            if (curSelected < 0) curSelected = menuItems.length - 1;
-            if (curSelected >= menuItems.length) curSelected = 0;
+            var offsetY = (curSelected > 2) ? -(curSelected - 2) * spacing : 0;
 
             for (i in 0...menuItemsText.length) {
                 var item = menuItemsText[i];
-                var targetY = startY + (i - curSelected) * spacing;
+                var targetY = startY + (i * spacing) + offsetY;
+                FlxTween.tween(item, {y: targetY}, 0.2, {ease: FlxEase.quadOut});
+            }
 
-		if (curSelected > 2)
-                    FlxTween.tween(item, {y: targetY}, 0.2, {ease: FlxEase.quadOut});
-		    
+            if (curSelected == 0) {
+                for (i in 0...menuItemsText.length) {
+                    var item = menuItemsText[i];
+                    item.y = startY + (i * spacing);
+                }
             }
 
             if (menuItems[curSelected] == "Skip Time:") {
