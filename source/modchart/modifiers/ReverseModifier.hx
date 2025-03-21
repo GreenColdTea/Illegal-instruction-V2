@@ -1,18 +1,15 @@
 package modchart.modifiers;
+
 import flixel.math.FlxRect;
 import modchart.Modifier.ModifierOrder;
 import flixel.FlxSprite;
 import flixel.FlxG;
-import ui.*;
 import modchart.*;
 import flixel.math.FlxPoint;
 import flixel.math.FlxMath;
-using StringTools;
 import math.*;
-import meta.data.*;
-import meta.states.*;
-import meta.states.substate.*;
-import gameObjects.*;
+
+using StringTools;
 
 class ReverseModifier extends NoteModifier {
 	inline function lerp(a:Float, b:Float, c:Float)
@@ -55,7 +52,7 @@ class ReverseModifier extends NoteModifier {
 
 
 
-        if(ClientPrefs.data.downScroll)
+        if(ClientPrefs.downScroll)
             val = 1-val;
 
         return val;
