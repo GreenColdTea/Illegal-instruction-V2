@@ -84,6 +84,9 @@ class ModManager {
         modArray.sort((a, b) -> Std.int(a.getOrder() - b.getOrder()));
     }
 
+    inline public function get(modName:String)
+        return register.get(modName);
+
     public function setValue(modName:String, val:Float, player:Int = -1) {
         if (player == -1) {
             for (pN in 0...2) setValue(modName, val, pN);
@@ -114,6 +117,10 @@ class ModManager {
 
     public function updateTimeline(curStep:Float)
         timeline.update(curStep);
+
+    inline public function getVisPos(songPos:Float=0, strumTime:Float=0, songSpeed:Float=1){
+		return -(0.45 * (songPos - strumTime) * songSpeed);
+    }
 
     public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, data:Int, player:Int, obj:FlxSprite, ?exclusions:Array<String>, ?pos:Vector3):Vector3 {
         if (!obj.active) return pos == null ? new Vector3() : pos;
