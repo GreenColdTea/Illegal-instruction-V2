@@ -6085,7 +6085,7 @@ class PlayState extends MusicBeatState
 	{
 		if (!note.wasGoodHit)
 		{
-         if(field.autoPlayed && (note.ignoreNote || note.hitCausesMiss)) return;
+                        if(field.autoPlayed && (note.ignoreNote || note.hitCausesMiss)) return;
 
 			if (ClientPrefs.hitsoundVolume > 0 && !note.hitsoundDisabled)
 			{
@@ -6119,9 +6119,7 @@ class PlayState extends MusicBeatState
 				note.wasGoodHit = true;
 				if (!note.isSustainNote)
 				{
-					note.kill();
-					notes.remove(note, true);
-					note.destroy();
+					note.garbage = true;
 				}
 				return;
 			}
@@ -6215,16 +6213,9 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
+				note.garbage = true;
 			}
 		}
-
-		/*if (note.isSustainNote && noteHoldCovers.exists(note)) {
-         noteHoldCovers.get(note).playStart();
-      }
-		noteHoldCovers.remove(note);*/
 	}
 
 	function spawnNoteSplashOnNote(note:Note) {
