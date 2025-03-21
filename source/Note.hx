@@ -48,6 +48,9 @@ class Note extends FlxSprite
 	public var alphaMod:Float = 1;
 	public var garbage:Bool = false; // if this is true, the note will be removed in the next update cycle
 
+	public var typeOffsetX:Float = 0; // used to offset notes, mainly for note types. use in place of offset.x and offset.y when offsetting notetypes
+	public var typeOffsetY:Float = 0;
+	
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
 	public var canBeHit:Bool = false;
