@@ -17,6 +17,25 @@ import gameObjects.*;
 // Weird amalgamation of Schmovin' modifier system, Andromeda modifier system and my own new shit -neb
 
 class ModManager {
+	public var state:PlayState;
+
+	public var receptors:Array<Array<StrumNote>> = []; // for modifiers to be able to access receptors directly if they need to
+	public var timeline:EventTimeline = new EventTimeline();
+	
+	public function setReceptors(){
+            var playerReceptors = state.playerStrums;
+            var dadReceptors = state.opponentStrums;
+
+            for (data in 0...playerReceptors.length){
+                var rec = playerReceptors.members[data];
+                receptors[0][rec.noteData] = rec;
+            }
+            for (data in 0...dadReceptors.length){
+                var rec = dadReceptors.members[data];
+                receptors[1][rec.noteData] = rec;
+            }
+	}
+	
 	public function registerDefaultModifiers()
 	{
 		var quickRegs:Array<Any> = [
@@ -48,12 +67,7 @@ class ModManager {
 		for(i in 0...4)
 			setValue('xmod$i', 1);
 	}
-
-
-    private var state:PlayState;
-	public var receptors:Array<Array<StrumNote>> = []; // for modifiers to be able to access receptors directly if they need to
-	public var timeline:EventTimeline = new EventTimeline();
-
+	
 	public var notemodRegister:Map<String, Modifier> = [];
 	public var miscmodRegister:Map<String, Modifier> = [];
 
