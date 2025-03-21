@@ -266,7 +266,7 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if(!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining)
+		if(!debugMode && animation.curAnim != null)
 		{
 			if(heyTimer > 0)
 			{
@@ -317,7 +317,7 @@ class Character extends FlxSprite
 	 */
 	public function dance()
 	{
-		if (!debugMode && !specialAnim)
+		if (!debugMode && !specialAnim && !voicelining)
 		{
 			if(danceIdle)
 			{
