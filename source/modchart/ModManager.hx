@@ -113,11 +113,6 @@ class ModManager {
         return definedMods.exists(modName);
     }
 
-    inline public function set(modName:String, percent:Float, player:Int = -1) {
-        if (definedMods.exists(modName)) 
-            definedMods.get(modName).setPercent(percent, player);
-    }
-
     public function setValue(modName:String, val:Float, player:Int=-1){
         if (player == -1) {
             for (pN in 0...2)
