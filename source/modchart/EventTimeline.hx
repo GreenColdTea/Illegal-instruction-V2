@@ -2,10 +2,6 @@ package modchart;
 
 import modchart.events.ModEvent;
 import modchart.events.BaseEvent;
-import meta.data.*;
-import meta.states.*;
-import meta.states.substate.*;
-import gameObjects.*;
 
 class EventTimeline {
     public var modEvents:Map<String, Array<ModEvent>> = [];
