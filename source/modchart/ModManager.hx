@@ -156,6 +156,32 @@ class ModManager {
         obj.centerOffsets();
     }
 
+    public function removeMod(modName:String, player:Int = -1) {
+        if (player == -1) {
+        // Remove it for both
+            removeMod(modName, 0);
+            removeMod(modName, 1);
+        } else {
+            if (activeMods[player].contains(modName)) {
+                activeMods[player].remove(modName);
+            }
+        }
+    
+        if (register.exists(modName)) {
+            register.remove(modName);
+        }
+
+        if (notemodRegister.exists(modName)) {
+            notemodRegister.remove(modName);
+        }
+
+        if (miscmodRegister.exists(modName)) {
+            miscmodRegister.remove(modName);
+        }
+
+        timeline.removeModEvents(modName);
+    }
+
     public function queueEase(step:Float, endStep:Float, modName:String, percent:Float, style:String = 'linear', player:Int = -1, ?startVal:Float) {
         if (player == -1) {
             queueEase(step, endStep, modName, percent, style, 0, startVal);
