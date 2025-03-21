@@ -2120,23 +2120,23 @@ class FunkinLua {
                     }
                     return false;
                 });
-                Lua_helper.add_callback(lua, "easeModByStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+                Lua_helper.add_callback(lua, "easeModAtStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
-                        luaTrace('easeModByStep: Modifier "' + name + '" does not exist!', true);
+                        luaTrace('easeModAtStep: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
 
                     modManager.queueEase(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
-                Lua_helper.add_callback(lua, "easeModByStepP", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
+                Lua_helper.add_callback(lua, "easeModAtStepP", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
                     if (modManager.get(mod) != null) {
                         modManager.queueEaseP(step, step + length, mod, value, ease, player);
                     } else {
-                        luaTrace('easeModByStepP: Modifier "' + mod + '" does not exist.', true);
+                        luaTrace('easeModAtStepP: Modifier "' + mod + '" does not exist.', true);
                     }
                 });
                 Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
@@ -2154,11 +2154,22 @@ class FunkinLua {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
-                        luaTrace('setModAtSeconds: Modifier "' + name + '" does not exist!', true);
+                        luaTrace('setModAtStepP: Modifier "' + name + '" does not exist!', true);
                         return false;
                     }
 
                     modManager.queueSetP(startStep, name, percent, player);
+                    return true;
+                });
+	        Lua_helper.add_callback(lua, "setModAtSecond", function(startStep:Float, name:String, percent:Float, player:Int) {
+                    var modManager = PlayState.instance.modManager;
+
+                    if (modManager.get(name) == null) {
+                        luaTrace('setModAtSecond: Modifier "' + name + '" does not exist!', true);
+                        return false;
+                    }
+
+                    modManager.queueSetTime(startStep, name, percent, player);
                     return true;
                 });
                 Lua_helper.add_callback(lua, "setModValue", function(name:String, percent:Float, player:Int) {
@@ -2170,6 +2181,17 @@ class FunkinLua {
                     }
 
                     modManager.set(name, percent, player);
+                    return true;
+                });
+		Lua_helper.add_callback(lua, "easeModAtSecond", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+                    var modManager = PlayState.instance.modManager;
+
+                    if (modManager.get(name) == null) {
+                        luaTrace('easeModAtSecond: Modifier "' + name + '" does not exist!', true);
+                        return false;
+                    }
+
+                    modManager.queueEaseTime(startStep, endStep, name, percent, easeType, player);
                     return true;
                 });
                 Lua_helper.add_callback(lua, "removeMod", function(name:String) {
