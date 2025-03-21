@@ -5973,8 +5973,9 @@ class PlayState extends MusicBeatState
 				boyfriend.stunned = false;
 			});*/
 
-			if(boyfriend.hasMissAnimations) {
-				boyfriend.playAnim(singAnimations[Std.int(Math.abs(direction))] + 'miss', true);
+			if(boyfriend.hasMissAnimations && anim) {
+				if(boyfriend.animTimer <= 0 && !boyfriend.voicelining)
+					boyfriend.playAnim(singAnimations[Std.int(Math.abs(direction))] + 'miss', true);
 			}
 			vocals.volume = 0;
 		}
@@ -6005,6 +6006,7 @@ class PlayState extends MusicBeatState
 			iconP2.scale.set(1.2, 1.2);
 
 			var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))] + altAnim;
+			if(char.voicelining)char.voicelining=false;
 
 			if(char != null)
 			{
@@ -6149,7 +6151,7 @@ class PlayState extends MusicBeatState
 					
 				}
 
-				char.holdTimer = 0;
+				field.owner.holdTimer = 0;
 				
 				if (!note.isSustainNote && noteRows[note.gfNote ? 2 : note.mustPress ? 0 : 1][note.row]!=null && noteRows[note.gfNote ? 2 : note.mustPress ? 0 : 1][note.row].length > 1)
 				{
