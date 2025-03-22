@@ -38,7 +38,7 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeTracker:FlxText;
 
 	var elapsedTime:Float = 0;
-	var spacing:Float = 175; 
+	var spacing:Float = 200; 
         var startY:Float;
 
 	var fontStyle:String;
@@ -78,7 +78,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		menuItems = menuItemsOG;
 
-	        startY = (FlxG.height - (menuItems.length * spacing)) * 0.5;
+	        startY = (FlxG.height - (menuItems.length * spacing)) * 0.5 + 100;
 	
 
 	        curRender = PlayState.instance.dad.curCharacter;
