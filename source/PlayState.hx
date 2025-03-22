@@ -2304,7 +2304,7 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = -5000;
 
 		strumLine = new FlxSprite(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, upscrollOffset).makeGraphic(FlxG.width, 10);
-		if(ClientPrefs.downScroll) strumLine.y = downscrollOffset;
+		//if(ClientPrefs.downScroll) strumLine.y = downscrollOffset;
 		strumLine.scrollFactor.set();
 
                 add(noteGroup);
