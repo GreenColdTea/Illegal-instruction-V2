@@ -5523,7 +5523,7 @@ class PlayState extends MusicBeatState
 			spawnNoteSplashOnNote(note);
 		}
 
-      var field:PlayField = note.playField;
+                var field:PlayField = note.playField;
 
 		if(!practiceMode && !cpuControlled) {
 			songScore += score;
@@ -5588,8 +5588,8 @@ class PlayState extends MusicBeatState
 		comboSpr.x += ClientPrefs.comboOffset[0];
 		comboSpr.y -= ClientPrefs.comboOffset[1];
 
-
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
+		
 		insert(members.indexOf(playFields), rating);
 
 		if (!PlayState.isPixelStage)
@@ -5647,6 +5647,9 @@ class PlayState extends MusicBeatState
 
 			//if (combo >= 10 || combo == 0)
 			insert(members.indexOf(rating), numScore);
+
+			numScore.scale.x = 0.55;
+			numScore.scale.y = 0.55;
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
