@@ -25,7 +25,6 @@ class Note extends FlxSprite
 
 	public static var instance:Note;
 
-	public var parentNote:Note;
 	public var childrenNotes:Array<Note> = [];
 
 	public var vec3Cache:Vector3 = new Vector3(); // for vector3 operations in modchart code
@@ -443,7 +442,7 @@ class Note extends FlxSprite
 		super.update(elapsed);
 
 		if(!inEditor){
-			if (tooLate || (parentNote != null && parentNote.tooLate))
+			if (tooLate || (parent != null && parent.tooLate))
 				alpha *= 0.3;
 		}
 		
