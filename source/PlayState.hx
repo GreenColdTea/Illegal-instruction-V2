@@ -3359,12 +3359,14 @@ class PlayState extends MusicBeatState
 
 			if (!ClientPrefs.opponentStrums) {
 				opponentStrums.baseAlpha = 0;
-				modManager.setValue('alpha',1,1);
+				notes.multAlpha = 0;
+				notes.alpha = 0;
+				
 			}
 			else if (ClientPrefs.middleScroll) {
 				opponentStrums.baseAlpha = 0.35;
-				modManager.setValue('alpha',0.65,1);
-			        modManager.setValue('opponentSwap',0.5);
+				notes.multAlpha = 0.3;
+				notes.alpha = 0.3;
 			}
 
 			opponentStrums.offsetReceptors = ClientPrefs.middleScroll;
