@@ -106,14 +106,6 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        var renderDistance:Float = -75;
-		pauseArt = new FlxSprite(renderDistance * -1, -450);
-	        pauseArt.scale.set(0.4, 0.4);
-		pauseArt.loadGraphic(Paths.image('Renders/' + curRender, 'shared'));
-		pauseArt.scrollFactor.set();
-		pauseArt.x = renderDistance * -1;
-	        pauseArt.antialiasing = true;
-		pauseArt.alpha = 0;
 	        switch (curRender) 
 		{
 			case 'dukelaugh':
@@ -125,6 +117,15 @@ class PauseSubState extends MusicBeatSubstate
 			case 'wechMH':
 				curRender = 'wechbeast';
 		}
+
+	        var renderDistance:Float = -75;
+		pauseArt = new FlxSprite(renderDistance * -1, -450);
+	        pauseArt.scale.set(0.4, 0.4);
+		pauseArt.loadGraphic(Paths.image('Renders/' + curRender, 'shared'));
+		pauseArt.scrollFactor.set();
+		pauseArt.x = renderDistance * -1;
+	        pauseArt.antialiasing = true;
+		pauseArt.alpha = 0;
 	        if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + '.png', IMAGE, 'shared'))) add(pauseArt);
 
 		fixRenders();
