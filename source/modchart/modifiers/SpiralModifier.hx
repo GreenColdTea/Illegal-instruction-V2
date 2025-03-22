@@ -4,7 +4,7 @@ import modchart.*;
 import math.*;
 
 class SpiralModifier extends NoteModifier {
-	override function getPos(visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, column:Int, player:Int, obj:FlxSprite, field:NoteField) {
+	override function getPos(visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, column:Int, player:Int, obj:FlxSprite, field:PlayField) {
 		var spiralX = getValue(player);
 		var spiralY = getSubmodValue("spiralY", player);
 		var spiralZ = getSubmodValue("spiralZ", player);
