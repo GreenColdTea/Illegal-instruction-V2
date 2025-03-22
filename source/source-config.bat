@@ -5,7 +5,7 @@ echo.
 echo Installing necessary libraries. Please wait...
 echo.
 haxelib setup C:\haxelib
-haxelib git openfl https://github.com/MobilePorting/openfl 9.3.4 > /dev/null --quiet
+haxelib git openfl https://github.com/MobilePorting/openfl 9.2.2 > /dev/null --quiet
 haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
 haxelib git lime https://github.com/MobilePorting/lime.git > /dev/null --quiet
 haxelib git hxcpp https://github.com/MobilePorting/hxcpp > /dev/null
