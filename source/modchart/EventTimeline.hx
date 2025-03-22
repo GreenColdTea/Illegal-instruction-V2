@@ -32,6 +32,12 @@ class EventTimeline {
         
     }
 
+    public function removeModEvents(modName:String) {
+        if (modEvents.exists(modName)) {
+            modEvents.remove(modName);
+        }
+    }
+
     public function update(step:Float){
         for(modName in modEvents.keys()){
             var garbage:Array<ModEvent> = [];
