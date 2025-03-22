@@ -309,16 +309,6 @@ class Note extends FlxSprite
 		x += offsetX;
 		baseScaleX = scale.x;
 		baseScaleY = scale.y;
-
-		// determine parent note
-		if (isSustainNote && prevNote != null) {
-			parentNote = prevNote;
-			while (parentNote.parentNote != null)
-				parentNote = parentNote.parentNote;
-			parentNote.childrenNotes.push(this);
-		} else if (!isSustainNote)
-			parentNote = null;
-
 	}
 
 	var lastNoteOffsetXForPixelAutoAdjusting:Float = 0;
