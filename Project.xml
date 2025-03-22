@@ -118,7 +118,7 @@
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/> 
 	<!--<haxelib name="polymod"/>-->
 	<haxelib name="discord_rpc" if="desktop"/>
-	<haxelib name="extension-androidtools" if="android"/>
+	<!--<haxelib name="extension-androidtools" if="android"/>-->
 	<haxelib name="hxcpp-debug-server" if="desktop debug"/>
 	<haxelib name="openfl"/>
 
@@ -192,8 +192,7 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 	<section if="android">		
              <!--Gradle-->	
-             <!--<config:android gradle-version="8.13" gradle-plugin="8.9.0" />-->
-	     <config:android gradle-version="8.10.2" gradle-plugin="8.8.0" />
+             <config:android gradle-version="8.13" gradle-plugin="8.9.0" />
         </section>
 
 	<!-- Allow Access to Engine Files in mobile -->
