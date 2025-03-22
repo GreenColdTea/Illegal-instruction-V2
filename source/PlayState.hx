@@ -5477,8 +5477,8 @@ class PlayState extends MusicBeatState
 		switch (daRating)
 		{
 			case "shit": // shit
-				totalNotesHit += 0;
-				note.ratingMod = 0;
+				/*totalNotesHit += 0;
+				note.ratingMod = 0;*/
 				score = 50;
 				if(fucklesMode && SONG.song.toLowerCase() != "vista") {
 					drainMisses++;
