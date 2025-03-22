@@ -3392,7 +3392,7 @@ class PlayState extends MusicBeatState
 			}
 
                         modManager.setReceptors();
-			modManager.registerModifiers();
+			modManager.registerDefaultModifiers();
 			ModCharts.lesGo(this, modManager, SONG.song.toLowerCase());
 
 			/*if (isPixelHUD)
