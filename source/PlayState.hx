@@ -5900,7 +5900,8 @@ class PlayState extends MusicBeatState
 		{
 			default:
 				if (!fucklesMode)
-					health -= daNote.missHealth;
+					if (daNote.isSustainNote) health -= (daNote.missHealth * healthLoss) / 2.75;
+		                        else health -= daNote.missHealth * healthLoss;
 				else
 					drainMisses++;
 		}
