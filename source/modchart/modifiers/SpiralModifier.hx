@@ -2,9 +2,11 @@ package modchart.modifiers;
 
 import modchart.*;
 import math.*;
+import flixel.FlxSprite;
+import flixel.math.FlxMath;
 
 class SpiralModifier extends NoteModifier {
-	override function getPos(visualDiff:Float, timeDiff:Float, beat:Float, pos:Vector3, column:Int, player:Int, obj:FlxSprite, field:PlayField) {
+	override function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, pos:Vector3, data:Int, player:Int, obj:FlxSprite):Vector3 {
 		var spiralX = getValue(player);
 		var spiralY = getSubmodValue("spiralY", player);
 		var spiralZ = getSubmodValue("spiralZ", player);
@@ -12,19 +14,19 @@ class SpiralModifier extends NoteModifier {
 		if (spiralX != 0) {
 			var offset = getSubmodValue("spiralXOffset", player);
 			var period = getSubmodValue("spiralXPeriod", player);
-			pos.x += visualDiff * spiralX * FlxMath.fastCos((period + 1) * visualDiff + offset);
+			pos.x += diff * spiralX * FlxMath.fastCos((period + 1) * diff + offset);
 		}
 
 		if (spiralY != 0) {
 			var offset = getSubmodValue("spiralYOffset", player);
 			var period = getSubmodValue("spiralYPeriod", player);
-			pos.y += visualDiff * spiralY * FlxMath.fastSin((period + 1) * visualDiff + offset);
+			pos.y += diff * spiralY * FlxMath.fastSin((period + 1) * diff + offset);
 		}
 
 		if (spiralZ != 0) {
 			var offset = getSubmodValue("spiralZOffset", player);
 			var period = getSubmodValue("spiralZPeriod", player);
-			pos.z += visualDiff * spiralZ * FlxMath.fastSin((period + 1) * visualDiff + offset);
+			pos.z += diff * spiralZ * FlxMath.fastSin((period + 1) * diff + offset);
 		}
 
 		var schmovinSpiralX = getSubmodValue("schmovinSpiralX", player);
@@ -32,29 +34,26 @@ class SpiralModifier extends NoteModifier {
 		var schmovinSpiralZ = getSubmodValue("schmovinSpiralZ", player);
 		
 		// Best combined with reverse 0.5 and flip 0.5
-		if(schmovinSpiralX != 0){
+		if (schmovinSpiralX != 0) {
 			var dist = getSubmodValue("schmovinSpiralXSpacing", player) * 33.5;
-			var beat = ((getSubmodValue("schmovinSpiralXSpeed", player) * beat) + (getSubmodValue("schmovinSpiralXOffset", player))) * Math.PI / 4;
-			var radiusOffset = -visualDiff / 4; 
-			var radius = radiusOffset + dist * column % field.keyCount;
+			var phase = ((getSubmodValue("schmovinSpiralXSpeed", player) * beat) + getSubmodValue("schmovinSpiralXOffset", player)) * Math.PI / 4;
+			var radius = (-diff / 4) + (dist * (data % 4));
 
-			pos.x += FlxMath.fastCos(-visualDiff / Conductor.crochet * Math.PI + beat) * radius * schmovinSpiralX;
+			pos.x += FlxMath.fastCos(-diff / Conductor.crochet * Math.PI + phase) * radius * schmovinSpiralX;
 		}
 		if (schmovinSpiralY != 0) {
 			var dist = getSubmodValue("schmovinSpiralYSpacing", player) * 33.5;
-			var beat = ((getSubmodValue("schmovinSpiralYSpeed", player) * beat) + (getSubmodValue("schmovinSpiralYOffset", player))) * Math.PI / 4;
-			var radiusOffset = -visualDiff / 4;
-			var radius = radiusOffset + dist * column % field.keyCount;
+			var phase = ((getSubmodValue("schmovinSpiralYSpeed", player) * beat) + getSubmodValue("schmovinSpiralYOffset", player)) * Math.PI / 4;
+			var radius = (-diff / 4) + (dist * (data % 4));
 
-			pos.y += FlxMath.fastSin(-visualDiff / Conductor.crochet * Math.PI + beat) * radius * schmovinSpiralY;
+			pos.y += FlxMath.fastSin(-diff / Conductor.crochet * Math.PI + phase) * radius * schmovinSpiralY;
 		}
 		if (schmovinSpiralZ != 0) {
 			var dist = getSubmodValue("schmovinSpiralZSpacing", player) * 33.5;
-			var beat = ((getSubmodValue("schmovinSpiralZSpeed", player) * beat) + (getSubmodValue("schmovinSpiralZOffset", player))) * Math.PI / 4;
-			var radiusOffset = 	-visualDiff / 4;
-			var radius = radiusOffset + dist * column % field.keyCount;
+			var phase = ((getSubmodValue("schmovinSpiralZSpeed", player) * beat) + getSubmodValue("schmovinSpiralZOffset", player)) * Math.PI / 4;
+			var radius = (-diff / 4) + (dist * (data % 4));
 
-			pos.z += FlxMath.fastSin(-visualDiff / Conductor.crochet * Math.PI + beat) * radius * schmovinSpiralZ;
+			pos.z += FlxMath.fastSin(-diff / Conductor.crochet * Math.PI + phase) * radius * schmovinSpiralZ;
 		}
 
 		return pos;
