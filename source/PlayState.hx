@@ -3762,9 +3762,13 @@ class PlayState extends MusicBeatState
 						sustainNote.mustPress = gottaHitNote;
 						sustainNote.gfNote = swagNote.gfNote;
 						sustainNote.noteType = swagNote.noteType;
+						if(sustainNote==null || !sustainNote.alive) break;
+						sustainNote.ID = unspawnNotes.length;
 						sustainNote.scrollFactor.set();
-						unspawnNotes.push(sustainNote);
+						swagNote.tail.push(sustainNote);
+						sustainNote.parent = swagNote;
 
+						unspawnNotes.push(sustainNote);
 						if (sustainNote.mustPress)
 						{
 							sustainNote.x += FlxG.width / 2; // general offset
