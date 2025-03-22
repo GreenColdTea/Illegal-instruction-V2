@@ -2104,7 +2104,6 @@ class FunkinLua {
                         case "transformx": new TransformModifier(modManager);
 			case "rotatex": new RotateModifier(modManager);
                         case "perspective": new PerspectiveModifier(modManager);
-			case "scrollangle": new AngleModifier(modManager);
                         case "infinite": new PathModifier(modManager);
 			case "xmod": new XModifier(modManager);
                         default:
