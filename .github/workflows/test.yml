@@ -23,7 +23,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib git lime https://github.com/MobilePorting/lime.git 8b8ca1c50e9b6dda0c2ab0cfeef607769575d4c1 --quiet
+          haxelib git lime https://github.com/MobilePorting/lime.git bf689a3 --quiet
           haxelib git openfl https://github.com/MobilePorting/openfl 9.2.2 > /dev/null --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
           haxelib git lime https://github.com/MobilePorting/lime.git > /dev/null --quiet
