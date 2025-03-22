@@ -2112,7 +2112,7 @@ class FunkinLua {
                     };
 
                     if (mod != null) {
-                        modManager.defineMod(name, mod);
+                        modManager.registerMod(name, mod);
                         return true;
                     }
                     return false;
