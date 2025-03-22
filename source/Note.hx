@@ -120,6 +120,14 @@ class Note extends FlxSprite
 
 	public var hitsoundDisabled:Bool = false;
 
+	@:isVar
+	public var daWidth(get, null):Float;
+
+	public function get_daWidth()
+	{
+		return playField == null ? Note.swagWidth : playField.swagWidth;
+	}
+
 	public var hitbox:Float = Conductor.safeZoneOffset;
 
 	public var playField(default, set):PlayField; 
