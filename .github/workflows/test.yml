@@ -20,11 +20,6 @@ jobs:
         with:
           haxe-version: 4.3.6
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install g++-multilib libc++-dev libc++abi-dev
-
       - name: Restore Previous Cache
         id: cache-debug-build-android-restore
         uses: actions/cache/restore@main
@@ -39,7 +34,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib git lime https://github.com/Prohack101010/lime-EX.git --quiet
+          haxelib git lime https://github.com/Yugisgiy/lime.git --quiet
           haxelib git openfl https://github.com/MobilePorting/openfl 9.2.2 > /dev/null --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
           haxelib run lime setup flixel --quiet
@@ -50,7 +45,7 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript --quiet
-          haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git --quiet
+          haxelib git hxcpp https://github.com/MobilePorting/hxcpp.git --quiet
           haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
