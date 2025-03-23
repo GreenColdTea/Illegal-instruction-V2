@@ -86,6 +86,30 @@ class ModManager {
     inline public function quickRegister(mod:Modifier)
         registerMod(mod.getName(), mod);
 
+    public function registerMod(modName:String, mod:Modifier, ?registerSubmods = true){
+        register.set(modName, mod);
+		switch (mod.getModType()){
+			case NOTE_MOD:
+				notemodRegister.set(modName, mod);
+			case MISC_MOD:
+				miscmodRegister.set(modName, mod);
+		}
+		timeline.addMod(modName);
+		modArray.push(mod);
+
+		if (registerSubmods){
+			for (name in mod.submods.keys())
+			{
+				var submod = mod.submods.get(name);
+				quickRegister(submod);
+			}
+        }
+
+		setValue(modName, 0); // so if it should execute it gets added Automagically
+		modArray.sort((a, b) -> Std.int(a.getOrder() - b.getOrder()));
+               // TODO: sort by mod.getOrder()
+    }
+
     inline public function exists(modName:String):Bool {
         return definedMods.exists(modName);
     }
