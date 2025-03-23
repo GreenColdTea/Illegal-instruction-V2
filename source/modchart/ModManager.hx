@@ -29,7 +29,6 @@ class ModManager {
     private var modArray:Array<Modifier> = [];
 
     public var receptors:Array<Array<StrumNote>> = [[], []];
-    public var infPath:Array<Array<Vector3>> = [[], [], [], []];
 
     public function new(state:PlayState) {
         this.state = state;
