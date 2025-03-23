@@ -75,10 +75,6 @@ class ModManager {
         }
     }
 
-    inline public function defineBlankMod(modName:String) {
-        defineMod(modName, new Modifier(this), false);
-    }
-
     inline public function removeMod(modName:String) {
         definedMods.remove(modName);
     }
