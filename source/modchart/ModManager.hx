@@ -50,7 +50,7 @@ class ModManager {
 			TransformModifier, 
 			InfinitePathModifier, 
 			PerspectiveModifier,
-			TornadoModifier,
+			//TornadoModifier,
 			AccelModifier, 
 			XModifier
 		];
