@@ -4,7 +4,7 @@
 package modchart;
 
 import modchart.modifiers.*;
-import modchart.BaseEvent.*;
+import modchart.events.*;
 import flixel.tweens.FlxEase;
 import flixel.math.FlxPoint;
 import flixel.FlxG;
