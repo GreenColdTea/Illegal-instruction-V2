@@ -50,7 +50,7 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript --quiet
-          echo y | haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git v4.3.76
+          haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git --quiet
           haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
