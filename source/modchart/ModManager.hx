@@ -46,7 +46,7 @@ class ModManager {
     }
 
     public function registerDefaultModifiers() {
-        var quickRegs:Array<Modifier> = [
+        var quickRegs:Array<Any> = [
             new FlipModifier(this),
             new ReverseModifier(this),
             new InvertModifier(this),
