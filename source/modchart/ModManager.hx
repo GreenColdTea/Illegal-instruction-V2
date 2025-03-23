@@ -12,6 +12,15 @@ import flixel.FlxSprite;
 import math.Vector3;
 
 class ModManager {
+    public var notemodRegister:Map<String, Modifier> = [];
+    public var miscmodRegister:Map<String, Modifier> = [];
+
+    @:deprecated("Unused in place of notemodRegister and miscModRegister")
+    public var registerByType:Map<ModifierType, Map<String, Modifier>> = [
+        NOTE_MOD => [],
+        MISC_MOD => []
+    ];
+	
     private var state:PlayState;
     private var timeline:EventTimeline = new EventTimeline();
 
