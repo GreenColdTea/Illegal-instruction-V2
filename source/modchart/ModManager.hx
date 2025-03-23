@@ -105,6 +105,10 @@ class ModManager {
         return definedMods.exists(modName);
     }
 
+    inline public function getVisPos(songPos:Float=0, strumTime:Float=0, songSpeed:Float=1){
+		return -(0.45 * (songPos - strumTime) * songSpeed);
+    }
+
     public function setValue(modName:String, val:Float, player:Int = -1) {
         if (player == -1) {
             for (pN in 0...2)
