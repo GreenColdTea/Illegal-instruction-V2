@@ -26,11 +26,11 @@ class ConfusionModifier extends NoteModifier {
     override function getSubmods(){
         var subMods:Array<String> = ["noteAngle","receptorAngle"];
 
-        for(i in 0...PlayState.SONG.keys){
+        for(i in 0...4){
             subMods.push('note${i}Angle');
             subMods.push('receptor${i}Angle');
             subMods.push('confusion${i}');
-        }
+	}
 
         return subMods;
     }
