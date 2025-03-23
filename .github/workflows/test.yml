@@ -50,8 +50,7 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript --quiet
-          haxelib install hxcpp --quiet
-          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git --quiet
+          haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git v4.3.76 --quiet
           haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
