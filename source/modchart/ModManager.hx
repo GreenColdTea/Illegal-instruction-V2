@@ -47,22 +47,22 @@ class ModManager {
 
     public function registerDefaultModifiers() {
         var quickRegs:Array<Any> = [
-            new FlipModifier(this),
-            new ReverseModifier(this),
-            new InvertModifier(this),
-            new DrunkModifier(this),
-            new BeatModifier(this),
-            new AlphaModifier(this),
-            new ReceptorScrollModifier(this),
-            new ScaleModifier(this),
-            new ConfusionModifier(this),
-            new OpponentModifier(this),
-            new TransformModifier(this),
-            new InfinitePathModifier(this),
-            new PerspectiveModifier(this),
-            new AccelModifier(this),
-            new XModifier(this)
-        ];
+		FlipModifier,
+		ReverseModifier,
+		InvertModifier,
+		DrunkModifier,
+		BeatModifier,
+		AlphaModifier,
+		ReceptorScrollModifier, 
+		ScaleModifier, 
+		ConfusionModifier, 
+		OpponentModifier, 
+		TransformModifier, 
+		InfinitePathModifier, 
+		PerspectiveModifier, 
+		AccelModifier, 
+		XModifier
+	];
 
         for (mod in quickRegs)
 		quickRegister(Type.createInstance(mod, [this]));
