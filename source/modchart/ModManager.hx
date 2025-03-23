@@ -54,31 +54,17 @@ class ModManager {
         ];
 
         for (mod in quickRegs)
-            defineMod(mod.getName(), mod);
+		quickRegister(Type.createInstance(mod, [this]));
 
-        defineMod("rotateX", new RotateModifier(this));
-        defineMod("centerrotateX", new RotateModifier(this, 'center', new Vector3(FlxG.width * 0.5 - Note.swagWidth / 2, FlxG.height * 0.5 - Note.swagWidth / 2)));
-        defineMod("localrotateX", new LocalRotateModifier(this));
-
-        defineBlankMod("waveTimeFactor");
-        set("waveTimeFactor", 100, 0);
-        set("waveTimeFactor", 100, 1);
-        set("noteSpawnTime", 2000);
-        set("xmod", 1);
-        for(i in 0...4) set("xmod$i", 1);
-
-        var r = 0;
-        while (r < 360) {
-            var rad = r * Math.PI / 180;
-            for (data in 0...infPath.length) {
-                infPath[data].push(new Vector3(
-                    FlxG.width / 2 + Math.sin(rad) * 600,
-                    FlxG.height / 2 + (Math.sin(rad) * Math.cos(rad)) * 600, 0
-                ));
-            }
-            r += 15;
-        }
-        defineMod("infinite", new PathModifier(this, infPath, 1850));
+	quickRegister(new RotateModifier(this));
+	quickRegister(new RotateModifier(this, 'center', new Vector3((FlxG.width* 0.5) - (Note.swagWidth/2), (FlxG.height* 0.5) - Note.swagWidth/2)));
+	quickRegister(new LocalRotateModifier(this, 'local'));
+	quickRegister(new SubModifier("noteSpawnTime", this));
+	setValue("noteSpawnTime", 2000);
+	setValue("xmod", 1);
+	for(i in 0...4)
+		setValue('xmod$i', 1);
+	    
     }
 
     public function defineMod(modName:String, modifier:Modifier) {
@@ -106,7 +92,7 @@ class ModManager {
     }
 
     inline public function getVisPos(songPos:Float=0, strumTime:Float=0, songSpeed:Float=1){
-		return -(0.45 * (songPos - strumTime) * songSpeed);
+	return -(0.45 * (songPos - strumTime) * songSpeed);
     }
 
     public function setValue(modName:String, val:Float, player:Int = -1) {
