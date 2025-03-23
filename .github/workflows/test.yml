@@ -20,6 +20,11 @@ jobs:
         with:
           haxe-version: 4.3.6
 
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install g++-multilib libc++-dev libc++abi-dev
+
       - name: Restore Previous Cache
         id: cache-debug-build-android-restore
         uses: actions/cache/restore@main
