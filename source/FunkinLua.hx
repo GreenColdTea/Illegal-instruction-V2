@@ -2087,7 +2087,7 @@ class FunkinLua {
 
                     var mod:Modifier = switch (type.toLowerCase().trim()) {
 			case "stealth": new AlphaModifier(modManager);
-			case "tornado": new TornadoModifier(modManager);
+			//case "tornado": new TornadoModifier(modManager);
                         case "reverse": new ReverseModifier(modManager);
                         case "flip": new FlipModifier(modManager);
                         case "drunk": new DrunkModifier(modManager);
