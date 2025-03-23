@@ -87,6 +87,9 @@ class ModManager {
         return definedMods[modName];
     }
 
+    inline public function quickRegister(mod:Modifier)
+        registerMod(mod.getName(), mod);
+
     inline public function exists(modName:String):Bool {
         return definedMods.exists(modName);
     }
