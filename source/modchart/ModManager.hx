@@ -6,6 +6,8 @@ package modchart;
 import modchart.modifiers.*;
 import modchart.events.*;
 import flixel.tweens.FlxEase;
+import modchart.Modifier.ModifierType;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import flixel.FlxG;
 import flixel.FlxSprite;
