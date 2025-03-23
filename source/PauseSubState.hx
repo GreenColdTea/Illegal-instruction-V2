@@ -78,8 +78,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		menuItems = menuItemsOG;
 
-	        startY = (FlxG.height - (menuItems.length * spacing)) * 0.5 + 100;
-	
+	        startY = (FlxG.height - (menuItems.length * spacing)) * 0.5 + 40 * menuItems.length;
 
 	        curRender = PlayState.instance.dad.curCharacter;
 
