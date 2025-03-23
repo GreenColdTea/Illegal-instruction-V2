@@ -30,6 +30,7 @@ class ModManager {
     private var activeMods:Array<Array<String>> = [[], []]; 
     private var modArray:Array<Modifier> = [];
 
+    public var register:Map<String, Modifier> = [];
     public var receptors:Array<Array<StrumNote>> = [[], []];
 
     public function new(state:PlayState) {
