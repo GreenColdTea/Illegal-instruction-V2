@@ -2,10 +2,6 @@ package modchart.modifiers;
 
 import flixel.FlxSprite;
 import math.Vector3;
-import meta.data.*;
-import meta.states.*;
-import meta.states.substate.*;
-import gameObjects.*;
 
 class FlipModifier extends NoteModifier {
 	override function getName()return 'flip';
