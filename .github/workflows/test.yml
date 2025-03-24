@@ -45,7 +45,7 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript --quiet
-          haxelib git hxcpp https://github.com/MobilePorting/hxcpp.git --quiet
+          haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
           haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
