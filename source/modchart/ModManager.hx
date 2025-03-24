@@ -25,13 +25,13 @@ class ModManager {
         this.state = state;
     }
 
-    public function setReceptors() {
+    /*public function setReceptors() {
         for (data in 0...state.playerStrums.length) 
             receptors[0][state.playerStrums.members[data].noteData] = state.playerStrums.members[data];
 
         for (data in 0...state.opponentStrums.length) 
             receptors[1][state.opponentStrums.members[data].noteData] = state.opponentStrums.members[data];
-    }
+    }*/
 
     public function registerDefaultModifiers() {
         var quickRegs:Array<Any> = [
