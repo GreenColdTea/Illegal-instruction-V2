@@ -3389,7 +3389,7 @@ class PlayState extends MusicBeatState
 				//if(!ClientPrefs.opponentStrums) opponentStrums.members[i].visible = false;
 			}
 
-                        modManager.setReceptors();
+                        //modManager.setReceptors();
 			modManager.receptors = [playerStrums.members, opponentStrums.members];
 			modManager.registerDefaultModifiers();
 			ModCharts.lesGo(this, modManager, SONG.song.toLowerCase());
