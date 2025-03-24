@@ -63,7 +63,7 @@ jobs:
           haxelib set flixel-addons 3.2.3
 
       - name: Compile Android
-        run: haxelib run lime build android -final -D ONLY_ARM64 -D LTO -D NO_CONSOLE -D HXCPP_GC_GENERATIONAL
+        run: haxelib run lime build android -final -ONLY_ARM64 -D LTO -D NO_CONSOLE -D HXCPP_GC_GENERATIONAL
 
       - name: Clear Previous Cache
         uses: actions/github-script@main
