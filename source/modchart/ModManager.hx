@@ -32,14 +32,6 @@ class ModManager {
     public var modArray:Array<Modifier> = [];
 
     public var activeMods:Array<Array<String>> = [[], []]; // by player
-
-    public function setReceptors() {
-        for (data in 0...state.playerStrums.length) 
-            receptors[0][state.playerStrums.members[data].noteData] = state.playerStrums.members[data];
-
-        for (data in 0...state.opponentStrums.length) 
-            receptors[1][state.opponentStrums.members[data].noteData] = state.opponentStrums.members[data];
-    }
     
 	public function registerDefaultModifiers()
 	{
