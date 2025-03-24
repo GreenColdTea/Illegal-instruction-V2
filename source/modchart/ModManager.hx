@@ -15,11 +15,11 @@ class ModManager {
     private var state:PlayState;
     private var timeline:EventTimeline = new EventTimeline();
 
-    private var register:Map<String, Modifier> = [];
     private var activeMods:Array<Array<String>> = [[], []]; 
     private var modArray:Array<Modifier> = [];
 
     public var receptors:Array<Array<StrumNote>> = [[], []];
+    public var register:Map<String, Modifier> = [];
 
     public function new(state:PlayState) {
         this.state = state;
