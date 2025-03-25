@@ -194,4 +194,8 @@ class CoolUtil
 		FlxG.openURL(site);
 		#end
 	}
+
+	public static function betterLerp(value:Float,desiredValue:Float,ratio:Float) {
+		return FlxMath.lerp(value,desiredValue,FlxMath.bound(ratio * 60 * FlxG.elapsed, 0, 1));
+	}
 }
