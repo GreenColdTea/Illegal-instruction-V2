@@ -48,7 +48,7 @@ class ReverseModifier extends NoteModifier {
     override function updateNote(beat:Float, daNote:Note, pos:Vector3, player:Int) {
         var revPerc = getReverseValue(daNote.noteData, player);
         var strumLine = modMgr.receptors[player][daNote.noteData];
-        var center:Float = strumLine.y + Note.swagWidth * 0.5;
+        var center:Float = strumLine.y + Note.swagWidth / 2;
 
         if (daNote.isSustainNote) {
             var y = pos.y + daNote.offsetY;
@@ -67,10 +67,10 @@ class ReverseModifier extends NoteModifier {
                     if (y + daNote.offset.y * daNote.scale.y <= center) {
                         swagRect.y = (center - y) / daNote.scale.y;
                         swagRect.height -= swagRect.y;
+
+                        daNote.clipRect = swagRect;
                     }
                 }
-
-                daNote.clipRect = swagRect;
             }
         }
     }
@@ -98,13 +98,13 @@ class ReverseModifier extends NoteModifier {
         var songSpeed:Float = PlayState.instance.songSpeed * note.multSpeed;
 
         if (note.animation.curAnim.name.endsWith("end")) {
-            y += 10.5 * (fakeCrochet * 0.0025) * 1.5 * songSpeed + (46 * (songSpeed - 1));
+            y += 10.5 * (fakeCrochet / 400) * 1.5 * songSpeed + (46 * (songSpeed - 1));
             y -= 46 * (1 - (fakeCrochet / 600)) * songSpeed;
             y -= 19;
         }
 
-        y += (Note.swagWidth * 0.5) - (60.5 * (songSpeed - 1));
-        y += 27.5 * ((PlayState.SONG.bpm * 0.01) - 1) * (songSpeed - 1);
+        y += (Note.swagWidth / 2) - (60.5 * (songSpeed - 1));
+        y += 27.5 * ((PlayState.SONG.bpm / 100) - 1) * (songSpeed - 1);
         return y;
     }
 
