@@ -449,10 +449,10 @@ class Note extends FlxSprite
 	{
 		super.update(elapsed);
 
-		if(!inEditor){
+		/*if(!inEditor){
 			if (tooLate || (parent != null && parent.tooLate))
 				alpha *= 0.3;
-		}
+		}*/
 		
 		var actualHitbox:Float = hitbox * earlyHitMult;
 		/*if(mustPress){
