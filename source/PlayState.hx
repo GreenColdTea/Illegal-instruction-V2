@@ -63,6 +63,11 @@ import shaders.GlitchShader.GlitchShaderB;
 import shaders.*;
 import modchart.*;
 
+import Achievements;
+import StageData;
+import FunkinLua;
+import DialogueBoxPsych;
+
 import WiggleEffect.WiggleEffectType;
 
 #if mobile
