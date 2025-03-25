@@ -209,6 +209,13 @@ class Note extends FlxSprite
 
 		instance = this;
 
+		if(!ClientPrefs.opponentStrums) 
+			alpha = 0;
+			multAlpha = 0;
+		else if(ClientPrefs.middleScroll)
+			alpha = 0.2;
+			multAlpha = 0.2;
+
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 		this.inEditor = inEditor;
@@ -250,6 +257,13 @@ class Note extends FlxSprite
 		{
 			alpha = 0.6;
 			multAlpha = 0.6;
+
+			if(!ClientPrefs.opponentStrums) 
+				alpha = 0;
+			        multAlpha = 0;
+			else if(ClientPrefs.middleScroll)
+				alpha = 0.15;
+			        multAlpha = 0.15;
 			
 			hitsoundDisabled = true;
 			if(ClientPrefs.downScroll) flipY = true;
