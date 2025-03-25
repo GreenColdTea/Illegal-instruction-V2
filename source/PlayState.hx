@@ -2836,6 +2836,7 @@ class PlayState extends MusicBeatState
                         new FlxTimer().start(0.3, function(tmr:FlxTimer)
                         {
                             startCountdown();
+			    strumsPositions();
                         });
 		    }
 		    else if (SONG.song.toLowerCase() == "found-you-legacy") {
@@ -2846,6 +2847,7 @@ class PlayState extends MusicBeatState
 			    });
 			    camHUD.visible = false;
 			    startCountdown();
+			    strumsPositions();
 		    }
 		    else
 		    {
@@ -2876,6 +2878,7 @@ class PlayState extends MusicBeatState
                     new FlxTimer().start(4.7725, function(tmr:FlxTimer)
                     {
                         startCountdown();
+	                strumsPositions();
                     });  
 		}
 	
@@ -2913,7 +2916,18 @@ class PlayState extends MusicBeatState
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
 		callOnLuas('onCreatePost', []);
 
-	         if (!ClientPrefs.opponentStrums) {
+		super.create();
+
+	        Paths.clearUnusedMemory();
+		CustomFadeTransition.nextCamera = camOther;
+	        #if mobile
+		addMobileControls(false, true);  
+                mobileControls.visible = false;
+		#end
+	}
+
+        private function strumsPositions():Void {
+		if (!ClientPrefs.opponentStrums) {
 			opponentStrums.baseAlpha = 0;
 			modManager.setValue('alpha',1,1);
 
@@ -2923,15 +2937,6 @@ class PlayState extends MusicBeatState
 			modManager.setValue('alpha',0.65,1);
 			modManager.setValue('opponentSwap',0.5);
 		}
-
-		super.create();
-
-	        Paths.clearUnusedMemory();
-		CustomFadeTransition.nextCamera = camOther;
-	        #if mobile
-		addMobileControls(false, true);  
-                mobileControls.visible = false;
-		#end
 	}
 
 
