@@ -27,7 +27,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 {
 	private var curOption:GameplayOption = null;
 	private var curSelected:Int = 0;
-	private var optionsArray:Array<Dynamic> = [];
+	private var optionsArray:Array<GameplayOption> = [];
 
 	private var grpOptions:FlxTypedGroup<FlxText>;
 	private var checkboxGroup:FlxTypedGroup<CheckboxThingie>;
@@ -113,7 +113,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		for (i in 0...optionsArray.length)
 		{
 			var optionText:FlxText = new FlxText(300, 70 * i, 0, optionsArray[i].name, 20);
-			optionText.setFormat(null, 20, FlxColor.WHITE, CENTER);
+			optionText.setFormat(Paths.font("chaotix.ttf"), 20, FlxColor.WHITE, CENTER);
 			grpOptions.add(optionText);
 
 			if (optionsArray[i].type == 'bool') {
