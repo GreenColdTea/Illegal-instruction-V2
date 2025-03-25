@@ -4529,6 +4529,7 @@ class PlayState extends MusicBeatState
 		}
 		doDeathCheck();
 
+		var roundedSpeed:Float = FlxMath.roundDecimal(SONG.speed, 2);
 		if (unspawnNotes[0] != null)
 		{
 			var time:Float = spawnTime;//shit be werid on 4:3
@@ -4539,8 +4540,8 @@ class PlayState extends MusicBeatState
 				var dunceNote:Note = unspawnNotes[0];
 				var doSpawn:Bool= true;
 				
-				if(doSpawn){
-					if(dunceNote.desiredPlayfield!=null)
+				if(doSpawn) {
+					if(dunceNote.desiredPlayfield != null)
 						dunceNote.desiredPlayfield.addNote(dunceNote);
 					else if (dunceNote.parent != null && dunceNote.parent.playField!=null)
 						dunceNote.parent.playField.addNote(dunceNote);
@@ -4552,12 +4553,12 @@ class PlayState extends MusicBeatState
 							}
 						}
 					}
-					if(dunceNote.playField==null){
+					if(dunceNote.playField == null) {
 						var deadNotes:Array<Note> = [dunceNote];
 						for(note in dunceNote.tail)
 							deadNotes.push(note);
 						
-						for(note in deadNotes){
+						for(note in deadNotes) {
 							note.active = false;
 							note.visible = false;
 							note.ignoreNote = true;
@@ -4572,12 +4573,12 @@ class PlayState extends MusicBeatState
 					dunceNote.spawned=true;
 					var index:Int = unspawnNotes.indexOf(dunceNote);
 					unspawnNotes.splice(index, 1);
-				}else{
+				} else {
 					var deadNotes:Array<Note> = [dunceNote];
 					for(note in dunceNote.tail)
 						deadNotes.push(note);
 					
-					for(note in deadNotes){
+					for(note in deadNotes) {
 						note.active = false;
 						note.visible = false;
 						note.ignoreNote = true;
