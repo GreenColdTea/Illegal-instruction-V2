@@ -19,6 +19,9 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.addons.transition.FlxTransitionableState;
 import shaders.flixel.FlxShader;
 
+// Other
+import CoolUtil.betterLerp as lerp;
+
 // Android
 #if android
 import android.content.Context as AndroidContext;
