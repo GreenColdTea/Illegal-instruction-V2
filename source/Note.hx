@@ -209,12 +209,13 @@ class Note extends FlxSprite
 
 		instance = this;
 
-		if(!ClientPrefs.opponentStrums) 
+		if(!ClientPrefs.opponentStrums) {
 			alpha = 0;
 			multAlpha = 0;
-		else if(ClientPrefs.middleScroll)
+		} else if(ClientPrefs.middleScroll) {
 			alpha = 0.2;
 			multAlpha = 0.2;
+		}
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
