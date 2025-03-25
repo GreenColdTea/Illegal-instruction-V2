@@ -62,6 +62,8 @@ class ReverseModifier extends NoteModifier {
                     if (y - daNote.offset.y * daNote.scale.y + daNote.height >= center) {
                         swagRect.height = (center - y) / daNote.scale.y;
                         swagRect.y = daNote.frameHeight - swagRect.height;
+
+                        daNote.clipRect = swagRect;
                     }
                 } else {
                     if (y + daNote.offset.y * daNote.scale.y <= center) {
