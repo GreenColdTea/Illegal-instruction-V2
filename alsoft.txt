@@ -1,11 +1,11 @@
 [general]
 sample-type=float32
-stereo-mode=speakers
-stereo-encoding=panpot
+stereo-mode=headphones
+stereo-encoding=stereo
 hrtf=false
-cf_level=0
+cf_level=1
 resampler=fast_bsinc24
-front-stablizer=false
+front-stablizer=true
 output-limiter=false
 volume-adjust=0
 [decoder]
