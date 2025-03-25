@@ -329,6 +329,14 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		holdTime = 0;
 	}
 
+        public function getOptionByName(name:String):GameplayOption {
+               for (opt in optionsArray) {
+                         if (opt.name == name)
+                                   return opt;
+               }
+               return null;
+	}
+
 	function changeSelection(change:Int = 0)
 	{
 		curSelected += change;
