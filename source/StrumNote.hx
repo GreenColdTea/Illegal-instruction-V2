@@ -202,5 +202,12 @@ class StrumNote extends FlxSprite
 	{
 		defScale.put();
 		super.destroy();
-	}	
+	}
+
+	override function set_clipRect(rect:FlxRect)
+	{
+		clipRect = rect;
+		if (frames != null) frame = frames.frames[animation.frameIndex];
+		return rect;
+	}
 }
