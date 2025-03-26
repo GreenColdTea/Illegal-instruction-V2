@@ -46,6 +46,7 @@ class Note extends FlxSprite
 	public var desiredZIndex:Float = 0;
 	public var z:Float = 0;
 	public var alphaMod:Float = 1;
+	public var alphaMod2:Float = 1; // TODO: unhardcode this shit lmao
 	public var garbage:Bool = false; // if this is true, the note will be removed in the next update cycle
 
 	public var typeOffsetX:Float = 0; // used to offset notes, mainly for note types. use in place of offset.x and offset.y when offsetting notetypes
@@ -470,6 +471,8 @@ class Note extends FlxSprite
 			if (tooLate || (parent != null && parent.tooLate))
 				alpha *= 0.3;
 		}*/
+
+		colorSwap.daAlpha = alphaMod * alphaMod2;
 		
 		var actualHitbox:Float = hitbox * earlyHitMult;
 		/*if(mustPress){
