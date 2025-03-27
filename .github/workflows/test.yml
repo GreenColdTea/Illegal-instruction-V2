@@ -20,23 +20,12 @@ jobs:
         with:
           haxe-version: 4.3.6
 
-      - name: Restore Previous Cache
-        id: cache-debug-build-android-restore
-        uses: actions/cache/restore@main
-        with:
-          path: |
-            ~/haxelib
-            ~/.gradle
-            export/release/android/haxe
-            export/release/android/obj
-          key: cache-android-build
-
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
           haxelib git lime https://github.com/Yugisgiy/lime.git --quiet
           haxelib git flixel https://github.com/MobilePorting/flixel 5.6.1 --never --quiet
-          haxelib install openfl 9.3.3 --quiet
+          haxelib install openfl 9.2.2 --quiet
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
@@ -53,6 +42,7 @@ jobs:
 
       - name: Setup Lime
         run: |
+          haxelib set openfl 9.3.3
           haxelib run lime setup -alias -y
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
