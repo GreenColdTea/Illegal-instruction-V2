@@ -2886,7 +2886,7 @@ class PlayState extends MusicBeatState
 		RecalculateRating();
 	
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
-		if(ClientPrefs.hitsoundVolume > 0) CoolUtil.precacheSound('hitsound');
+		if (ClientPrefs.hitsoundVolume > 0) CoolUtil.precacheSound('hitsound');
 		CoolUtil.precacheSound('missnote1');
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
@@ -2937,6 +2937,11 @@ class PlayState extends MusicBeatState
 			opponentStrums.baseAlpha = 0.35;
 			modManager.setValue('alpha',0.65,1);
 			modManager.setValue('opponentSwap',0.5);
+		}
+		else if (ClientPrefs.middleScroll && !ClientPrefs.opponentStrums) {
+			opponentStrums.baseAlpha = 0;
+			modManager.setValue('alpha', 1, 1);
+			modManager.setValue('opponentSwap', 0.5);
 		}
 	}
 
@@ -3392,6 +3397,9 @@ class PlayState extends MusicBeatState
 			}
 			else if (ClientPrefs.middleScroll) {
 				opponentStrums.baseAlpha = 0.35;
+			}
+			else if (ClientPrefs.middleScroll && !ClientPrefs.opponentStrums) {
+				opponentStrums.baseAlpha = 0;
 			}
 
 			opponentStrums.offsetReceptors = ClientPrefs.middleScroll;
@@ -4295,7 +4303,7 @@ class PlayState extends MusicBeatState
 			var offX:Float = 0;
 			var offY:Float = 0;
 			var focus:Character = boyfriend;
-			if(SONG.notes[curSection]!=null){
+			if(SONG.notes[curSection] != null){
 				if (gf != null && SONG.notes[curSection].gfSection)
 				{
 					focus = gf;
@@ -4304,7 +4312,7 @@ class PlayState extends MusicBeatState
 					focus = dad;
 				}
 			}
-			if(focus.animation.curAnim!=null){
+			if(focus.animation.curAnim != null){
 				var name = focus.animation.curAnim.name;
 				if(name.startsWith("singLEFT"))
 					offX = -10;
