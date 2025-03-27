@@ -223,14 +223,8 @@ class PauseSubState extends MusicBeatSubstate
 
 		elapsedTime += elapsed;
 
-		//Outdated
-		/*if (PlayState.SONG.song.toLowerCase() == 'breakout' && PlayState.lastStepHit == 800) {
-			curRender = "dukep2";
-		        pauseArt.x = 75;
-			pauseArt.y = -450;
-		}*/
-
 		super.update(elapsed);
+		
 		updateSkipTextStuff();
 
 		var upP = controls.UI_UP_P;
@@ -365,8 +359,8 @@ class PauseSubState extends MusicBeatSubstate
 					MusicBeatState.switchState(new OptionsState());
 					if (ClientPrefs.pauseMusic != "None")
 					{
-						FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), pauseMusic.volume);
-						FlxTween.tween(pauseMusic, {volume: 1}, 0.8);
+						//FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), pauseMusic.volume);
+						FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.8);
 						FlxG.sound.music.time = pauseMusic.time;
 					}
 					OptionsState.onPlayState = true;
@@ -411,7 +405,21 @@ class PauseSubState extends MusicBeatSubstate
 	override function destroy()
 	{
 		pauseMusic.destroy();
-
+                for (text in menuItemsText)
+                {
+                     if (text != null)
+                     {
+                        text.destroy();
+                     }
+                }
+                menuItemsText = [];
+		
+		if (grpMenuShit != null)
+                {
+                    grpMenuShit.destroy();
+                    grpMenuShit = null;
+                }
+		
 		super.destroy();
 	}
 
