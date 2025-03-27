@@ -223,7 +223,7 @@ class NotesSubState extends MusicBeatSubstate
 			if (curSelected == i) {
 				item.alpha = 1;
 				item.scale.set(1, 1);
-				hsbText.y = item.y - 70;
+				hsbText.y = item.y - 20;
 				blackBG.y = item.y - 20;
 			}
 		}
