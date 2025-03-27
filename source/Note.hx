@@ -208,14 +208,6 @@ class Note extends FlxSprite
 		if (prevNote == null)
 			prevNote = this;
 
-		if(!ClientPrefs.opponentStrums) {
-			alpha = 0;
-			multAlpha = 0;
-		} else if(ClientPrefs.middleScroll) {
-			alpha = 0.2;
-			multAlpha = 0.2;
-		}
-
 		instance = this;
 
 		this.prevNote = prevNote;
@@ -259,17 +251,9 @@ class Note extends FlxSprite
 		{
 			alpha = 0.6;
 			multAlpha = 0.6;
-
-			if(!ClientPrefs.opponentStrums) {
-				alpha = 0;
-			        multAlpha = 0;
-			} else if(ClientPrefs.middleScroll) {
-				alpha = 0.15;
-			        multAlpha = 0.15;
-			}
 			
 			hitsoundDisabled = true;
-			if(ClientPrefs.downScroll) flipY = true;
+			//if(ClientPrefs.downScroll) flipY = true;
 
 			offsetX += width / 2;
 	
