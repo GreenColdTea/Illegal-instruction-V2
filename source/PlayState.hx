@@ -2803,10 +2803,13 @@ class PlayState extends MusicBeatState
 		{
 			case 'cascade':
 				startCircle.scale.set(2, 1.75);
-			case "my-horizon", _ if SONG.song.toLowerCase().endsWith("-legacy"):
+			case "my-horizon":
                                 startCircle.scale.set(1, 1);
 			default:
                                 startCircle.scale.set(2, 1.5);
+				if (SONG.song.toLowerCase().endsWith("-legacy")) {
+					startCircle.scale.set(1, 1);
+			        }
 		}
 		    
                 startCircle.alpha = 0;
