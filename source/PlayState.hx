@@ -2938,7 +2938,8 @@ class PlayState extends MusicBeatState
 			modManager.setValue('alpha',0.65,1);
 			modManager.setValue('opponentSwap',0.5);
 		}
-		else if (ClientPrefs.middleScroll && !ClientPrefs.opponentStrums) {
+		
+		if (ClientPrefs.middleScroll && !ClientPrefs.opponentStrums) {
 			opponentStrums.baseAlpha = 0;
 			modManager.setValue('alpha', 1, 1);
 			modManager.setValue('opponentSwap', 0.5);
@@ -3398,7 +3399,8 @@ class PlayState extends MusicBeatState
 			else if (ClientPrefs.middleScroll) {
 				opponentStrums.baseAlpha = 0.35;
 			}
-			else if (ClientPrefs.middleScroll && !ClientPrefs.opponentStrums) {
+			
+			if (ClientPrefs.middleScroll && !ClientPrefs.opponentStrums) {
 				opponentStrums.baseAlpha = 0;
 			}
 
