@@ -2717,9 +2717,11 @@ class PlayState extends MusicBeatState
 			}
 			chaotixHUD.cameras = [camHUD];
 
-			if (SONG.song.toLowerCase() == 'soulless-endeavors' || SONG.song.toLowerCase() == 'soulless-endeavors-legacy')
-				chaotixHUD.visible = false;		
-		}
+		        switch (SONG.song.toLowerCase())
+			{
+				case 'soulless-endeavors' | 'soulless-endeavors-legacy':
+			                chaotixHUD.visible = false;		
+		        }
 
 		if (chaotixHUD != null && chaotixHUD.visible) {
 			healthBar.x += 150;
@@ -2796,92 +2798,22 @@ class PlayState extends MusicBeatState
                 startCircle.loadGraphic(Paths.image('openings/' + daSong + '_title_card', 'exe'));
                 startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
                 startCircle.animation.addByPrefix('idle', daSong + '_title', 24, false);
-                startCircle.scale.set(2, 1.5);
-			
-		if (SONG.song.toLowerCase() == 'cascade') {
-			startCircle.scale.set(2, 1.75);
-		}
-		else if (SONG.song.toLowerCase() == 'my-horizon' || SONG.song.toLowerCase().endsWith("-legacy")) {
-                        startCircle.scale.set(1, 1);
+
+		switch (SONG.song.toLowerCase())
+		{
+			case 'cascade':
+				startCircle.scale.set(2, 1.75);
+			case "my-horizon", _ if SONG.song.toLowerCase().endsWith("-legacy"):
+                                startCircle.scale.set(1, 1);
+			default:
+                                startCircle.scale.set(2, 1.5);
 		}
 		    
                 startCircle.alpha = 0;
                 startCircle.screenCenter();
                 add(startCircle);
 
-		if (daSong != "cascade") {
-                    new FlxTimer().start(1, function(tmr:FlxTimer)
-                    {
-                        FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
-                    });
-
-                    new FlxTimer().start(2.2, function(tmr:FlxTimer)
-                    {
-                        FlxTween.tween(blackFuck, {alpha: 0}, 2, {
-                            onComplete: function(twn:FlxTween)
-                                {
-                                    remove(blackFuck);
-                                    blackFuck.destroy();
-                                    startCircle.animation.play('idle');
-                                }
-                            });
-                            FlxTween.tween(startCircle, {alpha: 1}, 4.25, {
-                                onComplete: function(twn:FlxTween)
-                                {
-                                    remove(startCircle);
-                                    startCircle.destroy();
-                                }
-                            });
-                        });
-
-                        new FlxTimer().start(0.3, function(tmr:FlxTimer)
-                        {
-                            startCountdown();
-			    strumsPositions();
-                        });
-		    }
-		    else if (SONG.song.toLowerCase() == "found-you-legacy") {
-			    snapCamFollowToPos(700, 400);
-			    new FlxTimer().start(0, function(tmr:FlxTimer)
-			    {
-				    FlxG.camera.focusOn(camFollowPos.getPosition());
-			    });
-			    camHUD.visible = false;
-			    startCountdown();
-			    strumsPositions();
-		    }
-		    else
-		    {
-		        new FlxTimer().start(0.05, function(tmr:FlxTimer)
-                    {
-                        FlxTween.tween(startCircle, {alpha: 1}, 0.225, {ease: FlxEase.cubeInOut});
-                    });
-
-                    new FlxTimer().start(1.125, function(tmr:FlxTimer)
-                    {
-                        FlxTween.tween(blackFuck, {alpha: 0}, 1.725, {
-                            onComplete: function(twn:FlxTween)
-                            {
-                                remove(blackFuck);
-                                blackFuck.destroy();
-                                startCircle.animation.play('idle');
-                            }
-                        });
-                        FlxTween.tween(startCircle, {alpha: 1}, 5, {
-                            onComplete: function(twn:FlxTween)
-                            {
-                                remove(startCircle);
-                                startCircle.destroy();
-                            }
-                        });
-                    });
-
-                    new FlxTimer().start(4.7725, function(tmr:FlxTimer)
-                    {
-                        startCountdown();
-	                strumsPositions();
-                    });  
-		}
+		playTitleCardAnimation(daSong);
 	
 		RecalculateRating();
 	
@@ -2944,6 +2876,81 @@ class PlayState extends MusicBeatState
 			modManager.setValue('alpha', 1, 1);
 			modManager.setValue('opponentSwap', 0.5);
 		}
+	}
+
+        function playTitleCardAnimation(daSong:String, delay:Float = 1, fadeOutTime:Float = 2, startDelay:Float = 0.3) {
+            if (daSong != "cascade") {
+                new FlxTimer().start(delay, function(tmr:FlxTimer)
+                {
+                    FlxTween.tween(startCircle, {alpha: 1}, 0.5, {ease: FlxEase.cubeInOut});
+                });
+
+                new FlxTimer().start(2.2, function(tmr:FlxTimer)
+                {
+                    FlxTween.tween(blackFuck, {alpha: 0}, fadeOutTime, {
+                        onComplete: function(twn:FlxTween)
+                        {
+                            remove(blackFuck);
+                            blackFuck.destroy();
+                            startCircle.animation.play('idle');
+                        }
+                    });
+                    FlxTween.tween(startCircle, {alpha: 1}, 4.25, {
+                        onComplete: function(twn:FlxTween)
+                        {
+                            remove(startCircle);
+                            startCircle.destroy();
+                        }
+                    });
+                });
+
+                new FlxTimer().start(startDelay, function(tmr:FlxTimer)
+                {
+                    startCountdown();
+                    strumsPositions();
+                });
+            }
+            else if (SONG.song.toLowerCase() == "found-you-legacy") {
+                snapCamFollowToPos(700, 400);
+                new FlxTimer().start(0, function(tmr:FlxTimer)
+                {
+                    FlxG.camera.focusOn(camFollowPos.getPosition());
+                });
+                camHUD.visible = false;
+                startCountdown();
+                strumsPositions();
+            }
+            else {
+                new FlxTimer().start(0.05, function(tmr:FlxTimer)
+                {
+                    FlxTween.tween(startCircle, {alpha: 1}, 0.225, {ease: FlxEase.cubeInOut});
+                });
+
+                new FlxTimer().start(1.125, function(tmr:FlxTimer)
+                {
+                    FlxTween.tween(blackFuck, {alpha: 0}, 1.725, {
+                        onComplete: function(twn:FlxTween)
+                        {
+                            remove(blackFuck);
+                            blackFuck.destroy();
+                            startCircle.animation.play('idle');
+                        }
+                    });
+                    FlxTween.tween(startCircle, {alpha: 1}, 5, {
+                        onComplete: function(twn:FlxTween)
+                        {
+                            remove(startCircle);
+                            startCircle.destroy();
+                        }
+                    });
+                });
+
+                new FlxTimer().start(4.7725, function(tmr:FlxTimer)
+                {
+                    startCountdown();
+                    strumsPositions();
+                });
+            }
 	}
 
 
@@ -3159,7 +3166,7 @@ class PlayState extends MusicBeatState
 
 	public function reloadHealthBarColors() {
 		healthBar.createFilledBar(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
-			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
+		FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
 
 		healthBar.updateBar();
 	}
@@ -3320,7 +3327,7 @@ class PlayState extends MusicBeatState
 		if(endingSong)
 			endSong();
 		else
-			startCountdown();
+			playTitleCardAnimation(Paths.formatToSongPath(curSong));
 	}
 
 	var dialogueCount:Int = 0;
@@ -4125,14 +4132,25 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (boyfriend.curCharacter == "bf-running") {
+		switch (boyfriend.curCharacter) 
+		{
+			case "bf-running":
+			        bfFeetAppear(1);
+			        bfSEFeet.x = boyfriend.x + 350;
+                                bfSEFeet.y = boyfriend.y + 262.5;
+			default:
+				bfSEFeet.visible = false;
+			        bfFeetAppear(0);
+		}
+		
+		/*if (boyfriend.curCharacter == "bf-running") {
 			bfFeetAppear(1);
 			bfSEFeet.x = boyfriend.x + 350;
-            bfSEFeet.y = boyfriend.y + 262.5;
+                        bfSEFeet.y = boyfriend.y + 262.5;
 		} else {
 			bfSEFeet.visible = false;
 			bfFeetAppear(0);
-		}
+		}*/
 
 		if (camGame != null)
 		{
@@ -4141,7 +4159,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (SONG.song.toLowerCase() == "found-you-legacy" && curStep < 3359)
-	   {
+	        {
 			changeIcon("bf", [50, 73, 127]);
 		}
 
@@ -4193,7 +4211,7 @@ class PlayState extends MusicBeatState
 		if (gray != null)
 		gray.update(elapsed/2);
 
-        if (ClientPrefs.shaders) {
+                if (ClientPrefs.shaders) {
 		if(staticlol!=null){
 			staticlol.iTime.value[0] = Conductor.songPosition / 1000;
 			staticlol.alpha.value = [staticAlpha];
@@ -6610,7 +6628,7 @@ class PlayState extends MusicBeatState
 					case 896:
 						theStatic.visible = true;
 					case 898:
-				        gfGroup.visible = false;
+				                gfGroup.visible = false;
 						health = 1;
 						soulSky.visible = false;
 						soulBalls.visible = false;
@@ -6635,13 +6653,13 @@ class PlayState extends MusicBeatState
 						scoreTxt.visible = false;
 						songNameHUD.x -= 1250;
 						boyfriend.y -= 115;
-				        boyfriend.x -= 150;
-                        dad.x -= 32.5;
-				        dad.y += 150;
+				                boyfriend.x -= 150;
+                                                dad.x -= 32.5;
+				                dad.y += 150;
 					case 1439:
 						theStatic.visible = true;
 					case 1440:
-				        gfGroup.visible = true;
+				                gfGroup.visible = true;
 						healthBar.x -= 150;
 						iconP1.x -= 150;
 						iconP2.x -= 150;
