@@ -4253,7 +4253,6 @@ class PlayState extends MusicBeatState
 		if (isPixelStage && !ClientPrefs.hideHud) 
 		{
 			songNameHUD.visible = true;
-			scoreTxt.visible = true;
 		}
 
 		healthBarOver.x = healthBar.x - 4;
