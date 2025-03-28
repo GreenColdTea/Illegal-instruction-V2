@@ -2554,7 +2554,7 @@ class PlayState extends MusicBeatState
 		}
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
-		scoreTxt.visible = true;
+		scoreTxt.visible = !ClientPrefs.hideHud;
 		if (ClientPrefs.downScroll) scoreTxt.y -= 75;
 		add(scoreTxt);
 
