@@ -2722,6 +2722,7 @@ class PlayState extends MusicBeatState
 				case 'soulless-endeavors' | 'soulless-endeavors-legacy':
 			                chaotixHUD.visible = false;		
 		        }
+		}
 
 		if (chaotixHUD != null && chaotixHUD.visible) {
 			healthBar.x += 150;
@@ -2807,9 +2808,9 @@ class PlayState extends MusicBeatState
                                 startCircle.scale.set(1, 1);
 			default:
                                 startCircle.scale.set(2, 1.5);
-		}
-	        if (SONG.song.toLowerCase().endsWith("-legacy")) {
-			startCircle.scale.set(1, 1);
+				if (SONG.song.toLowerCase().endsWith("-legacy")) {
+			                startCircle.scale.set(1, 1);
+				}
 		}
 		    
                 startCircle.alpha = 0;
