@@ -360,13 +360,14 @@ class PauseSubState extends MusicBeatSubstate
 					if (ClientPrefs.pauseMusic != "None")
 					{
 						//FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), pauseMusic.volume);
-						FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.8);
+						//FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.8);
 						FlxG.sound.music.time = pauseMusic.time;
 					}
 					OptionsState.onPlayState = true;
 				case "Exit":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
+                                        PlayState.instance.canResync = false;
 					if(PlayState.isStoryMode) {
 						#if !mobile
 						MusicBeatState.switchState(new StoryMenuState());
