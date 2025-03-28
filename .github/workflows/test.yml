@@ -24,6 +24,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install flixel 5.4.1 --never --quiet
+          haxelib install format --quiet
           haxelib git lime https://github.com/FunkinCrew/lime.git --quiet
           haxelib git openfl https://github.com/HomuHomu833-stuff/openfl.git 9.2.2 --quiet
           haxelib run lime setup flixel --quiet
