@@ -713,7 +713,7 @@ class PlayState extends MusicBeatState
 			detailsText = "Freeplay";
 		}
 		else 
-        {
+                {
 			detailsText = "Legacy Room";
 		}
 
@@ -2807,9 +2807,9 @@ class PlayState extends MusicBeatState
                                 startCircle.scale.set(1, 1);
 			default:
                                 startCircle.scale.set(2, 1.5);
-				if (SONG.song.toLowerCase().endsWith("-legacy")) {
-					startCircle.scale.set(1, 1);
-			        }
+		}
+	        if (SONG.song.toLowerCase().endsWith("-legacy")) {
+			startCircle.scale.set(1, 1);
 		}
 		    
                 startCircle.alpha = 0;
@@ -2861,7 +2861,6 @@ class PlayState extends MusicBeatState
                 mobileControls.visible = false;
 		#end
 	}
-
         private function strumsPositions():Void {
 		if (!ClientPrefs.opponentStrums) {
 			opponentStrums.baseAlpha = 0;
