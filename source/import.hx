@@ -2,7 +2,11 @@
 import Paths;
 
 //Flixel
+#if flixel >= 5.3.1
 import flixel.sound.FlxSound;
+#else
+import flixel.system.FlxSound;
+#end
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
