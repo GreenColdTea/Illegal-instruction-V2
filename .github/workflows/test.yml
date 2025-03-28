@@ -28,6 +28,7 @@ jobs:
           haxelib install hxp --quiet
           haxelib git lime https://github.com/FunkinCrew/lime.git --quiet
           haxelib git openfl https://github.com/HomuHomu833-stuff/openfl.git 9.2.2 --quiet
+          haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
@@ -36,7 +37,6 @@ jobs:
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
           haxelib install hscript --quiet
-          haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
           haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
           haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
