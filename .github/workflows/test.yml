@@ -40,22 +40,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib install flixel 5.2.2 --never --quiet
-          haxelib install lime 8.1.3 --quiet
-          haxelib install openfl 9.2.2 --quiet
-          haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
-          haxelib run lime setup flixel --quiet
-          haxelib install flixel-tools 1.5.1 --quiet
-          haxelib install flixel-ui 2.6.3 --quiet
-          haxelib install flixel-addons 3.0.2 --quiet
-          haxelib install box2d --quiet
-          haxelib install tjson --quiet
-          haxelib install hxjsonast --quiet
-          haxelib install hscript --quiet
-          haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
-          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
-          haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
-          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git --quiet
+          haxe --run setup.HaxelibInstaller
           haxelib list
 
       - name: Setup Lime
@@ -134,22 +119,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
-          haxelib install flixel 5.2.2 --quiet --never
-          haxelib install lime 8.1.3 --quiet
-          haxelib install openfl 9.2.2 --quiet
-          haxelib install hxcpp --quiet
-          haxelib install hxcpp-debug-server --quiet
-          haxelib run lime setup flixel
-          haxelib install flixel-tools 1.5.1 --quiet
-          haxelib install flixel-ui 2.6.3 --quiet
-          haxelib install flixel-addons 3.0.2 --quiet
-          haxelib install box2d --quiet
-          haxelib install tjson --quiet
-          haxelib install hxjsonast --quiet
-          haxelib install hscript --quiet
-          haxelib git hxvlc https://github.com/GreenColdTea/hxvlc --quiet --skip-dependencies
-          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
-          haxelib git linc_luajit https://github.com/MobilePorting/linc_luajit.git --quiet
+          haxe --run setup.HaxelibInstaller
           haxelib list
 
       - name: Setup Lime
