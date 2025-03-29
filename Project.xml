@@ -187,7 +187,7 @@
 	<section if="android">		
              <!--Gradle-->	
              <!--<config:android gradle-version="8.13" gradle-plugin="8.9.0" />-->
-	     <config:android gradle-version="8.2" gradle-plugin="8.2.0" />
+	     <config:android gradle-version="8.1" gradle-plugin="8.0.0" />
         </section>
 
 	<!-- Allow Access to Engine Files in mobile -->
