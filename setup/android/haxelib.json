@@ -11,7 +11,7 @@
     "tjson": "",
     "hxjsonast": "",
     "hscript": "",
-    "hxvlc": "git:https://github.com/GreenColdTea/hxvlc --skip-dependencies",
+    "hxvlc": "git:https://github.com/GreenColdTea/hxvlc",
     "discord_rpc": "git:https://github.com/Aidan63/linc_discord-rpc",
     "linc_luajit": "git:https://github.com/MobilePorting/linc_luajit.git",
     "extension-androidtools": "git:https://github.com/MAJigsaw77/extension-androidtools.git"
