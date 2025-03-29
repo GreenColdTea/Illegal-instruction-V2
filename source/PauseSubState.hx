@@ -499,8 +499,6 @@ class PauseSubState extends MusicBeatSubstate
                 item.x -= 350;
 		item.y += startY + (i * spacing);
 		item.updateHitbox();
-
-                //createSelectionEffect(item);
 		    
                 grpMenuShit.add(item);
                 menuItemsText.push(item);
@@ -528,32 +526,6 @@ class PauseSubState extends MusicBeatSubstate
                 menuItemsText[i].alpha = (i == curSelected) ? 1 : 0.6;
 	    }
             positionClones();
-	}
-
-        function createSelectionEffect(baseItem:FlxText) {
-            for (i in 0...3) {
-                var clone = new FlxText(baseItem.x, baseItem.y, 0, baseItem.text, 42);
-                clone.setFormat(Paths.font(fontStyle), 42, FlxColor.GRAY, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-                clone.borderSize = 2;
-                clone.alpha = 0.35;
-                clone.scrollFactor.set();
-                add(clone);
-                clones.push(clone);
-
-		var centerX = baseItem.x;
-		var centerY = baseItem.y;
-                var radius = 5 + i * 2;
-                var speed = 1.5 + i * 0.5;
-                FlxTween.tween(clone, {}, speed, {
-                    type: FlxTween.LOOPING,
-                    ease: FlxEase.linear,
-                    onUpdate: function(twn) {
-                        var angle = twn.percent * 360;
-                        clone.x = centerX + Math.cos(angle * Math.PI / 180) * radius;
-                        clone.y = centerY + Math.sin(angle * Math.PI / 180) * radius;
-                    }
-                });
-	    }
 	}
 
         function positionClones() {
