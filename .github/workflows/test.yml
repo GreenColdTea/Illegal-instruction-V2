@@ -40,8 +40,8 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib install setup/android/haxelib --quiet
-          haxelib run install setup/android/haxelib --quiet
+          haxelib install setup/android/haxelib.json --quiet
+          haxelib run install setup/android/haxelib.json --quiet
           haxelib list
 
       - name: Setup Lime
@@ -120,8 +120,8 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
-          haxelib install setup/windows/haxelib --quiet
-          haxelib run install setup/windows/haxelib --quiet
+          haxelib install setup/windows/haxelib.json --quiet
+          haxelib run install setup/windows/haxelib.json --quiet
           haxelib list
 
       - name: Setup Lime
