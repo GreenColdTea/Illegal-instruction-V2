@@ -131,7 +131,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
-          haxelib install flixel 5.6.1 --quiet --never
+          haxelib git flixel https://github.com/MobilePorting/flixel.git 5.6.1 --quiet --never
           haxelib install lime 8.2.2 --quiet
           haxelib install openfl 9.4.1 --quiet
           haxelib install hxcpp --quiet
