@@ -40,6 +40,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
+          haxelib install setup/android/haxelib --quiet
           haxelib run install setup/android/haxelib --quiet
           haxelib list
 
@@ -119,6 +120,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
+          haxelib install setup/windows/haxelib --quiet
           haxelib run install setup/windows/haxelib --quiet
           haxelib list
 
