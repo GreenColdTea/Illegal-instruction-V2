@@ -40,7 +40,8 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxe --run HaxelibInstaller
+          cd setup
+          haxe --run InstallHaxelib
           haxelib list
 
       - name: Setup Lime
@@ -119,7 +120,8 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
-          haxe --run HaxelibInstaller
+          cd setup
+          haxe --run InstallHaxelib
           haxelib list
 
       - name: Setup Lime
