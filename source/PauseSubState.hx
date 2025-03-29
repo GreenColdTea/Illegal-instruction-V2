@@ -359,7 +359,7 @@ class PauseSubState extends MusicBeatSubstate
 					MusicBeatState.switchState(new OptionsState());
 					if (ClientPrefs.pauseMusic != "None")
 					{
-						//FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), pauseMusic.volume);
+						FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), pauseMusic.volume);
 						FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.8);
 						FlxG.sound.music.time = pauseMusic.time;
 					}
