@@ -36,7 +36,7 @@ jobs:
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
-          haxelib install flixel-addons 3.2.3 --quiet
+          haxelib install flixel-addons 3.2.1 --quiet
           haxelib install box2d --quiet
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
@@ -59,7 +59,7 @@ jobs:
           haxelib set flixel 5.2.2
           haxelib set flixel-tools 1.5.1
           haxelib set flixel-ui 2.6.3
-          haxelib set flixel-addons 3.2.3
+          haxelib set flixel-addons 3.2.1
 
       - name: Compile Android
         run: haxelib run lime build android -final -ONLY_ARM64 -D LTO -D NO_CONSOLE -D HXCPP_GC_GENERATIONAL
