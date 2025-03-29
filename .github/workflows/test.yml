@@ -41,7 +41,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           cd setup
-          haxe --run InstallHaxelib
+          haxe --run HaxelibInstaller
           haxelib list
 
       - name: Setup Lime
@@ -121,7 +121,7 @@ jobs:
         run: |
           haxelib setup C:\haxelib
           cd setup
-          haxe --run InstallHaxelib
+          haxe --run HaxelibInstaller
           haxelib list
 
       - name: Setup Lime
