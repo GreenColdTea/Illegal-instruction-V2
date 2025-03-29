@@ -19,7 +19,7 @@ jobs:
         uses: nttld/setup-ndk@main
         id: setup-ndk
         with:
-          ndk-version: r27
+          ndk-version: r27c
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@v1.2.0
@@ -49,7 +49,7 @@ jobs:
 
       - name: Setup Lime
         run: |
-          haxelib set lime 8.1.3
+          haxelib set lime 8.0.2
           haxelib set openfl 9.2.2
           haxelib run lime setup -alias -y
           haxelib run lime config JAVA_HOME $JAVA_HOME_17_X64
