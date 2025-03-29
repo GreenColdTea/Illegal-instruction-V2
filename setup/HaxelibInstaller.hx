@@ -2,8 +2,8 @@ class HaxelibInstaller {
     static function main() {
         var sysName = Sys.systemName().toLowerCase();
         var path = switch sysName {
-            case "windows": "setup/windows/haxelib";
-            case "linux", "mac": "setup/android/haxelib";
+            case "windows": "setup/windows/haxelib.json";
+            case "linux", "mac": "setup/android/haxelib.json";
             default: null;
         }
 
