@@ -47,7 +47,7 @@ jobs:
           haxelib run lime setup flixel --quiet
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
-          haxelib install flixel-addons 3.2.1 --quiet
+          haxelib install flixel-addons 3.0.2 --quiet
           haxelib install box2d --quiet
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
@@ -70,7 +70,7 @@ jobs:
           haxelib set flixel 5.2.2
           haxelib set flixel-tools 1.5.1
           haxelib set flixel-ui 2.6.3
-          haxelib set flixel-addons 3.2.1
+          haxelib set flixel-addons 3.0.2
 
       - name: Compile Android
         run: haxelib run lime build android -final -ONLY_ARM64 -D LTO -D NO_CONSOLE -D HXCPP_GC_GENERATIONAL
@@ -134,7 +134,7 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:\haxelib
-          haxelib install flixel 5.3.1 --quiet --never
+          haxelib install flixel 5.2.2 --quiet --never
           haxelib install lime 8.1.3 --quiet
           haxelib install openfl 9.2.2 --quiet
           haxelib install hxcpp --quiet
@@ -142,7 +142,7 @@ jobs:
           haxelib run lime setup flixel
           haxelib install flixel-tools 1.5.1 --quiet
           haxelib install flixel-ui 2.6.3 --quiet
-          haxelib install flixel-addons 3.2.3 --quiet
+          haxelib install flixel-addons 3.0.2 --quiet
           haxelib install box2d --quiet
           haxelib install tjson --quiet
           haxelib install hxjsonast --quiet
@@ -157,10 +157,10 @@ jobs:
           haxelib set lime 8.1.3
           haxelib set openfl 9.2.2
           haxelib run lime setup -alias -y
-          haxelib set flixel 5.4.1
+          haxelib set flixel 5.2.2
           haxelib set flixel-tools 1.5.1
           haxelib set flixel-ui 2.6.3
-          haxelib set flixel-addons 3.2.3
+          haxelib set flixel-addons 3.0.2
 
       - name: Compile Windows
         run: haxelib run lime build windows -D
