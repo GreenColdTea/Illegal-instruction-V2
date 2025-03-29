@@ -30,7 +30,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install flixel 5.3.1 --never --quiet
-          haxelib install lime 8.0.2 --quiet
+          haxelib install lime 8.1.3 --quiet
           haxelib install openfl 9.2.2 --quiet
           haxelib git hxcpp https://github.com/MobilePorting/hxcpp --quiet
           haxelib run lime setup flixel --quiet
@@ -49,7 +49,7 @@ jobs:
 
       - name: Setup Lime
         run: |
-          haxelib set lime 8.0.2
+          haxelib set lime 8.1.3
           haxelib set openfl 9.2.2
           haxelib run lime setup -alias -y
           haxelib run lime config JAVA_HOME $JAVA_HOME_17_X64
