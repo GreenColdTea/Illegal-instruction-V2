@@ -8,7 +8,7 @@ class HaxelibInstaller {
         }
 
         if (path != null) {
-            Sys.command("haxelib", ["install", path, "--quiet"]);
+            Sys.command("haxelib", ["install", path, "--quiet", "--never"]);
         } else {
             trace("Unsupported OS: " + sysName);
         }
