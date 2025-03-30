@@ -49,7 +49,7 @@ class DiscordClient
 	{
         #if desktop
 		DiscordRpc.presence({
-			details: "Welcome to my kingdom, BF...",
+			details: "Welcome to my kingdom, child...",
 			state: null,
 			largeImageKey: 'icon',
 			largeImageText: "When the time is right… Oh, until then—know this: I'll be waiting for you, lurking in the shadows."
@@ -95,14 +95,14 @@ class DiscordClient
 			smallImageKey : smallImageKey,
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),
-            endTimestamp : Std.int(endTimestamp / 1000)
+                        endTimestamp : Std.int(endTimestamp / 1000)
 		});
         #end
 
 		//trace('Discord RPC Updated. Arguments: $details, $state, $smallImageKey, $hasStartTimestamp, $endTimestamp');
 	}
 
-	#if (LUA_ALLOWED && desktop)
+	#if LUA_ALLOWED
 	public static function addLuaCallbacks(lua:State) {
 		Lua_helper.add_callback(lua, "changePresence", function(details:String, state:Null<String>, ?smallImageKey:String, ?hasStartTimestamp:Bool, ?endTimestamp:Float) {
 			changePresence(details, state, smallImageKey, hasStartTimestamp, endTimestamp);
