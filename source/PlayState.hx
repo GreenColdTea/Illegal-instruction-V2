@@ -6188,11 +6188,10 @@ class PlayState extends MusicBeatState
 
 				switch(note.noteType) {
 					case 'Hurt Note': //Hurt note
-						if(boyfriend.animation.getByName('hurt') != null) {
-							boyfriend.playAnim('hurt', true);
-							boyfriend.specialAnim = true;
-						}
-
+						if(field.owner.animation.getByName('hurt') != null) {
+							field.owner.playAnim('hurt', true);
+							field.owner.specialAnim = true;
+				                }
 					case 'Hex Note':
 						hexes++;
 						FlxG.sound.play(Paths.sound("hitWire"));
@@ -6234,8 +6233,10 @@ class PlayState extends MusicBeatState
 				if(note.gfNote)
 				{
 					if(gf != null)
-						char = gf;
-					
+					{
+						gf.playAnim(animToPlay + daAlt, true);
+						gf.holdTimer = 0;
+					}
 				}
 
 				field.owner.holdTimer = 0;
@@ -6246,24 +6247,24 @@ class PlayState extends MusicBeatState
 					var chord = noteRows[note.gfNote ? 2 : note.mustPress ? 0 : 1][note.row];
 					var animNote = chord[0];
 					var realAnim = singAnimations[Std.int(Math.abs(animNote.noteData))] + daAlt;
-					if (char.mostRecentRow != note.row)
-						char.playAnim(realAnim, true);
-					
-
-					if (note != animNote)
-						char.playGhostAnim(chord.indexOf(note) - 1, animToPlay, true);
-
-					char.mostRecentRow = note.row;
+					if (field.owner.mostRecentRow != note.row)
+						field.owner.playAnim(realAnim, true);
+							
+		
+					if (note != animNote && chord.indexOf(note) != animNote.noteData)
+						field.owner.playGhostAnim(chord.indexOf(note), animToPlay, true);
+		
+					field.owner.mostRecentRow = note.row;
 				}
 				else
-					char.playAnim(animToPlay, true);
+					field.owner.playAnim(animToPlay + daAlt, true);
 				
 
 				if(note.noteType == 'Hey!') {
-					if(boyfriend.animOffsets.exists('hey')) {
-						boyfriend.playAnim('hey', true);
-						boyfriend.specialAnim = true;
-						boyfriend.heyTimer = 0.6;
+					if(field.owner.animOffsets.exists('hey')) {
+						field.owner.playAnim('hey', true);
+						field.owner.specialAnim = true;
+						field.owner.heyTimer = 0.6;
 					}
 
 					if(gf != null && gf.animOffsets.exists('cheer')) {
