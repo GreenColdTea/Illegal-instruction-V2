@@ -3785,16 +3785,35 @@ class PlayState extends MusicBeatState
 						isPixelStage = false;
 	
 				}	
-				var gfNote = (section.gfSection && (songNotes[1]<4));
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
-				swagNote.row = Conductor.secsToRow(daStrumTime);
-				swagNote.gfNote = gfNote;
-				swagNote.noteType = songNotes[3];
+
+                                var type:Dynamic = songNotes[3];
+				if(!Std.isOfType(type, String)) type = ChartingState.noteTypeList[type]; 
 				
+				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, false);
+				swagNote.row = Conductor.secsToRow(daStrumTime);
+				swagNote.noteType = type;
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = songNotes[2];
-
-				if(!Std.isOfType(songNotes[3], String)) swagNote.noteType = editors.ChartingState.noteTypeList[songNotes[3]]; //Backward compatibility + compatibility with Week 7 charts
+                                if(gottaHitNote){
+					var lastBFNote = lastBFNotes[swagNote.noteData];
+					if(lastBFNote!=null){
+						if(Math.abs(swagNote.strumTime-lastBFNote.strumTime)<=3 ){
+							swagNote.kill();
+							continue;
+						}
+					}
+					lastBFNotes[swagNote.noteData]=swagNote;
+				}else{
+					var lastDadNote = lastDadNotes[swagNote.noteData];
+					if(lastDadNote!=null){
+						if(Math.abs(swagNote.strumTime-lastDadNote.strumTime)<=3 ){
+							swagNote.kill();
+							continue;
+						}
+					}
+					lastDadNotes[swagNote.noteData]=swagNote;
+				}
+				swagNote.gfNote = (section.gfSection && (songNotes[1]<4));
 
 				var idx = swagNote.gfNote?2:gottaHitNote?0:1;
 				if (noteRows[idx][swagNote.row]==null)
