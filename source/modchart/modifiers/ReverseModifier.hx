@@ -102,7 +102,11 @@ class ReverseModifier extends NoteModifier {
         if (note.animation.curAnim.name.endsWith("end")) {
             y += 10.5 * (fakeCrochet / 400) * 1.5 * songSpeed + (46 * (songSpeed - 1));
             y -= 46 * (1 - (fakeCrochet / 600)) * songSpeed;
-            y -= 19;
+            if (!PlayState.isPixelStage)
+                y -= 19;
+            else
+                y += 8;
+            
         }
 
         y += (Note.swagWidth / 2) - (60.5 * (songSpeed - 1));
