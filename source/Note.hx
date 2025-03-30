@@ -192,6 +192,13 @@ class Note extends FlxSprite
 					noAnimation = true;
 				case 'GF Sing':
 					gfNote = true;
+				case 'Hex Note':
+					missHealth = 0;
+					reloadNote("HEX");
+					hitbox *= 0.55;
+					ignoreNote = true;
+					hitCausesMiss = true;
+					noteSplashDisabled = true;
 			}
 			noteType = value;
 		}
