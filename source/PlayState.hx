@@ -3755,6 +3755,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		var lastBFNotes:Array<Note> = [null, null, null, null];
+		var lastDadNotes:Array<Note> = [null, null, null, null];
 		for (section in noteData)
 		{
 			for (songNotes in section.sectionNotes)
