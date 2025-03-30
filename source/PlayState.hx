@@ -5581,7 +5581,7 @@ class PlayState extends MusicBeatState
 				note.ratingMod = 1;
 				if(fucklesMode && SONG.song.toLowerCase() != "vista")
 					drainMisses -= 1/25;
-			    else 
+			        else 
 				{
 					drainMisses -= 1/25 + 0.0025;
 				}
@@ -5596,7 +5596,7 @@ class PlayState extends MusicBeatState
 
                 var field:PlayField = note.playField;
 
-		if(!practiceMode && !cpuControlled) {
+		if(!practiceMode && !field.autoPlayed) {
 			songScore += score;
 			if(!note.ratingDisabled)
 			{
