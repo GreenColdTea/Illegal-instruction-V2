@@ -3882,6 +3882,9 @@ class PlayState extends MusicBeatState
 			}
 			daBeats += 1;
 		}
+		lastDadNotes = null;
+		lastBFNotes = null;
+			
 		for (event in songData.events) //Event Notes
 		{
 			for (i in 0...event[1].length)
