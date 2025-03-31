@@ -6898,7 +6898,7 @@ class PlayState extends MusicBeatState
 					    boyfriend.y += 85;
 
 				    case 1024:
-					    FlxTween.tween(this, {health: 1}, 3.75);
+					    FlxTween.tween(this, {health: 1}, 3.75, {ease: FlxEase.sineOut});
 					    FlxG.camera.flash(FlxColor.RED, 1.5);
 					    FlxTween.tween(horizonSpookyBGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(horizonSpookyBGp2, {alpha: 1}, 1, {ease: FlxEase.linear});
@@ -7811,7 +7811,7 @@ class PlayState extends MusicBeatState
 			{
 				case 1:
 					FlxG.camera.flash(FlxColor.GREEN, 1.5);
-					FlxTween.tween(this, {barSongLength: songLength, health: 1}, 5);
+					FlxTween.tween(this, {barSongLength: songLength, health: 1}, 5, {ease: FlxEase.sineInOut});
 
 					entranceSpookyBG.visible = true;
 					entranceSpookyClock.visible = true;
