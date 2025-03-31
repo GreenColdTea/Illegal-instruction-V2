@@ -7678,14 +7678,14 @@ class PlayState extends MusicBeatState
 			switch (ass)
 				{
 					case 1:
-						normalTrail = new FlxTrail(dad, null, 2, 12, 0.20, 0.05);
+						normalTrail = new FlxTrail(dad, null, 2, 12, 0.20, trailDelay);
 						add(normalTrail);
 						soulGlassTime = true;
 					case 2:
-						metalTrail = new FlxTrail(boyfriend, null, 2, 12, 0.20, 0.05);
+						metalTrail = new FlxTrail(boyfriend, null, 2, 12, 0.20, trailDelay);
 						add(metalTrail);
 					case 3:
-						amyTrail = new FlxTrail(gf, null, 2, 12, 0.20, 0.05);
+						amyTrail = new FlxTrail(gf, null, 2, 12, 0.20, trailDelay);
 						add(amyTrail);
 				}
 		}
