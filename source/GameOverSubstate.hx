@@ -46,7 +46,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		super();
 
 		CoolUtil.precacheSound(deathSoundName);
-		CoolUtil.precacheMsuic(loopSoundName);
+		CoolUtil.precacheMusic(loopSoundName);
 		CoolUtil.precacheMusic(endSoundName);
 
 		PlayState.instance.setOnLuas('inGameOver', true);
