@@ -6902,11 +6902,11 @@ class PlayState extends MusicBeatState
 					    {
 						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
 					    });
-                                            opponentStrums.forEach(function()
-					    {
-						    var spr:Note;
-						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
-					    });
+                                            notes.forEach(function(note:Note) {
+                                                    if (!note.mustPress) {
+                                                            note.set_texture(Paths.image("noteSkins/NOTE_wech"));
+                                                    }
+                                            });
 
 					    FlxTween.tween(this, {health: 1}, 3.75, {ease: FlxEase.sineOut});
 					    FlxG.camera.flash(FlxColor.RED, 1.5);
