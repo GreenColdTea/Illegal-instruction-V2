@@ -165,7 +165,7 @@ class Note extends FlxSprite
 		return value;
 	}
 
-	private function set_texture(value:String):String {
+	public function set_texture(value:String):String {
 		if(texture != value) {
 			reloadNote('', value);
 		}
