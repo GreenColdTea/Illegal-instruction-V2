@@ -6900,11 +6900,11 @@ class PlayState extends MusicBeatState
 				    case 1024:
                                             opponentStrums.forEach(function(spr:StrumNote)
 					    {
-						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
+						    spr.set_texture("noteSkins/NOTE_wech");
 					    });
                                             notes.forEach(function(note:Note) {
                                                     if (!note.mustPress) {
-                                                            note.set_texture(Paths.image("noteSkins/NOTE_wech"));
+                                                            note.set_texture("noteSkins/NOTE_wech");
                                                     }
                                             });
 
