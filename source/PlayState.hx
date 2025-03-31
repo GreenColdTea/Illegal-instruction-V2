@@ -6902,8 +6902,9 @@ class PlayState extends MusicBeatState
 					    {
 						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
 					    });
-                                            opponentStrums.forEach(function(spr:Note)
+                                            opponentStrums.forEach(function()
 					    {
+						    var spr:Note;
 						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
 					    });
 
