@@ -45,6 +45,10 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		super();
 
+		CoolUtil.precacheSound(deathSoundName);
+		CoolUtil.precacheMsuic(loopSoundName);
+		CoolUtil.precacheMusic(endSoundName);
+
 		PlayState.instance.setOnLuas('inGameOver', true);
 
 		Conductor.songPosition = 0;
@@ -69,7 +73,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		FlxG.camera.focusOn(new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y));
 
-        #if mobile
+                #if mobile
 		addVirtualPad(NONE, A_B);
 		addVirtualPadCamera();
 		#end
