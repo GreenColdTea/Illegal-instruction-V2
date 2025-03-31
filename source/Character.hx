@@ -80,6 +80,8 @@ class Character extends FlxSprite
 	public var cameraPosition:Array<Float> = [0, 0];
 
 	public var hasMissAnimations:Bool = false;
+
+	public var pauseAnimForSustain:Bool = false;
 	public var currentlyHolding:Bool = false;
 
 	//Used on Character Editor
@@ -90,6 +92,8 @@ class Character extends FlxSprite
 	public var healthColorArray:Array<Int> = [255, 0, 0];
 
 	public static var DEFAULT_CHARACTER:String = 'bfiialt-opponent'; //In case a character is missing, it will use BF on its place
+	@:optional var pauseDuringSustains:Null<Bool>;
+	
 	public function new(x:Float, y:Float, ?character:String = 'bfiialt', ?isPlayer:Bool = false)
 	{
 		super(x, y);
@@ -209,6 +213,8 @@ class Character extends FlxSprite
 
 				antialiasing = !noAntialiasing;
 				if(!ClientPrefs.globalAntialiasing) antialiasing = false;
+
+				if (json.pauseDuringSustains != null) pauseAnimForSustain = json.pauseDuringSustains;
 
 				animationsArray = json.animations;
 				if(animationsArray != null && animationsArray.length > 0) {
