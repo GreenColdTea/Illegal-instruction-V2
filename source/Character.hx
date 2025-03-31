@@ -81,6 +81,7 @@ class Character extends FlxSprite
 	public var cameraPosition:Array<Float> = [0, 0];
 
 	public var hasMissAnimations:Bool = false;
+	public var skipDance:Bool = false;
 
 	public var pauseAnimForSustain:Bool = false;
 	public var currentlyHolding:Bool = false;
@@ -353,7 +354,7 @@ class Character extends FlxSprite
 	 */
 	public function dance()
 	{
-		if (!debugMode && !specialAnim && animTimer <= 0 && !voicelining)
+		if (!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining)
 		{
 			if(currentlyHolding) currentlyHolding = false;
 			
