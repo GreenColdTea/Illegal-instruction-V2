@@ -16,13 +16,13 @@ import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
-import flixel.effects.FlxFlicker;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.effects.chainable.FlxGlitchEffect;
 import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.animation.FlxAnimationController;
+import flixel.effects.FlxFlicker;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -481,7 +481,7 @@ class PlayState extends MusicBeatState
 	var soulSpiritsLegacy:FlxSprite;
 	var soulPixelBgLegacy:FlxSprite;
 	var soulPixelBgBgLegacy:FlxSprite;
-	//final frontier
+	//final frontier legacy
 	var frontierBgLegacy:BGSprite;
 	var frontierGroundLegacy:BGSprite;
 	var frontierMasterEmeraldLegacy:FlxSprite;
@@ -620,6 +620,7 @@ class PlayState extends MusicBeatState
 	public var pleaseStopZoomin:Bool = false;
 	public var ohGodTheZooms:Bool = false;
    public var camZoomingDecay:Float = 1;
+   public var camZoomingMult:Float = 1;
 	//anim controller
 	var animController:Bool = true;
 
@@ -4206,15 +4207,6 @@ class PlayState extends MusicBeatState
 			        bfFeetAppear(0);
 		}
 		
-		/*if (boyfriend.curCharacter == "bf-running") {
-			bfFeetAppear(1);
-			bfSEFeet.x = boyfriend.x + 350;
-                        bfSEFeet.y = boyfriend.y + 262.5;
-		} else {
-			bfSEFeet.visible = false;
-			bfFeetAppear(0);
-		}*/
-
 		if (camGame != null)
 		{
 			camGame2.zoom = camGame.zoom;
@@ -4222,17 +4214,9 @@ class PlayState extends MusicBeatState
 		}
 
 		if (SONG.song.toLowerCase() == "found-you-legacy" && curStep < 3359)
-	        {
+	   {
 			changeIcon("bf", [50, 73, 127]);
 		}
-
-		/*if (!ClientPrefs.noteSplashes) {
-         for (note => holdCover in noteHoldCovers) {
-             remove(holdCover);
-         }
-         noteHoldCovers.clear();
-         return;
-      }*/
 
 		//time bar personalized with dad health bar
 		var dadColR = dad.healthColorArray[0];
@@ -4308,7 +4292,7 @@ class PlayState extends MusicBeatState
 		}
         }
 
-        if (ClientPrefs.timeBarType == 'Song Name' && !isPixelStage)
+       if (ClientPrefs.timeBarType == 'Song Name' && !isPixelStage)
 	    {
 			songNameHUD.visible = false;
 		}
@@ -4394,6 +4378,7 @@ class PlayState extends MusicBeatState
 					focus = dad;
 				}
 			}
+
 			if(focus.animation.curAnim != null){
 				var name = focus.animation.curAnim.name;
 				if(name.startsWith("singLEFT"))
@@ -4577,6 +4562,7 @@ class PlayState extends MusicBeatState
 		if (defaultZoomin || !defaultZoomin || wowZoomin || holyFuckStopZoomin || pleaseStopZoomin || ohGodTheZooms)
 		{
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
+         var focus:Character = boyfriend;
          if(SONG.notes[curSection] != null) {
 				if (gf != null && SONG.notes[curSection].gfSection)
 				{
@@ -5125,14 +5111,14 @@ class PlayState extends MusicBeatState
 				switch (value)
 				{
 					case 1:
-						frontierGround.visible = false;
-						frontierEmeralds.visible = false;
-						frontierMasterEmerald.visible = true;
+						frontierGroundLegacy.visible = false;
+						frontierEmeraldsLegacy.visible = false;
+						frontierMasterEmeraldLegacy.visible = true;
 						forFucksSake = true;
 					case 2:
-						frontierGround.visible = true;
-						frontierEmeralds.visible = true;
-						frontierMasterEmerald.visible = false;
+						frontierGroundLegacy.visible = true;
+						frontierEmeraldsLegacy.visible = true;
+						frontierMasterEmeraldLegacy.visible = false;
 						forFucksSake = false;
 	
 				}
