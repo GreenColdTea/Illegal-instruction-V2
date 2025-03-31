@@ -66,6 +66,7 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 	public var noteType(default, set):String = null;
+	public var player:Int = 0;
 
 	public var eventName:String = '';
 	public var eventLength:Int = 0;
@@ -209,7 +210,7 @@ class Note extends FlxSprite
 		return value;
 	}
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?player:Int = 0)
 	{
 		super();
 
@@ -219,6 +220,7 @@ class Note extends FlxSprite
 		instance = this;
 
 		this.prevNote = prevNote;
+		this.player = player;
 		isSustainNote = sustainNote;
 		this.inEditor = inEditor;
 
@@ -341,7 +343,7 @@ class Note extends FlxSprite
 		
 		var skin:String = texture;
 		if(texture.length < 1) {
-			skin = PlayState.SONG.arrowSkin;
+			skin = PlayState.SONG.arrowSkin[player];
 			if(skin == null || skin.length < 1) {
 				skin = 'NOTE_assets';
 			}
