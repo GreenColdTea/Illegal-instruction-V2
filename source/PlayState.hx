@@ -2408,7 +2408,7 @@ class PlayState extends MusicBeatState
 			barbedWires.add(wire);
 		}
 
-		wireVignette = new FlxSprite().loadGraphic(Paths.image('black_vignette', "exe"));
+		wireVignette = new FlxSprite().loadGraphic(Paths.image('black_vignette'));
 		wireVignette.scrollFactor.set();
 		wireVignette.antialiasing = ClientPrefs.globalAntialiasing;
 		wireVignette.setGraphicSize(FlxG.width, FlxG.height);
