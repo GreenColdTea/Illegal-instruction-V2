@@ -7648,11 +7648,11 @@ class PlayState extends MusicBeatState
 
 			if (defaultZoomin && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms)
 		        {
-		   	FlxG.camera.zoom += 0.0242;
-			   camHUD.zoom += 0.03;
+		   	    FlxG.camera.zoom += 0.0242;
+			    camHUD.zoom += 0.03;
 
-			   if (camGlitchShader != null && glitchinTime)
-				   camGlitchShader.amount += 0.0075;
+			    if (camGlitchShader != null && glitchinTime)
+				    camGlitchShader.amount += 0.0075;
 		        }
 
 			if (SONG.notes[curSection].changeBPM)
@@ -7673,6 +7673,8 @@ class PlayState extends MusicBeatState
 
 	function chaotixGlass(ass:Int)
 		{
+			var trailDelay:Float = 0.05;
+                        trailDelay *= ClientPrefs.framerate * FlxG.elapsed;
 			switch (ass)
 				{
 					case 1:
