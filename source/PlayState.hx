@@ -7967,7 +7967,7 @@ class PlayState extends MusicBeatState
 	function changeIcon(change:String, colorArray:Array<Int>)
         {
             var character:Character = null;
-            var icon:FlxSprite = null;
+            var icon:HealthIcon = null;
 
             switch (change.toLowerCase())
             {
