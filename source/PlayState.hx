@@ -3778,6 +3778,13 @@ class PlayState extends MusicBeatState
 					oldNote = null;
 			
 				var pixelStage = isPixelStage;
+				if(daStrumTime >= Conductor.stepToSeconds(1022) && SONG.song.toLowerCase() == "my-horizon") {
+				        notes.forEach(function(note:Note) {
+                                                if (!note.mustPress) {
+                                                        note.set_texture("noteSkins/NOTE_wech");
+                                                }
+                                        });
+				}
 				if(daStrumTime >= Conductor.stepToSeconds(895) && daStrumTime <= 151000 && SONG.song.toLowerCase() == 'soulless-endeavors' || daStrumTime >= Conductor.stepToSeconds(640) && daStrumTime <= 123000 && SONG.song.toLowerCase()=='soulless-endeavors-legacy')
 					isPixelStage = true;
 				if(SONG.song.toLowerCase() == 'our-horizon-legacy') {
@@ -6902,11 +6909,6 @@ class PlayState extends MusicBeatState
 					    {
 						    spr.set_texture("noteSkins/NOTE_wech");
 					    });
-                                            notes.forEach(function(note:Note) {
-                                                    if (!note.mustPress) {
-                                                            note.set_texture("noteSkins/NOTE_wech");
-                                                    }
-                                            });
 
 					    FlxTween.tween(this, {health: 1}, 3.75, {ease: FlxEase.sineOut});
 					    FlxG.camera.flash(FlxColor.RED, 1.5);
