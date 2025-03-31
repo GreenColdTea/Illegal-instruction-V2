@@ -3791,7 +3791,7 @@ class PlayState extends MusicBeatState
                                 var type:Dynamic = songNotes[3];
 				if(!Std.isOfType(type, String)) type = ChartingState.noteTypeList[type]; 
 				
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, false);
+				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, false, gottaHitNote ? 0 : 1);
 				swagNote.row = Conductor.secsToRow(daStrumTime);
 				if(noteRows[gottaHitNote?0:1][swagNote.row]==null)
 					noteRows[gottaHitNote?0:1][swagNote.row]=[];
