@@ -7965,43 +7965,45 @@ class PlayState extends MusicBeatState
 	}
 
 	function changeIcon(change:String, colorArray:Array<Int>)
-		{
-			switch (change.toLowerCase())
-			{
-				case "dad" | "1" | "opponent":
-					if (dad.animation.curAnim.name == "singLEFT" || dad.animation.curAnim.name == "singRIGHT" ||
-						dad.animation.curAnim.name == "singUP" || dad.animation.curAnim.name == "singDOWN") {
-						iconP2.changeIcon(dad.healthIcon);
-						dad.healthColorArray = [colorArray[0], colorArray[1], colorArray[2]];
-						triggerEventNote("Change Character", "dad", dad.curCharacter);
-					}
-					else if (gf.animation.curAnim.name == "singLEFT" || gf.animation.curAnim.name == "singRIGHT" ||
-						gf.animation.curAnim.name == "singUP" || gf.animation.curAnim.name == "singDOWN") {
-						iconP2.changeIcon(gf.healthIcon);
-						dad.healthColorArray = [gf.healthColorArray[0], gf.healthColorArray[1], gf.healthColorArray[2]];
-						triggerEventNote("Change Character", "dad", dad.curCharacter);
-					}
-	
-				case "bf" | "0":
-					if (boyfriend.animation.curAnim.name == "singLEFT" || boyfriend.animation.curAnim.name == "singRIGHT" ||
-						boyfriend.animation.curAnim.name == "singUP" || boyfriend.animation.curAnim.name == "singDOWN" || boyfriend.animation.curAnim.name.endsWith("-miss") || boyfriend.animation.curAnim.name.endsWith("-alt")) 
-					{
-						iconP1.changeIcon(boyfriend.healthIcon);
-                                                boyfriend.healthColorArray = [colorArray[0], colorArray[1], colorArray[2]];
-						triggerEventNote("Change Character", 'bf', boyfriend.curCharacter);
-						//trace("BF ICON NOW: " + boyfriend.healthIcon + " AND COLOR NOW: " + boyfriend.healthColorArray);
-					} 
-					else if (gf.animation.curAnim.name == "singLEFT" || gf.animation.curAnim.name == "singRIGHT" ||
-						gf.animation.curAnim.name == "singUP" || gf.animation.curAnim.name == "singDOWN" || gf.animation.curAnim.name.endsWith("-miss") ||
-						gf.animation.curAnim.name.endsWith("-alt")) 
-					{
-						iconP1.changeIcon(gf.healthIcon);
-						boyfriend.healthColorArray = [gf.healthColorArray[0], gf.healthColorArray[1], gf.healthColorArray[2]];
-						triggerEventNote("Change Character", 'bf', boyfriend.curCharacter);
-						//trace("BF ICON NOW: " + boyfriend.healthIcon + " AND COLOR NOW: " + boyfriend.healthColorArray);
-					}
-			}
-		}
+        {
+            var character:Character = null;
+            var icon:FlxSprite = null;
+
+            switch (change.toLowerCase())
+            {
+                case "dad", "1", "opponent":
+                    character = dad;
+                    icon = iconP2;
+                case "bf", "0":
+                    character = boyfriend;
+                    icon = iconP1;
+            }
+
+            if (character != null && icon != null)
+            {
+                var source:Character = getSingingCharacter([character, gf]);
+                if (source != null)
+                {
+                    icon.changeIcon(source.healthIcon);
+                    character.healthColorArray = source.healthColorArray.copy();
+                    triggerEventNote("Change Character", change.toLowerCase(), character.curCharacter);
+                }
+            }
+        }
+
+        function getSingingCharacter(characters:Array<Character>):Character
+        {
+            for (char in characters)
+            {
+                if (char.animation.curAnim != null)
+                {
+                    var animName = char.animation.curAnim.name;
+                    if (animName.startsWith("sing") || animName.endsWith("-miss") || animName.endsWith("-alt"))
+                        return char;
+                }
+            }
+            return null;
+        }
 
 	//bf pixel feet
 	function bfFeetAppear(hello:Int) {
