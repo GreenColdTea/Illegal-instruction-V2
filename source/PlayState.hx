@@ -3780,7 +3780,7 @@ class PlayState extends MusicBeatState
 				var pixelStage = isPixelStage;
 				if(daStrumTime >= Conductor.stepToSeconds(895) && daStrumTime <= 151000 && SONG.song.toLowerCase() == 'soulless-endeavors' || daStrumTime >= Conductor.stepToSeconds(640) && daStrumTime <= 123000 && SONG.song.toLowerCase()=='soulless-endeavors-legacy')
 					isPixelStage = true;
-				if(SONG.song.toLowerCase()=='our-horizon-legacy'){
+				if(SONG.song.toLowerCase() == 'our-horizon-legacy') {
 					if (daStrumTime >= Conductor.stepToSeconds(2336) && daStrumTime <= Conductor.stepToSeconds(2848))
 						isPixelStage = true;
 					else if(daStrumTime >= Conductor.stepToSeconds(1000))
@@ -3793,6 +3793,9 @@ class PlayState extends MusicBeatState
 				
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, false);
 				swagNote.row = Conductor.secsToRow(daStrumTime);
+				if(noteRows[gottaHitNote?0:1][swagNote.row]==null)
+					noteRows[gottaHitNote?0:1][swagNote.row]=[];
+				noteRows[gottaHitNote ? 0 : 1][swagNote.row].push(swagNote);
 				swagNote.noteType = type;
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = songNotes[2];
@@ -3817,16 +3820,10 @@ class PlayState extends MusicBeatState
 				}
 				swagNote.gfNote = (section.gfSection && (songNotes[1]<4));
 
-				var idx = swagNote.gfNote?2:gottaHitNote?0:1;
-				if (noteRows[idx][swagNote.row]==null)
-					noteRows[idx][swagNote.row]=[];
-
-				noteRows[idx][swagNote.row].push(swagNote);
-
 				swagNote.scrollFactor.set();
 
 				var susLength:Float = swagNote.sustainLength;
-
+                                swagNote.ID = unspawnNotes.length;
 				susLength = susLength / Conductor.stepCrochet;
 				unspawnNotes.push(swagNote);
 
@@ -6017,7 +6014,6 @@ class PlayState extends MusicBeatState
 		}
 
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
-      //noteHoldCovers.remove(daNote);
 	}
 
 	function noteMissPress(direction:Int = 1, anim:Bool = true):Void //You pressed a key when there was no notes to press for this key
@@ -6131,7 +6127,7 @@ class PlayState extends MusicBeatState
 					case 'normal':
 						if (soulGlassTime)
 						{
-							health -= 0.0089;
+							health -= 0.00105;
 							if (health <= 0.01)
 							{
 								health = 0.01;
@@ -6878,7 +6874,7 @@ class PlayState extends MusicBeatState
 				switch (curStep) 
 				{
 				    case 79:
-                        FlxTween.tween(camHUD, {alpha: 1}, 1.75, {ease: FlxEase.linear});
+                                            FlxTween.tween(camHUD, {alpha: 1}, 1.75, {ease: FlxEase.linear});
 
 				    case 728:
 					    FlxTween.tween(camHUD, {alpha: 0}, 1.5, {ease: FlxEase.linear});
@@ -6886,7 +6882,7 @@ class PlayState extends MusicBeatState
 					    FlxTween.tween(horizonBGp2, {alpha: 0}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(horizonBGp3, {alpha: 0}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(horizonBGp4, {alpha: 0}, 1, {ease: FlxEase.linear});
-                        FlxTween.tween(dad, {alpha: 0}, 1.75, {ease: FlxEase.linear});
+                                            FlxTween.tween(dad, {alpha: 0}, 1.75, {ease: FlxEase.linear});
 					    FlxTween.tween(gf, {alpha: 0}, 1.75, {ease: FlxEase.linear});
 					    FlxTween.tween(boyfriend, {alpha: 0}, 1.75, {ease: FlxEase.linear});
 					    FlxTween.tween(horizonFGp1, {alpha: 0}, 1, {ease: FlxEase.linear});
@@ -6910,8 +6906,8 @@ class PlayState extends MusicBeatState
 					    FlxTween.tween(horizonSpookyBGp4, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(horizonSpookyFGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(horizonSpookyFGp2, {alpha: 1}, 1, {ease: FlxEase.linear});
-					    FlxTween.tween(horizonSpookyFloor, {alpha: 1}, 1, {ease: FlxEase.linear});
-                        FlxTween.tween(dad, {alpha: 1}, 1, {ease: FlxEase.linear});
+			 		    FlxTween.tween(horizonSpookyFloor, {alpha: 1}, 1, {ease: FlxEase.linear});
+                                            FlxTween.tween(dad, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(gf, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(boyfriend, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(camHUD, {alpha: 0.9}, 1, {ease: FlxEase.linear});
@@ -7437,7 +7433,7 @@ class PlayState extends MusicBeatState
 				}			
 			}
 
-            case "cascade":
+                 case "cascade":
 			{
 				switch (curStep)
 				{
@@ -7458,7 +7454,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(camHUD, {alpha: 1}, 0.5);
 				}
 			}
-        }
+                }
 
 		if(curStep == lastStepHit) {
 			return;
@@ -7479,8 +7475,8 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
-		if(fcLabel!=null){
-			if(fcLabel.animation.curAnim !=null) {
+		if(fcLabel!=null) {
+			if(fcLabel.animation.curAnim != null) {
 				var frame = fcLabel.animation.curAnim.curFrame;
 				frame += 1;
 				frame %= 2;
@@ -7528,7 +7524,7 @@ class PlayState extends MusicBeatState
 		{
 			charmyBop.animation.play('danceRight');
 		}
-        /*if (curBeat % 2 == 0 && curStage == 'vista' && fucklesMode)
+                /*if (curBeat % 2 == 0 && curStage == 'vista' && fucklesMode)
 		{
 			gf.animation.play('scared');
 		} */
@@ -7651,13 +7647,13 @@ class PlayState extends MusicBeatState
 			}
 
 			if (defaultZoomin && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms)
-		   {
+		        {
 		   	FlxG.camera.zoom += 0.0242;
 			   camHUD.zoom += 0.03;
 
 			   if (camGlitchShader != null && glitchinTime)
 				   camGlitchShader.amount += 0.0075;
-		   }
+		        }
 
 			if (SONG.notes[curSection].changeBPM)
 			{
