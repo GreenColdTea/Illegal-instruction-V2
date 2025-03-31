@@ -6898,6 +6898,15 @@ class PlayState extends MusicBeatState
 					    boyfriend.y += 85;
 
 				    case 1024:
+                                            opponentStrums.forEach(function(spr:StrumNote)
+					    {
+						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
+					    });
+                                            opponentStrums.forEach(function(spr:Note)
+					    {
+						    spr.set_texture(Paths.image("noteSkins/NOTE_wech"));
+					    });
+
 					    FlxTween.tween(this, {health: 1}, 3.75, {ease: FlxEase.sineOut});
 					    FlxG.camera.flash(FlxColor.RED, 1.5);
 					    FlxTween.tween(horizonSpookyBGp1, {alpha: 1}, 1, {ease: FlxEase.linear});
@@ -6911,11 +6920,6 @@ class PlayState extends MusicBeatState
 					    FlxTween.tween(gf, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(boyfriend, {alpha: 1}, 1, {ease: FlxEase.linear});
 					    FlxTween.tween(camHUD, {alpha: 0.9}, 1, {ease: FlxEase.linear});
-
-					    opponentStrums.forEach(function(spr:StrumNote)
-					    {
-						    spr.reloadNote();
-					    });
 					}
 				}
 
