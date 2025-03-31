@@ -22,6 +22,7 @@ import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.effects.chainable.FlxGlitchEffect;
 import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.animation.FlxAnimationController;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
