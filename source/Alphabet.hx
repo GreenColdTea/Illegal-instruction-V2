@@ -13,9 +13,9 @@ import StringTools;
 
 class Alphabet extends FlxSpriteGroup {
 	
-    // Chaotix font
+        // Chaotix font
 	@:font("assets/fonts/chaotix.ttf")
-    public static var ChaotixFont:String;
+        public static var ChaotixFont:String;
 
 	// typing config
 	public var delay:Float = 0.05;
@@ -39,7 +39,7 @@ class Alphabet extends FlxSpriteGroup {
 	var splitWords:Array<String> = [];
 	
 	public var isBold:Bool = false;
-	public var textFont:String = "chaotix.ttf";
+	public static var textFont:String = "chaotix.ttf";
 	public var lettersArray:Array<AlphaCharacter> = [];
 	
 	public var finishedText:Bool = false;
