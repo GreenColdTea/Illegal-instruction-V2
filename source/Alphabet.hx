@@ -16,6 +16,7 @@ class Alphabet extends FlxSpriteGroup {
         // Chaotix font
 	@:font("assets/fonts/chaotix.ttf")
         public static var ChaotixFont:String;
+	public static var instance:Alphabet;
 
 	// typing config
 	public var delay:Float = 0.05;
@@ -39,7 +40,7 @@ class Alphabet extends FlxSpriteGroup {
 	var splitWords:Array<String> = [];
 	
 	public var isBold:Bool = false;
-	public static var textFont:String = "chaotix.ttf";
+	public var textFont:String = "chaotix.ttf";
 	public var lettersArray:Array<AlphaCharacter> = [];
 	
 	public var finishedText:Bool = false;
@@ -58,6 +59,7 @@ class Alphabet extends FlxSpriteGroup {
 	 */
 	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, ?typingSpeed:Float = 0.05, ?textSize:Float = 1, ?textFont:String = "chaotix.ttf") {
 		super(x, y);
+		instance = this;
 		forceX = Math.NEGATIVE_INFINITY;
 		this.textFont = textFont != null ? textFont : "chaotix.ttf";
 		this.textSize = textSize;
