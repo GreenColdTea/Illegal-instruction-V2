@@ -105,7 +105,7 @@ class ReverseModifier extends NoteModifier {
             if (!PlayState.isPixelStage)
                 y -= 19;
             else
-                y += 8;
+                y += 7;
             
         }
 
