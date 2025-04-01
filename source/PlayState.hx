@@ -5114,11 +5114,15 @@ class PlayState extends MusicBeatState
 						frontierGroundLegacy.visible = false;
 						frontierEmeraldsLegacy.visible = false;
 						frontierMasterEmeraldLegacy.visible = true;
+						boyfriend.visible = false;
+						gf.visible = false;
 						forFucksSake = true;
 					case 2:
 						frontierGroundLegacy.visible = true;
 						frontierEmeraldsLegacy.visible = true;
 						frontierMasterEmeraldLegacy.visible = false;
+						boyfriend.visible = true;
+						gf.visible = true;
 						forFucksSake = false;
 	
 				}
@@ -6403,7 +6407,7 @@ class PlayState extends MusicBeatState
 		if(FunkinLua.hscript != null) FunkinLua.hscript = null;
 		#end
 
-		Alphabet.textFont = "chaotix.ttf";
+		Alphabet.instance.textFont = "chaotix.ttf";
 
 		if(!ClientPrefs.controllerMode)
 		{
