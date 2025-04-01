@@ -6403,7 +6403,7 @@ class PlayState extends MusicBeatState
 		if(FunkinLua.hscript != null) FunkinLua.hscript = null;
 		#end
 
-		AlphaCharacter.textFont = "chaotix.ttf";
+		Alphabet.textFont = "chaotix.ttf";
 
 		if(!ClientPrefs.controllerMode)
 		{
