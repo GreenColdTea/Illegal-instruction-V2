@@ -288,8 +288,10 @@ class Note extends FlxSprite
 
 			offsetX -= width / 2;
 
-			if (PlayState.isPixelStage)
+			if (PlayState.isPixelStage) {
 				offsetX += 30;
+				scale.x /= 2;
+			}
 
 			if (prevNote.isSustainNote)
 			{
@@ -312,6 +314,7 @@ class Note extends FlxSprite
 				}
 				
 				if(PlayState.isPixelStage) {
+					prevNote.scale.x /= 2;
 					prevNote.scale.y *= 1.19;
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
