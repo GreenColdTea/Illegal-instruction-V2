@@ -159,7 +159,7 @@ class Note extends FlxSprite
 	}
 
 	private function set_multSpeed(value:Float):Float {
-                var speedFactor:Float = 1.5;
+                var speedFactor:Float = 2.15;
                 resizeByRatio(Math.pow(value / multSpeed, speedFactor)); 
                 multSpeed = value;
 		//trace('fuck dis');
