@@ -159,10 +159,11 @@ class Note extends FlxSprite
 	}
 
 	private function set_multSpeed(value:Float):Float {
-		resizeByRatio(value / multSpeed);
-		multSpeed = value;
-		// trace('fuck cock');
-		return value;
+                var speedFactor:Float = 1.5;
+                resizeByRatio(Math.pow(value / multSpeed, speedFactor)); 
+                multSpeed = value;
+		//trace('fuck dis');
+                return value;
 	}
 
 	public function set_texture(value:String):String {
