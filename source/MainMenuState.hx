@@ -125,9 +125,9 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxSpriteGroup();
 		add(menuItems);
 
-		if(FlxG.sound.music == null){
+		if(FlxG.sound.music == null) {
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
-		}else{
+		} else {
 		if (!FlxG.sound.music.playing || FlxG.sound.music.length != 89170)
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));

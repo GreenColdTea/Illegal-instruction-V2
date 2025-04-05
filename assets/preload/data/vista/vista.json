@@ -1,7 +1,7 @@
 {
 	"song": {
 		"player1": "bfiialt",
-		"player2": "chaotix",
+		"player2": "chaotix-rimlit",
 		"events": [
 			[
 				55384.6153846154,
@@ -9,7 +9,7 @@
 					[
 						"Change Character",
 						"dad",
-						"chaotixtransform"
+						"chaotixtransform-rimlit"
 					],
 					[
 						"Play Animation",

@@ -1,3 +1,4 @@
+
 package editors;
 
 #if desktop
@@ -75,7 +76,7 @@ class ChartingState extends MusicBeatState
 		'Hurt Note',
 		'GF Sing',
 		'No Animation',
-		'Haxe Note'
+		'Hex Note'
 	];
 	private var noteTypeIntMap:Map<Int, String> = new Map<Int, String>();
 	private var noteTypeMap:Map<String, Null<Int>> = new Map<String, Null<Int>>();
@@ -157,6 +158,7 @@ class ChartingState extends MusicBeatState
 	var curSelectedNote:Array<Dynamic> = null;
 
 	var tempBpm:Float = 0;
+
 	var playbackSpeed:Float = 1;
 
 	var vocals:FlxSound = null;
@@ -207,8 +209,6 @@ class ChartingState extends MusicBeatState
 		96,
 		192
 	];
-
-
 
 	var text:String = "";
 	public static var vortex:Bool = false;
@@ -458,6 +458,12 @@ class ChartingState extends MusicBeatState
 
 		var reloadSongJson:FlxButton = new FlxButton(reloadSong.x, saveButton.y + 30, "Reload JSON", function()
 		{
+			if (FlxG.sound.music.playing)
+				{
+					FlxG.sound.music.pause();
+					if(vocals != null) vocals.pause();
+				}
+			else
 			openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, function() {
 				var songName = _song.song.toLowerCase();
 				var songFolder = Paths.formatToSongPath(UI_songTitle.text);
@@ -504,8 +510,23 @@ class ChartingState extends MusicBeatState
 			saveEvents();
 		});
 
-		var clear_events:FlxButton = new FlxButton(320, 310, 'Clear events', function()
+		var clear_events:FlxButton = new FlxButton(320, 310, 'Clear Events', function()
 			{
+				if (FlxG.sound.music.playing)
+					{
+						FlxG.sound.music.pause();
+						if(vocals != null) vocals.pause();
+					}
+					else
+					{
+						if(vocals != null) {
+							vocals.play();
+							vocals.pause();
+							vocals.time = FlxG.sound.music.time;
+							vocals.play();
+						}
+						FlxG.sound.music.play();
+					}
 				openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, clearEvents, null, ignoreWarnings, "OK", "CANCEL"));
 			});
 		clear_events.color = FlxColor.RED;
@@ -513,6 +534,21 @@ class ChartingState extends MusicBeatState
 
 		var clear_notes:FlxButton = new FlxButton(320, clear_events.y + 30, 'Clear notes', function()
 			{
+				if (FlxG.sound.music.playing)
+					{
+						FlxG.sound.music.pause();
+						if(vocals != null) vocals.pause();
+					}
+					else
+					{
+						if(vocals != null) {
+							vocals.play();
+							vocals.pause();
+							vocals.time = FlxG.sound.music.time;
+							vocals.play();
+						}
+						FlxG.sound.music.play();
+					}
 				openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, function(){for (sec in 0..._song.notes.length) {
 					_song.notes[sec].sectionNotes = [];
 				}
@@ -656,6 +692,21 @@ class ChartingState extends MusicBeatState
 			} else if (skinName == '') {
 				_song.arrowSkin = 'NOTE_assets';
             } else {
+				if (FlxG.sound.music.playing)
+					{
+						FlxG.sound.music.pause();
+						if(vocals != null) vocals.pause();
+					}
+					else
+					{
+						if(vocals != null) {
+							vocals.play();
+							vocals.pause();
+							vocals.time = FlxG.sound.music.time;
+							vocals.play();
+						}
+						FlxG.sound.music.play();
+					}
                 openSubState(new Prompt('Notes skin not found!\nPlease check the notes skin name.', 1, function() { 
                     closeSubState(); 
                 }, null, false, "OK", null));

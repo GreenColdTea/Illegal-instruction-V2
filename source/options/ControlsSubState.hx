@@ -100,7 +100,7 @@ class ControlsSubState extends MusicBeatSubstate {
 			} else {
 				optionText.forceX = 200;
 			}
-			optionText.y -= 100;
+			optionText.y -= 25;
 			optionText.yMult = 60;
 			optionText.targetY = i;
 			grpOptions.add(optionText);
@@ -134,7 +134,7 @@ class ControlsSubState extends MusicBeatSubstate {
 
 			if (controls.BACK) {
 				ClientPrefs.reloadControls();
-			        #if android
+			        #if mobile
                  FlxTransitionableState.skipNextTransOut = true;
 			        FlxG.resetState();
                  #else
@@ -285,14 +285,14 @@ class ControlsSubState extends MusicBeatSubstate {
 
 	private function addBindTexts(optionText:Alphabet, num:Int) {
 		var keys:Array<Dynamic> = ClientPrefs.keyBinds.get(optionShit[num][1]);
-		var text1 = new AttachedText(InputFormatter.getKeyName(keys[0]), 400, -55);
-		text1.setPosition(optionText.x + 400, optionText.y - 55);
+		var text1 = new AttachedText(InputFormatter.getKeyName(keys[0]), 400, 2);
+		text1.setPosition(optionText.x + 400, optionText.y);
 		text1.sprTracker = optionText;
 		grpInputs.push(text1);
 		add(text1);
 
-		var text2 = new AttachedText(InputFormatter.getKeyName(keys[1]), 650, -55);
-		text2.setPosition(optionText.x + 650, optionText.y - 55);
+		var text2 = new AttachedText(InputFormatter.getKeyName(keys[1]), 650, 2);
+		text2.setPosition(optionText.x + 650, optionText.y);
 		text2.sprTracker = optionText;
 		grpInputsAlt.push(text2);
 		add(text2);

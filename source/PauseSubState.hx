@@ -448,7 +448,7 @@ class PauseSubState extends MusicBeatSubstate
         {
             if (menuItems.length == 0) return; // Checking to prevent game crash
 
-	    var prevSelected = curSelected;
+	        var prevSelected = curSelected;
             curSelected = (curSelected + change + menuItems.length) % menuItems.length;
             FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
@@ -458,20 +458,12 @@ class PauseSubState extends MusicBeatSubstate
                 var item = menuItemsText[i];
                 var targetY = startY + (i * spacing) + offsetY;
                 FlxTween.tween(item, {y: targetY}, 0.2, {ease: FlxEase.quadOut});
-            }
-
-	    if (prevSelected == menuItems.length - 1 && curSelected == 0) {
-                for (i in 0...menuItemsText.length) {
-                    var item = menuItemsText[i];
-                    FlxTween.tween(item, {y: startY + (i * spacing)}, 0.3, {ease: FlxEase.quadOut});
-                }
-	    }
-		
+            }	
 
             if (curSelected == 0) {
                 for (i in 0...menuItemsText.length) {
                     var item = menuItemsText[i];
-                    item.y = startY + (i * spacing);
+                    FlxTween.tween(item, {y: startY + (i * spacing)}, 0.2, {ease: FlxEase.quadOut});
                 }
             }
 
@@ -481,7 +473,7 @@ class PauseSubState extends MusicBeatSubstate
             }
 
             updateMenuSelection();
-	}
+	    }
 
         function regenMenu():Void {
             for (i in 0...grpMenuShit.members.length) {

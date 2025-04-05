@@ -46,7 +46,7 @@ class Intro extends MusicBeatState
 		if (video != null)
 		{
 			if (canSkip && (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end))
-                                video.skipVideo();
+                video.skipVideo();
 
 		}
 
@@ -116,10 +116,10 @@ class Intro extends MusicBeatState
 			video.finishCallback = function() {
 				video.dispose();
 				FlxG.removeChild(video);
-                                if (!FlxG.save.data.seenIntro) FlxG.save.data.seenIntro = true; 
-                                FlxG.save.flush();
-                                MusicBeatState.switchState(new TitleState());
-                        };
+                if (!FlxG.save.data.seenIntro) FlxG.save.data.seenIntro = true; 
+                FlxG.save.flush();
+                MusicBeatState.switchState(new TitleState());
+            };
 			FlxG.addChildBelowMouse(video);
 
 			try
@@ -131,8 +131,8 @@ class Intro extends MusicBeatState
 				video.load(IntroVideoPH);
 
 			new FlxTimer().start(0.001, (_) -> {
-                                video.play();
-                        });
+                video.play();
+            });
 		});
 	}
 }

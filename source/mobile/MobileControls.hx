@@ -39,11 +39,11 @@ class MobileControls extends FlxSpriteGroup
 				_virtualpad = new FlxVirtualPad(BOTH_FULL, NONE);
 				add(_virtualpad);
 			case 'Hitbox':
-			if(usesDodge){
-				hitbox = new FlxHitbox(SPACE);
-			}else{
-			    hitbox = new FlxHitbox(DEFAULT);
-			}
+			    if (usesDodge) {
+				    hitbox = new FlxHitbox(SPACE);
+			    } else {
+			        hitbox = new FlxHitbox(DEFAULT);
+			    }
 				add(hitbox);
 			case 'Keyboard': // do nothing
 		}

@@ -1,6 +1,6 @@
 package;
 
-import openfl.geom.Matrix;
+import flash.geom.Matrix;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;

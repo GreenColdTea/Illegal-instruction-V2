@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="VectorBop.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="VectorBop0000" x="0" y="0" width="533" height="797" frameX="0" frameY="-9" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0001" x="0" y="0" width="533" height="797" frameX="0" frameY="-9" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0002" x="533" y="0" width="532" height="801" frameX="-2" frameY="-4" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0003" x="533" y="0" width="532" height="801" frameX="-2" frameY="-4" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0004" x="1065" y="0" width="532" height="803" frameX="-3" frameY="-2" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0005" x="1065" y="0" width="532" height="803" frameX="-3" frameY="-2" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0006" x="0" y="803" width="542" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0007" x="0" y="803" width="542" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0008" x="542" y="803" width="544" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0009" x="542" y="803" width="544" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0010" x="1086" y="803" width="545" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0011" x="1086" y="803" width="545" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0012" x="1086" y="803" width="545" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+	<SubTexture name="VectorBop0013" x="1086" y="803" width="545" height="805" frameX="-4" frameY="0" frameWidth="549" frameHeight="806"/>
+</TextureAtlas>

@@ -51,11 +51,16 @@ class Main extends Sprite
     var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
     var framerate:Int = 60; // How many frames per second the game should run at.
     var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-    var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+    var startFullscreen:Bool = true; // Whether to start the game in fullscreen on desktop targets
     public static var fpsVar:FPS;
-//
+
     // You can pretty much ignore everything from here on - your code should go in your states.
     public static var path:String = System.applicationStorageDirectory;
+
+    @:dox(hide)
+	public static var audioDisconnected:Bool = false;
+
+    public static var changeID:Int = 0;
 
     static final videva:Array<String> = [
         "II_Intro",
@@ -66,10 +71,10 @@ class Main extends Sprite
     public static function main():Void
     {
         Lib.current.addChild(new Main());
-	#if cpp
+	    #if cpp
         cpp.NativeGc.run(true);
-	cpp.NativeGc.enable(true);
-	#end
+	    cpp.NativeGc.enable(true);
+	    #end
     }
 
     public function new()
@@ -120,7 +125,7 @@ class Main extends Sprite
         }
 	    #end
 
-	        #if windows
+	    #if windows
 		// DPI Scaling fix for windows 
 		// this shouldn't be needed for other systems
 		// Credit to YoshiCrafter29 for finding this function
@@ -141,8 +146,8 @@ class Main extends Sprite
 		hxvlc.util.Handle.init(#if (hxvlc >= "1.8.0")  ['--no-lua'] #end);
 		#end
 
-            #if mobile
-            Generic.mode = MEDIAFILE;
+        #if mobile
+        Generic.mode = MEDIAFILE;
 	    if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 		    FileSystem.createDirectory(Generic.returnPath() + 'assets');
             }
@@ -162,9 +167,9 @@ class Main extends Sprite
         #end
 
         ClientPrefs.loadDefaultKeys();
-	// fuck you, persistent caching stays ON during sex
-	FlxGraphic.defaultPersist = true;
-	// the reason for this is we're going to be handling our own cache smartly
+	    // fuck you, persistent caching stays ON during sex
+	    FlxGraphic.defaultPersist = true;
+	    // the reason for this is we're going to be handling our own cache smartly
 
         #if !VIDEOS_ALLOWED
         initialState = TitleState;
@@ -180,7 +185,7 @@ class Main extends Sprite
             fpsVar.visible = ClientPrefs.showFPS;
         }
 
-	FlxG.signals.gameResized.add(function (w, h) {
+	    FlxG.signals.gameResized.add(function (w, h) {
             if (fpsVar != null)
                 fpsVar.positionFPS(10, 3, Math.min(w / FlxG.width, h / FlxG.height));
 

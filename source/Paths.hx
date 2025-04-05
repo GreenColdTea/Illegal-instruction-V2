@@ -294,21 +294,32 @@ class Paths
 		return file;
 	}
 
-	inline static public function voices(song:String, postfix:String = null):Any
-	{
+	inline static public function voices(song:String, postfix:String = null):Any {
 		var songKey:String = '${formatToSongPath(song)}/voices';
-		if(postfix != null) songKey += '-' + postfix;
-		//trace('songKey test: $songKey');
-		var voices = returnSound(null, songKey, 'songs');
-		return voices;
+		if (postfix != null) songKey += '-' + postfix;
+	
+		var snd = returnSound(null, songKey, 'songs');
+		if (snd == null) {
+			songKey = '${formatToSongPath(song)}/Voices';
+			if (postfix != null) songKey += '-' + postfix;
+			snd = returnSound(null, songKey, 'songs');
+		}
+	
+		return snd;
 	}
-
-	inline static public function inst(song:String):Any
-	{
+	
+	inline static public function inst(song:String):Any {
 		var songKey:String = '${formatToSongPath(song)}/inst';
-		var inst = returnSound(null, songKey, 'songs');
-		return inst;
+		var snd = returnSound(null, songKey, 'songs');
+	
+		if (snd == null) {
+			songKey = '${formatToSongPath(song)}/Inst';
+			snd = returnSound(null, songKey, 'songs');
+		}
+	
+		return snd;
 	}
+	
 
 	inline static public function image(key:String, ?library:String, ?allowGPU:Bool = false):Dynamic
 	{

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="AmyBop.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="AmyBop0000" x="0" y="0" width="519" height="595" frameX="-19" frameY="-12" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0001" x="0" y="0" width="519" height="595" frameX="-19" frameY="-12" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0002" x="519" y="0" width="522" height="599" frameX="-13" frameY="-8" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0003" x="519" y="0" width="522" height="599" frameX="-13" frameY="-8" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0004" x="1041" y="0" width="526" height="603" frameX="-5" frameY="-4" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0005" x="1041" y="0" width="526" height="603" frameX="-5" frameY="-4" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0006" x="0" y="603" width="526" height="606" frameX="-2" frameY="-1" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0007" x="0" y="603" width="526" height="606" frameX="-2" frameY="-1" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0008" x="526" y="603" width="528" height="607" frameX="0" frameY="0" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0009" x="526" y="603" width="528" height="607" frameX="0" frameY="0" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0010" x="526" y="603" width="528" height="607" frameX="0" frameY="0" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0011" x="526" y="603" width="528" height="607" frameX="0" frameY="0" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0012" x="526" y="603" width="528" height="607" frameX="0" frameY="0" frameWidth="538" frameHeight="607"/>
+	<SubTexture name="AmyBop0013" x="526" y="603" width="528" height="607" frameX="0" frameY="0" frameWidth="538" frameHeight="607"/>
+</TextureAtlas>

@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				7
 			],
-			"loop": false,
-			"fps": 7,
 			"anim": "idle",
-			"indices": [],
-			"name": "duke-pixel idle"
+			"fps": 7,
+			"name": "duke-pixel idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				40,
-				8
+				7
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "duke-pixel left"
+			"fps": 12,
+			"name": "duke-pixel left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				7
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "duke-pixel down"
+			"fps": 12,
+			"name": "duke-pixel down",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-25,
 				7
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "duke-pixel right"
+			"fps": 12,
+			"name": "duke-pixel right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				30,
 				7
 			],
-			"loop": false,
-			"fps": 12,
 			"anim": "singUP",
-			"indices": [],
-			"name": "duke-pixel up"
+			"fps": 12,
+			"name": "duke-pixel up",
+			"indices": []
 		}
 	],
 	"no_antialiasing": true,

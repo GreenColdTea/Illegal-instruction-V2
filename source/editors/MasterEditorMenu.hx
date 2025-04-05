@@ -119,6 +119,7 @@ class MasterEditorMenu extends MusicBeatState
 				case 'Week Editor':
 					MusicBeatState.switchState(new WeekEditorState());
 				case 'Chart Editor'://felt it would be cool maybe
+				    PlayState.chartingMode = true;
 					LoadingState.loadAndSwitchState(new ChartingState(), false);
 			}
 			FlxG.sound.music.volume = 0;

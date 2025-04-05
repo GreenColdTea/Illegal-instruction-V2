@@ -34,7 +34,6 @@ typedef CharacterFile = {
 	var flip_x:Bool;
 	var no_antialiasing:Bool;
 	var healthbar_colors:Array<Int>;
-	@:optional var pauseDuringSustains:Null<Bool>;
 }
 
 typedef AnimArray = {
@@ -74,7 +73,7 @@ class Character extends FlxSprite
 	public var idleSuffix:String = '';
 	public var danceIdle:Bool = false; //Character use "danceLeft" and "danceRight" instead of "idle"
 	
-	public var healthIcon:String = 'face';
+	public var healthIcon:String = 'beta';
 	public var animationsArray:Array<AnimArray> = [];
 
 	public var positionArray:Array<Float> = [0, 0];
@@ -94,7 +93,6 @@ class Character extends FlxSprite
 	public var healthColorArray:Array<Int> = [255, 0, 0];
 
 	public static var DEFAULT_CHARACTER:String = 'bfiialt-opponent'; //In case a character is missing, it will use BF on its place
-	@:optional var pauseDuringSustains:Null<Bool>;
 	
 	public function new(x:Float, y:Float, ?character:String = 'bfiialt', ?isPlayer:Bool = false)
 	{
@@ -215,8 +213,6 @@ class Character extends FlxSprite
 
 				antialiasing = !noAntialiasing;
 				if(!ClientPrefs.globalAntialiasing) antialiasing = false;
-
-				if (json.pauseDuringSustains != null) pauseAnimForSustain = json.pauseDuringSustains;
 
 				animationsArray = json.animations;
 				if(animationsArray != null && animationsArray.length > 0) {

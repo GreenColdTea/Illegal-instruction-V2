@@ -41,6 +41,8 @@ class MusicBeatState extends FlxUIState
 	private var curSection:Int = 0;
 	private var stepsToDo:Int = 0;
 
+	public static var camBeat:FlxCamera;
+
 	public var curDecStep:Float = 0;
 	public var curDecBeat:Float = 0;
 	private var controls(get, never):Controls;
@@ -205,6 +207,7 @@ class MusicBeatState extends FlxUIState
 	}
 
 	override function create() {
+		camBeat = FlxG.camera;
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 
 		if (!skip) {

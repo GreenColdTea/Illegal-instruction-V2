@@ -43,7 +43,7 @@
 	<define name="LUA_ALLOWED" if="cpp" />
 	<define name="ACHIEVEMENTS_ALLOWED" if="officialBuild" />
 	<define name="VIDEOS_ALLOWED" if="desktop || mobile" />
-        <define name="CRASH_HANDLER" />
+    <define name="CRASH_HANDLER" />
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
@@ -70,14 +70,12 @@
     <library name="exe"        preload="false" />
   </section>
 	
-	<assets path="plugins/"             rename=''               if="VIDEOS_ALLOWED windows" />
-	<assets path="dlls/"                rename=''               if="VIDEOS_ALLOWED windows" />
 	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
 	<assets path="assets/songs"         library="songs"         exclude="*.ogg" if="web"/>
 	<assets path="assets/songs"         library="songs"         exclude="*.mp3" unless="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.mp3" unless="web"/>
-        <assets path="assets/exe"        library="exe"        exclude="*.mp3" unless="web"/>
+    <assets path="assets/exe"        library="exe"        exclude="*.mp3" unless="web"/>
 	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<!-- <template path='mods' /> -->
@@ -92,7 +90,7 @@
 	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<!--Flixel 5.2.2-->
+	<!--Flixel 5.6.1-->
 	<haxelib name="flixel" version="git"/>
 	<haxedev set='webgl'/>
 
