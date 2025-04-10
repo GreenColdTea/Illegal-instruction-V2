@@ -57,10 +57,10 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/dukep2-placeholder",
+	"image": "characters/duke/dukep2-placeholder",
 	"position": [
 		0,
-		125
+		-75
 	],
 	"healthicon": "dukep2-old",
 	"flip_x": false,

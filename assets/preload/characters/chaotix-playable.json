@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				159,
+				-149
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "ChaotixMissDown"
+		},
+		{
+			"offsets": [
+				164,
+				-143
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "ChaotixDown"
+		},
+		{
+			"offsets": [
+				105,
+				18
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "ChaotixUp"
+		},
+		{
+			"offsets": [
+				256,
+				-93
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "ChaotixRight"
+		},
+		{
+			"offsets": [
+				106,
+				13
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "ChaotixMissUp"
+		},
+		{
+			"offsets": [
+				-63,
+				-36
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "ChaotixLeft"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "ChaotixIdle"
+		},
+		{
+			"offsets": [
+				268,
+				-87
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"loop": false,
+			"name": "ChaotixMissRight"
+		},
+		{
+			"offsets": [
+				-71,
+				-36
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"loop": false,
+			"name": "ChaotixMissLeft"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/bf/chaotix/chaotixplayer",
+	"position": [
+		160,
+		20
+	],
+	"healthicon": "chaotix",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		0,
+		0
+	],
+	"camera_position": [
+		290,
+		100
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

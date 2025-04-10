@@ -58,19 +58,19 @@ class Intro extends MusicBeatState
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 		ClientPrefs.loadPrefs();
 		
-                PlayerSettings.init();
+        PlayerSettings.init();
 		
-                if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
+        if (FlxG.save.data.seenIntro == null) FlxG.save.data.seenIntro = false;
 
-                if (FlxG.save.data.seenIntro) {
-                    FlxG.sound.muteKeys = TitleState.muteKeys;
-                    FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-                    FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
-                } else {
-                    FlxG.sound.muteKeys = [];
-                    FlxG.sound.volumeDownKeys = [];
-                    FlxG.sound.volumeUpKeys = [];
-                    FlxG.sound.volume = 10;
+        if (FlxG.save.data.seenIntro) {
+            FlxG.sound.muteKeys = TitleState.muteKeys;
+            FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
+            FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+        } else {
+            FlxG.sound.muteKeys = [];
+            FlxG.sound.volumeDownKeys = [];
+            FlxG.sound.volumeUpKeys = [];
+            FlxG.sound.volume = 10;
 		}
 
 		#if desktop

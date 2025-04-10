@@ -145,12 +145,12 @@
 		}
 	],
 	"no_antialiasing": true,
-	"image": "characters/bf_running",
+	"image": "characters/legacy/bf_running",
 	"position": [
 		-210,
 		700
 	],
-	"healthicon": "bf-chaotix",
+	"healthicon": "legacy/bf-chaotix",
 	"flip_x": false,
 	"healthbar_colors": [
 		0,

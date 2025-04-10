@@ -43,6 +43,8 @@ class MusicBeatState extends FlxUIState
 
 	public static var camBeat:FlxCamera;
 
+	public static var getCurSection:Int;
+
 	public var curDecStep:Float = 0;
 	public var curDecBeat:Float = 0;
 	private var controls(get, never):Controls;
@@ -213,6 +215,8 @@ class MusicBeatState extends FlxUIState
 		if (!skip) {
 			openSubState(new CustomFadeTransition(1, true));
 		}
+
+		getCurSection = curSection;
 
 		#if !MODS_ALLOWED
 		if (!Assets.exists("assets/images/gort.png")) {

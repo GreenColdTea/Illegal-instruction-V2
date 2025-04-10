@@ -1,11 +1,9 @@
-local allowCountDown = false
+local allowTitleCardAnimation = false
 
-debugMode = true
-
-function onStartCountDown()
-    if not allowCountDown and isStoryMode and not seenCutscene then
+function onStartTitleCardAnimation()
+    if not allowTitleCardAnimation and isStoryMode and not seenCutscene then
         startVideo("breakout_cut")
-        allowCountDown = true
+        allowTitleCardAnimation = true
         return Function_Stop
     end
     return Function_Continue

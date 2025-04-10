@@ -1769,34 +1769,6 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "getRandomBool", function(chance:Float = 50) {
 			return FlxG.random.bool(chance);
 		});
-		Lua_helper.add_callback(lua, "startDialogue", function(dialogueFile:String, music:String = null) {
-			#if MODS_ALLOWED
-			var path:String = Paths.modsJson(Paths.formatToSongPath(PlayState.SONG.song) + '/' + dialogueFile);
-			if(!FileSystem.exists(path)) {
-				path = Paths.json(Paths.formatToSongPath(PlayState.SONG.song) + '/' + dialogueFile);
-			}
-			#else
-			var path = Paths.json(Paths.formatToSongPath(PlayState.SONG.song) + '/' + dialogueFile);
-			#end
-			luaTrace('Trying to load dialogue: ' + path);
-
-			if(FileSystem.exists(path)) {
-				var shit:DialogueFile = DialogueBoxPsych.parseDialogue(path);
-				if(shit.dialogue.length > 0) {
-					PlayState.instance.startDialogue(shit, music);
-					luaTrace('Successfully loaded dialogue');
-				} else {
-					luaTrace('Your dialogue file is badly formatted!');
-				}
-			} else {
-				luaTrace('Dialogue file not found');
-				if(PlayState.instance.endingSong) {
-					PlayState.instance.endSong();
-				} else {
-					PlayState.instance.startCountdown();
-				}
-			}
-		});
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
 			#if VIDEOS_ALLOWED
 			if(FileSystem.exists(Paths.video(videoFile))) {
@@ -2077,58 +2049,18 @@ class FunkinLua {
 		});
 
 		//modchart shit
-		Lua_helper.add_callback(lua, "addMod", function(name:String, type:String) {
-                    var modManager = PlayState.instance.modManager;
+        Lua_helper.add_callback(lua, "easeModAtStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String = 'linear', ?player:Int = -1) {
+            var modManager = PlayState.instance.modManager;
 
-                    if (modManager.get(name) != null) {
-                        luaTrace('addMod: Modifier "' + name + '" already exists!', true);
-                        return false;
-                    }
+            if (modManager.get(name) == null) {
+                luaTrace('easeModAtStep: Modifier "' + name + '" does not exist!', true);
+                return false;
+            }
 
-                    var mod:Modifier = switch (type.toLowerCase().trim()) {
-			case "stealth": new AlphaModifier(modManager);
-			//case "tornado": new TornadoModifier(modManager);
-                        case "reverse": new ReverseModifier(modManager);
-                        case "flip": new FlipModifier(modManager);
-                        case "drunk": new DrunkModifier(modManager);
-                        case "confusion": new ConfusionModifier(modManager);
-			case "boost": new BeatModifier(modManager);
-                        case "mini": new ScaleModifier(modManager);
-                        case "invert": new InvertModifier(modManager);
-                        case "beat": new BeatModifier(modManager);
-			case "spiralx": new SpiralModifier(modManager);
-			case "receptorScroll": new ReceptorScrollModifier(modManager);
-			case "opponentswap": new OpponentModifier(modManager);
-			case "centerrotatex": new RotateModifier(modManager, 'center', new Vector3(FlxG.width / 2 - Note.swagWidth / 2, FlxG.height / 2 - Note.swagWidth / 2));
-			case "localrotatex": new LocalRotateModifier(modManager);
-                        case "transformx": new TransformModifier(modManager);
-			case "rotatex": new RotateModifier(modManager);
-                        case "perspective": new PerspectiveModifier(modManager);
-                        case "infinite": new PathModifier(modManager);
-			case "xmod": new XModifier(modManager);
-                        default:
-                            luaTrace('addMod: Invalid modifier type "' + type + '"!', true);
-                            null;
-                    };
-
-                    if (mod != null) {
-                        modManager.registerMod(name, mod);
-                        return true;
-                    }
-                    return false;
-                });
-                Lua_helper.add_callback(lua, "easeModAtStep", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
-                    var modManager = PlayState.instance.modManager;
-
-                    if (modManager.get(name) == null) {
-                        luaTrace('easeModAtStep: Modifier "' + name + '" does not exist!', true);
-                        return false;
-                    }
-
-                    modManager.queueEase(startStep, endStep, name, percent, easeType, player);
-                    return true;
-                });
-                Lua_helper.add_callback(lua, "easeModAtStepP", function(step:Float, length:Float, mod:String, value:Float, ease:String, ?player:Int = -1) {
+            modManager.queueEase(startStep, endStep, name, percent, easeType, player);
+            return true;
+        });
+                Lua_helper.add_callback(lua, "easeModAtStepP", function(step:Float, length:Float, mod:String, value:Float, ease:String = 'linear', ?player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
                     if (modManager.get(mod) != null) {
                         modManager.queueEaseP(step, step + length, mod, value, ease, player);
@@ -2136,7 +2068,7 @@ class FunkinLua {
                         luaTrace('easeModAtStepP: Modifier "' + mod + '" does not exist.', true);
                     }
                 });
-                Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int) {
+                Lua_helper.add_callback(lua, "setModAtStep", function(startStep:Float, name:String, percent:Float, player:Int = -1) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
@@ -2147,7 +2079,7 @@ class FunkinLua {
                     modManager.queueSet(startStep, name, percent, player);
                     return true;
                 });
-		Lua_helper.add_callback(lua, "setModAtStepP", function(startStep:Float, name:String, percent:Float, player:Int) {
+		        Lua_helper.add_callback(lua, "setModAtStepP", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
@@ -2158,7 +2090,7 @@ class FunkinLua {
                     modManager.queueSetP(startStep, name, percent, player);
                     return true;
                 });
-	        Lua_helper.add_callback(lua, "setModAtSecond", function(startStep:Float, name:String, percent:Float, player:Int) {
+	            Lua_helper.add_callback(lua, "setModAtSecond", function(startStep:Float, name:String, percent:Float, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {
@@ -2180,7 +2112,7 @@ class FunkinLua {
                     modManager.setValue(name, percent, player);
                     return true;
                 });
-		Lua_helper.add_callback(lua, "easeModAtSecond", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
+		        Lua_helper.add_callback(lua, "easeModAtSecond", function(startStep:Float, endStep:Float, name:String, percent:Float, easeType:String, player:Int) {
                     var modManager = PlayState.instance.modManager;
 
                     if (modManager.get(name) == null) {

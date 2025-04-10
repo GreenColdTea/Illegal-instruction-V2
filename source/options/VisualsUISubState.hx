@@ -100,8 +100,8 @@ class VisualsUISubState extends BaseOptionsMenu
 			"What song do you prefer for the Pause Screen?",
 			'pauseMusic',
 			'string',
-			'Chaotix Break',
-			['None', 'Chaotix Break']);
+			'Waiting Room',
+			['Waiting Room', 'Chaotix Break', 'None']);
 		addOption(option);
 		option.onChange = onChangePauseMusic;
 		

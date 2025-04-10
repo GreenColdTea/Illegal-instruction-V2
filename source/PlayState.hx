@@ -83,17 +83,7 @@ import sys.FileSystem;
 import SonicNumber.SonicNumberDisplay;
 
 #if VIDEOS_ALLOWED
-#if (hxCodec >= "3.0.0")
-import hxcodec.flixel.FlxVideo as MP4Handler;
-#elseif (hxCodec == "2.6.1")
-import hxcodec.VideoHandler as MP4Handler;
-#elseif (hxCodec == "2.6.0")
-import VideoHandler as MP4Handler;
-#elseif hxvlc
 import hxvlc.flixel.FlxVideo as MP4Handler;
-#else
-import vlc.MP4Handler;
-#end
 #end
 
 #if !flash 
@@ -2329,11 +2319,6 @@ class PlayState extends MusicBeatState
 				//dad.setPosition(-500, 350);
 		}
 
-		var file:String = Paths.json(songName + '/dialogue'); //Checks for json/Psych Engine dialogue
-		if (OpenFlAssets.exists(file)) {
-			dialogueJson = DialogueBoxPsych.parseDialogue(file);
-		}
-
 		Conductor.songPosition = -5000;
 
 		strumLine = new FlxSprite(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, upscrollOffset).makeGraphic(FlxG.width, 10);
@@ -2438,7 +2423,6 @@ class PlayState extends MusicBeatState
 		wireVignette.updateHitbox();
 		wireVignette.screenCenter(XY);
 		wireVignette.alpha = 0;
-		wireVignette.cameras = [camOther];
 		wireVignette.cameras = [camOther];
 	
 		// startCountdown();
@@ -2817,8 +2801,8 @@ class PlayState extends MusicBeatState
 		add(wireVignette);
 
 		var daSong:String = Paths.formatToSongPath(curSong);
-	
-        add(blackFuck);
+
+		add(blackFuck);
 
         startCircle.loadGraphic(Paths.image('openings/' + daSong + '_title_card', 'exe'));
         startCircle.frames = Paths.getSparrowAtlas('openings/' + daSong + '_title_card', 'exe');
@@ -2839,7 +2823,6 @@ class PlayState extends MusicBeatState
 		    
         startCircle.alpha = 0;
         startCircle.screenCenter();
-        add(startCircle);
 
 		playTitleCardAnimation(daSong);
 	
@@ -2886,7 +2869,8 @@ class PlayState extends MusicBeatState
         mobileControls.visible = false;
 		#end
 	}
-        private function strumsPositions():Void {
+
+    private function strumsPositions():Void {
 		if (!ClientPrefs.opponentStrums) {
 			opponentStrums.baseAlpha = 0;
 			modManager.setValue('alpha', 1, 1);
@@ -2905,7 +2889,11 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-        function playTitleCardAnimation(daSong:String, delay:Float = 1, fadeOutTime:Float = 2, startDelay:Float = 0.3) {
+    function playTitleCardAnimation(daSong:String, delay:Float = 1, fadeOutTime:Float = 2, startDelay:Float = 0.3) {
+        var ret:Dynamic = callOnLuas('onStartTitleCardAnimation', []);
+		if(ret != FunkinLua.Function_Stop) {
+			add(startCircle);
+
             if (daSong != "cascade") {
                 new FlxTimer().start(delay, function(tmr:FlxTimer)
                 {
@@ -2978,6 +2966,7 @@ class PlayState extends MusicBeatState
                     strumsPositions();
                 });
             }
+		}
 	}
 
 
@@ -3281,7 +3270,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-        public function getLuaObject(tag:String, text:Bool=true):FlxSprite {
+        public function getLuaObject(tag:String, text:Bool = true):FlxSprite {
 		if(modchartSprites.exists(tag)) return modchartSprites.get(tag);
 		if(text && modchartTexts.exists(tag)) return modchartTexts.get(tag);
 		if(variables.exists(tag)) return variables.get(tag);
@@ -3318,10 +3307,6 @@ class PlayState extends MusicBeatState
 		inCutscene = true;
 
 		var filepath:String = Paths.video(name);
-		var bg = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-		bg.scrollFactor.set();
-		bg.cameras = [camHUD];
-		add(bg);
 		#if sys
 		if(!FileSystem.exists(filepath))
 		#else
@@ -3334,29 +3319,24 @@ class PlayState extends MusicBeatState
 		}
 
 		var video:MP4Handler = new MP4Handler();
-		#if (hxCodec < "3.0.0")
-		video.playVideo(filepath);
-		video.finishCallback = function()
+		video.smoothing = true;
+		#if mobile
+		video.onFormatSetup.add(function():Void
 		{
-			startAndEnd();
-			return;
-		}
-		#elseif hxvlc
-		video.load(filepath);
-		video.play();
-		video.onEndReached.add(function(){
-			video.dispose();
-			startAndEnd();
-			return;
-		});
-		#else
-		video.play(filepath);
-		video.onEndReached.add(function(){
-			video.dispose();
-			startAndEnd();
-			return;
+			if (video != null)
+			{
+				FlxG.scaleMode = new MobileScaleMode();
+			}
 		});
 		#end
+		video.load(filepath);
+		video.play();
+		video.finishCallback = function() {
+			video.dispose();
+			startAndEnd();
+			return;
+		};
+		FlxG.addChildBelowMouse(video);
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
@@ -3370,45 +3350,6 @@ class PlayState extends MusicBeatState
 			endSong();
 		else
 			playTitleCardAnimation(Paths.formatToSongPath(curSong));
-	}
-
-	var dialogueCount:Int = 0;
-	public var psychDialogue:DialogueBoxPsych;
-	//You don't have to add a song, just saying. You can just do "startDialogue(dialogueJson);" and it should work
-	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
-	{
-		// TO DO: Make this more flexible, maybe?
-		if(psychDialogue != null) return;
-
-		if(dialogueFile.dialogue.length > 0) {
-			inCutscene = true;
-			CoolUtil.precacheSound('dialogue');
-			CoolUtil.precacheSound('dialogueClose');
-			psychDialogue = new DialogueBoxPsych(dialogueFile, song);
-			psychDialogue.scrollFactor.set();
-			if(endingSong) {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					endSong();
-				}
-			} else {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					startCountdown();
-				}
-			}
-			psychDialogue.nextDialogueThing = startNextDialogue;
-			psychDialogue.skipDialogueThing = skipDialogue;
-			psychDialogue.cameras = [camHUD];
-			add(psychDialogue);
-		} else {
-			FlxG.log.warn('Your dialogue file is badly formatted!');
-			if(endingSong) {
-				endSong();
-			} else {
-				startCountdown();
-			}
-		}
 	}
 
 	var startTimer:FlxTimer;
@@ -3426,12 +3367,12 @@ class PlayState extends MusicBeatState
 		}
 
 		#if mobile
-                mobileControls.visible = true;
+        mobileControls.visible = true;
 		if (ClientPrefs.isvpad && MobileControls.mode != 'Hitbox' && MobileControls.mode != 'Keyboard'){
 			addVirtualPad(NONE, NONE);
 			_virtualpad.visible = true;
 		}
-                #end
+        #end
 
 		inCutscene = false;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
@@ -3675,15 +3616,6 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = time;
 	}
 
-	function startNextDialogue() {
-		dialogueCount++;
-		callOnLuas('onNextDialogue', [dialogueCount]);
-	}
-
-	function skipDialogue() {
-		callOnLuas('onSkipDialogue', [dialogueCount]);
-	}
-
 	var previousFrameTime:Int = 0;
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
@@ -3696,7 +3628,7 @@ class PlayState extends MusicBeatState
 		lastReportedPlayheadPosition = 0;
 
 		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
-      FlxG.sound.music.pitch = playbackRate;
+        FlxG.sound.music.pitch = playbackRate;
 		FlxG.sound.music.onComplete = onSongComplete;
 		vocals.play();
 
@@ -4912,6 +4844,8 @@ class PlayState extends MusicBeatState
 			if(ret != FunkinLua.Function_Stop) {
 				boyfriend.stunned = true;
 				deathCounter++;
+
+				seenCutscene = true;
 
 				paused = true;
 
@@ -8327,7 +8261,7 @@ class PlayState extends MusicBeatState
 		}
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
-		setOnLuas('ratingFC', ratingFC.replace("-", ""));
+		setOnLuas('ratingFC', ratingFC.replace("-", "").trim());
 	}
 
 	#if ACHIEVEMENTS_ALLOWED

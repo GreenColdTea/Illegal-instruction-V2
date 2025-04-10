@@ -1,9 +1,9 @@
-local allowCountDown = false
+local allowTitleCardAnimation = false
 
-function onStartCountDown()
-    if not allowCountDown and isStoryMode and not seenCutscene then
+function onStartTitleCardAnimation()
+    if not allowTitleCardAnimation and isStoryMode and not seenCutscene then
         startVideo("hellspawn_cut")
-        allowCountDown = true
+        allowTitleCardAnimation = true
         return Function_Stop
     end
     return Function_Continue

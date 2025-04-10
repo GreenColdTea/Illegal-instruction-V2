@@ -185,7 +185,7 @@ class Note extends FlxSprite
 			switch(value) {
 				case 'Hurt Note':
 					ignoreNote = mustPress;
-					reloadNote('HURT');
+					reloadNote('noteSkins/HURT');
 					noteSplashTexture = 'HURTnoteSplashes';
 					colorSwap.hue = 0;
 					colorSwap.saturation = 0;
@@ -197,7 +197,7 @@ class Note extends FlxSprite
 					gfNote = true;
 				case 'Hex Note':
 					missHealth = 0;
-					reloadNote("HEX");
+					reloadNote("noteSkins/HEX");
 					hitbox *= 0.55;
 					ignoreNote = true;
 					hitCausesMiss = true;
@@ -267,7 +267,7 @@ class Note extends FlxSprite
 			multAlpha = 0.6;
 			
 			hitsoundDisabled = true;
-			//if(ClientPrefs.downScroll) flipY = true;
+			if(ClientPrefs.downScroll) flipX = true;
 
 			offsetX += width / 2;
 	

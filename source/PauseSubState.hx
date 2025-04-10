@@ -24,7 +24,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<FlxText>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song' #if mobile, 'Debug Mode' #end, 'Options', 'Exit'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart' #if mobile, 'Debug Mode' #end, 'Options', 'Exit'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 	var menuItemsText:Array<FlxText> = [];
@@ -63,7 +63,7 @@ class PauseSubState extends MusicBeatSubstate
 			#end)
 		{
 			#if !debug
-			menuItemsOG.insert(2, 'Turn Off Debug Mode');
+			menuItemsOG.insert(2, 'D.Mode Off');
 			#end
 			
 			var num:Int = 0;
@@ -73,8 +73,8 @@ class PauseSubState extends MusicBeatSubstate
 				menuItemsOG.insert(3, 'Skip Time:');
 			}
 			menuItemsOG.insert(3 + num, 'End Song');
-			menuItemsOG.insert(4 + num, 'Toggle Practice Mode');
-			menuItemsOG.insert(5 + num, 'Toggle Botplay');
+			menuItemsOG.insert(4 + num, 'Practice Mode');
+			menuItemsOG.insert(5 + num, 'Botplay');
 		}
 		menuItems = menuItemsOG;
 
@@ -316,17 +316,17 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				case "Resume":
 					close();
-				case 'Toggle Practice Mode':
+				case 'Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
-				case "Restart Song":
+				case "Restart":
 					restartSong();
-				case "Turn Off Debug Mode":
+				case "D.Mode Off":
 					restartSong();
 					PlayState.chartingMode = false;
 				case 'Debug Mode':
-		                        close();
+		            close();
 					PlayState.chartingMode = true;
 				case 'Skip Time:':
 					if(curTime < Conductor.songPosition)
@@ -346,7 +346,7 @@ class PauseSubState extends MusicBeatSubstate
 				case "End Song":
 					close();
 					PlayState.instance.finishSong(true);
-				case 'Toggle Botplay':
+				case 'Botplay':
 					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
 					PlayState.changedDifficulty = true;
 					PlayState.instance.botplayTxt.visible = PlayState.instance.cpuControlled;
@@ -391,6 +391,7 @@ class PauseSubState extends MusicBeatSubstate
 		PlayState.instance.paused = true; // For lua
 		FlxG.sound.music.volume = 0;
 		PlayState.instance.vocals.volume = 0;
+		PlayState.seenCutscene = true;
 
 		if(noTrans)
 		{

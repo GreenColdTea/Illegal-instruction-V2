@@ -27,31 +27,25 @@ import mobile.MobileScaleMode;
 
 using CoolUtil;
 
-#if windows
-@:buildXml('
-<target id="haxe">
-	<lib name="wininet.lib" if="windows" />
-	<lib name="dwmapi.lib" if="windows" />
-</target>
-')
-@:cppFileCode('
-#include <windows.h>
-#include <winuser.h>
-#pragma comment(lib, "Shell32.lib")
-extern "C" HRESULT WINAPI SetCurrentProcessExplicitAppUserModelID(PCWSTR AppID);
-')
+// NATIVE API STUFF, YOU CAN IGNORE THIS AND SCROLL //
+#if (linux && !debug)
+@:cppInclude('./external/gamemode_client.h')
+@:cppFileCode('#define GAMEMODE_AUTO')
 #end
 
 //@:nullSafety
 class Main extends Sprite
 {
-    var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-    var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-    var initialState:Class<FlxState> = Intro; // The FlxState the game starts with.
-    var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-    var framerate:Int = 60; // How many frames per second the game should run at.
-    var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-    var startFullscreen:Bool = true; // Whether to start the game in fullscreen on desktop targets
+    public static final game = {
+		width: 1280, // WINDOW width
+		height: 720, // WINDOW height
+		initialState: Intro, // initial game state
+        zoom: -1, // If -1, zoom is automatically calculated to fit the window dimensions.
+		framerate: 60, // default framerate
+		skipSplash: true, // if the default flixel splash screen should be skipped
+		startFullscreen: false // if the game should start at fullscreen mode
+	};
+    
     public static var fpsVar:FPS;
 
     // You can pretty much ignore everything from here on - your code should go in your states.
@@ -81,9 +75,9 @@ class Main extends Sprite
     {
         super();
 
-	#if CRASH_HANDLER
-	CrashHandler.init();
-	#end
+	    #if CRASH_HANDLER
+	    CrashHandler.init();
+	    #end
 
         if (stage != null)
         {
@@ -111,35 +105,22 @@ class Main extends Sprite
         var stageWidth:Int = Lib.current.stage.stageWidth;
 	    var stageHeight:Int = Lib.current.stage.stageHeight;
 
-	    if (zoom == -1)
+	    if (game.zoom == -1)
 	    {
-		    var ratioX:Float = stageWidth / gameWidth;
-		    var ratioY:Float = stageHeight / gameHeight;
-		    zoom = Math.min(ratioX, ratioY);
-		    gameWidth = Math.ceil(stageWidth / zoom);
-		    gameHeight = Math.ceil(stageHeight / zoom);
+		    var ratioX:Float = stageWidth / game.width;
+		    var ratioY:Float = stageHeight / game.height;
+		    game.zoom = Math.min(ratioX, ratioY);
+		    game.width = Math.ceil(stageWidth / game.zoom);
+		    game.height = Math.ceil(stageHeight / game.zoom);
 	    }
         #elseif (openfl >= '9.2.0')
-        if (zoom == -1) {
-            zoom = 1;
+        if (game.zoom == -1) {
+            game.zoom = 1;
         }
 	    #end
 
-	    #if windows
-		// DPI Scaling fix for windows 
-		// this shouldn't be needed for other systems
-		// Credit to YoshiCrafter29 for finding this function
-		untyped __cpp__("SetProcessDPIAware();");
-
-		var display = lime.system.System.getDisplay(0);
-		if (display != null) {
-			var dpiScale:Float = display.dpi / 96;
-			Application.current.window.width = Std.int(gameWidth * dpiScale);
-			Application.current.window.height = Std.int(gameHeight * dpiScale);
-
-			Application.current.window.x = Std.int((Application.current.window.display.bounds.width - Application.current.window.width) / 2);
-			Application.current.window.y = Std.int((Application.current.window.display.bounds.height - Application.current.window.height) / 2);
-		}
+        #if (cpp && windows)
+		lime.Native.fixScaling();
 		#end
 
 		#if VIDEOS_ALLOWED
@@ -172,10 +153,10 @@ class Main extends Sprite
 	    // the reason for this is we're going to be handling our own cache smartly
 
         #if !VIDEOS_ALLOWED
-        initialState = TitleState;
+        game.initialState = TitleState;
         #end
 
-        addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
+        addChild(new FlxGame(game.width, game.height, game.initialState, game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
         fpsVar = new FPS(10, 3, 0xFFFFFF);
         addChild(fpsVar);

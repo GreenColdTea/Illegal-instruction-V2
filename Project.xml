@@ -91,7 +91,7 @@
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<!--Flixel 5.6.1-->
-	<haxelib name="flixel" version="git"/>
+	<haxelib name="flixel" version="5.7.2"/>
 	<haxedev set='webgl'/>
 
 	<haxelib name="flixel-ui" version="2.6.3"/>

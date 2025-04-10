@@ -144,7 +144,11 @@ class ChartingState extends MusicBeatState
 	var nextRenderedSustains:FlxTypedGroup<FlxSprite>;
 	var nextRenderedNotes:FlxTypedGroup<Note>;
 
+	var prevRenderedSustains:FlxTypedGroup<FlxSprite>;
+	var prevRenderedNotes:FlxTypedGroup<Note>;
+
 	var gridBG:FlxSprite;
+	var prevGridBG:FlxSprite;
 	var nextGridBG:FlxSprite;
 
 	var daquantspot = 0;
@@ -293,6 +297,9 @@ class ChartingState extends MusicBeatState
 		nextRenderedSustains = new FlxTypedGroup<FlxSprite>();
 		nextRenderedNotes = new FlxTypedGroup<Note>();
 
+		prevRenderedSustains = new FlxTypedGroup<FlxSprite>();
+		prevRenderedNotes = new FlxTypedGroup<Note>();
+
 		if(curSec >= _song.notes.length) curSec = _song.notes.length - 1;
 
 		FlxG.mouse.visible = true;
@@ -398,6 +405,8 @@ class ChartingState extends MusicBeatState
 		add(curRenderedNoteType);
 		add(nextRenderedSustains);
 		add(nextRenderedNotes);
+		add(prevRenderedSustains);
+		add(prevRenderedNotes);
 
 		if(lastSong != currentSongName) {
 			changeSection();
@@ -434,7 +443,7 @@ class ChartingState extends MusicBeatState
 		UI_songTitle.focusGained = () -> FlxG.stage.window.textInputEnabled = true;
 		blockPressWhileTypingOn.push(UI_songTitle);
 
-		var check_voices = new FlxUICheckBox(10, 25, null, null, "Has voice track", 100);
+		var check_voices = new FlxUICheckBox(10, 25, null, null, "Has Voice Track", 100);
 		check_voices.checked = _song.needsVoices;
 		// _song.needsVoices = check_voices.checked;
 		check_voices.callback = function()
@@ -532,7 +541,7 @@ class ChartingState extends MusicBeatState
 		clear_events.color = FlxColor.RED;
 		clear_events.label.color = FlxColor.WHITE;
 
-		var clear_notes:FlxButton = new FlxButton(320, clear_events.y + 30, 'Clear notes', function()
+		var clear_notes:FlxButton = new FlxButton(320, clear_events.y + 30, 'Clear Notes', function()
 			{
 				if (FlxG.sound.music.playing)
 					{
@@ -735,7 +744,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, 'Song Speed:'));
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, 'Opponent:'));
 		tab_group_song.add(new FlxText(gfVersionDropDown.x, gfVersionDropDown.y - 15, 0, 'Girlfriend:'));
-		tab_group_song.add(new FlxText(player1DropDown.x, player1DropDown.y - 15, 0, 'Boyfriend:'));
+		tab_group_song.add(new FlxText(player1DropDown.x, player1DropDown.y - 15, 0, 'Player:'));
 		tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 0, 'Stage:'));
 		tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'Note Texture:'));
 		tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'Note Splashes Texture:'));
@@ -900,7 +909,7 @@ class ChartingState extends MusicBeatState
 		check_eventsSec = new FlxUICheckBox(check_notesSec.x + 100, check_notesSec.y, null, null, "Events", 100);
 		check_eventsSec.checked = true;
 
-		var swapSection:FlxButton = new FlxButton(10, check_notesSec.y + 40, "Swap section", function()
+		var swapSection:FlxButton = new FlxButton(10, check_notesSec.y + 40, "Swap Section", function()
 		{
 			for (i in 0..._song.notes[curSec].sectionNotes.length)
 			{
@@ -2285,41 +2294,59 @@ class ChartingState extends MusicBeatState
 			updateWaveform();
 		}
 
-		var leHeight:Int = Std.int(gridBG.height);
+		updateGrid();
+
+		var foundPrevSec:Bool = false;
 		var foundNextSec:Bool = false;
+
+		var leHeight:Int = Std.int(gridBG.height) * -1;
+		if(curSec > 0 && sectionStartTime(-1) >= 0)
+		{
+			prevGridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 9, Std.int(GRID_SIZE * getSectionBeats(curSec - 1) * 4 * zoomList[curZoom]));
+			leHeight = Std.int(gridBG.y - prevGridBG.height);
+			foundPrevSec = true;
+		}
+		else prevGridBG = new FlxSprite().makeGraphic(1, 1, FlxColor.TRANSPARENT);
+		prevGridBG.y = gridBG.y - prevGridBG.height;
+
+		var leHeight2:Int = Std.int(gridBG.height);
 		if(sectionStartTime(1) <= FlxG.sound.music.length)
 		{
 			nextGridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 9, Std.int(GRID_SIZE * getSectionBeats(curSec + 1) * 4 * zoomList[curZoom]));
-			leHeight = Std.int(gridBG.height + nextGridBG.height);
+			leHeight2 = Std.int(gridBG.height + nextGridBG.height);
 			foundNextSec = true;
 		}
 		else nextGridBG = new FlxSprite().makeGraphic(1, 1, FlxColor.TRANSPARENT);
 		nextGridBG.y = gridBG.height;
-		
+
+		gridLayer.add(prevGridBG);
 		gridLayer.add(nextGridBG);
 		gridLayer.add(gridBG);
 
+		if(foundPrevSec)
+		{
+			var gridBlackPrev:FlxSprite = new FlxSprite(0, prevGridBG.y).makeGraphic(Std.int(GRID_SIZE * 9), Std.int(prevGridBG.height), FlxColor.BLACK);
+			gridBlackPrev.alpha = 0.4;
+			gridLayer.add(gridBlackPrev);
+		}
+
 		if(foundNextSec)
 		{
-			var gridBlack:FlxSprite = new FlxSprite(0, gridBG.height).makeGraphic(Std.int(GRID_SIZE * 9), Std.int(nextGridBG.height), FlxColor.BLACK);
-			gridBlack.alpha = 0.4;
-			gridLayer.add(gridBlack);
+			var gridBlackNext:FlxSprite = new FlxSprite(0, gridBG.height).makeGraphic(Std.int(GRID_SIZE * 9), Std.int(nextGridBG.height), FlxColor.BLACK);
+			gridBlackNext.alpha = 0.4;
+			gridLayer.add(gridBlackNext);
 		}
 
-		var gridBlackLine:FlxSprite = new FlxSprite(gridBG.x + gridBG.width - (GRID_SIZE * 4)).makeGraphic(2, leHeight, FlxColor.BLACK);
-		gridLayer.add(gridBlackLine);
+		var topY = prevGridBG.y;
+        var totalHeight = nextGridBG.y + nextGridBG.height - topY;
 
-		for (i in 1...4) {
-			var beatsep1:FlxSprite = new FlxSprite(gridBG.x, (GRID_SIZE * (4 * curZoom)) * i).makeGraphic(Std.int(gridBG.width), 1, 0x44FF0000);
-			if(vortex)
-			{
-				gridLayer.add(beatsep1);
-			}
-		}
+		var gridBlackLineLeft = new FlxSprite(gridBG.x + GRID_SIZE).makeGraphic(2, Std.int(totalHeight), FlxColor.BLACK);
+        gridBlackLineLeft.y = topY;
+        gridLayer.add(gridBlackLineLeft);
 
-		var gridBlackLine:FlxSprite = new FlxSprite(gridBG.x + GRID_SIZE).makeGraphic(2, leHeight, FlxColor.BLACK);
-		gridLayer.add(gridBlackLine);
-		updateGrid();
+        var gridBlackLineRight = new FlxSprite(gridBG.x + gridBG.width - (GRID_SIZE * 4)).makeGraphic(2, Std.int(totalHeight), FlxColor.BLACK);
+        gridBlackLineRight.y = topY;
+        gridLayer.add(gridBlackLineRight);
 
 		lastSecBeats = getSectionBeats();
 		if(sectionStartTime(1) > FlxG.sound.music.length) lastSecBeatsNext = 0;
@@ -2733,6 +2760,8 @@ class ChartingState extends MusicBeatState
 		curRenderedNoteType.clear();
 		nextRenderedNotes.clear();
 		nextRenderedSustains.clear();
+		prevRenderedNotes.clear();
+		prevRenderedSustains.clear();
 	
 		if (_song.notes[curSec].changeBPM && _song.notes[curSec].bpm > 0)
 		{
@@ -2808,12 +2837,27 @@ class ChartingState extends MusicBeatState
 		if(curSec < _song.notes.length-1) {
 			for (i in _song.notes[curSec+1].sectionNotes)
 			{
-				var note:Note = setupNoteData(i, true);
+				var note:Note = setupNoteData(i, true, false);
 				note.alpha = 0.6;
 				nextRenderedNotes.add(note);
 				if (note.sustainLength > 0)
 				{
 					nextRenderedSustains.add(setupSusNote(note, beats));
+				}
+			}
+		}
+
+		// PREV SECTION 
+		var beats:Float = getSectionBeats(-1);
+		if(curSec > 1) {
+			for (i in _song.notes[curSec-1].sectionNotes)
+			{
+				var note:Note = setupNoteData(i, false, true);
+				note.alpha = 0.6;
+				prevRenderedNotes.add(note);
+				if (note.sustainLength > 0)
+				{
+					prevRenderedSustains.add(setupSusNote(note, beats));
 				}
 			}
 		}
@@ -2830,10 +2874,9 @@ class ChartingState extends MusicBeatState
 				nextRenderedNotes.add(note);
 			}
 		}
-		updateHeads();
 	}
 
-	function setupNoteData(i:Array<Dynamic>, isNextSection:Bool):Note
+	function setupNoteData(i:Array<Dynamic>, isNextSection:Bool, ?isPrevSection:Bool = false):Note
 	{
 		var daNoteInfo = i[1];
 		var daStrumTime = i[0];
@@ -2874,11 +2917,21 @@ class ChartingState extends MusicBeatState
 				note.x += GRID_SIZE * 4;
 			}
 		}
+		if(isPrevSection && _song.notes[curSec].mustHitSection != _song.notes[curSec-1].mustHitSection) {
+			if(daNoteInfo > 3) {
+				note.x -= GRID_SIZE * 4;
+			} else if(daSus != null) {
+				note.x += GRID_SIZE * 4;
+			}
+		}
 
+		var num:Int = 0;
+		if(isNextSection) num = 1;
+		if(isPrevSection) num = -1;
 		var beats:Float = getSectionBeats(isNextSection ? 1 : 0);
 		note.y = getYfromStrumNotes(daStrumTime - sectionStartTime(), beats);
 		//if(isNextSection) note.y += gridBG.height;
-		if(note.y < -150) note.y = -150;
+		//if(note.y < -150) note.y = -150;
 		return note;
 	}
 

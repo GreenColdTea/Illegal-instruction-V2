@@ -41,6 +41,8 @@ import box2D.dynamics.B2FixtureDef;
 import box2D.collision.shapes.B2PolygonShape;
 import box2D.dynamics.contacts.B2Contact;
 import box2D.common.math.B2Vec2;
+import box2D.common.math.B2Transform;
+import box2D.common.math.B2Mat22;
 
 using StringTools;
 
@@ -186,8 +188,8 @@ class BallsFreeplay extends MusicBeatState
         world = new B2World(new B2Vec2(0, 9.8), true);
     
         createBoundary(FlxG.width / 2, FlxG.height, FlxG.width / 2, 10); // Floor
-        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.); // Left wall
-        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0.); // Right wall
+        createBoundary(-100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0); // Left wall
+        createBoundary(FlxG.width + 100, FlxG.height / 2, 10, FlxG.height / 2, 0, 0); // Right wall
 
         var floorDef:B2BodyDef = new B2BodyDef();
         floorDef.position.set(FlxG.width / 2 / 30, (FlxG.height - 110) / 30);
@@ -215,34 +217,37 @@ class BallsFreeplay extends MusicBeatState
         player.animation.addByPrefix('run', 'BF_Run', 24, true);
         player.animation.play("idle");
         player.antialiasing = true;
-	player.updateHitbox();
+	    player.updateHitbox();
 
-	var playerDef:B2BodyDef = new B2BodyDef();
+	    var playerDef:B2BodyDef = new B2BodyDef();
         playerDef.position.set(625 / 30, 250 / 30);
         playerDef.type = B2Body.b2_dynamicBody;
         playerBody = world.createBody(playerDef);
 
-	var playerShape = new B2PolygonShape();
+        playerBody.setFixedRotation(true);
+        playerBody.setLinearDamping(1.5);
+
+	    var playerShape = new B2PolygonShape();
         playerShape.setAsBox(player.width * 0.5 * worldScale, player.height * 0.5 * worldScale);
 
         var playerFixDef = new B2FixtureDef();
         playerFixDef.shape = playerShape;
         playerFixDef.density = 1;
-        playerFixDef.friction = 0.3;
-        playerFixDef.restitution = 0;
+        playerFixDef.friction = 0.2;
+        playerFixDef.restitution = 0.2;
         playerBody.createFixture(playerFixDef);
 	    
         jumpTimer = new FlxTimer();
         add(player);
 
-	#if !mobile
+	    #if !mobile
         yn = new FlxText(0, 0, 'PRESS 3 TO SWITCH FREEPLAY \nTHEMES');
         #else
         yn = new FlxText(0, 0, 'PRESS X TO SWITCH FREEPLAY \nTHEMES');
         #end
         yn.setFormat(Paths.font("chaotix.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         yn.visible = true;
-	yn.y += 675;
+	    yn.y += 675;
         yn.color = FlxColor.WHITE;
         yn.borderSize = 0.9;
         add(yn);
@@ -264,21 +269,21 @@ class BallsFreeplay extends MusicBeatState
 
         textTargetX = FlxG.width - textBG.width - 10;
 
-	CoolUtil.precacheSound('jump');
-	for (music in ["freeplayThemeDuccly", "freeplayTheme"]) {
+	    CoolUtil.precacheSound('jump');
+	    for (music in ["freeplayThemeDuccly", "freeplayTheme"]) {
             CoolUtil.precacheMusic(music);
-	}
+	    }
 
-	var music = ClientPrefs.ducclyMix ? 'freeplayThemeDuccly' : 'freeplayTheme';
+	    var music = ClientPrefs.ducclyMix ? 'freeplayThemeDuccly' : 'freeplayTheme';
 
-	#if mobile
+	    #if mobile
         addVirtualPad(LEFT_FULL, A_B_C_X_Y);
         #end
 
-	FlxG.sound.playMusic(Paths.music(music), 0);
-	FlxG.sound.music.fadeIn(4, 0, 0.875);
+	    FlxG.sound.playMusic(Paths.music(music), 0);
+	    FlxG.sound.music.fadeIn(4, 0, 0.875);
 
-	songIndex = lastSongIndex;
+	    songIndex = lastSongIndex;
 
         super.create();
     }
@@ -384,7 +389,7 @@ class BallsFreeplay extends MusicBeatState
     // Main update function, where all the magic happens
     override function update(elapsed:Float)
     {
-	playerBody.setAwake(true);
+	    playerBody.setAwake(true);
         playerBody.setActive(true);
 	    
         if ((FlxG.keys.justPressed.THREE #if mobile || _virtualpad.buttonX.justPressed #end) && !isAnimating)
@@ -425,9 +430,12 @@ class BallsFreeplay extends MusicBeatState
         // Limit by borders bang
         var minX = 10 * worldScale;
         var maxX = (FlxG.width - 10) * worldScale;
-	var velocity:B2Vec2 = playerBody.getLinearVelocity();
-        if (pos.x < minX) playerBody.setLinearVelocity(new B2Vec2(0, velocity.y));
-        if (pos.x > maxX) playerBody.setLinearVelocity(new B2Vec2(0, velocity.y));
+	    var velocity:B2Vec2 = playerBody.getLinearVelocity();
+        if (pos.x < minX || pos.x > maxX) {
+            playerBody.setLinearVelocity(new B2Vec2(0, velocity.y));
+            playerBody.setAngularVelocity(0);
+            playerBody.setTransform(new B2Transform(new B2Vec2(pos.x < minX ? minX : maxX, pos.y), new B2Mat22()));
+        }
 	
         var velocity:B2Vec2 = playerBody.getLinearVelocity();
         canJump = false;
@@ -463,11 +471,11 @@ class BallsFreeplay extends MusicBeatState
         nowPlayingText.x = textBG.x;
         slidingText.x = textBG.x;
 
-	if(FlxG.keys.pressed.CONTROL #if mobile || _virtualpad.buttonC.pressed #end)
-	{
-	    persistentUpdate = false;
-	    openSubState(new GameplayChangersSubstate());
-	}
+	    if(FlxG.keys.pressed.CONTROL #if mobile || _virtualpad.buttonC.pressed #end)
+	    {
+	        persistentUpdate = false;
+	        openSubState(new GameplayChangersSubstate());
+	    }
 	    
         if (controls.UI_UP_P)
         {
@@ -496,17 +504,17 @@ class BallsFreeplay extends MusicBeatState
 
         if (controls.UI_LEFT && !controls.UI_RIGHT) {
             if (velocity.x > -maxSpeed) {
-                playerBody.applyForce(new B2Vec2(-accel, 0), playerBody.getWorldCenter());
+                playerBody.applyForce(new B2Vec2(-accel, 0), playerBody.getPosition());
             }
             player.flipX = false;
         } else if (controls.UI_RIGHT && !controls.UI_LEFT) {
             if (velocity.x < maxSpeed) {
-                playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getWorldCenter());
+                playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getPosition());
             }
             player.flipX = true;
 	} else {
 	    var slowDownForce:Float = canJump ? -velocity.x * 5 : -velocity.x * 2;
-            playerBody.applyForce(new B2Vec2(slowDownForce, 0), playerBody.getWorldCenter());
+            playerBody.applyForce(new B2Vec2(slowDownForce, 0), playerBody.getPosition());
 	}     
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {

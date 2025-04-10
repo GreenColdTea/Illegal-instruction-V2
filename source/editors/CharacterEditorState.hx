@@ -80,6 +80,8 @@ class CharacterEditorState extends MusicBeatState
 
 	override function create()
 	{
+		//FlxG.sound.playMusic(Paths.music('breakfast'), 0.5);
+
 		camEditor = new FlxCamera();
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
@@ -331,83 +333,83 @@ class CharacterEditorState extends MusicBeatState
 	}*/
 
 	var TemplateCharacter:String = '{
-			"animations": [
-				{
-					"loop": false,
-					"offsets": [
-						0,
-						0
-					],
-					"fps": 24,
-					"anim": "idle",
-					"indices": [],
-					"name": "Dad idle dance"
-				},
-				{
-					"offsets": [
-						0,
-						0
-					],
-					"indices": [],
-					"fps": 24,
-					"anim": "singLEFT",
-					"loop": false,
-					"name": "Dad Sing Note LEFT"
-				},
-				{
-					"offsets": [
-						0,
-						0
-					],
-					"indices": [],
-					"fps": 24,
-					"anim": "singDOWN",
-					"loop": false,
-					"name": "Dad Sing Note DOWN"
-				},
-				{
-					"offsets": [
-						0,
-						0
-					],
-					"indices": [],
-					"fps": 24,
-					"anim": "singUP",
-					"loop": false,
-					"name": "Dad Sing Note UP"
-				},
-				{
-					"offsets": [
-						0,
-						0
-					],
-					"indices": [],
-					"fps": 24,
-					"anim": "singRIGHT",
-					"loop": false,
-					"name": "Dad Sing Note RIGHT"
-				}
-			],
-			"no_antialiasing": false,
-			"image": "characters/DADDY_DEAREST",
-			"position": [
-				0,
-				0
-			],
-			"healthicon": "face",
-			"flip_x": false,
-			"healthbar_colors": [
-				161,
-				161,
-				161
-			],
-			"camera_position": [
-				0,
-				0
-			],
-			"sing_duration": 6.1,
-			"scale": 1
-		}';
+		"animations": [
+			{
+				"offsets": [
+					0,
+					0
+				],
+				"loop": true,
+				"fps": 24,
+				"anim": "idle",
+				"indices": [],
+				"name": "idle"
+			},
+			{
+				"offsets": [
+					33,
+					-5
+				],
+				"loop": false,
+				"fps": 24,
+				"anim": "singLEFT",
+				"indices": [],
+				"name": "left"
+			},
+			{
+				"offsets": [
+					127,
+					-22
+				],
+				"loop": false,
+				"fps": 24,
+				"anim": "singDOWN",
+				"indices": [],
+				"name": "down"
+			},
+			{
+				"offsets": [
+					-10,
+					-14
+				],
+				"loop": false,
+				"fps": 24,
+				"anim": "singRIGHT",
+				"indices": [],
+				"name": "right"
+			},
+			{
+				"offsets": [
+					-11,
+					44
+				],
+				"loop": false,
+				"fps": 24,
+				"anim": "singUP",
+				"indices": [],
+				"name": "up"
+			}
+		],
+		"no_antialiasing": false,
+		"image": "characters/duke/duke",
+		"position": [
+			90,
+			240
+		],
+		"healthicon": "duke",
+		"flip_x": false,
+		"healthbar_colors": [
+			148,
+			0,
+			0
+		],
+		"camera_position": [
+			-60,
+			-80
+		],
+		"sing_duration": 6.1,
+		"scale": 1.7
+	}';
 
 	var charDropDown:FlxUIDropDownMenuCustom;
 	function addSettingsUI() {

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="SEboyFriend.png">
+<SubTexture name="SEboyFriend Idle0000" x="13" y="19" width="13" height="16" frameX="-1" frameY="-2" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Idle0001" x="26" y="19" width="13" height="16" frameX="-1" frameY="-3" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Idle0002" x="13" y="0" width="13" height="18" frameX="-1" frameY="-3" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Idle0003" x="0" y="0" width="13" height="19" frameX="-1" frameY="-2" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Left0000" x="39" y="0" width="13" height="16" frameX="0" frameY="-2" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Left0001" x="39" y="16" width="12" height="16" frameX="-1" frameY="-2" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Right0000" x="0" y="36" width="13" height="16" frameX="-2" frameY="-2" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Right0001" x="13" y="36" width="11" height="16" frameX="-2" frameY="-2" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Up0000" x="26" y="0" width="13" height="18" frameX="-1" frameY="0" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Up0001" x="0" y="19" width="13" height="17" frameX="-1" frameY="-1" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Down0000" x="37" y="36" width="13" height="13" frameX="-1" frameY="-5" frameWidth="15" frameHeight="21" />
+<SubTexture name="SEboyFriend Down0001" x="24" y="36" width="13" height="15" frameX="-1" frameY="-3" frameWidth="15" frameHeight="21" />
+</TextureAtlas>

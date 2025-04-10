@@ -73,7 +73,7 @@ class Character extends FlxSprite
 	public var idleSuffix:String = '';
 	public var danceIdle:Bool = false; //Character use "danceLeft" and "danceRight" instead of "idle"
 	
-	public var healthIcon:String = 'beta';
+	public var healthIcon:String = 'face';
 	public var animationsArray:Array<AnimArray> = [];
 
 	public var positionArray:Array<Float> = [0, 0];
@@ -92,7 +92,7 @@ class Character extends FlxSprite
 	public var originalFlipX:Bool = false;
 	public var healthColorArray:Array<Int> = [255, 0, 0];
 
-	public static var DEFAULT_CHARACTER:String = 'bfiialt-opponent'; //In case a character is missing, it will use BF on its place
+	public static var DEFAULT_CHARACTER:String = 'bfiialt'; //In case a character is missing, it will use BF on its place
 	
 	public function new(x:Float, y:Float, ?character:String = 'bfiialt', ?isPlayer:Bool = false)
 	{
@@ -246,26 +246,6 @@ class Character extends FlxSprite
 		if (isPlayer)
 		{
 			flipX = !flipX;
-
-			/*// Doesn't flip for BF, since his are already in the right place???
-			if (!curCharacter.startsWith('bf'))
-			{
-				// var animArray
-				if(animation.getByName('singLEFT') != null && animation.getByName('singRIGHT') != null)
-				{
-					var oldRight = animation.getByName('singRIGHT').frames;
-					animation.getByName('singRIGHT').frames = animation.getByName('singLEFT').frames;
-					animation.getByName('singLEFT').frames = oldRight;
-				}
-
-				// IF THEY HAVE MISS ANIMATIONS??
-				if (animation.getByName('singLEFTmiss') != null && animation.getByName('singRIGHTmiss') != null)
-				{
-					var oldMiss = animation.getByName('singRIGHTmiss').frames;
-					animation.getByName('singRIGHTmiss').frames = animation.getByName('singLEFTmiss').frames;
-					animation.getByName('singLEFTmiss').frames = oldMiss;
-				}
-			}*/
 		}
 	}
 
@@ -348,27 +328,26 @@ class Character extends FlxSprite
 	/**
 	 * FOR GF DANCING SHIT
 	 */
-	public function dance()
-	{
-		if (!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining)
-		{
-			if(currentlyHolding) currentlyHolding = false;
-			
-			if(danceIdle)
-			{
+	 public function dance() {
+		if (!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining) {
+			if (currentlyHolding) currentlyHolding = false;
+	
+			if (danceIdle) {
 				danced = !danced;
-
-				if (danced)
-					playAnim('danceRight' + idleSuffix);
-				else
-					playAnim('danceLeft' + idleSuffix);
+				playAnim((danced ? 'danceRight' : 'danceLeft') + idleSuffix);
 			}
-			else if(animation.getByName('idle' + idleSuffix) != null) {
-					playAnim('idle' + idleSuffix);
+			else {
+				var animName = 'idle' + idleSuffix;
+	
+				/*if (PlayState.SONG.notes[MusicBeatState.getCurSection].altAnim && animation.getByName('idle-alt') != null &&) {
+					playAnim('idle-alt');
+				}
+				else*/ if (animation.getByName(animName) != null) {
+					playAnim(animName);
+				}
 			}
 		}
-	}
-
+	}	
 
 	override function draw(){
 		for(ghost in animGhosts){
