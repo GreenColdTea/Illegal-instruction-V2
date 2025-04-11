@@ -2360,7 +2360,6 @@ class PlayState extends MusicBeatState
 			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
 		timeBar.numDivisions = 800; //How much lag this causes?? Should i tone it down to idk, 400 or 200?
-		timeBar.alpha = 0;
 		timeBar.visible = showTime;
 
 		//this time bar for breakout faker part & for my horizon
@@ -2728,7 +2727,7 @@ class PlayState extends MusicBeatState
 		        switch (SONG.song.toLowerCase())
 			{
 				case 'soulless-endeavors' | 'soulless-endeavors-legacy':
-			                chaotixHUD.visible = false;		
+			        chaotixHUD.visible = false;		
 		        }
 		}
 
@@ -2742,6 +2741,7 @@ class PlayState extends MusicBeatState
 			remove(songNameHUD);
 			remove(fakeTimeBar);
 			remove(timeBarBG);
+			remove(timeBar);
 			remove(timeTxt);
 		}
 		else 
@@ -3760,7 +3760,7 @@ class PlayState extends MusicBeatState
 				if(SONG.song.toLowerCase() == 'our-horizon-legacy') {
 					if (daStrumTime >= Conductor.stepToSeconds(2336) && daStrumTime <= Conductor.stepToSeconds(2848))
 						isPixelStage = true;
-					else if(daStrumTime >= Conductor.stepToSeconds(1000))
+					else if(daStrumTime >= Conductor.stepToSeconds(999))
 						isPixelStage = false;
 	
 				}	
@@ -6113,7 +6113,7 @@ class PlayState extends MusicBeatState
 					if (char.mostRecentRow != note.row)
 						char.playAnim(realAnim, true);
 
-					if (note != animNote && !note.nextNote.isSustainNote)
+					if (note != animNote)
 						char.playGhostAnim(chord.indexOf(note) - 1, animToPlay, true);
 
 					char.mostRecentRow = note.row;
@@ -7003,7 +7003,6 @@ class PlayState extends MusicBeatState
 								dad.setPosition(200, 700);
 								boyfriend.setPosition(900, 950);
 								literallyOurHorizon();
-								timeBar.visible = !ClientPrefs.hideHud;
 								removeShit(2);
 							case 2848:
 								isPixelStage = false;
@@ -7023,6 +7022,7 @@ class PlayState extends MusicBeatState
 								timeBar.visible = !ClientPrefs.hideHud;
 							    timeBarBG.visible = !ClientPrefs.hideHud;
 							    timeTxt.visible = !ClientPrefs.hideHud;
+								songNameHUD.visible = !ClientPrefs.hideHud;
 								scoreTxt.visible = !ClientPrefs.hideHud;
 			                    chaotixHUD.visible = false;
 
@@ -7916,14 +7916,15 @@ class PlayState extends MusicBeatState
 			healthBarBG.x -= 150;
 
 			add(timeBarBG);
+			add(timeBar);
 			add(timeTxt);
 			add(songNameHUD);
 			add(scoreTxt);
 
-			timeBarBG.visible = !ClientPrefs.hideHud;
-			fakeTimeBar.visible = !ClientPrefs.hideHud;
 			timeBar.visible = !ClientPrefs.hideHud;
+			timeBarBG.visible = !ClientPrefs.hideHud;
 			timeTxt.visible = !ClientPrefs.hideHud;
+			songNameHUD.visible = !ClientPrefs.hideHud;
 			scoreTxt.visible = !ClientPrefs.hideHud;
 			chaotixHUD.visible = false;
 
@@ -8076,10 +8077,8 @@ class PlayState extends MusicBeatState
 			scoreTxt.visible = true;
 		}
 
-		opponentStrums.forEach(function(spr:FlxSprite)
-		{
-			spr.x += 10000;
-		});
+		opponentStrums.baseAlpha = 0;
+		modManager.setValue('alpha', 1, 1);
 	}
 
 			// ok might not do this lmao

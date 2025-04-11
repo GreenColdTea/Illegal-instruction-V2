@@ -364,6 +364,7 @@ class Character extends FlxSprite
 		ghost.updateHitbox();
 		ghost.frames = frames;
 		ghost.animation.copyFrom(animation);
+		ghost.antialiasing = !noAntialiasing;
 		ghost.x = x;
 		ghost.y = y;
 		ghost.flipX = flipX;
