@@ -16,6 +16,10 @@ import sys.FileSystem;
 import openfl.utils.Assets;
 #end
 
+#if windows
+import winapi.WindowsAPI;
+#end
+
 using StringTools;
 
 class CoolUtil
@@ -53,7 +57,7 @@ class CoolUtil
 
 	public static function toTitleCase(str:String):String 
 	{
-                return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+        return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 	}
 
 	inline public static function scale(x:Float, l1:Float, h1:Float, l2:Float, h2:Float):Float
@@ -123,32 +127,40 @@ class CoolUtil
 
 		return daList;
 	}
-	public static function dominantColor(sprite:flixel.FlxSprite):Int{
-		var countByColor:Map<Int, Int> = [];
-		for(col in 0...sprite.frameWidth) {
-			for(row in 0...sprite.frameHeight) {
-				var colorOfThisPixel:Int = sprite.pixels.getPixel32(col, row);
-				if (colorOfThisPixel != 0){
-					if (countByColor.exists(colorOfThisPixel)) {
-						countByColor[colorOfThisPixel] =  countByColor[colorOfThisPixel] + 1;
-					}else if (countByColor[colorOfThisPixel] != 13520687 - (2*13520687)){
-						countByColor[colorOfThisPixel] = 1;
+	public static function dominantColor(sprite:flixel.FlxSprite):Int
+		{
+			var countByColor:Map<Int, Int> = [];
+			for (col in 0...sprite.frameWidth)
+			{
+				for (row in 0...sprite.frameHeight)
+				{
+					var colorOfThisPixel:Int = sprite.pixels.getPixel32(col, row);
+					if (colorOfThisPixel != 0)
+					{
+						if (countByColor.exists(colorOfThisPixel))
+						{
+							countByColor[colorOfThisPixel] = countByColor[colorOfThisPixel] + 1;
+						}
+						else if (countByColor[colorOfThisPixel] != 13520687 - (2 * 13520687))
+						{
+							countByColor[colorOfThisPixel] = 1;
+						}
 					}
 				}
 			}
-		}
-		var maxCount = 0;
-		var maxKey:Int = 0;//after the loop this will store the max color
-		
-		countByColor[flixel.util.FlxColor.BLACK] = 0;
-		for (key in countByColor.keys()) {
-			if (countByColor[key] >= maxCount) {
-				maxCount = countByColor[key];
-				maxKey = key;
+			var maxCount = 0;
+			var maxKey:Int = 0; // after the loop this will store the max color
+			countByColor[flixel.util.FlxColor.BLACK] = 0;
+			for (key in countByColor.keys())
+			{
+				if (countByColor[key] >= maxCount)
+				{
+					maxCount = countByColor[key];
+					maxKey = key;
+				}
 			}
+			return maxKey;
 		}
-		return maxKey;
-	}
 
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
 	{
@@ -176,13 +188,14 @@ class CoolUtil
 
 	public static function showPopUp(message:String, title:String):Void
 	{
-		FlxG.sound.music.stop();
 		#if android
 		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
-		#elseif (!ios || !iphonesim)
-		lime.app.Application.current.window.alert(message, title);
+		#elseif linux
+		Sys.command("zenity", ["--info", "--title=" + title, "--text=" + message]);
+		#elseif windows
+		WindowsAPI.showMessageBox(message, title);
 		#else
-		trace('$title - $message');
+		lime.app.Application.current.window.alert(message, title);
 		#end
 	}
 

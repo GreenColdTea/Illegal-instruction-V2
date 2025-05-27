@@ -31,13 +31,13 @@ class CustomFadeTransition extends MusicBeatSubstate {
 
         // gradient
         transGradient = FlxGradient.createGradientFlxSprite(width, height, [FlxColor.BLACK, 0x0]);
-        transGradient.scrollFactor.set();
+        transGradient.scrollFactor.set(0, 0);
         transGradient.alpha = isTransIn ? 1 : 0;
         add(transGradient);
 
         // Nigga bg
         transBlack = new FlxSprite().makeGraphic(width, height, FlxColor.BLACK);
-        transBlack.scrollFactor.set();
+        transBlack.scrollFactor.set(0, 0);
         transBlack.alpha = isTransIn ? 1 : 0;
         add(transBlack);
 
@@ -56,7 +56,9 @@ class CustomFadeTransition extends MusicBeatSubstate {
             leTween = FlxTween.tween(transGradient, {alpha: 1}, duration, {
                 onComplete: function(twn:FlxTween) {
                     if (finishCallback != null) {
-                        finishCallback();
+                        if (finishCallback != null) {
+                            finishCallback();
+                        }
                     }
                 },
                 ease: FlxEase.linear

@@ -298,11 +298,7 @@ class MainMenuState extends MusicBeatState
 										switch (daChoice)
 										{
 											case 'scenario_mode':
-												#if !mobile
 												MusicBeatState.switchState(new StoryMenuState());
-												#else
-												MusicBeatState.switchState(new mobile.StoryMenuState());
-												#end
 											case 'freeplay':
 												MusicBeatState.switchState(new BallsFreeplay());
 											case 'collection':
@@ -340,10 +336,6 @@ class MainMenuState extends MusicBeatState
 			if (FlxG.keys.justPressed.NINE #if mobile || _virtualpad.buttonY.justPressed #end)
 				{
 					MusicBeatState.switchState(new CollectionRoomState());
-				}
-			if (FlxG.keys.justPressed.FIVE #if mobile || _virtualpad.buttonZ.justPressed #end)
-				{
-					MusicBeatState.switchState(new mobile.StoryMenuState());
 				}
 			if (FlxG.keys.justPressed.ONE #if mobile || _virtualpad.buttonC.justPressed #end)
 			{

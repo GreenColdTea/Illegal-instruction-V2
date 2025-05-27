@@ -5,7 +5,7 @@ import Paths;
 #if (flixel >= '5.3.0')
 import flixel.sound.FlxSound;
 #else
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 #end
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -38,8 +38,9 @@ import android.os.Build.VERSION_CODES as AndroidVersionCode;
 import android.os.BatteryManager as AndroidBatteryManager;
 #end
 
-// Mobile tools
+#if mobile
 import mobile.*;
+#end
 
 #if sys
 import sys.*;

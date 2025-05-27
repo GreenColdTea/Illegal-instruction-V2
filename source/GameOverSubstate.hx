@@ -73,7 +73,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		FlxG.camera.focusOn(new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y));
 
-                #if mobile
+        #if mobile
 		addVirtualPad(NONE, A_B);
 		addVirtualPadCamera();
 		#end
@@ -99,11 +99,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.seenCutscene = false;
 
 			if (PlayState.isStoryMode)
-				#if !mobile
 				MusicBeatState.switchState(new StoryMenuState());
-				#else
-				MusicBeatState.switchState(new mobile.StoryMenuState());
-				#end
 			else if (PlayState.isFreeplay)
 				MusicBeatState.switchState(new BallsFreeplay());
 			else 

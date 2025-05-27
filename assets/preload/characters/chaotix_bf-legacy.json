@@ -1,103 +1,103 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				-33,
 				-71
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "chaotix bf idle"
+			"fps": 24,
+			"name": "chaotix bf idle",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-33,
 				-71
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "chaotix bf up sing",
-			"indices": []
+			"indices": [],
+			"name": "chaotix bf up sing"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-33,
 				-71
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "chaotix bf right sing",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "chaotix bf right sing"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-34,
 				-71
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "chaotix bf left sing",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "chaotix bf left sing"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-27,
 				-72
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "chaotix bf down sing",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "chaotix bf down sing"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-33,
 				-71
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singUPmiss",
-			"loop": false,
-			"name": "chaotix bf up miss"
+			"fps": 24,
+			"name": "chaotix bf up miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-34,
 				-72
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singDOWNmiss",
-			"loop": false,
-			"name": "chaotix bf down miss"
+			"fps": 24,
+			"name": "chaotix bf down miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-33,
 				-71
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"loop": false,
-			"name": "chaotix bf right miss"
+			"fps": 24,
+			"name": "chaotix bf right miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-33,
 				-71
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singLEFTmiss",
-			"loop": false,
-			"name": "chaotix bf left miss"
+			"fps": 24,
+			"name": "chaotix bf left miss",
+			"indices": []
 		}
 	],
 	"no_antialiasing": true,
@@ -109,9 +109,9 @@
 	"healthicon": "legacy/icon-bf-chaotix",
 	"flip_x": true,
 	"healthbar_colors": [
-		49,
-		176,
-		209
+		0,
+		0,
+		156
 	],
 	"camera_position": [
 		160,

@@ -30,9 +30,16 @@ class Intro extends MusicBeatState
 
 	override function create():Void
 	{
+
 		FlxG.autoPause = false;
 
 		FlxG.mouse.visible = false;
+
+		if(FlxG.save.data != null && FlxG.save.data.fullscreen)
+		{
+			FlxG.fullscreen = FlxG.save.data.fullscreen;
+			//trace('LOADED FULLSCREEN SETTING!!');
+		}
 
 		setupVideoAsync();
 
@@ -45,9 +52,10 @@ class Intro extends MusicBeatState
 	{
 		if (video != null)
 		{
-			if (canSkip && (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end))
-                video.skipVideo();
-
+			if (canSkip && (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end)) {
+                video.dispose();
+				MusicBeatState.switchState(new TitleState());
+			}
 		}
 
 		super.update(elapsed);
@@ -55,7 +63,7 @@ class Intro extends MusicBeatState
 
 	private function setupUI():Void
 	{
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind('II', 'harbingerbeats');
 		ClientPrefs.loadPrefs();
 		
         PlayerSettings.init();
@@ -113,13 +121,13 @@ class Intro extends MusicBeatState
 				}
 			});
 			#end
-			video.finishCallback = function() {
+			video.onEndReached.add(() -> {
 				video.dispose();
 				FlxG.removeChild(video);
                 if (!FlxG.save.data.seenIntro) FlxG.save.data.seenIntro = true; 
                 FlxG.save.flush();
                 MusicBeatState.switchState(new TitleState());
-            };
+            });
 			FlxG.addChildBelowMouse(video);
 
 			try

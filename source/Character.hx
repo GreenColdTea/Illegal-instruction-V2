@@ -71,6 +71,8 @@ class Character extends FlxSprite
 	public var stunned:Bool = false;
 	public var singDuration:Float = 4; //Multiplier of how long a character holds the sing pose
 	public var idleSuffix:String = '';
+	public var animSuffix:String = '';
+	public var animSuffixExclusions = ['idle', 'danceLeft', 'danceRight', 'miss'];
 	public var danceIdle:Bool = false; //Character use "danceLeft" and "danceRight" instead of "idle"
 	
 	public var healthIcon:String = 'face';
@@ -287,7 +289,7 @@ class Character extends FlxSprite
 					holdTimer += elapsed;
 				}
 
-				if (holdTimer >= Conductor.stepCrochet * 0.001 * singDuration)
+				if (holdTimer >= Conductor.stepCrochet * 0.0011 * singDuration)
 				{
 					dance();
 					holdTimer = 0;
@@ -305,8 +307,6 @@ class Character extends FlxSprite
 
 		if(!debugMode){
 			if(animation.curAnim!=null){
-				if (currentlyHolding) animation.curAnim.curFrame = 0;
-				
 				var name = animation.curAnim.name;
 				if(name.startsWith("hold")){
 					if(name.endsWith("Start") && animation.curAnim.finished){
@@ -328,23 +328,21 @@ class Character extends FlxSprite
 	/**
 	 * FOR GF DANCING SHIT
 	 */
-	 public function dance() {
-		if (!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining) {
-			if (currentlyHolding) currentlyHolding = false;
-	
-			if (danceIdle) {
+	public function dance()
+	{
+		if (!debugMode && !skipDance && !specialAnim && animTimer <= 0 && !voicelining)
+		{
+			if(danceIdle)
+			{
 				danced = !danced;
-				playAnim((danced ? 'danceRight' : 'danceLeft') + idleSuffix);
-			}
-			else {
-				var animName = 'idle' + idleSuffix;
 	
-				/*if (PlayState.SONG.notes[MusicBeatState.getCurSection].altAnim && animation.getByName('idle-alt') != null &&) {
-					playAnim('idle-alt');
-				}
-				else*/ if (animation.getByName(animName) != null) {
-					playAnim(animName);
-				}
+				if (danced)
+					playAnim('danceRight' + idleSuffix);
+				else
+					playAnim('danceLeft' + idleSuffix);
+			}
+			else if(animation.getByName('idle' + idleSuffix) != null) {
+					playAnim('idle' + idleSuffix);
 			}
 		}
 	}	
@@ -408,18 +406,14 @@ class Character extends FlxSprite
 
 		if (curCharacter.startsWith('gf'))
 		{
-			if (AnimName == 'singLEFT')
+			switch (AnimName)
 			{
-				danced = true;
-			}
-			else if (AnimName == 'singRIGHT')
-			{
-				danced = false;
-			}
-
-			if (AnimName == 'singUP' || AnimName == 'singDOWN')
-			{
-				danced = !danced;
+				case 'singLEFT':
+					danced = true;
+				case 'singRIGHT':
+					danced = false;
+				case 'singUP', 'singDOWN':
+					danced = !danced;
 			}
 		}
 	}

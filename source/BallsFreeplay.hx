@@ -25,7 +25,7 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxDirectionFlags;
 import lime.utils.Assets;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import haxe.io.Path;
 import openfl.utils.Assets as OpenFlAssets;
 
@@ -116,6 +116,9 @@ class BallsFreeplay extends MusicBeatState
     var lerpScore:Int = 0;
     var intendedScore:Int = 0;
 
+    var missingText:FlxText;
+    var missingTextTimer:FlxTimer;
+
     // best coding ever
     var characterOffsets:Array<{x:Float, y:Float, flipX:Bool}> = [
         {x: 0, y: 0, flipX: false},   // ID 0
@@ -130,17 +133,17 @@ class BallsFreeplay extends MusicBeatState
     override function create()
     {
         Paths.clearStoredMemory();
-	Paths.clearUnusedMemory();
+	    Paths.clearUnusedMemory();
 
         transIn = FlxTransitionableState.defaultTransIn;
-	transOut = FlxTransitionableState.defaultTransOut;
+	    transOut = FlxTransitionableState.defaultTransOut;
 
         FlxG.mouse.visible = true;
 
         #if desktop
         // Updating Discord Rich Presence
-	DiscordClient.changePresence("Selecting The New World.", null);
-	#end
+	    DiscordClient.changePresence("Selecting The New World.", null);
+	    #end
 
         var blackFuck:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
         blackFuck.screenCenter();
@@ -494,7 +497,7 @@ class BallsFreeplay extends MusicBeatState
         if (FlxG.keys.justPressed.ENTER #if mobile || controls.ACCEPT #end)
         {
             doTheLoad();
-	         lastSongIndex = songIndex;
+	        lastSongIndex = songIndex;
         }
 
         if (controls.BACK)
@@ -512,10 +515,10 @@ class BallsFreeplay extends MusicBeatState
                 playerBody.applyForce(new B2Vec2(accel, 0), playerBody.getPosition());
             }
             player.flipX = true;
-	} else {
-	    var slowDownForce:Float = canJump ? -velocity.x * 5 : -velocity.x * 2;
-            playerBody.applyForce(new B2Vec2(slowDownForce, 0), playerBody.getPosition());
-	}     
+	    } else {
+	        var slowDownForce:Float = canJump ? -velocity.x * 5 : -velocity.x * 2;
+                playerBody.applyForce(new B2Vec2(slowDownForce, 0), playerBody.getPosition());
+	    }     
 
         if ((FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonY.justPressed #end) && canJump) {
             FlxG.sound.play(Paths.sound('jump'), 0.8);
@@ -540,21 +543,45 @@ class BallsFreeplay extends MusicBeatState
     public function switchToBack() 
     {
         FlxG.sound.play(Paths.sound('cancelMenu'));
-	FlxG.mouse.visible = false;
+	    FlxG.mouse.visible = false;
         MusicBeatState.switchState(new MainMenuState());
     }
 	
     function doTheLoad()
     {
-        FlxG.sound.play(Paths.sound('confirmMenu'));
-        var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
-        PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
-        FlxG.mouse.visible = false;
-        PlayState.isStoryMode = false;
-        PlayState.isFreeplay = true;
-        PlayState.storyDifficulty = 2;
-	FlxG.sound.music.volume = 0;
-	LoadingState.loadAndSwitchState(new PlayState());
+        try {
+            FlxG.sound.play(Paths.sound('confirmMenu'));
+            var songLowercase:String = Paths.formatToSongPath(songs[songIndex]);
+            PlayState.SONG = Song.loadFromJson(songLowercase, songLowercase);
+            FlxG.mouse.visible = false;
+            PlayState.isStoryMode = false;
+            PlayState.isFreeplay = true;
+            PlayState.storyDifficulty = 2;
+	        FlxG.sound.music.volume = 0;
+	        LoadingState.loadAndSwitchState(new PlayState());
+        } catch (e:Dynamic) {
+            trace('ERROR! $e');
+        
+            var errorStr:String = e.toString();
+                if(errorStr.startsWith('[file_contents,assets/data/')) errorStr = 'Missing file: ' + errorStr.substring(27, errorStr.length-1); //Missing song
+                    
+            if(missingText == null)
+            {
+                missingText = new FlxText(50, 0, FlxG.width - 100, '', 24);
+                missingText.setFormat(Paths.font("chaotix.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                missingText.scrollFactor.set();
+                add(missingText);
+            }
+            else missingTextTimer.cancel();
+        
+            missingText.text = 'ERROR WHILE LOADING SONG:\n$errorStr';
+            missingText.screenCenter(Y);
+        
+            missingTextTimer = new FlxTimer().start(5, function(tmr:FlxTimer) {
+                remove(missingText);
+                missingText.destroy();
+            });
+        }
     }
 
     function toggleText() {

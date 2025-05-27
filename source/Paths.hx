@@ -99,9 +99,7 @@ class Paths
 		// run the garbage collector for good measure lmfao
 		openfl.system.System.gc();
 		#if cpp
-		cpp.NativeGc.enable(true);
-		#elseif hl
-		hl.Gc.enable(true);
+		cpp.NativeGc.run(true);
 		#end
 	}
 
@@ -136,13 +134,13 @@ class Paths
 			}		   
 		}
 
-                for (key in OpenFlAssets.cache.getKeys())	
-                {			
-                     if (!localTrackedAssets.contains(key) && key != null)		
-                     {				
-                          OpenFlAssets.cache.clear(key);			
-                     }	
-                }
+        for (key in OpenFlAssets.cache.getKeys())	
+        {			
+            if (!localTrackedAssets.contains(key) && key != null)		
+            {				
+                OpenFlAssets.cache.clear(key);			
+            }	
+        }
 		
 		// flags everything to be cleared out next unused memory clear
 		localTrackedAssets = [];
@@ -486,23 +484,6 @@ class Paths
 	}
 	
 	public static function returnSound(path:Null<String>, key:String, ?library:String) {
-		#if MODS_ALLOWED
-		var modLibPath:String = '';
-		if (library != null) modLibPath = '$library/';
-		if (path != null) modLibPath += '$path';
-
-		var file:String = modsSounds(modLibPath, key);
-		if(FileSystem.exists(file)) {
-			if(!currentTrackedSounds.exists(file))
-			{
-				currentTrackedSounds.set(file, Sound.fromFile(file));
-				//trace('precached mod sound: $file');
-			}
-			localTrackedAssets.push(file);
-			return currentTrackedSounds.get(file);
-		}
-		#end
-
 		// I hate this so god damn much
 		var gottenPath:String = '$key.$SOUND_EXT';
 		if(path != null) gottenPath = '$path/$gottenPath';

@@ -13,8 +13,8 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class ShakableSprite extends FlxSprite
 {
-  public var tweens:Map<String,FlxTween> = [];
-  public var extraInfo:Map<String, Any> = [];
+  public var tweens:Map<String, FlxTween> = new Map();
+  public var extraInfo:Map<String, Dynamic> = new Map();
 	public var shakePoint(default, null):FlxPoint = FlxPoint.get();
 
   // taken from FlxCamera
@@ -51,6 +51,7 @@ class ShakableSprite extends FlxSprite
   {
     var sprite:ShakableSprite = cast super.loadGraphic(Graphic, Animated, Width, Height, Unique, Key);
     return sprite;
+    trace("Loading graphic: " + Graphic);
   }
 
 	override public function destroy():Void

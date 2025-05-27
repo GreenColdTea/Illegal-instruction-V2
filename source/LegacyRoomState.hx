@@ -20,7 +20,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.utils.Assets;
 import flixel.util.FlxSave;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 #if MODS_ALLOWED
 import sys.FileSystem;
@@ -78,11 +78,11 @@ class LegacyRoomState extends MusicBeatState
             imageName = 'freeplay/legacy/' + songs[i];
 
             selectorSprite = new MenuItemAgainFuckYou(1300 * i, 0);
-            //selectorSprite.x += ((selectorSprite.x + 1500) * i); //eh????
-            selectorSprite.loadGraphic(Paths.image(imageName));
-            if(!OpenFlAssets.exists(imageName)){
+            //selectorSprite.x += ((selectorSprite.x + 1500) * i); eh????
+            if(!OpenFlAssets.exists('assets/images/' + imageName + '.png')){
                 imageName = 'freeplay/legacy/placeholder';
             }
+            selectorSprite.loadGraphic(Paths.image(imageName));
             selectorSprite.newX = i;
             selectorSprite.screenCenter();
             selectorSprite.updateHitbox();

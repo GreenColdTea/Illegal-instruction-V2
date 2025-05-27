@@ -16,7 +16,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" fps="" background="#000000" hardware="true" vsync="false" allow-high-dpi="true"/>
+	<window width="1280" height="720" background="#000000" hardware="true" vsync="false" allow-high-dpi="true"/>
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -90,8 +90,7 @@
 	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<!--Flixel 5.6.1-->
-	<haxelib name="flixel" version="5.7.2"/>
+	<haxelib name="flixel" version="5.5.0"/>
 	<haxedev set='webgl'/>
 
 	<haxelib name="flixel-ui" version="2.6.3"/>
@@ -106,6 +105,7 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="faxe" if="switch"/>
+	<haxelib name="sl-windows-api" if="windows"/>
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/> 
 	<!--<haxelib name="polymod"/>-->
 	<haxelib name="discord_rpc" if="desktop"/>
@@ -167,7 +167,7 @@
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
    
-        <section if="cpp">
+    <section if="cpp">
 		<haxedef name="HXCPP_CHECK_POINTER" />
 		<haxedef name="HXCPP_STACK_LINE" />
 		<haxedef name="HXCPP_STACK_TRACE" />
@@ -181,9 +181,9 @@
         <!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 	<section if="android">		
-             <!--Gradle-->	
-             <config:android gradle-version="8.13" gradle-plugin="8.9.0" />
-        </section>
+        <!--Gradle-->	
+        <config:android gradle-version="8.14" gradle-plugin="8.10.0" />
+    </section>
 
 	<!-- Allow Access to Engine Files in mobile -->
 	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />

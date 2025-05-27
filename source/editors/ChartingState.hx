@@ -30,7 +30,6 @@ import flixel.group.FlxSpriteGroup;
 import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -59,7 +58,7 @@ import sys.io.File;
 
 
 #if (flixel < "5.3.0")
-@:access(flixel.system.FlxSound._sound)
+@:access(flixel.sound.FlxSound._sound)
 #else
 @:access(flixel.sound.FlxSound._sound)
 #end
@@ -1159,11 +1158,14 @@ class ChartingState extends MusicBeatState
 		tab_group_event.add(text);
 		eventDropDown = new FlxUIDropDownMenuCustom(20, 50, FlxUIDropDownMenuCustom.makeStrIdLabelArray(leEvents, true), function(pressed:String) {
 			var selectedEvent:Int = Std.parseInt(pressed);
-			descText.text = eventStuff[selectedEvent][1];
-				if (curSelectedNote != null &&  eventStuff != null) {
-				if (curSelectedNote != null && curSelectedNote[2] == null){
-				curSelectedNote[1][curEventSelected][0] = eventStuff[selectedEvent][0];
-
+			if (eventStuff[selectedEvent] != null && eventStuff[selectedEvent][1] != null) {
+				descText.text = eventStuff[selectedEvent][1];
+			} else {
+				descText.text = "No description available lol.";
+			}
+			if (curSelectedNote != null &&  eventStuff != null) {
+			    if (curSelectedNote != null && curSelectedNote[2] == null){
+					curSelectedNote[1][curEventSelected][0] = eventStuff[selectedEvent][0];
 				}
 				updateGrid();
 			}
@@ -2849,7 +2851,7 @@ class ChartingState extends MusicBeatState
 
 		// PREV SECTION 
 		var beats:Float = getSectionBeats(-1);
-		if(curSec > 1) {
+		if(curSec > 0) {
 			for (i in _song.notes[curSec-1].sectionNotes)
 			{
 				var note:Note = setupNoteData(i, false, true);

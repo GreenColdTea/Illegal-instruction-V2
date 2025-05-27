@@ -121,6 +121,7 @@ class Note extends FlxSprite
 
 	public var tail:Array<Note> = []; // for sustains
 	public var parent:Note;
+	public var owner:Character = null;
 
 	public var hitsoundDisabled:Bool = false;
 
@@ -150,20 +151,27 @@ class Note extends FlxSprite
 
 	public function resizeByRatio(ratio:Float) //haha funny twitter shit
 	{
-		if(isSustainNote && !animation.curAnim.name.endsWith('end'))
+		if(isSustainNote && !animation.curAnim.name.endsWith('end') && noteData < 4)
 		{
 			scale.y *= ratio;
+			baseScaleY = scale.y;
+			updateHitbox();
+		}
+	
+		if(isSustainNote && !animation.curAnim.name.endsWith('end') && noteData > 4)
+		{
+			scale.y *= ratio / 1.6;
 			baseScaleY = scale.y;
 			updateHitbox();
 		}
 	}
 
 	private function set_multSpeed(value:Float):Float {
-                var speedFactor:Float = 2.15;
-                resizeByRatio(Math.pow(value / multSpeed, speedFactor)); 
-                multSpeed = value;
+        var speedFactor:Float = 2.5;
+        resizeByRatio(Math.pow(value / multSpeed, speedFactor)); 
+        multSpeed = value;
 		//trace('fuck dis');
-                return value;
+        return value;
 	}
 
 	public function set_texture(value:String):String {
@@ -291,7 +299,6 @@ class Note extends FlxSprite
 
 			if (PlayState.isPixelStage) {
 				offsetX += 30;
-				//scale.x /= 1.25;
 			}
 
 			if (prevNote.isSustainNote)
@@ -505,7 +512,7 @@ class Note extends FlxSprite
 	}
 
 	override public function destroy(){
-		if (playField!=null)playField.remNote(this);
+		if (playField!=null) playField.remNote(this);
 		
 		defScale.put();
 		return super.destroy();

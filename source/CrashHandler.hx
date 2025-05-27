@@ -7,117 +7,128 @@ import openfl.errors.Error;
 import sys.FileSystem;
 import sys.io.File;
 #end
+import haxe.Exception;
+import flixel.FlxG;
+import lime.system.System;
 
 using StringTools;
-using flixel.util.FlxArrayUtil;
 
-/**
- * Crash Handler.
- * @author YoshiCrafter29, Ne_Eo, MAJigsaw77 and Lily Ross (mcagabe19)
- */
 class CrashHandler
 {
-	public static function init():Void
-	{
-		openfl.Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
-		#if cpp
-		untyped __global__.__hxcpp_set_critical_error_handler(onError);
-		#elseif hl
-		hl.Api.setErrorHandler(onError);
-		#end
-	}
+    static final LOGS_DIR = "logs/";
+    
+    public static function init():Void
+    {
+        try {
+            openfl.Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
+            #if cpp
+            untyped __global__.__hxcpp_set_critical_error_handler(onError);
+            #elseif hl
+            hl.Api.setErrorHandler(onError);
+            #end
+        } catch (e:Exception) {
+            trace("Failed to initialize crash handler: " + e.message);
+        }
+    }
 
-	private static function onUncaughtError(e:UncaughtErrorEvent):Void
-	{
-		e.preventDefault();
-		e.stopPropagation();
-		e.stopImmediatePropagation();
+    private static function onUncaughtError(e:UncaughtErrorEvent):Void
+    {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
 
-		var m:String = e.error;
-		if (Std.isOfType(e.error, Error))
-		{
-			var err = cast(e.error, Error);
-			m = '${err.message}';
-		}
-		else if (Std.isOfType(e.error, ErrorEvent))
-		{
-			var err = cast(e.error, ErrorEvent);
-			m = '${err.text}';
-		}
-		var stack = haxe.CallStack.exceptionStack();
-		var stackLabelArr:Array<String> = [];
-		var stackLabel:String = "";
-		for (e in stack)
-		{
-			switch (e)
-			{
-				case CFunction:
-					stackLabelArr.push("Non-Haxe (C) Function");
-				case Module(c):
-					stackLabelArr.push('Module ${c}');
-				case FilePos(parent, file, line, col):
-					switch (parent)
-					{
-						case Method(cla, func):
-							stackLabelArr.push('${file.replace('.hx', '')}.$func() [line $line]');
-						case _:
-							stackLabelArr.push('${file.replace('.hx', '')} [line $line]');
-					}
-				case LocalFunction(v):
-					stackLabelArr.push('Local Function ${v}');
-				case Method(cl, m):
-					stackLabelArr.push('${cl} - ${m}');
-			}
-		}
-		stackLabel = stackLabelArr.join('\r\n');
+        var message = parseErrorMessage(e.error);
+        var stack = formatStack(haxe.CallStack.exceptionStack());
+        
+        handleCrash(message, stack);
+    }
 
-		#if sys
-		saveErrorMessage('$m\n$stackLabel');
-		#end
+    #if (cpp || hl)
+    private static function onError(message:Dynamic):Void
+    {
+        var log = [];
+        if (message != null && Std.string(message).length > 0)
+            log.push(Std.string(message));
+            
+        log.push(haxe.CallStack.toString(haxe.CallStack.exceptionStack(true)));
+        handleCrash(log.join('\n'), "");
+    }
+    #end
 
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.stop();
+    private static function parseErrorMessage(error:Dynamic):String
+    {
+        return if (Std.isOfType(error, Error)) {
+            cast(error, Error).message;
+        } else if (Std.isOfType(error, ErrorEvent)) {
+            cast(error, ErrorEvent).text;
+        } else {
+            Std.string(error);
+        }
+    }
 
-		CoolUtil.showPopUp('$m\n$stackLabel', "Error!");
-		lime.system.System.exit(1);
-	}
+    private static function formatStack(stack:Array<haxe.CallStack.StackItem>):String
+    {
+        return [for (item in stack) switch (item) {
+            case CFunction: "Non-Haxe (C) Function";
+            case Module(c): 'Module $c';
+            case FilePos(parent, file, line, _):
+                switch (parent) {
+                    case Method(cla, func): '${file.replace(".hx", "")}.$func() [line $line]';
+                    case _: '${file.replace(".hx", "")} [line $line]';
+                }
+            case LocalFunction(v): 'Local Function $v';
+            case Method(cl, m): '$cl - $m';
+        }].join("\n");
+    }
 
-	#if (cpp || hl)
-	private static function onError(message:Dynamic):Void
-	{
-		final log:Array<String> = [];
+    private static function handleCrash(message:String, stack:String):Void
+    {
+        var fullError = message + (stack.length > 0 ? '\n$stack' : "");
+        
+        #if sys
+        saveCrashLog(fullError);
+        #end
+        
+        stopAudio();
+        showErrorPopup(fullError);
+        System.exit(1);
+    }
 
-		if (message != null && message.length > 0)
-			log.push(message);
+    private static function stopAudio():Void
+    {
+        FlxG.sound.music?.stop();
+        try {
+            if (PlayState.instance != null) {
+                PlayState.instance.vocals?.stop();
+            }
+        } catch (e:Dynamic) {}
+    }
 
-		log.push(haxe.CallStack.toString(haxe.CallStack.exceptionStack(true)));
+    private static function showErrorPopup(message:String):Void
+    {
+        try {
+            CoolUtil.showPopUp(message, "Error!");
+        } catch (e:Dynamic) {
+            trace("Failed to show error popup: " + e);
+        }
+    }
 
-		#if sys
-		saveErrorMessage(log.join('\n'));
-		#end
-
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-
-		CoolUtil.showPopUp(log.join('\n'), "Critical Error!");
-		lime.system.System.exit(1);
-	}
-	#end
-
-	#if sys
-	private static function saveErrorMessage(message:String):Void
-	{
-		try
-		{
-			if (!FileSystem.exists('logs'))
-				FileSystem.createDirectory('logs');
-
-			File.saveContent('logs/'
-				+ Date.now().toString().replace(' ', '-').replace(':', "'")
-				+ '.txt', message);
-		}
-		catch (e:haxe.Exception)
-			trace('Couldn\'t save error message. (${e.message})');
-	}
-	#end
+    #if sys
+    private static function saveCrashLog(content:String):Void
+    {
+        try {
+            if (!FileSystem.exists(LOGS_DIR)) {
+                FileSystem.createDirectory(LOGS_DIR);
+            }
+            
+            var fileName = LOGS_DIR + Date.now().toString()
+                .replace(" ", "-")
+                .replace(":", "'") + ".txt";
+                
+            File.saveContent(fileName, content);
+        } catch (e:Exception) {
+            trace('Failed to save crash log: ${e.message}');
+        }
+    }
+    #end
 }

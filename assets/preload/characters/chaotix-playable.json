@@ -1,103 +1,103 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				159,
 				-149
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWNmiss",
-			"indices": [],
-			"name": "ChaotixMissDown"
+			"fps": 24,
+			"name": "ChaotixMissDown",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				164,
 				-143
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "ChaotixDown"
+			"fps": 24,
+			"name": "ChaotixDown",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				105,
 				18
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "ChaotixUp"
+			"fps": 24,
+			"name": "ChaotixUp",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				256,
 				-93
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "ChaotixRight"
+			"fps": 24,
+			"name": "ChaotixRight",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				106,
 				13
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUPmiss",
-			"indices": [],
-			"name": "ChaotixMissUp"
+			"fps": 24,
+			"name": "ChaotixMissUp",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-63,
 				-36
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "ChaotixLeft"
+			"fps": 24,
+			"name": "ChaotixLeft",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "ChaotixIdle"
+			"fps": 24,
+			"name": "ChaotixIdle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				268,
 				-87
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singLEFTmiss",
-			"loop": false,
-			"name": "ChaotixMissRight"
+			"fps": 24,
+			"name": "ChaotixMissRight",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-71,
 				-36
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"loop": false,
-			"name": "ChaotixMissLeft"
+			"fps": 24,
+			"name": "ChaotixMissLeft",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -109,9 +109,9 @@
 	"healthicon": "chaotix",
 	"flip_x": false,
 	"healthbar_colors": [
-		0,
-		0,
-		0
+		246,
+		48,
+		140
 	],
 	"camera_position": [
 		290,

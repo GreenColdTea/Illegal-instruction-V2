@@ -66,9 +66,10 @@ class Main extends Sprite
     {
         Lib.current.addChild(new Main());
 	    #if cpp
-        cpp.NativeGc.run(true);
-	    cpp.NativeGc.enable(true);
-	    #end
+		cpp.NativeGc.enable(true);
+		#elseif hl
+		hl.Gc.enable(true);
+		#end
     }
 
     public function new()
@@ -181,7 +182,9 @@ class Main extends Sprite
                 resetSpriteCache(FlxG.game);
         });
 
+        FlxG.fixedTimestep = false;
 	    FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
+        FlxG.keys.preventDefaultKeys = [TAB];
 
 	    #if mobile
 	    FlxG.signals.postGameStart.addOnce(() -> {

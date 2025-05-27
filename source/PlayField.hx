@@ -95,7 +95,7 @@ class PlayField extends FlxTypedGroup<StrumNote> {
 
     public function clearReceptors()
     {
-		while(members.length>0){
+		while(members.length>0) {
             var note:StrumNote = members.pop();
             note.kill();
             note.destroy();
@@ -107,7 +107,7 @@ class PlayField extends FlxTypedGroup<StrumNote> {
 		for (data in 0...keyCount)
 		{
 			var babyArrow:StrumNote = new StrumNote(baseX, baseY, data, player, this);
-                        babyArrow.setGraphicSize(Std.int(babyArrow.width * scale));
+            babyArrow.setGraphicSize(Std.int(babyArrow.width * scale));
 			babyArrow.updateHitbox();
 			babyArrow.downScroll = ClientPrefs.downScroll;
 			babyArrow.alphaMult = alpha;

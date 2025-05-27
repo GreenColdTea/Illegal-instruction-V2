@@ -11,10 +11,9 @@ enum ModifierType {
     MISC_MOD; // used for anything else
 }
 
-@:enum
-abstract ModifierOrder(Int) to Int{
+enum abstract ModifierOrder(Int) to Int{
 	var FIRST = -1000;
-    var PRE_REVERSE = -3;
+	var PRE_REVERSE = -3;
     var REVERSE = -2;
     var POST_REVERSE = -1;
     var DEFAULT = 0;

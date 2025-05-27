@@ -102,7 +102,7 @@ class FlxAnimationController implements IFlxDestroyable
 	public var followGlobalSpeed:Bool = true;
 	public function update(elapsed:Float):Void
 	{
-		if (_curAnim != null)
+		if (_curAnim != null && _curAnim.frames != null)
 		{
 			var e:Float = elapsed;
 			if(followGlobalSpeed) e *= globalSpeed;

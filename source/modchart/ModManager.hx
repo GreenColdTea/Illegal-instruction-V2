@@ -217,15 +217,15 @@ class ModManager {
 			if (mod==null) continue;
 			if (!obj.active)
 				continue;
-                        if((obj is Note)) {
+            if((obj is Note)) {
 				var o:Note = cast obj;
 				mod.updateNote(beat, o, pos, player);
 			}
-                        else if((obj is StrumNote)) {
+            else if((obj is StrumNote)) {
 				var o:StrumNote = cast obj;
 				mod.updateReceptor(beat, o, pos, player);
 			}
-                }
+        }
 		if((obj is Note)) obj.updateHitbox();
 		
 		obj.centerOrigin();
@@ -243,11 +243,11 @@ class ModManager {
 	
 	public function getPos(time:Float, diff:Float, tDiff:Float, beat:Float, data:Int, player:Int, obj:FlxSprite, ?exclusions:Array<String>, ?pos:Vector3):Vector3
 	{
-		if(exclusions==null) exclusions=[]; // since [] cant be a default value for.. some reason?? "its not constant!!" kys haxe
+		if(exclusions == null) exclusions = []; // since [] cant be a default value for.. some reason?? "its not constant!!" kys haxe
 		if (pos == null)
 			pos = new Vector3();
 
-		if (!obj.active)return pos;
+		if (!obj.active) return pos;
 
 		pos.x = getBaseX(data, player);
 		pos.y = 50 + diff;
@@ -255,7 +255,7 @@ class ModManager {
 		for (name in activeMods[player]) {
 			if (exclusions.contains(name)) continue; // because some modifiers may want the path without reverse, for example. (which is actually more common than you'd think!)
 			var mod:Modifier = notemodRegister.get(name);
-			if (mod==null) continue;
+			if (mod == null) continue;
 			if(!obj.active) continue;
 			pos = mod.getPos(time, diff, tDiff, beat, pos, data, player, obj);
         }

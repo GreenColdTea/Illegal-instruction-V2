@@ -7,7 +7,6 @@ import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
-import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -105,7 +104,7 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-	        switch (curRender) 
+	    switch (curRender) 
 		{
 			case 'dukelaugh':
 				curRender = 'duke';
@@ -117,15 +116,15 @@ class PauseSubState extends MusicBeatSubstate
 				curRender = 'wechbeast';
 		}
 
-	        var renderDistance:Float = -75;
+	    var renderDistance:Float = -75;
 		pauseArt = new FlxSprite(renderDistance * -1, -450);
-	        pauseArt.scale.set(0.4, 0.4);
+	    pauseArt.scale.set(0.4, 0.4);
 		pauseArt.loadGraphic(Paths.image('Renders/' + curRender, 'shared'));
 		pauseArt.scrollFactor.set();
 		pauseArt.x = renderDistance * -1;
-	        pauseArt.antialiasing = true;
+	    pauseArt.antialiasing = true;
 		pauseArt.alpha = 0;
-	        if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + '.png', IMAGE, 'shared'))) add(pauseArt);
+	    if (!OpenFlAssets.exists(Paths.getPath('Renders/' + curRender + '.png', IMAGE, 'shared'))) add(pauseArt);
 
 		fixRenders();
 
@@ -191,7 +190,7 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.x = FlxG.width - (blueballedTxt.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
-	        FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
+	    FlxTween.tween(pauseArt, {alpha: 1}, 0.55, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
@@ -202,14 +201,14 @@ class PauseSubState extends MusicBeatSubstate
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-                #if mobile
+        #if mobile
 		if (PlayState.chartingMode)
 		{
-		        addVirtualPad(LEFT_FULL, A);
+		    addVirtualPad(LEFT_FULL, A);
 		}
 		else
 		{
-		        addVirtualPad(UP_DOWN, A);
+		    addVirtualPad(UP_DOWN, A);
 		}
 		addVirtualPadCamera();
 		#end
@@ -367,13 +366,9 @@ class PauseSubState extends MusicBeatSubstate
 				case "Exit":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
-                                        PlayState.instance.canResync = false;
+                    PlayState.instance.canResync = false;
 					if(PlayState.isStoryMode) {
-						#if !mobile
 						MusicBeatState.switchState(new StoryMenuState());
-						#else
-						MusicBeatState.switchState(new mobile.StoryMenuState());
-						#end
 					} else if (PlayState.isFreeplay) {
 						MusicBeatState.switchState(new BallsFreeplay());
 					} else {

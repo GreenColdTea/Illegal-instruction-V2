@@ -5,7 +5,6 @@ import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.math.FlxMath;
 import flixel.util.FlxTimer;
-import flixel.system.FlxSound;
 import openfl.media.Sound;
 import openfl.text.TextFormat;
 import flixel.text.FlxText;
@@ -13,9 +12,9 @@ import StringTools;
 
 class Alphabet extends FlxSpriteGroup {
 	
-        // Chaotix font
+    // Chaotix font
 	@:font("assets/fonts/chaotix.ttf")
-        public static var ChaotixFont:String;
+    public static var ChaotixFont:String;
 	public static var instance:Alphabet;
 
 	// typing config

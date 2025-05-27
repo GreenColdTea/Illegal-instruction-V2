@@ -180,12 +180,12 @@ class NotesSubState extends MusicBeatSubstate
 
 		if (controls.BACK || (changingNote && controls.ACCEPT)) {
 			if(!changingNote) {
-			        #if android
-                                FlxTransitionableState.skipNextTransOut = true;
-			        FlxG.resetState();
-                                #else
-                                close();
-                                #end
+			    #if mobile
+                FlxTransitionableState.skipNextTransOut = true;
+			    FlxG.resetState();
+                #else
+                close();
+                #end
 			} else {
 				changeSelection();
 			}

@@ -26,7 +26,7 @@ class StrumNote extends FlxSprite
 	private var player:Int;
 	public var parent:PlayField;
 
-        public var z:Float = 0; // for modchart system
+    public var z:Float = 0; // for modchart system
 	public var desiredZIndex:Float = 0;
 	public var zIndex:Float = 0;
 

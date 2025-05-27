@@ -45,6 +45,7 @@ using StringTools;
  */
 class CharacterEditorState extends MusicBeatState
 {
+	var backupGpu:Bool;
 	var char:Character;
 	var ghostChar:Character;
 	var textAnim:FlxText;
@@ -81,6 +82,9 @@ class CharacterEditorState extends MusicBeatState
 	override function create()
 	{
 		//FlxG.sound.playMusic(Paths.music('breakfast'), 0.5);
+
+		backupGpu = ClientPrefs.cacheOnGPU;
+		ClientPrefs.cacheOnGPU = false;
 
 		camEditor = new FlxCamera();
 		camHUD = new FlxCamera();
@@ -1307,5 +1311,11 @@ class CharacterEditorState extends MusicBeatState
 
 		var text:String = prefix + Clipboard.text.replace('\n', '');
 		return text;
+	}
+
+	override function destroy() {
+		ClientPrefs.cacheOnGPU = backupGpu;
+
+		super.destroy();
 	}
 }
