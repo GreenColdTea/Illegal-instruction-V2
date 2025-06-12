@@ -172,6 +172,9 @@
 		<haxedef name="HXCPP_STACK_LINE" />
 		<haxedef name="HXCPP_STACK_TRACE" />
 		<haxedef name="HXCPP_CATCH_SEGV" />
+
+		<!--Allow working memory greater than 1 Gig-->
+		<haxedef name="HXCPP_GC_BIG_BLOCKS" />
 	</section>
 	<!--<haxedef name="HXCPP_MSVC_CUSTOM"/>-->
 
